@@ -1,0 +1,207 @@
+# Starship configuration for my colored-lozenges prompt.
+#
+# STRUCTURE
+# This is a two-line prompt:
+# - Line 1:
+#   - Left-justified items
+#     - username (conditionally displayed)
+#       - White lozenge
+#       - Displays username only if any of the following conditions are met:
+#         - the current user is root/admin
+#         - the current user isn’t the same as the one that is logged in
+#         - the user is currently connected as an SSH session
+#         - the variable `show_always` is set to `true`
+#       - To test how the username module displays within the prompt, in the `[username]` module below, change `show_always` to `always`
+#     - directory
+#       - Blue lozenge
+#       - if current directory is in a git repository, truncates the path to the root of the repo
+#       - TODO: Experiment with value for `truncation_length` to ensure first line of prompt is not too long
+#       - CONSIDER: Use `substitutions` to provide short name for literal strings that occur in path.
+#         However, these are likely to be user-specific, so would have to figure out how to allow each user to make modifications to
+#         to starship.toml without screwing up the propagation of changes to all users.
+#     - git summary
+#       - Yellow lozenge
+#       - Three components
+#         - branch (conditionally displayed)
+#           - the branch is displayed only if the branch is *not* 'main' or 'master'
+#             - this behavior can be reversed (i.e., branch is unconditionally displayed, even if 'main' or 'master') by,
+#               in module `[git_branch]` below, commenting out the `ignore_branches` line
+#         - commit hash
+#         - status
+#           - TODO: Revisit the symbols assigned to various conditions in a real-world context.
+#             Note: I’ve currently overridden the assigned symbols with a bunch of emojis that aren’t readily informative.
+#   - Right-justified items
+#     - Elapsed time for command (conditionally displayed)
+#       - Prefaced with an hourglass emoji ('⏳'); not a lozenge
+#     - Month/day and time
+#       - Not a lozenge
+#         - Month/day
+#           - Prefaced with a calendar-page emoji ('📅') ; three-letter month; day of month is *not* padded
+#         - Time
+#           - Prefaced with a watch emoji ('⏱️')
+# - Line 2 (all left justified):
+#   - SUDO (conditionally displayed)
+#     - "SUDO" in an orange lozenge
+#     - is displayed only if sudo credentials are current cached (at the time the prompt is rendered)
+#     - Note: sudo credentials can expire with the passage of time, but a previously rendered "SUDO" will be retroactively removed.
+#   - Prompt “character”
+#     - A yellow right arrow (formed by two characters)
+#
+# SPECIAL CHARACTERS RELIED UPON
+# - Nerd Font characters
+#   - Unicode, classname, description, purpose
+#     -   E0B6 nf-ple-left_half_circle_thick    half-circle for left-end cap on lozenges
+#     -   E0B4 nf-ple-right_half_circle_thick   half-circle for right-end cap on lozenges
+#     -   F07C nf-fa-folder_open                folder icon for module `[directory]`
+#     -   E709 nf-dev-github                    GitHub logo for the Git summary
+#     -   F418 nf-oct-git_branch                icon to indicate a git branch, for `[git_branch]` module
+#     -   F0C8 nf-fa-square                     square for first character of success_symbol in `[character]` module
+#     -   E0B0 nf-pl-left_hard_divider          right-pointing solid triangle for second character of success_symbol in `[character]` module
+#
+#  Tips for dealing with Nerd Font unicode characters
+#  - To determine what character a noninformative rectangleish character (e.g., '') refers to, use BBEdit’s Character Inspector:
+#    Window » Palettes » Character Inspector
+# - To enter a unicode character on macOS:
+#   - Add Unicode Hex Input as a text input: System Settings » Keyboard » Text Input » Input Sources » Edit…, add Unicode Hex Input
+#   - Select Unicode Hex Input from the text-input menuextra
+#   - Hold ⌥ (option) while typing each of the four characters, e.g., ⌥F0C8
+#
+# - Structure of a generic lozenge
+#   - Example: format = '[](fg:sudo_primary)[$symbol]($style)[](fg:sudo_primary) '
+#
+# COLORS
+# - The relevant colors are defined in `[palettes.lozenges]` below
+# - Each module of the prompt has each of the following types of colors defined:
+#   - `_primary`: the color of the lozenge
+#   - `_contrast`: the color of text to contrast with the lozenge (`_primary`) color
+# - This prompt is optimized for dark mode. It will work in light mode, but in particular the time-related section on the right-hand
+#   side of the first line will not look pleasing.
+
+############### `format` of the two-line prompt
+format = """
+$username\
+$directory \
+[([ ](bg:git_primary)($git_branch$git_commit$git_status) )](fg:git_primary)\
+$fill\
+$python\
+$docker_context\
+$cmd_duration\
+$time\
+$line_break\
+$sudo\
+$character\
+$status"""
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Specify color palette
+palette = "lozenges"
+
+[username]
+format = '[](fg:username_primary)[👤 $user ]($style)[](fg:username_primary) '
+style_user = 'bg:username_primary fg:username_contrast'
+show_always = false
+disabled = false
+
+[directory]
+home_symbol = '🏠'
+format = '[](fg:directory_primary)[: $path ]($style)[$read_only]($read_only_style)[](fg:directory_primary)'
+style = 'bg:directory_primary fg:directory_contrast'
+truncate_to_repo = true
+truncation_length = 3
+truncation_symbol = '…/'
+disabled = false
+
+# Example of how to do directory substitutions
+# [directory.substitutions]
+# 'Documents' = '󰈙'
+# 'Downloads' = ' '
+# 'Music' = ' '
+# 'Pictures' = ' '
+
+[git_branch]
+ignore_branches = ["main", "master"]
+symbol = ''
+format = '[$symbol $branch(:$remote_branch)]($style)'
+style = 'bg:git_primary fg:git_contrast'
+disabled = false
+
+[git_commit]
+format = '[ #$hash $tag]($style)'
+style = 'bg:git_primary fg:git_contrast'
+tag_disabled = false
+only_detached = false
+disabled = false
+
+[git_status]
+style = 'bg:git_primary fg:git_contrast bold'
+format = '([$all_status$ahead_behind]($style))'
+disabled = false
+
+[fill]
+symbol = ' •  '
+disabled = false
+
+# Example of how to do the Python module. Not yet tested
+# [python]
+# style = 'teal'
+# symbol = ' '
+# format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+# pyenv_version_name = true
+# pyenv_prefix = ''
+
+# Example of how to do Docker context. Not yet tested
+# [docker_context]
+# symbol = ' '
+# style = 'fg:#06969A'
+# format = '[$symbol]($style) $path'
+# detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
+# detect_extensions = ['Dockerfile']
+
+[cmd_duration]
+# min_time is in milliseconds
+min_time = 2_000
+format = '\(⏳ [$duration]($style)\)'
+style = 'bg:time_primary fg:time_contrast bold'
+disabled = false
+
+[time]
+# Note: the space at the end of literal on the rhs of the following `format` statement is necessary to prevent iTerm from erroneously
+#       wrapping the final character onto the next line.
+format = '[$time]($style) '
+time_format = ' 📅 %h %-e ⏱️ %T'
+style = 'bg:time_primary fg:time_contrast'
+disabled = false
+
+[line_break]
+disabled = false
+
+[sudo]
+symbol = 'SUDO'
+# symbol = '🚨SUDO⚡️'
+format = '[](fg:sudo_primary)[$symbol]($style)[](fg:sudo_primary) '
+style = 'bg:sudo_primary fg:sudo_contrast bold'
+disabled = false
+
+[character] 
+# success_symbol = "🔶" 
+success_symbol = '[](#FFA500)'
+error_symbol = "❌"
+format = '$symbol '
+disabled = false
+
+[palettes.lozenges]
+directory_primary = '#3B76F0'
+directory_contrast = '#E4E4E4'
+git_primary = '#FCF392'
+git_contrast = '#212121'
+username_primary = '#E4E4E4'
+username_contrast = '#212121'
+sudo_primary = '#FF5F1F'
+sudo_contrast = '#E4E4E4'
+time_primary = '#212121'
+time_contrast = '#FFFF00'

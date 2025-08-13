@@ -1,0 +1,10 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Jim Ratliff
+	email = 8410716+jimratliff@users.noreply.github.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	excludesFile = ~/.config/git/git_ignore_global

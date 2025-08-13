@@ -1,0 +1,74 @@
+# Fallbacks (harmless if already set)
+: "${XDG_CONFIG_HOME:="$HOME/.config"}"
+: "${ZDOTDIR:="$XDG_CONFIG_HOME/zsh"}"
+
+# Paired variables for individual files
+ZSHRC="$ZDOTDIR/.zshrc"
+ZSHENV="$ZDOTDIR/.zshenv"
+ZSHALIASES="$ZDOTDIR/.zsh_aliases"
+# ZSHFUNCS="$ZDOTDIR/.zsh_functions"   # if you split functions into a file
+
+# Show aliases
+alias show_aliases='bat "$ZSHALIASES"'
+
+# Edit aliases
+alias edit_aliases='$EDITOR "$ZSHALIASES"'
+
+# Show .zshrc
+alias show_zshrc='bat "$ZSHRC"'
+
+# Edit .zshrc
+alias edit_zshrc='$EDITOR "$ZSHRC"'
+
+############### Reload shell
+# `zsh -l`: starts a login shell (“pretend this shell was started as a login shell”)
+alias reload_shell='exec zsh -l'
+
+############### Update dotfiles
+alias update_dotfiles='echo "📦 Pulling latest dotfiles…" && \
+  git -C "$HOME/.genomac-dotfiles" pull --ff-only origin main'
+
+############### Replace ls with eza
+alias ls="eza"
+
+# In all below variants of eza:
+# - include hidden files but exclude all files that are .gitignore-d.
+# - show file icon
+
+# Non-long forms
+alias ls1="eza -1 --all --icons --git-ignore" # List each file on its own line with its icon
+
+# Trees
+alias lt="eza  --tree           --all --icons --git-ignore"
+alias lt1="eza --tree --level 1 --all --icons --git-ignore"
+alias lt2="eza --tree --level 2 --all --icons --git-ignore"
+alias lt3="eza --tree --level 3 --all --icons --git-ignore"
+alias lt4="eza --tree --level 4 --all --icons --git-ignore"
+alias lt5="eza --tree --level 5 --all --icons --git-ignore"
+
+# Long forms
+
+alias ll="eza --long --header --octal-permissions --all --icons --git --time-style='+%Y_%m_%d_%H%M' --git-ignore"
+
+############### Replace tree with eza
+alias tree="eza --tree"
+
+############### Replace cat with bat
+alias cat="bat"
+
+############### File-system navigation
+
+alias ~="cd ~"                # Navigate to home directory
+
+alias ..='cd ..'              # Navigate up 1 directory
+alias ...='cd ../..'          # Navigate up 2 directories
+alias ..2="cd ../.."          # Navigate up 2 directories
+alias ....='cd ../../..'      # Navigate up 3 directories
+alias ..3="cd ../../.."       # Navigate up 3 directories
+alias .....='cd ../../../..'  # Navigate up 4 directories
+alias ..4="cd ../../../.."    # Navigate up 4 directories
+
+############### Git shortcuts
+alias gitpull="git pull origin main"
+
+
