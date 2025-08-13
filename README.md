@@ -1,6 +1,6 @@
 # GenoMac-user
 ## Overview
-This public repo, GenoMac-user, is used in conjunction with the [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system). The GenoMac-system repo is cloned exclusively by USER_CONFIGURER. GenoMac-system is responsible for configurations at the system level, i.e., affect all users. This includes, at the least, installing all CLI and GUI apps (both on or off the Mac App Store).
+This public repo, GenoMac-user, is used in conjunction with the [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system). [The GenoMac-system repo is cloned exclusively by USER_CONFIGURER. GenoMac-system is responsible for configurations at the system level, i.e., affect all users. This includes, at the least, installing all CLI and GUI apps (both on or off the Mac App Store).]
 
 This repo, in contrast, is focused on generic user-specific settings, in other words settings (a) whose jurisdiction is that of an individual user but (b) which are assumed to be the same across all users within the GenoMac project. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.)
 
