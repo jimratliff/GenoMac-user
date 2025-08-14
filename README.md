@@ -40,12 +40,22 @@ As a preview:
 with respect to that user.
 
 For each user:
+- Grant Terminal full-disk access
 - Clone this repo to the user’s home directory
 - Dot files
     - From `~/.genomac-user`, execute `make stow-dotfiles`
     - Log out and log back in
 - macOS preferences
+    - From `~/.genomac-user`, execute `make initial-prefs`
+    - Log out and log back in
+- TODO: Integrate 1Password’s SSH agent with SSH
     
+### Grant Terminal full-disk access
+- System Settings
+  - Privacy & Security
+    - Select the Privacy tab
+      - Scroll down and click Full Disk Access
+        - Enable for Terminal
 
 ### Cloning this repo
 For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`:
@@ -70,3 +80,11 @@ Now **log out and log back in as this user**. (This may not be necessary, but it
 More specifically, `stow_dotfiles.sh` relies on a list of packages enumerated in the variable `PACKAGES_LIST` in that script. It iterates through each of those packages and, for each package, stows the dotfiles associated with that package.
 
 Thus, to add the dotfiles for a new package, it is *not* sufficient to add those dotfiles to a new package in `stow_directory` (though this is necessary)! In addition, the name of the package must be added to the space-separated `PACKAGES_LIST` in `stow_dotfiles.sh`.
+
+### Implement the initial set of macOS-related preferences
+The next step is to implement preferences that aren’t captured by the above dot files but instead relate to macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
+
+```shell
+cd ~/.genomac-user
+make initial-prefs
+```
