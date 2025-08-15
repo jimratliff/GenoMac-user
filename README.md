@@ -2,14 +2,14 @@
 ## Overview
 This public repo, GenoMac-user, is used in conjunction with the [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system). [The GenoMac-system repo is cloned exclusively by USER_CONFIGURER. GenoMac-system is responsible for configurations at the system level, i.e., that affect all users. This includes, among other things, installing all CLI and GUI apps (both on or off the Mac App Store).]
 
-This repo, in contrast, is focused on generic user-specific settings, in other words settings (a) whose jurisdiction is that of an individual user but (b) which are assumed to be the same across all users within the GenoMac project. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.)
+This repo, in contrast, is focused on generic user-scoped settings, in other words settings (a) whose jurisdiction is that of an individual user but (b) which are assumed to be the same across all users within the GenoMac project. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.)
 
 ### Assumed prerequisites
 Before you do anything with this repo, GenoMac-user, the following system-level prerequisites need to be fulfilled (via the GenoMac-system repo):
 - Homebrew, and therefore indirectly, Git, have been installed
 - GNU Stow has been installed
 
-### Cloned to `~/.genomac-user` of each user
+### Clone to `~/.genomac-user` of each user
 
 This public GenoMac-user repo is meant to be cloned locally (using https) to each user’s home directory to support the configuration of that user’s account, applications, etc. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable $GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
 

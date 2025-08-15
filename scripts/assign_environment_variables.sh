@@ -38,11 +38,11 @@ GENOMAC_USER_REPO_URL="https://github.comjimratliff/GenoMac-user.git"
 # Specify local directory into which the GenoMac-system repository will be 
 # cloned
 # Note: This repo is cloned only by USER_CONFIGURER.
-GENOMAC_SYSTEM_LOCAL_DIRECTORY="$HOME/genomac-system"
+GENOMAC_SYSTEM_LOCAL_DIRECTORY="$HOME/.genomac-system"
 
 # Specify local directory into which the GenoMac-user repository will be cloned
 # Note: This repo is cloned by each user.
-GENOMAC_USER_LOCAL_DIRECTORY="$HOME/genomac-user"
+GENOMAC_USER_LOCAL_DIRECTORY="$HOME/.genomac-user"
 
 # Specify the local directory that is the “stow directory” that GNU Stow uses as
 # both (a) the raw dotfiles representing various configurations and (b) the
