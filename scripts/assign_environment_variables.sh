@@ -33,7 +33,7 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 GENOMAC_SYSTEM_REPO_URL="https://github.com/jimratliff/GenoMac-system.git"
 
 # Specify URL for cloning the public GenoMac-user repository using HTTPS
-GENOMAC_USER_REPO_URL="https://github.comjimratliff/GenoMac-user.git"
+GENOMAC_USER_REPO_URL="https://github.com/jimratliff/GenoMac-user.git"
 
 # Specify local directory into which the GenoMac-system repository will be 
 # cloned
@@ -50,6 +50,10 @@ GENOMAC_USER_LOCAL_DIRECTORY="$HOME/.genomac-user"
 # $HOME directory.
 GENOMAC_USER_LOCAL_STOW_DIRECTORY="$GENOMAC_USER_LOCAL_DIRECTORY/stow_directory"
 
+# Specify the local directory in which user login pictures are stored to be
+# accessed during user-account creation.
+GENOMAC_USER_LOGIN_PICTURES_DIRECTORY="$HOME/.genomac-user-login-pictures"
+
 # Export environment variables to be available in all subsequent shells
 report_action_taken "Exporting environment variables to be consistently available."
 
@@ -65,7 +69,4 @@ export_and_report GENOMAC_USER_REPO_URL
 export_and_report GENOMAC_SYSTEM_LOCAL_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_STOW_DIRECTORY
-
-
-
-
+export_and_report GENOMAC_USER_LOGIN_PICTURES_DIRECTORY
