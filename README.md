@@ -61,6 +61,7 @@ For each user:
 For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`:
 
 ```shell
+mkdir -p ~/.genomac-user
 cd ~/.genomac-user
 git clone https://github.com/jimratliff/GenoMac-user.git .
 ```
