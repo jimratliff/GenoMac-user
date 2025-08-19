@@ -17,7 +17,7 @@ report_start_phase_standard
 report_action_taken "Implement Safari settings"
 
 report_adjust_setting "Do NOT auto-open “safe” downloads"
-defaults write com.apple.Safari AutoOpenSafeDownloads -bool false;success_or_not
+sudo defaults write com.apple.Safari AutoOpenSafeDownloads -bool false;success_or_not
 
 report_adjust_setting "Never automatically open a website in a tab rather than a window"
 defaults write com.apple.Safari TabCreationPolicy -int 0;success_or_not
