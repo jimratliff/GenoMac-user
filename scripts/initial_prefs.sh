@@ -40,6 +40,9 @@ source "${PREFS_FUNCTIONS_DIR}/overrides_for_sysadmin_users.sh"
 ############################## BEGIN SCRIPT PROPER #############################
 report_start_phase 'Begin the initial preference-setting phase'
 
+report_action_taken "Some commands will require 'sudo'"
+keep_sudo_alive
+
 # Set initial user-level settings
 set_initial_user_level_settings
 
