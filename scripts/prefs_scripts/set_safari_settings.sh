@@ -20,7 +20,7 @@ report_adjust_setting "Do NOT auto-open “safe” downloads"
 sudo defaults write com.apple.Safari AutoOpenSafeDownloads -bool false;success_or_not
 
 report_adjust_setting "Never automatically open a website in a tab rather than a window"
-defaults write com.apple.Safari TabCreationPolicy -int 0;success_or_not
+sudo defaults write com.apple.Safari TabCreationPolicy -int 0;success_or_not
 
 report_adjust_setting "Show full website address in Smart Search field"
 defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true;success_or_not
