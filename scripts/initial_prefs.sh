@@ -40,6 +40,7 @@ source "${PREFS_FUNCTIONS_DIR}/overrides_for_sysadmin_users.sh"
 ############################## BEGIN SCRIPT PROPER #############################
 report_start_phase 'Begin the initial preference-setting phase'
 
+# com.apple.universalaccess and com.apple.safari domains now require sudo
 report_action_taken "Some commands will require 'sudo'"
 keep_sudo_alive
 
