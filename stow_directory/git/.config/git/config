@@ -8,3 +8,4 @@
 
 [core]
 	excludesFile = ~/.config/git/git_ignore_global
+	editor = nano
