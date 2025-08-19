@@ -38,9 +38,9 @@ defaults write com.apple.finder ShowStatusBar -bool true;success_or_not
 report_adjust_setting "Show all filename extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true;success_or_not
 
-# Always show window proxy icon
+# Always show window proxy icon (doesn’t work without sudo)
 report_adjust_setting "Always show window proxy icon"
-defaults write com.apple.universalaccess showWindowTitlebarIcons -bool true;success_or_not
+sudo defaults write com.apple.universalaccess showWindowTitlebarIcons -bool true;success_or_not
 
 # Preferred window view: List view
 report_adjust_setting "Set Finder preferred window view to List View"
