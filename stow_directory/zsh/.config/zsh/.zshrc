@@ -1,6 +1,8 @@
 ############### Snippets that should appear near the top
 
 # Enable zsh-autocomplete
+# The -i flag: ignore warnings the group-writable Homebrew directories are insecure
+zstyle '*:compinit' arguments -i
 source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # Automatically use 1Password SSH agent if present
