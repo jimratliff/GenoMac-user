@@ -16,7 +16,7 @@ fi
 # • ${0} → name of the current script
 # • ${0:A} → absolute path
 # • ${0:A:h} → head (i.e., directory) of the absolute path
-source "$ZDOTDIR/.zsh_aliases
+source "$ZDOTDIR/.zsh_aliases"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
