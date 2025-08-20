@@ -13,9 +13,6 @@ fi
 : "${EDITOR:=bbedit}"   # or "nano", "nvim", "vim", "code", etc.
 
 # Source aliases file, .zsh_aliases, assumed in the same directory as this .zshrc file
-# • ${0} → name of the current script
-# • ${0:A} → absolute path
-# • ${0:A:h} → head (i.e., directory) of the absolute path
 source "$ZDOTDIR/.zsh_aliases"
 
 # Set up fzf key bindings and fuzzy completion
