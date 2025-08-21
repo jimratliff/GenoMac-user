@@ -39,4 +39,6 @@ function set_default_shell() {
     chsh -s "$BREW_ZSH" ; success_or_not
     report "Open a new login shell (new Terminal window or 'zsh -l') for it to take effect."
   fi
+
+  report_end_phase_standard
 }
