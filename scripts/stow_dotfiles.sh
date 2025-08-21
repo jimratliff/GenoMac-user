@@ -64,19 +64,27 @@ function stow_packages_dotfiles() {
 
 
 function prepare_zsh_sessions_for_outside_zdotdir() {
-  # Preconditions: these must already be set in .zshenv
-  : "${HISTFILE:?HISTFILE is not set. Did ~/.zshenv run and export it?}"
-  : "${ZDOTDIR:?ZDOTDIR is not set. Did ~/.zshenv run and export it?}"
+  # Preconditions: exported by .zshenv
   : "${XDG_STATE_HOME:?XDG_STATE_HOME is not set. Did ~/.zshenv run and export it?}"
+  : "${ZDOTDIR:?ZDOTDIR is not set. Did ~/.zshenv run and export it?}"
+  : "${HISTFILE:?HISTFILE is not set. Did ~/.zshenv run and export it?}"
 
-  STATE_ZSH_DIR="$(dirname -- "$HISTFILE")"    # normally $XDG_STATE_HOME/zsh
+  # Canonical locations derived from XDG_STATE_HOME
+  STATE_ZSH_DIR="$XDG_STATE_HOME/zsh"
   STATE_SESS_DIR="$STATE_ZSH_DIR/sessions"
+  EXPECTED_HISTFILE="$STATE_ZSH_DIR/history"
   ZDOT_SESS_PATH="$ZDOTDIR/.zsh_sessions"
+
+  # Enforce invariant: HISTFILE must be at $XDG_STATE_HOME/zsh/history
+  if [[ "$HISTFILE" != "$EXPECTED_HISTFILE" ]]; then
+    echo "ERROR: HISTFILE='$HISTFILE' but expected '$EXPECTED_HISTFILE'. Fix .zshenv, then re-run." >&2
+    exit 1
+  fi
 
   report_action_taken "Ensuring state directories: '$STATE_ZSH_DIR' & '$STATE_SESS_DIR'"
   mkdir -p "$STATE_ZSH_DIR" "$STATE_SESS_DIR" ; success_or_not
 
-  # History: create only if missing; never truncate existing history
+  # History: create only if missing; never truncate or modify existing file
   if [[ ! -e "$HISTFILE" ]]; then
     report_action_taken "Creating new history file: '$HISTFILE' (0600)"
     umask 077
