@@ -62,19 +62,55 @@ function stow_packages_dotfiles() {
   report_end_phase_standard
 }
 
+
+function prepare_zsh_sessions_for_outside_zdotdir() {
+  # Preconditions: these must already be set in .zshenv
+  : "${HISTFILE:?HISTFILE is not set. Did ~/.zshenv run and export it?}"
+  : "${ZDOTDIR:?ZDOTDIR is not set. Did ~/.zshenv run and export it?}"
+  : "${XDG_STATE_HOME:?XDG_STATE_HOME is not set. Did ~/.zshenv run and export it?}"
+
+  STATE_ZSH_DIR="$(dirname -- "$HISTFILE")"    # normally $XDG_STATE_HOME/zsh
+  STATE_SESS_DIR="$STATE_ZSH_DIR/sessions"
+  ZDOT_SESS_PATH="$ZDOTDIR/.zsh_sessions"
+
+  report_action_taken "Ensuring state directories: '$STATE_ZSH_DIR' & '$STATE_SESS_DIR'"
+  mkdir -p "$STATE_ZSH_DIR" "$STATE_SESS_DIR" ; success_or_not
+
+  # History: create only if missing; never truncate existing history
+  if [[ ! -e "$HISTFILE" ]]; then
+    report_action_taken "Creating new history file: '$HISTFILE' (0600)"
+    umask 077
+    : > "$HISTFILE"
+    chmod 600 "$HISTFILE"
+    success_or_not
+  else
+    report_action_taken "History exists at '$HISTFILE' — leaving contents & perms untouched"
+  fi
+
+  # Sessions: must be a symlink pointing to $STATE_SESS_DIR
+  if [[ -e "$ZDOT_SESS_PATH" && ! -L "$ZDOT_SESS_PATH" ]]; then
+    echo "ERROR: '$ZDOT_SESS_PATH' exists and is not a symlink. Resolve manually, then re-run." >&2
+    exit 1
+  fi
+
+  report_action_taken "Linking '$ZDOT_SESS_PATH' -> '$STATE_SESS_DIR' (idempotent)"
+  ln -snf "$STATE_SESS_DIR" "$ZDOT_SESS_PATH" ; success_or_not
+}
+
 function prepare_zsh_sessions_for_outside_zdotdir() {
   # Implements some details to allow Zsh sessions to be stored outside of ZDOTDIR.
 
   report_start_phase_standard
   report_action_taken "Preparing Zsh sessions to be stored outside of .config"
+
+  # Ensure critical environment variables are set
+  : "${HISTFILE:?HISTFILE is not set. Did ~/.zshenv run and export it?}"
+  : "${ZDOTDIR:?ZDOTDIR is not set. Did ~/.zshenv run and export it?}"
+  : "${XDG_STATE_HOME:?XDG_STATE_HOME is not set. Did ~/.zshenv run and export it?}"
   
-  # Ensure state dirs/files exist
-  report_action_taken "Creating directories only if necessary: '$XDG_STATE_HOME/zsh' & '$XDG_STATE_HOME/zsh/sessions'"
+  # Ensure state dirs exist
+  report_action_taken "Ensuring subdirectories of '$XDG_STATE_HOME' exist: 'zsh' & 'zsh/sessions'"
   mkdir -p "$XDG_STATE_HOME/zsh" "$XDG_STATE_HOME/zsh/sessions" ; success_or_not
-  report_action_taken "Remove in unlikely case that it exists: '$XDG_STATE_HOME/zsh/history'"
-  : > "$XDG_STATE_HOME/zsh/history" ; success_or_not
-  report_action_taken "Set permissions of '$XDG_STATE_HOME/zsh/history'"
-  chmod 600 "$XDG_STATE_HOME/zsh/history" ; success_or_not
 
   # Point sessions at state (idempotent & safe)
   if [[ -e "$ZDOTDIR/.zsh_sessions" && ! -L "$ZDOTDIR/.zsh_sessions" ]]; then
