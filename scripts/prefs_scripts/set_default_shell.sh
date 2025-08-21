@@ -17,19 +17,20 @@ function set_default_shell() {
   report_start_phase_standard
   report_action_taken "Ensure Homebrew’s Zsh is user’s default shell"
   
-  HOMEBREW_PREFIX="$(/usr/bin/env brew --prefix)"   # e.g., /opt/homebrew
-  BREW_ZSH="$HOMEBREW_PREFIX/bin/zsh"
+  local HOMEBREW_PREFIX="$(/usr/bin/env brew --prefix)"   # e.g., /opt/homebrew
+  local BREW_ZSH="$HOMEBREW_PREFIX/bin/zsh"
 
   if [[ ! -x "$BREW_ZSH" ]]; then
     report_fail "$BREW_ZSH not found. Did 'brew bundle' install zsh yet?"
-    exit 1
+    return 1
   fi
   
   if ! grep -qx "$BREW_ZSH" /etc/shells; then
     report_fail "$BREW_ZSH is not listed as allowable shell in /etc/shells."
-    exit 1
+    return 1
   fi
 
+  local CURRENT_SHELL
   CURRENT_SHELL="$(dscl . -read "/Users/$USER" UserShell 2>/dev/null | awk 'NR==1{print $2}')"
 
   if [[ "$CURRENT_SHELL" == "$BREW_ZSH" ]]; then
