@@ -62,8 +62,35 @@ function stow_packages_dotfiles() {
   report_end_phase_standard
 }
 
+function prepare_zsh_sessions_for_outside_zdotdir() {
+  # Implements some details to allow Zsh sessions to be stored outside of ZDOTDIR.
+
+  report_start_phase_standard
+  report_action_taken "Preparing Zsh sessions to be stored outside of .config"
+  
+  # Ensure state dirs/files exist
+  report_action_taken "Creating directories only if necessary: '$XDG_STATE_HOME/zsh' & '$XDG_STATE_HOME/zsh/sessions'"
+  mkdir -p "$XDG_STATE_HOME/zsh" "$XDG_STATE_HOME/zsh/sessions" ; success_or_not
+  report_action_taken "Remove in unlikely case that it exists: '$XDG_STATE_HOME/zsh/history'"
+  : > "$XDG_STATE_HOME/zsh/history" ; success_or_not
+  report_action_taken "Set permissions of '$XDG_STATE_HOME/zsh/history'"
+  chmod 600 "$XDG_STATE_HOME/zsh/history" ; success_or_not
+
+  # Point sessions at state (idempotent & safe)
+  if [[ -e "$ZDOTDIR/.zsh_sessions" && ! -L "$ZDOTDIR/.zsh_sessions" ]]; then
+    report_action_taken "Delete existing sessions directory in .config"
+    rm -rf "$ZDOTDIR/.zsh_sessions" ; success_or_not
+  fi
+  report_action_taken "Create symbolic link from .config to '$XDG_STATE_HOME/zsh/sessions'"
+  ln -snf "$XDG_STATE_HOME/zsh/sessions" "$ZDOTDIR/.zsh_sessions" ; success_or_not
+
+  report_success "Zsh sessions will be stored at '$XDG_STATE_HOME/zsh/sessions'"
+  report_end_phase_standard
+}
+
 function main() {
   stow_packages_dotfiles
+  prepare_zsh_sessions_for_outside_zdotdir
 }
 
 main
