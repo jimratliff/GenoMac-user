@@ -19,6 +19,19 @@
 # Fail early on unset variables or command failure
 set -euo pipefail
 
+# Address mysterious issue whereby ~/.zshenv appears not to be loaded
+# Ensure .zshenv variables are present in THIS zsh process
+if [[ -z "${ZDOTDIR:-}" || -z "${XDG_STATE_HOME:-}" || -z "${HISTFILE:-}" ]]; then
+  # Prefer $ZDOTDIR/.zshenv when ZDOTDIR is set; fallback to $HOME/.zshenv
+  if [[ -r "${ZDOTDIR:-$HOME}/.zshenv" ]]; then
+    # shellcheck disable=SC1090
+    source "${ZDOTDIR:-$HOME}/.zshenv"
+  elif [[ -r "$HOME/.zshenv" ]]; then
+    # shellcheck disable=SC1090
+    source "$HOME/.zshenv"
+  fi
+fi
+
 # Resolve this script's directory (even if sourced)
 this_script_path="${0:A}"
 this_script_dir="${this_script_path:h}"
