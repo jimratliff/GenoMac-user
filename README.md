@@ -137,3 +137,13 @@ Again in the 1Password app:
 cd ~/.genomac-user
 make verify-ssh-agent
 ```
+
+You will see:
+```
+🪚 Testing SSH auth with: ssh -T git@github.com
+The authenticity of host 'github.com (140.82.116.4)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+```
+Type yes. Then 1Password will present a dialog allowing you to authorize.
