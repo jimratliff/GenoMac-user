@@ -37,7 +37,7 @@ function stow_packages_dotfiles() {
 
   # Set verbosity level for stow command from 0,…,5
   # local STOW_VERBOSITY=2
-  local STOW_VERBOSITY=5
+  local STOW_VERBOSITY=0
 
   local PACKAGES_LIST=("1password" "git" "homebrew" "ssh" "starship" "stow" "zsh")
 
