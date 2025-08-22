@@ -85,9 +85,9 @@ function prepare_zsh_sessions_for_outside_zdotdir() {
   #      XDG_CONFIG_HOME, XDG_STATE_HOME, ZDOTDIR, XDG_ZSH_STATE_DIR, XDG_ZSH_SESSIONS_DIR, HISTFILE
 
   # Fail fast if invariants from .zshenv aren't present
-  : "${ZDOTDIR:?ZDOTDIR is not set. Did ~/.zshenv run?}"
-  : "${XDG_STATE_HOME:?XDG_STATE_HOME is not set. Did ~/.zshenv run?}"
-  : "${HISTFILE:?HISTFILE is not set. Did ~/.zshenv run?}"
+  : "${ZDOTDIR:?ZDOTDIR is not set. Checks your ~/.zshenv contents.}"
+  : "${XDG_STATE_HOME:?XDG_STATE_HOME is not set. Checks your ~/.zshenv contents.}"
+  : "${HISTFILE:?HISTFILE is not set. Checks your ~/.zshenv contents.}"
 
   # Expect helpers from .zshenv
   : "${XDG_ZSH_STATE_DIR:?XDG_ZSH_STATE_DIR is not set. Check ~/.zshenv.}"
