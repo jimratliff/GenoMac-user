@@ -147,3 +147,10 @@ This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 ```
 Type yes. Then 1Password will present a dialog allowing you to authorize.
+
+If successful, you will see:
+```
+🪚 Testing SSH auth with: ssh -T git@github.com
+✅ SSH authentication with GitHub succeeded
+Verified: SSH agent is working
+```
