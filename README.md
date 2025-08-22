@@ -1,48 +1,48 @@
 # GenoMac-user
 ## Overview
-This public repo, GenoMac-user, is used in conjunction with the [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system). [The GenoMac-system repo is cloned exclusively by USER_CONFIGURER. GenoMac-system is responsible for configurations at the system level, i.e., that affect all users. This includes, among other things, installing all CLI and GUI apps (both on or off the Mac App Store).]
+This public repo, GenoMac-user, is used in conjunction with the [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system).
 
-This repo, in contrast, is focused on generic user-scoped settings, in other words settings (a) whose jurisdiction is that of an individual user but (b) which are assumed to be the same across all users within the GenoMac project. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.)
+The GenoMac-system repo is cloned exclusively by USER_CONFIGURER. GenoMac-system is responsible for configurations at the system level, i.e., that affect all users. This includes, among other things, certain systemwide settings, installing all CLI and GUI apps (both on or off the Mac App Store), and the creation of additional users.
+
+The current repo, in contrast, is focused on generic user-scoped settings, in other words configuration parameters (a) whose jurisdiction is that of an individual user but (b) whose values are assumed to be common across all users within the GenoMac project. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.)
 
 ### Assumed prerequisites
 Before you do anything with this repo, GenoMac-user, the following system-level prerequisites need to be fulfilled (via the GenoMac-system repo):
 - Homebrew, and therefore indirectly, Git, have been installed
 - GNU Stow has been installed
 
-### Clone to `~/.genomac-user` of each user
+### Clone this respository to `~/.genomac-user` of the particular user
 
 This public GenoMac-user repo is meant to be cloned locally (using https) to each user’s home directory to support the configuration of that user’s account, applications, etc. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable $GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
 
-### This repo supplies the “dot files” that configure some of the user’s software
+### This repo supplies the dotfiles that configure some of the user’s software
 
 This repository is intended to be used with [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.
 
-The `stow_directory` of the current repo contains a set of “dot files” for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc. and, within each package, the directory structure mimics where the symlinks pointing to these files will reside in the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of the symlink at `~/.config/git/conf`.)
+The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc., and, within each package, the directory structure mimics where the symlinks pointing to these files will reside in the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
 
-### This repo supplies scripts that execute `defaults write` commands to establish various user preferences for macOS generally and for certain apps in particular
-
-[TO BE WRITTEN]
+### This repo establishes/adjusts numerous user-level preferences
+This repo supplies scripts that execute `defaults write` commands to establish various user preferences for macOS generally and for certain apps in particular
 
 ### The Makefile is the user’s interface with the functionality of this repo
 
-The `Makefile` provides the interface for the user to command the execution of (a) “stowing”
-the dot files and (b) changes the macOS preferences using `defaults write` commands.
-
-[TO BE WRITTEN]
+The `Makefile` provides the interface for the user to effect the functionalities of this repo, such as commanding the execution of (a) “stowing” the dotfiles and (b) changing the macOS preferences using `defaults write` commands.
 
 ## Implementation (for a particular user)
 ### Preview
 The entire configuration process begins with the GenoMac-system repository, *not* with this repo. Start there, and return to this repo only when directed to.
 
-As a preview:
-- As part of the initial bootstrapping process, GenoMac-system will direct you to clone this repo (GenoMac-user) to USER_CONFIGURER’s home directory.
-- After the system-level configuration bootstrapping is completed, GenoMac-system will then direct you to iterate through all other users where, for each other user, you will follow the instructions of GenoMac-user
-with respect to that user.
+#### Highest-level preview
+As a global, highest-level preview:
+- As part of the initial bootstrapping process of a new Mac, GenoMac-system will direct you to clone this repo (GenoMac-user) to USER_CONFIGURER’s home directory.
+- After setting up USER_CONFIGURER’s user-level settings, you’ll return to GenoMac-system to create the additional user accounts for the Mac.
+- Then the GenoMac-system repo will direct you to iterate through all other users where, for each other user, you will follow the instructions of GenoMac-userwith respect to that user.
 
+#### Preview of using this repo to configure any single user
 For each user:
 - Grant Terminal full-disk access
 - Clone this repo to the user’s home directory
-- Dot files
+- Dotfiles
     - From `~/.genomac-user`, execute `make stow-dotfiles`
     - Log out and log back in
 - macOS preferences
@@ -90,3 +90,36 @@ cd ~/.genomac-user
 make initial-prefs
 ```
 Note: This will produce *pages* of terminal output.
+
+### Configure 1Password for authentication with GitHub
+Note:
+- THe GenoMac-system repo will have installed both 1Password (the GUI app) and 1Password-CLI
+- The current repo (GenoMac-user) will previously have deployed dotfiles necessary for the integration of 1Password with GitHub authentication.
+
+#### Log into your 1Password account.
+1Password should at this point be the active app. If not, launch it and/or make it active.
+
+Log into my 1Password account.
+
+#### Adjust settings of 1Password
+Make 1Password active.
+
+##### Make 1Password persistent
+In the 1Password app, turn on two checkboxes to ensure that 1Password’s SSH Agent will be live even if the 1Password app itself is closed.
+- 1Password » Settings » General
+  - ✅ Keep 1Password in the menu bar
+  - ✅ Start 1Password at login
+ 
+##### Enable 1Password SSH Agent
+Again in the 1Password app:
+- 1Password » Settings » Developer:
+  - Click on "Setup SSH Agent"
+    - SSH Agent
+      - ✅ Use the SSH Agent
+    - Advanced
+      - Remember key approval: **until 1Password quits**
+
+#### Test the SSH connection with GitHub
+```shell
+make verify-ssh-agent
+```
