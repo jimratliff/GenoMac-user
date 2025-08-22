@@ -12,3 +12,7 @@
 # Ignore zsh history and session files
 **/.zsh_history
 **/.zsh_sessions/
+
+# SSH runtime (machine-specific)
+**/.ssh/known_hosts
+**/.ssh/known_hosts.old
