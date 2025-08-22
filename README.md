@@ -134,5 +134,6 @@ Again in the 1Password app:
 
 #### Test the SSH connection with GitHub
 ```shell
+cd ~/.genomac-user
 make verify-ssh-agent
 ```
