@@ -93,13 +93,18 @@ Note: This will produce *pages* of terminal output.
 
 ### Configure 1Password for authentication with GitHub
 Note:
-- THe GenoMac-system repo will have installed both 1Password (the GUI app) and 1Password-CLI
+- The GenoMac-system repo will have installed both 1Password (the GUI app) and 1Password-CLI
 - The current repo (GenoMac-user) will previously have deployed dotfiles necessary for the integration of 1Password with GitHub authentication.
 
 #### Log into your 1Password account.
-1Password should at this point be the active app. If not, launch it and/or make it active.
+Launch 1Password and/or make it active.
 
-Log into my 1Password account.
+Log into my 1Password account. The best way to do this is:
+- When you launch the desktop 1Password app for the first time, it will prominently display a "Sign in" button. Click that. It will display a sign-in dialog box, including a QR code you can optionally use to make the sign-in process quicker.
+- Get your iPhone.
+  - Launch 1Password on iPhone
+  - From the 1Password logo in the upper-left corner of the 1Password app on iPhone, select “Scan QR Code…”
+  - Follow the instructions
 
 #### Adjust settings of 1Password
 Make 1Password active.
