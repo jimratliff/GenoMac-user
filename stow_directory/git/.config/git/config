@@ -9,3 +9,9 @@
 [core]
 	excludesFile = ~/.config/git/git_ignore_global
 	editor = nano
+
+[pull]
+    rebase = true
+
+[rebase]
+    autostash = true
