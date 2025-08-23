@@ -84,6 +84,10 @@ function get_nonblank_answer_to_question() {
   echo "$answer"
 }
 
+function sanitize_filename() {
+  echo "$1" | tr -cd '[:alnum:]._-'
+}
+
 function get_confirmed_answer_to_question() {
   # Output supplied line of text in distinctive color (COLOR_QUESTION), prefixed by SYMBOL_QUESTION,
   # prompt user for response, ask user to confirm, and iterate until user provides an affirmative confirmation.
