@@ -13,49 +13,76 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 function find_diff_from_setting_change(){
 
+# Saves pre-change `defaults read` output, pausing for user to make the desired change(s) in
+# preferences.
+# After user indicates they’re finished, saves post-change `defaults read` output.
+# Then displays `diff` of the two files.
+#
+# Usage: 
+# - Run script
+# - Make the change(s) in preferences for which you’re searching for the corresponding 
+#   `defaults write` command(s)
+# - Hit any key to signal that you’ve completed making the change(s)
+# - The script will output *two* sets of diffs: (a) global for the user, i.e., for all hosts and
+#   (b) limited to `-currentHost`
+# - Observe produced diffs, which will show you the *key(s)* that have changed
+#   - Note: Some changes in key will be inconsequential/irrelevant. You’ll need judgement to 
+#     know to ignore them.
+# - The observed diff won’t tell you the *domain* of the changed key(s). For that use either:
+#     `defaults find *key*`
+#     `defaults -currentHost find *key*`
+
 # Relies on the environment variable GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS having been set
+# in assign_environment_variables.sh. This is the directory in which the results of the 
+# `defaults read` of each branch of the before-and-after experiment will be stored.
+# (Most of the time you won’t need to access directly the contents of that directory, and this 
+# directory can be deleted at the send of a detective session. This is why the directory is not
+# hidden.)
 
 # Original source: Yann Bertrand and Oliver Mannion, 
 # https://github.com/yannbertrand/macos-defaults/blob/main/diff.sh
 
 # Prompt for diff name
-# echo -n $'\e[1m❓ Insert diff name (to store it for future usage)\e[0m '
-ask_question "Choose a name for this detective exercise:"
-read name
-name=${name:-default}
+name=$(get_nonblank_answer_to_question "Choose a name for this detective exercise:")
 
 results_dir="${GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS}/${name}"
 
 # Inform about save location
-# echo $'\e[1mSaving plist files to '\'''"$(pwd)/diffs/${name}"$'\'' folder.\e[0m'
-report "I’m saving the plist files to: '$results_dir'"
+report "I’m saving the before-and-after 'defaults read' output files to: '$results_dir'"
 
-# Create destination and save initial plist snapshots
-# mkdir -p "diffs/$name"
-mkdir -p "$results_dir"
-# defaults read > "diffs/$name/old.plist"
-defaults read > "${results_dir}/old.plist"
-# defaults -currentHost read > "diffs/$name/host-old.plist"
-defaults -currentHost read > "${results_dir}/host-old.plist"
+# Create destination and save initial `defaults read` snapshots
+
+report_action_taken "Creating snapshot directory, if necessary"
+mkdir -p "$results_dir" ; success_or_not
+
+report_action_taken "Reading pre-change defaults (not host specific)"
+defaults read > "${results_dir}/old.plist" ; success_or_not
+
+report_action_taken "Reading pre-change defaults (for '-currentHost')"
+defaults -currentHost read > "${results_dir}/host-old.plist" ; success_or_not
 
 # Prompt to proceed
 echo $'\n\e[1m⏳ Change settings and press any key to continue\e[0m'
 read -n 1 -s -r
 
 # Save new plist snapshots
-defaults read > "diffs/$name/new.plist"
-defaults -currentHost read > "diffs/$name/host-new.plist"
+
+report_action_taken "Reading post-change defaults (not host specific)"
+defaults read > "${results_dir}/new.plist" ; success_or_not
+
+report_action_taken "Reading post-change defaults (for '-currentHost')"
+defaults -currentHost read > "${results_dir}/host-new.plist" ; success_or_not
 
 # Show diffs
-echo $'\e[1m➡️ Here is your diff\e[0m\n'
-git --no-pager diff --no-index "diffs/$name/old.plist" "diffs/$name/new.plist"
+report "Here is your diff:"
+git --no-pager diff --no-index "${results_dir}/old.plist" "${results_dir}/new.plist"
 
-echo $'\n\n\e[1m➡️ and here with the `-currentHost` option\e[0m\n'
-git --no-pager diff --no-index "diffs/$name/host-old.plist" "diffs/$name/host-new.plist"
+report "\n\n\nHere is your diff with '--currentHost':"
+git --no-pager diff --no-index "${results_dir}/host-old.plist" "${results_dir}/host-new.plist"
 
 # Reminder of how to rerun diffs
-echo $'\n\n\e[1m🔮 Commands to print the diffs again\e[0m'
-echo "\$ git --no-pager diff --no-index diffs/${name}/old.plist diffs/${name}/new.plist"
-echo "\$ git --no-pager diff --no-index diffs/${name}/host-old.plist diffs/${name}/host-new.plist"
+report "\n\n\n💡 Here are the commands if you want to see the diffs again:"
+echo "\$ git --no-pager diff --no-index ${results_dir}/old.plist ${results_dir}/new.plist"
+echo "\$ git --no-pager diff --no-index ${results_dir}/host-old.plist ${results_dir}/host-new.plist"
 
 }
