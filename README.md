@@ -66,7 +66,7 @@ git clone https://github.com/jimratliff/GenoMac-user.git .
 ```
 **Note the trailing “.” at the end of the `git clone` command.**
 
-### “Stow” the dot files
+### “Stow” the dotfiles
 The following `make` command runs the script `stow_dotfiles.sh`. This script “stows” the dotfiles found in `stow_directory` as symlinks in $HOME (or subdirectories of $HOME):
 
 ```shell
@@ -88,7 +88,7 @@ More specifically, `stow_dotfiles.sh` relies on a list of packages enumerated in
 Thus, to add the dotfiles for a new package, it is *not* sufficient to add those dotfiles to a new package in `stow_directory` (though this is necessary)! In addition, the name of the package must be added to the space-separated `PACKAGES_LIST` in `stow_dotfiles.sh
 
 ### Implement the initial set of macOS-related preferences
-The next step is to implement preferences that aren’t captured by the above dot files but instead relate to macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
+The next step is to implement preferences that aren’t captured by the above dotfiles but instead relate to macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
 
 ```shell
 cd ~/.genomac-user
@@ -105,7 +105,7 @@ Note:
 Launch 1Password and/or make it active.
 
 Log into my 1Password account. The best way to do this is:
-- When you launch the desktop 1Password app for the first time, it will prominently display a "Sign in" button. Click that. It will display a sign-in dialog box, including a QR code you can optionally use to make the sign-in process quicker.
+- When you launch the desktop 1Password app for the first time, it will prominently display a "Sign in" button. Click that. It will display a sign-in dialog box, including a QR code you can use to make the sign-in process quicker.
 - Get your iPhone.
   - Launch 1Password on iPhone
   - From the 1Password logo in the upper-left corner of the 1Password app on iPhone, select “Scan QR Code…”
