@@ -1,10 +1,10 @@
 # GenoMac-user
 ## Overview
-This public repo, GenoMac-user, is used in conjunction with the [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system).
+This public repo, [GenoMac-user](https://github.com/jimratliff/GenoMac-user) implements generic user-level settings for each user on each Mac that is governed by Project GenoMac. 
 
-The GenoMac-system repo is cloned exclusively by USER_CONFIGURER. GenoMac-system is responsible for configurations at the system level, i.e., that affect all users. This includes, among other things, certain systemwide settings, installing all CLI and GUI apps (both on or off the Mac App Store), and the creation of additional users.
+Generic user-scoped settings are those configuration parameters (a) whose jurisdiction is that of an individual user but (b) whose values are assumed to be common across all users within the GenoMac project. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.)
 
-The current repo, in contrast, is focused on generic user-scoped settings, in other words configuration parameters (a) whose jurisdiction is that of an individual user but (b) whose values are assumed to be common across all users within the GenoMac project. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.)
+The current repo is used in conjunction with the [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), which (a) is cloned exclusively by USER_CONFIGURER and (b) is responsible for configurations at the system level, i.e., that affect all users. This includes, among other things, certain systemwide settings, installing all CLI and GUI apps (both on or off the Mac App Store), and the creation of additional users.
 
 ### Assumed prerequisites
 Before you do anything with this repo, GenoMac-user, the following system-level prerequisites need to be fulfilled (via the GenoMac-system repo):
@@ -13,16 +13,16 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
 
 ### Clone this respository to `~/.genomac-user` of the particular user
 
-This public GenoMac-user repo is meant to be cloned locally (using https) to each user’s home directory to support the configuration of that user’s account, applications, etc. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable $GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
+This public GenoMac-user repo is meant to be cloned locally (using https) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable $GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
 
 ### This repo supplies the dotfiles that configure some of the user’s software
 
 This repository is intended to be used with [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.
 
-The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc., and, within each package, the directory structure mimics where the symlinks pointing to these files will reside in the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
+The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc., and, within each package, the directory structure mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
 
 ### This repo establishes/adjusts numerous user-level preferences
-This repo supplies scripts that execute `defaults write` commands to establish various user preferences for macOS generally and for certain apps in particular
+This repo supplies scripts that execute `defaults write` commands to establish various user preferences for macOS generally and for certain apps in particular.
 
 ### The Makefile is the user’s interface with the functionality of this repo
 
@@ -30,25 +30,25 @@ The `Makefile` provides the interface for the user to effect the functionalities
 
 ## Implementation (for a particular user)
 ### Preview
-The entire configuration process begins with the GenoMac-system repository, *not* with this repo. Start there, and return to this repo only when directed to.
+The entire configuration process begins with the  [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), *not* with this repo. Start there, and return to this repo only when directed to.
 
 #### Highest-level preview
 As a global, highest-level preview:
 - As part of the initial bootstrapping process of a new Mac, GenoMac-system will direct you to clone this repo (GenoMac-user) to USER_CONFIGURER’s home directory.
 - After setting up USER_CONFIGURER’s user-level settings, you’ll return to GenoMac-system to create the additional user accounts for the Mac.
-- Then the GenoMac-system repo will direct you to iterate through all other users where, for each other user, you will follow the instructions of GenoMac-userwith respect to that user.
+- Then the GenoMac-system repo will direct you to iterate through all other users—many of which are newly created by USER_CONFIGURER—where, for each other user, you will follow the instructions of GenoMac-user with respect to that user.
 
 #### Preview of using this repo to configure any single user
 For each user:
 - Grant Terminal full-disk access
-- Clone this repo to the user’s home directory
+- Clone this repo to the user’s home directory in `~/.genomac-user`
 - Dotfiles
     - From `~/.genomac-user`, execute `make stow-dotfiles`
     - Log out and log back in
 - macOS preferences
     - From `~/.genomac-user`, execute `make initial-prefs`
     - Log out and log back in
-- TODO: Integrate 1Password’s SSH agent with SSH
+- Integrate 1Password’s SSH agent with SSH, allowing the user to authenticate with GitHub via the terminal
     
 ### Grant Terminal full-disk access
 - System Settings
@@ -58,8 +58,7 @@ For each user:
         - Enable for Terminal
 
 ### Cloning this repo
-For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`:
-
+For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`. Copy the following code block and paste into Terminal:
 ```shell
 mkdir -p ~/.genomac-user
 cd ~/.genomac-user
@@ -75,12 +74,19 @@ cd ~/.genomac-user
 make stow-dotfiles
 ```
 
-Now **log out and log back in as this user**. (This may not be necessary, but it helps remove uncertainty and reduces the possibility of any problems.)
+Now **log out and log back in as this user**. (This may not be necessary, but it helps remove uncertainty and reduces the possibility of any problems.)`.
 
+The dotfile [.zshenv]
+(https://github.com/jimratliff/GenoMac-user/blob/main/stow_directory/zsh/.config/zsh/.zshenv) defines
+- `XDG_CONFIG_HOME` to be `~/.config`. Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
+- several environment variables that determine where Zsh-related dotfiles live:
+  - Zsh configuration files: `~/.config/zsh`
+  - Zsh history: `~/.local/.state/history`
+  - Zsh sessions: `~/.local/.state/sessions`
 
 More specifically, `stow_dotfiles.sh` relies on a list of packages enumerated in the variable `PACKAGES_LIST` in that script. It iterates through each of those packages and, for each package, stows the dotfiles associated with that package.
 
-Thus, to add the dotfiles for a new package, it is *not* sufficient to add those dotfiles to a new package in `stow_directory` (though this is necessary)! In addition, the name of the package must be added to the space-separated `PACKAGES_LIST` in `stow_dotfiles.sh`.
+Thus, to add the dotfiles for a new package, it is *not* sufficient to add those dotfiles to a new package in `stow_directory` (though this is necessary)! In addition, the name of the package must be added to the space-separated `PACKAGES_LIST` in `stow_dotfiles.sh
 
 ### Implement the initial set of macOS-related preferences
 The next step is to implement preferences that aren’t captured by the above dot files but instead relate to macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
