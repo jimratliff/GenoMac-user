@@ -6,6 +6,18 @@ esac
 
 ############### Snippets that should appear near the top
 
+# History policy
+setopt HIST_IGNORE_DUPS       # skip consecutive duplicates
+setopt HIST_SAVE_NO_DUPS      # strip duplicates on save
+setopt EXTENDED_HISTORY       # timestamps & durations in $HISTFILE
+setopt APPEND_HISTORY         # append on exit (don’t clobber)
+setopt INC_APPEND_HISTORY     # write as you go (session-local timing)
+# If you ever want strict uniqueness across the whole session, use this instead:
+# setopt HIST_IGNORE_ALL_DUPS
+# Optional niceties:
+# setopt HIST_IGNORE_SPACE     # commands starting with space are not saved
+# setopt HIST_EXPIRE_DUPS_FIRST # expire dups first when trimming history
+
 # Enable zsh-autocomplete
 # The -i flag: ignore warnings the group-writable Homebrew directories are insecure
 zstyle '*:compinit' arguments -i
@@ -41,4 +53,5 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 ############### Final bit: interactive shell only
-[[ -o interactive ]] && echo "Zsh ready. \n💡 You might try 'show_aliases' or 'update_dotfiles' followed by 'reload_shell'."
+# [[ -o interactive ]] && echo "Zsh ready. \n💡 You might try 'show_aliases' or 'update_dotfiles' followed by 'reload_shell'."
+echo "Zsh ready. \n💡 You might try 'show_aliases' or 'update_dotfiles' followed by 'reload_shell'."
