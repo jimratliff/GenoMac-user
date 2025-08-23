@@ -1,3 +1,9 @@
+# Skip the rest of .zshrc unless in an interactive shell
+case $- in
+  *i*) ;;  # interactive: proceed
+  *) return ;;  # non-interactive: bail out
+esac
+
 ############### Snippets that should appear near the top
 
 # Enable zsh-autocomplete
