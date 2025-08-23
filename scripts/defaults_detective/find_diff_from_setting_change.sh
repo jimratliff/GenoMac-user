@@ -13,21 +13,30 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 function find_diff_from_setting_change(){
 
+# Relies on the environment variable GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS having been set
+
 # Original source: Yann Bertrand and Oliver Mannion, 
 # https://github.com/yannbertrand/macos-defaults/blob/main/diff.sh
 
 # Prompt for diff name
-echo -n $'\e[1m❓ Insert diff name (to store it for future usage)\e[0m '
+# echo -n $'\e[1m❓ Insert diff name (to store it for future usage)\e[0m '
+ask_question "Choose a name for this detective exercise:"
 read name
 name=${name:-default}
 
+results_dir="${GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS}/${name}"
+
 # Inform about save location
-echo $'\e[1mSaving plist files to '\'''"$(pwd)/diffs/${name}"$'\'' folder.\e[0m'
+# echo $'\e[1mSaving plist files to '\'''"$(pwd)/diffs/${name}"$'\'' folder.\e[0m'
+report "I’m saving the plist files to: '$results_dir'"
 
 # Create destination and save initial plist snapshots
-mkdir -p "diffs/$name"
-defaults read > "diffs/$name/old.plist"
-defaults -currentHost read > "diffs/$name/host-old.plist"
+# mkdir -p "diffs/$name"
+mkdir -p "$results_dir"
+# defaults read > "diffs/$name/old.plist"
+defaults read > "${results_dir}/old.plist"
+# defaults -currentHost read > "diffs/$name/host-old.plist"
+defaults -currentHost read > "${results_dir}/host-old.plist"
 
 # Prompt to proceed
 echo $'\n\e[1m⏳ Change settings and press any key to continue\e[0m'
