@@ -45,7 +45,8 @@ function find_diff_from_setting_change(){
 # Prompt for diff name
 name=$(get_nonblank_answer_to_question "Choose a name for this detective exercise:")
 
-results_dir="${GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS}/${name}"
+timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
+results_dir="${GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS}/$(sanitize_filename "$name"_${timestamp})"
 
 # Inform about save location
 report "I’m saving the before-and-after 'defaults read' output files to: '$results_dir'"
@@ -79,6 +80,12 @@ git --no-pager diff --no-index "${results_dir}/old.plist" "${results_dir}/new.pl
 
 report "\n\n\nHere is your diff with '--currentHost':"
 git --no-pager diff --no-index "${results_dir}/host-old.plist" "${results_dir}/host-new.plist"
+
+report "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+report "💡 Tip: To investigate any changed keys, try:"
+echo "   defaults find <key>"
+echo "   defaults -currentHost find <key>"
+report "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 # Reminder of how to rerun diffs
 report "\n\n\n💡 Here are the commands if you want to see the diffs again:"
