@@ -4,7 +4,8 @@
 .PHONY: \
     stow-dotfiles \
     initial-prefs \
-    cverify-ssh-agent \
+    verify-ssh-agent \
+	determine-defaults-commands-corresponding-to-settings-change \
 
 # --------------------------------------------------------------------
 # Targets
@@ -18,3 +19,6 @@ initial-prefs:
 
 verify-ssh-agent:
 	zsh scripts/verify_ssh_agent_setup.sh
+
+determine-defaults-commands-corresponding-to-settings-change:
+	zsh scripts/defaults_detective/find_diff_from_setting_change.sh
