@@ -76,8 +76,7 @@ make stow-dotfiles
 
 Now **log out and log back in as this user**. (This may not be necessary, but it helps remove uncertainty and reduces the possibility of any problems.)`.
 
-The dotfile [.zshenv]
-(https://github.com/jimratliff/GenoMac-user/blob/main/stow_directory/zsh/.config/zsh/.zshenv) defines
+The dotfile [.zshenv](https://github.com/jimratliff/GenoMac-user/blob/main/stow_directory/zsh/.config/zsh/.zshenv) defines
 - `XDG_CONFIG_HOME` to be `~/.config`. Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
 - several environment variables that determine where Zsh-related dotfiles live:
   - Zsh configuration files: `~/.config/zsh`
