@@ -1,4 +1,17 @@
-#!/bin/zsh
+# This file assumes GENOMAC_HELPER_DIR is already set in the current shell
+# to the absolute path of the directory containing helpers.sh.
+# That variable must be defined before this file is sourced.
+
+if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
+  echo "❌ GENOMAC_HELPER_DIR is not set. Please source `initial_prefs.sh` first."
+  return 1
+fi
+
+source "${GENOMAC_HELPER_DIR}/helpers.sh"
+
+############################## BEGIN SCRIPT PROPER ##############################
+
+function find_diff_from_setting_change(){
 
 # Original source: Yann Bertrand and Oliver Mannion, 
 # https://github.com/yannbertrand/macos-defaults/blob/main/diff.sh
@@ -35,3 +48,5 @@ git --no-pager diff --no-index "diffs/$name/host-old.plist" "diffs/$name/host-ne
 echo $'\n\n\e[1m🔮 Commands to print the diffs again\e[0m'
 echo "\$ git --no-pager diff --no-index diffs/${name}/old.plist diffs/${name}/new.plist"
 echo "\$ git --no-pager diff --no-index diffs/${name}/host-old.plist diffs/${name}/host-new.plist"
+
+}
