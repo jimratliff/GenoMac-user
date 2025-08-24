@@ -31,6 +31,9 @@ function find_diff_from_setting_change(){
 # - The observed diff won’t tell you the *domain* of the changed key(s). For that use either:
 #     `defaults find *key*`
 #     `defaults -currentHost find *key*`
+# - The observed diff won’t tell the *type* of the changed domain/key pairs. For that use either:
+#     `defaults read-type *domain* *key*` or
+#     `defaults -currentHost read-type *domain* *key*`
 
 # Relies on the environment variable GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS having been set
 # in assign_environment_variables.sh. This is the directory in which the results of the 
