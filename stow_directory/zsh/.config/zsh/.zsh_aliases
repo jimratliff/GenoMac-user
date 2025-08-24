@@ -2,6 +2,7 @@
 : "${XDG_CONFIG_HOME:="$HOME/.config"}"
 : "${ZDOTDIR:="$XDG_CONFIG_HOME/zsh"}"
 
+############### Aliases related to Zsh configuration files, including meta-alias stuff
 # Paired variables for individual files
 ZSHRC="$ZDOTDIR/.zshrc"
 ZSHENV="$ZDOTDIR/.zshenv"
@@ -25,8 +26,11 @@ alias edit_zshrc='$EDITOR "$ZSHRC"'
 alias reload_shell='exec zsh -l'
 
 ############### Update dotfiles
-alias update_dotfiles='echo "📦 Pulling latest dotfiles…" && \
-  git -C "$HOME/.genomac-dotfiles" pull --ff-only origin main'
+# This is OBSOLETE because the .genomac-dotfiles repo is deprecated
+# TODO: Consider a similar alias for current structure
+#
+# alias update_dotfiles='echo "📦 Pulling latest dotfiles…" && \
+#  git -C "$HOME/.genomac-dotfiles" pull --ff-only origin main'
 
 ############### Replace ls with eza
 alias ls="eza"
@@ -70,5 +74,8 @@ alias ..4="cd ../../../.."    # Navigate up 4 directories
 
 ############### Git shortcuts
 alias gitpull="git pull origin main"
+
+############### Miscellaneous
+alias matrix="cmatrix -rs"
 
 
