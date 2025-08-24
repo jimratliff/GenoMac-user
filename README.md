@@ -165,7 +165,9 @@ Verified: SSH agent is working
 ## Appendix: Determining the `defaults write` commands that correspond to desired changes in preferences
 The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped preferences.
 
-(Note: the referenced script will *not* find the changed settings for *system-wide* commands, because those are located at `/Library/Preferences` rather than `~/Library/Preferences`.)
+This repo contains a script that helps you figure out what `defaults write` commands to add to the scripts in this repository to achieve a desired change in user-scoped settings.
+
+(Note that the referenced script will *not* find the changed settings for *system-wide* commands, because those are located at `/Library/Preferences` rather than `~/Library/Preferences`.)
 
 ### Running the “detective script”
 Suppose you want to find the `defaults write` command(s) that correspond to particular change(s) in the settings for Application X:
