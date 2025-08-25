@@ -75,7 +75,4 @@ alias ..4="cd ../../../.."    # Navigate up 4 directories
 ############### Git shortcuts
 alias gitpull="git pull origin main"
 
-############### Miscellaneous
-alias matrix="cmatrix -rs"
-
 
