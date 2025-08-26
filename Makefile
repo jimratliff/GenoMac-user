@@ -20,5 +20,5 @@ initial-prefs:
 verify-ssh-agent:
 	zsh scripts/verify_ssh_agent_setup.sh
 
-defaults_detective:
+defaults-detective:
 	zsh scripts/defaults_detective.sh
