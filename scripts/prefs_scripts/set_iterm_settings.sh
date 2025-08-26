@@ -21,7 +21,7 @@ sudo defaults write com.googlecode.iterm2 RestoreWindowsToSameSpaces -bool true;
 
 report_adjust_setting "Set Theme to Dark"
 # The default value, Regular, corresponds to 1
-defaults read com.googlecode.iterm2 TabStyleWithAutomaticOption -int 1
+defaults write com.googlecode.iterm2 TabStyleWithAutomaticOption -int 1
 
 report_adjust_setting "Change default font to Fira Code Nerd Font"
 /usr/libexec/PlistBuddy \
