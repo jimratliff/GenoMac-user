@@ -60,6 +60,7 @@ apps_to_kill=(
   "Dock"
   "Text Edit"
   "Safari"
+  "iTerm2"
   "cfprefsd"
 )
 
