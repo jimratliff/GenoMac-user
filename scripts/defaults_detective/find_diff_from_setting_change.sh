@@ -86,8 +86,12 @@ git --no-pager diff --no-index "${results_dir}/host-old.plist" "${results_dir}/h
 
 report "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 report "💡 Tip: To investigate any changed keys, try:"
+echo "   To find the <domain> for <key>:"
 echo "   defaults find <key>"
 echo "   defaults -currentHost find <key>"
+echo "   To find the type of <domain> <key>:"
+echo "   defaults read-type <domain> <key>"
+echo "   defaults -currentHost read-type <domain> <key>"
 report "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 # Reminder of how to rerun diffs
