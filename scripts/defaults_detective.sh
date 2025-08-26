@@ -24,6 +24,9 @@ source "${DEFAULTS_DETECTIVE_FUNCTIONS_DIR}/find_diff_from_setting_change.sh"
 ############################## BEGIN SCRIPT PROPER #############################
 report_start_phase 'Begin determining changes to defaults due to change(s) in preferences'
 
+echo "Running under: $0"
+echo "ZSH version: ${ZSH_VERSION:-not zsh}"
+
 find_diff_from_setting_change
 
 report_end_phase 'Completed: determined changes to defaults due to change(s) in preferences'
