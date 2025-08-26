@@ -45,6 +45,8 @@ function find_diff_from_setting_change(){
 # Original source: Yann Bertrand and Oliver Mannion, 
 # https://github.com/yannbertrand/macos-defaults/blob/main/diff.sh
 
+report_start_phase_standard
+
 # Prompt for diff name
 name=$(get_nonblank_answer_to_question "Choose a name for this detective exercise:")
 
@@ -98,5 +100,7 @@ report "━━━━━━━━━━━━━━━━━━━━━━━━
 report "\n\n\n💡 Here are the commands if you want to see the diffs again:"
 echo "\$ git --no-pager diff --no-index ${results_dir}/old.plist ${results_dir}/new.plist"
 echo "\$ git --no-pager diff --no-index ${results_dir}/host-old.plist ${results_dir}/host-new.plist"
+
+report_end_phase_standard
 
 }
