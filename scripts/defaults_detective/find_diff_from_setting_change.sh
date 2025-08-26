@@ -69,7 +69,7 @@ defaults -currentHost read > "${results_dir}/host-old.plist" ; success_or_not
 
 # Prompt to proceed
 echo $'\n\e[1m⏳ Change settings and press any key to continue\e[0m'
-read -n 1 -s -r
+read -k1
 
 # Save new plist snapshots
 
