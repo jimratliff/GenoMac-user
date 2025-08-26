@@ -16,6 +16,7 @@ source "${PREFS_FUNCTIONS_DIR}/set_diskutility_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_finder_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_general_dock_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_general_interface_settings.sh"
+source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_terminal_settings.sh"
@@ -125,6 +126,12 @@ defaults write com.apple.TextEdit RichText -bool false;success_or_not
 
 # Safari
 set_safari_settings
+
+############### THIRD-PARTY APPLICATIONS
+report_action_taken "Begin settings for third-party applications"
+
+# iTerm2
+set_iterm_settings
 
 report_end_phase_standard
 
