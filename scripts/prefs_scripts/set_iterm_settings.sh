@@ -19,6 +19,10 @@ report_action_taken "Implement iTerm settings"
 report_adjust_setting "Open windows in same Spaces"
 sudo defaults write com.googlecode.iterm2 RestoreWindowsToSameSpaces -bool true;success_or_not
 
+report_adjust_setting "Set Theme to Dark"
+# The default value, Regular, corresponds to 1
+defaults read com.googlecode.iterm2 TabStyleWithAutomaticOption -int 1
+
 report_end_phase_standard
 
 }
