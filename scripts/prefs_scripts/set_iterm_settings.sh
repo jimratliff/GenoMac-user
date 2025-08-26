@@ -14,9 +14,15 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 function set_iterm_settings() {
 
 report_start_phase_standard
-report_action_taken "Implement iTerm settings"
+report_action_taken "Implement iTerm2 settings"
 
-report_adjust_setting "Open windows in same Spaces"
+# Launch and quit iTerm2 in order that it will have preferences to modify.
+report_action_taken "Launch and quit DiskUtility in order that it will have preferences to modify"
+open -b com.googlecode.iterm2 # By bundle ID (more reliable than `open -a` by display name)
+sleep 2
+osascript -e 'quit app "iTerm2"';success_or_not
+
+report_adjust_setting "Set: Open windows in same Spaces"
 sudo defaults write com.googlecode.iterm2 RestoreWindowsToSameSpaces -bool true;success_or_not
 
 report_adjust_setting "Set Theme to Dark"
