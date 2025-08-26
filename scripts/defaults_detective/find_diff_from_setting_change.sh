@@ -84,7 +84,7 @@ report "Here is your diff (not specific to a host):"
 git --no-pager diff --no-index "${results_dir}/old.plist" "${results_dir}/new.plist"
 
 report $"\n\n\nHere is your diff with '--currentHost':"
-git --no-pager diff --no-index "${results_dir}/host-old.plist" "${results_dir}/host-new.plist"
+# git --no-pager diff --no-index "${results_dir}/host-old.plist" "${results_dir}/host-new.plist"
 
 report "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 report "💡 Tip: To investigate any changed keys, try:"
