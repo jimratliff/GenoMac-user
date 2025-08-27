@@ -23,7 +23,7 @@ sleep 2
 osascript -e 'quit app "iTerm2"';success_or_not
 
 report_adjust_setting "Set: Open windows in same Spaces"
-sudo defaults write com.googlecode.iterm2 RestoreWindowsToSameSpaces -bool true;success_or_not
+defaults write com.googlecode.iterm2 RestoreWindowsToSameSpaces -bool true ; success_or_not
 
 report_adjust_setting "Set Theme to Dark"
 # The default value, Regular, corresponds to 1
