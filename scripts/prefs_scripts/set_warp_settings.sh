@@ -38,19 +38,19 @@ report_adjust_setting "Pin the input field to the top"
 defaults write dev.warp.Warp-Stable InputMode "PinnedToTop" ; success_or_not
 
 report_adjust_setting "Use Fira Code Nerd Font"
-defaults write dev.warp.Warp-Stable FontName "FiraCode Nerd Font Mono"
+defaults write dev.warp.Warp-Stable FontName "FiraCode Nerd Font Mono" ; success_or_not
 
 report_adjust_setting "Always show the tab bar"
-defaults write dev.warp.Warp-Stable WorkspaceDecorationVisibility "AlwaysShow"
+defaults write dev.warp.Warp-Stable WorkspaceDecorationVisibility "AlwaysShow" ; success_or_not
 
 report_adjust_setting "Put close button on left side of tabs"
-defaults write dev.warp.Warp-Stable TabCloseButtonPosition "Left"
+defaults write dev.warp.Warp-Stable TabCloseButtonPosition "Left" ; success_or_not
 
 report_adjust_setting "Open files in a new tab"
-defaults write dev.warp.Warp-Stable OpenFileLayout "NewTab"
+defaults write dev.warp.Warp-Stable OpenFileLayout "NewTab" ; success_or_not
 
 report_adjust_setting "Do not automatically start Warp at login"
-defaults write dev.warp.Warp-Stable LoginItem "false"
+defaults write dev.warp.Warp-Stable LoginItem "false" ; success_or_not
 
 report_adjust_setting "Do receive desktop notifications"
 # defaults write dev.warp.Warp-Stable Notifications \
