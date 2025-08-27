@@ -41,7 +41,7 @@ source <(fzf --zsh)
 ############### Snippets that should be “at the end”
 
 # Enable zsh-autocomplete
-source /opt/homebrew/share/zsh-autocomplete/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # Enable zsh-autosuggestions
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
