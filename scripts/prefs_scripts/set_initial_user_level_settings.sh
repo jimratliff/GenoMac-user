@@ -21,6 +21,7 @@ source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_terminal_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_trackpad_settings.sh"
+source "${PREFS_FUNCTIONS_DIR}/set_warp_settings.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
@@ -132,6 +133,9 @@ report_action_taken "Begin settings for third-party applications"
 
 # iTerm2
 set_iterm_settings
+
+# Warp
+set_warp_settings
 
 report_end_phase_standard
 
