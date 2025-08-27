@@ -22,37 +22,37 @@ open -b com.googlecode.iterm2 # By bundle ID (more reliable than `open -a` by di
 sleep 2
 osascript -e 'quit app "Warp"';success_or_not
 
-report_action_taken "Turn AI off"
+report_adjust_setting "Turn AI off"
 # This choice can be relaxed on a user-by-user basis later
 defaults write dev.warp.Warp-Stable IsAnyAIEnabled "false" ; success_or_not
 # Experiment to see whether this should be a bool, even though `defaults read-type` says `-str`
 #defaults write dev.warp.Warp-Stable IsAnyAIEnabled -bool false ; success_or_not
 
-report_action_taken "Use ‘classic’ (more-customizable) input type"
+report_adjust_setting "Use ‘classic’ (more-customizable) input type"
 defaults write dev.warp.Warp-Stable InputBoxTypeSetting "Classic" ; success_or_not
 
-report_action_taken "Respect my custom Starship prompt"
+report_adjust_setting "Respect my custom Starship prompt"
 defaults write dev.warp.Warp-Stable HonorPS1 "true" ; success_or_not
 
-report_action_taken "Pin the input field to the top"
+report_adjust_setting "Pin the input field to the top"
 defaults write dev.warp.Warp-Stable InputMode "PinnedToTop" ; success_or_not
 
-report_action_taken "Use Fira Code Nerd Font"
+report_adjust_setting "Use Fira Code Nerd Font"
 defaults write dev.warp.Warp-Stable FontName "FiraCode Nerd Font Mono"
 
-report_action_taken "Always show the tab bar"
+report_adjust_setting "Always show the tab bar"
 defaults write dev.warp.Warp-Stable WorkspaceDecorationVisibility "AlwaysShow"
 
-report_action_taken "Put close button on left side of tabs"
+report_adjust_setting "Put close button on left side of tabs"
 defaults write dev.warp.Warp-Stable TabCloseButtonPosition "Left"
 
-report_action_taken "Open files in a new tab"
+report_adjust_setting "Open files in a new tab"
 defaults write dev.warp.Warp-Stable OpenFileLayout "NewTab"
 
-report_action_taken "Do not automatically start Warp at login"
+report_adjust_setting "Do not automatically start Warp at login"
 defaults write dev.warp.Warp-Stable LoginItem "false"
 
-report_action_taken "Do receive desktop notifications"
+report_adjust_setting "Do receive desktop notifications"
 defaults write dev.warp.Warp-Stable Notifications \
 '{"mode":"Enabled","is_long_running_enabled":true,"long_running_threshold":'\
 '{"secs":30,"nanos":0},"is_password_prompt_enabled":true,'\
