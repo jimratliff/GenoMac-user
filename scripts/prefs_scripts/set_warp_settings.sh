@@ -18,7 +18,7 @@ report_action_taken "Implement Warp settings"
 
 # Launch and quit Warp in order that it will have preferences to modify.
 report_action_taken "Launch and quit Warp in order that it will have preferences to modify"
-open -b com.googlecode.iterm2 # By bundle ID (more reliable than `open -a` by display name)
+open -b dev.warp.Warp-Stable # By bundle ID (more reliable than `open -a` by display name)
 sleep 2
 osascript -e 'quit app "Warp"';success_or_not
 
