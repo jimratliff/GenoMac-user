@@ -27,12 +27,12 @@ defaults write com.googlecode.iterm2 RestoreWindowsToSameSpaces -bool true ; suc
 
 report_adjust_setting "Set Theme to Dark"
 # The default value, Regular, corresponds to 1
-defaults write com.googlecode.iterm2 TabStyleWithAutomaticOption -int 1
+defaults write com.googlecode.iterm2 TabStyleWithAutomaticOption -int 1 ; success_or_not
 
 report_adjust_setting "Change default font to Fira Code Nerd Font"
 /usr/libexec/PlistBuddy \
   -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' \
-  ~/Library/Preferences/com.googlecode.iterm2.plist
+  ~/Library/Preferences/com.googlecode.iterm2.plist ; success_or_not
 
 report_end_phase_standard
 
