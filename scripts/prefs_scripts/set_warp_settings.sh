@@ -24,7 +24,9 @@ osascript -e 'quit app "Warp"';success_or_not
 
 report_action_taken "Turn AI off"
 # This choice can be relaxed on a user-by-user basis later
-defaults write dev.warp.Warp-Stable IsAnyAIEnabled -str "false" ; success_or_not
+# defaults write dev.warp.Warp-Stable IsAnyAIEnabled -str "false" ; success_or_not
+# Experiment to see whether this should be a bool, even though `defaults read-type` says `-str`
+defaults write dev.warp.Warp-Stable IsAnyAIEnabled -bool false ; success_or_not
 
 report_action_taken "Use ‘classic’ (more-customizable) input type"
 defaults write dev.warp.Warp-Stable InputBoxTypeSetting -str "Classic" ; success_or_not
