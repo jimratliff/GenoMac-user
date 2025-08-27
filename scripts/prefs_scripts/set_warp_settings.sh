@@ -24,33 +24,33 @@ osascript -e 'quit app "Warp"';success_or_not
 
 report_action_taken "Turn AI off"
 # This choice can be relaxed on a user-by-user basis later
-# defaults write dev.warp.Warp-Stable IsAnyAIEnabled -str "false" ; success_or_not
+defaults write dev.warp.Warp-Stable IsAnyAIEnabled "false" ; success_or_not
 # Experiment to see whether this should be a bool, even though `defaults read-type` says `-str`
-defaults write dev.warp.Warp-Stable IsAnyAIEnabled -bool false ; success_or_not
+#defaults write dev.warp.Warp-Stable IsAnyAIEnabled -bool false ; success_or_not
 
 report_action_taken "Use ‘classic’ (more-customizable) input type"
-defaults write dev.warp.Warp-Stable InputBoxTypeSetting -str "Classic" ; success_or_not
+defaults write dev.warp.Warp-Stable InputBoxTypeSetting "Classic" ; success_or_not
 
 report_action_taken "Respect my custom Starship prompt"
-defaults write dev.warp.Warp-Stable HonorPS1 -str "true" ; success_or_not
+defaults write dev.warp.Warp-Stable HonorPS1 "true" ; success_or_not
 
 report_action_taken "Pin the input field to the top"
-defaults write dev.warp.Warp-Stable InputMode -str "PinnedToTop" ; success_or_not
+defaults write dev.warp.Warp-Stable InputMode "PinnedToTop" ; success_or_not
 
 report_action_taken "Use Fira Code Nerd Font"
-defaults write dev.warp.Warp-Stable FontName -str "FiraCode Nerd Font Mono"
+defaults write dev.warp.Warp-Stable FontName "FiraCode Nerd Font Mono"
 
 report_action_taken "Always show the tab bar"
-defaults write dev.warp.Warp-Stable WorkspaceDecorationVisibility -str "AlwaysShow"
+defaults write dev.warp.Warp-Stable WorkspaceDecorationVisibility "AlwaysShow"
 
 report_action_taken "Put close button on left side of tabs"
-defaults write dev.warp.Warp-Stable TabCloseButtonPosition -str "Left"
+defaults write dev.warp.Warp-Stable TabCloseButtonPosition "Left"
 
 report_action_taken "Open files in a new tab"
-defaults write dev.warp.Warp-Stable OpenFileLayout -str "NewTab"
+defaults write dev.warp.Warp-Stable OpenFileLayout "NewTab"
 
 report_action_taken "Do not automatically start Warp at login"
-defaults write dev.warp.Warp-Stable LoginItem -str "false"
+defaults write dev.warp.Warp-Stable LoginItem "false"
 
 report_action_taken "Do receive desktop notifications"
 defaults write dev.warp.Warp-Stable Notifications \
