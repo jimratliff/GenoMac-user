@@ -53,20 +53,7 @@ report_adjust_setting "Do not automatically start Warp at login"
 defaults write dev.warp.Warp-Stable LoginItem "false" ; success_or_not
 
 report_adjust_setting "Do receive desktop notifications"
-# defaults write dev.warp.Warp-Stable Notifications \
-# '{"mode":"Enabled","is_long_running_enabled":true,"long_running_threshold":'\
-# '{"secs":30,"nanos":0},"is_password_prompt_enabled":true,'\
-# '"is_agent_task_completed_enabled":true,"is_needs_attention_enabled":true,'\
-# '"play_notification_sound":true}'
-
-defaults write dev.warp.Warp-Stable Notifications -dict \
-    mode "Enabled" \
-    is_long_running_enabled -bool true \
-    long_running_threshold -dict secs -int 30 nanos -int 0 \
-    is_password_prompt_enabled -bool true \
-    is_agent_task_completed_enabled -bool true \
-    is_needs_attention_enabled -bool true \
-    play_notification_sound -bool true
+defaults write dev.warp.Warp-Stable Notifications -dict mode "Enabled" ; success_or_not
 
 report_end_phase_standard
 
