@@ -25,8 +25,9 @@ sleep 2
 report_adjust_setting "Turn AI off"
 # This choice can be relaxed on a user-by-user basis later
 defaults write dev.warp.Warp-Stable IsAnyAIEnabled "false" ; success_or_not
-# Experiment to see whether this should be a bool, even though `defaults read-type` says `-str`
-#defaults write dev.warp.Warp-Stable IsAnyAIEnabled -bool false ; success_or_not
+
+report_adjust_setting "Change app icon"
+defaults write dev.warp.Warp-Stable AppIcon "Classic3"
 
 report_adjust_setting "Use ‘classic’ (more-customizable) input type"
 defaults write dev.warp.Warp-Stable InputBoxTypeSetting "Classic" ; success_or_not
