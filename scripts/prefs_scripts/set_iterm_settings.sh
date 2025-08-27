@@ -17,7 +17,7 @@ report_start_phase_standard
 report_action_taken "Implement iTerm2 settings"
 
 # Launch and quit iTerm2 in order that it will have preferences to modify.
-report_action_taken "Launch and quit DiskUtility in order that it will have preferences to modify"
+report_action_taken "Launch and quit iTerm2 in order that it will have preferences to modify"
 open -b com.googlecode.iterm2 # By bundle ID (more reliable than `open -a` by display name)
 sleep 2
 osascript -e 'quit app "iTerm2"';success_or_not
