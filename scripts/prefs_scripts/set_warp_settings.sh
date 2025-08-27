@@ -24,13 +24,13 @@ osascript -e 'quit app "Warp"';success_or_not
 
 report_action_taken "Turn AI off"
 # This choice can be relaxed on a user-by-user basis later
-defaults write dev.warp.Warp-Stable IsAnyAIEnabled -str false ; success_or_not
+defaults write dev.warp.Warp-Stable IsAnyAIEnabled -str "false" ; success_or_not
 
 report_action_taken "Use ‘classic’ (more-customizable) input type"
 defaults write dev.warp.Warp-Stable InputBoxTypeSetting -str "Classic" ; success_or_not
 
 report_action_taken "Respect my custom Starship prompt"
-defaults write dev.warp.Warp-Stable HonorPS1 -str true ; success_or_not
+defaults write dev.warp.Warp-Stable HonorPS1 -str "true" ; success_or_not
 
 report_action_taken "Pin the input field to the top"
 defaults write dev.warp.Warp-Stable InputMode -str "PinnedToTop" ; success_or_not
@@ -48,7 +48,7 @@ report_action_taken "Open files in a new tab"
 defaults write dev.warp.Warp-Stable OpenFileLayout -str "NewTab"
 
 report_action_taken "Do not automatically start Warp at login"
-defaults write dev.warp.Warp-Stable LoginItem -str false
+defaults write dev.warp.Warp-Stable LoginItem -str "false"
 
 report_action_taken "Do receive desktop notifications"
 defaults write dev.warp.Warp-Stable Notifications \
