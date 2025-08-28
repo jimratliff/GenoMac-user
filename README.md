@@ -21,18 +21,20 @@ This repository is intended to be used with [GNU Stow](https://www.gnu.org/softw
 
 The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc., and, within each package, the directory structure mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
 
-### This repo establishes/adjusts numerous user-level preferences
-This repo supplies scripts that execute `defaults write` commands to establish various user preferences for macOS generally and for certain apps in particular.
+### This repo establishes/adjusts numerous user-level settings
+This repo supplies scripts that execute `defaults write` commands to establish various user settings for macOS generally and for certain apps in particular.
 
-For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in preferences](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-preferences).”
+For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in setting](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
 
 ### The Makefile is the user’s interface with the functionality of this repo
 
-The `Makefile` provides the interface for the user to effect the functionalities of this repo, such as commanding the execution of (a) “stowing” the dotfiles and (b) changing the macOS preferences using `defaults write` commands.
+The `Makefile` provides the interface for the user to effect the functionalities of this repo, such as commanding the execution of (a) “stowing” the dotfiles and (b) changing the macOS settings using `defaults write` commands.
 
 ## Implementation (for a particular user)
 ### Preview
-The entire configuration process begins with the  [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), *not* with this repo. Start there, and return to this repo only when directed to.
+The entire configuration process *for a Mac* begins with the  [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), *not* with this repo. If you’re starting the configuration of a new Mac, start there, and return to this repo only when directed to.
+
+If USER_CONFIGURER of a Mac has already been created and configured and you’re starting to configure an additional user, the current GenoMac-user repo *is* the correct place to start.
 
 #### Highest-level preview
 As a global, highest-level preview:
@@ -47,7 +49,7 @@ For each user:
 - Dotfiles
     - From `~/.genomac-user`, execute `make stow-dotfiles`
     - Log out and log back in
-- macOS preferences
+- macOS settings
     - From `~/.genomac-user`, execute `make initial-prefs`
     - Log out and log back in
 - Integrate 1Password’s SSH agent with SSH, allowing the user to authenticate with GitHub via the terminal
@@ -89,8 +91,8 @@ More specifically, `stow_dotfiles.sh` relies on a list of packages enumerated in
 
 Thus, to add the dotfiles for a new package, it is *not* sufficient to add those dotfiles to a new package in `stow_directory` (though this is necessary)! In addition, the name of the package must be added to the space-separated `PACKAGES_LIST` in `stow_dotfiles.sh
 
-### Implement the initial set of macOS-related preferences
-The next step is to implement preferences that aren’t captured by the above dotfiles but instead relate to macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
+### Implement the initial set of macOS-related settings
+The next step is to implement settings that aren’t captured by the above dotfiles but instead relate to macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
 
 ```shell
 cd ~/.genomac-user
@@ -162,8 +164,8 @@ If successful, you will see:
 Verified: SSH agent is working
 ```
 
-## Appendix: Determining the `defaults write` commands that correspond to desired changes in preferences
-The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped preferences.
+## Appendix: Determining the `defaults write` commands that correspond to desired changes in settings
+The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped settings.
 
 This repo contains a script that helps you figure out what `defaults write` commands to add to the scripts in this repository to achieve a desired change in user-scoped settings.
 
