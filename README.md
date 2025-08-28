@@ -93,7 +93,8 @@ cd ~/.genomac-user
 make stow-dotfiles
 ```
 
-Now **log out and log back in as this user**. (This may not be necessary, but it helps remove uncertainty and reduces the possibility of any problems.)`.
+<center>**Please log out and log back in to this user.**</center>
+
 
 The dotfile [.zshenv](https://github.com/jimratliff/GenoMac-user/blob/main/stow_directory/zsh/.config/zsh/.zshenv) defines:
 - `XDG_CONFIG_HOME` to be `~/.config`. Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
@@ -114,6 +115,8 @@ cd ~/.genomac-user
 make initial-prefs
 ```
 Note: This will produce *pages* of terminal output.
+
+<center>**Please log out and log back in to this user.**</center>
 
 ### Configure 1Password for authentication with GitHub
 Note:
