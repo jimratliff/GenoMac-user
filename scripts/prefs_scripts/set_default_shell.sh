@@ -16,8 +16,9 @@ function set_default_shell() {
   
   report_start_phase_standard
   report_action_taken "Ensure Homebrew’s Zsh is user’s default shell"
-  
-  local HOMEBREW_PREFIX="$(/usr/bin/env brew --prefix)"   # e.g., /opt/homebrew
+
+  # HOMEBREW_PREFIX is now an environment variable already exported
+  # local HOMEBREW_PREFIX="$(/usr/bin/env brew --prefix)"   # e.g., /opt/homebrew
   local BREW_ZSH="$HOMEBREW_PREFIX/bin/zsh"
 
   if [[ ! -x "$BREW_ZSH" ]]; then
