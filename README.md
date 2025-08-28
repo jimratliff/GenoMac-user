@@ -44,6 +44,7 @@ As a global, highest-level preview:
 
 #### Preview of using this repo to configure any single user
 For each user:
+- In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc.
 - Grant Terminal full-disk access
 - Clone this repo to the user’s home directory in `~/.genomac-user`
 - Dotfiles
@@ -53,6 +54,16 @@ For each user:
     - From `~/.genomac-user`, execute `make initial-prefs`
     - Log out and log back in
 - Integrate 1Password’s SSH agent with SSH, allowing the user to authenticate with GitHub via the terminal
+
+### Establish real-time connection to communicate text back and forth
+Open a Google Docs document to be used as/if needed for real-time exchange of text, error messages, etc., between the target Mac and other devices.
+- In Safari
+  - open “Project GenoMac: Text-exchange Document” 
+  - sign into my standard Google account:
+    - Go to google.com and click “Log in”
+    - Enter the username of my Google account
+    - A QR code will appear. Scan it with my iPhone and complete the authentication.
+  - Open the Google Doc document “[Project GenoMac: Text-exchange Document](https://docs.google.com/document/d/1RCbwjLHPidxRJJcvzILKGwtSkKpDrm8dT1fgJxlUdZ4/edit?usp=sharing)]”
     
 ### Grant Terminal full-disk access
 - System Settings
