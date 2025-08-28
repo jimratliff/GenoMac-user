@@ -11,7 +11,7 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
 - Homebrew, and therefore indirectly, Git, have been installed
 - GNU Stow has been installed
 
-### Clone this respository to `~/.genomac-user` of the particular user
+### This repository will be cloned to `~/.genomac-user` of the particular user
 
 This public GenoMac-user repo is meant to be cloned locally (using https) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable $GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
 
