@@ -92,7 +92,7 @@ Launch Terminal. Then copy the following code block and paste into Terminal:
 cd ~/.genomac-user
 make stow-dotfiles
 ```
-<div align="center"><strong></strong>Please log out and log back in to this user.</div>strong></div>
+<div align="center"><strong>Please log out and log back in to this user.</strong></div>
 
 
 The dotfile [.zshenv](https://github.com/jimratliff/GenoMac-user/blob/main/stow_directory/zsh/.config/zsh/.zshenv) defines:
@@ -115,7 +115,7 @@ make initial-prefs
 ```
 Note: This will produce *pages* of terminal output.
 
-<div align="center"><strong></strong>Please log out and log back in to this user.</div>strong></div>
+<div align="center"><strong>Please log out and log back in to this user.</strong></div>
 
 
 ### Configure 1Password for authentication with GitHub
