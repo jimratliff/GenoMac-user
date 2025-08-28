@@ -22,14 +22,14 @@ setopt INC_APPEND_HISTORY      # write as you go
 # ======================================================================
 # Homebrew prefix (local to this shell; no export)
 # ======================================================================
-HB_PREFIX="${HB_PREFIX:-$(/usr/bin/env brew --prefix 2>/dev/null || true)}"
+HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-$(/usr/bin/env brew --prefix 2>/dev/null || true)}"
 
 # ======================================================================
 # zsh-autocomplete (must be near the top; do NOT call compinit yourself)
 # Keep system $fpath; ensure plugin dir is on $fpath before sourcing.
 # ======================================================================
 typeset -U fpath
-ac_dir="$HB_PREFIX/share/zsh-autocomplete"
+ac_dir="$HOMEBREW_PREFIX/share/zsh-autocomplete"
 [[ -d $ac_dir && ${fpath[(Ie)$ac_dir]} -eq 0 ]] && fpath=("$ac_dir" $fpath)
 zstyle '*:compinit' arguments -i
 [[ -r "$ac_dir/zsh-autocomplete.plugin.zsh" ]] && source "$ac_dir/zsh-autocomplete.plugin.zsh"
@@ -50,19 +50,19 @@ sock="$HOME/.1password/agent.sock"
 # ======================================================================
 # fzf (split scripts; gentler than `source <(fzf --zsh)`)
 # ======================================================================
-[[ -r "$HB_PREFIX/opt/fzf/shell/completion.zsh"   ]] && source "$HB_PREFIX/opt/fzf/shell/completion.zsh"
-[[ -r "$HB_PREFIX/opt/fzf/shell/key-bindings.zsh" ]] && source "$HB_PREFIX/opt/fzf/shell/key-bindings.zsh"
+[[ -r "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"   ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"
+[[ -r "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 
 # ======================================================================
 # Plugins after autocomplete
 # ======================================================================
 # zsh-autosuggestions
-[[ -r "$HB_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
-  source "$HB_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[[ -r "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
+  source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # zsh-syntax-highlighting (must be last among plugins)
-[[ -r "$HB_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
-  source "$HB_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -r "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
+  source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # ======================================================================
 # Extras
