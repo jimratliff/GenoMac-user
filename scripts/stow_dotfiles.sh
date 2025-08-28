@@ -80,20 +80,26 @@ function prepare_zsh_sessions_for_outside_zdotdir() {
 
   report_start_phase_standard
   report_action_taken "Preparing Zsh sessions to be stored outside of .config"
+
+  # --- Load environment (ZDOTDIR / XDG vars) if this shell didn't read .zshenv ---
+  if [[ -z "${ZDOTDIR:-}" || -z "${XDG_STATE_HOME:-}" || -z "${HISTFILE:-}" || -z "${XDG_ZSH_STATE_DIR:-}" || -z "${XDG_ZSH_SESSIONS_DIR:-}" ]]; then
+    if [[ -r "$HOME/.zshenv" ]]; then
+      # Source the HOME entry point (respects your stow layout and any future refactors)
+      source "$HOME/.zshenv"
+    fi
+  fi
   
   # FYI: The following are defined in .zshenv: 
   #      XDG_CONFIG_HOME, XDG_STATE_HOME, ZDOTDIR, XDG_ZSH_STATE_DIR, XDG_ZSH_SESSIONS_DIR, HISTFILE
 
   # Fail fast if invariants from .zshenv aren't present
-  : "${ZDOTDIR:?ZDOTDIR is not set. Checks your ~/.zshenv contents.}"
-  : "${XDG_STATE_HOME:?XDG_STATE_HOME is not set. Checks your ~/.zshenv contents.}"
-  : "${HISTFILE:?HISTFILE is not set. Checks your ~/.zshenv contents.}"
-
-  # Expect helpers from .zshenv
+  : "${ZDOTDIR:?ZDOTDIR is not set. Check ~/.zshenv.}"
+  : "${XDG_STATE_HOME:?XDG_STATE_HOME is not set. Check ~/.zshenv.}"
+  : "${HISTFILE:?HISTFILE is not set. Check ~/.zshenv.}"
   : "${XDG_ZSH_STATE_DIR:?XDG_ZSH_STATE_DIR is not set. Check ~/.zshenv.}"
   : "${XDG_ZSH_SESSIONS_DIR:?XDG_ZSH_SESSIONS_DIR is not set. Check ~/.zshenv.}"
 
-  # Ensure state dirs exist
+  # Ensure state directories exist
   report_action_taken "Ensuring state dirs: '$XDG_ZSH_STATE_DIR' & '$XDG_ZSH_SESSIONS_DIR'"
   mkdir -p "$XDG_ZSH_STATE_DIR" "$XDG_ZSH_SESSIONS_DIR" ; success_or_not
 
