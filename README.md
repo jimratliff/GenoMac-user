@@ -24,7 +24,7 @@ The `stow_directory` of the current repo contains a set of *dotfiles* for the us
 ### This repo establishes/adjusts numerous user-level settings
 This repo supplies scripts that execute `defaults write` commands to establish various user settings for macOS generally and for certain apps in particular.
 
-For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in setting](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
+For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
 
 ### The Makefile is the user’s interface with the functionality of this repo
 
