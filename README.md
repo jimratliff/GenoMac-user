@@ -63,7 +63,9 @@ For each user:
 Note: If you are here for a user other than USER_CONFIGURER, you may find that this step has already been performed by USER_CONFIGURER and that that has left Terminal with full-disk access for all users.
 
 ### Cloning this repo
-For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`. Copy the following code block and paste into Terminal:
+For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`. 
+
+Launch Terminal. Then copy the following code block and paste into Terminal:
 ```shell
 mkdir -p ~/.genomac-user
 cd ~/.genomac-user
@@ -72,7 +74,9 @@ git clone https://github.com/jimratliff/GenoMac-user.git .
 **Note the trailing “.” at the end of the `git clone` command.**
 
 ### “Stow” the dotfiles
-The following `make` command runs the script `stow_dotfiles.sh`. This script “stows” the dotfiles found in `stow_directory` as symlinks in $HOME (or subdirectories of $HOME):
+The following `make` command runs the script `stow_dotfiles.sh`. This script “stows” the dotfiles found in `stow_directory` as symlinks in $HOME (or subdirectories of $HOME).
+
+Launch Terminal. Then copy the following code block and paste into Terminal:
 
 ```shell
 cd ~/.genomac-user
