@@ -135,7 +135,9 @@ report_action_taken "Begin settings for third-party applications"
 set_iterm_settings
 
 # Warp
-set_warp_settings
+# Warp is now excluded from Project GenoMac because it can’t be reliably configured via `defaults write`
+# commands or by dotfiles. See Issue: https://github.com/warpdotdev/Warp/issues/7220
+# set_warp_settings
 
 report_end_phase_standard
 
