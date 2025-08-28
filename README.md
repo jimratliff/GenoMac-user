@@ -57,9 +57,10 @@ For each user:
 ### Grant Terminal full-disk access
 - System Settings
   - Privacy & Security
-    - Select the Privacy tab
-      - Scroll down and click Full Disk Access
-        - Enable for Terminal
+    - Under the Privacy header, scroll down and click Full Disk Access
+      - Enable for Terminal
+     
+Note: If you are here for a user other than USER_CONFIGURER, you may find that this step has already been performed by USER_CONFIGURER and that that has left Terminal with full-disk access for all users.
 
 ### Cloning this repo
 For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`. Copy the following code block and paste into Terminal:
