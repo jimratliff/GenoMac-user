@@ -29,7 +29,7 @@ report_adjust_setting "Never automatically open a website in a tab rather than a
 defaults write com.apple.Safari TabCreationPolicy -int 0;success_or_not
 
 report_adjust_setting "Do NOT navigate tabs with ⌘1 – ⌘9
-defaults write com.apple.Safari Command1Through9SwitchesTabs -bool false
+defaults write com.apple.Safari Command1Through9SwitchesTabs -bool false ; success_or_not
 
 report_adjust_setting "Show full website address in Smart Search field"
 # sudo defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true;success_or_not
