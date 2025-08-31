@@ -72,6 +72,12 @@ alias ..3="cd ../../.."       # Navigate up 3 directories
 alias .....='cd ../../../..'  # Navigate up 4 directories
 alias ..4="cd ../../../.."    # Navigate up 4 directories
 
+############### Create new directory and move into it
+function mkcd() {
+    # Create a directory and enter it
+    mkdir -p "$1" && cd "$1"
+}
+
 ############### Git shortcuts
 alias gitpull="git pull origin main"
 
