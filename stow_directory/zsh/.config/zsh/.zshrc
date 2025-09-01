@@ -50,8 +50,11 @@ sock="$HOME/.1password/agent.sock"
 # ======================================================================
 # fzf (split scripts; gentler than `source <(fzf --zsh)`)
 # ======================================================================
-[[ -r "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"   ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"
-[[ -r "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+#
+# NOTE: I intend fzf only to support zoxide, not for its own features. Thus, I comment out the following:
+#
+# [[ -r "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"   ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"
+# [[ -r "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 
 # ======================================================================
 # Plugins after autocomplete
