@@ -7,7 +7,32 @@ case $- in
 esac
 
 # ======================================================================
-# History policy
+# Homebrew prefix helpers (no export)
+# ======================================================================
+HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-$(/usr/bin/env brew --prefix 2>/dev/null || true)}"
+HOMEBREW_ZSH_PREFIX="$(/usr/bin/env brew --prefix zsh 2>/dev/null)"
+
+# ======================================================================
+# Programmable completion (native zsh)
+# - Use `compinit -i` to silence "insecure directories" warnings (like
+#   those that can arise from permissions of Homebrew directories)
+# ======================================================================
+typeset -U fpath
+core_dir="$HOMEBREW_ZSH_PREFIX/share/zsh/functions"
+[[ -z "$HOMEBREW_ZSH_PREFIX" || ! -d "$core_dir" ]] && core_dir="/usr/share/zsh/$ZSH_VERSION/functions"
+[[ -d "$core_dir" ]] && fpath=("$core_dir" $fpath)
+[[ -d "$HOMEBREW_PREFIX/share/zsh/site-functions" ]] && fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+
+autoload -Uz compinit
+compinit -i
+
+# ======================================================================
+# History policy (interactive opts only)
+# ----------------------------------------------------------------------
+# NOTE:
+# - File location and size (HISTFILE, HISTSIZE, SAVEHIST) are set in
+#   ~/.zshenv so *all* shells agree, interactive or not.
+# - Only interactive behaviors are configured here.
 # ======================================================================
 setopt HIST_IGNORE_DUPS        # skip consecutive duplicates
 setopt HIST_SAVE_NO_DUPS       # strip duplicates on save
@@ -20,71 +45,64 @@ setopt INC_APPEND_HISTORY      # write as you go
 # setopt HIST_EXPIRE_DUPS_FIRST
 
 # ======================================================================
-# Homebrew prefix (local to this shell; no export)
-# ======================================================================
-HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-$(/usr/bin/env brew --prefix 2>/dev/null || true)}"
-
-# ======================================================================
-# zsh-autocomplete (must be near the top; do NOT call compinit yourself)
-# Keep system $fpath; ensure plugin dir is on $fpath before sourcing.
-# ======================================================================
-typeset -U fpath
-ac_dir="$HOMEBREW_PREFIX/share/zsh-autocomplete"
-[[ -d $ac_dir && ${fpath[(Ie)$ac_dir]} -eq 0 ]] && fpath=("$ac_dir" $fpath)
-zstyle '*:compinit' arguments -i
-[[ -r "$ac_dir/zsh-autocomplete.plugin.zsh" ]] && source "$ac_dir/zsh-autocomplete.plugin.zsh"
-
-# ======================================================================
-# Early env & convenience
+# Environment conveniences
 # ======================================================================
 # 1Password SSH agent (if present)
 sock="$HOME/.1password/agent.sock"
 [[ -S "$sock" ]] && export SSH_AUTH_SOCK="$sock"
 
-# Default editor (respect existing value)
+# Default editor (respect existing value if set upstream)
 : "${EDITOR:=bbedit}"
 
-# Aliases alongside this .zshrc
+# ======================================================================
+# Aliases (located adjacent to this .zshrc file)
+# ======================================================================
 [[ -r "$ZDOTDIR/.zsh_aliases" ]] && source "$ZDOTDIR/.zsh_aliases"
 
 # ======================================================================
-# fzf (split scripts; gentler than `source <(fzf --zsh)`)
+# zoxide (TAB completion via compinit; `zi` uses fzf if installed)
 # ======================================================================
-#
-# NOTE: I intend fzf only to support zoxide, not for its own features. Thus, I comment out the following:
-#
-# [[ -r "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"   ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"
-# [[ -r "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+
+  # Override `z` to auto-fallback to interactive picker when ambiguous result
+  z() {
+    if [[ $# -eq 0 ]]; then
+      zi; return
+    fi
+
+    local -a matches
+    matches=("${(@f)$(zoxide query -l -- "$@")}")
+
+    if (( ${#matches} == 0 )); then
+      print -u2 "z: no match for: $*"
+      return 1
+    elif (( ${#matches} == 1 )); then
+      builtin cd -- "${matches[1]}"
+    else
+      local target
+      target="$(zoxide query -i -- "$@")" || return
+      [[ -n $target ]] && builtin cd -- "$target"
+    fi
+  }
+fi
 
 # ======================================================================
-# Plugins after autocomplete
+# zsh-autosuggestions (history-based ghost text)
 # ======================================================================
-# zsh-autosuggestions
 [[ -r "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
   source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
+# ======================================================================
 # zsh-syntax-highlighting (must be last among plugins)
+# ======================================================================
 [[ -r "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
   source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # ======================================================================
-# Extras
+# Prompt
 # ======================================================================
-command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
 command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
-
-# ======================================================================
-# Defensive key bindings (avoid missing-widget errors on ↑/↓)
-# ======================================================================
-if typeset -f .autocomplete__history-search__zle-widget >/dev/null; then
-  bindkey '^[[A' .autocomplete__history-search__zle-widget
-  bindkey '^[OA' .autocomplete__history-search__zle-widget
-else
-  bindkey '^[[A' up-line-or-history
-  bindkey '^[OA' up-line-or-history
-fi
-bindkey '^[[B' down-line-or-history
-bindkey '^[OB' down-line-or-history
 
 # ======================================================================
 # Friendly toast
