@@ -1,15 +1,32 @@
-# XDG roots
+# ======================================================================
+# Hygiene (runs for ALL zsh invocations)
+# - Keep $fpath under shell control; don't import/export env FPATH.
+# ======================================================================
+unset FPATH
+typeset -U fpath
+
+# ======================================================================
+# XDG roots (defaults; respect existing values)
+# ======================================================================
 : "${XDG_CONFIG_HOME:=$HOME/.config}"
 : "${XDG_STATE_HOME:=$HOME/.local/state}"
 
-# Zsh config root
+# ======================================================================
+# Zsh config & state roots
+# ======================================================================
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-# Zsh state (helper vars for humans/scripts)
+# Helper paths for humans/scripts (not required by zsh itself)
 export XDG_ZSH_STATE_DIR="$XDG_STATE_HOME/zsh"
 export XDG_ZSH_SESSIONS_DIR="$XDG_ZSH_STATE_DIR/sessions"
 
-# History: Zsh itself reads HISTFILE, so export it
+# Ensure state dirs exist (cheap, idempotent; safe for non-interactive shells)
+[[ -d $XDG_ZSH_STATE_DIR     ]] || mkdir -p "$XDG_ZSH_STATE_DIR"
+[[ -d $XDG_ZSH_SESSIONS_DIR  ]] || mkdir -p "$XDG_ZSH_SESSIONS_DIR"
+
+# ======================================================================
+# History file location & sizes (zsh reads these even in non-interactive shells)
+# ======================================================================
 export HISTFILE="$XDG_ZSH_STATE_DIR/history"
 export HISTSIZE=${HISTSIZE:-100000}
 export SAVEHIST=${SAVEHIST:-100000}
