@@ -22,12 +22,12 @@ typeset -U fpath
 HOMEBREW_PREFIX="$(brew --prefix)"
 HOMEBREW_ZSH_PREFIX="$(brew --prefix zsh)"
 
-# Core zsh functions (where compdump lives) + site-functions
+# Core zsh functions (compdump lives here) + site-functions
 fpath=("$HOMEBREW_ZSH_PREFIX/share/zsh/functions" \
        "$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
 
 autoload -Uz compinit
-compinit -i      # silence Homebrew “insecure dirs” warnings
+compinit -i
 
 # ======================================================================
 # History policy (interactive opts only)
