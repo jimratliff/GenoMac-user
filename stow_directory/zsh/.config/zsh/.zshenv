@@ -1,11 +1,4 @@
 # ======================================================================
-# Hygiene (runs for ALL zsh invocations)
-# - Keep $fpath under shell control; don't import/export env FPATH.
-# ======================================================================
-unset FPATH
-typeset -U fpath
-
-# ======================================================================
 # XDG roots (defaults; respect existing values)
 # ======================================================================
 : "${XDG_CONFIG_HOME:=$HOME/.config}"
