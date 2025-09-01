@@ -7,27 +7,21 @@ case $- in
 esac
 
 # ======================================================================
-# Homebrew prefix helpers (no export)
+# Homebrew prefix helper (for plugins below)
 # ======================================================================
-HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-$(/usr/bin/env brew --prefix 2>/dev/null || true)}"
-HOMEBREW_ZSH_PREFIX="$(/usr/bin/env brew --prefix zsh 2>/dev/null)"
+# This system REQUIRES Homebrew - fail loudly if missing
+if ! HOMEBREW_PREFIX="$(/usr/bin/env brew --prefix 2>/dev/null)"; then
+  echo >&2 "FATAL: Homebrew not found. Bootstrap/maintenance system may have failed."
+  return 1
+fi
 
 # ======================================================================
 # Programmable completion (native zsh)
-# - Use `compinit -i` to silence "insecure directories" warnings (like
-#   those that can arise from permissions of Homebrew directories)
-# - Assumes Homebrew on PATH
+# - fpath is configured system-wide in /etc/zshenv
+# - Use `-d` to specify compdump location in XDG-compliant directory
 # ======================================================================
-typeset -U fpath
-HOMEBREW_PREFIX="$(brew --prefix)"
-HOMEBREW_ZSH_PREFIX="$(brew --prefix zsh)"
-
-# Core zsh functions (compdump lives here) + site-functions
-fpath=("$HOMEBREW_ZSH_PREFIX/share/zsh/functions" \
-       "$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
-
 autoload -Uz compinit
-compinit -i
+compinit -i -d "$XDG_ZSH_STATE_DIR/zcompdump"
 
 # ======================================================================
 # History policy (interactive opts only)
@@ -40,7 +34,7 @@ compinit -i
 setopt HIST_IGNORE_DUPS        # skip consecutive duplicates
 setopt HIST_SAVE_NO_DUPS       # strip duplicates on save
 setopt EXTENDED_HISTORY        # timestamps & durations in $HISTFILE
-setopt APPEND_HISTORY          # append on exit (don’t clobber)
+setopt APPEND_HISTORY          # append on exit (don't clobber)
 setopt INC_APPEND_HISTORY      # write as you go
 # Optional:
 # setopt HIST_IGNORE_ALL_DUPS
