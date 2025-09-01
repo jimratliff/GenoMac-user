@@ -16,15 +16,18 @@ HOMEBREW_ZSH_PREFIX="$(/usr/bin/env brew --prefix zsh 2>/dev/null)"
 # Programmable completion (native zsh)
 # - Use `compinit -i` to silence "insecure directories" warnings (like
 #   those that can arise from permissions of Homebrew directories)
+# - Assumes Homebrew on PATH
 # ======================================================================
 typeset -U fpath
-core_dir="$HOMEBREW_ZSH_PREFIX/share/zsh/functions"
-[[ -z "$HOMEBREW_ZSH_PREFIX" || ! -d "$core_dir" ]] && core_dir="/usr/share/zsh/$ZSH_VERSION/functions"
-[[ -d "$core_dir" ]] && fpath=("$core_dir" $fpath)
-[[ -d "$HOMEBREW_PREFIX/share/zsh/site-functions" ]] && fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+HOMEBREW_PREFIX="$(brew --prefix)"
+HOMEBREW_ZSH_PREFIX="$(brew --prefix zsh)"
+
+# Core zsh functions (where compdump lives) + site-functions
+fpath=("$HOMEBREW_ZSH_PREFIX/share/zsh/functions" \
+       "$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
 
 autoload -Uz compinit
-compinit -i
+compinit -i      # silence Homebrew “insecure dirs” warnings
 
 # ======================================================================
 # History policy (interactive opts only)
