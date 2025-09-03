@@ -10,14 +10,14 @@ esac
 # Homebrew prefix helper (for plugins below)
 # ======================================================================
 # This system REQUIRES Homebrew - fail loudly if missing
-if ! HOMEBREW_PREFIX="$(/usr/bin/env brew --prefix 2>/dev/null)"; then
+if ! HOMEBREW_PREFIX="$(/opt/homebrew/bin/brew --prefix 2>/dev/null)"; then
   echo >&2 "FATAL: Homebrew not found. Bootstrap/maintenance system may have failed."
   return 1
 fi
 
 # ======================================================================
-# Programmable completion (native zsh)
-# - fpath is configured system-wide in /etc/zshenv
+# Programmable completion (system zsh)
+# - fpath is configured system-wide in /etc/zshenv for Homebrew completions
 # - Use `-d` to specify compdump location in XDG-compliant directory
 # ======================================================================
 autoload -Uz compinit
@@ -25,21 +25,12 @@ compinit -i -d "$XDG_ZSH_STATE_DIR/zcompdump"
 
 # ======================================================================
 # History policy (interactive opts only)
-# ----------------------------------------------------------------------
-# NOTE:
-# - File location and size (HISTFILE, HISTSIZE, SAVEHIST) are set in
-#   ~/.zshenv so *all* shells agree, interactive or not.
-# - Only interactive behaviors are configured here.
 # ======================================================================
 setopt HIST_IGNORE_DUPS        # skip consecutive duplicates
 setopt HIST_SAVE_NO_DUPS       # strip duplicates on save
 setopt EXTENDED_HISTORY        # timestamps & durations in $HISTFILE
 setopt APPEND_HISTORY          # append on exit (don't clobber)
 setopt INC_APPEND_HISTORY      # write as you go
-# Optional:
-# setopt HIST_IGNORE_ALL_DUPS
-# setopt HIST_IGNORE_SPACE
-# setopt HIST_EXPIRE_DUPS_FIRST
 
 # ======================================================================
 # Environment conveniences
@@ -104,4 +95,4 @@ command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
 # ======================================================================
 # Friendly toast
 # ======================================================================
-echo "Zsh ready. 💡 Try 'show_aliases' or 'update_dotfiles' then 'reload_shell'."
+echo "Zsh ready. Try 'show_aliases' or 'update_dotfiles' then 'reload_shell'."
