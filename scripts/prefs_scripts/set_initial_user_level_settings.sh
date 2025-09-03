@@ -30,7 +30,8 @@ function set_initial_user_level_settings() {
 report_start_phase_standard
 
 # Set user’s default shell to Homebrew’s version
-set_default_shell
+# We’re no longer using Homebrew’s Zsh, so don’t change user’s shell
+# set_default_shell
 
 # Enable app-state persistence
 set_app_state_persistence
