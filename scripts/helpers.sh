@@ -64,7 +64,7 @@ function success_or_not() {
 
 function ask_question() {
   # Output supplied line of text in distinctive color (COLOR_QUESTION), prefixed by SYMBOL_QUESTION
-  printf "%b%s%s%b\n" "$COLOR_QUESTION" "$SYMBOL_QUESTION" "$1" "$COLOR_RESET" > /dev/tty
+  printf "%b%s%s%b\n" "$COLOR_QUESTION" "$SYMBOL_QUESTION" "$1" "$COLOR_RESET"
 }
 
 function get_nonblank_answer_to_question() {
@@ -141,7 +141,7 @@ function report() {
 }
 
 function report_fail() {
-  # Output supplied line of text in a distinctive color (COLOR_ERROR) prefaced by SYMBOL_FAILURE.
+  # Output supplied line of text in a distinctive color prefaced by SYMBOL_FAILURE.
   printf "%b%s%s%b\n" "$COLOR_ERROR" "$SYMBOL_FAILURE" "$1" "$COLOR_RESET"
 }
 
@@ -151,7 +151,7 @@ function report_success() {
 }
 
 function report_warning() {
-  # Output supplied line of text in a distinctive color (COLOR_WARNING) prefaced by SYMBOL_WARNING.
+  # Output supplied line of text in a distinctive color prefaced by SYMBOL_WARNING.
   printf "%b%s%s%b\n" "$COLOR_WARNING" "$SYMBOL_WARNING" "$1" "$COLOR_RESET"
 }
 
