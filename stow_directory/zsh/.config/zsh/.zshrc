@@ -52,6 +52,7 @@ sock="$HOME/.1password/agent.sock"
 # ======================================================================
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
+fi
 
 #   # Override `z` to auto-fallback to interactive picker when ambiguous result
 #   z() {
