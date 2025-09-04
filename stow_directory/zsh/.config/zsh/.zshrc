@@ -53,27 +53,27 @@ sock="$HOME/.1password/agent.sock"
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 
-  # Override `z` to auto-fallback to interactive picker when ambiguous result
-  z() {
-    if [[ $# -eq 0 ]]; then
-      zi; return
-    fi
-
-    local -a matches
-    matches=("${(@f)$(zoxide query -l -- "$@")}")
-
-    if (( ${#matches} == 0 )); then
-      print -u2 "z: no match for: $*"
-      return 1
-    elif (( ${#matches} == 1 )); then
-      builtin cd -- "${matches[1]}"
-    else
-      local target
-      target="$(zoxide query -i -- "$@")" || return
-      [[ -n $target ]] && builtin cd -- "$target"
-    fi
-  }
-fi
+#   # Override `z` to auto-fallback to interactive picker when ambiguous result
+#   z() {
+#     if [[ $# -eq 0 ]]; then
+#       zi; return
+#     fi
+# 
+#     local -a matches
+#     matches=("${(@f)$(zoxide query -l -- "$@")}")
+# 
+#     if (( ${#matches} == 0 )); then
+#       print -u2 "z: no match for: $*"
+#       return 1
+#     elif (( ${#matches} == 1 )); then
+#       builtin cd -- "${matches[1]}"
+#     else
+#       local target
+#       target="$(zoxide query -i -- "$@")" || return
+#       [[ -n $target ]] && builtin cd -- "$target"
+#     fi
+#   }
+# fi
 
 # ======================================================================
 # zsh-autosuggestions (history-based ghost text)
