@@ -20,8 +20,8 @@ fi
 # - fpath is configured system-wide in /etc/zshenv for Homebrew completions
 # - Use `-d` to specify compdump location in XDG-compliant directory
 # ======================================================================
-autoload -Uz compinit
-compinit -i -d "$XDG_ZSH_STATE_DIR/zcompdump"
+# autoload -Uz compinit
+# compinit -i -d "$XDG_ZSH_STATE_DIR/zcompdump"
 
 # ======================================================================
 # History policy (interactive opts only)
