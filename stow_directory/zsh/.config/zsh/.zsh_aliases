@@ -25,6 +25,9 @@ alias edit_zshrc='$EDITOR "$ZSHRC"'
 # `zsh -l`: starts a login shell (“pretend this shell was started as a login shell”)
 alias reload_shell='exec zsh -l'
 
+############### System info
+alias sysinfo='fastfetch'
+
 ############### Update dotfiles
 # This is OBSOLETE because the .genomac-dotfiles repo is deprecated
 # TODO: Consider a similar alias for current structure
