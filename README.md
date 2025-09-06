@@ -70,7 +70,6 @@ The `Makefile` provides the interface for the user to effect the functionalities
 For each user:
 - For each user other than USER_CONFIGURER (who will already have performed these steps)
   - In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc.
-  - Grant Terminal full-disk access
   - Clone this repo to the user’s home directory in `~/.genomac-user`
 - Dotfiles
     - From `~/.genomac-user`, execute `make stow-dotfiles`
@@ -83,6 +82,8 @@ For each user:
 ## Step-by-step implementation (for a particular user)
 
 ### Establish real-time connection to communicate text back and forth
+(NOTE: USER_CONFIGURER will have already performed this step.)
+
 Open a Google Docs document to be used as/if needed for real-time exchange of text, error messages, etc., between the target Mac and other devices.
 - In Safari
   - sign into my standard Google account:
@@ -90,16 +91,10 @@ Open a Google Docs document to be used as/if needed for real-time exchange of te
     - Enter the username of my Google account
     - A QR code will appear. Scan it with my iPhone and complete the authentication.
   - Open the Google Doc document “[Project GenoMac: Text-exchange Document](https://docs.google.com/document/d/1RCbwjLHPidxRJJcvzILKGwtSkKpDrm8dT1fgJxlUdZ4/edit?usp=sharing)]”
-    
-### Grant Terminal full-disk access
-- System Settings
-  - Privacy & Security
-    - Under the Privacy header, scroll down and click Full Disk Access
-      - Enable for Terminal
-     
-Note: If you are here for a user other than USER_CONFIGURER, you may find that this step has already been performed by USER_CONFIGURER and that that has left Terminal with full-disk access for all users.
 
 ### Cloning this repo
+(NOTE: USER_CONFIGURER will have already performed this step.)
+
 For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`. 
 
 Launch Terminal. Then copy the following code block and paste into Terminal:
@@ -119,7 +114,7 @@ Launch Terminal. Then copy the following code block and paste into Terminal:
 cd ~/.genomac-user
 make stow-dotfiles
 ```
-<div align="center"><strong>Please log out and log back in to this user.</strong></div>
+<div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>
 
 
 The dotfile [.zshenv](https://github.com/jimratliff/GenoMac-user/blob/main/stow_directory/zsh/.config/zsh/.zshenv) defines:
@@ -142,7 +137,7 @@ make initial-prefs
 ```
 Note: This will produce *pages* of terminal output.
 
-<div align="center"><strong>Please log out and log back in to this user.</strong></div>
+<div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>
 
 
 ### Configure 1Password for authentication with GitHub
