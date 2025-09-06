@@ -8,6 +8,35 @@
 ## Quick-reference Cheat sheet
 (First time here? Please go to the next major heading, viz., [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
 
+### Refresh local clone
+After initial cloning, to pull down subsequent changes to this repository:
+```bash
+cd ~/.genomac-user
+git pull origin main
+```
+Note that any changes to existing dotfiles will be pulled down to the local clone. It is possible, however, that the new content of those dotfiles will not take effect until after the user logs out and logs back in.
+
+If the *only* changes to the dotfiles are in the contents of existing dotfiles, there is no need to re-“stow” the dotfiles (which the next section explains how to do).
+
+
+### Re-“stow” the dotfiles
+
+As explained in the section just above (“[Refresh local clone]”
+
+To update all apps (and install/remove apps as required by any changes in the Brewfile):
+```bash
+cd ~/.genomac-user
+make stow-dotfiles
+```
+
+### Reassert systemwide settings
+To reassert the systemwide settings (in response to any changes in them in this repo):
+```bash
+cd ~/.genomac-system
+git pull origin main
+make prefs-systemwide
+```
+
 TO DO: TO BE WRITTEN
 
 ## The role of GenoMac-user within the larger Project GenoMac
@@ -127,6 +156,18 @@ The dotfile [.zshenv](https://github.com/jimratliff/GenoMac-user/blob/main/stow_
 More specifically, `stow_dotfiles.sh` relies on a list of packages enumerated in the variable `PACKAGES_LIST` in that script. It iterates through each of those packages and, for each package, stows the dotfiles associated with that package.
 
 Thus, to add the dotfiles for a new package, it is *not* sufficient to add those dotfiles to a new package in `stow_directory` (though this is necessary)! In addition, the name of the package must be added to the space-separated `PACKAGES_LIST` in `stow_dotfiles.sh
+
+### One-time only: Use `make bootstrap-user` to launch certain applications once
+In the next step (“[Implement the initial set of macOS-related settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#implement-the-initial-set-of-macos-related-settings)”), you’ll run a script to implement certain user-scoped settings for macOS and certain apps.
+
+In some cases, an app’s plist file won’t exist until the app has been launched a first time by the user. If the app’s plist doesn’t exist, the script’s attempt to implement settings for that app will fail. To prevent such a failure, we want to launch these particular apps a first time.
+
+Launch Terminal. Then copy the following code block and paste into Terminal:
+
+```shell
+cd ~/.genomac-user
+make bootstrap-user
+```
 
 ### Implement the initial set of macOS-related settings
 The next step is to implement settings that aren’t captured by the above dotfiles but instead relate to macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
