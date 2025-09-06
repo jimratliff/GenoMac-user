@@ -1,6 +1,7 @@
 # GenoMac-user
 - [Quick-reference Cheat sheet](#quick-reference-cheat-sheet)
 - [Overview of the role of GenoMac-user](#overview-of-the-role-of-genomac-user)
+- [Step-by-step implementation (for a particular user)]
 - [Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings)
 
 ## Quick-reference Cheat sheet
@@ -49,7 +50,7 @@ For tips about how to figure out what the `defaults write` commands are that cor
 
 The `Makefile` provides the interface for the user to effect the functionalities of this repo, such as commanding the execution of (a) “stowing” the dotfiles and (b) changing the macOS settings using `defaults write` commands.
 
-## Implementation (for a particular user)
+## Step-by-step implementation (for a particular user)
 ### Preview
 The entire configuration process *for a Mac* begins with the  [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), *not* with this repo. If you’re starting the configuration of a new Mac, start there, and return to this repo only when directed to.
 
