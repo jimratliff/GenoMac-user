@@ -131,6 +131,14 @@ function prepare_zsh_sessions_for_outside_zdotdir() {
 function main() {
   stow_packages_dotfiles
   prepare_zsh_sessions_for_outside_zdotdir
+  
+  report_action_taken "Deploying “stowing” of dotfiles complete. Logging out to apply system-wide changes..."
+  echo ""
+  echo "ℹ️  You will be logged out automatically to take into account the stowed dotfiles."
+  echo "   After logging back in, continue with the next configuration step."
+  echo ""
+
+  force_user_logout
 }
 
 main
