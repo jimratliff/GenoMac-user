@@ -8,7 +8,8 @@
 (First time here? Please go to the next major heading, viz., 
 
 
-## Overview of the role of GenoMac-user
+## The role of GenoMac-user within the larger Project GenoMac
+### Context
 This public repo, [GenoMac-user](https://github.com/jimratliff/GenoMac-user) implements generic user-level settings for each user on each Mac that is governed by Project GenoMac. 
 
 Generic user-scoped settings are those configuration parameters (a) whose jurisdiction is that of an individual user but (b) whose values are assumed to be common across all users within the GenoMac project. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.[^commonAcrossUsers])
@@ -17,7 +18,20 @@ Generic user-scoped settings are those configuration parameters (a) whose juris
 
 The current repo is used in conjunction with the [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), which (a) is cloned exclusively by USER_CONFIGURER and (b) is responsible for configurations at the system level, i.e., that affect all users. This includes, among other things, certain systemwide settings, installing all CLI and GUI apps (both on or off the Mac App Store), and the creation of additional users.
 
-### Assumed prerequisites
+The entire configuration process *for a Mac* begins with the  [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), *not* with this repo. If you’re starting the configuration of *a new Mac*, start there, and return to this repo only when directed to.
+
+If USER_CONFIGURER of a Mac has already been created and configured and you’re starting to configure an additional user, the current GenoMac-user repo *is* the correct place to start.
+
+### Using this repo as USER_CONFIGURER vis-à-vis any other user
+USER_CONFIGURER, like any other user, needs to have its user-scoped settings be configured, and thus uses this repo to do so.
+
+However, the difference in this regard between USER_CONFIGURER and any other user is that USER_CONFIGURER is called upon to use the repo as an intermediate step in implementing its more-ambitious mandate of configuring the entire Mac:
+- First, USER_CONFIGURER uses the GenoMac-system repo to set up the Mac from a systemwide perspective, including installing crucial apps and other resources for systemwide use by all users
+- USER_CONFIGURER will then clone this repo (GenoMac-user) to its home directory.
+- After setting up USER_CONFIGURER’s user-level settings, USER_CONFIGURER will return to GenoMac-system to create the additional user accounts for the Mac.
+- Then the GenoMac-system repo will direct the iteration through all other users—many of which are newly created by USER_CONFIGURER—where, for each other user, following the instructions of GenoMac-user with respect to that user.
+
+### Assumed prerequisites for all users
 Before you do anything with this repo, GenoMac-user, the following system-level prerequisites need to be fulfilled (via the GenoMac-system repo):
 - Homebrew, and therefore indirectly, Git, have been installed
 - The systemwide PATH has been modified to make all Homebrew-installed apps and man pages available to all users, with no additional user-specific modification of the user’s PATH required
@@ -51,16 +65,6 @@ For tips about how to figure out what the `defaults write` commands are that cor
 The `Makefile` provides the interface for the user to effect the functionalities of this repo, such as commanding the execution of (a) “stowing” the dotfiles and (b) changing the macOS settings using `defaults write` commands.
 
 ## Step-by-step implementation (for a particular user)
-### Preview
-The entire configuration process *for a Mac* begins with the  [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), *not* with this repo. If you’re starting the configuration of *a new Mac*, start there, and return to this repo only when directed to.
-
-If USER_CONFIGURER of a Mac has already been created and configured and you’re starting to configure an additional user, the current GenoMac-user repo *is* the correct place to start.
-
-#### Highest-level preview
-As a global, highest-level preview:
-- As part of the initial bootstrapping process of a new Mac, GenoMac-system will direct you to clone this repo (GenoMac-user) to USER_CONFIGURER’s home directory.
-- After setting up USER_CONFIGURER’s user-level settings, you’ll return to GenoMac-system to create the additional user accounts for the Mac.
-- Then the GenoMac-system repo will direct you to iterate through all other users—many of which are newly created by USER_CONFIGURER—where, for each other user, you will follow the instructions of GenoMac-user with respect to that user.
 
 #### Preview of using this repo to configure any single user
 For each user:
