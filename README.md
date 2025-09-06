@@ -68,9 +68,10 @@ The `Makefile` provides the interface for the user to effect the functionalities
 
 ## Overview of using this repo to implement the user-scoped settings for a particular user
 For each user:
-- In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc.
-- Grant Terminal full-disk access
-- Clone this repo to the user’s home directory in `~/.genomac-user`
+- For each user other than USER_CONFIGURER (who will already have performed these steps)
+  - In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc.
+  - Grant Terminal full-disk access
+  - Clone this repo to the user’s home directory in `~/.genomac-user`
 - Dotfiles
     - From `~/.genomac-user`, execute `make stow-dotfiles`
     - Log out and log back in
