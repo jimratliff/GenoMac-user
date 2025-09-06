@@ -254,7 +254,7 @@ This repo contains a script that helps you figure out what `defaults write` comm
 Suppose you want to find the `defaults write` command(s) that correspond to particular change(s) in the settings for Application X:
 - Launch Application X
 - Open the Settings for Application X, but do not yet make the desired changes
-- In the terminal, type `make defaults_detective`, which will launch the script `defaults_detective.sh`, which will:
+- In the terminal, type `make defaults-detective`, which will launch the script `defaults_detective.sh`, which will:
     - record a snapshot of the *pre-change* state of your user’s entire `defaults` plists
     - tell you to that it is ready for you to make the desired changes to the application’s settings
 - In Application X, make the desired settings to the application’s settings
