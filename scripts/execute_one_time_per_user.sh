@@ -38,17 +38,21 @@ printf "GENOMAC_HELPER_DIR: %s\n" "$GENOMAC_HELPER_DIR"
 
 ############################## BEGIN SCRIPT PROPER #############################
 
+launch_and_quit_app "com.apple.DiskUtility"
+launch_and_quit_app "com.googlecode.iterm2"
+# launch_and_quit_app "dev.warp.Warp-Stable"
+
 # Launch and quit DiskUtility in order that it will have preferences to modify.
-report_action_taken "Launch and quit DiskUtility in order that it will have preferences to modify"
-open -b com.apple.DiskUtility # By bundle ID (more reliable than `open -a` by display name)
-sleep 2
-osascript -e 'quit app "Disk Utility"';success_or_not
+# report_action_taken "Launch and quit DiskUtility in order that it will have preferences to modify"
+# open -b com.apple.DiskUtility # By bundle ID (more reliable than `open -a` by display name)
+# sleep 2
+# osascript -e 'quit app "Disk Utility"';success_or_not
 
 # Launch and quit iTerm2 in order that it will have preferences to modify.
-report_action_taken "Launch and quit iTerm2 in order that it will have preferences to modify"
-open -b com.googlecode.iterm2 # By bundle ID (more reliable than `open -a` by display name)
-sleep 2
-osascript -e 'quit app "iTerm2"';success_or_not
+# report_action_taken "Launch and quit iTerm2 in order that it will have preferences to modify"
+# open -b com.googlecode.iterm2 # By bundle ID (more reliable than `open -a` by display name)
+# sleep 2
+# osascript -e 'quit app "iTerm2"';success_or_not
 
 # Launch and quit Warp in order that it will have preferences to modify.
 # report_action_taken "Launch and quit Warp in order that it will have preferences to modify"
