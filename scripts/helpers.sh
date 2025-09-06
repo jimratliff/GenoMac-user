@@ -53,7 +53,7 @@ function keep_sudo_alive() {
   done 2>/dev/null &  # background process, silence errors
 }
 
-launch_and_quit_app() {
+function launch_and_quit_app() {
   # Launches and then quits an app identified by its bundle ID
   # Examples:
   #   launch_and_quit_app "com.apple.DiskUtility"
