@@ -1,6 +1,7 @@
 # GenoMac-user
 - [Quick-reference Cheat sheet](#quick-reference-cheat-sheet)
 - [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
+- [Overview of using this repo to implement the user-scoped settings for a particular user]
 - [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user)
 - [Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings)
 
@@ -65,9 +66,7 @@ For tips about how to figure out what the `defaults write` commands are that cor
 
 The `Makefile` provides the interface for the user to effect the functionalities of this repo, such as commanding the execution of (a) “stowing” the dotfiles and (b) changing the macOS settings using `defaults write` commands.
 
-## Step-by-step implementation (for a particular user)
-
-#### Preview of using this repo to configure any single user
+## Overview of using this repo to implement the user-scoped settings for a particular user
 For each user:
 - In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc.
 - Grant Terminal full-disk access
@@ -79,6 +78,8 @@ For each user:
     - From `~/.genomac-user`, execute `make initial-prefs`
     - Log out and log back in
 - Integrate 1Password’s SSH agent with SSH, allowing the user to authenticate with GitHub via the terminal
+
+## Step-by-step implementation (for a particular user)
 
 ### Establish real-time connection to communicate text back and forth
 Open a Google Docs document to be used as/if needed for real-time exchange of text, error messages, etc., between the target Mac and other devices.
