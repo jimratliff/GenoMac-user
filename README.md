@@ -14,30 +14,28 @@ After initial cloning, to pull down subsequent changes to this repository:
 cd ~/.genomac-user
 git pull origin main
 ```
-Note that any changes to existing dotfiles will be pulled down to the local clone. It is possible, however, that the new content of those dotfiles will not take effect until after the user logs out and logs back in.
-
-If the *only* changes to the dotfiles are in the contents of existing dotfiles, there is no need to re-“stow” the dotfiles (which the next section explains how to do).
-
 
 ### Re-“stow” the dotfiles
 
-As explained in the section just above (“[Refresh local clone]”
+Any changes to existing dotfiles will be pulled down to the local clone as a result of “[Refresh local clone](#refresh-local-clone).” Only if the *structure* of the dotfiles has changed is it necessary to re-“stow” the dotfiles. By a change in structure, I mean the addition or removal of a dotfile or a change in location of a dotfile.
 
-To update all apps (and install/remove apps as required by any changes in the Brewfile):
+If the *only* changes to the dotfiles are in the contents of existing dotfiles, there is no need to re-“stow” the dotfiles (which the next section explains how to do).
+
+It is possible, however, that the new content of those dotfiles will not take effect until after the user logs out and logs back in.
+
+To re-“stow” the dotfiles (after refreshing the local clone):
 ```bash
 cd ~/.genomac-user
 make stow-dotfiles
 ```
 
 ### Reassert systemwide settings
-To reassert the systemwide settings (in response to any changes in them in this repo):
+To reassert the user-scoped settings (in response to any changes in them in this repo) after refreshing the local clone:
 ```bash
 cd ~/.genomac-system
 git pull origin main
 make prefs-systemwide
 ```
-
-TO DO: TO BE WRITTEN
 
 ## The role of GenoMac-user within the larger Project GenoMac
 ### Context
