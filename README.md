@@ -52,7 +52,7 @@ The `Makefile` provides the interface for the user to effect the functionalities
 
 ## Step-by-step implementation (for a particular user)
 ### Preview
-The entire configuration process *for a Mac* begins with the  [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), *not* with this repo. If you’re starting the configuration of a new Mac, start there, and return to this repo only when directed to.
+The entire configuration process *for a Mac* begins with the  [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), *not* with this repo. If you’re starting the configuration of *a new Mac*, start there, and return to this repo only when directed to.
 
 If USER_CONFIGURER of a Mac has already been created and configured and you’re starting to configure an additional user, the current GenoMac-user repo *is* the correct place to start.
 
