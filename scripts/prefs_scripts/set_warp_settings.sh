@@ -17,9 +17,9 @@ report_start_phase_standard
 report_action_taken "Implement Warp settings"
 
 # Launch and quit Warp in order that it will have preferences to modify.
-report_action_taken "Launch and quit Warp in order that it will have preferences to modify"
-open -b dev.warp.Warp-Stable # By bundle ID (more reliable than `open -a` by display name)
-sleep 2
+# report_action_taken "Launch and quit Warp in order that it will have preferences to modify"
+# open -b dev.warp.Warp-Stable # By bundle ID (more reliable than `open -a` by display name)
+# sleep 2
 # osascript -e 'quit app "Warp"';success_or_not
 
 report_adjust_setting "Turn AI off"
