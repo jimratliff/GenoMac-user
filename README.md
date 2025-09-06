@@ -1,7 +1,7 @@
 # GenoMac-user
 - [Quick-reference Cheat sheet](#quick-reference-cheat-sheet)
 - [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
-- [Overview of using this repo to implement the user-scoped settings for a particular user]
+- [Overview of using this repo to implement the user-scoped settings for a particular user](#overview-of-using-this-repo-to-implement-the-user-scoped-settings-for-a-particular-user)
 - [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user)
 - [Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings)
 
