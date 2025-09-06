@@ -1,11 +1,13 @@
 # GenoMac-user
 - [Quick-reference Cheat sheet](#quick-reference-cheat-sheet)
+- [Overview of the role of GenoMac-user]
+- [Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings)
 
 ## Quick-reference Cheat sheet
 (First time here? Please go to the next major heading, viz., 
 
 
-## Overview
+## Overview of the role of GenoMac-user
 This public repo, [GenoMac-user](https://github.com/jimratliff/GenoMac-user) implements generic user-level settings for each user on each Mac that is governed by Project GenoMac. 
 
 Generic user-scoped settings are those configuration parameters (a) whose jurisdiction is that of an individual user but (b) whose values are assumed to be common across all users within the GenoMac project. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.[^commonAcrossUsers])
@@ -17,13 +19,22 @@ The current repo is used in conjunction with the [GenoMac-system repo](https://g
 ### Assumed prerequisites
 Before you do anything with this repo, GenoMac-user, the following system-level prerequisites need to be fulfilled (via the GenoMac-system repo):
 - Homebrew, and therefore indirectly, Git, have been installed
+- The systemwide PATH has been modified to make all Homebrew-installed apps and man pages available to all users, with no additional user-specific modification of the user’s PATH required
+- Terminal and iTerm have both been granted full-disk access by USER-CONFIGURER
 - GNU Stow has been installed
+- More generally, USER_CONFIGURER has installed
+  - all of the third-party apps whose user-specific settings will be specified by GenoMac-user
+  - all of the resources (fonts, sounds, screensavers, etc.) that will be referenced by user-specific settings by GenoMac-user
 
 ### This repository will be cloned to `~/.genomac-user` of the particular user
 
-This public GenoMac-user repo is meant to be cloned locally (using https) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable $GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
+This public GenoMac-user repo is meant to be cloned locally (using https[^https]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable $GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
 
-### This repo supplies the dotfiles that configure some of the user’s software
+[^https]: After having cloned the repository via https, GitHub will not let you edit the repo from the CLI (but will from the browser). In order to edit
+the repo from the CLI, you will need to change the repo from https to SSH, which can be done via 
+`git remote set-url origin git@github.com:OWNER/REPOSITORY.git`. (Use `git remote -v` to clarify the syntax for your repo.)
+
+### This repo supplies the dotfiles that that help to configure some of the user’s software
 
 This repository is intended to be used with [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.
 
