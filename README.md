@@ -1,8 +1,16 @@
 # GenoMac-user
+- [Quick-reference Cheat sheet](#quick-reference-cheat-sheet)
+
+## Quick-reference Cheat sheet
+(First time here? Please go to the next major heading, viz., 
+
+
 ## Overview
 This public repo, [GenoMac-user](https://github.com/jimratliff/GenoMac-user) implements generic user-level settings for each user on each Mac that is governed by Project GenoMac. 
 
-Generic user-scoped settings are those configuration parameters (a) whose jurisdiction is that of an individual user but (b) whose values are assumed to be common across all users within the GenoMac project. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.)
+Generic user-scoped settings are those configuration parameters (a) whose jurisdiction is that of an individual user but (b) whose values are assumed to be common across all users within the GenoMac project. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.[^commonAcrossUsers])
+
+[^commonAcrossUsers]: The set of generic user-scoped settings won’t exhaust all user-scoped settings. Any user is free to choose their own setting for parameters not covered by the generic settings. However, this raises a nuanced distinction. Each Mac has, for example, a USER_VANILLA. Suppose it is desired that USER_VANILLA has a different choice of some setting that all other users. Nevertheless, it could well be advantageous for that setting to be consistent across all Macs in the sense that, every USER_VANILLA shares that same choice, regardless of which Mac they inhabit. When such a case arises, there could be further refactoring of this process so that each user *type* has its own configurations that would be overlain on the common-across-all-users generic settings.
 
 The current repo is used in conjunction with the [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), which (a) is cloned exclusively by USER_CONFIGURER and (b) is responsible for configurations at the system level, i.e., that affect all users. This includes, among other things, certain systemwide settings, installing all CLI and GUI apps (both on or off the Mac App Store), and the creation of additional users.
 
