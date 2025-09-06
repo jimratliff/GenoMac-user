@@ -1,6 +1,6 @@
 # GenoMac-user
 - [Quick-reference Cheat sheet](#quick-reference-cheat-sheet)
-- [Overview of the role of GenoMac-user]
+- [Overview of the role of GenoMac-user](#overview-of-the-role-of-genomac-user)
 - [Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings)
 
 ## Quick-reference Cheat sheet
