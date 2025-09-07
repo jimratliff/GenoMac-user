@@ -15,7 +15,7 @@ function set_diskutility_settings() {
 
 report_start_phase_standard
 
-domain="write com.apple.DiskUtility"
+domain="com.apple.DiskUtility"
 
 ensure_plist_exists "${domain}"
 
