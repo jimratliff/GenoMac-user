@@ -29,12 +29,11 @@ cd ~/.genomac-user
 make stow-dotfiles
 ```
 
-### Reassert systemwide settings
+### Reassert user-scoped settings
 To reassert the user-scoped settings (in response to any changes in them in this repo) after refreshing the local clone:
 ```bash
-cd ~/.genomac-system
-git pull origin main
-make prefs-systemwide
+cd ~/.genomac-user
+make initial-prefs
 ```
 
 ## The role of GenoMac-user within the larger Project GenoMac
