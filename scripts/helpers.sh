@@ -86,7 +86,14 @@ function ensure_plist_exists() {
   local domain="$1"
   local plist_path="$HOME/Library/Preferences/${domain}.plist"
   report_action_taken "Ensure that ${domain} plist exists."
-  [[ ! -f "$plist_path" ]] && plutil -create xml1 "$plist_path"  ; success_or_not
+  # [[ ! -f "$plist_path" ]] && plutil -create xml1 "$plist_path"  ; success_or_not
+  if [[ ! -f "$plist_path" ]]; then
+    local fictitious_key="_fictitious_key"
+    plutil -create xml1 "$plist_path" && \
+    plutil -insert "${fictitious_key}" -string "Nothing to see here" "$plist_path" && \
+    plutil -remove "${fictitious_key}" "$plist_path"
+    fi
+    success_or_not
 }
 
 function ask_question() {
