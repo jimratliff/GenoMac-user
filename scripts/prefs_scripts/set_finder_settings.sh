@@ -110,7 +110,7 @@ report_adjust_setting "1 of 3: Desktop Icon View"
 report_adjust_setting "2 of 3: Standard Finder windows’ Icon View"
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist ; success_or_not
 
-report_adjust_setting "3 of 3: FK_Standard (fallback) Icon View"
+report_adjust_setting "3 of 3: FK_Standard (Open dialog box) Icon View"
 /usr/libexec/PlistBuddy -c "Set FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist ; success_or_not
 
 report_end_phase_standard
