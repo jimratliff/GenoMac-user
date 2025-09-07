@@ -97,6 +97,33 @@ function ensure_plist_exists() {
   success_or_not
 }
 
+function ensure_domain_exists() {
+  local domain="$1"
+  local plist_path="$HOME/Library/Preferences/${domain}.plist"
+  report_action_taken "Ensure that ${domain} domain and its plist file exist."
+  
+  if ! defaults read "$domain" >/dev/null 2>&1; then
+    report_action_taken "The domain ${domain} didn’t exist; creating…"
+    local fictitious_key="_fictitious_key"
+    defaults write "$domain" "${fictitious_key}" "Nothing to see here; move along…"
+    defaults delete "$domain" "${fictitious_key}"
+  fi
+
+  if ! defaults read "$domain" >/dev/null 2>&1; then
+    report_fail "The domain ${domain} still doesn’t exist. FAIL"
+    return 1
+  else
+    report_success "The domain ${domain} now exists."
+  fi
+
+  if [[ ! -f "$plist_path" ]]; then
+    report_fail "${domain} plist still doesn’t exist; FAIL"
+    return 1
+  else
+    report_success "${domain} plist now exists."
+  fi
+}
+
 function ask_question() {
   # Output supplied line of text in distinctive color (COLOR_QUESTION), prefixed by SYMBOL_QUESTION
   printf "%b%s%s%b\n" "$COLOR_QUESTION" "$SYMBOL_QUESTION" "$1" "$COLOR_RESET"
