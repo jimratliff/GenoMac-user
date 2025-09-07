@@ -79,21 +79,22 @@ function success_or_not() {
 }
 
 function ensure_plist_exists() {
-  # Supersedes function launch_and_quit_app
-  # Usage:
-  #   ensure_plist_exists "com.apple.DiskUtility"
-  #   ensure_plist_exists "com.googlecode.iterm2"
   local domain="$1"
   local plist_path="$HOME/Library/Preferences/${domain}.plist"
   report_action_taken "Ensure that ${domain} plist exists."
-  # [[ ! -f "$plist_path" ]] && plutil -create xml1 "$plist_path"  ; success_or_not
+  
+  echo "DEBUG: Checking for file: $plist_path"
   if [[ ! -f "$plist_path" ]]; then
+    report_action_taken "${domain} plist doesn’t exist; creating…"
     local fictitious_key="_fictitious_key"
     plutil -create xml1 "$plist_path" && \
     plutil -insert "${fictitious_key}" -string "Nothing to see here" "$plist_path" && \
     plutil -remove "${fictitious_key}" "$plist_path"
-    fi
-    success_or_not
+    echo "DEBUG: After creation, file exists: $(ls -la "$plist_path" 2>/dev/null || echo 'NO')"
+  else
+    report_success "${domain} plist already exists."
+  fi
+  success_or_not
 }
 
 function ask_question() {
