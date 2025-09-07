@@ -12,7 +12,7 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 ############################## BEGIN SCRIPT PROPER ##############################
 
 plistbud="/usr/libexec/PlistBuddy"
-finder_plist="~/Library/Preferences/com.apple.finder.plist"
+finder_plist="$HOME/Library/Preferences/com.apple.finder.plist"
 
 function set_finder_settings() {
 
