@@ -11,6 +11,9 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
+plistbud="/usr/libexec/PlistBuddy"
+finder_plist="~/Library/Preferences/com.apple.finder.plist"
+
 function set_finder_settings() {
 
 report_start_phase_standard
@@ -105,13 +108,26 @@ defaults write com.apple.finder "FinderSpawnTab" -bool true;success_or_not
 report_action_taken "Setting Icon Views to Snap to Grid"
 
 report_adjust_setting "1 of 3: Desktop Icon View"
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist ; success_or_not
+$plistbud -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" $finder_plist ; success_or_not
 
 report_adjust_setting "2 of 3: Standard Finder windows’ Icon View"
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist ; success_or_not
+$plistbud -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" $finder_plist ; success_or_not
 
 report_adjust_setting "3 of 3: FK_Standard (Open dialog box) Icon View"
-/usr/libexec/PlistBuddy -c "Set FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist ; success_or_not
+$plistbud -c "Set FK_StandardViewSettings:IconViewSettings:arrangeBy grid" $finder_plist ; success_or_not
+
+# Demand calculateAllSizes in all list views
+report_action_taken "Demand calculated sizes in all list views"
+
+report_adjust_setting "1 of 4: Standard, non-extended list view"
+$plistbud -c "Set :'StandardViewSettings':'ListViewSettings':'calculateAllSizes' true" $finder_plist ; success_or_not
+report_adjust_setting "2 of 4: Standard, extended list view"
+$plistbud -c "Set :'StandardViewSettings':'ExtendedListViewSettingsV2':'calculateAllSizes' true" $finder_plist ; success_or_not
+report_adjust_setting "3 of 4: FK (dialog box), non-extended list view"
+$plistbud -c "Set :'FK_StandardViewSettings':'ListViewSettings':'calculateAllSizes' true" $finder_plist ; success_or_not
+report_adjust_setting "4 of 4: FK (dialog box), extended list view"
+$plistbud -c "Set :'FK_StandardViewSettings':'ExtendedListViewSettingsV2':'calculateAllSizes' true" $finder_plist ; success_or_not
+
 
 report_end_phase_standard
 
