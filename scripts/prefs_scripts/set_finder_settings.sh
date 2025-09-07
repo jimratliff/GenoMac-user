@@ -101,6 +101,18 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool true;succes
 report_adjust_setting "⌘-double-click opens folder in new tab (not new window)"
 defaults write com.apple.finder "FinderSpawnTab" -bool true;success_or_not
 
+# Set Icon Views to Snap to Grid
+report_action_taken "Setting Icon Views to Snap to Grid"
+
+report_adjust_setting "1 of 3: Desktop Icon View"
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist ; success_or_not
+
+report_adjust_setting "2 of 3: Standard Finder windows’ Icon View"
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist ; success_or_not
+
+report_adjust_setting "3 of 3: FK_Standard (fallback) Icon View"
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist ; success_or_not
+
 report_end_phase_standard
 
 }
