@@ -61,8 +61,7 @@ function stow_packages_dotfiles() {
          --adopt \
          --ignore='\.DS_Store' \
          --verbose=$STOW_VERBOSITY \
-         "$package" 
-    success_or_not
+         "$package" ; success_or_not
   done
 
   (
