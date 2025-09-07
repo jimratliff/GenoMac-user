@@ -55,6 +55,7 @@ function keep_sudo_alive() {
 
 function launch_and_quit_app() {
   # Launches and then quits an app identified by its bundle ID
+  # Superseded by function ensure_plist_exists()
   # Examples:
   #   launch_and_quit_app "com.apple.DiskUtility"
   #   launch_and_quit_app "com.googlecode.iterm2"
@@ -75,6 +76,17 @@ function success_or_not() {
   else
     printf "\n${SYMBOL_FAILURE}\n"
   fi
+}
+
+function ensure_plist_exists() {
+  # Supersedes function launch_and_quit_app
+  # Usage:
+  #   ensure_plist_exists "com.apple.DiskUtility"
+  #   ensure_plist_exists "com.googlecode.iterm2"
+  local domain="$1"
+  local plist_path="$HOME/Library/Preferences/${domain}.plist"
+  report_action_taken "Ensure that ${domain} plist exists."
+  [[ ! -f "$plist_path" ]] && plutil -create xml1 "$plist_path"
 }
 
 function ask_question() {
