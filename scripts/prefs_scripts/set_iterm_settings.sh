@@ -43,16 +43,13 @@ report_adjust_setting "Change default font to Fira Code Nerd Font"
 # report "PLISTBUDDY_PATH is ${PLISTBUDDY_PATH}"
 # report "plist_path is ${plist_path}"
 
-#"${PLISTBUDDY_PATH}" -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' "${plist_path}"
-# success_or_not
+"${PLISTBUDDY_PATH}" -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' "${plist_path}"
+success_or_not
 
-/usr/libexec/PlistBuddy \
-  -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' \
-  ~/Library/Preferences/com.googlecode.iterm2.plist ; success_or_not
+# /usr/libexec/PlistBuddy \
+#   -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' \
+#   ~/Library/Preferences/com.googlecode.iterm2.plist ; success_or_not
 
-#/usr/libexec/PlistBuddy \
-#  -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' "${plist_path}" ; success_or_not
-#  ~/Library/Preferences/com.googlecode.iterm2.plist ; success_or_not
 
 report_end_phase_standard
 
