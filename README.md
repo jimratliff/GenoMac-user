@@ -154,18 +154,6 @@ More specifically, `stow_dotfiles.sh` relies on a list of packages enumerated in
 
 Thus, to add the dotfiles for a new package, it is *not* sufficient to add those dotfiles to a new package in `stow_directory` (though this is necessary)! In addition, the name of the package must be added to the space-separated `PACKAGES_LIST` in `stow_dotfiles.sh
 
-### One-time only: Use `make bootstrap-user` to launch certain applications once
-In the next step (“[Implement the initial set of macOS-related settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#implement-the-initial-set-of-macos-related-settings)”), you’ll run a script to implement certain user-scoped settings for macOS and certain apps.
-
-In some cases, an app’s plist file won’t exist until the app has been launched a first time by the user. If the app’s plist doesn’t exist, the script’s attempt to implement settings for that app will fail. To prevent such a failure, we want to launch these particular apps a first time.
-
-Launch Terminal. Then copy the following code block and paste into Terminal:
-
-```shell
-cd ~/.genomac-user
-make bootstrap-user
-```
-
 ### Implement the initial set of macOS-related settings
 The next step is to implement settings that aren’t captured by the above dotfiles but instead relate to macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
 
