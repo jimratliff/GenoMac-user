@@ -65,7 +65,6 @@ safe_source() {
 }
 
 function launch_and_quit_app() {
-  # DEPRECATED
   # Launches and then quits an app identified by its bundle ID
   # Superseded by function ensure_plist_exists()
   # Examples:
