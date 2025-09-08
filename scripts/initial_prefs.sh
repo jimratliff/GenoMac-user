@@ -51,6 +51,9 @@ set_initial_user_level_settings
 # TO DO: TODO: This needs to be made conditional on which user it is.
 # overrides_for_sysadmin_users
 
+# DEPRECATION NOTE: The following is deprecated. Instead of quitting only certain processes,
+#                   I enforce logging out entirely.
+#
 # Kill each app affected by `defaults` commands in the prior functions
 # (App-killing deferred here to avoid redundantly killing the same app multiple times.)
 # report_action_taken "Force quit all apps/processes whose settings we just changed"
