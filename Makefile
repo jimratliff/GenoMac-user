@@ -11,9 +11,6 @@
 # Targets
 # --------------------------------------------------------------------
 
-# bootstrap-user:
-# 	zsh scripts/execute_one_time_per_user.sh
-
 stow-dotfiles:
 	zsh scripts/stow_dotfiles.sh
 
