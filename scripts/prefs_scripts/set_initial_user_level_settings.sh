@@ -7,24 +7,25 @@ if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
   return 1
 fi
 
+# This `source` cannot be `safe_source` because `safe_source` is in `helpers.sh`, which hasn’t yet been sourced.
 source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
-source "${PREFS_FUNCTIONS_DIR}/set_app_state_persistence.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_auto_correction_suggestion_settings.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_default_shell.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_diskutility_settings.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_finder_settings.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_general_dock_settings.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_general_interface_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_app_state_persistence.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_auto_correction_suggestion_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_default_shell.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_diskutility_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_finder_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_general_dock_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_general_interface_settings.sh"
 
 report_action_taken "Sourcing set_iterm_settings.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh" ; success_or_not
+safe_source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh" ; success_or_not
 
-source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_terminal_settings.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_trackpad_settings.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_warp_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_terminal_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_trackpad_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_warp_settings.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
