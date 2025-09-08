@@ -1,6 +1,8 @@
-# This file assumes GENOMAC_HELPER_DIR is already set in the current shell
-# to the absolute path of the directory containing helpers.sh.
-# That variable must be defined before this file is sourced.
+# This file assumes:
+# - GENOMAC_HELPER_DIR is already set in the current shell to the absolute path of the directory 
+#   containing helpers.sh.
+# - PLISTBUDDY_PATH
+# These environment variables must be defined by assign_environment_variables.sh
 
 if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
   echo "❌ GENOMAC_HELPER_DIR is not set. Please source `initial_prefs.sh` first."
@@ -19,7 +21,7 @@ report_action_taken "Implement iTerm2 settings"
 domain="com.googlecode.iterm2"
 ensure_plist_exists "${domain}"
 
-local plist_path=plist_path_from_domain "$domain"
+local plist_path=$(plist_path_from_domain "$domain")
 
 # Launch and quit iTerm2 in order that it will have preferences to modify.
 # report_action_taken "Launch and quit iTerm2 in order that it will have preferences to modify"
@@ -28,7 +30,7 @@ local plist_path=plist_path_from_domain "$domain"
 # osascript -e 'quit app "iTerm2"';success_or_not
 
 report_adjust_setting "Set: Open windows in same Spaces"
-defaults write com.googlecode.iterm2 RestoreWindowsToSameSpaces -bool true ; success_or_not
+defaults write ${domain} RestoreWindowsToSameSpaces -bool true ; success_or_not
 
 report_adjust_setting "Set Theme to Dark"
 # The default value, Regular, corresponds to 1
