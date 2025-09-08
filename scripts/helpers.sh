@@ -78,9 +78,18 @@ function success_or_not() {
   fi
 }
 
-function ensure_plist_exists() {
+function plist_path_from_domain() {
+  # Constructs path of the .plist file corresponding to the defaults domain passed as an argument.
+  # Usage: plist_path_from_domain "com.apple.DiskUtility"
   local domain="$1"
   local plist_path="$HOME/Library/Preferences/${domain}.plist"
+  echo "$plist_path"
+}
+
+function ensure_plist_exists() {
+  local domain="$1"
+  # local plist_path="$HOME/Library/Preferences/${domain}.plist"
+  local plist_path=plist_path_from_domain "$domain"
   report_action_taken "Ensure that ${domain} plist exists."
   if [[ ! -f "$plist_path" ]]; then
     report_action_taken "${domain} plist doesn’t exist; creating…"
