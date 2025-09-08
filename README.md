@@ -3,6 +3,7 @@
 - [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
 - [Overview of using this repo to implement the user-scoped settings for a particular user](#overview-of-using-this-repo-to-implement-the-user-scoped-settings-for-a-particular-user)
 - [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user)
+- [Remaining configuration steps that have not been (cannot be) automated]
 - [Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings)
 
 ## Quick-reference cheat sheet for occasional maintenance
@@ -229,6 +230,9 @@ If successful, you will see:
 ✅ SSH authentication with GitHub succeeded
 Verified: SSH agent is working
 ```
+
+## Remaining configuration steps that have not been (cannot be) automated
+- Set the screensaver to Matrix
 
 ## Appendix: Determining the `defaults write` commands that correspond to desired changes in settings
 The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped settings.
