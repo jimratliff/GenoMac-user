@@ -89,7 +89,7 @@ function plist_path_from_domain() {
 function ensure_plist_exists() {
   local domain="$1"
   # local plist_path="$HOME/Library/Preferences/${domain}.plist"
-  local plist_path=plist_path_from_domain "$domain"
+  local plist_path=$(plist_path_from_domain "$domain")
   report_action_taken "Ensure that ${domain} plist exists."
   if [[ ! -f "$plist_path" ]]; then
     report_action_taken "${domain} plist doesn’t exist; creating…"
