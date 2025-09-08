@@ -16,7 +16,10 @@ source "${PREFS_FUNCTIONS_DIR}/set_diskutility_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_finder_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_general_dock_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_general_interface_settings.sh"
-source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh"
+
+report_action_taken "Sourcing set_iterm_settings.sh"
+source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh" ; success_or_not
+
 source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
 source "${PREFS_FUNCTIONS_DIR}/set_terminal_settings.sh"
@@ -28,10 +31,6 @@ source "${PREFS_FUNCTIONS_DIR}/set_warp_settings.sh"
 function set_initial_user_level_settings() {
 
 report_start_phase_standard
-
-# Set user’s default shell to Homebrew’s version
-# We’re no longer using Homebrew’s Zsh, so don’t change user’s shell
-# set_default_shell
 
 # Enable app-state persistence
 set_app_state_persistence
