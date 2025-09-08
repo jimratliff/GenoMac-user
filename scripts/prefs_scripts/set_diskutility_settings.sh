@@ -14,6 +14,7 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 function set_diskutility_settings() {
 
 report_start_phase_standard
+report_action_taken "Implement DiskUtility settings"
 
 domain="com.apple.DiskUtility"
 
