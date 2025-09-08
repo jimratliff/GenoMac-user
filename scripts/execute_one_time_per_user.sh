@@ -39,7 +39,7 @@ printf "GENOMAC_HELPER_DIR: %s\n" "$GENOMAC_HELPER_DIR"
 ############################## BEGIN SCRIPT PROPER #############################
 
 ensure_plist_exists "com.apple.DiskUtility"
-ensure_plist_exists "com.googlecode.iterm2"
+# ensure_plist_exists "com.googlecode.iterm2"
 
 # DEPRECATED CODE BELOW
 
