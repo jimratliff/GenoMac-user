@@ -53,7 +53,19 @@ function keep_sudo_alive() {
   done 2>/dev/null &  # background process, silence errors
 }
 
+safe_source() {
+  # Ensures that an error is raised if a `source` of the file in the supplied argument fails.
+  # Usage:
+  #  safe_source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
+  local file="$1"
+  if ! source "$file"; then
+    echo "ERROR: Failed to source $file"
+    exit 1
+  fi
+}
+
 function launch_and_quit_app() {
+  # DEPRECATED
   # Launches and then quits an app identified by its bundle ID
   # Superseded by function ensure_plist_exists()
   # Examples:
