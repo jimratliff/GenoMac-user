@@ -20,17 +20,7 @@ report_action_taken "Implement iTerm2 settings"
 
 domain="com.googlecode.iterm2"
 
-# It is insufficient to test for the existence of the plist file. The plist file can exist but yet
-# not contain the entry needed to set the default font.
-# ensure_plist_exists "${domain}"
-
 local plist_path=$(plist_path_from_domain "$domain")
-
-# Launch and quit iTerm2 in order that it will have preferences to modify.
-# report_action_taken "Launch and quit iTerm2 in order that it will have preferences to modify"
-# open -b com.googlecode.iterm2 # By bundle ID (more reliable than `open -a` by display name)
-# sleep 2
-# osascript -e 'quit app "iTerm2"';success_or_not
 
 report_adjust_setting "Set: Open windows in same Spaces"
 defaults write ${domain} RestoreWindowsToSameSpaces -bool true ; success_or_not
@@ -40,16 +30,19 @@ report_adjust_setting "Set Theme to Dark"
 defaults write ${domain} TabStyleWithAutomaticOption -int 1 ; success_or_not
 
 report_adjust_setting "Change default font to Fira Code Nerd Font"
-# report "PLISTBUDDY_PATH is ${PLISTBUDDY_PATH}"
-# report "plist_path is ${plist_path}"
 
-"${PLISTBUDDY_PATH}" -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' "${plist_path}"
-success_or_not
+# It is insufficient to test for the existence of the plist file. The plist file can exist but yet
+# not contain the entry needed to set the default font.
+# ensure_plist_exists "${domain}"
 
-# /usr/libexec/PlistBuddy \
-#   -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' \
-#   ~/Library/Preferences/com.googlecode.iterm2.plist ; success_or_not
+# iTerm’s plist is not sufficiently populated to support setting the default font unless iTerm has been launched once.
+# We check whether there is a sufficiently populated plist. If not, launch iTerm to create that plist.
+if ! "${PLISTBUDDY_PATH}" -c 'Print :"New Bookmarks":0:"Normal Font"' "${plist_path}" >/dev/null 2>&1; then
+    report_warning "iTerm2 preferences not properly initialized, launching iTerm2 to properly populate plist file."
+    launch_and_quit_app "${domain}"
+fi
 
+"${PLISTBUDDY_PATH}" -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' "${plist_path}" ; success_or_not
 
 report_end_phase_standard
 
