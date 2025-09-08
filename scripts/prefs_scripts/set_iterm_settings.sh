@@ -37,6 +37,9 @@ report_adjust_setting "Set Theme to Dark"
 defaults write ${domain} TabStyleWithAutomaticOption -int 1 ; success_or_not
 
 report_adjust_setting "Change default font to Fira Code Nerd Font"
+report "PLISTBUDDY_PATH is ${PLISTBUDDY_PATH}"
+report "plist_path is ${plist_path}"
+
 "${PLISTBUDDY_PATH}" -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' "${plist_path}"
 success_or_not
 
