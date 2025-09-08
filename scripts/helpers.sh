@@ -66,7 +66,9 @@ safe_source() {
 
 function launch_and_quit_app() {
   # Launches and then quits an app identified by its bundle ID
-  # Superseded by function ensure_plist_exists()
+  # Required in some cases, e.g., iTerm2, where a sufficiently populated plist isn’t available to modify
+  #   until the app has been launched once. (I.e., it is not enough simply to have created an empty
+  #   plist file, as can be done with the function ensure_plist_exists().
   # Examples:
   #   launch_and_quit_app "com.apple.DiskUtility"
   #   launch_and_quit_app "com.googlecode.iterm2"
@@ -91,15 +93,21 @@ function success_or_not() {
 
 function plist_path_from_domain() {
   # Constructs path of the .plist file corresponding to the defaults domain passed as an argument.
-  # Usage: plist_path_from_domain "com.apple.DiskUtility"
+  # Usage:
+  #   local plist_path=$(plist_path_from_domain "$domain")
   local domain="$1"
   local plist_path="$HOME/Library/Preferences/${domain}.plist"
   echo "$plist_path"
 }
 
 function ensure_plist_exists() {
+  # Used to ensure the app whose domain is supplied has a plist file.
+  # Note: In some cases, e.g., iTerm2, a merely nonempty plist is insufficient to support all desired
+  #       modifications. In that case, the function launch_and_quit_app() is used to initialize the plist.
+  # Usage:
+  #   domain="com.apple.DiskUtility"
+  #   ensure_plist_exists "${domain}"
   local domain="$1"
-  # local plist_path="$HOME/Library/Preferences/${domain}.plist"
   local plist_path=$(plist_path_from_domain "$domain")
   report_action_taken "Ensure that ${domain} plist exists."
   if [[ ! -f "$plist_path" ]]; then
@@ -108,8 +116,6 @@ function ensure_plist_exists() {
     plutil -create xml1 "$plist_path" && \
     plutil -insert "${fictitious_key}" -string "Nothing to see here; move along…" "$plist_path" && \
     plutil -remove "${fictitious_key}" "$plist_path"
-#    echo "DEBUG: After creation, file exists: $(ls -la "$plist_path" 2>/dev/null || echo 'NO')"
-    # Confirming plist exists
     if [[ ! -f "$plist_path" ]]; then
       report_fail "${plist_path} still doesn’t exist; FAIL"
       return 1
@@ -118,34 +124,6 @@ function ensure_plist_exists() {
     fi
   else
     report_success "${plist_path} already exists."
-  fi
-}
-
-function ensure_domain_exists() {
-  # DEPRECATED IN FAVOR OF ensure_plist_exists()
-  local domain="$1"
-  local plist_path="$HOME/Library/Preferences/${domain}.plist"
-  report_action_taken "Ensure that ${domain} domain and its plist file exist."
-  
-  if ! defaults read "$domain" >/dev/null 2>&1; then
-    report_action_taken "The domain ${domain} didn’t exist; creating…"
-    local fictitious_key="_fictitious_key"
-    defaults write "$domain" "${fictitious_key}" "Nothing to see here; move along…"
-    defaults delete "$domain" "${fictitious_key}"
-  fi
-
-  if ! defaults read "$domain" >/dev/null 2>&1; then
-    report_fail "The domain ${domain} still doesn’t exist. FAIL"
-    return 1
-  else
-    report_success "The domain ${domain} now exists."
-  fi
-
-  if [[ ! -f "$plist_path" ]]; then
-    report_fail "${domain} plist still doesn’t exist; FAIL"
-    return 1
-  else
-    report_success "${domain} plist now exists."
   fi
 }
 
