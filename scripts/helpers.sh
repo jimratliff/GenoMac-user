@@ -82,22 +82,27 @@ function ensure_plist_exists() {
   local domain="$1"
   local plist_path="$HOME/Library/Preferences/${domain}.plist"
   report_action_taken "Ensure that ${domain} plist exists."
-  
-  echo "DEBUG: Checking for file: $plist_path"
   if [[ ! -f "$plist_path" ]]; then
     report_action_taken "${domain} plist doesn’t exist; creating…"
     local fictitious_key="_fictitious_key"
     plutil -create xml1 "$plist_path" && \
-    plutil -insert "${fictitious_key}" -string "Nothing to see here" "$plist_path" && \
+    plutil -insert "${fictitious_key}" -string "Nothing to see here; move along…" "$plist_path" && \
     plutil -remove "${fictitious_key}" "$plist_path"
-    echo "DEBUG: After creation, file exists: $(ls -la "$plist_path" 2>/dev/null || echo 'NO')"
+#    echo "DEBUG: After creation, file exists: $(ls -la "$plist_path" 2>/dev/null || echo 'NO')"
+    # Confirming plist exists
+    if [[ ! -f "$plist_path" ]]; then
+      report_fail "${plist_path} still doesn’t exist; FAIL"
+      return 1
+    else
+      report_success "${plist_path} now exists."
+    fi
   else
-    report_success "${domain} plist already exists."
+    report_success "${plist_path} already exists."
   fi
-  success_or_not
 }
 
 function ensure_domain_exists() {
+  # DEPRECATED IN FAVOR OF ensure_plist_exists()
   local domain="$1"
   local plist_path="$HOME/Library/Preferences/${domain}.plist"
   report_action_taken "Ensure that ${domain} domain and its plist file exist."
