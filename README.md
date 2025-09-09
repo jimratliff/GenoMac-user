@@ -243,6 +243,7 @@ This repo contains a script that helps you figure out what `defaults write` comm
 
 ### Running the “detective script”
 Suppose you want to find the `defaults write` command(s) that correspond to particular change(s) in the settings for Application X:
+- `cd ~/.genomac-user`
 - Launch Application X
 - Open the Settings for Application X, but do not yet make the desired changes
 - In the terminal, type `make defaults-detective`, which will launch the script `defaults_detective.sh`, which will:
