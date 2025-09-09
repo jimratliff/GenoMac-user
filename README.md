@@ -237,6 +237,7 @@ Verified: SSH agent is working
   - The `defaults` command to enable “Play feedback when volume is changed” doesn’t always work: though the switch as Settings » Sound » Play feedback when volume is changed is successfully enabled, it doesn't necessarily actually cause feedback when volume is changed. You may need to toggle this off and then back on for it to work.
 - Applications
   - Firefox can’t be configured via scripts. Its settings must be implemented manually.
+  - Brave Browser can’t be significantly configured via scripts. Its settings must be implemented manually.
 
 ## Appendix: Determining the `defaults write` commands that correspond to desired changes in settings
 The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped settings.
