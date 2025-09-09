@@ -21,11 +21,12 @@ safe_source "${PREFS_FUNCTIONS_DIR}/set_general_interface_settings.sh"
 report_action_taken "Sourcing set_iterm_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh" ; success_or_not
 
+safe_source "${PREFS_FUNCTIONS_DIR}/set_preview_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_terminal_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_trackpad_settings.sh"
-safe_source "${PREFS_FUNCTIONS_DIR}/set_warp_settings.sh"
+# safe_source "${PREFS_FUNCTIONS_DIR}/set_warp_settings.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
@@ -115,7 +116,10 @@ set_finder_settings
 
 # Time Machine
 report_adjust_setting "Time Machine: Don’t prompt to use new disk as backup volume"
-defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true;success_or_not
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true ; success_or_not
+
+# Preview.app
+set_preview_settings
 
 # DiskUtility
 set_diskutility_settings
