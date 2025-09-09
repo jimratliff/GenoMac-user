@@ -100,6 +100,17 @@ function plist_path_from_domain() {
   echo "$plist_path"
 }
 
+function sandboxed_plist_path_from_domain() {
+  # Constructs path of the .plist file for a sandboxed app corresponding to the defaults domain 
+  # passed as an argument.
+  # Usage:
+  #   local plist_path=$(plist_path_from_domain "$domain")
+  local domain="$1"
+  # local plist_path="$HOME/Library/Preferences/${domain}.plist"
+  local plist_path="$HOME/Library/Containers/${domain}/Data/Library/Preferences/${domain}.plist"
+  echo "$plist_path"
+}
+
 function ensure_plist_exists() {
   # Used to ensure the app whose domain is supplied has a plist file.
   # Note: In some cases, e.g., iTerm2, a merely nonempty plist is insufficient to support all desired
