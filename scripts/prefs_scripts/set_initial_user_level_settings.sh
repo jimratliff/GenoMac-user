@@ -65,7 +65,7 @@ report_action_taken "Implement menubar-related settings"
 
 # Always show Sound in menubar
 report_adjust_setting "Always show Sound in menubar (not only when “active”)"
-defaults -currentHost write com.apple.controlcenter sound -int 18;success_or_not
+defaults -currentHost write com.apple.controlcenter Sound -int 18;success_or_not
 
 # Give audible feedback when volume is changed
 report_adjust_setting "Give audible feedback when volume is changed"
