@@ -16,6 +16,11 @@ function set_general_interface_settings() {
 report_start_phase_standard
 report_action_taken "Set general interface settings"
 
+# Change system beep sound to custom beep sound
+report_adjust_setting "Change system beep to custom beep sound"
+custom_beep_sound_path="/Library/Audio/Sounds/Alerts/Uh_oh.aiff"
+defaults write NSGlobalDomain com.apple.sound.beep.sound -str "${custom_beep_sound_path}" ; success_or_not
+
 # Show scroll bars always (not only when scrolling)
 report_adjust_setting "Always show scrollbars"
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always" ; success_or_not
