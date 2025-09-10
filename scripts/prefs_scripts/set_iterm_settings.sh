@@ -18,7 +18,7 @@ function set_iterm_settings() {
 report_start_phase_standard
 report_action_taken "Implement iTerm2 settings"
 
-domain="com.googlecode.iterm2"
+local domain="com.googlecode.iterm2"
 
 local plist_path=$(legacy_plist_path_from_domain "$domain")
 
