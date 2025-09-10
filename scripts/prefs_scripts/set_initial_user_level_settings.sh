@@ -67,8 +67,8 @@ defaults -currentHost write com.apple.controlcenter Sound -int 18;success_or_not
 
 # Give audible feedback when volume is changed
 report_adjust_setting "Give audible feedback when volume is changed"
-report_warning "Nevertheless, the setting Sound » Play feedback… may need to be manually toggled afterward anyway."
 defaults write NSGlobalDomain com.apple.sound.beep.feedback -bool true;success_or_not
+report_warning $'\nNevertheless, the setting Sound » Play feedback… may need to be manually toggled afterward anyway.'
 
 # Show battery percentage in menubar
 report_adjust_setting "Show battery percentage in menubar"
