@@ -91,10 +91,10 @@ function success_or_not() {
   fi
 }
 
-function plist_path_from_domain() {
+function legacy_plist_path_from_domain() {
   # Constructs path of the .plist file corresponding to the defaults domain passed as an argument.
   # Usage:
-  #   local plist_path=$(plist_path_from_domain "$domain")
+  #   local plist_path=$(legacy_plist_path_from_domain "$domain")
   local domain="$1"
   local plist_path="$HOME/Library/Preferences/${domain}.plist"
   echo "$plist_path"
@@ -104,25 +104,30 @@ function sandboxed_plist_path_from_domain() {
   # Constructs path of the .plist file for a sandboxed app corresponding to the defaults domain 
   # passed as an argument.
   # Usage:
-  #   local plist_path=$(plist_path_from_domain "$domain")
+  #   local plist_path=$(sandboxed_plist_path_from_domain "$domain")
   local domain="$1"
   # local plist_path="$HOME/Library/Preferences/${domain}.plist"
   local plist_path="$HOME/Library/Containers/${domain}/Data/Library/Preferences/${domain}.plist"
   echo "$plist_path"
 }
 
-function ensure_plist_exists() {
-  # Used to ensure the app whose domain is supplied has a plist file.
+function ensure_plist_path_exists() {
+  # Used to ensures the plist file at the supplied path exists.
   # Note: In some cases, e.g., iTerm2, a merely nonempty plist is insufficient to support all desired
   #       modifications. In that case, the function launch_and_quit_app() is used to initialize the plist.
   # Usage:
   #   domain="com.apple.DiskUtility"
-  #   ensure_plist_exists "${domain}"
-  local domain="$1"
-  local plist_path=$(plist_path_from_domain "$domain")
-  report_action_taken "Ensure that ${domain} plist exists."
+  #   plist_path=$(legacy_plist_path_from_domain $domain")
+  #   ensure_plist_path_exists "${plist_path}"
+  #
+  #   domain="com.apple.Preview""
+  #   plist_path=$(sandboxed_plist_path_from_domain $domain")
+  #   ensure_plist_path_exists "${plist_path}"
+  
+  local plist_path="$1"
+  report_action_taken "Ensure that plist exists at: ${plist_path}"
   if [[ ! -f "$plist_path" ]]; then
-    report_action_taken "${domain} plist doesn’t exist; creating…"
+    report_action_taken "plist doesn’t exist; creating…"
     local fictitious_key="_fictitious_key"
     plutil -create xml1 "$plist_path" && \
     plutil -insert "${fictitious_key}" -string "Nothing to see here; move along…" "$plist_path" && \
@@ -254,6 +259,16 @@ function report_about_to_kill_app() {
 function report_action_taken() {
   # Output supplied line of text in a distinctive color, prefaced by "$SYMBOL_ADJUST_SETTING.
   printf "%b%s%s%b\n" "$COLOR_ACTION_TAKEN" "$SYMBOL_ACTION_TAKEN" "$1" "$COLOR_RESET"
+}
+
+# Hard-deprecated shim: do NOT call this anymore.
+# Intentional failure that tells callers how to migrate.
+function ensure_plist_exists() {
+  emulate -L zsh
+  set -u  # don't pipefail/e, we want to reliably emit the message
+
+  report_fail "‘ensure_plist_exists()’ is deprecated. Use ensure_plist_path_exists() instead"
+  return 64  # EX_USAGE-style to force refactor
 }
 
 ################################################################################
