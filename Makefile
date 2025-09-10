@@ -4,6 +4,7 @@
 .PHONY: \
     stow-dotfiles \
     initial-prefs \
+	execute_one_time_per_user \
     verify-ssh-agent \
 	defaults_detective \
 
