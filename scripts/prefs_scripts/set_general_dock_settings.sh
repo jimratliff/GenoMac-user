@@ -43,6 +43,15 @@ defaults write com.apple.dock minimize-to-application -bool false;success_or_not
 # report_adjust_setting "Highlight the element of a grid-view Dock stack over which the cursor hovers"
 # defaults write com.apple.dock mouse-over-hilte-stack -bool true;success_or_not
 
+# Hot-corner settings
+report_adjust_setting "Set bottom-right corner to Start Screen Saver"
+defaults write com.apple.dock wvous-br-modifier -int 0
+defaults write com.apple.dock wvous-br-corner -int 5 ; success_or_not
+
+report_adjust_setting "Set bottom-left corner to Disable Screen Saver"
+defaults write com.apple.dock wvous-bl-modifier -int 0 ; success_or_not
+defaults write com.apple.dock wvous-bl-corner -int 6 ; success_or_not
+
 report_end_phase_standard
 
 }
