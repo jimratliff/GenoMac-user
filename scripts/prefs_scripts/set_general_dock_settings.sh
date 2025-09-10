@@ -49,7 +49,7 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 defaults write com.apple.dock wvous-br-corner -int 5 ; success_or_not
 
 report_adjust_setting "Set bottom-left corner to Disable Screen Saver"
-defaults write com.apple.dock wvous-bl-modifier -int 0 ; success_or_not
+defaults write com.apple.dock wvous-bl-modifier -int 0
 defaults write com.apple.dock wvous-bl-corner -int 6 ; success_or_not
 
 report_end_phase_standard
