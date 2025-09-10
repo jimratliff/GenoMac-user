@@ -35,14 +35,5 @@ safe_source "${PREFS_FUNCTIONS_DIR}/bootstrap_preview_app.sh" "${PREFS_FUNCTIONS
 
 ############################## BEGIN SCRIPT PROPER #############################
 
-# ensure_plist_exists "com.apple.DiskUtility"
-# ensure_plist_exists "com.googlecode.iterm2"
-
-# DEPRECATED CODE BELOW
-
-# launch_and_quit_app "com.apple.DiskUtility"
-# launch_and_quit_app "com.googlecode.iterm2"
-# launch_and_quit_app "dev.warp.Warp-Stable"
-
 # Preview.app: Define initial toolbar
 bootstrap_preview_app
