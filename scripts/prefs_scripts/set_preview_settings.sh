@@ -19,7 +19,7 @@ report_start_phase_standard
 report_action_taken "Implement Preview.app settings"
 
 local domain="com.apple.Preview"
-local plist_path=$(function sandboxed_plist_path_from_domain() { "$domain")
+local plist_path=$(sandboxed_plist_path_from_domain "$domain")
 
 ensure_plist_path_exists "${plist_path}"
 
