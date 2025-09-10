@@ -18,11 +18,10 @@ function set_preview_settings() {
 report_start_phase_standard
 report_action_taken "Implement Preview.app settings"
 
-domain="com.apple.Preview"
+local domain="com.apple.Preview"
+local plist_path=$(function sandboxed_plist_path_from_domain() { "$domain")
 
-ensure_plist_exists "${domain}"
-
-local plist_path=$(plist_path_from_domain "$domain")
+ensure_plist_path_exists "${plist_path}"
 
 # Remove user’s name from annotations
 report_adjust_setting "Remove user’s name from annotations"
