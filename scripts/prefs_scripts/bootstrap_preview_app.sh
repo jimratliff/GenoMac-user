@@ -23,6 +23,7 @@ local domain="com.apple.Preview"
 local plist_path=$(sandboxed_plist_path_from_domain "$domain")
 local toolbar_key="NSToolbar Configuration CommonToolbar_v5.1"
 
+report_action_taken "Ensuring the plist for ${domain} exists."
 ensure_plist_exists "${domain}"
 
 # Preview: Reconfigure Toolbar
