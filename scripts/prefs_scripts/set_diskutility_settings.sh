@@ -17,7 +17,7 @@ report_start_phase_standard
 report_action_taken "Implement DiskUtility settings"
 
 local domain="com.apple.DiskUtility"
-local plist_path=$(legacy_plist_path_from_domain $domain")
+local plist_path=$(legacy_plist_path_from_domain "$domain")
 
 ensure_plist_path_exists "${plist_path}"
 
