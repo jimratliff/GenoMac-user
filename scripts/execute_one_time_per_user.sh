@@ -23,7 +23,7 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 # `overrides_for_sysadmin_users.sh`. If `overrides_for_sysadmin_users.sh` 
 # resides at the same level as this script:
 # PREFS_FUNCTIONS_DIR="${this_script_dir}"
-# PREFS_FUNCTIONS_DIR="${this_script_dir}/prefs_scripts"
+PREFS_FUNCTIONS_DIR="${this_script_dir}/prefs_scripts"
 
 # Print assigned paths for diagnostic purposes
 # printf "\n📂 Path diagnostics:\n"
