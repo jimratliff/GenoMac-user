@@ -18,9 +18,8 @@ report_action_taken "Implement DiskUtility settings"
 
 local domain="com.apple.DiskUtility"
 plist_path=$(legacy_plist_path_from_domain $domain")
-ensure_plist_path_exists "${plist_path}"
 
-ensure_plist_exists "${domain}"
+ensure_plist_path_exists "${plist_path}"
 
 # DiskUtility: Show all devices in sidebar
 report_adjust_setting "DiskUtility: Show all devices in sidebar"
