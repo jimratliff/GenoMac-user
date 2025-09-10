@@ -17,10 +17,7 @@ safe_source "${PREFS_FUNCTIONS_DIR}/set_diskutility_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_finder_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_general_dock_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_general_interface_settings.sh"
-
-report_action_taken "Sourcing set_iterm_settings.sh"
-safe_source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh" ; success_or_not
-
+safe_source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_preview_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
