@@ -16,7 +16,9 @@ function set_diskutility_settings() {
 report_start_phase_standard
 report_action_taken "Implement DiskUtility settings"
 
-domain="com.apple.DiskUtility"
+local domain="com.apple.DiskUtility"
+plist_path=$(legacy_plist_path_from_domain $domain")
+ensure_plist_path_exists "${plist_path}"
 
 ensure_plist_exists "${domain}"
 
