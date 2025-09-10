@@ -4,6 +4,7 @@
 - [Overview of using this repo to implement the user-scoped settings for a particular user](#overview-of-using-this-repo-to-implement-the-user-scoped-settings-for-a-particular-user)
 - [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user)
 - [Remaining configuration steps that have not been (cannot be) automated](#remaining-configuration-steps-that-have-not-been-cannot-be-automated)
+- [Known issues]
 - [Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings)
 
 ## Quick-reference cheat sheet for occasional maintenance
@@ -257,6 +258,14 @@ Verified: SSH agent is working
 - Applications
   - Firefox can’t be configured via scripts. Its settings must be implemented manually.
   - Brave Browser can’t be significantly configured via scripts. Its settings must be implemented manually.
+ 
+## Known issues
+- Matrix screensaver and hot-corner activation of screen saver
+  - What works:
+    - Matrix screensaver works when triggered by the passage of time
+    - Bottom-right hot corner triggers the screen saver when the selected screen saver is one of the built-in choices
+  - What doesn’t work:
+    - When the selected screen saver is Matrix, the bottom-right hot corner (a) darkens the screen but (b) does not run the Matrix screen saver.
 
 ## Appendix: Determining the `defaults write` commands that correspond to desired changes in settings
 The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped settings.
