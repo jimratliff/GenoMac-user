@@ -128,6 +128,14 @@ function ensure_plist_path_exists() {
   report_action_taken "Ensure that plist exists at: ${plist_path}"
   if [[ ! -f "$plist_path" ]]; then
     report_action_taken "plist doesn’t exist; creating…"
+
+    # Ensure the directory structure exists
+    local plist_dir=$(dirname "$plist_path")
+    if [[ ! -d "$plist_dir" ]]; then
+      report_action_taken "Creating directory structure: ${plist_dir}"
+      mkdir -p "$plist_dir"
+    fi
+    
     local fictitious_key="_fictitious_key"
     plutil -create xml1 "$plist_path" && \
     plutil -insert "${fictitious_key}" -string "Nothing to see here; move along…" "$plist_path" && \
