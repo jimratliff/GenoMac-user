@@ -33,7 +33,6 @@ report_adjust_setting "Change default font to Fira Code Nerd Font"
 
 # It is insufficient to test for the existence of the plist file. The plist file can exist but yet
 # not contain the entry needed to set the default font.
-# ensure_plist_exists "${domain}"
 
 # iTerm’s plist is not sufficiently populated to support setting the default font unless iTerm has been launched once.
 # We check whether there is a sufficiently populated plist. If not, launch iTerm to create that plist.
