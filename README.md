@@ -60,8 +60,10 @@ However, the difference in this regard between USER_CONFIGURER and any other use
 - USER_CONFIGURER will then return to GenoMac-system to create the additional user accounts for the Mac.
 - Then the GenoMac-system repo will direct the iteration through all other users—many of which are newly created by USER_CONFIGURER—where, for each other user, following the instructions of GenoMac-user with respect to that user.
 
+- In contrast, for any user other than USER_CONFIGURER, the current repo is the *starting point* for configuring that user.
+
 ### Assumed prerequisites for all users
-Before you do anything with this repo, GenoMac-user, the following system-level prerequisites need to be fulfilled (via the GenoMac-system repo):
+Before you do anything with this repo, GenoMac-user, the following system-level prerequisites need to have been fulfilled (via the GenoMac-system repo):
 - Homebrew, and therefore indirectly, Git, have been installed
 - The systemwide PATH has been modified to make all Homebrew-installed apps and man pages available to all users, with no additional user-specific modification of the user’s PATH required
 - Terminal and iTerm have both been granted full-disk access by USER-CONFIGURER
@@ -75,7 +77,7 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
 This public GenoMac-user repo is meant to be cloned locally (using https[^https]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable $GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
 
 [^https]: After having cloned the repository via https, GitHub will not let you edit the repo from the CLI (but will from the browser). In order to edit
-the repo from the CLI, you will need to change the repo from https to SSH, which can be done via 
+the repo from the CLI, you would need to change the repo from https to SSH, which can be done via 
 `git remote set-url origin git@github.com:OWNER/REPOSITORY.git`. (Use `git remote -v` to clarify the syntax for your repo.)
 
 ### This repo supplies the dotfiles that that help to configure some of the user’s software
@@ -85,9 +87,17 @@ This repository is intended to be used with [GNU Stow](https://www.gnu.org/softw
 The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc., and, within each package, the directory structure mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
 
 ### This repo establishes/adjusts numerous user-level settings
-This repo supplies scripts that execute `defaults write` commands to establish various user settings for macOS generally and for certain apps in particular.
+This repo supplies scripts that execute various commands (primarily either `defaults write` or `PlistBuddy`) to establish various user settings for macOS generally and for certain apps in particular.
 
 For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
+
+### The distinction between operations that are (a) purely bootstrap and (b) idempotent and therefore both bootstrap and ongoing maintenance
+A purely bootstrap operation is one that is intended to be performed typically only once per user. Examples:
+- cloning this repo to the user’s local home directory
+- implementing settings that provide a starting point for the user, from which the user is free to add or subtract without fear that those subsequent changes would be overridden by a later maintenance step.
+  - For example, establishing the initial toolbar configuration for Preview.app. Initially, the toolbar configuration is created to contains certain elements and exclude certain elements. The user can add or subtract to those (or rearrance the order in which they appear on the toolbar) with the understanding that this script won’t be re-run for that user. (If the script *were* re-run, it would undo any of the changes the user made.
+
+More typical is an idempotent operation that is both bootstreap and ongoing maintenance. This characterizes most of the activities of this repo. Sucn an operation establishes a setting the first time the script is run for the user (acting as a bootstrap operation) but the same script also enforces that setting on subsequent maintenance runs.
 
 ### The Makefile is the user’s interface with the functionality of this repo
 
@@ -166,6 +176,15 @@ Note: This will produce *pages* of terminal output.
 
 <div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>
 
+### Implement the bootstrapping operations
+Launch Terminal. Then copy the following code block and paste into Terminal:
+
+```shell
+cd ~/.genomac-user
+make bootstrap-user
+```
+
+Note: At this point in development, it is unclear whether, for each bootstrapping operation, that operation needs to be performed (a) before or (b) after [§ Implement the initial set of macOS-related settings](#implement-the-initial-set-of-macos-related-settings). 
 
 ### Configure 1Password for authentication with GitHub
 Note:
