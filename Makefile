@@ -17,6 +17,9 @@ stow-dotfiles:
 initial-prefs:
 	zsh scripts/initial_prefs.sh
 
+bootstrap-user:
+	zsh scripts/execute_one_time_per_user.sh
+
 verify-ssh-agent:
 	zsh scripts/verify_ssh_agent_setup.sh
 
