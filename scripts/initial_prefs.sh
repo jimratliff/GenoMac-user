@@ -34,8 +34,8 @@ printf "this_script_dir:              %s\n" "$this_script_dir"
 printf "GENOMAC_HELPER_DIR: %s\n" "$GENOMAC_HELPER_DIR"
 printf "PREFS_FUNCTIONS_DIR:  %s\n\n" "$PREFS_FUNCTIONS_DIR"
 
-source "${PREFS_FUNCTIONS_DIR}/set_initial_user_level_settings.sh"
-source "${PREFS_FUNCTIONS_DIR}/overrides_for_sysadmin_users.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_initial_user_level_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/overrides_for_sysadmin_users.sh"
 
 ############################## BEGIN SCRIPT PROPER #############################
 report_start_phase 'Begin the initial preference-setting phase'
