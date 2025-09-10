@@ -20,7 +20,7 @@ report_action_taken "Implement iTerm2 settings"
 
 domain="com.googlecode.iterm2"
 
-local plist_path=$(plist_path_from_domain "$domain")
+local plist_path=$(legacy_plist_path_from_domain "$domain")
 
 report_adjust_setting "Set: Open windows in same Spaces"
 defaults write ${domain} RestoreWindowsToSameSpaces -bool true ; success_or_not
