@@ -227,6 +227,7 @@ Again in the 1Password app:
     - ✅ Integrate with 1Password CLI
       - I don’t know much about this, but it seems like a good idea.
       - (“Use the desktop app to sign in to 1Password in the terminal.”)
+    - Do **not** check “Generate SSH config file with bookmarked hosts”
 
 #### Test the SSH connection with GitHub
 ```shell
@@ -261,11 +262,10 @@ Verified: SSH agent is working
  
 ## Known issues
 - Matrix screensaver and hot-corner activation of screen saver
-  - What works:
-    - Matrix screensaver works when triggered by the passage of time
-    - Bottom-right hot corner triggers the screen saver when the selected screen saver is one of the built-in choices
-  - What doesn’t work:
-    - When the selected screen saver is Matrix, the bottom-right hot corner (a) darkens the screen but (b) does not run the Matrix screen saver.
+  - Under macOS Tahoe 26 Release Candidate, Matrix screen saver is not working at all, whether triggered by hot-corner activation or by the passage of time.
+    - To be clear, the screen *does* darken upon either of these triggers, but the Matrix screen saver display is not shown.
+    - The Matrix screen saver display *does* appear in Settings » Wallpaper » Screen Saver…
+    - Other, built-in screen savers *do* behave correctly.
 
 ## Appendix: Determining the `defaults write` commands that correspond to desired changes in settings
 The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped settings.
