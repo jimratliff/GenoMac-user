@@ -18,6 +18,7 @@ safe_source "${PREFS_FUNCTIONS_DIR}/set_finder_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_general_dock_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_general_interface_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_notifications_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_preview_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
@@ -110,6 +111,9 @@ defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -bool false;success_or
 
 # Finder
 set_finder_settings
+
+# Notifications
+set_notifications_settings
 
 # Time Machine
 report_adjust_setting "Time Machine: Don’t prompt to use new disk as backup volume"
