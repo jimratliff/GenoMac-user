@@ -45,6 +45,9 @@ report_action_taken "Reconfigure Toolbar"
 "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:2' string previous_next" "$plist_path"
 "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:3' string search" "$plist_path"
 
+report_action_taken "Killing Preview (metaphorically)."
+killall Preview ; success_or_not
+
 report_end_phase_standard
 
 }
