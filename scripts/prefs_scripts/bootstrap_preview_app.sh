@@ -45,7 +45,7 @@ report_action_taken "Reconfigure Toolbar"
 "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers' array" "$plist_path"
 "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:0' string goto_page" "$plist_path"
 "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:1' string form_filling" "$plist_path"
-"$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:2' string previous_next" "$plist_path"
+"$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:2' string scale" "$plist_path"
 "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:3' string search" "$plist_path"
 
 # report_action_taken "Killing Preview (metaphorically)."
