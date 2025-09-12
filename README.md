@@ -283,6 +283,7 @@ Verified: SSH agent is working
     - To be clear, the screen *does* darken upon either of these triggers, but the Matrix screen saver display is not shown.
     - The Matrix screen saver display *does* appear in Settings » Wallpaper » Screen Saver…
     - Other, built-in screen savers *do* behave correctly.
+    - I created an issue, on September 12, 2025: [Doesn't work with macOS Tahoe 26 RC (release candidate) #24](https://github.com/monroewilliams/MatrixDownload/issues/24)
 - Give audible feedback when volume is changed
   - Despite the automation step, which *does* change in the indication in Settings, it might not take effect. To fix: Manually toggle that switch again.
 
