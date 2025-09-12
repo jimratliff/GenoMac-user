@@ -112,6 +112,11 @@ defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -bool false;success_or
 # Finder
 set_finder_settings
 
+# Language & Region
+# Week starts on Monday
+report_adjust_setting "Language & Region: Week starts on Monday"
+defaults write -g AppleFirstWeekday -dict gregorian -int 2
+
 # Notifications
 set_notifications_settings
 
