@@ -40,3 +40,13 @@ bootstrap_finder
 
 # Preview.app: Define initial toolbar
 bootstrap_preview_app
+
+report_end_phase 'Completed: this one-time-per-user bootstrapping step is complete.' 
+report "It’s possible that some settings won’t take effect until after you logout or restart."
+report "Logging out to apply those changes..."
+echo ""
+echo "ℹ️  You will be logged out automatically to take into account the changed settings."
+echo "   After logging back in, continue with the next configuration step."
+echo ""
+
+force_user_logout
