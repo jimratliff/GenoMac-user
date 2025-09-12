@@ -266,6 +266,8 @@ Verified: SSH agent is working
     - To be clear, the screen *does* darken upon either of these triggers, but the Matrix screen saver display is not shown.
     - The Matrix screen saver display *does* appear in Settings » Wallpaper » Screen Saver…
     - Other, built-in screen savers *do* behave correctly.
+- Play feedback when volume is changed
+  - Despite the automation step, which *does* change in the indication in Settings, it might not take effect. To fix: Manually toggle that switch again.
 
 ## Appendix: Determining the `defaults write` commands that correspond to desired changes in settings
 The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped settings.
