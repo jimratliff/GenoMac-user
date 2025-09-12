@@ -102,13 +102,14 @@ defaults write com.apple.finder "FinderSpawnTab" -bool true;success_or_not
 
 # Set Icon Views to Snap to Grid
 report_action_taken "Setting Icon Views to Snap to Grid"
-report_adjust_setting "1 of 4: Computer Icon View"
-$plistbud -c "Set :ComputerViewSettings:IconViewSettings:arrangeBy grid" $finder_plist ; success_or_not
-report_adjust_setting "2 of 4: Desktop Icon View"
+# Computer View removed because it isn’t always present
+# report_adjust_setting "1 of 4: Computer Icon View"
+# $plistbud -c "Set :ComputerViewSettings:IconViewSettings:arrangeBy grid" $finder_plist ; success_or_not
+report_adjust_setting "1 of 3: Desktop Icon View"
 $plistbud -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" $finder_plist ; success_or_not
-report_adjust_setting "3 of 4: Standard Finder windows’ Icon View"
+report_adjust_setting "2 of 3: Standard Finder windows’ Icon View"
 $plistbud -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" $finder_plist ; success_or_not
-report_adjust_setting "4 of 4: FK_Standard (Open dialog box) Icon View"
+report_adjust_setting "3 of 3: FK_Standard (Open dialog box) Icon View"
 $plistbud -c "Set FK_StandardViewSettings:IconViewSettings:arrangeBy grid" $finder_plist ; success_or_not
 
 # Demand calculateAllSizes in all list views
