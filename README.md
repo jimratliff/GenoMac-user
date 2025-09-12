@@ -68,6 +68,7 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
 - Homebrew, and therefore indirectly, Git, have been installed
 - The systemwide PATH has been modified to make all Homebrew-installed apps and man pages available to all users, with no additional user-specific modification of the user’s PATH required
 - Terminal and iTerm have both been granted full-disk access by USER-CONFIGURER
+- iTerm has been granted control of System Events (in order to run AppleScripts)
 - GNU Stow has been installed
 - More generally, USER_CONFIGURER has installed
   - all of the third-party apps whose user-specific settings will be specified by GenoMac-user
