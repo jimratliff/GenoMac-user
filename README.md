@@ -276,6 +276,8 @@ Verified: SSH agent is working
     - Finder: the slimmed-down toolbar
     - Preview: the slimmed-down toolbar
   - The moral is: be patient and don’t jump the gun on concluding there has been a failure.
+- Desktop & Dock
+  - Turning off autohide seems not to reliably (a) stick (i.e., the toggle in the GUI doesn’t match the value of `autohide` or the value of `autohide` doesn’t stick at zero) and (b) work (even when `autohide` is zero, the Dock still appears automatically when the cursor reaches the bottom of the screen).
 - Matrix screensaver and hot-corner activation of screen saver
   - Under macOS Tahoe 26 Release Candidate, Matrix screen saver is not working at all, whether triggered by hot-corner activation or by the passage of time.
     - To be clear, the screen *does* darken upon either of these triggers, but the Matrix screen saver display is not shown.
