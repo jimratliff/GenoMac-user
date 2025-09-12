@@ -263,11 +263,19 @@ Verified: SSH agent is working
 - macOS interface stuff
   - Set the screensaver to Matrix
   - The `defaults` command to enable “Play feedback when volume is changed” doesn’t always work: though the switch as Settings » Sound » Play feedback when volume is changed is successfully enabled, it doesn't necessarily actually cause feedback when volume is changed. You may need to toggle this off and then back on for it to work.
+  - Widgets
+    - The default widgets can’t be removed programmaticaally. If you don’t want them, you’ll have to remove them manually.
 - Applications
   - Firefox can’t be configured via scripts. Its settings must be implemented manually.
   - Brave Browser can’t be significantly configured via scripts. Its settings must be implemented manually.
  
 ## Known issues
+- Generally
+  - Some settings *appear* *initially* not to take, but do in fact take effect after a few logout/login cycles. Examples of these include:
+    - Finder: Calculate all sizes
+    - Finder: the slimmed-down toolbar
+    - Preview: the slimmed-down toolbar
+  - The moral is: be patient and don’t jump the gun on concluding there has been a failure.
 - Matrix screensaver and hot-corner activation of screen saver
   - Under macOS Tahoe 26 Release Candidate, Matrix screen saver is not working at all, whether triggered by hot-corner activation or by the passage of time.
     - To be clear, the screen *does* darken upon either of these triggers, but the Matrix screen saver display is not shown.
