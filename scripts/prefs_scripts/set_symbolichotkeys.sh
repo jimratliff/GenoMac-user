@@ -8,42 +8,17 @@ if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
 fi
 
 source "${GENOMAC_HELPER_DIR}/helpers.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/symbolichotkeys_helpers.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
 plistbud="/usr/libexec/PlistBuddy"
 domain="com.apple.symbolichotkeys"
-dict="AppleSymbolicHotKeys"
+symdict="AppleSymbolicHotKeys"
 
-function rhs_xml_to_disable_specific_command() {
-  # Echoes right-hand-side XML to disable a command:
-  local TEMPLATE="<dict><key>enabled</key><false/></dict>"
-  echo "$TEMPLATE"
-}
 
-function rhs_xml_to_enable_specific_command() {
-  # Echoes right-hand-side XML to enable a command with hotkey specified by three arguments:
-  #   $1: 
-  #   $2: 
-  #   $3:
-  local TEMPLATE="
-    <dict>
-      <key>enabled</key><true/>
-      <key>value</key><dict>
-        <key>type</key><string>standard</string>
-        <key>parameters</key>
-        <array>
-          <integer>$1</integer>
-          <integer>$2</integer>
-          <integer>$3</integer>
-        </array>
-      </dict>
-    </dict>
-  "
-  echo "$TEMPLATE"
-}
 
-function xml_to_set_symbolichotkeys() {
+function set_symbolichotkeys() {
 
 report_start_phase_standard
 report_action_taken "Set hot-key correspondences to Apple commands"
