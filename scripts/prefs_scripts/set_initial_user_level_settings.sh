@@ -22,6 +22,7 @@ safe_source "${PREFS_FUNCTIONS_DIR}/set_notifications_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_preview_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_symbolichotkeys.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_terminal_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_trackpad_settings.sh"
 # safe_source "${PREFS_FUNCTIONS_DIR}/set_warp_settings.sh"
@@ -58,6 +59,9 @@ defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true;success_or_n
 
 report_adjust_setting "Press and release globe (🌎) key to bring up emoji picker"
 defaults write com.apple.HIToolbox AppleFnUsageType -int 2;success_or_not
+
+report_adjust_setting "Set symbolic hot keys to Apple commands"
+set_symbolichotkeys()
 
 ############### Menubar 
 report_action_taken "Implement menubar-related settings"
