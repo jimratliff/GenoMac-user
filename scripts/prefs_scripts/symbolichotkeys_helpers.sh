@@ -24,10 +24,16 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
   # Function to map key descriptions to ASCII code and AppleScript key code
   # Returns: "ascii_code applescript_code" or "ERROR" if key not found
   # Example usage:
-  # get_hotkey_ascii_and_AppleScript_key_codes "a"        # Returns: "97 0"
-  # get_hotkey_ascii_and_AppleScript_key_codes "F5"       # Returns: "65535 96"
-  # get_hotkey_ascii_and_AppleScript_key_codes "space"    # Returns: "32 49"
-  # get_hotkey_ascii_and_AppleScript_key_codes "up-arrow" # Returns: "65535 126"
+  #   get_hotkey_ascii_and_AppleScript_key_codes "a"        # Returns: "97 0"
+  #   get_hotkey_ascii_and_AppleScript_key_codes "F5"       # Returns: "65535 96"
+  #   get_hotkey_ascii_and_AppleScript_key_codes "space"    # Returns: "32 49"
+  #   get_hotkey_ascii_and_AppleScript_key_codes "up-arrow" # Returns: "65535 126"
+  #
+  # Sources for virtual keycodes:
+  # - Complete list of AppleScript key codes, Eastman Reference, https://eastmanreference.com/complete-list-of-applescript-key-codes
+  # - HIToolbox/Events.h, lines 184 et seq.
+  #   https://github.com/phracker/MacOSX-SDKs/blob/master/MacOSX10.6.sdk/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h
+  
   local key="$1"
     
 	# Check if argument is provided
@@ -43,44 +49,44 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	local -A ascii_codes applescript_codes
 	
 	# Letters (lowercase and uppercase map to same AppleScript codes)
-	ascii_codes[a]=97;   applescript_codes[a]=0
-	ascii_codes[b]=98;   applescript_codes[b]=11
-	ascii_codes[c]=99;   applescript_codes[c]=8
-	ascii_codes[d]=100;  applescript_codes[d]=2
-	ascii_codes[e]=101;  applescript_codes[e]=14
-	ascii_codes[f]=102;  applescript_codes[f]=3
-	ascii_codes[g]=103;  applescript_codes[g]=5
-	ascii_codes[h]=104;  applescript_codes[h]=4
-	ascii_codes[i]=105;  applescript_codes[i]=34
+	ascii_codes[a]=97;   applescript_codes[a]=0		# kVK_ANSI_A
+	ascii_codes[b]=98;   applescript_codes[b]=11	# kVK_ANSI_B
+	ascii_codes[c]=99;   applescript_codes[c]=8		# kVK_ANSI_C
+	ascii_codes[d]=100;  applescript_codes[d]=2		# kVK_ANSI_D
+	ascii_codes[e]=101;  applescript_codes[e]=14	# kVK_ANSI_E
+	ascii_codes[f]=102;  applescript_codes[f]=3		# kVK_ANSI_F
+	ascii_codes[g]=103;  applescript_codes[g]=5		# kVK_ANSI_G
+	ascii_codes[h]=104;  applescript_codes[h]=4		# kVK_ANSI_H
+	ascii_codes[i]=105;  applescript_codes[i]=34	# kVK_ANSI_I
 	ascii_codes[j]=106;  applescript_codes[j]=38
 	ascii_codes[k]=107;  applescript_codes[k]=40
 	ascii_codes[l]=108;  applescript_codes[l]=37
 	ascii_codes[m]=109;  applescript_codes[m]=46
 	ascii_codes[n]=110;  applescript_codes[n]=45
-	ascii_codes[o]=111;  applescript_codes[o]=31
+	ascii_codes[o]=111;  applescript_codes[o]=31	# kVK_ANSI_O
 	ascii_codes[p]=112;  applescript_codes[p]=35
-	ascii_codes[q]=113;  applescript_codes[q]=12
-	ascii_codes[r]=114;  applescript_codes[r]=15
+	ascii_codes[q]=113;  applescript_codes[q]=12	# kVK_ANSI_Q
+	ascii_codes[r]=114;  applescript_codes[r]=15	# kVK_ANSI_R
 	ascii_codes[s]=115;  applescript_codes[s]=1
-	ascii_codes[t]=116;  applescript_codes[t]=17
-	ascii_codes[u]=117;  applescript_codes[u]=32
-	ascii_codes[v]=118;  applescript_codes[v]=9
-	ascii_codes[w]=119;  applescript_codes[w]=13
-	ascii_codes[x]=120;  applescript_codes[x]=7
-	ascii_codes[y]=121;  applescript_codes[y]=16
-	ascii_codes[z]=122;  applescript_codes[z]=6
+	ascii_codes[t]=116;  applescript_codes[t]=17	# kVK_ANSI_T
+	ascii_codes[u]=117;  applescript_codes[u]=32	# kVK_ANSI_U
+	ascii_codes[v]=118;  applescript_codes[v]=9		# kVK_ANSI_V
+	ascii_codes[w]=119;  applescript_codes[w]=13	# kVK_ANSI_W
+	ascii_codes[x]=120;  applescript_codes[x]=7		# kVK_ANSI_X
+	ascii_codes[y]=121;  applescript_codes[y]=16	# kVK_ANSI_Y
+	ascii_codes[z]=122;  applescript_codes[z]=6		# kVK_ANSI_Z
 	
 	# Numbers
-	ascii_codes[0]=48;   applescript_codes[0]=29
-	ascii_codes[1]=49;   applescript_codes[1]=18
-	ascii_codes[2]=50;   applescript_codes[2]=19
-	ascii_codes[3]=51;   applescript_codes[3]=20
-	ascii_codes[4]=52;   applescript_codes[4]=21
-	ascii_codes[5]=53;   applescript_codes[5]=23
-	ascii_codes[6]=54;   applescript_codes[6]=22
-	ascii_codes[7]=55;   applescript_codes[7]=26
-	ascii_codes[8]=56;   applescript_codes[8]=28
-	ascii_codes[9]=57;   applescript_codes[9]=25
+	ascii_codes[0]=48;   applescript_codes[0]=29	# kVK_ANSI_0
+	ascii_codes[1]=49;   applescript_codes[1]=18	# kVK_ANSI_1
+	ascii_codes[2]=50;   applescript_codes[2]=19	# kVK_ANSI_2
+	ascii_codes[3]=51;   applescript_codes[3]=20	# kVK_ANSI_3
+	ascii_codes[4]=52;   applescript_codes[4]=21	# kVK_ANSI_4
+	ascii_codes[5]=53;   applescript_codes[5]=23	# kVK_ANSI_5
+	ascii_codes[6]=54;   applescript_codes[6]=22	# kVK_ANSI_6
+	ascii_codes[7]=55;   applescript_codes[7]=26	# kVK_ANSI_7
+	ascii_codes[8]=56;   applescript_codes[8]=28	# kVK_ANSI_8
+	ascii_codes[9]=57;   applescript_codes[9]=25	# kVK_ANSI_9
 	
 	# Special characters (using their ASCII values)
 	ascii_codes['~']=126; applescript_codes['~']=50
@@ -94,12 +100,12 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	ascii_codes['*']=42;  applescript_codes['*']=28
 	ascii_codes['(']=40;  applescript_codes['(']=25
 	ascii_codes[')']=41;  applescript_codes[')']=29
-	ascii_codes['-']=45;  applescript_codes['-']=27
+	ascii_codes['-']=45;  applescript_codes['-']=27	# kVK_ANSI_Minus
 	ascii_codes['+']=43;  applescript_codes['+']=24
-	ascii_codes['=']=61;  applescript_codes['=']=24
-	ascii_codes['[']=91;  applescript_codes['[']=33
-	ascii_codes[']']=93;  applescript_codes[']']=30
-	ascii_codes['\']=92; applescript_codes['\']=42
+	ascii_codes['=']=61;  applescript_codes['=']=24	# kVK_ANSI_Equal
+	ascii_codes['[']=91;  applescript_codes['[']=33 # kVK_ANSI_LeftBracket
+	ascii_codes[']']=93;  applescript_codes[']']=30 # kVK_ANSI_RightBracket
+	ascii_codes['\']=92;  applescript_codes['\']=42
 	ascii_codes[';']=59;  applescript_codes[';']=41
 	ascii_codes["'"]=39;  applescript_codes["'"]=39
 	ascii_codes[',']=44;  applescript_codes[',']=43
