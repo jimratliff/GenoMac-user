@@ -15,14 +15,14 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 ############### HELPERS
 
-plistbud="/usr/libexec/PlistBuddy"
+# Assumes the following environment variables are defined in assign_environment_variables.sh
+# SHIFT_CHAR=$'\u21e7'     # ⇧
+# CONTROL_CHAR=$'\u2303'   # ⌃  
+# OPTION_CHAR=$'\u2325'    # ⌥
+# COMMAND_CHAR=$'\u2318'   # ⌘
+
 domain="com.apple.symbolichotkeys"
 symdict="AppleSymbolicHotKeys"
-
-CONTROL_CHAR='⌃'
-OPTION_CHAR='⌥'
-COMMAND_CHAR='⌘'
-SHIFT_CHAR='⇧'
 
 function modify_symbolichotkeys_entry_for_command_by_id() {
   # Modifies the dictionary entry corresponding to a particular command specified by its ID.
@@ -76,23 +76,71 @@ function xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask() {
 function modifier_combination_to_mask() {
   # Takes a single string containing only concatenated modifier-key characters and returns the
   # corresponding integer mask for that combination of modifiers.
+  #
   # Accepted modifier-key characters (defined in a scope that can be accessed from this function):
   # 	SHIFT_CHAR='⇧'
   #		CONTROL_CHAR='⌃'
   # 	OPTION_CHAR='⌥'
   # 	COMMAND_CHAR='⌘'
   #
+  # There is no prescribed order of occurrence when there is more than one modifier key.
+  # A duplicate occurrence of any particular modifier-key character is ignored.
+  #
   # The mask for each of the modifier keys is documented at “How to map F14, F15, and F16 to Exposé, Dashboard, etc.,”
   #   Mac OS X Hints, April 11, 2005, 
   #   https://web.archive.org/web/20141113040759/http://hints.macworld.com/article.php?story=20050801052917667
   
-  SHIFT_CHAR_MASK=2^17
-  CONTROL_CHAR_MASK=2^18
-  OPTION_CHAR_MASK=2^19
-  COMMAND_CHAR_MASK=2^20
+  # Define mask values (powers of 2)
+  local SHIFT_CHAR_MASK=$((2**17))      # 131072
+  local CONTROL_CHAR_MASK=$((2**18))    # 262144
+  local OPTION_CHAR_MASK=$((2**19))     # 524288
+  local COMMAND_CHAR_MASK=$((2**20))    # 1048576
 
-  mask=0
-  # To be written!
+  # valid_chars must be updated if the set of valid modifier keys is expanded or shrunk
+  local valid_chars="${SHIFT_CHAR}${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
+
+  local modifiers="$1"
+
+ # Check if argument is provided
+  if [[ -z "$modifiers" ]]; then
+    report_fail "Error: modifier_combination_to_mask() requires a modifier(s) string argument"
+    return 1
+  fi
+  
+  # Validate that string contains only valid modifier characters by removing all valid characters and see if anything remains
+  local temp_modifiers="$modifiers"
+  temp_modifiers="${temp_modifiers//[$valid_chars]/}"
+  if [[ -n "$temp_modifiers" ]]; then
+    report_fail "Error: Invalid characters in modifier string: '$temp_modifiers'"
+    return 1
+  fi
+  
+  # Initialize contribution variables (duplicates become benign)
+  local shift_contribution=0
+  local control_contribution=0
+  local option_contribution=0
+  local command_contribution=0
+  
+  # Set contributions based on presence of each modifier character
+  if [[ "$modifiers" == *"$SHIFT_CHAR"* ]]; then
+    shift_contribution=$SHIFT_CHAR_MASK
+  fi
+  
+  if [[ "$modifiers" == *"$CONTROL_CHAR"* ]]; then
+    control_contribution=$CONTROL_CHAR_MASK
+  fi
+  
+  if [[ "$modifiers" == *"$OPTION_CHAR"* ]]; then
+    option_contribution=$OPTION_CHAR_MASK
+  fi
+  
+  if [[ "$modifiers" == *"$COMMAND_CHAR"* ]]; then
+    command_contribution=$COMMAND_CHAR_MASK
+  fi
+  
+  # Calculate final mask
+  local mask=$((shift_contribution + control_contribution + option_contribution + command_contribution))
+  
   echo "$mask"
 }
 
