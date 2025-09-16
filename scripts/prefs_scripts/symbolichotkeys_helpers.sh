@@ -32,8 +32,10 @@ function disable_command_by_its_id() {
   #   disable_command_its_id 21
   
   local XML_TO_DISABLE_COMMAND="<dict><key>enabled</key><false/></dict>"
-  command_ID=$1
-  modify_symbolichotkeys_entry_for_command_by_id $command_ID "${XML_TO_DISABLE_COMMAND}"
+  local command_ID=$1
+  local command_description=$(get_command_description "$command_ID")
+  report_adjust_setting "Disable command #${command_ID}: $command_description"
+  modify_symbolichotkeys_entry_for_command_by_id $command_ID "${XML_TO_DISABLE_COMMAND}" ; success_or_not
 }
 
 function assign_hotkey_to_command_id() {
@@ -48,6 +50,8 @@ function assign_hotkey_to_command_id() {
   local key_name="$2"
   local modifier_chars="$3"
 
+  local command_description=$(get_command_description "$command_ID")
+
   local ascii_and_virtual_key_codes=$(get_hotkey_ascii_and_AppleScript_key_codes "$key_name")
 
   local modifier_combo_mask=$(modifier_combination_to_mask "$modifier_chars" )
@@ -55,9 +59,8 @@ function assign_hotkey_to_command_id() {
   # Note that $ascii_and_virtual_key_codes is a *pair* of space separated strings, and is thus used to supply *two* arguments.
   xml_value = xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask "$ascii_and_virtual_key_codes" "$modifier_combo_mask"
 
+  report_adjust_setting "Set hotkey ${modifier_chars}${key_name} for command #${command_ID}: $command_description"
   modify_symbolichotkeys_entry_for_command_by_id "$command_ID" "$xml_value"
-  
-
 }
 
 function modify_symbolichotkeys_entry_for_command_by_id() {
