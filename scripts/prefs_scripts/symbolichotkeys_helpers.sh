@@ -15,11 +15,12 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 ############### HELPERS
 
-# Assumes the following environment variables are defined in assign_environment_variables.sh
+# Assumes the following environment variables are defined in, and sourced from, assign_environment_variables.sh
 # SHIFT_CHAR=$'\u21e7'     # ⇧
 # CONTROL_CHAR=$'\u2303'   # ⌃  
 # OPTION_CHAR=$'\u2325'    # ⌥
 # COMMAND_CHAR=$'\u2318'   # ⌘
+# META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 
 domain="com.apple.symbolichotkeys"
 symdict="AppleSymbolicHotKeys"
@@ -85,6 +86,15 @@ function modifier_combination_to_mask() {
   #
   # There is no prescribed order of occurrence when there is more than one modifier key.
   # A duplicate occurrence of any particular modifier-key character is ignored.
+  #
+  # Example usage:
+  #   modifier_combination_to_mask "⌥⌘"     # Returns: 1572864 (Option + Command)
+  #   modifier_combination_to_mask "⇧⌃"     # Returns: 393216 (Shift + Control)
+  #   modifier_combination_to_mask "⌘"      # Returns: 1048576 (Command only)
+  #   modifier_combination_to_mask ""       # Returns: 0 (no modifiers)
+  #   modifier_combination_to_mask "${OPTION_CHAR}${COMMAND_CHAR}"   # Returns: 1572864 (Option + Command)
+  #   modifier_combination_to_mask "${SHIFT_CHAR}${CONTROL_CHAR}"    # Returns: 393216 (Shift + Control)
+  #   modifier_combination_to_mask "${COMMAND_CHAR}"      		     # Returns: 1048576 (Command only)
   #
   # The mask for each of the modifier keys is documented at “How to map F14, F15, and F16 to Exposé, Dashboard, etc.,”
   #   Mac OS X Hints, April 11, 2005, 
