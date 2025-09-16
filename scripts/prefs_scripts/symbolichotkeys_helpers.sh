@@ -20,7 +20,7 @@ domain="com.apple.symbolichotkeys"
 symdict="AppleSymbolicHotKeys"
 
 
-get_ascii_code() {
+get_ascii_code_for_char() {
   # Function to get ASCII code of character in only argument.
   # Returns 65535 if character has no ASCII code (i.e., > 127)
   # Example usage:
