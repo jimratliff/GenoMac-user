@@ -324,6 +324,105 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	fi
 }
 
+function get_command_description() {
+	# Function to get description of a command for a given command ID
+	# Usage: get_command_description <ID>
+	# Returns: Description string for the given ID, or error message if ID not found
+	#
+	# Example usage:
+	# 	get_command_description 120  # Returns: "Switch to Desktop 3"
+	# 	get_command_description 32   # Returns: "Mission Control (was: Expose: All Windows) (kCGSHotKeyExposeAllWindows)"
+	# 	get_command_description 999  # Returns error message
+	
+	local command_id="$1"
+	
+	# Check if argument is provided
+	if [[ -z "$command_id" ]]; then
+		report_fail "Error: get_command_description requires a command ID argument"
+		return 1
+	fi
+	
+	# Declare associative array for command ID to description mapping
+	local -A command_descriptions
+	
+	# Populate the associative array with ID -> Description mappings
+	command_descriptions[7]="Move focus to the menu bar (kCGSHotKeyFocusMenubar)"
+	command_descriptions[8]="Move focus to the Dock (kCGSHotKeyFocusDock)"
+	command_descriptions[9]="Move focus to active or next window (kCGSHotKeyFocusNextGlobalWindow)"
+	command_descriptions[10]="Move focus to window toolbar (kCGSHotKeyFocusToolbar)"
+	command_descriptions[11]="Move focus to floating window (kCGSHotKeyFocusFloatingWindow)"
+	command_descriptions[12]="Turn keyboard access on or off (kCGSHotKeyToggleFullKeyboardAccess)"
+	command_descriptions[13]="Change the way Tab moves focus (kCGSHotKeyFocusNextControl)"
+	command_descriptions[15]="Turn zoom on or off (kCGSHotKeyToggleZoom)"
+	command_descriptions[17]="Zoom in (kCGSHotKeyZoomIn)"
+	command_descriptions[19]="Zoom out (kCGSHotKeyZoomOut)"
+	command_descriptions[21]="Reverse Black and White (kCGSHotKeyInvertScreen)"
+	command_descriptions[23]="Turn image smoothing on or off (kCGSHotKeyZoomToggleSmoothing)"
+	command_descriptions[25]="Increase contrast (kCGSHotKeyIncreaseContrast)"
+	command_descriptions[26]="Decrease contrast (kCGSHotKeyDecreaseContrast)"
+	command_descriptions[27]="Move focus to the next window in applications (kCGSHotKeyFocusApplicationWindow)"
+	command_descriptions[28]="Save picture of screen as file (kCGSHotKeyScreenshot)"
+	command_descriptions[29]="Copy picture of screen to clipboard (kCGSHotKeyScreenshotToClipboard)"
+	command_descriptions[30]="Save picture of selected area as file (kCGSHotKeyScreenshotRegion)"
+	command_descriptions[31]="Copy picture of selected area to clipboard (kCGSHotKeyScreenshotRegionToClipboard)"
+	command_descriptions[32]="Mission Control (was: Expose: All Windows) (kCGSHotKeyExposeAllWindows)"
+	command_descriptions[33]="Expose: Application Windows (kCGSHotKeyExposeApplicationWindows)"
+	command_descriptions[34]="All Windows (slow) (kCGSHotKeyExposeAllWindowsSlow)"
+	command_descriptions[35]="Application Windows (slow) (kCGSHotKeyExposeApplicationWindowsSlow)"
+	command_descriptions[36]="Desktop (kCGSHotKeyExposeDesktop)"
+	command_descriptions[37]="Desktop (slow) (kCGSHotKeyExposeDesktopsSlow)"
+	command_descriptions[50]="Toggle Character Pallette (kCGSHotKeyToggleCharacterPallette)"
+	command_descriptions[51]="Move focus to the window drawer (kCGSHotKeyFocusDrawer)"
+	command_descriptions[52]="Turn Dock Hiding On/Off  (kCGSHotKeyToggleDockAutohide)"
+	command_descriptions[53]="Decrease Display Brightness (kCGSHotKeyDecreaseDisplayBrightness)"
+	command_descriptions[54]="Increase Display Brightness (kCGSHotKeyIncreaseDisplayBrightness)"
+	command_descriptions[57]="Move focus to the status menus (kCGSHotKeyFocusStatusItems)"
+	command_descriptions[59]="Turn VoiceOver on / off (kCGSHotKeyToggleVoiceOver)"
+	command_descriptions[60]="Select the previous input source (kCGSHotKeySelectPreviousInputSource)"
+	command_descriptions[61]="Select the next source in the Input Menu (kCGSHotKeySelectNextInputSource)"
+	command_descriptions[62]="Dashboard (kCGSHotKeyDashboard)"
+	command_descriptions[63]="Dashboard (slow) (kCGSHotKeyDashboardSlow)"
+	command_descriptions[64]="Show Spotlight search field (kCGSHotKeySpotlightSearchField)"
+	command_descriptions[65]="Show Spotlight window (kCGSHotKeySpotlightWindow)"
+	command_descriptions[70]="Dictionary MouseOver (kCGSHotKeyLookUpWordInDictionary)"
+	command_descriptions[73]="Hide and show Front Row (kCGSHotKeyToggleFrontRow)"
+	command_descriptions[75]="Activate Spaces (kCGSHotKeySpaces)"
+	command_descriptions[76]="Activate Spaces (slow) (kCGSHotKeySpacesSlow)"
+	command_descriptions[79]="Move left a space (kCGSHotKeySpaceLeft)"
+	command_descriptions[80]="Move left a space (Slow?) (kCGSHotKeySpaceLeftSlow)"
+	command_descriptions[81]="Move right a space (kCGSHotKeySpaceRight)"
+	command_descriptions[82]="Move right a space (slow) (kCGSHotKeySpaceRightSlow)"
+	command_descriptions[83]="Spaces Down (kCGSHotKeySpaceDown)"
+	command_descriptions[84]="Spaces Down (slow) (kCGSHotKeySpaceDownSlow)"
+	command_descriptions[85]="Spaces Up (kCGSHotKeySpaceUp)"
+	command_descriptions[86]="Space Up (slow) (kCGSHotKeySpaceUpSlow)"
+	command_descriptions[98]="Show Help Menu (kCGSHotKeyHelp)"
+	command_descriptions[118]="Switch to Desktop 1"
+	command_descriptions[119]="Switch to Desktop 2"
+	command_descriptions[120]="Switch to Desktop 3"
+	command_descriptions[121]="Switch to Desktop 4"
+	command_descriptions[122]="Switch to Desktop 5"
+	command_descriptions[123]="Switch to Desktop 6"
+	command_descriptions[124]="Switch to Desktop 7"
+	command_descriptions[125]="Switch to Desktop 8"
+	command_descriptions[126]="Switch to Desktop 9"
+	command_descriptions[127]="Switch to Desktop 10"
+	command_descriptions[128]="Switch to Desktop 11"
+	command_descriptions[129]="Switch to Desktop 12"
+	command_descriptions[130]="Switch to Desktop 13"
+	command_descriptions[131]="Switch to Desktop 14"
+	command_descriptions[132]="Switch to Desktop 15"
+	command_descriptions[133]="Switch to Desktop 16"
+	
+	# Look up the description for the given ID
+	if [[ -n "${command_descriptions[$command_id]}" ]]; then
+		echo "${command_descriptions[$command_id]}"
+	else
+		report_fail "Error: Unknown command ID '$command_id'"
+		return 1
+	fi
+}
+
 function get_ascii_code_for_key() {
   # Helper function to get just the ASCII code for a key description
   local result=$(get_key_codes "$1")
