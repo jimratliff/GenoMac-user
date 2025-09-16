@@ -19,6 +19,83 @@ plistbud="/usr/libexec/PlistBuddy"
 domain="com.apple.symbolichotkeys"
 symdict="AppleSymbolicHotKeys"
 
+CONTROL_CHAR='⌃'
+OPTION_CHAR='⌥'
+COMMAND_CHAR='⌘'
+SHIFT_CHAR='⇧'
+
+function modify_symbolichotkeys_entry_for_command_by_id() {
+  # Modifies the dictionary entry corresponding to a particular command specified by its ID.
+  #  $1: The integer ID of the command whose dictionary entry is to be modified
+  #      E.g., the integer ID of the command kCGSHotKeyInvertScreen (Reverse Black and White) is 21.
+  #  $2: The XML value for the new dictionary entry
+  #
+  # Assumes $domain and $symdict have been defined in a location available to this function.
+
+  local command_ID=$1
+  local xml_value=$2
+  defaults write "$domain" "$symdict" -dict-add $command_ID "${xml_value}"
+}
+
+function disable_command_by_its_id() {
+  # Disables command identified by its ID, which is specified by the single supplied argument.
+  # Example usage:
+  # To disable the command kCGSHotKeyInvertScreen (Reverse Black and White), which has the command ID 21:
+  #   disable_command_its_id 21
+  
+  local XML_TO_DISABLE_COMMAND="<dict><key>enabled</key><false/></dict>"
+  command_ID=$1
+  modify_symbolichotkeys_entry_for_command_by_id $command_ID "${XML_TO_DISABLE_COMMAND}"
+}
+
+function xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask() {
+  # Echoes right-hand-side XML value to enable a hotkey specified by three arguments:
+  #   $1: ASCII_code of the key
+  #       If the key has no ASCII code (e.g., one of the Fkeys), use 65535
+  #   $2: KEY_CODE
+  #       The “AppleScript key code” for the key as found in “Complete list of AppleScript key codes,”
+  #       https://eastmanreference.com/complete-list-of-applescript-key-codes
+  #   $3: MODIFIER_MASK
+  local xml_value="
+    <dict>
+      <key>enabled</key><true/>
+      <key>value</key><dict>
+        <key>type</key><string>standard</string>
+        <key>parameters</key>
+        <array>
+          <integer>$1</integer>
+          <integer>$2</integer>
+          <integer>$3</integer>
+        </array>
+      </dict>
+    </dict>
+  "
+  echo "$xml_value"
+}
+
+function modifier_combination_to_mask() {
+  # Takes a single string containing only concatenated modifier-key characters and returns the
+  # corresponding integer mask for that combination of modifiers.
+  # Accepted modifier-key characters (defined in a scope that can be accessed from this function):
+  # 	SHIFT_CHAR='⇧'
+  #		CONTROL_CHAR='⌃'
+  # 	OPTION_CHAR='⌥'
+  # 	COMMAND_CHAR='⌘'
+  #
+  # The mask for each of the modifier keys is documented at “How to map F14, F15, and F16 to Exposé, Dashboard, etc.,”
+  #   Mac OS X Hints, April 11, 2005, 
+  #   https://web.archive.org/web/20141113040759/http://hints.macworld.com/article.php?story=20050801052917667
+  
+  SHIFT_CHAR_MASK=2^17
+  CONTROL_CHAR_MASK=2^18
+  OPTION_CHAR_MASK=2^19
+  COMMAND_CHAR_MASK=2^20
+
+  mask=0
+  # To be written!
+  echo "$mask"
+}
+
 function get_hotkey_ascii_and_AppleScript_key_codes() {
   # Function to map a case-insensitive key description (e.g., 'g', 'F3', or 'down-arrow') to a (ASCII code, AppleScript key code) pair.
   # Returns: "ascii_code applescript_code" or "ERROR" if key not found
@@ -50,6 +127,7 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	local -A ascii_codes applescript_codes
 	
 	# Letters (lowercase and uppercase map to same AppleScript codes)
+ 	# ASCII code		 Virtual keycode number		Virtual keycode name
 	ascii_codes[a]=97;   applescript_codes[a]=0		# kVK_ANSI_A
 	ascii_codes[b]=98;   applescript_codes[b]=11	# kVK_ANSI_B
 	ascii_codes[c]=99;   applescript_codes[c]=8		# kVK_ANSI_C
@@ -78,6 +156,7 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	ascii_codes[z]=122;  applescript_codes[z]=6		# kVK_ANSI_Z
 	
 	# Numbers
+ 	# ASCII code		 Virtual keycode number 	Virtual keycode name
 	ascii_codes[0]=48;   applescript_codes[0]=29	# kVK_ANSI_0
 	ascii_codes[1]=49;   applescript_codes[1]=18	# kVK_ANSI_1
 	ascii_codes[2]=50;   applescript_codes[2]=19	# kVK_ANSI_2
@@ -90,6 +169,7 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	ascii_codes[9]=57;   applescript_codes[9]=25	# kVK_ANSI_9
 	
 	# Special characters (using their ASCII values)
+ 	# ASCII code		  Virtual keycode number 	Virtual keycode name
 	ascii_codes['~']=126; applescript_codes['~']=50 # kVK_ANSI_Grave
 	ascii_codes['!']=33;  applescript_codes['!']=18 # kVK_ANSI_1
 	ascii_codes['@']=64;  applescript_codes['@']=19 # kVK_ANSI_2
@@ -115,6 +195,7 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	ascii_codes['`']=96;  applescript_codes['`']=50	# kVK_ANSI_Grave
 	
 	# Function keys (no ASCII equivalent)
+ 	# ASCII code		 	 Virtual keycode number 	Virtual keycode name
 	ascii_codes[f1]=65535;   applescript_codes[f1]=122	# kVK_F1
 	ascii_codes[f2]=65535;   applescript_codes[f2]=120	# kVK_F2
 	ascii_codes[f3]=65535;   applescript_codes[f3]=99	# kVK_F3
@@ -129,6 +210,7 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	ascii_codes[f12]=65535;  applescript_codes[f12]=111	# kVK_F12
 	
 	# Special keys
+ 	# ASCII code		 	  Virtual keycode number 		Virtual keycode name
 	ascii_codes[space]=32;    applescript_codes[space]=49	# kVK_Space
 	ascii_codes[tab]=9;       applescript_codes[tab]=48		# kVK_Tab
 	ascii_codes[return]=13;   applescript_codes[return]=36	# kVK_Return
@@ -136,12 +218,14 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	ascii_codes[escape]=27;   applescript_codes[escape]=53	# kVK_Escape
 	
 	# Arrow keys (no ASCII equivalent)
+ 	# ASCII code		    		Virtual keycode number 				Virtual keycode name
 	ascii_codes[up-arrow]=65535;    applescript_codes[up-arrow]=126		# kVK_UpArrow
 	ascii_codes[down-arrow]=65535;  applescript_codes[down-arrow]=125	# kVK_DownArrow
 	ascii_codes[left-arrow]=65535;  applescript_codes[left-arrow]=123	# kVK_LeftArrow
 	ascii_codes[right-arrow]=65535; applescript_codes[right-arrow]=124  # kVK_RightArrow
 	
 	# Modifier keys (no ASCII equivalent)
+ 	# ASCII code		 		  Virtual keycode number 		  Virtual keycode name
 	ascii_codes[shift]=65535;     applescript_codes[shift]=56	  # kVK_Shift
 	ascii_codes[control]=65535;   applescript_codes[control]=59   # kVK_Control
 	ascii_codes[option]=65535;    applescript_codes[option]=58	  # kVK_Option
@@ -158,8 +242,8 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	fi
 }
 
-# Helper function to get just the ASCII code for a key description
-get_ascii_code_for_key() {
+function get_ascii_code_for_key() {
+  # Helper function to get just the ASCII code for a key description
   local result=$(get_key_codes "$1")
   if [[ $? -eq 0 ]]; then
     echo "${result%% *}"
@@ -169,8 +253,8 @@ get_ascii_code_for_key() {
   fi
 }
 
-# Helper function to get just the AppleScript key code
-get_applescript_code() {
+function get_applescript_code() {
+  # Helper function to get just the AppleScript key code
   local result=$(get_key_codes "$1")
   if [[ $? -eq 0 ]]; then
     echo "${result##* }"
@@ -180,11 +264,11 @@ get_applescript_code() {
   fi
 }
 
-
-
-
-get_ascii_code_for_char() {
+function get_ascii_code_for_char() {
   # Function to get ASCII code of character in only argument.
+  #
+  # WARNING: Perhaps not in use
+  #
   # Returns 65535 if character has no ASCII code (i.e., > 127)
   # Example usage:
   #   get_ascii_code "A"     # Returns: 65
@@ -214,54 +298,4 @@ get_ascii_code_for_char() {
     else
         echo "$NO_VALID_ASCII"
     fi
-}
-
-
-
-function modify_symbolichotkeys_entry_for_command_by_id() {
-  # Modifies the dictionary entry corresponding to a particular command specified by its ID.
-  #  $1: The integer ID of the command whose dictionary entry is to be modified
-  #      E.g., the integer ID of the command kCGSHotKeyInvertScreen (Reverse Black and White) is 21.
-  #  $2: The XML value for the new dictionary entry
-
-  local command_ID=$1
-  local xml_value=$2
-  defaults write "$domain" "$symdict" -dict-add $command_ID "${xml_value}"
-}
-
-function disable_command_its_id() {
-  # Disables command identified by its ID, which is specified by the single supplied argument.
-  # Example usage:
-  # To disable the command kCGSHotKeyInvertScreen (Reverse Black and White), which has the command ID 21:
-  #   disable_command_its_id 21
-  # Assumes $domain and $symdict have been defined in a location available to this function.
-  
-  local XML_TO_DISABLE_COMMAND="<dict><key>enabled</key><false/></dict>"
-  command_ID=$1
-  modify_symbolichotkeys_entry_for_command_by_id $command_ID "${XML_TO_DISABLE_COMMAND}"
-}
-
-function xml_value_for_hot_key_by_ascii_code_key_code_modifier_mask() {
-  # Echoes right-hand-side XML value to enable a hotkey specified by three arguments:
-  #   $1: ASCII_code of the key
-  #       If the key has no ASCII code (e.g., one of the Fkeys), use 65535
-  #   $2: KEY_CODE
-  #       The “AppleScript key code” for the key as found in “Complete list of AppleScript key codes,”
-  #       https://eastmanreference.com/complete-list-of-applescript-key-codes
-  #   $3: MODIFIER_MASK
-  local xml_value="
-    <dict>
-      <key>enabled</key><true/>
-      <key>value</key><dict>
-        <key>type</key><string>standard</string>
-        <key>parameters</key>
-        <array>
-          <integer>$1</integer>
-          <integer>$2</integer>
-          <integer>$3</integer>
-        </array>
-      </dict>
-    </dict>
-  "
-  echo "$xml_value"
 }
