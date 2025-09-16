@@ -19,7 +19,7 @@ plistbud="/usr/libexec/PlistBuddy"
 domain="com.apple.symbolichotkeys"
 symdict="AppleSymbolicHotKeys"
 
-
+    
 function get_hotkey_ascii_and_AppleScript_key_codes() {
   # Function to map key descriptions to ASCII code and AppleScript key code
   # Returns: "ascii_code applescript_code" or "ERROR" if key not found
@@ -137,10 +137,10 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	ascii_codes[esc]=27;      applescript_codes[esc]=53		# kVK_Escape
 	
 	# Arrow keys (no ASCII equivalent)
-	ascii_codes[up]=65535;    applescript_codes[up]=126
-	ascii_codes[down]=65535;  applescript_codes[down]=125
-	ascii_codes[left]=65535;  applescript_codes[left]=123
-	ascii_codes[right]=65535; applescript_codes[right]=124
+	ascii_codes[up]=65535;    		applescript_codes[up]=126
+	ascii_codes[down]=65535;  		applescript_codes[down]=125
+	ascii_codes[left]=65535;  		applescript_codes[left]=123
+	ascii_codes[right]=65535; 		applescript_codes[right]=124
 	ascii_codes[up-arrow]=65535;    applescript_codes[up-arrow]=126
 	ascii_codes[down-arrow]=65535;  applescript_codes[down-arrow]=125
 	ascii_codes[left-arrow]=65535;  applescript_codes[left-arrow]=123
@@ -157,10 +157,10 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	
 	# Check if key exists in our mapping
 	if [[ -n ${ascii_codes[$key_lower]} ]]; then
-    echo "${ascii_codes[$key_lower]} ${applescript_codes[$key_lower]}"
+	  echo "${ascii_codes[$key_lower]} ${applescript_codes[$key_lower]}"
 	else
-    report_fail "Error: Unknown key description '$key'"
-    return 1
+		report_fail "Error: Unknown key description '$key'"
+		return 1
 	fi
 }
 
