@@ -19,9 +19,8 @@ plistbud="/usr/libexec/PlistBuddy"
 domain="com.apple.symbolichotkeys"
 symdict="AppleSymbolicHotKeys"
 
-    
 function get_hotkey_ascii_and_AppleScript_key_codes() {
-  # Function to map key descriptions to ASCII code and AppleScript key code
+  # Function to map a case-insensitive key description (e.g., 'g', 'F3', or 'down-arrow') to a (ASCII code, AppleScript key code) pair.
   # Returns: "ascii_code applescript_code" or "ERROR" if key not found
   # Example usage:
   #   get_hotkey_ascii_and_AppleScript_key_codes "a"        # Returns: "97 0"
@@ -33,12 +32,14 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
   # - Complete list of AppleScript key codes, Eastman Reference, https://eastmanreference.com/complete-list-of-applescript-key-codes
   # - HIToolbox/Events.h, lines 184 et seq.
   #   https://github.com/phracker/MacOSX-SDKs/blob/master/MacOSX10.6.sdk/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h
+  # - Code values for keyboard events » Code values on Mac, Mozilla Developer Network (MDN)
+  #   https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_code_values#code_values_on_mac
   
   local key="$1"
     
 	# Check if argument is provided
 	if [[ -z "$key" ]]; then
-    report_fail "Error: get_hotkey_ascii_and_AppleScript_key_codes requires a key-description argument"
+    report_fail "Error: get_hotkey_ascii_and_AppleScript_key_codes() requires a key-description argument"
     return 1
 	fi
 	
