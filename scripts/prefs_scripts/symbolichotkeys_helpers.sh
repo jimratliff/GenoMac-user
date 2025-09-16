@@ -25,6 +25,41 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 domain="com.apple.symbolichotkeys"
 symdict="AppleSymbolicHotKeys"
 
+function disable_command_by_its_id() {
+  # Disables command identified by its ID, which is specified by the single supplied argument.
+  # Example usage:
+  # To disable the command kCGSHotKeyInvertScreen (Reverse Black and White), which has the command ID 21:
+  #   disable_command_its_id 21
+  
+  local XML_TO_DISABLE_COMMAND="<dict><key>enabled</key><false/></dict>"
+  command_ID=$1
+  modify_symbolichotkeys_entry_for_command_by_id $command_ID "${XML_TO_DISABLE_COMMAND}"
+}
+
+function assign_hotkey_to_command_id() {
+  # Assigns a hotkey (combination of key and a set of modifiers) to a particular command.
+  # Takes three arguments:
+  # - $1: Command ID (integer), e.g., 8 [corresponds to Move focus to the Dock (kCGSHotKeyFocusDock)]
+  # - $2: Key name (case insensitive), e.g., "F3", "a", "E", "up-arrow", etc.
+  # - $3: Modifier characters, e.g., ${CONTROL_CHAR}
+  #
+
+  local command_ID="$1"
+  local key_name="$2"
+  local modifier_chars="$3"
+
+  local ascii_and_virtual_key_codes=$(get_hotkey_ascii_and_AppleScript_key_codes "$key_name")
+
+  local modifier_combo_mask=$(modifier_combination_to_mask "$modifier_chars" )
+
+  # Note that $ascii_and_virtual_key_codes is a *pair* of space separated strings, and is thus used to supply *two* arguments.
+  xml_value = xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask "$ascii_and_virtual_key_codes" "$modifier_combo_mask"
+
+  modify_symbolichotkeys_entry_for_command_by_id "$command_ID" "$xml_value"
+  
+
+}
+
 function modify_symbolichotkeys_entry_for_command_by_id() {
   # Modifies the dictionary entry corresponding to a particular command specified by its ID.
   #  $1: The integer ID of the command whose dictionary entry is to be modified
@@ -36,17 +71,6 @@ function modify_symbolichotkeys_entry_for_command_by_id() {
   local command_ID=$1
   local xml_value=$2
   defaults write "$domain" "$symdict" -dict-add $command_ID "${xml_value}"
-}
-
-function disable_command_by_its_id() {
-  # Disables command identified by its ID, which is specified by the single supplied argument.
-  # Example usage:
-  # To disable the command kCGSHotKeyInvertScreen (Reverse Black and White), which has the command ID 21:
-  #   disable_command_its_id 21
-  
-  local XML_TO_DISABLE_COMMAND="<dict><key>enabled</key><false/></dict>"
-  command_ID=$1
-  modify_symbolichotkeys_entry_for_command_by_id $command_ID "${XML_TO_DISABLE_COMMAND}"
 }
 
 function xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask() {
