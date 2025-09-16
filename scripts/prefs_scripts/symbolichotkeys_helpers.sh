@@ -13,6 +13,18 @@ fi
 
 source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
+############### OVERVIEW OF PUBLIC INTERFACE
+
+There are two public-facing functions in this script file:
+- disable_command_by_its_id
+  - Disables a command specified by its integer ID
+  - E.g.: `disable_command_by_its_id 118` would disable command # 118 ("Switch to Desktop 1")
+- assign_hotkey_to_command_id
+  - Assigns a hotkey (combination of a key and, optionally, one or more modifiers) to a command
+  - The command to which the hotkey is assigned is specified by its integer ID (e.g., 118 is "Switch to Desktop 1")
+  - The key is specified by a case-insensitive key name, e.g., e.g., "F3", "a", "E", "up-arrow", etc.
+  - The modifiers are a string of concatenated instances of SHIFT_CHAR, CONTROL_CHAR, OPTION_CHAR, COMMAND_CHAR, or, alternatively, META_MODIFIER_CHARS
+
 ############### HELPERS
 
 # Assumes the following environment variables are defined in, and sourced from, assign_environment_variables.sh
