@@ -90,19 +90,19 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	ascii_codes[9]=57;   applescript_codes[9]=25	# kVK_ANSI_9
 	
 	# Special characters (using their ASCII values)
-	ascii_codes['~']=126; applescript_codes['~']=50
-	ascii_codes['!']=33;  applescript_codes['!']=18
-	ascii_codes['@']=64;  applescript_codes['@']=19
-	ascii_codes['#']=35;  applescript_codes['#']=20
-	ascii_codes['$']=36;  applescript_codes['$']=21
-	ascii_codes['%']=37;  applescript_codes['%']=23
-	ascii_codes['^']=94;  applescript_codes['^']=22
-	ascii_codes['&']=38;  applescript_codes['&']=26
-	ascii_codes['*']=42;  applescript_codes['*']=28
-	ascii_codes['(']=40;  applescript_codes['(']=25
-	ascii_codes[')']=41;  applescript_codes[')']=29
+	ascii_codes['~']=126; applescript_codes['~']=50 # kVK_ANSI_Grave
+	ascii_codes['!']=33;  applescript_codes['!']=18 # kVK_ANSI_1
+	ascii_codes['@']=64;  applescript_codes['@']=19 # kVK_ANSI_2
+	ascii_codes['#']=35;  applescript_codes['#']=20 # kVK_ANSI_3
+	ascii_codes['$']=36;  applescript_codes['$']=21 # kVK_ANSI_4
+	ascii_codes['%']=37;  applescript_codes['%']=23 # kVK_ANSI_5
+	ascii_codes['^']=94;  applescript_codes['^']=22 # kVK_ANSI_6
+	ascii_codes['&']=38;  applescript_codes['&']=26 # kVK_ANSI_7
+	ascii_codes['*']=42;  applescript_codes['*']=28 # kVK_ANSI_8
+	ascii_codes['(']=40;  applescript_codes['(']=25 # kVK_ANSI_9
+	ascii_codes[')']=41;  applescript_codes[')']=29 # kVK_ANSI_0
 	ascii_codes['-']=45;  applescript_codes['-']=27	# kVK_ANSI_Minus
-	ascii_codes['+']=43;  applescript_codes['+']=24
+	ascii_codes['+']=43;  applescript_codes['+']=24	# kVK_ANSI_Equal
 	ascii_codes['=']=61;  applescript_codes['=']=24	# kVK_ANSI_Equal
 	ascii_codes['[']=91;  applescript_codes['[']=33 # kVK_ANSI_LeftBracket
 	ascii_codes[']']=93;  applescript_codes[']']=30 # kVK_ANSI_RightBracket
@@ -132,29 +132,22 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	ascii_codes[space]=32;    applescript_codes[space]=49	# kVK_Space
 	ascii_codes[tab]=9;       applescript_codes[tab]=48		# kVK_Tab
 	ascii_codes[return]=13;   applescript_codes[return]=36	# kVK_Return
-	ascii_codes[enter]=13;    applescript_codes[enter]=36
 	ascii_codes[delete]=127;  applescript_codes[delete]=51	# kVK_Delete
 	ascii_codes[escape]=27;   applescript_codes[escape]=53	# kVK_Escape
-	ascii_codes[esc]=27;      applescript_codes[esc]=53		# kVK_Escape
 	
 	# Arrow keys (no ASCII equivalent)
-	ascii_codes[up]=65535;    		applescript_codes[up]=126
-	ascii_codes[down]=65535;  		applescript_codes[down]=125
-	ascii_codes[left]=65535;  		applescript_codes[left]=123
-	ascii_codes[right]=65535; 		applescript_codes[right]=124
-	ascii_codes[up-arrow]=65535;    applescript_codes[up-arrow]=126
-	ascii_codes[down-arrow]=65535;  applescript_codes[down-arrow]=125
-	ascii_codes[left-arrow]=65535;  applescript_codes[left-arrow]=123
-	ascii_codes[right-arrow]=65535; applescript_codes[right-arrow]=124
+	ascii_codes[up-arrow]=65535;    applescript_codes[up-arrow]=126		# kVK_UpArrow
+	ascii_codes[down-arrow]=65535;  applescript_codes[down-arrow]=125	# kVK_DownArrow
+	ascii_codes[left-arrow]=65535;  applescript_codes[left-arrow]=123	# kVK_LeftArrow
+	ascii_codes[right-arrow]=65535; applescript_codes[right-arrow]=124  # kVK_RightArrow
 	
 	# Modifier keys (no ASCII equivalent)
-	ascii_codes[shift]=65535;     applescript_codes[shift]=56
-	ascii_codes[control]=65535;   applescript_codes[control]=59
-	ascii_codes[option]=65535;    applescript_codes[option]=58
-	ascii_codes[command]=65535;   applescript_codes[command]=55
-	ascii_codes[fn]=65535;        applescript_codes[fn]=63
-	ascii_codes[caps-lock]=65535; applescript_codes[caps-lock]=57
-	ascii_codes[capslock]=65535;  applescript_codes[capslock]=57
+	ascii_codes[shift]=65535;     applescript_codes[shift]=56	  # kVK_Shift
+	ascii_codes[control]=65535;   applescript_codes[control]=59   # kVK_Control
+	ascii_codes[option]=65535;    applescript_codes[option]=58	  # kVK_Option
+	ascii_codes[command]=65535;   applescript_codes[command]=55	  # kVK_Command
+	ascii_codes[fn]=65535;        applescript_codes[fn]=63		  # kVK_Function
+	ascii_codes[capslock]=65535;  applescript_codes[capslock]=57  # kVK_CapsLock
 	
 	# Check if key exists in our mapping
 	if [[ -n ${ascii_codes[$key_lower]} ]]; then
