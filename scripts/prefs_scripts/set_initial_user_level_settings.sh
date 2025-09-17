@@ -49,19 +49,19 @@ set_auto_correction_suggestion_settings
 report_action_taken "Implement keyboard-related defaults"
 
 report_adjust_setting "Holding alpha key down pops up character-accent menu (rather than repeats). Reinforces default"
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool true;success_or_not
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool true ; success_or_not
 
 report_adjust_setting "Enable Keyboard Navigation (with Tab key)"
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 2;success_or_not
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 2 ; success_or_not
 
 report_adjust_setting "Use F1, F2, etc. keys as standard function keys"
-defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true;success_or_not
+defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true ; success_or_not
 
 report_adjust_setting "Press and release globe (🌎) key to bring up emoji picker"
-defaults write com.apple.HIToolbox AppleFnUsageType -int 2;success_or_not
+defaults write com.apple.HIToolbox AppleFnUsageType -int 2 ; success_or_not
 
 report_adjust_setting "Set symbolic hot keys to Apple commands"
-set_symbolichotkeys()
+set_symbolichotkeys() ; success_or_not
 
 ############### Menubar 
 report_action_taken "Implement menubar-related settings"
