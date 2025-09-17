@@ -69,7 +69,7 @@ function assign_hotkey_to_command_id() {
   local modifier_combo_mask=$(modifier_combination_to_mask "$modifier_chars" )
 
   # Note that $ascii_and_virtual_key_codes is a *pair* of space separated strings, and is thus used to supply *two* arguments.
-  xml_value=$(xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask "$ascii_and_virtual_key_codes" "$modifier_combo_mask")
+  xml_value=$(xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask $ascii_and_virtual_key_codes "$modifier_combo_mask")
 
   report_adjust_setting "Set hotkey ${modifier_chars}${key_name} for command #${command_ID}: $command_description"
   modify_symbolichotkeys_entry_for_command_by_id "$command_ID" "$xml_value"
@@ -437,61 +437,61 @@ function get_command_description() {
 		return 1
 	fi
 }
-
-function get_ascii_code_for_key() {
-  # Helper function to get just the ASCII code for a key description
-  local result=$(get_key_codes "$1")
-  if [[ $? -eq 0 ]]; then
-    echo "${result%% *}"
-  else
-    report_fail "Error: Unknown key description '$1'"
-    return 1
-  fi
-}
-
-function get_applescript_code() {
-  # Helper function to get just the AppleScript key code
-  local result=$(get_key_codes "$1")
-  if [[ $? -eq 0 ]]; then
-    echo "${result##* }"
-  else
-    report_fail "Error: Unknown key description '$1'"
-    return 1
-  fi
-}
-
-function get_ascii_code_for_char() {
-  # Function to get ASCII code of character in only argument.
-  #
-  # WARNING: Perhaps not in use
-  #
-  # Returns 65535 if character has no ASCII code (i.e., > 127)
-  # Example usage:
-  #   get_ascii_code "A"     # Returns: 65
-  #   get_ascii_code "z"     # Returns: 122
-  #   get_ascii_code "0"     # Returns: 48
-  #   get_ascii_code "€"     # Returns: 65535 (not ASCII)
-  #   get_ascii_code ""      # Returns: 65535 (empty string)
-    local char="$1"
-    local NO_VALID_ASCII=65535
-    
-    # Check if argument is provided
-    if [[ -z "$char" ]]; then
-        report_fail "Error: no argument supplied to get_ascii_code()."
-        return 1
-    fi
-    
-    # Get the first character only
-    char="${char:0:1}"
-    
-    # Get the Unicode code point using printf
-    local code_point
-    code_point=$(printf '%d' "'$char")
-    
-    # ASCII is 0-127, return 65535 for anything outside this range
-    if [[ $code_point -le 127 ]]; then
-        echo "$code_point"
-    else
-        echo "$NO_VALID_ASCII"
-    fi
-}
+# 
+# function get_ascii_code_for_key() {
+#   # Helper function to get just the ASCII code for a key description
+#   local result=$(get_key_codes "$1")
+#   if [[ $? -eq 0 ]]; then
+#     echo "${result%% *}"
+#   else
+#     report_fail "Error: Unknown key description '$1'"
+#     return 1
+#   fi
+# }
+# 
+# function get_applescript_code() {
+#   # Helper function to get just the AppleScript key code
+#   local result=$(get_key_codes "$1")
+#   if [[ $? -eq 0 ]]; then
+#     echo "${result##* }"
+#   else
+#     report_fail "Error: Unknown key description '$1'"
+#     return 1
+#   fi
+# }
+# 
+# function get_ascii_code_for_char() {
+#   # Function to get ASCII code of character in only argument.
+#   #
+#   # WARNING: Perhaps not in use
+#   #
+#   # Returns 65535 if character has no ASCII code (i.e., > 127)
+#   # Example usage:
+#   #   get_ascii_code "A"     # Returns: 65
+#   #   get_ascii_code "z"     # Returns: 122
+#   #   get_ascii_code "0"     # Returns: 48
+#   #   get_ascii_code "€"     # Returns: 65535 (not ASCII)
+#   #   get_ascii_code ""      # Returns: 65535 (empty string)
+#     local char="$1"
+#     local NO_VALID_ASCII=65535
+#     
+#     # Check if argument is provided
+#     if [[ -z "$char" ]]; then
+#         report_fail "Error: no argument supplied to get_ascii_code()."
+#         return 1
+#     fi
+#     
+#     # Get the first character only
+#     char="${char:0:1}"
+#     
+#     # Get the Unicode code point using printf
+#     local code_point
+#     code_point=$(printf '%d' "'$char")
+#     
+#     # ASCII is 0-127, return 65535 for anything outside this range
+#     if [[ $code_point -le 127 ]]; then
+#         echo "$code_point"
+#     else
+#         echo "$NO_VALID_ASCII"
+#     fi
+# }
