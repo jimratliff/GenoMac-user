@@ -43,11 +43,18 @@ disable_command_by_its_id 85
 # Move down a space
 disable_command_by_its_id 83
 
-############### Set new hotkeys
+############### Set new hotkeys (The FOLLOWING NEED TO BE CONFIRMED)
 
 local modifiers_for_mission_control=($META_MODIFIER_CHARS)
 
-# 
+# Activate Mission Control
+assign_hotkey_to_command_id 32 "F8" $modifiers_for_mission_control
+
+# Expose: application windows
+assign_hotkey_to_command_id 33 "F10" $modifiers_for_mission_control
+
+# Show Desktop
+assign_hotkey_to_command_id 36 "F11" $modifiers_for_mission_control
 
 # Set hotkeys to move to a new space by number of the space 1–16
 assign_hotkey_to_command_id 118 "1" $modifiers_for_mission_control
