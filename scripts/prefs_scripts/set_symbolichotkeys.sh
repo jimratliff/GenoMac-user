@@ -45,8 +45,11 @@ disable_command_by_its_id 83
 
 ############### Set new hotkeys
 
+local modifiers_for_mission_control=($META_MODIFIER_CHARS)
+
+# 
+
 # Set hotkeys to move to a new space by number of the space 1–16
-modifiers_for_mission_control=($META_MODIFIER_CHARS)
 assign_hotkey_to_command_id 118 "1" $modifiers_for_mission_control
 assign_hotkey_to_command_id 119 "2" $modifiers_for_mission_control
 assign_hotkey_to_command_id 120 "3" $modifiers_for_mission_control
