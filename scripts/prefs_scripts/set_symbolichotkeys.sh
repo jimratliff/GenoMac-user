@@ -74,10 +74,6 @@ assign_hotkey_to_command_id 131 "F4" $modifiers_for_mission_control
 assign_hotkey_to_command_id 132 "F5" $modifiers_for_mission_control
 assign_hotkey_to_command_id 133 "F6" $modifiers_for_mission_control
 
-
-
-report_fail "You need to finish writing this function!"
-
 report_end_phase_standard
 
 }
