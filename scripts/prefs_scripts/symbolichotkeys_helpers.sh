@@ -267,29 +267,18 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	
 	# Special characters (using their ASCII values)
  	# ASCII code		  Virtual keycode number 	Virtual keycode name
-	ascii_codes['~']=126; applescript_codes['~']=50 # kVK_ANSI_Grave
-	ascii_codes['!']=33;  applescript_codes['!']=18 # kVK_ANSI_1
-	ascii_codes['@']=64;  applescript_codes['@']=19 # kVK_ANSI_2
-	ascii_codes['#']=35;  applescript_codes['#']=20 # kVK_ANSI_3
-	ascii_codes['$']=36;  applescript_codes['$']=21 # kVK_ANSI_4
-	ascii_codes['%']=37;  applescript_codes['%']=23 # kVK_ANSI_5
-	ascii_codes['^']=94;  applescript_codes['^']=22 # kVK_ANSI_6
-	ascii_codes['&']=38;  applescript_codes['&']=26 # kVK_ANSI_7
-	ascii_codes['*']=42;  applescript_codes['*']=28 # kVK_ANSI_8
-	ascii_codes['(']=40;  applescript_codes['(']=25 # kVK_ANSI_9
-	ascii_codes[')']=41;  applescript_codes[')']=29 # kVK_ANSI_0
-	ascii_codes['-']=45;  applescript_codes['-']=27	# kVK_ANSI_Minus
-	ascii_codes['+']=43;  applescript_codes['+']=24	# kVK_ANSI_Equal
-	ascii_codes['=']=61;  applescript_codes['=']=24	# kVK_ANSI_Equal
-	ascii_codes['[']=91;  applescript_codes['[']=33 # kVK_ANSI_LeftBracket
-	ascii_codes[']']=93;  applescript_codes[']']=30 # kVK_ANSI_RightBracket
-	ascii_codes['\']=92;  applescript_codes['\']=42	# kVK_ANSI_Backslash
-	ascii_codes[';']=59;  applescript_codes[';']=41	# kVK_ANSI_Semicolon
+	ascii_codes["-"]=45;  applescript_codes["-"]=27	# kVK_ANSI_Minus
+	ascii_codes["+"]=43;  applescript_codes["+"]=24	# kVK_ANSI_Equal
+	ascii_codes["="]=61;  applescript_codes["="]=24	# kVK_ANSI_Equal
+	ascii_codes["["]=91;  applescript_codes["["]=33 # kVK_ANSI_LeftBracket
+	ascii_codes["]"]=93;  applescript_codes["]"]=30 # kVK_ANSI_RightBracket
+	ascii_codes["\"]=92;  applescript_codes["\"]=42	# kVK_ANSI_Backslash
+	ascii_codes[";"]=59;  applescript_codes[";"]=41	# kVK_ANSI_Semicolon
 	ascii_codes["'"]=39;  applescript_codes["'"]=39	# kVK_ANSI_Quote
-	ascii_codes[',']=44;  applescript_codes[',']=43	# kVK_ANSI_Comma
-	ascii_codes['.']=46;  applescript_codes['.']=47	# kVK_ANSI_Period
-	ascii_codes['/']=47;  applescript_codes['/']=44	# kVK_ANSI_Slash
-	ascii_codes['`']=96;  applescript_codes['`']=50	# kVK_ANSI_Grave
+	ascii_codes[","]=44;  applescript_codes[","]=43	# kVK_ANSI_Comma
+	ascii_codes["."]=46;  applescript_codes["."]=47	# kVK_ANSI_Period
+	ascii_codes["/"]=47;  applescript_codes["/"]=44	# kVK_ANSI_Slash
+	ascii_codes["`"]=96;  applescript_codes["`"]=50	# kVK_ANSI_Grave
 	
 	# Function keys (no ASCII equivalent)
  	# ASCII code		 	 Virtual keycode number 	Virtual keycode name
