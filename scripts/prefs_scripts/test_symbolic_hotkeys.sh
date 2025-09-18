@@ -34,13 +34,13 @@ report_action_taken "Testing ability to set hot-key correspondences to Apple com
 disable_command_by_its_id 79
 
 # Move right a space
-# disable_command_by_its_id 81
+disable_command_by_its_id 81
 
 # Move up a space
-# disable_command_by_its_id 85
+disable_command_by_its_id 85
 
 # Move down a space
-# disable_command_by_its_id 83
+disable_command_by_its_id 83
 
 ############### Set new hotkeys (The FOLLOWING NEED TO BE CONFIRMED)
 
