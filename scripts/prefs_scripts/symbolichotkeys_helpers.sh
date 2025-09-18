@@ -71,7 +71,7 @@ function assign_hotkey_to_command_id() {
   xml_value=$(xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask "$ascii_code" "$virtual_key_code" "$modifier_combo_mask")
 
   report_adjust_setting "Set hotkey ${modifier_chars}${key_name} for command #${command_ID}: $command_description"
-  modify_symbolichotkeys_entry_for_command_by_id "$command_ID" "$xml_value"
+  modify_symbolichotkeys_entry_for_command_by_id "$command_ID" "$xml_value" ; success_or_not
 }
 
 function modify_symbolichotkeys_entry_for_command_by_id() {
