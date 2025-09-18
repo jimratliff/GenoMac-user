@@ -277,7 +277,7 @@ function get_hotkey_ascii_and_AppleScript_key_codes() {
 	ascii_codes[","]=44;  	applescript_codes[","]=43	# kVK_ANSI_Comma
 	ascii_codes["."]=46;  	applescript_codes["."]=47	# kVK_ANSI_Period
 	ascii_codes["/"]=47;  	applescript_codes["/"]=44	# kVK_ANSI_Slash
-	ascii_codes["`"]=96;  	applescript_codes["`"]=50	# kVK_ANSI_Grave
+	ascii_codes["\`"]=96;  	applescript_codes["\`"]=50	# kVK_ANSI_Grave
 	
 	# Function keys (no ASCII equivalent)
  	# ASCII code		 	 Virtual keycode number 	Virtual keycode name
