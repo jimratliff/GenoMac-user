@@ -60,8 +60,8 @@ defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true ; success_or
 report_adjust_setting "Press and release globe (🌎) key to bring up emoji picker"
 defaults write com.apple.HIToolbox AppleFnUsageType -int 2 ; success_or_not
 
-report_adjust_setting "Set symbolic hot keys to Apple commands"
-set_symbolichotkeys ; success_or_not
+# report_adjust_setting "Set symbolic hot keys to Apple commands"
+# set_symbolichotkeys ; success_or_not
 
 ############### Menubar 
 report_action_taken "Implement menubar-related settings"
