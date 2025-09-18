@@ -28,7 +28,7 @@ report_action_taken "Testing ability to set hot-key correspondences to Apple com
 # report_action_taken "Disabling certain commands"
 
 # Minimize a window
-# disable_command_by_its_id ???
+disable_command_by_its_id 233
 
 # Move left a space
 # disable_command_by_its_id 79
@@ -47,7 +47,7 @@ report_action_taken "Testing ability to set hot-key correspondences to Apple com
 local modifiers_for_mission_control=$META_MODIFIER_CHARS
 
 # Activate Mission Control
-assign_hotkey_to_command_id 32 "F8" $modifiers_for_mission_control
+# assign_hotkey_to_command_id 32 "F8" $modifiers_for_mission_control
 
 # Expose: application windows
 # assign_hotkey_to_command_id 33 "F10" $modifiers_for_mission_control
