@@ -30,7 +30,7 @@ report_action_taken "Set hot-key correspondences to Apple commands"
 report_action_taken "Disabling certain commands"
 
 # Minimize a window
-# disable_command_by_its_id ???
+# disable_command_by_its_id 233
 
 # Move left a space
 disable_command_by_its_id 79
