@@ -33,19 +33,19 @@ report_action_taken "Disabling certain commands"
 # disable_command_by_its_id ???
 
 # Move left a space
-report_adjust_setting "Disabling “move left a space” (#79)"
+# report_adjust_setting "Disabling “move left a space” (#79)"
 disable_command_by_its_id 79 ; success_or_not
 
 # Move right a space
-report_adjust_setting "Disabling “move right a space” (#81)"
+# report_adjust_setting "Disabling “move right a space” (#81)"
 disable_command_by_its_id 81 ; success_or_not
 
 # Move up a space
-report_adjust_setting "Disabling “move up a space” (#85)"
+# report_adjust_setting "Disabling “move up a space” (#85)"
 disable_command_by_its_id 85 ; success_or_not
 
 # Move down a space
-report_adjust_setting "Disabling “move down a space” (#83)"
+# report_adjust_setting "Disabling “move down a space” (#83)"
 disable_command_by_its_id 83 ; success_or_not
 
 ############### Set new hotkeys (The FOLLOWING NEED TO BE CONFIRMED)
