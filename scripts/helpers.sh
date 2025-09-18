@@ -165,7 +165,7 @@ function get_nonblank_answer_to_question() {
   local answer
 
   while true; do
-    ask_question "$prompt"
+    ask_question "$prompt" >&2 # Redirects question to stderr to keep it out of returned string
     read "answer?→ "
     [[ -n "${answer// }" ]] && break
   done
