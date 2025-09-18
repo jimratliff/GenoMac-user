@@ -96,6 +96,14 @@ function xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask() {
   #       The “AppleScript key code” for the key as found in “Complete list of AppleScript key codes,”
   #       https://eastmanreference.com/complete-list-of-applescript-key-codes
   #   $3: MODIFIER_MASK
+
+  ############### Add Debug prints
+  echo "DEBUG: \$1='$1'" >&2
+  echo "DEBUG: \$2='$2'" >&2  
+  echo "DEBUG: \$3='$3'" >&2
+  echo "DEBUG: argc=$#" >&2
+
+
   local xml_value="
     <dict>
       <key>enabled</key><true/>
