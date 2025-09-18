@@ -41,7 +41,7 @@ function disable_command_by_its_id() {
   # Disables command identified by its ID, which is specified by the single supplied argument.
   # Example usage:
   # To disable the command kCGSHotKeyInvertScreen (Reverse Black and White), which has the command ID 21:
-  #   disable_command_its_id 21
+  #   disable_command_by_its_id 21
   
   local XML_TO_DISABLE_COMMAND="<dict><key>enabled</key><false/></dict>"
   local command_ID=$1
