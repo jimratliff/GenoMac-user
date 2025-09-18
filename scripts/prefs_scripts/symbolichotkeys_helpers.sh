@@ -68,8 +68,13 @@ function assign_hotkey_to_command_id() {
 
   local modifier_combo_mask=$(modifier_combination_to_mask "$modifier_chars" )
 
+  # Note that $ascii_and_virtual_key_codes is a *pair* of space separated strings
+  local ascii_code="${ascii_and_virtual_key_codes%% *}"
+  local virtual_key_code="${ascii_and_virtual_key_codes##* }"
+  xml_value=$(xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask "$ascii_code" "$virtual_key_code" "$modifier_combo_mask")
+
   # Note that $ascii_and_virtual_key_codes is a *pair* of space separated strings, and is thus used to supply *two* arguments.
-  xml_value=$(xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask $ascii_and_virtual_key_codes "$modifier_combo_mask")
+  # xml_value=$(xml_value_for_hot_key_by_ascii_code_key_code_and_modifier_mask $ascii_and_virtual_key_codes "$modifier_combo_mask")
 
   report_adjust_setting "Set hotkey ${modifier_chars}${key_name} for command #${command_ID}: $command_description"
   modify_symbolichotkeys_entry_for_command_by_id "$command_ID" "$xml_value"
