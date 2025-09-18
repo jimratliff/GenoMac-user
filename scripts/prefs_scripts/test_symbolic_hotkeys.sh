@@ -31,23 +31,23 @@ report_action_taken "Testing ability to set hot-key correspondences to Apple com
 # disable_command_by_its_id ???
 
 # Move left a space
-disable_command_by_its_id 79
+# disable_command_by_its_id 79
 
 # Move right a space
-disable_command_by_its_id 81
+# disable_command_by_its_id 81
 
 # Move up a space
-disable_command_by_its_id 85
+# disable_command_by_its_id 85
 
 # Move down a space
-disable_command_by_its_id 83
+# disable_command_by_its_id 83
 
 ############### Set new hotkeys (The FOLLOWING NEED TO BE CONFIRMED)
 
 local modifiers_for_mission_control=$META_MODIFIER_CHARS
 
 # Activate Mission Control
-# assign_hotkey_to_command_id 32 "F8" $modifiers_for_mission_control
+assign_hotkey_to_command_id 32 "F8" $modifiers_for_mission_control
 
 # Expose: application windows
 # assign_hotkey_to_command_id 33 "F10" $modifiers_for_mission_control
