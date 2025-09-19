@@ -277,7 +277,7 @@ Verified: SSH agent is working
     - Preview: the slimmed-down toolbar
   - The moral is: be patient and don’t jump the gun on concluding there has been a failure.
 - Desktop & Dock
-  - Turning off autohide seems not to reliably (a) stick (i.e., the toggle in the GUI doesn’t match the value of `autohide` or the value of `autohide` doesn’t stick at zero) and (b) work (even when `autohide` is zero, the Dock still appears automatically when the cursor reaches the bottom of the screen).
+  - Turning off autohide seems not to reliably (a) stick (i.e., the toggle in the GUI doesn’t match the value of `autohide` or the value of `autohide` doesn’t stick at zero) and (b) work (even when `autohide` is zero, the Dock still appears automatically when the cursor reaches the bottom of the screen). (Unless I don’t understand what the effect is supposed to be.)
 - Matrix screensaver and hot-corner activation of screen saver
   - Under macOS Tahoe 26 Release Candidate, Matrix screen saver is not working at all, whether triggered by hot-corner activation or by the passage of time.
     - To be clear, the screen *does* darken upon either of these triggers, but the Matrix screen saver display is not shown.
@@ -286,6 +286,7 @@ Verified: SSH agent is working
     - I created an issue, on September 12, 2025: [Doesn't work with macOS Tahoe 26 RC (release candidate) #24](https://github.com/monroewilliams/MatrixDownload/issues/24)
 - Give audible feedback when volume is changed
   - Despite the automation step, which *does* change in the indication in Settings, it might not take effect. To fix: Manually toggle that switch again.
+  - As I recall, this bug goes back years.
 
 ## Appendix: Determining the `defaults write` commands that correspond to desired changes in settings
 The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped settings.
