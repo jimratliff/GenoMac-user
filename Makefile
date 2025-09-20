@@ -27,5 +27,3 @@ verify-ssh-agent:
 defaults-detective:
 	zsh scripts/defaults_detective.sh
 
-test-hotkeys:
-	zsh scripts/hotkeys-experiment.sh
