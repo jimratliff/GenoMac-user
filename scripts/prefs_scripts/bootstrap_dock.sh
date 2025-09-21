@@ -51,7 +51,7 @@ report_start_phase_standard
 report_action_taken "Bootstrap-only initial population of the Dock."
 
 local domain="com.apple.dock"
-plist_path=$(legacy_plist_path_from_domain $domain")
+plist_path=$(legacy_plist_path_from_domain "$domain")
 
 report_action_taken "Ensure plist for Dock exists at $plist_path"
 ensure_plist_path_exists "${plist_path}" ; success_or_not
