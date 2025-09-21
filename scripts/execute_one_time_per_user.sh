@@ -31,9 +31,14 @@ PREFS_FUNCTIONS_DIR="${this_script_dir}/prefs_scripts"
 # printf "GENOMAC_HELPER_DIR: %s\n" "$GENOMAC_HELPER_DIR"
 # printf "PREFS_FUNCTIONS_DIR:  %s\n\n" "$PREFS_FUNCTIONS_DIR"
 
+safe_source "${PREFS_FUNCTIONS_DIR}/bootstrap_dock.sh" 
 safe_source "${PREFS_FUNCTIONS_DIR}/bootstrap_finder.sh" 
 safe_source "${PREFS_FUNCTIONS_DIR}/bootstrap_preview_app.sh" 
+
 ############################## BEGIN SCRIPT PROPER #############################
+
+# Dock: Define initial configuration of persistent apps
+bootstrap_dock
 
 # Finder: Define initial toolbar
 bootstrap_finder
