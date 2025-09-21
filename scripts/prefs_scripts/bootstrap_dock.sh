@@ -21,7 +21,7 @@ APPS_FOR_DOCK=(
   "TextExpander.app"
   "Raindrop.io.app"
   "Obsidian.app"
-  "Utilities/ActivityMonitor.app"
+  "Utilities/Activity Monitor.app"
   "Utilities/Terminal.app"
   "iTerm.app"
 )
