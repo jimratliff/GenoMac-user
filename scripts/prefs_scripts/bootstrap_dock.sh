@@ -58,8 +58,8 @@ defaults write "$domain" "$dock_persistent_apps_key" -array
 
 for app in "${APPS_FOR_DOCK[@]}"; do
   report_adjust_setting "App $app added to Dock"
-  app_path_encoded="${COMMON_PATH_FOR_APPS}${app// /%20}"
-  dock_item="$(dock_app_entry $app_path_encoded)"
+  app_path="${COMMON_PATH_FOR_APPS}${app}"
+  dock_item="$(dock_app_entry $app_path)"
   defaults write $domain $dock_persistent_apps_key -array-add $dock_item  ; success_or_not
 done
 
