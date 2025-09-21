@@ -39,6 +39,8 @@ report_action_taken "Bootstrap-only initial population of the Dock."
 
 local domain="com.apple.dock"
 local dock_persistent_apps_key="persistent-apps"
+
+# In this implementation, the 'persistent-others' key is not used.
 # local dock_ephemeral_files_folders_key="persistent-others"
 
 # Because the Dock always runs, its plist necessarily exists. 
