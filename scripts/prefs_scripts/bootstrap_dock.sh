@@ -12,7 +12,6 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 ############################## BEGIN SCRIPT PROPER ##############################
 
 # Define Dock app items
-
 # Each app in APPS_FOR_DOCK is referenced by its path relative to /Applications
 COMMON_PATH_FOR_APPS="/Applications/"
 APPS_FOR_DOCK=\
