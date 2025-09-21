@@ -11,19 +11,32 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
+# COMMON_PATH_FOR_APPS="/Applications/"
+# APPS_FOR_DOCK=(
+#   "System Settings.app"
+#   "1Password.app"
+#   "Antnotes.app"
+#   "TextExpander.app"
+#   "Raindrop.io.app"
+#   "Obsidian.app"
+#   "Utilities/Activity Monitor.app"
+#   "Utilities/Terminal.app"
+#   "iTerm.app"
+# )
+
 # Define Dock app items
 # Each app in APPS_FOR_DOCK is referenced by its path relative to /Applications
 COMMON_PATH_FOR_APPS="/Applications/"
 APPS_FOR_DOCK=(
-  "System Settings.app"
-  "1Password.app"
-  "Antnotes.app"
-  "TextExpander.app"
-  "Raindrop.io.app"
-  "Obsidian.app"
-  "Utilities/Activity Monitor.app"
-  "Utilities/Terminal.app"
-  "iTerm.app"
+  "/System/Applications/System Settings.app"
+  "Applications/1Password.app"
+  "Applications/Antnotes.app"
+  "Applications/TextExpander.app"
+  "Applications/Raindrop.io.app"
+  "Applications/Obsidian.app"
+  "/System/Applications/Utilities/Activity Monitor.app"
+  "/System/Applications/Utilities/Terminal.app"
+  "Applications/iTerm.app"
 )
 
 function dock_app_entry() {
@@ -58,7 +71,8 @@ defaults write "$domain" "$dock_persistent_apps_key" -array
 
 for app in "${APPS_FOR_DOCK[@]}"; do
   report_adjust_setting "App $app added to Dock"
-  app_path="${COMMON_PATH_FOR_APPS}${app}"
+  # app_path="${COMMON_PATH_FOR_APPS}${app}"
+  app_path="${app}"
   dock_item="$(dock_app_entry $app_path)"
   defaults write $domain $dock_persistent_apps_key -array-add $dock_item  ; success_or_not
 done
