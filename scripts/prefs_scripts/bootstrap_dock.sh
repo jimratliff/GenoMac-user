@@ -51,6 +51,11 @@ report_start_phase_standard
 report_action_taken "Bootstrap-only initial population of the Dock."
 
 local domain="com.apple.dock"
+plist_path=$(legacy_plist_path_from_domain $domain")
+
+report_action_taken "Ensure plist for Dock exists at $plist_path"
+ensure_plist_path_exists "${plist_path}" ; success_or_not
+
 local dock_persistent_apps_key="persistent-apps"
 
 # In this implementation, the 'persistent-others' key is not used.
@@ -67,7 +72,8 @@ defaults delete $domain $dock_persistent_apps_key ; success_or_not
 # defaults delete $domain $dock_ephemeral_files_folders_key ; success_or_not
 
 # Initialize the array
-defaults write "$domain" "$dock_persistent_apps_key" -array
+report_action_taken "Initialize persistent-apps array" 
+defaults write "$domain" "$dock_persistent_apps_key" -array ; success_or_not
 
 for app in "${APPS_FOR_DOCK[@]}"; do
   report_adjust_setting "App $app added to Dock"
