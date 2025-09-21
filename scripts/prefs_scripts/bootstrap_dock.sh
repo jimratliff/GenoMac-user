@@ -11,22 +11,15 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
-# COMMON_PATH_FOR_APPS="/Applications/"
-# APPS_FOR_DOCK=(
-#   "System Settings.app"
-#   "1Password.app"
-#   "Antnotes.app"
-#   "TextExpander.app"
-#   "Raindrop.io.app"
-#   "Obsidian.app"
-#   "Utilities/Activity Monitor.app"
-#   "Utilities/Terminal.app"
-#   "iTerm.app"
-# )
-
 # Define Dock app items
-# Each app in APPS_FOR_DOCK is referenced by its path relative to /Applications
-COMMON_PATH_FOR_APPS="/Applications/"
+# Each app in APPS_FOR_DOCK is referenced by its full path.
+# NOTE, IN PARTICULAR, for Apple’s own apps:
+# - Except for Safari, Apple’s app (a) *appear* to living in /Applications (and /Applications/Utilities)
+#   but in fact (b) they actually live in /System/Applications (and /System/Applications/Utilities).
+# - It is necessary to specify an Apple app by its *actual* path, not its apparent path.
+# - /Application/Safari.app is symlinked to /System/Cryptexes/App/System/Applications/Safari.app
+#   Presumably that is the path that must be specified for Safari, though I haven’t tested it.
+
 APPS_FOR_DOCK=(
   "/System/Applications/System Settings.app"
   "Applications/1Password.app"
@@ -58,15 +51,11 @@ ensure_plist_path_exists "${plist_path}" ; success_or_not
 
 local dock_persistent_apps_key="persistent-apps"
 
-# In this implementation, the 'persistent-others' key is not used.
-# local dock_ephemeral_files_folders_key="persistent-others"
-
-# Because the Dock always runs, its plist necessarily exists. 
-# Thus, there is no need to ensure its plist exists.
-
 report_action_taken "Remove all persistent apps from Dock in preparation for repopulation" 
 defaults delete $domain $dock_persistent_apps_key ; success_or_not
 
+# In this implementation, the 'persistent-others' key is not used.
+# local dock_ephemeral_files_folders_key="persistent-others"
 # Policy: Leave the non-persistent part of the Dock alone.
 # report_adjust_setting "Delete file and folder entries from existing Dock"
 # defaults delete $domain $dock_ephemeral_files_folders_key ; success_or_not
