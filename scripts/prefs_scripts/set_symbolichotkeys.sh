@@ -41,11 +41,11 @@ disable_command_by_its_id 79
 # Move right a space
 disable_command_by_its_id 81
 
-# Move up a space
-disable_command_by_its_id 85
-
 # Move down a space
 disable_command_by_its_id 83
+
+# Move up a space
+disable_command_by_its_id 85
 
 ############### Set new hotkeys (The FOLLOWING NEED TO BE CONFIRMED)
 
