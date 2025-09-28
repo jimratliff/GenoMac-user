@@ -153,8 +153,8 @@ Launch Terminal. Then copy the following code block and paste into Terminal:
 cd ~/.genomac-user
 make stow-dotfiles
 ```
-<div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>
 
+<div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>
 
 The dotfile [.zshenv](https://github.com/jimratliff/GenoMac-user/blob/main/stow_directory/zsh/.config/zsh/.zshenv) defines:
 - `XDG_CONFIG_HOME` to be `~/.config`. Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
