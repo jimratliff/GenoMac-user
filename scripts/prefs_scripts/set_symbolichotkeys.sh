@@ -60,6 +60,9 @@ assign_hotkey_to_command_id 33 "F10" $modifiers_for_mission_control
 # Show Desktop
 assign_hotkey_to_command_id 36 "F11" $modifiers_for_mission_control
 
+# Show Notification Center
+assign_hotkey_to_command_id 163 "F9" $modifiers_for_mission_control
+
 # Set hotkeys to move to a new space by number of the space 1–16
 assign_hotkey_to_command_id 118 "1" $modifiers_for_mission_control
 assign_hotkey_to_command_id 119 "2" $modifiers_for_mission_control
