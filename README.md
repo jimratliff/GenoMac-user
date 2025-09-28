@@ -178,8 +178,12 @@ Note: This will produce *pages* of terminal output.
 
 <div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>
 
-### Implement the bootstrapping operations
-This next step is intended to be executed *only one time per user*. It creates default toolbar configurations for Finder and Preview. The user is then free to adjust that configuration with no concern that a maintenance/enforcement script will come around and clobber those toolbar changes.
+### Run certain one-time-only bootstrapping operations
+This next step is intended to be executed *only one time per user*. It implements:
+- a default configuration of apps in the Dock
+- default toolbar configuration for each of Finder and Preview
+
+The user is then free to adjust that configuration with no concern that a maintenance/enforcement script will come around and clobber those toolbar changes.
 
 Launch Terminal. Then copy the following code block and paste into Terminal:
 
@@ -193,6 +197,7 @@ It may appear at first that the toolbar changes have not taken effect. It someti
 <div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>
 
 Note: At this point in development, it is unclear whether, for each bootstrapping operation, that operation needs to be performed (a) before or (b) after [§ Implement the initial set of macOS-related settings](#implement-the-initial-set-of-macos-related-settings). 
+
 
 ### Configure 1Password for authentication with GitHub
 Note:
