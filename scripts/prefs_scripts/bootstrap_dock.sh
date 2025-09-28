@@ -11,7 +11,9 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
-# Define Dock app items
+# Define Dock persistent-app items
+#   Does not alter anything for non-persistent apps.
+#   Does not alter the defaults for the Downloads folder and the Trash Can on the furthest right-hand side of the Dock.
 # Each app in APPS_FOR_DOCK is referenced by its full path.
 # NOTE, IN PARTICULAR, for Apple’s own apps:
 # - Except for Safari, an Apple app (a) *appears* to live in /Applications (or /Applications/Utilities)
