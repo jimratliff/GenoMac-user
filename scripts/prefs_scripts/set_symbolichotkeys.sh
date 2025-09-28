@@ -12,14 +12,17 @@ safe_source "${PREFS_FUNCTIONS_DIR}/symbolichotkeys_helpers.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
+# Enable and/or disable hotkey activation of particular commands.
+#
+# Note: For the description of what each action is associated to a particular command-id, see
+# the function get_command_description() in symbolic_helpers.sh
+
 # Assumes the following environment variables are defined in, and sourced from, assign_environment_variables.sh
 # SHIFT_CHAR=$'\u21e7'     # ⇧
 # CONTROL_CHAR=$'\u2303'   # ⌃  
 # OPTION_CHAR=$'\u2325'    # ⌥
 # COMMAND_CHAR=$'\u2318'   # ⌘
 # META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
-
-
 
 function set_symbolichotkeys() {
 
