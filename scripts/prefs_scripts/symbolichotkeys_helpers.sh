@@ -424,6 +424,7 @@ function get_command_description() {
 	command_descriptions[131]="Switch to Desktop 14"
 	command_descriptions[132]="Switch to Desktop 15"
 	command_descriptions[133]="Switch to Desktop 16"
+	command_descriptions[163]="Show Notification Center"
  	command_descriptions[233]="Minimize window"
 	
 	# Look up the description for the given ID
