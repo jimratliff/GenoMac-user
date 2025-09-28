@@ -38,6 +38,7 @@ APPS_FOR_DOCK=(
 
 function dock_app_entry() {
   # Function takes single argument of the full path of the app to add to the Dock.
+  # Outputs the dictionary entry for this app’s tile, inserting the supplied argument into `_CFURLString`.
   printf '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>%s</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>', "$1"
 }
 
