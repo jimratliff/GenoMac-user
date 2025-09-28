@@ -14,11 +14,13 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 # Define Dock app items
 # Each app in APPS_FOR_DOCK is referenced by its full path.
 # NOTE, IN PARTICULAR, for Apple’s own apps:
-# - Except for Safari, Apple’s app (a) *appear* to living in /Applications (and /Applications/Utilities)
-#   but in fact (b) they actually live in /System/Applications (and /System/Applications/Utilities).
+# - Except for Safari, an Apple app (a) *appears* to live in /Applications (or /Applications/Utilities)
+#   but in fact (b) it actually lives in /System/Applications (or, respectively, /System/Applications/Utilities).
 # - It is necessary to specify an Apple app by its *actual* path, not its apparent path.
-# - /Application/Safari.app is symlinked to /System/Cryptexes/App/System/Applications/Safari.app
-#   Presumably that is the path that must be specified for Safari, though I haven’t tested it.
+# - Safari is exceptional:
+#   - /Application/Safari.app is symlinked to /System/Cryptexes/App/System/Applications/Safari.app
+#   - Presumably that is the path that must be specified to add Safari to the Dock, though I haven’t tested it (but
+#     have seen evidence to support this).
 
 APPS_FOR_DOCK=(
   "/System/Applications/System Settings.app"
