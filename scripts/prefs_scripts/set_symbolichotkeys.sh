@@ -69,6 +69,7 @@ disable_command_by_its_id 256
 ############### Set new hotkeys (The FOLLOWING NEED TO BE CONFIRMED)
 
 local modifiers_for_mission_control=$META_MODIFIER_CHARS
+local modifiers_for_keyboard_navigation=$MODIFIERS_KEYBOARD_NAVIGATION
 
 # Activate Mission Control
 assign_hotkey_to_command_id 32 "F8" $modifiers_for_mission_control
