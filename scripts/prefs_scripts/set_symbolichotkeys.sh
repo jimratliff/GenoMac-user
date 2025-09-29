@@ -47,6 +47,25 @@ disable_command_by_its_id 83
 # Move up a space
 disable_command_by_its_id 85
 
+# Window hotkeys to disable to (a) free up their hotkeys and (b) I’ll never use them since they
+# require “Displays bave separate Spaces”
+# Halves
+disable_command_by_its_id 240
+disable_command_by_its_id 241
+disable_command_by_its_id 242
+disable_command_by_its_id 243
+# Quarters
+disable_command_by_its_id 244
+disable_command_by_its_id 245
+disable_command_by_its_id 246
+disable_command_by_its_id 247
+# Arrange
+disable_command_by_its_id 248
+disable_command_by_its_id 249
+disable_command_by_its_id 250
+disable_command_by_its_id 251
+disable_command_by_its_id 256
+
 ############### Set new hotkeys (The FOLLOWING NEED TO BE CONFIRMED)
 
 local modifiers_for_mission_control=$META_MODIFIER_CHARS
