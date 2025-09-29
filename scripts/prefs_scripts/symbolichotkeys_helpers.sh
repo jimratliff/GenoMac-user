@@ -426,6 +426,19 @@ function get_command_description() {
 	command_descriptions[133]="Switch to Desktop 16"
 	command_descriptions[163]="Show Notification Center"
  	command_descriptions[233]="Minimize window"
+	command_descriptions[240]="Windows » Halves » Tile Left? Half"
+	command_descriptions[241]="Windows » Halves » Tile Right? Half"
+	command_descriptions[242]="Windows » Halves » Tile Top? Half"
+	command_descriptions[243]="Windows » Halves » Tile Bottom? Half"
+	command_descriptions[244]="Windows » Quarters » Tile Top Left? Quarter"
+	command_descriptions[245]="Windows » Quarters » Tile Top Right? Quarter"
+	command_descriptions[246]="Windows » Quarters » Tile Bottom Left? Quarter"
+	command_descriptions[247]="Windows » Quarters » Tile Bottom Right? Quarter"
+	command_descriptions[248]="Windows » Arrange » Arrange Left and Right"
+	command_descriptions[249]="Windows » Arrange » Arrange Right and Left"
+	command_descriptions[250]="Windows » Arrange » Arrange Top and Bottom"
+	command_descriptions[251]="Windows » Arrange » Arrange Bottom and Top"
+	command_descriptions[256]="Windows » Arrange » Arrange in Quarters"
 	
 	# Look up the description for the given ID
 	if [[ -n "${command_descriptions[$command_id]}" ]]; then
