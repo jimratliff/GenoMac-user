@@ -23,6 +23,7 @@ safe_source "${PREFS_FUNCTIONS_DIR}/symbolichotkeys_helpers.sh"
 # OPTION_CHAR=$'\u2325'    # ⌥
 # COMMAND_CHAR=$'\u2318'   # ⌘
 # META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
+# MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 
 function set_symbolichotkeys() {
 
@@ -71,6 +72,8 @@ disable_command_by_its_id 256
 local modifiers_for_mission_control=$META_MODIFIER_CHARS
 local modifiers_for_keyboard_navigation=$MODIFIERS_KEYBOARD_NAVIGATION
 
+####### Mission Control
+
 # Activate Mission Control
 assign_hotkey_to_command_id 32 "F8" $modifiers_for_mission_control
 
@@ -100,6 +103,16 @@ assign_hotkey_to_command_id 130 "F3" $modifiers_for_mission_control
 assign_hotkey_to_command_id 131 "F4" $modifiers_for_mission_control
 assign_hotkey_to_command_id 132 "F5" $modifiers_for_mission_control
 assign_hotkey_to_command_id 133 "F6" $modifiers_for_mission_control
+
+####### Keyboard navigation
+assign_hotkey_to_command_id 7 "F2" $modifiers_for_keyboard_navigation
+assign_hotkey_to_command_id 8 "F3" $modifiers_for_keyboard_navigation
+assign_hotkey_to_command_id 9 "F4" $modifiers_for_keyboard_navigation
+assign_hotkey_to_command_id 10 "F5" $modifiers_for_keyboard_navigation
+assign_hotkey_to_command_id 11 "F6" $modifiers_for_keyboard_navigation
+assign_hotkey_to_command_id 12 "F1" $modifiers_for_keyboard_navigation
+assign_hotkey_to_command_id 13 "F7" $modifiers_for_keyboard_navigation
+
 
 report_end_phase_standard
 
