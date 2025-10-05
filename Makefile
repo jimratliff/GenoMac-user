@@ -18,14 +18,14 @@ stow-dotfiles:
 initial-prefs:
 	zsh scripts/initial_prefs.sh
 
-btt-license:
-	zsh scripts/install_BTT_license.sh
-
 bootstrap-user:
 	zsh scripts/execute_one_time_per_user.sh
 
 verify-ssh-agent:
 	zsh scripts/verify_ssh_agent_setup.sh
+
+btt-license:
+	zsh scripts/install_BTT_license.sh
 
 defaults-detective:
 	zsh scripts/defaults_detective.sh
