@@ -18,6 +18,9 @@ stow-dotfiles:
 initial-prefs:
 	zsh scripts/initial_prefs.sh
 
+btt-license:
+	zsh scripts/install_BTT_license.sh
+
 bootstrap-user:
 	zsh scripts/execute_one_time_per_user.sh
 
