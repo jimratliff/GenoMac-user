@@ -88,6 +88,11 @@ GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS="$HOME/genomac-detective"
 # accessed during user-account creation.
 GENOMAC_USER_LOGIN_PICTURES_DIRECTORY="$HOME/.genomac-user-login-pictures"
 
+# Specify the local directory in which preferences and other files shared across users are stored
+# These may contain secrets, so this directory is NOT within a repo
+# E.g., this would be within each user’s Dropbox directory.
+GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="$HOME/Dropbox/Share_prefs"
+
 # Export environment variables to be available in all subsequent shells
 echo "Exporting environment variables to be consistently available."
 
@@ -113,3 +118,4 @@ export_and_report GENOMAC_USER_LOCAL_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_STOW_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS
 export_and_report GENOMAC_USER_LOGIN_PICTURES_DIRECTORY
+export_and_report GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY
