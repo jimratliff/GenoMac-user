@@ -44,6 +44,10 @@ function install_btt_license_file() {
   if [[ ! -e "$destination_path" ]] || ! cmp -s "$origin_path" "$destination_path"; then
     cp -f "$origin_path" "$destination_path" ; success_or_not
     report_success "Installed or updated ${license_file_name}"
+
+    report_action_taken "Set ownership and permissions on ${destination_path}."
+    chmod 600 "$destination_path" ; success_or_not
+    chown "$USER" "$destination_path" ; success_or_not
   else
     report_success "${license_file_name} already up to date"
   fi
