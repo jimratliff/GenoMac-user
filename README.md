@@ -57,9 +57,9 @@ USER_CONFIGURER, like any other user, needs to have its user-scoped settings be 
 
 However, the difference in this regard between USER_CONFIGURER and any other user is that USER_CONFIGURER is called upon to use the repo as an intermediate step in implementing its more-ambitious mandate of configuring the entire Mac:
 - First, USER_CONFIGURER uses the GenoMac-system repo to set up the Mac from a systemwide perspective, including installing crucial apps and other resources for systemwide use by all users
-- USER_CONFIGURER will then clone this repo (GenoMac-user) to its home directory and follow its instructions to configure USER_CONFIGURER’s user-scoped settings.
+- USER_CONFIGURER will then clone this repo (GenoMac-user) to USER_CONFIGURER’s home directory and follow this repo’s instructions to configure USER_CONFIGURER’s user-scoped settings.
 - USER_CONFIGURER will then return to GenoMac-system to create the additional user accounts for the Mac.
-- Then the GenoMac-system repo will direct the iteration through all other users—many of which are newly created by USER_CONFIGURER—where, for each other user, following the instructions of GenoMac-user with respect to that user.
+- Then the GenoMac-system repo will direct you to iterate through all other users—many of which are newly created by USER_CONFIGURER—where, for each other user, you follow the instructions of GenoMac-user with respect to that user.
 
 - In contrast, for any user other than USER_CONFIGURER, the current repo is the *starting point* for configuring that user.
 
