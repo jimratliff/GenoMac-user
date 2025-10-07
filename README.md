@@ -117,6 +117,17 @@ For each user:
     - From `~/.genomac-user`, execute `make initial-prefs`
     - Log out and log back in
 - Integrate 1Password’s SSH agent with SSH, allowing the user to authenticate with GitHub via the terminal
+- IN PROGRESS ADDITIONS
+  - Hook up Dropbox
+    - Launch Dropbox
+    - Sign into Dropbox account
+    - Selectively sync at least:
+      - `~/Dropbox/Share_prefs`
+  - BetterTouchTool (BTT)
+    - Install the BTT license file that is stored in Dropbox into the appropriate location in `~/Library/Application Support/BetterTouchTool`
+      - From `~/.genomac-user`, execute `make btt-license`
+    - Launch BetterTouchTool
+      - It should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed from `~/.genomac-user/stow_directory/BetterTouchTool/.btt_autoload_preset.json`
 
 ## Step-by-step implementation (for a particular user)
 
