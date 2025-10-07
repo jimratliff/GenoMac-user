@@ -282,7 +282,7 @@ If successful, you will see:
 Verified: SSH agent is working
 ```
 
-### Create and sync the Dropbox directory and configure apps that rely on Dropbox (IN PROGRESS)
+### Create and sync the Dropbox directory and configure apps that rely on Dropbox
 #### Create and sync the Dropbox directory
 - Launch Dropbox
 - Sign into the Dropbox account
