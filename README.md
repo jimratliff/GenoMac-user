@@ -116,6 +116,7 @@ For each user:
 - macOS settings
     - From `~/.genomac-user`, execute `make initial-prefs`
     - Log out and log back in
+- Implement bootstrap-only starting points for (a) the app lineup in the Dock (b) the toolbar for Finder windows, and (c) the toolbar for Preview.app windows
 - Integrate 1Password’s SSH agent with SSH, allowing the user to authenticate with GitHub via the terminal
 - IN PROGRESS ADDITIONS
   - Hook up Dropbox
