@@ -97,7 +97,7 @@ For tips about how to figure out what the `defaults write` commands are that cor
 A purely bootstrap operation is one that is intended to be performed typically only once per user. Examples:
 - cloning this repo to the user’s local home directory
 - implementing settings that provide a starting point for the user, from which the user is free to add or subtract without fear that those subsequent changes would be overridden by a later maintenance step.
-  - For example, establishing the initial toolbar configuration for Preview.app. Initially, the toolbar configuration is created to contain certain elements and exclude certain elements. The user can add or subtract to those (or rearrance the order in which they appear on the toolbar) with the understanding that this script won’t be re-run for that user. (If the script *were* re-run, it would undo any of the changes the user made.
+  - For example, establishing the initial toolbar configuration for Preview.app. Initially, the toolbar configuration is created to contain certain elements and exclude certain elements. The user can add or subtract to those (or rearrange the order in which they appear on the toolbar) with the understanding that this script won’t be re-run for that user. (If the script *were* re-run, it would undo any of the changes the user made.
 
 More typical is an idempotent operation that is both bootstrap and ongoing maintenance. This characterizes most of the activities of this repo. Sucn an operation establishes a setting the first time the script is run for the user (acting as a bootstrap operation) but the same script also enforces that setting on subsequent maintenance runs.
 
