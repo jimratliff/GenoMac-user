@@ -130,6 +130,13 @@ For each user:
       - It should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed from `~/.genomac-user/stow_directory/BetterTouchTool/.btt_autoload_preset.json`
 
 ## Step-by-step implementation (for a particular user)
+- Establish real-time connection to communicate text back and forth
+- Cloning this repo
+- “Stow” the dotfiles
+- Implement the initial set of macOS-related settings
+- Run certain one-time-only bootstrapping operations
+- Configure 1Password for authentication with GitHub
+- Create and sync the Dropbox directory and configure apps that rely on Dropbox
 
 ### Establish real-time connection to communicate text back and forth
 (NOTE: USER_CONFIGURER will have already performed this step.)
@@ -275,13 +282,13 @@ If successful, you will see:
 Verified: SSH agent is working
 ```
 
-## Create and sync the Dropbox directory and configure apps that rely on Dropbox (IN PROGRESS)
-### Create and sync the Dropbox directory
+### Create and sync the Dropbox directory and configure apps that rely on Dropbox (IN PROGRESS)
+#### Create and sync the Dropbox directory
 - Launch Dropbox
 - Sign into the Dropbox account
 - Selectively sync at least:
   - `~/Dropbox/Share_prefs`
-### Install BetterTouchTool license file
+#### Install BetterTouchTool license file
 
 ## Remaining configuration steps that have not been (cannot be) automated
 - macOS interface stuff
