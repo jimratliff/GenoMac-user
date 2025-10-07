@@ -275,6 +275,14 @@ If successful, you will see:
 Verified: SSH agent is working
 ```
 
+## Create and sync the Dropbox directory and configure apps that rely on Dropbox (IN PROGRESS)
+### Create and sync the Dropbox directory
+- Launch Dropbox
+- Sign into the Dropbox account
+- Selectively sync at least:
+  - `~/Dropbox/Share_prefs`
+### Install BetterTouchTool license file
+
 ## Remaining configuration steps that have not been (cannot be) automated
 - macOS interface stuff
   - Set the screensaver to Matrix
