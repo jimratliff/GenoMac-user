@@ -130,13 +130,13 @@ For each user:
       - It should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed from `~/.genomac-user/stow_directory/BetterTouchTool/.btt_autoload_preset.json`
 
 ## Step-by-step implementation (for a particular user)
-- [Establish real-time connection to communicate text back and forth](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#establish-real-time-connection-to-communicate-text-back-and-forth)
-- [Cloning this repo](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#cloning-this-repo)
-- [“Stow” the dotfiles](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#stow-the-dotfiles)
-- [Implement the initial set of macOS-related settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#implement-the-initial-set-of-macos-related-settings)
-- [Run certain one-time-only bootstrapping operations](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#run-certain-one-time-only-bootstrapping-operations)
-- [Configure 1Password for authentication with GitHub](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#configure-1password-for-authentication-with-github)
-- [Create and sync the Dropbox directory and configure apps that rely on Dropbox](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#create-and-sync-the-dropbox-directory-and-configure-apps-that-rely-on-dropbox)
+- [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
+- [Cloning this repo](#cloning-this-repo)
+- [“Stow” the dotfiles](#stow-the-dotfiles)
+- [Implement the initial set of macOS-related settings](#implement-the-initial-set-of-macos-related-settings)
+- [Run certain one-time-only bootstrapping operations](#run-certain-one-time-only-bootstrapping-operations)
+- [Configure 1Password for authentication with GitHub](#configure-1password-for-authentication-with-github)
+- [Create and sync the Dropbox directory and configure apps that rely on Dropbox](#create-and-sync-the-dropbox-directory-and-configure-apps-that-rely-on-dropbox)
 
 ### Establish real-time connection to communicate text back and forth
 (NOTE: USER_CONFIGURER will have already performed this step.)
