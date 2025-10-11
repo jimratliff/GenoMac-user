@@ -254,11 +254,11 @@ Again in the 1Password app:
       - Click the default “Use Key Names” button
     - Advanced
       - Remember key approval: **until 1Password quits**
+      - Do **not** check “Generate SSH config file with bookmarked hosts”
   - Command-Line Interface (CLI)
     - ✅ Integrate with 1Password CLI
       - I don’t know much about this, but it seems like a good idea.
       - (“Use the desktop app to sign in to 1Password in the terminal.”)
-    - Do **not** check “Generate SSH config file with bookmarked hosts”
 
 #### Test the SSH connection with GitHub
 ```shell
