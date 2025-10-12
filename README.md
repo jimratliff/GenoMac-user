@@ -282,13 +282,25 @@ If successful, you will see:
 Verified: SSH agent is working
 ```
 
-### Create and sync the Dropbox directory and configure apps that rely on Dropbox
-#### Create and sync the Dropbox directory
+### Connect to the user’s Dropbox account and configure apps that rely on Dropbox
+#### Connect to the user’s Dropbox account
 - Launch Dropbox
-- Sign into the Dropbox account
+- A splash dialog will invite you to “Sign in with Dropbox”
+- Accept the invitation ⇒ A browser window opens: “API Request Authorization - Dropbox”
+- A separate dialog asks you to “Turn on accessibility”
+  - Follow the instructions to do so: Settings » Accessibility » ✅ Dropbox
 - Selectively sync at least:
   - `~/Dropbox/Share_prefs`
 #### Install BetterTouchTool license file
+The BetterTouchTool license is stored in Dropbox. It needs to be installed into the appropriate location of the user’s Library folder.
+```shell
+cd ~/.genomac-user
+make btt-license
+```
+
+Test the license installation (and BTT more generally) by:
+- Launch BetterTouchTool
+  - BTT should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed into `~/.config/BetterTouchTool`.
 
 ## Remaining configuration steps that have not been (cannot be) automated
 - macOS interface stuff
