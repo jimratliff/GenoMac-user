@@ -298,7 +298,7 @@ cd ~/.genomac-user
 make btt-license
 ```
 
-TO DO: Run defaults to change the expected location of the license file
+TO DO: Run defaults to change the expected location of the auto-loaded config file.
 
 Test the license installation (and BTT more generally) by:
 - Launch BetterTouchTool
