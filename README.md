@@ -298,6 +298,8 @@ cd ~/.genomac-user
 make btt-license
 ```
 
+TO DO: Run defaults to change the expected location of the license file
+
 Test the license installation (and BTT more generally) by:
 - Launch BetterTouchTool
   - BTT should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed into `~/.config/BetterTouchTool`.
