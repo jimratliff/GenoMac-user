@@ -137,7 +137,7 @@ For each user:
 - [Implement the initial set of macOS-related settings](#implement-the-initial-set-of-macos-related-settings)
 - [Run certain one-time-only bootstrapping operations](#run-certain-one-time-only-bootstrapping-operations)
 - [Configure 1Password for authentication with GitHub](#configure-1password-for-authentication-with-github)
-- [Create and sync the Dropbox directory and configure apps that rely on Dropbox](#create-and-sync-the-dropbox-directory-and-configure-apps-that-rely-on-dropbox)
+- [Connect to the user’s Dropbox account and configure apps that rely on Dropbox](#connect-to-the-users-dropbox-account-and-configure-apps-that-rely-on-dropbox)
 
 ### Establish real-time connection to communicate text back and forth
 (NOTE: USER_CONFIGURER will have already performed this step.)
@@ -292,12 +292,23 @@ Verified: SSH agent is working
   - Follow the instructions to do so: Settings » Accessibility » ✅ Dropbox
 - Selectively sync at least:
   - `~/Dropbox/Share_prefs`
-#### Install BetterTouchTool license file
+ 
+#### BetterTouchTool (BTT)
+There are two parts to configuring BetterTouchTool
+- [Installing the license file](#install-bettertouchtool-license-file)
+- [Specify the “preset” configuration for BTT to use]
+
+##### Install BetterTouchTool license file
 The BetterTouchTool license is stored in Dropbox. It needs to be installed into the appropriate location of the user’s Library folder.
 ```shell
 cd ~/.genomac-user
 make btt-license
 ```
+
+This is a *bootstrap-only* operation: it need be performed only once per user.
+
+##### Specify the “preset” configuration for BTT to use
+
 
 TO DO: Run defaults to change the expected location of the auto-loaded config file.
 
