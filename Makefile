@@ -6,6 +6,7 @@
     initial-prefs \
 	execute_one_time_per_user \
     verify-ssh-agent \
+	btt-license \
 	defaults_detective \
 
 # --------------------------------------------------------------------
