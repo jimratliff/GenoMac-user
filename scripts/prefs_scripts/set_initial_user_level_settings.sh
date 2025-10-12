@@ -12,6 +12,7 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 safe_source "${PREFS_FUNCTIONS_DIR}/set_app_state_persistence.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_auto_correction_suggestion_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_bettertouchtool_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_default_shell.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_diskutility_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_finder_settings.sh"
@@ -149,6 +150,9 @@ report_action_taken "Begin settings for third-party applications"
 
 # iTerm2
 set_iterm_settings
+
+# BetterTouchTool
+set_btt_settings
 
 # Warp
 # Warp is now excluded from Project GenoMac because it can’t be reliably configured via `defaults write`
