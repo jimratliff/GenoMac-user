@@ -293,7 +293,7 @@ Verified: SSH agent is working
 - Selectively sync at least:
   - `~/Dropbox/Share_prefs`
  
-#### BetterTouchTool (BTT)
+#### Configuring BetterTouchTool (BTT) after Dropbox is synced
 There are two parts to configuring BetterTouchTool
 - [Installing the license file](#install-bettertouchtool-license-file)
 - [Specify the “preset” configuration for BTT to use](#specify-the-preset-configuration-for-btt-to-use)
@@ -412,3 +412,5 @@ where *type* could be, for example, `-bool`, `-str`, or `-int`.
 
 ## Appendix: What to do when you change the BetterTouchTool preset
 Status: TO DO
+
+
