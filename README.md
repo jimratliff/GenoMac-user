@@ -6,7 +6,7 @@
 - [Remaining configuration steps that have not been (cannot be) automated](#remaining-configuration-steps-that-have-not-been-cannot-be-automated)
 - [Known issues](#known-issues)
 - [Appendix: Determining the defaults write commands that correspond to desired changes in settings](#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings)
-- [Appendix: What to do when you change the BetterTouchTool preset]
+- [Appendix: What to do when you change the BetterTouchTool preset](#appendix-what-to-do-when-you-change-the-bettertouchtool-preset)
 
 ## Quick-reference cheat sheet for occasional maintenance
 (First time here? Please go to the next major heading, viz., [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac).)
