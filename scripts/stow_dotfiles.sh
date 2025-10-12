@@ -52,7 +52,7 @@ function stow_packages_dotfiles() {
   # local STOW_VERBOSITY=2
   local STOW_VERBOSITY=0
 
-  local PACKAGES_LIST=("1password" "git" "homebrew" "ssh" "starship" "stow" "zsh")
+  local PACKAGES_LIST=("1password" "BetterTouchTool" "git" "homebrew" "ssh" "starship" "stow" "zsh")
 
   for package in "${PACKAGES_LIST[@]}"; do
     report_action_taken "Stowing package: $package"
