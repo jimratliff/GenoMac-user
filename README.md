@@ -296,7 +296,7 @@ Verified: SSH agent is working
 #### BetterTouchTool (BTT)
 There are two parts to configuring BetterTouchTool
 - [Installing the license file](#install-bettertouchtool-license-file)
-- [Specify the “preset” configuration for BTT to use]
+- [Specify the “preset” configuration for BTT to use](#specify-the-preset-configuration-for-btt-to-use)
 
 ##### Install BetterTouchTool license file
 The BetterTouchTool license is stored in Dropbox. It needs to be installed into the appropriate location of the user’s Library folder.
@@ -307,11 +307,18 @@ make btt-license
 
 This is a *bootstrap-only* operation: it need be performed only once per user.
 
+This step can be performed only after `~/Dropbox/Share_prefs` is synced.
+
 ##### Specify the “preset” configuration for BTT to use
+As of October 2025, BTT has no reliable method for syncing its “preset” configuration across users/Macs (although the promised delivery of this feature is overdue).
 
+Instead, an established preset file is deployed by GenoMac-user to a location where BTT will detect it on BTT’s launching and import it for use.
 
-TO DO: Run defaults to change the expected location of the auto-loaded config file.
+This deployment is accomplished by GenoMac-user’s dotfile-stowing process. Hence, no separate operation need be performed here to implement this (given that the dotfile-stowing process is already part of the standard GenoMac-user workflow).
 
+It is expected that BTT’s standard preset will be very stable in the sense of rarely changing. If it *does* change, see [Appendix: What to do when you change the BetterTouchTool preset](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-what-to-do-when-you-change-the-bettertouchtool-preset).
+
+##### Test BTT’s configuration
 Test the license installation (and BTT more generally) by:
 - Launch BetterTouchTool
   - BTT should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed into `~/.config/BetterTouchTool`.
