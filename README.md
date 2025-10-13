@@ -435,11 +435,16 @@ If the BTT preset *does* change, here are the steps to deploy the updated preset
       - A Save dialog opens
         - The file name defaults to `Default.bttpreset`
       - Choose a destination and click Save.
-      - Rename the file to `Default_preset.json`
-        - Changing the extension to `.json` is mandatory
-        - The basename/stem (viz., `Default_preset`) must conform to the environment variable `GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME` assigned in the script `assign_environment_variables.sh`.
+  - In Finder
+    - Navigate to where you saved the exported BTT preset
+    - Rename the file to `Default_preset.json`
+      - Changing the extension to `.json` is mandatory
+      - The basename/stem (viz., `Default_preset`) must conform to the environment variable `GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME` assigned in the script `assign_environment_variables.sh`.
 - Upload the updated preset to the appropriate subdirectory of the GenoMac-user “stow directory”
-  -  `GenoMac-user/stow_directory/BetterTouchTool/.config/BetterTouchTool`
-    -  This subdirectory must conform to the environment variable `GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY` assigned in the script `assign_environment_variables.sh`.
+  - In the GitHub web interface (or any other way that works)
+    - Upload the renamed and updated preset file to: `GenoMac-user/stow_directory/BetterTouchTool/.config/BetterTouchTool`
+      -  This subdirectory must conform to the environment variable `GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY` assigned in the script `assign_environment_variables.sh`.
+- For every user, on every Mac, re-stow the dotfiles
+  - See “[Re-“stow” the dotfiles](#re-stow-the-dotfiles)”
 
 
