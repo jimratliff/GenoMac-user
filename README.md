@@ -333,6 +333,12 @@ Test the license installation (and BTT more generally) by:
   - Firefox can’t be configured via scripts. Its settings must be implemented manually.
   - Brave Browser can’t be significantly configured via scripts. Its settings must be implemented manually.
  
+## TODOs
+- Laptop-specific settings
+  - To date, my development of Project GenoMac has been performed on a Mac mini. Thus, I have not been able to experiment with settings that are relevant only on a laptop, such as battery settings.
+  - In particular, I should explore the Control Center’s Battery module’s setting.
+    - In particular, I believe the legacy mentions of `defaults write com.apple.menuextra.battery ShowPercent -string "NO"` no longer apply.
+ 
 ## Known issues
 - Generally
   - Some settings *appear* *initially* not to take, but do in fact take effect after a few logout/login cycles. Examples of these include:
