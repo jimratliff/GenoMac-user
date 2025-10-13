@@ -98,11 +98,6 @@ GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME="Default_preset.json"
 GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY="$HOME/.config/BetterTouchTool"
 GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH="${GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY}/${GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME}"
 
-# Specify where BetterTouchTool (BTT) looks for a preset (i.e., config file) to auto-load at launch
-# This must conform to the destination at which this preset file is “stow”ed, e.g., see
-# stow_directory/BetterTouchTool/.config/BetterTouchTool/.btt_autoload_preset.json
-GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH="$HOME/.config/BetterTouchTool/.btt_autoload_preset.json"
-
 # Export environment variables to be available in all subsequent shells
 echo "Exporting environment variables to be consistently available."
 
@@ -129,4 +124,6 @@ export_and_report GENOMAC_USER_LOCAL_STOW_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS
 export_and_report GENOMAC_USER_LOGIN_PICTURES_DIRECTORY
 export_and_report GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY
+export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME
+export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH
