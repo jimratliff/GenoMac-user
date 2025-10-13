@@ -30,6 +30,10 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "Always" ; success_or_
 report_adjust_setting "Reverse obnoxious default that revealed desktop anytime you clicked on the desktop"
 defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false ; success_or_not
 
+# Do NOT show widgets on Desktop
+report_adjust_setting "Do NOT show widgets on the desktop"
+defaults write com.apple.WindowManager StandardHideWidgets -bool true ; success_or_not
+
 # Window tabbing mode
 report_adjust_setting "AppleWindowTabbingMode: manual ⇒ Window should display as tabs according to window’s tabbing mode”"
 defaults write NSGlobalDomain AppleWindowTabbingMode -string "manual" ; success_or_not
