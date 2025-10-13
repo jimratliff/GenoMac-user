@@ -48,6 +48,18 @@ printf "GENOMAC_HELPER_DIR:               %s\n" "$GENOMAC_HELPER_DIR"
 # Source the helpers script
 source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
+############### CONJECTURE: The following is used only by GenoMac-system
+
+# Specify URL for cloning the public GenoMac-system repository using HTTPS
+GENOMAC_SYSTEM_REPO_URL="https://github.com/jimratliff/GenoMac-system.git"
+
+# Specify local directory into which the GenoMac-system repository will be 
+# cloned
+# Note: This repo is cloned only by USER_CONFIGURER.
+GENOMAC_SYSTEM_LOCAL_DIRECTORY="$HOME/.genomac-system"
+
+############### CONJECTURE: The following is used only by GenoMac-user
+
 # Specify location of PlistBuddy
 PLISTBUDDY_PATH='/usr/libexec/PlistBuddy'
 
@@ -59,16 +71,8 @@ COMMAND_CHAR=$'\u2318'   # ⌘
 META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 
-# Specify URL for cloning the public GenoMac-system repository using HTTPS
-GENOMAC_SYSTEM_REPO_URL="https://github.com/jimratliff/GenoMac-system.git"
-
 # Specify URL for cloning the public GenoMac-user repository using HTTPS
 GENOMAC_USER_REPO_URL="https://github.com/jimratliff/GenoMac-user.git"
-
-# Specify local directory into which the GenoMac-system repository will be 
-# cloned
-# Note: This repo is cloned only by USER_CONFIGURER.
-GENOMAC_SYSTEM_LOCAL_DIRECTORY="$HOME/.genomac-system"
 
 # Specify local directory into which the GenoMac-user repository will be cloned
 # Note: This repo is cloned by each user.
