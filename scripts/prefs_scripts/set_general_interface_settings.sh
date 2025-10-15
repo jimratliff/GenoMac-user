@@ -31,7 +31,7 @@ report_adjust_setting "Reverse obnoxious default that revealed desktop anytime y
 defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false ; success_or_not
 
 # Restore to all apps the “Save As…” menu item as a first-class visible-without-option choice
-report_adjust_setting "Restore “Save As…” (⌘S) menu item"
+report_adjust_setting "Restore “Save As…” (⇧⌘S) menu item"
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Save As…' '@$S' ; success_or_not
 
 # Do NOT show widgets on Desktop
