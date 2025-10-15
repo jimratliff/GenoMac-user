@@ -21,9 +21,13 @@ local plist_path=$(legacy_plist_path_from_domain "$domain")
 
 ensure_plist_path_exists "${plist_path}"
 
-# DiskUtility: Show all devices in sidebar
+# Show all devices in sidebar
 report_adjust_setting "DiskUtility: Show all devices in sidebar"
-defaults write ${domain} SidebarShowAllDevices -bool true;success_or_not
+defaults write ${domain} SidebarShowAllDevices -bool true ; success_or_not
+
+# Show hidden partitions (untested)
+report_adjust_setting "DiskUtility: Show hidden partitions"
+defaults write ${domain} DUShowEveryPartition -boolean true ; success_or_not
 
 report_end_phase_standard
 
