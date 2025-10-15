@@ -313,7 +313,9 @@ This step can be performed only after `~/Dropbox/Share_prefs` is synced.
 ##### Specify the “preset” configuration for BTT to use
 As of October 2025, BTT has no reliable method for syncing its “preset” configuration across users/Macs (although the promised delivery of this feature is overdue).
 
-Instead, an established preset file is deployed by GenoMac-user to a location where BTT will detect it on BTT’s launching and import it for use.
+Instead, an established preset file is deployed by GenoMac-user to a location where BTT will detect it on BTT’s launching and import it for use.[^BTT-autoload-location]
+
+[^BTT-autoload-location]: By default, BTT expects the preset-to-be-autoloaded to exist at `~/.btt_autoload_preset.json`. However, I override this location to be `~/.config/BetterTouchTool/Default_preset.json` using the syntax `defaults write com.hegenberg.BetterTouchTool BTTAutoLoadPath "~/somepath"`.
 
 This deployment is accomplished by GenoMac-user’s dotfile-stowing process. Hence, no separate operation need be performed here to implement this (given that the dotfile-stowing process is already part of the standard GenoMac-user workflow).
 
