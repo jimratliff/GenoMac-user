@@ -34,6 +34,33 @@ defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool fa
 report_adjust_setting "Restore “Save As…” (⇧⌘S) menu item"
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Save As…' '@$S' ; success_or_not
 
+# Change size and colors of cursor
+report_action_taken "Change size and colors of cursor"
+
+report_adjust_setting "Change size of cursor"
+defaults write com.apple.universalaccess mouseDriverCursorSize -float "1.448976278305054" ; success_or_not
+
+report_action_taken "Change fill and outline colors of cursor"
+
+report_adjust_setting "1 of 2: Change fill color of cursor"
+defaults write com.apple.universalaccess cursorFill -dict \
+  alpha -float 1 \
+  blue  -float 0 \
+  green -float 0.5763723254 \
+  red   -float 1
+ success_or_not
+
+report_adjust_setting "2 of 2: Change outline color of cursor"
+defaults write com.apple.universalaccess cursorOutline -dict \
+  alpha -float 1 \
+  blue  -float 0.2586010993 \
+  green -float 0.4751212597 \
+  red   -float 0.6679978967
+ success_or_not
+
+
+
+
 # Do NOT show widgets on Desktop
 report_adjust_setting "Do NOT show widgets on the desktop"
 defaults write com.apple.WindowManager StandardHideWidgets -bool true ; success_or_not
