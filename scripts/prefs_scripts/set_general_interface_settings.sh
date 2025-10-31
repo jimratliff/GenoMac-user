@@ -59,6 +59,17 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false ; su
 report_adjust_setting "Always show window proxy icon"
 defaults write com.apple.universalaccess showWindowTitlebarIcons -bool true ; success_or_not
 
+# Reduce transparency and increase contrast
+report_action_taken "Reduce transparency and increase contrast"
+report_adjust_setting "1 of 4: DarkenSystemColors"
+defaults write com.apple.Accessibility DarkenSystemColors -int 1 ; success_or_not
+report_adjust_setting "2 of 4: EnhancedBackgroundContrastEnabled"
+defaults write com.apple.Accessibility EnhancedBackgroundContrastEnabled -int 1 ; success_or_not
+report_adjust_setting "3 of 4: increaseContrast"
+defaults write com.apple.universalaccess increaseContrast -bool true ; success_or_not
+report_adjust_setting "4 of 4: reduceTransparency"
+defaults write com.apple.universalaccess reduceTransparency -bool true ; success_or_not
+
 ############### Expand certain dialog boxes by default
 report_action_taken "Expand “Save As…” dialog boxes"
 report_adjust_setting "1 of 2: NSNavPanelExpandedStateForSaveMode"
