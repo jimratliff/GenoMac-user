@@ -42,7 +42,7 @@ defaults write com.apple.universalaccess mouseDriverCursorSize -float "1.4489762
 
 report_action_taken "Change fill and outline colors of cursor"
 
-report_adjust_setting "1 of 2: Change fill color of cursor"
+report_adjust_setting "1 of 3: Change fill color of cursor"
 defaults write com.apple.universalaccess cursorFill -dict \
   alpha -float 1 \
   blue  -float 0 \
@@ -50,7 +50,7 @@ defaults write com.apple.universalaccess cursorFill -dict \
   red   -float 1
  success_or_not
 
-report_adjust_setting "2 of 2: Change outline color of cursor"
+report_adjust_setting "2 of 3: Change outline color of cursor"
 defaults write com.apple.universalaccess cursorOutline -dict \
   alpha -float 1 \
   blue  -float 0.2586010993 \
@@ -58,8 +58,8 @@ defaults write com.apple.universalaccess cursorOutline -dict \
   red   -float 0.6679978967
  success_or_not
 
-
-
+ report_adjust_setting "3 of 3: Mark cursor as customized"
+ defaults write com.apple.universalaccess cursorIsCustomized -bool true ; success_or_not
 
 # Do NOT show widgets on Desktop
 report_adjust_setting "Do NOT show widgets on the desktop"
