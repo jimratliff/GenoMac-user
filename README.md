@@ -329,7 +329,9 @@ Test the license installation (and BTT more generally) by:
 ## Remaining configuration steps that have not been (cannot be) automated
 - macOS interface stuff
   - Set the screensaver to Matrix
-  - The `defaults` command to enable “Play feedback when volume is changed” doesn’t always work: though the switch as Settings » Sound » Play feedback when volume is changed is successfully enabled, it doesn't necessarily actually cause feedback when volume is changed. You may need to toggle this off and then back on for it to work.
+  - The `defaults` command to enable “Play feedback when volume is changed” doesn’t always work
+    - NOTE: This may have been fixed on 11/1/2025 when I changed the type of this defaults setting from `bool` to `int`.
+    - Though the switch as Settings » Sound » Play feedback when volume is changed is successfully enabled, it doesn't necessarily actually cause feedback when volume is changed. You may need to toggle this off and then back on for it to work.
   - Widgets
     - The default widgets can’t be removed programmaticaally. If you don’t want them, you’ll have to remove them manually.
 - Applications
