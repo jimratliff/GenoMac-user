@@ -359,6 +359,7 @@ Test the license installation (and BTT more generally) by:
     - Other, built-in screen savers *do* behave correctly.
     - I created an issue, on September 12, 2025: [Doesn't work with macOS Tahoe 26 RC (release candidate) #24](https://github.com/monroewilliams/MatrixDownload/issues/24)
 - Give audible feedback when volume is changed
+  - NOTE: This may have been fixed on 11/1/2025, when I changed the type of this defaults settings from `bool` to `int`.
   - Despite the automation step, which *does* change in the indication in Settings, it might not take effect. To fix: Manually toggle that switch again.
   - As I recall, this bug goes back years.
 
