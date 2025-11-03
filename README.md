@@ -327,7 +327,7 @@ Test the license installation (and BTT more generally) by:
   - BTT should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed into `~/.config/BetterTouchTool`.
 
 ## Remaining configuration steps that have not been (cannot be) automated
-See the Google Docs document “[Project GenoMac: Post-automation steps](https://docs.google.com/document/d/1jKJpWnCBFcT24MGbaeMq90fbnus2rMHIVlRejkfI9aw/edit?usp=sharing).”
+See the Google Docs document “[Project GenoMac: Post-automation steps](https://docs.google.com/document/d/1jKJpWnCBFcT24MGbaeMq90fbnus2rMHIVlRejkfI9aw/edit?usp=sharing)” (in my standard Google account).
  
 ## TODOs
 - Laptop-specific settings
