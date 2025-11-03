@@ -327,27 +327,7 @@ Test the license installation (and BTT more generally) by:
   - BTT should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed into `~/.config/BetterTouchTool`.
 
 ## Remaining configuration steps that have not been (cannot be) automated
-- macOS interface stuff
-  - Set the screensaver to Matrix
-  - The `defaults` command to enable “Play feedback when volume is changed” doesn’t always work. Fixed?[^VolumeChangeFeedback]
-- Applications
-  - TextExpander
-    - The two settings I want to change cannot be changed via `defaults` commands.
-    - Process
-      - Launch TextExpander
-      - Log in using email/password from 1Password "TextExpander"
-      - For first account on Mac: Dialog: "'TextExpander.app' would like to control this computer using accessibility features. Grant access to this application in Privacy & Security settings, located in System Settings.
-        - Action: Open System Settings: Accessibility: Privacy & Security: Turn ON ✅ TextExpander
-        - Dock: Change Mission Control “Assign To” to: All Desktops
-      - TextExpander Preferences
-        - Suggestions: Scan typing for suggestions
-          - Un-check Terminal (❌) so that no applications are selected
-        - Hotkeys
-          - Remove hotkey from “Quick Actions”
-  - Firefox can’t be configured via scripts. Its settings must be implemented manually.
-  - Brave Browser can’t be significantly configured via scripts. Its settings must be implemented manually.
- 
-[^VolumeChangeFeedback]: This may have been fixed on 11/1/2025 when I changed the type of this defaults setting from `bool` to `int`. Previously: Though the switch as Settings » Sound » Play feedback when volume is changed is successfully enabled, it doesn't necessarily actually cause feedback when volume is changed. You may need to toggle this off and then back on for it to work.
+See the Google Docs document “[Project GenoMac: Post-automation steps](https://docs.google.com/document/d/1jKJpWnCBFcT24MGbaeMq90fbnus2rMHIVlRejkfI9aw/edit?usp=sharing).”
  
 ## TODOs
 - Laptop-specific settings
