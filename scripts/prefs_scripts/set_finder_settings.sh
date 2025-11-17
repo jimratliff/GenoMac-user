@@ -101,7 +101,7 @@ report_adjust_setting "⌘-double-click opens folder in new tab (not new window)
 defaults write com.apple.finder "FinderSpawnTab" -bool true ; success_or_not
 
 # Column view: Resize columns to fit filenames
-eport_adjust_setting "Resize columns to fit filenames"
+report_adjust_setting "Resize columns to fit filenames"
 defaults write com.apple.finder "_FXEnableColumnAutoSizing" -bool true ; success_or_not
 
 # Set Icon Views to Snap to Grid
