@@ -90,15 +90,19 @@ report_action_taken "Do not sort folders first"
 report_adjust_setting "1 of 2: Do not sort folders first in lists"
 defaults write com.apple.finder _FXSortFoldersFirst -bool false;success_or_not
 report_adjust_setting "1 of 2: Do not sort folders first on desktop"
-defaults write com.apple.finder "_FXSortFoldersFirstOnDesktop" -bool false;success_or_not
+defaults write com.apple.finder "_FXSortFoldersFirstOnDesktop" -bool false ; success_or_not
 
 # Enable warning when changing extension (reinforces the default)
 report_adjust_setting "Enable warning when changing extension (reinforces the default)"
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool true;success_or_not
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool true ; success_or_not
 
 # Folder opens in tab (not new window) after ⌘-double-click. (reinforces default)
 report_adjust_setting "⌘-double-click opens folder in new tab (not new window)"
-defaults write com.apple.finder "FinderSpawnTab" -bool true;success_or_not
+defaults write com.apple.finder "FinderSpawnTab" -bool true ; success_or_not
+
+# Column view: Resize columns to fit filenames
+eport_adjust_setting "Resize columns to fit filenames"
+defaults write com.apple.finder "_FXEnableColumnAutoSizing" -bool true ; success_or_not
 
 # Set Icon Views to Snap to Grid
 report_action_taken "Setting Icon Views to Snap to Grid"
