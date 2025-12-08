@@ -16,14 +16,15 @@ function set_default_browser() {
 report_start_phase_standard
 
 local default_browser_path="/opt/macadmins/bin/default-browser"
-local browser_uti_chrome="com.google.chrome"
-local browser_uti_safari="com.apple.safari"
-local browser_uti_firefox="org.mozilla.firefox"
 
-local chosen_browser_uti=browser_uti_firefox
+local browser_id_chrome="com.google.chrome"
+local browser_id_safari="com.apple.safari"
+local browser_id_firefox="org.mozilla.firefox"
 
-report_action_taken "Set default browser to $chosen_browser_uti"
-$default_browser_path --identifier "$chosen_browser_uti"
+local chosen_browser_id="$browser_id_firefox"
+
+report_action_taken "Set default browser to $chosen_browser_id"
+"$default_browser_path" --identifier "$chosen_browser_id" ; success_or_not
 
 report_end_phase_standard
 
