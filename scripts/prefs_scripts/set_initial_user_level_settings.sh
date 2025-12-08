@@ -133,6 +133,9 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true ; su
 # Set default browser
 set_default_browser
 
+# Set default apps to open for document types
+set_default_apps_to_open
+
 # Preview.app
 set_preview_settings
 
