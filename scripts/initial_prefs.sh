@@ -51,27 +51,6 @@ set_initial_user_level_settings
 # TO DO: TODO: This needs to be made conditional on which user it is.
 # overrides_for_sysadmin_users
 
-# DEPRECATION NOTE: The following is deprecated. Instead of quitting only certain processes,
-#                   I enforce logging out entirely.
-#
-# Kill each app affected by `defaults` commands in the prior functions
-# (App-killing deferred here to avoid redundantly killing the same app multiple times.)
-# report_action_taken "Force quit all apps/processes whose settings we just changed"
-# apps_to_kill=(
-#   "Finder"
-#   "SystemUIServer"
-#   "Dock"
-#   "Text Edit"
-#   "Safari"
-#   "cfprefsd"
-# )
-# 
-# for app_to_kill in "${apps_to_kill[@]}"; do
-#   report_about_to_kill_app "$app_to_kill"
-#   killall "$app_to_kill" 2>/dev/null || true
-#   success_or_not
-# done
-
 report_end_phase 'Completed: the preference-setting phase of the bootstrapping process.' 
 report "It’s possible that some settings won’t take effect until after you logout or restart."
 report "Logging out to apply those changes..."
