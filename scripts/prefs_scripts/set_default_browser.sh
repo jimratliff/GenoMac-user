@@ -12,9 +12,11 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 ############################## BEGIN SCRIPT PROPER ##############################
 
 function set_default_browser() {
+# Sets the user’s chosen browser as the default browser. (See "$chosen_browser_id".)
 
 report_start_phase_standard
 
+# Path where the default-browser app is installed by its package installer
 local default_browser_path="/opt/macadmins/bin/default-browser"
 
 local browser_id_chrome="com.google.chrome"
