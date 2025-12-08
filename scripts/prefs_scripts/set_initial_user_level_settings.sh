@@ -129,6 +129,9 @@ set_notifications_settings
 report_adjust_setting "Time Machine: Don’t prompt to use new disk as backup volume"
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true ; success_or_not
 
+# Set default browser
+set_default_browser
+
 # Preview.app
 set_preview_settings
 
