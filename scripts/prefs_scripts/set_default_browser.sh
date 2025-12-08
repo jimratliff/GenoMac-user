@@ -17,7 +17,7 @@ function set_default_browser() {
 report_start_phase_standard
 
 # Path where the default-browser app is installed by its package installer
-local default_browser_path="/opt/macadmins/bin/default-browser"
+local path_to_installed_default_browser_utility="/opt/macadmins/bin/default-browser"
 
 local browser_id_chrome="com.google.chrome"
 local browser_id_safari="com.apple.safari"
@@ -26,7 +26,7 @@ local browser_id_firefox="org.mozilla.firefox"
 local chosen_browser_id="$browser_id_firefox"
 
 report_action_taken "Set default browser to $chosen_browser_id"
-"$default_browser_path" --identifier "$chosen_browser_id" ; success_or_not
+"$path_to_installed_default_browser_utility" --identifier "$chosen_browser_id" ; success_or_not
 
 report_end_phase_standard
 
