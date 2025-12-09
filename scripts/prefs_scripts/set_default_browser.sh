@@ -21,7 +21,6 @@ function set_default_browser() {
 #   osascript -e 'id of app "App Name"'
 
 report_start_phase_standard
-report_action_taken "Set default browser to $chosen_browser_id"
 
 # Path where the default-browser app is installed by its package installer
 local path_to_installed_default_browser_utility="/opt/macadmins/bin/default-browser"
@@ -37,6 +36,7 @@ local chosen_browser_id="$browser_id_firefox"
 # local chosen_browser_id="$browser_id_brave"
 # local chosen_browser_id="$browser_id_chrome"
 
+report_action_taken "Set default browser to $chosen_browser_id"
 "$path_to_installed_default_browser_utility" --identifier "$chosen_browser_id" ; success_or_not
 
 report_end_phase_standard
