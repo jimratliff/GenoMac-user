@@ -41,12 +41,15 @@ local bundle_id_bbedit_app="com.barebones.bbedit"
 local bundle_id_Plain_Text_Editor_app="com.sindresorhus.Plain-Text-Editor"
 
 report_adjust_setting "Set plain-text files to open with BBEdit"
+printf "\n"
 utiluti type set $uti_plain_text    $bundle_id_bbedit_app ; success_or_not
 
 report_adjust_setting "Set Markdown files to open with BBEdit"
+printf "\n"
 utiluti type set $uti_markdown       $bundle_id_bbedit_app ; success_or_not
 
 report_adjust_setting "Set shell scripts to open with BBEdit"
+printf "\n"
 utiluti type set $uti_shell_script   $bundle_id_bbedit_app ; success_or_not
 
 report_end_phase_standard
