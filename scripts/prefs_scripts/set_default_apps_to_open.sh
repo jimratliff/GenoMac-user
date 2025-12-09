@@ -12,7 +12,17 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 ############################## BEGIN SCRIPT PROPER ##############################
 
 function set_default_apps_to_open() {
-
+# Sets default app(s) for certain document type(s)
+#
+# Uses Uniform Type Identifiers (UTIs) to refer to document types.
+# Uses bundle IDs to refer to apps
+#
+# To determine the UTI of…
+#   a particular file:
+#   mdls -name kMDItemContentType -r /path/to/file
+#
+#   an extension (using an example file):
+#   mdls -name kMDItemContentType -r example.md
 #
 # To determine the bundle ID of an app:
 #   mdls -name kMDItemCFBundleIdentifier -r /Applications/AppName.app
