@@ -17,7 +17,7 @@ function set_claude_settings() {
   report_start_phase_standard
   report_action_taken "Implement Claude desktop settings"
 
-  local claude_bundle_id="com.anthropic.claude"
+  local claude_bundle_id="com.anthropic.claudefordesktop"
   local claude_config_path="${HOME}/Library/Application Support/Claude/claude_desktop_config.json"
   local claude_config_dir="${claude_config_path:h}"
   local tmpfile
