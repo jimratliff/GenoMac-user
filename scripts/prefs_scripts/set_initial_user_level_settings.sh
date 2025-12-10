@@ -162,6 +162,9 @@ set_iterm_settings
 # BetterTouchTool
 set_btt_settings
 
+# ChatGPT
+set_chatgpt_settings
+
 # Warp
 # Warp is now excluded from Project GenoMac because it can’t be reliably configured via `defaults write`
 # commands or by dotfiles. See Issue: https://github.com/warpdotdev/Warp/issues/7220
