@@ -53,6 +53,9 @@ set_initial_user_level_settings
 
 report_end_phase 'Completed: the preference-setting phase of the bootstrapping process.' 
 report "It’s possible that some settings won’t take effect until after you logout or restart."
+
+dump_accumulated_warnings_failures
+
 report "Logging out to apply those changes..."
 echo ""
 echo "ℹ️  You will be logged out automatically to take into account the changed settings."
