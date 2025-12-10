@@ -37,10 +37,6 @@ safe_source "${PREFS_FUNCTIONS_DIR}/bootstrap_preview_app.sh"
 
 ############################## BEGIN SCRIPT PROPER #############################
 
-  # Test prints
-  report_warning "Test of warning"
-  report_fail "Test of failure"
-
 # Dock: Define initial configuration of persistent apps
 bootstrap_dock
 
