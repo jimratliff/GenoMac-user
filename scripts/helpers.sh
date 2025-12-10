@@ -1,6 +1,7 @@
 # Prevent multiple sourcing
 if [[ -n "${__already_loaded_genomac_bootstrap_helpers_sh:-}" ]]; then return 0; fi
 __already_loaded_genomac_bootstrap_helpers_sh=1
+export __already_loaded_genomac_bootstrap_helpers_sh
 
 ############### HELPERS
 
@@ -117,7 +118,7 @@ function ensure_plist_path_exists() {
   #       modifications. In that case, the function launch_and_quit_app() is used to initialize the plist.
   # Usage:
   #   domain="com.apple.DiskUtility"
-  #   plist_path=$(legacy_plist_path_from_domain $domain)
+  #   plist_path=$(legacy_plist_path_from_domain $domain")
   #   ensure_plist_path_exists "${plist_path}"
   #
   #   domain="com.apple.Preview""
@@ -239,7 +240,13 @@ function report() {
 
 function report_fail() {
   # Output supplied line of text in a distinctive color prefaced by SYMBOL_FAILURE.
-  printf "%b%s%s%b\n" "$COLOR_ERROR" "$SYMBOL_FAILURE" "$1" "$COLOR_RESET"
+  local message="$1"
+  printf "%b%s%s%b\n" "$COLOR_ERROR" "$SYMBOL_FAILURE" "$message" "$COLOR_RESET"
+  
+  # Also append a plain-text version to the alert log, if it's set.
+  if [[ -n "${GENOMAC_ALERT_LOG-}" ]]; then
+    printf 'FAIL: %s\n' "$message" >>"$GENOMAC_ALERT_LOG"
+  fi
 }
 
 function report_success() {
@@ -249,7 +256,13 @@ function report_success() {
 
 function report_warning() {
   # Output supplied line of text in a distinctive color prefaced by SYMBOL_WARNING.
-  printf "%b%s%s%b\n" "$COLOR_WARNING" "$SYMBOL_WARNING" "$1" "$COLOR_RESET"
+  local message="$1"
+  printf "%b%s%s%b\n" "$COLOR_WARNING" "$SYMBOL_WARNING" "$message" "$COLOR_RESET"
+
+  # Also append a plain-text version to the alert log, if it's set.
+  if [[ -n "${GENOMAC_ALERT_LOG-}" ]]; then
+    printf 'WARN: %s\n' "$message" >>"$GENOMAC_ALERT_LOG"
+  fi
 }
 
 function report_adjust_setting() {
@@ -277,6 +290,26 @@ function ensure_plist_exists() {
 
   report_fail "‘ensure_plist_exists()’ is deprecated. Use ensure_plist_path_exists() instead"
   return 64  # EX_USAGE-style to force refactor
+}
+
+dump_accumulated_warnings_failures() {
+  # Prints all assumulated warnings and/or failures from GENOMAC_ALERT_LOG
+  
+  # If we somehow never initialized, bail quietly.
+  [[ -z "${GENOMAC_ALERT_LOG-}" ]] && return 0
+  [[ ! -e "$GENOMAC_ALERT_LOG" ]] && return 0
+
+  if [[ ! -s "$GENOMAC_ALERT_LOG" ]]; then
+    echo "✅ No GenoMac warnings or failures detected in this run." >&2
+  else
+    echo >&2
+    echo "═════════ GenoMac warnings / failures (summary) ═════════" >&2
+    cat "$GENOMAC_ALERT_LOG" >&2
+    echo "════════════════════════ end summary ════════════════════" >&2
+    echo "↑ Scroll back in the log to see these in context." >&2
+  fi
+
+  rm -f -- "$GENOMAC_ALERT_LOG"
 }
 
 ################################################################################
