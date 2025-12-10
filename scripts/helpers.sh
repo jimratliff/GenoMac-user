@@ -66,7 +66,7 @@ safe_source() {
 }
 
 function launch_and_quit_app() {
-  # Launches and then quits an app identified by its bundle ID
+  # Launches (in background if possible) and then quits an app identified by its bundle ID
   # Required in some cases, e.g., iTerm2, where a sufficiently populated plist isn’t available to modify
   #   until the app has been launched once. (I.e., it is not enough simply to have created an empty
   #   plist file, as can be done with the function ensure_plist_exists().
