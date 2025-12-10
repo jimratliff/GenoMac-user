@@ -17,28 +17,34 @@ function set_claude_settings() {
   report_start_phase_standard
   report_action_taken "Implement Claude desktop settings"
 
+  local claude_bundle_id="com.anthropic.claude"
   local claude_config_path="${HOME}/Library/Application Support/Claude/claude_desktop_config.json"
   local claude_config_dir="${claude_config_path:h}"
   local tmpfile
-  local jq_filter
 
-  # Single jq filter we apply exactly once
-  jq_filter='
+  # Single jq filter to apply once
+  local jq_filter='
     .preferences = (.preferences // {}) |
     .preferences.quickEntryShortcut = "off" |
     .preferences.menuBarEnabled = false
   '
 
+  # If the directory doesn't exist yet, give Claude a chance to create it by launching and quitting
+  if [[ ! -d "${claude_config_dir}" ]]; then
+    report_adjust_setting "Claude support directory not found; launching Claude once to seed config"
+    launch_and_quit_app "${claude_bundle_id}"
+  fi
+
   report_adjust_setting "Ensure Claude config directory exists: ${claude_config_dir}"
   mkdir -p "${claude_config_dir}" ; success_or_not
 
-  # If file is missing or empty, start with minimal valid JSON
+  # Ensure the JSON config file exists in some minimal form.
   if [[ ! -f "${claude_config_path}" || ! -s "${claude_config_path}" ]]; then
-    report_adjust_setting "Initialize Claude config file at: ${claude_config_path}"
+    report_adjust_setting "Initialize Claude config file if missing/empty: ${claude_config_path}"
     printf '%s\n' '{}' > "${claude_config_path}" ; success_or_not
   fi
 
-  # Now we *always* operate on the existing file (which is guaranteed non-empty JSON)
+  # Modify preferences in a single jq pass.
   tmpfile="$(mktemp "${TMPDIR:-/tmp}/claude_config.XXXXXX")"
 
   report_adjust_setting "Apply Claude preference updates via jq"
@@ -49,5 +55,3 @@ function set_claude_settings() {
 
   report_end_phase_standard
 }
-
-############################### END SCRIPT PROPER ###############################
