@@ -76,8 +76,8 @@ function launch_and_quit_app() {
   
   local bundle_id="$1"
   report_action_taken "Launch and quit app $bundle_id"
-  report_action_taken "Launching app $bundle_id"
-  open -b "$bundle_id" ; success_or_not
+  report_action_taken "Launching app $bundle_id (in the background, if possible)"
+  open -gj -b "$bundle_id" 2>/dev/null || open -g -b "$bundle_id" ; success_or_not
   sleep 2
   report_action_taken "Quitting app $bundle_id"
   osascript -e "tell application id \"$bundle_id\" to quit" ; success_or_not
