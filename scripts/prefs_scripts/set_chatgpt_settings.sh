@@ -21,7 +21,7 @@ report_action_taken "Implement ChatGPT settings"
 local domain="com.openai.chat"
 local domain2="ChatGPTHelper"
 
-report_adjust_setting "Set: Never reset conversations"
+report_adjust_setting "Set: Never automatically reset conversations"
 defaults write ${domain} launcherChatResetDuration -string '{"never":{}}' ; success_or_not
 
 report_adjust_setting "Set: Never show in menubar"
