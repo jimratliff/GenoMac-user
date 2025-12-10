@@ -54,10 +54,6 @@ function stow_packages_dotfiles() {
 
   local PACKAGES_LIST=("1password" "BetterTouchTool" "git" "homebrew" "ssh" "starship" "stow" "zsh")
 
-  # Test prints
-  report_warning "Test of warning"
-  report_fail "Test of failure"
-
   for package in "${PACKAGES_LIST[@]}"; do
     report_action_taken "Stowing package: $package"
     stow --dir="$GENOMAC_USER_LOCAL_STOW_DIRECTORY" \
