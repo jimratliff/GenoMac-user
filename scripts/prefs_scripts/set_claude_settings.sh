@@ -32,7 +32,7 @@ function set_claude_settings() {
   # If the directory doesn't exist yet, give Claude a chance to create it by launching and quitting
   if [[ ! -d "${claude_config_dir}" ]]; then
     report_action_taken "Claude support directory not found; launching Claude once to seed config"
-    launch_and_quit_app "${claude_bundle_id}"
+    launch_and_quit_app "${claude_bundle_id}" ; success_or_not
   fi
 
   report_action_taken "Ensure Claude config directory exists: ${claude_config_dir}"
