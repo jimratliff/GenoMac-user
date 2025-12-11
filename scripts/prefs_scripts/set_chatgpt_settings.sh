@@ -28,7 +28,7 @@ report_adjust_setting "Set: Never show in menubar"
 defaults write ${domain} desktopMenuBarBehavior -string '{"never":{}}' ; success_or_not
 
 report_adjust_setting "Set: Do not suggest trending searches"
-defaults write com.openai.chat trendingSuggestionsEnabled -bool false ; success_or_not
+defaults write ${domain} trendingSuggestionsEnabled -bool false ; success_or_not
 
 report_adjust_setting "Remove hotkey for chat bar in domain: ($domain)"
 defaults write ${domain} KeyboardShortcuts_toggleLauncher -string '' ; success_or_not
