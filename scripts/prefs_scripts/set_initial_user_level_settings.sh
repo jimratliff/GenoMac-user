@@ -12,6 +12,7 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 safe_source "${PREFS_FUNCTIONS_DIR}/set_app_state_persistence.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_auto_correction_suggestion_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_bbedit_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_bettertouchtool_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_chatgpt_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_claude_settings.sh"
