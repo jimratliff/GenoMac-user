@@ -161,6 +161,9 @@ report_action_taken "Begin settings for third-party applications"
 # iTerm2
 set_iterm_settings
 
+# BBEdit
+set_bbedit_settings
+
 # BetterTouchTool
 set_btt_settings
 
