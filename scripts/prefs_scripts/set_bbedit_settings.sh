@@ -20,6 +20,9 @@ report_action_taken "Implement BBEdit settings"
 
 local domain="com.barebones.bbedit"
 
+report_adjust_setting "Set: Do NOT prefer shared window for New and Open"
+defaults write ${domain} NewAndOpenPrefersSharedWindow -bool false ; success_or_not
+
 report_adjust_setting "Set: DO soft-wrap text"
 defaults write ${domain} EditorSoftWrap -bool true ; success_or_not
 
