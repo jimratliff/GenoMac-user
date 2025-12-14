@@ -140,6 +140,7 @@ function set_apps_to_launch_at_login() {
 function genomac_prune_login_agents() {
   emulate -L zsh
   setopt null_glob
+  
   local dir prefix uid
   dir="$(print_loginagents_dir)"
   prefix="${GENOMAC_NAMESPACE}.login."
@@ -152,12 +153,6 @@ function genomac_prune_login_agents() {
     desired_path="$(print_loginagent_plist_path_for_bundle_id "$bundle_id")"
     desired_plist_paths["$desired_path"]=1
   done
-
-  # Iterate over managed plists on disk and remove those not in the desired set.
-  # null_glob ensures the loop is empty (not literal) if no files match.
-  local oldopt
-  oldopt="$(setopt)"
-  setopt null_glob
 
   local plist_path base label
   for plist_path in "$dir"/${prefix}*.plist; do
