@@ -41,7 +41,7 @@ set -euo pipefail
 # The "bundle"/"path" value determines how the app is launched.
 #
 # Notes:
-# - The following apps *do* launch at user login, but aren’t handle here because they
+# - The following apps *do* launch at user login, but aren’t handled here because they
 # 	have their own login helper:
 # 	- Dropbox: 			"bundle:com.getdropbox.dropbox"
 # 	- TextExpander	"bundle:com.smileonmymac.textexpander"
@@ -65,7 +65,7 @@ set_apps_to_launch_at_login() {
   #   - GENOMAC_LOGIN_APPS (assoc array): [name]="bundle:<bundle_id>" or [name]="path:<app_path>"
   #   - install_loginagent_file_if_changed <tmp_plist> <dst_plist>
   #   - print_loginagents_dir
-  #   - genomac_prune_login_agents
+  #   - prune_login_agents
   : "${GENOMAC_LOGIN_APPS:?GENOMAC_LOGIN_APPS must be set (assoc array)}"
 
   local name spec kind value label tmp_plist plist_path
@@ -73,6 +73,11 @@ set_apps_to_launch_at_login() {
   for name spec in ${(kv)GENOMAC_LOGIN_APPS}; do
     kind="${spec%%:*}"
     value="${spec#*:}"
+
+    if [[ "$kind" != "bundle" && "$kind" != "path" ]]; then
+      report_fail "Unknown launch spec kind: '$kind' in GENOMAC_LOGIN_APPS[$name]=$spec"
+      return 1
+    fi
 
     label="${GENOMAC_NAMESPACE}.login.${name}"
     plist_path="$(print_loginagents_dir)/${label}.plist"
@@ -90,7 +95,7 @@ set_apps_to_launch_at_login() {
       rm -f "$tmp_plist" 2>/dev/null || true
     fi
   done
-  genomac_prune_login_agents
+  prune_login_agents
 }
 
 function print_loginagents_dir() {
@@ -169,7 +174,7 @@ function install_loginagent_file_if_changed() {
 
 # Remove GenoMac-managed login agents that are no longer declared in
 # GENOMAC_LOGIN_APPS.
-function genomac_prune_login_agents() {
+function prune_login_agents() {
   emulate -L zsh
   setopt null_glob
 
@@ -197,4 +202,6 @@ function genomac_prune_login_agents() {
     report_action_taken "Removing from login items: «$plist_path»"
     rm -f "$plist_path"
   done
+
+  report_end_phase_standard
 }
