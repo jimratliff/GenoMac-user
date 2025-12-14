@@ -69,9 +69,34 @@ function print_loginagent_plist_path_for_bundle_id() {
 }
 
 function write_loginagent_plist_to_tmp() {
-  local bundle_id="$1"
-  local label="$2"
-  local tmp_plist="$3"
+  # Helper: generate a LaunchAgent plist that runs `open` either
+  # (a) by bundle id (default) or
+  # (b) by app path (when called with --by-path).
+  #
+  # Usage:
+  #   write_loginagent_plist_to_tmp <bundle_id> <label> <tmp_plist>
+  #   write_loginagent_plist_to_tmp --by-path <app_path> <label> <tmp_plist>
+  local mode="bundle"
+
+  # In shell functions, "flags" are just positional parameters ("$1", "$2", ...)
+  # until you parse/shift them yourself.
+  if [[ "${1:-}" == "--by-path" ]]; then
+    mode="path"
+    shift
+  fi
+
+  local target="${1:?missing bundle_id/path}"
+  local label="${2:?missing label}"
+  local tmp_plist="${3:?missing tmp_plist path}"
+
+  local open_flag open_arg
+  if [[ "$mode" == "path" ]]; then
+    open_flag="-a"
+    open_arg="$target"
+  else
+    open_flag="-b"
+    open_arg="$target"
+  fi
 
   cat >"$tmp_plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -84,8 +109,8 @@ function write_loginagent_plist_to_tmp() {
   <key>ProgramArguments</key>
   <array>
     <string>/usr/bin/open</string>
-    <string>-b</string>
-    <string>${bundle_id}</string>
+    <string>${open_flag}</string>
+    <string>${open_arg}</string>
   </array>
 
   <key>RunAtLoad</key>
