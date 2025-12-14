@@ -88,6 +88,9 @@ function write_loginagent_plist_to_tmp() {
     <string>${bundle_id}</string>
   </array>
 
+  <key>RunAtLoad</key>
+  <true/>
+
   <key>LaunchOnlyOnce</key>
   <true/>
 </dict>
