@@ -32,7 +32,7 @@ set -euo pipefail
 ###############################################################################
 
 # typeset -a declares an array (zsh). Elements are your bundle IDs.
-typeset -a GENOMAC_LOGIN_BUNDLE_IDS=(
+typeset -a -g GENOMAC_LOGIN_BUNDLE_IDS=(
   "com.getdropbox.dropbox"
   "com.hegenberg.BetterTouchTool"
   "com.runningwithcrayons.Alfred"
