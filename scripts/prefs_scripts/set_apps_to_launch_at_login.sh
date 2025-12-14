@@ -131,11 +131,14 @@ function set_apps_to_launch_at_login() {
   for bundle_id in "${GENOMAC_LOGIN_BUNDLE_IDS[@]}"; do
     install_login_agent_for_bundle_id "$bundle_id"
   done
+  genomac_prune_login_agents
 }
 
 # Remove GenoMac-managed login agents that are no longer declared in
 # GENOMAC_LOGIN_BUNDLE_IDS.
 function genomac_prune_login_agents() {
+  emulate -L zsh
+  setopt null_glob
   local dir prefix uid
   dir="$(print_loginagents_dir)"
   prefix="${$GENOMAC_NAMESPACE}.login."
