@@ -116,13 +116,8 @@ function install_login_agent_for_bundle_id() {
   write_loginagent_plist_to_tmp "$bundle_id" "$label" "$tmp_plist"
 
   if install_loginagent_file_if_changed "$tmp_plist" "$plist_path"; then
-    # Plist changed/new: reload it into the current GUI session.
-    # - bootout removes any already-loaded job with this label (ignore errors if not loaded).
-    # - bootstrap loads from the updated plist; with RunAtLoad=true, it will run now.
-    launchctl bootout "gui/$(id -u)" "$label" 2>/dev/null || true
-    launchctl bootstrap "gui/$(id -u)" "$plist_path" 2>/dev/null || true
+    :  # changed/added; do nothing (next login will load it)
   else
-    # Unchanged: don’t reload (avoids unexpectedly re-launching apps).
     rm -f "$tmp_plist" 2>/dev/null || true
   fi
 }
@@ -165,13 +160,9 @@ function genomac_prune_login_agents() {
     base="${plist_path:t}"
     label="${base%.plist}"
 
-    # Unload if loaded (ignore errors), then delete.
-    launchctl bootout "gui/${uid}" "$label" 2>/dev/null || true
+    # Remove no-longer-desired .plist
     rm -f "$plist_path"
   done
-
-  # Restore options (best-effort).
-  eval "$oldopt" 2>/dev/null || true
 }
 
 ###############################################################################
