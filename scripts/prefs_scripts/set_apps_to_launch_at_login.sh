@@ -20,6 +20,8 @@
 
 set -euo pipefail
 
+: "${GENOMAC_NAMESPACE:?❌ GENOMAC_NAMESPACE must be set (e.g., com.virtualperfection.genomac)}"
+
 ###############################################################################
 # CONFIGURE THE LIST OF APPS TO LAUNCH AT LOGIN HERE!
 #
