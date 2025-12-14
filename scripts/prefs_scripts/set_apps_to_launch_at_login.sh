@@ -33,10 +33,10 @@ set -euo pipefail
 
 # typeset -a declares an array (zsh). Elements are your bundle IDs.
 typeset -a -g GENOMAC_LOGIN_BUNDLE_IDS=(
-  "com.getdropbox.dropbox"
+#  "com.getdropbox.dropbox"       # Has its own login helper
   "com.hegenberg.BetterTouchTool"
   "com.runningwithcrayons.Alfred"
-  "com.smileonmymac.textexpander"
+#  "com.smileonmymac.textexpander" # Has its own login helper
   "com.stairways.keyboardmaestro.engine"
 #  "com.sync.desktop"
   "studio.retina.Alan"
