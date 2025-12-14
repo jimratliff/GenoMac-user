@@ -112,8 +112,6 @@ function install_loginagent_file_if_changed() {
 
 # Create/update the plist on disk, and (re)activate it only if the plist changed.
 function install_login_agent_for_bundle_id() {
-  report_start_phase_standard
-  
   local bundle_id="$1"
   local label plist_path tmp_plist
 
@@ -130,8 +128,6 @@ function install_login_agent_for_bundle_id() {
   else
     rm -f "$tmp_plist" 2>/dev/null || true
   fi
-  
-  report_end_phase_standard
 }
 
 # Remove GenoMac-managed login agents that are no longer declared in
