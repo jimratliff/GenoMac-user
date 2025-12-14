@@ -31,16 +31,34 @@ set -euo pipefail
 #
 ###############################################################################
 
-# typeset -a declares an array (zsh). Elements are your bundle IDs.
-typeset -a -g GENOMAC_LOGIN_BUNDLE_IDS=(
-#  "com.getdropbox.dropbox"       # Has its own login helper
-  "com.hegenberg.BetterTouchTool"
-  "com.runningwithcrayons.Alfred"
-#  "com.smileonmymac.textexpander" # Has its own login helper
-  "com.stairways.keyboardmaestro.engine"
-#  "com.sync.desktop"
-  "studio.retina.Alan"
-  "ua.com.AntLogic.Antnotes"
+# GENOMAC_LOGIN_APPS
+# Declarative specification of apps to launch at login.
+#
+# Two alternative formats:
+#   [stable_name]="bundle:<bundle_id>"
+#   [stable_name]="path:<absolute_app_path>"
+#
+# The key (stable_name) is used to form the LaunchAgent label and filename:
+#   ${GENOMAC_NAMESPACE}.login.<stable_name>
+#
+# The "bundle"/"path" value determines how the app is launched.
+#
+# Notes:
+# - The following apps *do* launch at user login, but aren’t handle here because they
+# 	have their own login helper:
+# 	- Dropbox: 			"bundle:com.getdropbox.dropbox"
+# 	- TextExpander	"bundle:com.smileonmymac.textexpander"
+# - Sync.com app needs to launch at login, but only for selected users.
+# 	- The Sync app is excluded from the scope of this script.
+typeset -g -A GENOMAC_LOGIN_APPS=(
+  # bundle-id based launches
+  [bettertouchtool]="bundle:com.hegenberg.BetterTouchTool"
+  [alfred]="bundle:com.runningwithcrayons.Alfred"
+
+  # path-based launch (nested app bundle; bundle-id unreliable at login)
+  [keyboard-maestro-engine]="path:/Applications/Keyboard Maestro.app/Contents/MacOS/Keyboard Maestro Engine.app"
+  [alan]="bundle:studio.retina.Alan"
+  [antnotes]="bundle:ua.com.AntLogic.Antnotes"
 )
 
 set_apps_to_launch_at_login() {
