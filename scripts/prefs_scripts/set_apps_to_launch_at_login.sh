@@ -1,22 +1,19 @@
-# set_apps_to_launch_at_login(): Declaratively launch selected apps at user login via LaunchAgents.
+# set_apps_to_launch_at_login(): Declaratively ensure selected apps launch at user login via LaunchAgents.
 #
 # Policy:
-# - One LaunchAgent plist per app.
-# - Each plist is regenerated each run.
-# - The namespace for the launchagent plists is defined by $GENOMAC_NAMESPACE
-#   (e.g., com.virtualperfection.genomac)
-# - The LaunchAgent is (re)activated ONLY if the on-disk plist was added/changed.
-# - Previously specified $GENOMAC_NAMESPACE plists that are no longer in the specification are removed.
+# - One LaunchAgent plist per declared app (keyed by a stable name).
+# - Plists are regenerated each run and replaced only if content changes.
+# - LaunchAgent labels/filenames are namespaced by $GENOMAC_NAMESPACE (e.g., com.virtualperfection.genomac).
+# - No launchctl calls are performed here (“disk only”): changes take effect on next login.
+# - Any previously generated ${GENOMAC_NAMESPACE}.login.* plists that are no longer declared are removed.
 #
 # Naming (assuming $GENOMAC_NAMESPACE is com.virtualperfection.genomac):
-#   File:  ~/Library/LaunchAgents/com.virtualperfection.genomac.login.<bundle_id>.plist
-#   Label: com.virtualperfection.genomac.login.<bundle_id>
+#   File:  ~/Library/LaunchAgents/com.virtualperfection.genomac.login.<stable_name>.plist
+#   Label: com.virtualperfection.genomac.login.<stable_name>
 #
-# Notes:
-# - Using bundle IDs lets /usr/bin/open locate the app via Launch Services, even if the app lives
-#   in a nonstandard path (e.g., Keyboard Maestro Engine.app inside another app bundle).
-# - If you want “disk only” behavior, comment out the launchctl section in
-#   install_login_agent_for_bundle_id().
+# Launch method per app:
+# - bundle:<bundle_id>  -> /usr/bin/open -b <bundle_id>
+# - path:<app_path>     -> /usr/bin/open -a <app_path>
 
 set -euo pipefail
 
@@ -69,7 +66,6 @@ set_apps_to_launch_at_login() {
   #   - install_loginagent_file_if_changed <tmp_plist> <dst_plist>
   #   - print_loginagents_dir
   #   - genomac_prune_login_agents
-  : "${GENOMAC_NAMESPACE:?GENOMAC_NAMESPACE must be set}"
   : "${GENOMAC_LOGIN_APPS:?GENOMAC_LOGIN_APPS must be set (assoc array)}"
 
   local name spec kind value label tmp_plist plist_path
@@ -94,19 +90,11 @@ set_apps_to_launch_at_login() {
       rm -f "$tmp_plist" 2>/dev/null || true
     fi
   done
+  genomac_prune_login_agents
+}
 
 function print_loginagents_dir() {
   echo "$HOME/Library/LaunchAgents"
-}
-
-function print_loginagent_label_for_bundle_id() {
-  local bundle_id="$1"
-  echo "${GENOMAC_NAMESPACE}.login.${bundle_id}"
-}
-
-function print_loginagent_plist_path_for_bundle_id() {
-  local bundle_id="$1"
-  echo "$(print_loginagents_dir)/${GENOMAC_NAMESPACE}.login.${bundle_id}.plist"
 }
 
 function write_loginagent_plist_to_tmp() {
@@ -177,26 +165,6 @@ function install_loginagent_file_if_changed() {
 
   mv -f "$tmp_plist" "$dst_plist"
   return 0  # changed/added
-}
-
-# Create/update the plist on disk, and (re)activate it only if the plist changed.
-function install_login_agent_for_bundle_id() {
-  local bundle_id="$1"
-  local label plist_path tmp_plist
-
-  label="$(print_loginagent_label_for_bundle_id "$bundle_id")"
-  plist_path="$(print_loginagent_plist_path_for_bundle_id "$bundle_id")"
-
-  # mktemp template: the XXXXXX is replaced with random characters to ensure uniqueness.
-  tmp_plist="$(mktemp "${TMPDIR:-/tmp}/genomac-loginagent.XXXXXX.plist")"
-
-  write_loginagent_plist_to_tmp "$bundle_id" "$label" "$tmp_plist"
-
-  if install_loginagent_file_if_changed "$tmp_plist" "$plist_path"; then
-    :  # changed/added; do nothing (next login will load it)
-  else
-    rm -f "$tmp_plist" 2>/dev/null || true
-  fi
 }
 
 # Remove GenoMac-managed login agents that are no longer declared in
