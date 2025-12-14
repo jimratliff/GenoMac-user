@@ -43,16 +43,39 @@ typeset -a -g GENOMAC_LOGIN_BUNDLE_IDS=(
   "ua.com.AntLogic.Antnotes"
 )
 
-function set_apps_to_launch_at_login() {
-  local bundle_id
-  report_start_phase_standard
-  for bundle_id in "${GENOMAC_LOGIN_BUNDLE_IDS[@]}"; do
-    report_action_taken "Add $bundle_id to login items"
-    install_login_agent_for_bundle_id "$bundle_id"
+set_apps_to_launch_at_login() {
+  # Dispatcher: installs all declared login agents (and prunes removed ones).
+  # Expects:
+  #   - GENOMAC_NAMESPACE
+  #   - GENOMAC_LOGIN_APPS (assoc array): [name]="bundle:<bundle_id>" or [name]="path:<app_path>"
+  #   - install_loginagent_file_if_changed <tmp_plist> <dst_plist>
+  #   - print_loginagents_dir
+  #   - genomac_prune_login_agents
+  : "${GENOMAC_NAMESPACE:?GENOMAC_NAMESPACE must be set}"
+  : "${GENOMAC_LOGIN_APPS:?GENOMAC_LOGIN_APPS must be set (assoc array)}"
+
+  local name spec kind value label tmp_plist plist_path
+
+  for name spec in ${(kv)GENOMAC_LOGIN_APPS}; do
+    kind="${spec%%:*}"
+    value="${spec#*:}"
+
+    label="${GENOMAC_NAMESPACE}.login.${name}"
+    plist_path="$(print_loginagents_dir)/${label}.plist"
+    tmp_plist="$(mktemp "${TMPDIR:-/tmp}/genomac-loginagent.XXXXXX.plist")"
+
+    if [[ "$kind" == "path" ]]; then
+      write_loginagent_plist_to_tmp --by-path "$value" "$label" "$tmp_plist"
+    else
+      write_loginagent_plist_to_tmp "$value" "$label" "$tmp_plist"
+    fi
+
+    if install_loginagent_file_if_changed "$tmp_plist" "$plist_path"; then
+      :  # changed/added; do nothing (next login will load it)
+    else
+      rm -f "$tmp_plist" 2>/dev/null || true
+    fi
   done
-  genomac_prune_login_agents
-  report_end_phase_standard
-}
 
 function print_loginagents_dir() {
   echo "$HOME/Library/LaunchAgents"
