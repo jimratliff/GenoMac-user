@@ -43,6 +43,17 @@ typeset -a -g GENOMAC_LOGIN_BUNDLE_IDS=(
   "ua.com.AntLogic.Antnotes"
 )
 
+function set_apps_to_launch_at_login() {
+  local bundle_id
+  report_start_phase_standard
+  for bundle_id in "${GENOMAC_LOGIN_BUNDLE_IDS[@]}"; do
+    report_action_taken "Add $bundle_id to login items"
+    install_login_agent_for_bundle_id "$bundle_id"
+  done
+  genomac_prune_login_agents
+  report_end_phase_standard
+}
+
 function print_loginagents_dir() {
   echo "$HOME/Library/LaunchAgents"
 }
@@ -104,6 +115,8 @@ function install_loginagent_file_if_changed() {
 
 # Create/update the plist on disk, and (re)activate it only if the plist changed.
 function install_login_agent_for_bundle_id() {
+  report_start_phase_standard
+  
   local bundle_id="$1"
   local label plist_path tmp_plist
 
@@ -120,14 +133,8 @@ function install_login_agent_for_bundle_id() {
   else
     rm -f "$tmp_plist" 2>/dev/null || true
   fi
-}
-
-function set_apps_to_launch_at_login() {
-  local bundle_id
-  for bundle_id in "${GENOMAC_LOGIN_BUNDLE_IDS[@]}"; do
-    install_login_agent_for_bundle_id "$bundle_id"
-  done
-  genomac_prune_login_agents
+  
+  report_end_phase_standard
 }
 
 # Remove GenoMac-managed login agents that are no longer declared in
@@ -137,6 +144,9 @@ function genomac_prune_login_agents() {
   setopt null_glob
   
   local dir prefix
+
+  report_start_phase_standard
+  
   dir="$(print_loginagents_dir)"
   prefix="${GENOMAC_NAMESPACE}.login."
 
@@ -156,6 +166,9 @@ function genomac_prune_login_agents() {
     fi
 
     # Remove no-longer-desired .plist
+    report_action_taken "Removing from login items: «$plist_path»"
     rm -f "$plist_path"
   done
+
+  report_end_phase_standard
 }
