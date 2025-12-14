@@ -1,4 +1,3 @@
-#!/usr/bin/env zsh
 # set_apps_to_launch_at_login(): Declaratively launch selected apps at user login via LaunchAgents.
 #
 # Policy:
@@ -48,12 +47,12 @@ function print_loginagents_dir() {
 
 function print_loginagent_label_for_bundle_id() {
   local bundle_id="$1"
-  echo "${$GENOMAC_NAMESPACE}.login.${bundle_id}"
+  echo "${GENOMAC_NAMESPACE}.login.${bundle_id}"
 }
 
 function print_loginagent_plist_path_for_bundle_id() {
   local bundle_id="$1"
-  echo "$(print_loginagents_dir)/${$GENOMAC_NAMESPACE}.login.${bundle_id}.plist"
+  echo "$(print_loginagents_dir)/${GENOMAC_NAMESPACE}.login.${bundle_id}.plist"
 }
 
 function write_loginagent_plist_to_tmp() {
@@ -141,7 +140,7 @@ function genomac_prune_login_agents() {
   setopt null_glob
   local dir prefix uid
   dir="$(print_loginagents_dir)"
-  prefix="${$GENOMAC_NAMESPACE}.login."
+  prefix="${GENOMAC_NAMESPACE}.login."
   uid="$(id -u)"
 
   # Build a set of desired plist paths.
