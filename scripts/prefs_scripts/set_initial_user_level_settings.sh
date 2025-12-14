@@ -179,6 +179,9 @@ set_claude_settings
 # commands or by dotfiles. See Issue: https://github.com/warpdotdev/Warp/issues/7220
 # set_warp_settings
 
+# Set apps to launch on login
+set_apps_to_launch_at_login
+
 report_end_phase_standard
 
 }
