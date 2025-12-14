@@ -136,10 +136,9 @@ function genomac_prune_login_agents() {
   emulate -L zsh
   setopt null_glob
   
-  local dir prefix uid
+  local dir prefix
   dir="$(print_loginagents_dir)"
   prefix="${GENOMAC_NAMESPACE}.login."
-  uid="$(id -u)"
 
   # Build a set of desired plist paths.
   typeset -A desired_plist_paths
@@ -149,16 +148,12 @@ function genomac_prune_login_agents() {
     desired_plist_paths["$desired_path"]=1
   done
 
-  local plist_path base label
+  local plist_path
   for plist_path in "$dir"/${prefix}*.plist; do
     # Skip if it's still desired.
     if [[ -n "${desired_plist_paths["$plist_path"]:-}" ]]; then
       continue
     fi
-
-    # Derive label from filename stem (basename without .plist)
-    base="${plist_path:t}"
-    label="${base%.plist}"
 
     # Remove no-longer-desired .plist
     rm -f "$plist_path"
