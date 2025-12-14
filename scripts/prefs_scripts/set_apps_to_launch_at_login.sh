@@ -200,23 +200,22 @@ function install_login_agent_for_bundle_id() {
 }
 
 # Remove GenoMac-managed login agents that are no longer declared in
-# GENOMAC_LOGIN_BUNDLE_IDS.
+# GENOMAC_LOGIN_APPS.
 function genomac_prune_login_agents() {
   emulate -L zsh
   setopt null_glob
-  
-  local dir prefix
 
+  local dir prefix
   report_start_phase_standard
-  
+
   dir="$(print_loginagents_dir)"
   prefix="${GENOMAC_NAMESPACE}.login."
 
-  # Build a set of desired plist paths.
+  # Build a set of desired plist paths (based on GENOMAC_LOGIN_APPS keys).
   typeset -A desired_plist_paths
-  local bundle_id desired_path
-  for bundle_id in "${GENOMAC_LOGIN_BUNDLE_IDS[@]}"; do
-    desired_path="$(print_loginagent_plist_path_for_bundle_id "$bundle_id")"
+  local name desired_path
+  for name in ${(k)GENOMAC_LOGIN_APPS}; do
+    desired_path="${dir}/${GENOMAC_NAMESPACE}.login.${name}.plist"
     desired_plist_paths["$desired_path"]=1
   done
 
@@ -227,10 +226,7 @@ function genomac_prune_login_agents() {
       continue
     fi
 
-    # Remove no-longer-desired .plist
     report_action_taken "Removing from login items: «$plist_path»"
     rm -f "$plist_path"
   done
-
-  report_end_phase_standard
 }
