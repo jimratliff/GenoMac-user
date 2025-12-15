@@ -100,13 +100,13 @@ color_darkMode_base64="$color_common_base64"
 color_lightMode_base64="$color_common_base64"
 
 report_adjust_setting "Set: Do NOT show Alan in the Dock"
-defaults write ${domain} hideDock -bool true ; success_or_not
+defaults write "${domain}" hideDock -bool true ; success_or_not
 
 report_adjust_setting "Set: border width"
-defaults write ${domain} width -int 8 ; success_or_not
+defaults write "${domain}" width -int 8 ; success_or_not
 
 report_adjust_setting "Set: border inset"
-defaults write ${domain} inset -int 1 ; success_or_not
+defaults write "${domain}" inset -int 1 ; success_or_not
 
 report_adjust_setting "Set: color of border highlight when in Light Mode"
 defaults write "$domain" lightMode -data "$(echo $color_lightMode_base64 | base64 -D)"
