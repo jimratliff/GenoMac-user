@@ -123,7 +123,7 @@ defaults write "${domain}" lightMode -data "$(printf '%s' "$color_lightMode_base
 
 report_adjust_setting "Set: color of border highlight when in Dark Mode"
 # defaults write "${domain}" darkMode -data "$(printf '%s' "$color_darkMode_base64" | base64 -D)" ; success_or_not
-defaults write "${domain}" lightMode -data "$(printf '%s' "$color_darkMode_base64" | base64 -D | xxd -p | tr -d '\n')" ; success_or_not
+defaults write "${domain}" darkMode -data "$(printf '%s' "$color_darkMode_base64" | base64 -D | xxd -p | tr -d '\n')" ; success_or_not
 
 report_end_phase_standard
 
