@@ -19,6 +19,7 @@ report_start_phase_standard
 report_action_taken "Implement Alan.app settings"
 
 local domain="studio.retina.Alan"
+local bundle_id="studio.retina.Alan"
 
 local COLOR_SALMON_BASE64='YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
 AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGmCwwZHyAnVSRudWxs1g0ODxAR
@@ -98,6 +99,9 @@ local color_common_base64
 color_common_base64="$COLOR_SALMON_BASE64"
 color_darkMode_base64="$color_common_base64"
 color_lightMode_base64="$color_common_base64"
+
+report_action_taken "Quit Alan.app if running to allow setting its settings"
+quit_app_by_bundle_id_if_running "bundle_id"
 
 report_adjust_setting "Set: Do NOT show Alan in the Dock"
 defaults write "${domain}" hideDock -bool true ; success_or_not
