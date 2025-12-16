@@ -14,6 +14,35 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 ############################## BEGIN SCRIPT PROPER ##############################
 
 function set_alan_app_settings() {
+# HOW TO CHANGE COLORS:
+# 
+# 1. Launch Alan.app, go to Settings, and adjust either/both the Light Mode 
+#    and/or Dark Mode colors using the color picker, then close Settings.
+#
+# 2. Export Alan's preferences to get the new color data:
+#    defaults export studio.retina.Alan /tmp/alan_prefs.plist
+#
+# 3. Extract the color data in base64 format:
+#    For Light Mode:
+#      plutil -extract lightMode raw /tmp/alan_prefs.plist | base64
+#    For Dark Mode:
+#      plutil -extract darkMode raw /tmp/alan_prefs.plist | base64
+#
+# 4. Copy the entire base64 output (it will be ~3600 characters) and paste it
+#    into a new variable below, replacing the existing COLOR_SALMON_BASE64.
+#    For example:
+#      local COLOR_NEW_LIGHT='YnBsaXN0MDDUAQIDBAUGBwpY...'
+#      local COLOR_NEW_DARK='YnBsaXN0MDDUAQIDBAUGBwpY...'
+#
+# 5. Update the color assignments:
+#      color_lightMode_base64="$COLOR_NEW_LIGHT"
+#      color_darkMode_base64="$COLOR_NEW_DARK"
+#
+# Note: The base64 string can be broken across multiple lines for readability
+# since base64 -D ignores whitespace. Example:
+#   local COLOR_SALMON_BASE64='YnBsaXN0MDDUAQIDBAUGBwpY
+#   JHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+#   ...'
 
 report_start_phase_standard
 report_action_taken "Implement Alan.app settings"
