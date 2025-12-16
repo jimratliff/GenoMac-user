@@ -10,6 +10,7 @@ fi
 # This `source` cannot be `safe_source` because `safe_source` is in `helpers.sh`, which hasn’t yet been sourced.
 source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
+safe_source "${PREFS_FUNCTIONS_DIR}/set_alan_app_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_app_state_persistence.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_apps_to_launch_at_login.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_auto_correction_suggestion_settings.sh"
@@ -160,8 +161,8 @@ set_safari_settings
 ############### THIRD-PARTY APPLICATIONS
 report_action_taken "Begin settings for third-party applications"
 
-# iTerm2
-set_iterm_settings
+# Alan.app
+set_alan_app_settings
 
 # BBEdit
 set_bbedit_settings
@@ -174,6 +175,9 @@ set_chatgpt_settings
 
 # Claude
 set_claude_settings
+
+# iTerm2
+set_iterm_settings
 
 # Warp
 # Warp is now excluded from Project GenoMac because it can’t be reliably configured via `defaults write`
