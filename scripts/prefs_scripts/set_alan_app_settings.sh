@@ -130,7 +130,7 @@ color_darkMode_base64="$color_common_base64"
 color_lightMode_base64="$color_common_base64"
 
 report_action_taken "Quit Alan.app if running to allow setting its settings"
-quit_app_by_bundle_id_if_running "bundle_id"
+quit_app_by_bundle_id_if_running "$bundle_id"
 
 report_adjust_setting "Set: Do NOT show Alan in the Dock"
 defaults write "${domain}" hideDock -bool true ; success_or_not
