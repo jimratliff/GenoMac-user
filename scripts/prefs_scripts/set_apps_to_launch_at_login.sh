@@ -94,7 +94,9 @@ set_apps_to_launch_at_login() {
 
     if install_loginagent_file_if_changed "$tmp_plist" "$plist_path"; then
       :  # changed/added; do nothing (next login will load it)
+      report_action_taken "Installed launch agent $label"
     else
+      report_action_taken "Retained without change launch agent $label"
       rm -f "$tmp_plist" 2>/dev/null || true
     fi
   done
