@@ -141,11 +141,6 @@ defaults write "${domain}" width -int 8 ; success_or_not
 report_adjust_setting "Set: border inset"
 defaults write "${domain}" inset -int 1 ; success_or_not
 
-report_warning "Begin pre-defaults call debugging"
-echo "${#color_lightMode_base64}" 
-echo "Word count: "
-echo "$color_lightMode_base64" | base64 -D | wc -c
-
 report_adjust_setting "Set: color of border highlight when in Light Mode"
 defaults write "${domain}" lightMode -data "$(printf '%s' "$color_lightMode_base64" | base64 -D | xxd -p | tr -d '\n')" ; success_or_not
 
