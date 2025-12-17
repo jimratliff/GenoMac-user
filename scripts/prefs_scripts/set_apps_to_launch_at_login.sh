@@ -172,9 +172,9 @@ function install_loginagent_file_if_changed() {
   return 0  # changed/added
 }
 
-# Remove GenoMac-managed login agents that are no longer declared in
-# GENOMAC_LOGIN_APPS.
 function prune_login_agents() {
+  # Remove GenoMac-managed login agents that are no longer declared in
+  # GENOMAC_LOGIN_APPS.
   emulate -L zsh
   setopt null_glob
 
