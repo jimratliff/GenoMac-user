@@ -36,14 +36,23 @@ report_adjust_setting "Set: Do NOT show spash screen at launch"
 defaults write $domain_editor DisplayWelcomeWindow -bool false ; success_or_not
 
 # Engine settings
-report_adjust_setting "Change menu-bar status icon to Classic"
+report_adjust_setting "Set menu-bar status icon to Classic"
 defaults write $domain_engine StatusMenuIcon -string "Classic" ; success_or_not
+
+report_adjust_setting "Set: Do NOT show application palette"
+defaults write $domain_engine ShowApplicationsPalette -bool false ; success_or_not
 
 report_adjust_setting "Set: Include macro icons when listing macros in status menu"
 defaults write $domain_engine StatusMenuIncludeIcons -bool true ; success_or_not
 
-report_adjust_setting "Set: Do NOT include applications in status menu"
+report_adjust_setting "Set: Do NOT list applications in status menu"
 defaults write $domain_engine StatusMenuIncludeApplications -bool false ; success_or_not
+
+report_adjust_setting "Set: Do NOT save recent applications between launches"
+defaults write $domain_engine StatusMenuIncludeApplications -bool false ; success_or_not
+
+report_adjust_setting "Set: DO save clipboard history between launches"
+defaults write $domain_engine SaveClipboardHistory -bool true ; success_or_not
 
 report_end_phase_standard
 
