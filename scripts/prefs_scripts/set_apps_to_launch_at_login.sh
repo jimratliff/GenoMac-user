@@ -66,6 +66,9 @@ set_apps_to_launch_at_login() {
   #   - install_loginagent_file_if_changed <tmp_plist> <dst_plist>
   #   - print_loginagents_dir
   #   - prune_login_agents
+
+  report_start_phase_standard
+  
   : "${GENOMAC_LOGIN_APPS:?GENOMAC_LOGIN_APPS must be set (assoc array)}"
 
   local name spec kind value label tmp_plist plist_path
@@ -95,7 +98,11 @@ set_apps_to_launch_at_login() {
       rm -f "$tmp_plist" 2>/dev/null || true
     fi
   done
+  
   prune_login_agents
+
+  report_end_phase_standard
+  
 }
 
 function print_loginagents_dir() {
