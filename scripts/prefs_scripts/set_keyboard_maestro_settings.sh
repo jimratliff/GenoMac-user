@@ -49,7 +49,7 @@ report_adjust_setting "Set: Do NOT list applications in status menu"
 defaults write $domain_engine StatusMenuIncludeApplications -bool false ; success_or_not
 
 report_adjust_setting "Set: Do NOT save recent applications between launches"
-defaults write $domain_engine StatusMenuIncludeApplications -bool false ; success_or_not
+defaults write $domain_engine SaveRecentApplicationsID -bool false ; success_or_not
 
 report_adjust_setting "Set: DO save clipboard history between launches"
 defaults write $domain_engine SaveClipboardHistory -bool true ; success_or_not
