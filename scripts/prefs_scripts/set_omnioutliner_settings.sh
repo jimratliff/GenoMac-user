@@ -26,9 +26,12 @@ function set_omnioutliner_settings() {
   local source_path="${GENOMAC_USER_LOCAL_DIRECTORY}/resources/omnioutliner/${custom_template_filename}"
 
   # Construct destination path to OmniOutliner’s directory for custom templates
-  local path_for_OO_preferences="Library/Containers/${domain}/Data/Library/Application Support/The Omni Group/OmniOutliner"
+  local path_for_OO_preferences="${HOME}/Library/Containers/${domain}/Data/Library/Application Support/The Omni Group/OmniOutliner"
   local path_for_OO_custom_templates="${path_for_OO_preferences}/Pro Templates"
   local destination_path="${path_for_OO_custom_templates}/${custom_template_filename}"
+
+  report_action_taken "Copy Jim’s custom OmniOutliner template to OmniOutliner sandboxed preferences area"
+  copy_resource_between_local_directories "$source_path" "$destination_path" ; success_or_not
 
   report_adjust_setting "Set: General: For new documents: Use Template"
   defaults write ${domain} OUIResourceManagerUseDocumentTemplateForNewDocuments -bool true ; success_or_not
@@ -38,9 +41,6 @@ function set_omnioutliner_settings() {
 
   report_adjust_setting "Set: Keyboard: New rows are created: Always at the same level"
   defaults write ${domain} OOReturnShouldPossiblyIndent -bool false ; success_or_not
-
-  report_action_taken "Copy Jim’s custom OmniOutliner template to OmniOutliner sandboxed preferences area"
-  copy_resource_between_local_directories "$source_path" "$destination_path" ; success_or_not
 
   report_end_phase_standard
 
