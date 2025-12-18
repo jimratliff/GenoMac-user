@@ -37,7 +37,7 @@ function set_omnioutliner_settings() {
   defaults write ${domain} OUIResourceManagerUseDocumentTemplateForNewDocuments -bool true ; success_or_not
 
   report_adjust_setting "Set: path to custom template"
-  defaults write ${domain} OUIResourceManagerDefaultDocumentTemplatePath -string ${destination_path} ; success_or_not
+  defaults write ${domain} OUIResourceManagerDefaultDocumentTemplatePath -string "${destination_path}" ; success_or_not
 
   report_adjust_setting "Set: Keyboard: New rows are created: Always at the same level"
   defaults write ${domain} OOReturnShouldPossiblyIndent -bool false ; success_or_not
