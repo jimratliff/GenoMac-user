@@ -28,6 +28,7 @@ safe_source "${PREFS_FUNCTIONS_DIR}/set_general_interface_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_keyboard_maestro_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_notifications_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_omnioutliner_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_preview_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
@@ -182,6 +183,9 @@ set_iterm_settings
 
 # Keyboard Maestro
 set_keyboard_maestro_settings
+
+# OmniOutliner
+set_omnioutliner_settings
 
 # Warp
 # Warp is now excluded from Project GenoMac because it can’t be reliably configured via `defaults write`
