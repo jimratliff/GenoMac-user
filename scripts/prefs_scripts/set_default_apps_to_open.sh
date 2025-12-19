@@ -35,6 +35,7 @@ report_action_taken "Assign default app(s) for document type(s)"
 local uti_plain_text=public.plain-text
 local uti_markdown=net.daringfireball.markdown
 local uti_shell_script=public.shell-script
+local uti_plist=com.apple.property-list
 
 local bundle_id_text_edit_app="com.apple.TextEdit"
 local bundle_id_bbedit_app="com.barebones.bbedit"
@@ -42,11 +43,15 @@ local bundle_id_Plain_Text_Editor_app="com.sindresorhus.Plain-Text-Editor"
 
 report_adjust_setting "Set plain-text files to open with BBEdit"
 printf "\n"
-utiluti type set $uti_plain_text    $bundle_id_bbedit_app ; success_or_not
+utiluti type set $uti_plain_text     $bundle_id_bbedit_app ; success_or_not
 
 report_adjust_setting "Set Markdown files to open with BBEdit"
 printf "\n"
 utiluti type set $uti_markdown       $bundle_id_bbedit_app ; success_or_not
+
+report_adjust_setting "Set .plist files to open with BBEdit"
+printf "\n"
+utiluti type set $uti_plist          $bundle_id_bbedit_app ; success_or_not
 
 report_adjust_setting "Set shell scripts to open with BBEdit"
 printf "\n"
