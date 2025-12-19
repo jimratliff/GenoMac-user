@@ -36,6 +36,8 @@ local uti_plain_text=public.plain-text
 local uti_markdown=net.daringfireball.markdown
 local uti_shell_script=public.shell-script
 local uti_plist=com.apple.property-list
+local uti_xml=public.xml
+local uti_applescript=com.apple.applescript.text
 
 local bundle_id_text_edit_app="com.apple.TextEdit"
 local bundle_id_bbedit_app="com.barebones.bbedit"
@@ -56,6 +58,14 @@ utiluti type set $uti_plist          $bundle_id_bbedit_app ; success_or_not
 report_adjust_setting "Set shell scripts to open with BBEdit"
 printf "\n"
 utiluti type set $uti_shell_script   $bundle_id_bbedit_app ; success_or_not
+
+report_adjust_setting "Set XML files to open with BBEdit"
+printf "\n"
+utiluti type set $uti_xml            $bundle_id_bbedit_app ; success_or_not
+
+report_adjust_setting "Set AppleScript files to open with BBEdit"
+printf "\n"
+utiluti type set $uti_applescript    $bundle_id_bbedit_app ; success_or_not
 
 report_end_phase_standard
 
