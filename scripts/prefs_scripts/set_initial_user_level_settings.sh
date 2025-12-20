@@ -29,6 +29,7 @@ safe_source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_keyboard_maestro_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_notifications_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_microsoft_office_suite_wide_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_microsoft_word_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_omnioutliner_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_preview_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
@@ -188,6 +189,8 @@ set_keyboard_maestro_settings
 # Microsoft Office
 # Suite-wide-settings
 set_microsoft_office_suite_wide_settings
+# Microsoft Word (VERY limited)
+set_microsoft_word_settings
 
 # OmniOutliner
 set_omnioutliner_settings
