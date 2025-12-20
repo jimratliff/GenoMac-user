@@ -11,7 +11,7 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
-function set_microsoft_office_suite_wide_settings() {
+function set_microsoft_word_settings() {
 
 report_start_phase_standard
 
