@@ -37,6 +37,9 @@ defaults write "${domain}" ShowDocStageOnLaunch -bool false ; success_or_not
 report_adjust_setting "Set default file location to local, not cloud-based"
 defaults write "${domain}" ShowDocStageOnLaunch -bool false ; success_or_not
 
+report_adjust_setting "Show file extentions"
+defaults write "${domain}" ShowFileExtensions -bool true ; success_or_not
+
 report_end_phase_standard
 
 }
