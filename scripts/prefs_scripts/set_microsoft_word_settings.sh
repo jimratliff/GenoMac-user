@@ -61,7 +61,7 @@ if [[ -f "$log_file_from_VBA_macro" ]]; then
   # Optionally echo the log contents or parse for status
   report "Here is a summary of actions taken by the VBA macro:"
   cat "$log_file_from_VBA_macro"
-  success_or_not  # or parse the log for "STATUS: OK" to determine success
+  success_or_not
 else
   report_fail "Word preferences macro did not complete within ${timeout}s"
   exit 1
