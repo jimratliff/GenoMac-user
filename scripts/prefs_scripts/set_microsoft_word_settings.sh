@@ -31,7 +31,7 @@ local Word_document_filename="Container_for_VBA_macro_to_set_Word_preferences.do
 local log_file_from_VBA_macro="/tmp/word_preferences_log.txt"
 
 # Construct path to macro-containing Word file
-local source_path="${GENOMAC_USER_RESOURCE_DIRECTORY}/microsoft_word/${Word_document_filename}"
+local source_path="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/microsoft_word/${Word_document_filename}"
 
 # Confirm existence of macro-containing Word file
 if [[ ! -f "$source_path" ]]; then
