@@ -3,9 +3,8 @@
 ' 
 ' - Open the macro-enabled Word document `Container_for_VBA_macro_to_set_Word_preferences.docm`
 ' - Open the VBA Editor (using ⌥F11, i.e., Option-F11)
-' - In Project Explorer, find `ThisDocument` under `Project (Container_for…) » Microsoft Word Objects`
-' - Double-click `ThisDocument` to open its code window
-' - Paste only the below code below (beginning with `Option Explicit`) into `Module1`
+' - From the macOS menubar, choose Insert » Module, which opens a new, blank window corresponding to `Module1`
+' - Paste only the below code below (beginning with `Option Explicit`) into the `Module1` window
 '
 ' NOTE: Changing this file doesn’t by itself effect the change. The new version of this code must be
 '			  reinserted into `Module1` of the macro-enabled Word document `Container_for_VBA_macro_to_set_Word_preferences.docm`
