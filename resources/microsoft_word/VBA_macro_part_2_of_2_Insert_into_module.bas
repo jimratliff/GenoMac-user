@@ -12,13 +12,23 @@
 
 Option Explicit
 
+' Log file location - adjust path as needed
+' Using /tmp for simplicity; could also use ~/Library/Logs/ or another location
+Private Const LOG_FILE_PATH As String = "/tmp/word_preferences_log.txt"
+
 Public Sub SetMyPreferences()
     ' =============================================================================
     ' Sets Word preferences for executing user
+    ' Writes summary of actions taken to a log file to be read by the enveloping shell script
     ' =============================================================================
     
     Dim changesApplied As String
+    Dim logMessages As String
     changesApplied = ""
+    logMessages = ""
+
+    ' Add timestamp to log
+    logMessages = logMessages & "Word Preferences Macro Run: " & Format(Now, "yyyy-mm-dd hh:nn:ss") & vbLf
     
     On Error Resume Next ' Some properties may not exist on all Mac versions
     
@@ -31,21 +41,21 @@ Public Sub SetMyPreferences()
         ' Default: ON (True) → Desired: OFF (False)
         If .UpdateLinksAtOpen <> False Then
             .UpdateLinksAtOpen = False
-            changesApplied = changesApplied & "• Update links at open → OFF" & vbCrLf
+            changesApplied = changesApplied & "• Update links at open → OFF" & vbLf
         End If
         
         ' Edit > Editing Options > "Select entire word when selecting text"
         ' Default: ON (True) → Desired: OFF (False)
         If .AutoWordSelection <> False Then
             .AutoWordSelection = False
-            changesApplied = changesApplied & "• Select entire word → OFF" & vbCrLf
+            changesApplied = changesApplied & "• Select entire word → OFF" & vbLf
         End If
         
         ' Edit > Click and Type > "Enable click and type"
         ' Default: ON (True) → Desired: OFF (False)
         If .AllowClickAndTypeMouse <> False Then
             .AllowClickAndTypeMouse = False
-            changesApplied = changesApplied & "• Click and type → OFF" & vbCrLf
+            changesApplied = changesApplied & "• Click and type → OFF" & vbLf
         End If
         
         ' Edit > Editing Options > "Insert/paste pictures as"
@@ -53,28 +63,28 @@ Public Sub SetMyPreferences()
         ' WdWrapTypeMerged: 0=Inline, 1=Tight, 2=Through, 3=None, 4=TopBottom, 5=Behind, 6=Front, 7=Square
         If .PictureWrapType <> 4 Then
             .PictureWrapType = 4
-            changesApplied = changesApplied & "• Picture wrap type → Top and Bottom" & vbCrLf
+            changesApplied = changesApplied & "• Picture wrap type → Top and Bottom" & vbLf
         End If
         
         ' Spelling & Grammar > Spelling > "Frequently confused words"
         ' Default: ON (True) → Desired: OFF (False)
         If .EnableMisusedWordsDictionary <> False Then
             .EnableMisusedWordsDictionary = False
-            changesApplied = changesApplied & "• Frequently confused words → OFF" & vbCrLf
+            changesApplied = changesApplied & "• Frequently confused words → OFF" & vbLf
         End If
         
         ' Spelling & Grammar > Grammar > "Check grammar as you type"
         ' Default: ON (True) → Desired: OFF (False)
         If .CheckGrammarAsYouType <> False Then
             .CheckGrammarAsYouType = False
-            changesApplied = changesApplied & "• Check grammar as you type → OFF" & vbCrLf
+            changesApplied = changesApplied & "• Check grammar as you type → OFF" & vbLf
         End If
         
         ' Output and Sharing > Save > "Prompt before saving Normal template"
         ' Default: OFF (False) → Desired: ON (True)
         If .SaveNormalPrompt <> True Then
             .SaveNormalPrompt = True
-            changesApplied = changesApplied & "• Prompt before saving Normal → ON" & vbCrLf
+            changesApplied = changesApplied & "• Prompt before saving Normal → ON" & vbLf
         End If
         
     End With
@@ -88,75 +98,48 @@ Public Sub SetMyPreferences()
         ' Default: ON (True) → Desired: OFF (False)
         If .ReplaceText <> False Then
             .ReplaceText = False
-            changesApplied = changesApplied & "• AutoCorrect replace text → OFF" & vbCrLf
+            changesApplied = changesApplied & "• AutoCorrect replace text → OFF" & vbLf
         End If
         
     End With
     
     ' -----------------------------------------------------------------
-    ' View settings - NOTE: FieldShading is per-window, see notes below
-    ' -----------------------------------------------------------------
-    ' The FieldShading property is a VIEW setting, not an application preference.
-    ' It applies to the current window and new windows inherit from a default.
-    ' This may need to be in Normal.dotm to truly persist, or set here as a
-    ' "best effort" that applies to any open windows.
-    
-    If Application.Documents.Count > 0 Then
-        Dim doc As Document
-        For Each doc In Application.Documents
-            On Error Resume Next
-            If doc.ActiveWindow.View.FieldShading <> 1 Then  ' 1 = wdFieldShadingAlways
-                doc.ActiveWindow.View.FieldShading = 1
-                changesApplied = changesApplied & "• Field shading → Always (current windows)" & vbCrLf
-            End If
-            On Error GoTo 0
-        Next doc
-    End If
-    
-    On Error GoTo 0
-    
-    ' -----------------------------------------------------------------
-    ' Report results
+    ' Build log message and write to file
     ' -----------------------------------------------------------------
     If changesApplied = "" Then
-        MsgBox "All preferences were already set to your desired values.", _
-               vbInformation, "Word Preferences"
+        logMessages = logMessages & "STATUS: OK - All preferences were already set to desired values." & vbLf
     Else
-        MsgBox "The following preferences were updated:" & vbCrLf & vbCrLf & changesApplied, _
-               vbInformation, "Word Preferences Applied"
+        logMessages = logMessages & "STATUS: OK - The following preferences were updated:" & vbLf & changesApplied
     End If
+    
+    ' Write to log file
+    WriteToLogFile logMessages
+    
+    ' Close this document without saving (it's just a container for the macro)
+    ' Comment out the next line if you want the document to remain open
+    ThisDocument.Close SaveChanges:=wdDoNotSaveChanges
     
 End Sub
 
-' =============================================================================
-' Optional: Manual trigger and diagnostic tools
-' =============================================================================
-
-Public Sub ShowCurrentPreferences()
-    ' Displays current values for verification
-    Dim msg As String
+Private Sub WriteToLogFile(ByVal message As String)
+    ' Writes message to log file, overwriting any previous content
+    ' Uses VBA file I/O which works on Mac
     
+    Dim fileNum As Integer
+    
+    On Error GoTo WriteError
+    
+    fileNum = FreeFile
+    Open LOG_FILE_PATH For Output As #fileNum
+    Print #fileNum, message;
+    Close #fileNum
+    
+    Exit Sub
+    
+WriteError:
+    ' If we can't write to the log file, fail silently
+    ' (we're trying to avoid any user interaction)
     On Error Resume Next
-    
-    msg = "Current Word Preferences:" & vbCrLf & vbCrLf
-    
-    With Application.Options
-        msg = msg & "UpdateLinksAtOpen: " & .UpdateLinksAtOpen & " (want: False)" & vbCrLf
-        msg = msg & "AutoWordSelection: " & .AutoWordSelection & " (want: False)" & vbCrLf
-        msg = msg & "AllowClickAndTypeMouse: " & .AllowClickAndTypeMouse & " (want: False)" & vbCrLf
-        msg = msg & "PictureWrapType: " & .PictureWrapType & " (want: 4)" & vbCrLf
-        msg = msg & "EnableMisusedWordsDictionary: " & .EnableMisusedWordsDictionary & " (want: False)" & vbCrLf
-        msg = msg & "CheckGrammarAsYouType: " & .CheckGrammarAsYouType & " (want: False)" & vbCrLf
-        msg = msg & "SaveNormalPrompt: " & .SaveNormalPrompt & " (want: True)" & vbCrLf
-    End With
-    
-    msg = msg & "AutoCorrect.ReplaceText: " & Application.AutoCorrect.ReplaceText & " (want: False)" & vbCrLf
-    
-    If Application.Documents.Count > 0 Then
-        msg = msg & "FieldShading: " & ActiveWindow.View.FieldShading & " (want: 1)" & vbCrLf
-    End If
-    
+    Close #fileNum
     On Error GoTo 0
-    
-    MsgBox msg, vbInformation, "Current Preferences"
 End Sub
