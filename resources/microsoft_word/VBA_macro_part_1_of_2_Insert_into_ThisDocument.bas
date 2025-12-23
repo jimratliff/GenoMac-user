@@ -8,5 +8,6 @@
 ' - Paste only the three lines of code below into `ThisDocument`
 
 Private Sub Document_Open()
+    MsgBox "Document_Open fired!"
     SetMyPreferences
 End Sub
