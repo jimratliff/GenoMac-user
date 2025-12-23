@@ -13,8 +13,13 @@
 Option Explicit
 
 Private Function GetLogFilePath() As String
-    ' This path must stay coordinated with the environment variable GENOMAC_LOCAL_TEMP_DIR in the shell environment
-    GetLogFilePath = Environ("HOME") & "/.genomac-temp/word_preferences_log.txt"
+    Dim realHome As String
+    realHome = MacScript("return POSIX path of (path to home folder)")
+    ' Remove trailing slash if present
+    If Right(realHome, 1) = "/" Then
+        realHome = Left(realHome, Len(realHome) - 1)
+    End If
+    GetLogFilePath = realHome & "/.genomac-temp/word_preferences_log.txt"
 End Function
 
 Public Sub SetMyPreferences()
