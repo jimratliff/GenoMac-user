@@ -22,6 +22,8 @@ Public Sub SetMyPreferences()
     ' Sets Word preferences for executing user
     ' Writes summary of actions taken to a log file to be read by the enveloping shell script
     ' =============================================================================
+
+    MsgBox "SetMyPreferences started!"
     
     Dim changesApplied As String
     Dim logMessages As String
@@ -30,8 +32,6 @@ Public Sub SetMyPreferences()
 
     ' Add timestamp to log
     logMessages = logMessages & "Word Preferences Macro Run: " & Format(Now, "yyyy-mm-dd hh:nn:ss") & vbLf
-    ' Temporary to diagnose
-    WriteToLogFile logMessages
     
     On Error Resume Next ' Some properties may not exist on all Mac versions
     
