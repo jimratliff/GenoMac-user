@@ -26,7 +26,7 @@ Private Function GetLogFilePath() As String
     
     realHome = "/Users/" & parts(2)
     
-    MsgBox "realHome = " & realHome  ' Debug - remove later
+    ' MsgBox "realHome = " & realHome  ' Debug - remove later
     
     GetLogFilePath = realHome & "/.genomac-temp/word_preferences_log.txt"
 End Function
@@ -37,7 +37,7 @@ Public Sub SetMyPreferences()
     ' Writes summary of actions taken to a log file to be read by the enveloping shell script
     ' =============================================================================
 
-    MsgBox "SetMyPreferences started!"
+    ' MsgBox "SetMyPreferences started!"
     
     Dim changesApplied As String
     Dim logMessages As String
@@ -145,7 +145,7 @@ Private Sub WriteToLogFile(ByVal message As String)
     filePath = GetLogFilePath()
     
     ' DEBUG: Show what we're trying to do
-    MsgBox "Attempting to write to: " & filePath
+    ' MsgBox "Attempting to write to: " & filePath
     
     On Error GoTo WriteError
     
@@ -154,12 +154,12 @@ Private Sub WriteToLogFile(ByVal message As String)
     Print #fileNum, message;
     Close #fileNum
     
-    MsgBox "Write succeeded!"
+    ' MsgBox "Write succeeded!"
 
     Exit Sub
     
 WriteError:
-    MsgBox "Write failed with error: " & Err.Description
+    ' MsgBox "Write failed with error: " & Err.Description
     On Error Resume Next
     Close #fileNum
     On Error GoTo 0
