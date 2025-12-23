@@ -123,23 +123,26 @@ Public Sub SetMyPreferences()
 End Sub
 
 Private Sub WriteToLogFile(ByVal message As String)
-    ' Writes message to log file, overwriting any previous content
-    ' Uses VBA file I/O which works on Mac
-    
     Dim fileNum As Integer
+    Dim filePath As String
+    
+    filePath = GetLogFilePath()
+    
+    ' DEBUG: Show what we're trying to do
+    MsgBox "Attempting to write to: " & filePath
     
     On Error GoTo WriteError
     
     fileNum = FreeFile
-    Open GetLogFilePath() For Output As #fileNum
+    Open filePath For Output As #fileNum
     Print #fileNum, message;
     Close #fileNum
     
+    MsgBox "Write succeeded!"
     Exit Sub
     
 WriteError:
-    ' If we can't write to the log file, fail silently
-    ' (we're trying to avoid any user interaction)
+    MsgBox "Write failed with error: " & Err.Description
     On Error Resume Next
     Close #fileNum
     On Error GoTo 0
