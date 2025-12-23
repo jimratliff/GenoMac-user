@@ -12,9 +12,10 @@
 
 Option Explicit
 
-' Log file location - adjust path as needed
-' Using /tmp for simplicity; could also use ~/Library/Logs/ or another location
-Private Const LOG_FILE_PATH As String = "/tmp/word_preferences_log.txt"
+Private Function GetLogFilePath() As String
+    ' This path must stay coordinated with the environment variable GENOMAC_LOCAL_TEMP_DIR in the shell environment
+    GetLogFilePath = Environ("HOME") & "/.genomac-temp"
+End Function
 
 Public Sub SetMyPreferences()
     ' =============================================================================
@@ -130,7 +131,7 @@ Private Sub WriteToLogFile(ByVal message As String)
     On Error GoTo WriteError
     
     fileNum = FreeFile
-    Open LOG_FILE_PATH For Output As #fileNum
+    Open GetLogFilePath() For Output As #fileNum
     Print #fileNum, message;
     Close #fileNum
     
