@@ -14,12 +14,20 @@ Option Explicit
 
 Private Function GetLogFilePath() As String
     Dim realHome As String
-    realHome = MacScript("return POSIX path of (path to home folder)")
-    MsgBox "realHome = " & realHome
-    ' Remove trailing slash if present
-    If Right(realHome, 1) = "/" Then
-        realHome = Left(realHome, Len(realHome) - 1)
-    End If
+    ' The sandboxed HOME contains the real username in the path
+    ' Extract it from: /Users/USERNAME/Library/Containers/com.microsoft.Word/Data/
+    Dim sandboxedHome As String
+    sandboxedHome = Environ("HOME")
+    
+    ' Parse out the username (between /Users/ and /Library/)
+    Dim parts() As String
+    parts = Split(sandboxedHome, "/")
+    ' parts(0) = "", parts(1) = "Users", parts(2) = username
+    
+    realHome = "/Users/" & parts(2)
+    
+    MsgBox "realHome = " & realHome  ' Debug - remove later
+    
     GetLogFilePath = realHome & "/.genomac-temp/word_preferences_log.txt"
 End Function
 
