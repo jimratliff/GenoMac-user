@@ -17,13 +17,6 @@ report_start_phase_standard
 
 local domain="com.microsoft.Word"
 
-report_action_taken "Set VERY limited Microsoft Word preferences with defaults write command(s)"
-
-report_adjust_setting "Ribbon: Show group titles"
-defaults write "${domain}" OUIRibbonShowGroupTitles -bool true ; success_or_not
-
-report_action_taken "Use a VBA script to implement additional Microsoft Word preferences"
-
 local Word_document_filename="Container_for_VBA_macro_to_set_Word_preferences.docm"
 
 # NOTE: The below log-file path is *not* discretionary. It is hardwired into the VBA macro
@@ -33,19 +26,32 @@ local log_file_from_VBA_macro="${GENOMAC_LOCAL_TEMP_DIR}/word_preferences_log.tx
 # Construct path to macro-containing Word file
 local source_path="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/microsoft_word/${Word_document_filename}"
 
+report_action_taken "Set VERY limited Microsoft Word preferences with defaults write command(s)"
+
+report_adjust_setting "Ribbon: Show group titles"
+defaults write "${domain}" OUIRibbonShowGroupTitles -bool true ; success_or_not
+
+report_action_taken "Use a VBA script to implement additional Microsoft Word preferences"
+
 # Confirm existence of macro-containing Word file
 if [[ ! -f "$source_path" ]]; then
   report_fail "Missing macro-containing Word document at ${source_path}"
   exit 1
 fi
+report_success "Macro-containing Word document found at ${source_path}"
 
-# Remove any stale log file from a previous run
-rm -f "$log_file_from_VBA_macro"
+report_action_taken "Creating, if necessary, temporary directory at ${$GENOMAC_LOCAL_TEMP_DIR}"
+create_genomac_temp_dir_if_necessary ; success_or_not
+report_action_taken "Removing, if necessary, any stale log file from a previous run"
+rm -f "$log_file_from_VBA_macro" ; success_or_not
 
 # Open the document in Word (this triggers Document_Open → SetMyPreferences)
+report_action_taken "Opening in Word the macro-containing Word document in order to launch its preferences-setting macro"
 open -a "Microsoft Word" "$source_path"
+success_or_not
 
 # Wait for the log file to appear (indicates macro completed)
+report_action_taken "Waiting ⏲ for log file to appear at $log_file_from_VBA_macro"
 local timeout=30
 local elapsed=0
 while [[ ! -f "$log_file_from_VBA_macro" && $elapsed -lt $timeout ]]; do
