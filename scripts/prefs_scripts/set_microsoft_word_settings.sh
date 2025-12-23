@@ -57,6 +57,7 @@ local elapsed=0
 while [[ ! -f "$log_file_from_VBA_macro" && $elapsed -lt $timeout ]]; do
   sleep 1
   ((elapsed++))
+  report "Elapsed: $elapsed"
 done
 
 # Brief additional wait to ensure file is fully written
