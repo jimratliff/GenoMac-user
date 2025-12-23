@@ -40,7 +40,7 @@ if [[ ! -f "$source_path" ]]; then
 fi
 report_success "Macro-containing Word document found at ${source_path}"
 
-report_action_taken "Creating, if necessary, temporary directory at ${$GENOMAC_LOCAL_TEMP_DIR}"
+report_action_taken "Creating, if necessary, temporary directory at ${GENOMAC_LOCAL_TEMP_DIR}"
 create_genomac_temp_dir_if_necessary ; success_or_not
 report_action_taken "Removing, if necessary, any stale log file from a previous run"
 rm -f "$log_file_from_VBA_macro" ; success_or_not
