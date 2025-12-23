@@ -30,6 +30,8 @@ Public Sub SetMyPreferences()
 
     ' Add timestamp to log
     logMessages = logMessages & "Word Preferences Macro Run: " & Format(Now, "yyyy-mm-dd hh:nn:ss") & vbLf
+    ' Temporary to diagnose
+    WriteToLogFile logMessages
     
     On Error Resume Next ' Some properties may not exist on all Mac versions
     
