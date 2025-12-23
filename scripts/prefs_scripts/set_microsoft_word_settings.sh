@@ -56,7 +56,7 @@ local timeout=30
 local elapsed=0
 while [[ ! -f "$log_file_from_VBA_macro" && $elapsed -lt $timeout ]]; do
   sleep 1
-  ((elapsed++))
+  elapsed=$((elapsed + 1))
   report "Elapsed: $elapsed"
 done
 
