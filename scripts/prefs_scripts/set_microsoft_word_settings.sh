@@ -19,16 +19,18 @@ local domain="com.microsoft.Word"
 
 local Word_document_filename="Container_for_VBA_macro_to_set_Word_preferences.docm"
 
-local log_file_file_name="word_preferences_log.txt"
+MICROSOFT_WORD_SANDBOX_HOME="$HOME/Library/Containers/com.microsoft.Word/Data"
+TEMP_DIRECTORY_FOR_MICROSOFT_WORD="$MICROSOFT_WORD_SANDBOX_HOME/tmp/genomac"
 
-# NOTE: The below log-file path is *not* discretionary. It is hardwired into the VBA macro
-# embedded in $Word_document_filename
-local log_file_from_VBA_macro="${GENOMAC_LOCAL_TEMP_DIR}/${log_file_file_name}"
+# NOTE: The below log-file filename and path are *not* discretionary. 
+# They are hardwired into the VBA macro, see, e.g., $Word_document_filename
+local log_file_file_name="word_preferences_log.txt"
+local log_file_from_VBA_macro="${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}/${log_file_file_name}"
 
 # Construct path to macro-containing Word file
 local source_path="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/microsoft_word/${Word_document_filename}"
 
-report_action_taken "Set VERY limited Microsoft Word preferences with defaults write command(s)"
+report_action_taken "Set some Microsoft Word preferences with defaults write command(s)"
 
 report_adjust_setting "Ribbon: Show group titles"
 defaults write "${domain}" OUIRibbonShowGroupTitles -bool true ; success_or_not
@@ -42,15 +44,14 @@ if [[ ! -f "$source_path" ]]; then
 fi
 report_success "Macro-containing Word document found at ${source_path}"
 
-report_action_taken "Creating, if necessary, temporary directory at ${GENOMAC_LOCAL_TEMP_DIR}"
-create_genomac_temp_dir_if_necessary ; success_or_not
+report_action_taken "Creating, if necessary, temporary directory at ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
+mkdir -p "$TEMP_DIRECTORY_FOR_MICROSOFT_WORD" ; success_or_not
 report_action_taken "Removing, if necessary, any stale log file from a previous run"
 rm -f "$log_file_from_VBA_macro" ; success_or_not
 
 # Open the document in Word (this triggers Document_Open → SetMyPreferences)
 report_action_taken "Opening in Word the macro-containing Word document in order to launch its preferences-setting macro"
 report_warning "A dialog will pop up: You must agree to “Enable Macros”"
-report_warning "Another dialog might pop up. You must agree to grant access to “~/.genomac-temp”"
 open -a "Microsoft Word" "$source_path"
 success_or_not
 
