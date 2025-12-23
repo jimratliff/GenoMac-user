@@ -49,6 +49,8 @@ rm -f "$log_file_from_VBA_macro" ; success_or_not
 
 # Open the document in Word (this triggers Document_Open → SetMyPreferences)
 report_action_taken "Opening in Word the macro-containing Word document in order to launch its preferences-setting macro"
+report_warning "A dialog will pop up: You must agree to “Enable Macros”"
+report_warning "Another dialog might pop up. You must agree to grant access to “~/.genomac-temp”"
 open -a "Microsoft Word" "$source_path"
 success_or_not
 
