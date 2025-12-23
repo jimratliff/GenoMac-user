@@ -24,7 +24,7 @@ function set_omnioutliner_settings() {
 
   # Construct full source path for this specific repo
   # local source_path="${GENOMAC_USER_LOCAL_DIRECTORY}/resources/omnioutliner/${custom_template_filename}"
-  local source_path="${GENOMAC_USER_RESOURCE_DIRECTORY}/omnioutliner/${custom_template_filename}"
+  local source_path="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/omnioutliner/${custom_template_filename}"
 
   # Construct destination path to OmniOutliner’s directory for custom templates
   local path_for_OO_preferences="${HOME}/Library/Containers/${domain}/Data/Library/Application Support/The Omni Group/OmniOutliner"
