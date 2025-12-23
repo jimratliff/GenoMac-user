@@ -19,9 +19,11 @@ local domain="com.microsoft.Word"
 
 local Word_document_filename="Container_for_VBA_macro_to_set_Word_preferences.docm"
 
+local log_file_file_name="word_preferences_log.txt"
+
 # NOTE: The below log-file path is *not* discretionary. It is hardwired into the VBA macro
 # embedded in $Word_document_filename
-local log_file_from_VBA_macro="${GENOMAC_LOCAL_TEMP_DIR}/word_preferences_log.txt"
+local log_file_from_VBA_macro="${GENOMAC_LOCAL_TEMP_DIR}/${log_file_file_name}"
 
 # Construct path to macro-containing Word file
 local source_path="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/microsoft_word/${Word_document_filename}"
