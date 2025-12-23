@@ -55,7 +55,12 @@ fi
 
 GENOMAC_NAMESPACE="com.virtualperfection.genomac"
 
+# EXPERIMENTAL
+# Specify a directory for a temp file that a Microsoft Word macro can write to without asking for special permissions
+# GENOMAC_LOCAL_TEMP_DIR="$HOME/.genomac-temp"
 GENOMAC_LOCAL_TEMP_DIR="$HOME/.genomac-temp"
+
+MICROSOFT_WORD_SANDBOX_HOME="$HOME/Library/Containers/com.microsoft.Word/Data"
 
 # Source the helpers script
 source "${GENOMAC_HELPER_DIR}/helpers.sh"
@@ -147,6 +152,7 @@ export_and_report GENOMAC_USER_REPO_URL
 export_and_report GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY
 export_and_report HOMEBREW_PREFIX
 export_and_report META_MODIFIER_CHARS
+export_and_report MICROSOFT_WORD_SANDBOX_HOME
 export_and_report MODIFIERS_KEYBOARD_NAVIGATION
 export_and_report OPTION_CHAR
 export_and_report PLISTBUDDY_PATH
