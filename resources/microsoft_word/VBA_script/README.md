@@ -1,13 +1,13 @@
 # Overview
 This README file addresses:
 - using a VBA macro to implement a user’s preferences for Microsoft Word
-- the structure of the contents of this `resources/microsoft_word` directory within this repository
+- the structure of the contents of this `resources/VBA_script/microsoft_word` directory within this repository
 
 # Contents
 - `Container_for_VBA_macro_to_set_Word_preferences.docm`
   - A macro-enabled Word document that exists as a container for a VBA macro,
     which macro runs when `Container_for_VBA_macro_to_set_Word_preferences.docm` is opened
-  - This is the only file in this `resources/microsoft_word` directory that *ultimately* matters.
+  - This is the only file in this `resources/VBA_script/microsoft_word` directory that *ultimately* matters.
     All of the other files in this directory contribute to the construction of
     `Container_for_VBA_macro_to_set_Word_preferences.docm`
 - VBA macro code to be incorporated into `Container_for_VBA_macro_to_set_Word_preferences.docm`
