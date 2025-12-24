@@ -31,7 +31,6 @@ local log_file_from_VBA_macro="${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}/${log_file_f
 local source_path="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/microsoft_word/${Word_document_filename}"
 
 report_action_taken "Set some Microsoft Word preferences with defaults write command(s)"
-
 report_adjust_setting "Ribbon: Show group titles"
 defaults write "${domain}" OUIRibbonShowGroupTitles -bool true ; success_or_not
 
@@ -44,9 +43,9 @@ if [[ ! -f "$source_path" ]]; then
 fi
 report_success "Macro-containing Word document found at ${source_path}"
 
-report_action_taken "Creating, if necessary, temporary directory at ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
+report_action_taken "Create, if necessary, temporary directory at ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
 mkdir -p "$TEMP_DIRECTORY_FOR_MICROSOFT_WORD" ; success_or_not
-report_action_taken "Removing, if necessary, any stale log file from a previous run"
+report_action_taken "Remove, if necessary, any stale log file from a previous run"
 rm -f "$log_file_from_VBA_macro" ; success_or_not
 
 # Open the document in Word (this triggers Document_Open → SetMyPreferences)
@@ -56,14 +55,27 @@ open -a "Microsoft Word" "$source_path"
 success_or_not
 
 # Wait for the log file to appear (indicates macro completed)
-report_action_taken "Waiting ⏲ for log file to appear at $log_file_from_VBA_macro"
-local timeout=30
+report_action_taken "Waiting for Word macro to complete (approve macro dialog if prompted)"
+local max_elapsed=200
+local warning_threshold=30
 local elapsed=0
-while [[ ! -f "$log_file_from_VBA_macro" && $elapsed -lt $timeout ]]; do
+local warning_shown=false
+
+while [[ ! -f "$log_file_from_VBA_macro" ]]; do
   sleep 1
   elapsed=$((elapsed + 1))
-  report "Elapsed: $elapsed"
+  
+  if [[ $elapsed -lt $warning_threshold ]]; then
+    # Print timer emoji on same line (no newline)
+    printf "⏲ "
+  elif [[ "$warning_shown" == "false" ]]; then
+    echo ""  # Newline after the timer emojis
+    report_warning "STILL WAITING FOR WORD MACRO TO COMPLETE. (Did you agree to enable macros?) Hit Control-C to abort."
+    warning_shown=true
+  fi
 done
+
+echo ""  # Newline after timer emojis if we exit before warning
 
 # Brief additional wait to ensure file is fully written
 sleep 1
