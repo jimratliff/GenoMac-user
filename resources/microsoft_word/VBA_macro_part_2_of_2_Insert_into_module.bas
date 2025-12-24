@@ -135,15 +135,8 @@ With Application.AutoCorrect
 End With
     
     ' -----------------------------------------------------------------
-    ' Build log message and write to file
+    ' Write logMessages to file
     ' -----------------------------------------------------------------
-    If changesApplied = "" Then
-        logMessages = logMessages & "STATUS: OK - All preferences were already set to desired values." & vbLf
-    Else
-        logMessages = logMessages & "STATUS: OK - The following preferences were updated:" & vbLf & changesApplied
-    End If
-    
-    ' Write to log file
     WriteToLogFile logMessages
     
     ' Close this document without saving (it's just a container for the macro)
