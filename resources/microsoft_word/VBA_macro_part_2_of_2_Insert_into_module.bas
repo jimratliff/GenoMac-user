@@ -13,7 +13,7 @@
 Option Explicit
 
 Private Function GetLogFilePath() As String
-    GetLogFilePath = Environ("HOME") & "/.genomac-temp/word_preferences_log.txt"
+    GetLogFilePath = Environ("HOME") & "/tmp/word_preferences_log.txt"
 End Function
 
 Private Function ReportSetting(settingName As String, actionTaken As String) As String
