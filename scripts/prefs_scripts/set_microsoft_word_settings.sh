@@ -46,7 +46,7 @@ report_success "Macro-containing Word document found at ${source_path}"
 report_action_taken "Create, if necessary, temporary directory at ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
 mkdir -p "$TEMP_DIRECTORY_FOR_MICROSOFT_WORD"
 if [[ -d "$TEMP_DIRECTORY_FOR_MICROSOFT_WORD" ]]; then
-    success_or_not
+    report_success "Created ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
 else
     report_fail "Failed to create directory at ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
     exit 1
