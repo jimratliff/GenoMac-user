@@ -44,7 +44,14 @@ fi
 report_success "Macro-containing Word document found at ${source_path}"
 
 report_action_taken "Create, if necessary, temporary directory at ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
-mkdir -p "$TEMP_DIRECTORY_FOR_MICROSOFT_WORD" ; success_or_not
+mkdir -p "$TEMP_DIRECTORY_FOR_MICROSOFT_WORD"
+if [[ -d "$TEMP_DIRECTORY_FOR_MICROSOFT_WORD" ]]; then
+    success_or_not
+else
+    report_fail "Failed to create directory at ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
+    exit 1
+fi
+
 report_action_taken "Remove, if necessary, any stale log file from a previous run"
 rm -f "$log_file_from_VBA_macro" ; success_or_not
 
