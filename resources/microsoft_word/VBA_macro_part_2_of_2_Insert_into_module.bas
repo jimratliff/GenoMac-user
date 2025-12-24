@@ -13,22 +13,11 @@
 Option Explicit
 
 Private Function GetLogFilePath() As String
-    Dim realHome As String
-    ' The sandboxed HOME contains the real username in the path
-    ' Extract it from: /Users/USERNAME/Library/Containers/com.microsoft.Word/Data/
-    Dim sandboxedHome As String
-    sandboxedHome = Environ("HOME")
-    
-    ' Parse out the username (between /Users/ and /Library/)
-    Dim parts() As String
-    parts = Split(sandboxedHome, "/")
-    ' parts(0) = "", parts(1) = "Users", parts(2) = username
-    
-    realHome = "/Users/" & parts(2)
-    
-    ' MsgBox "realHome = " & realHome  ' Debug - remove later
-    
-    GetLogFilePath = realHome & "/.genomac-temp/word_preferences_log.txt"
+    GetLogFilePath = Environ("HOME") & "/.genomac-temp/word_preferences_log.txt"
+End Function
+
+Private Function ReportSetting(settingName As String, actionTaken As String) As String
+    ReportSetting = "• " & settingName & " (" & actionTaken & ")" & vbLf
 End Function
 
 Public Sub SetMyPreferences()
@@ -49,76 +38,101 @@ Public Sub SetMyPreferences()
     
     On Error Resume Next ' Some properties may not exist on all Mac versions
     
-    ' -----------------------------------------------------------------
-    ' Application.Options settings (stored in user preferences)
-    ' -----------------------------------------------------------------
-    With Application.Options
-        
-        ' General > Settings > "Update automatic links at Open"
-        ' Default: ON (True) → Desired: OFF (False)
-        If .UpdateLinksAtOpen <> False Then
-            .UpdateLinksAtOpen = False
-            changesApplied = changesApplied & "• Update links at open → OFF" & vbLf
-        End If
-        
-        ' Edit > Editing Options > "Select entire word when selecting text"
-        ' Default: ON (True) → Desired: OFF (False)
-        If .AutoWordSelection <> False Then
-            .AutoWordSelection = False
-            changesApplied = changesApplied & "• Select entire word → OFF" & vbLf
-        End If
-        
-        ' Edit > Click and Type > "Enable click and type"
-        ' Default: ON (True) → Desired: OFF (False)
-        If .AllowClickAndTypeMouse <> False Then
-            .AllowClickAndTypeMouse = False
-            changesApplied = changesApplied & "• Click and type → OFF" & vbLf
-        End If
-        
-        ' Edit > Editing Options > "Insert/paste pictures as"
-        ' Default: 0 (In line with text) → Desired: 4 (Top and bottom)
-        ' WdWrapTypeMerged: 0=Inline, 1=Tight, 2=Through, 3=None, 4=TopBottom, 5=Behind, 6=Front, 7=Square
-        If .PictureWrapType <> 4 Then
-            .PictureWrapType = 4
-            changesApplied = changesApplied & "• Picture wrap type → Top and Bottom" & vbLf
-        End If
-        
-        ' Spelling & Grammar > Spelling > "Frequently confused words"
-        ' Default: ON (True) → Desired: OFF (False)
-        If .EnableMisusedWordsDictionary <> False Then
-            .EnableMisusedWordsDictionary = False
-            changesApplied = changesApplied & "• Frequently confused words → OFF" & vbLf
-        End If
-        
-        ' Spelling & Grammar > Grammar > "Check grammar as you type"
-        ' Default: ON (True) → Desired: OFF (False)
-        If .CheckGrammarAsYouType <> False Then
-            .CheckGrammarAsYouType = False
-            changesApplied = changesApplied & "• Check grammar as you type → OFF" & vbLf
-        End If
-        
-        ' Output and Sharing > Save > "Prompt before saving Normal template"
-        ' Default: OFF (False) → Desired: ON (True)
-        If .SaveNormalPrompt <> True Then
-            .SaveNormalPrompt = True
-            changesApplied = changesApplied & "• Prompt before saving Normal → ON" & vbLf
-        End If
-        
-    End With
+Dim actionTaken As String
+
+' -----------------------------------------------------------------
+' Application.Options settings (stored in user preferences)
+' -----------------------------------------------------------------
+With Application.Options
     
-    ' -----------------------------------------------------------------
-    ' AutoCorrect settings
-    ' -----------------------------------------------------------------
-    With Application.AutoCorrect
-        
-        ' AutoCorrect > "Automatically correct spelling and formatting as you type"
-        ' Default: ON (True) → Desired: OFF (False)
-        If .ReplaceText <> False Then
-            .ReplaceText = False
-            changesApplied = changesApplied & "• AutoCorrect replace text → OFF" & vbLf
-        End If
-        
-    End With
+    ' General > Settings > "Update automatic links at Open"
+    ' Default: ON (True) → Desired: OFF (False)
+    If .UpdateLinksAtOpen <> False Then
+        .UpdateLinksAtOpen = False
+        actionTaken = "CHANGED"
+    Else
+        actionTaken = "already set"
+    End If
+    logMessages = logMessages & ReportSetting("General > Update automatic links at Open → OFF", actionTaken)
+    
+    ' Edit > Editing Options > "Select entire word when selecting text"
+    ' Default: ON (True) → Desired: OFF (False)
+    If .AutoWordSelection <> False Then
+        .AutoWordSelection = False
+        actionTaken = "CHANGED"
+    Else
+        actionTaken = "already set"
+    End If
+    logMessages = logMessages & ReportSetting("Edit > Select entire word when selecting text → OFF", actionTaken)
+    
+    ' Edit > Click and Type > "Enable click and type"
+    ' Default: ON (True) → Desired: OFF (False)
+    If .AllowClickAndTypeMouse <> False Then
+        .AllowClickAndTypeMouse = False
+        actionTaken = "CHANGED"
+    Else
+        actionTaken = "already set"
+    End If
+    logMessages = logMessages & ReportSetting("Edit > Enable click and type → OFF", actionTaken)
+    
+    ' Edit > Editing Options > "Insert/paste pictures as"
+    ' Default: 0 (In line with text) → Desired: 4 (Top and bottom)
+    If .PictureWrapType <> 4 Then
+        .PictureWrapType = 4
+        actionTaken = "CHANGED"
+    Else
+        actionTaken = "already set"
+    End If
+    logMessages = logMessages & ReportSetting("Edit > Insert/paste pictures as → Top and bottom", actionTaken)
+    
+    ' Spelling & Grammar > Spelling > "Frequently confused words"
+    ' Default: ON (True) → Desired: OFF (False)
+    If .EnableMisusedWordsDictionary <> False Then
+        .EnableMisusedWordsDictionary = False
+        actionTaken = "CHANGED"
+    Else
+        actionTaken = "already set"
+    End If
+    logMessages = logMessages & ReportSetting("Spelling > Frequently confused words → OFF", actionTaken)
+    
+    ' Spelling & Grammar > Grammar > "Check grammar as you type"
+    ' Default: ON (True) → Desired: OFF (False)
+    If .CheckGrammarAsYouType <> False Then
+        .CheckGrammarAsYouType = False
+        actionTaken = "CHANGED"
+    Else
+        actionTaken = "already set"
+    End If
+    logMessages = logMessages & ReportSetting("Grammar > Check grammar as you type → OFF", actionTaken)
+    
+    ' Output and Sharing > Save > "Prompt before saving Normal template"
+    ' Default: OFF (False) → Desired: ON (True)
+    If .SaveNormalPrompt <> True Then
+        .SaveNormalPrompt = True
+        actionTaken = "CHANGED"
+    Else
+        actionTaken = "already set"
+    End If
+    logMessages = logMessages & ReportSetting("Save > Prompt before saving Normal template → ON", actionTaken)
+    
+End With
+
+' -----------------------------------------------------------------
+' AutoCorrect settings
+' -----------------------------------------------------------------
+With Application.AutoCorrect
+    
+    ' AutoCorrect > "Automatically correct spelling and formatting as you type"
+    ' Default: ON (True) → Desired: OFF (False)
+    If .ReplaceText <> False Then
+        .ReplaceText = False
+        actionTaken = "CHANGED"
+    Else
+        actionTaken = "already set"
+    End If
+    logMessages = logMessages & ReportSetting("AutoCorrect > Automatically correct spelling and formatting → OFF", actionTaken)
+    
+End With
     
     ' -----------------------------------------------------------------
     ' Build log message and write to file
