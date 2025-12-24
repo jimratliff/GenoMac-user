@@ -28,7 +28,7 @@ local log_file_file_name="word_preferences_log.txt"
 local log_file_from_VBA_macro="${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}/${log_file_file_name}"
 
 # Construct path to macro-containing Word file
-local source_path="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/microsoft_word/${Word_document_filename}"
+local source_path="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/microsoft_word/VBA_script/${Word_document_filename}"
 
 report_action_taken "Set some Microsoft Word preferences with defaults write command(s)"
 report_adjust_setting "Ribbon: Show group titles"
