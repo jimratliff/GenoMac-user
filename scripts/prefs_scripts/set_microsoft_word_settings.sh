@@ -114,7 +114,7 @@ function install_microsoft_word_normal_dotm() {
   local global_template_filename="Normal.dotm"
   local path_for_Microsoft_Word_templates="${HOME}/Library/Containers/UBF8T346G9.Office/User Content.localized/Templates.localized"
 
-  local source_path="${GENOMAC_USER_LOCAL_MICROSOFT_WORD_RESOURCE_DIRECTORY}/${global_template_filename}"
+  local source_path="${GENOMAC_USER_LOCAL_MICROSOFT_WORD_RESOURCE_DIRECTORY}/normal_dotm/${global_template_filename}"
   local destination_path="${path_for_Microsoft_Word_templates}/${global_template_filename}"
 
   report_action_taken "Installing global template Normal.dotm into sandboxed location"
