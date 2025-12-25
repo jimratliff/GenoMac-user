@@ -11,6 +11,8 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
+GENOMAC_USER_LOCAL_MICROSOFT_WORD_RESOURCE_DIRECTORY="$GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY/microsoft_word"
+
 function set_microsoft_word_settings() {
 
 report_start_phase_standard
@@ -28,11 +30,15 @@ local log_file_file_name="word_preferences_log.txt"
 local log_file_from_VBA_macro="${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}/${log_file_file_name}"
 
 # Construct path to macro-containing Word file
-local source_path="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/microsoft_word/VBA_script/${Word_document_filename}"
+# local source_path="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/microsoft_word/VBA_script/${Word_document_filename}"
+local source_path="${GENOMAC_USER_LOCAL_MICROSOFT_WORD_RESOURCE_DIRECTORY}/VBA_script/${Word_document_filename}"
 
 report_action_taken "Set some Microsoft Word preferences with defaults write command(s)"
 report_adjust_setting "Ribbon: Show group titles"
 defaults write "${domain}" OUIRibbonShowGroupTitles -bool true ; success_or_not
+
+report_action_taken "Install Microsoft Word’s global template file Normal.dotm"
+install_microsoft_word_normal_dotm ; success_or_not
 
 report_action_taken "Use a VBA script to implement additional Microsoft Word preferences"
 
@@ -100,4 +106,19 @@ fi
 
 report_end_phase_standard
 
+}
+
+function install_microsoft_word_normal_dotm() {
+  report_start_phase_standard
+
+  local global_template_filename="Normal.dotm"
+  local path_for_Microsoft_Word_templates="${HOME}/Library/Containers/UBF8T346G9.Office/User Content.localized/Templates.localized"
+
+  local source_path="${GENOMAC_USER_LOCAL_MICROSOFT_WORD_RESOURCE_DIRECTORY}/${global_template_filename}"
+  local destination_path="${path_for_Microsoft_Word_templates}/${global_template_filename}"
+
+  report_action_taken "Installing global template Normal.dotm into sandboxed location"
+  copy_resource_between_local_directories "$source_path" "$destination_path" ; success_or_not
+
+  report_end_phase_standard
 }
