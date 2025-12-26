@@ -13,6 +13,20 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 function set_microsoft_office_suite_wide_settings() {
 
+  # Sets settings for the suite-wide com.microsoft.office domain.
+
+  # STATUS
+  # - I have looked only at the effect on Microsoft Word settings (e.g., not Excel)
+  # - All of the corresponding Microsoft Word settings (in General) appear to be correctly
+  #   set.
+  # - Nevertheless:
+  #   - Word still opens a blank document when it launched. Perhaps this is normal/expected.
+  #     It, properly, does *not* show the template gallery.
+  #   - When I first do a Save, it still seems to default to OneDrive (or at least Recent Folders).
+  #     But, after I have saved something, subsequent Saves do default to On My Mac.
+  #   - Although I specify to show file extensions, the file names in Save dialogs don’t show file
+  #     file extensions.
+
   report_start_phase_standard
   
   local domain="com.microsoft.office"
