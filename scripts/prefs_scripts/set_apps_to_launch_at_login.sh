@@ -22,9 +22,17 @@ set -euo pipefail
 ###############################################################################
 # CONFIGURE THE LIST OF APPS TO LAUNCH AT LOGIN HERE!
 #
-# Note: Sync.com is appropriate for only some users and is commented out.
-#       Use of the Sync app requires some manual intervention by the user in any case, during
-#       which it’s likely that this app will be manually specified to launch at login.
+# Notes: 
+# - Sync.com is appropriate for only some users and is not present here.
+#   Use of the Sync app requires some manual intervention by the user in any case, during
+#   which it’s likely that this app will be manually specified to launch at login.
+# - Antnotes is commented out because I haven’t found a way to configure it programmatically.
+#   In any case, it has its own preference setting for launching on login.
+#
+# - The following apps *do* launch at user login, but aren’t handled here because they
+# 	have their own login helper:
+# 	- Dropbox: 			"bundle:com.getdropbox.dropbox"
+# 	- TextExpander	"bundle:com.smileonmymac.textexpander"
 #
 ###############################################################################
 
@@ -55,7 +63,7 @@ typeset -g -A GENOMAC_LOGIN_APPS=(
   # path-based launch (nested app bundle; bundle-id unreliable at login)
   [keyboard-maestro-engine]="path:/Applications/Keyboard Maestro.app/Contents/MacOS/Keyboard Maestro Engine.app"
   [alan]="bundle:studio.retina.Alan"
-  [antnotes]="bundle:ua.com.AntLogic.Antnotes"
+  # [antnotes]="bundle:ua.com.AntLogic.Antnotes"
 )
 
 set_apps_to_launch_at_login() {
