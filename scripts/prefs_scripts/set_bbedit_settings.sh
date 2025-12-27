@@ -19,6 +19,9 @@ function set_bbedit_settings() {
   report_action_taken "Implement BBEdit settings"
   
   local domain="com.barebones.bbedit"
+
+  report_adjust_setting "Set: Editing window shows tab stops"
+  defaults write ${domain} EditingWindowShowTabStops -bool true ; success_or_not
   
   report_adjust_setting "Set: Do NOT prefer shared window for New and Open"
   defaults write ${domain} NewAndOpenPrefersSharedWindow -bool false ; success_or_not
