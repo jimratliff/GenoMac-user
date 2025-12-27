@@ -27,7 +27,7 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 APPS_FOR_DOCK=(
   "/System/Applications/System Settings.app"
   "Applications/1Password.app"
-  "Applications/Antnotes.app"
+  # "Applications/Antnotes.app"
   "Applications/TextExpander.app"
   "Applications/Raindrop.io.app"
   "Applications/Obsidian.app"
