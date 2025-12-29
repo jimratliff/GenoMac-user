@@ -204,6 +204,9 @@ Note: This will produce *pages* of terminal output.
 This next step is intended to be executed *only one time per user*. It implements:
 - a default configuration of apps in the Dock
 - default toolbar configuration for each of Finder and Preview
+- register QuickLook plugins[^QL]
+
+[^QL]: It’s possible, but I’m not sure, that a QuickLook plugins needs to be registered only once *per Mac* rather than once per user.
 
 The user is then free to adjust that configuration with no concern that a maintenance/enforcement script will come around and clobber those toolbar changes.
 
@@ -216,7 +219,9 @@ make bootstrap-user
 
 It may appear at first that the toolbar changes have not taken effect. It sometimes, mysteriously, takes a few logout/login cycles for the changes to be reflected.
 
-<div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>
+<div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>.
+
+This is meant primarily to be a bootstrap step, but it would need to be repeated (or revisited) if there were changes to the Dock/toolbar and/or additional QL plugins. Possibly a migration script would instead be run (to avoid overwriting user customizations).
 
 Note: At this point in development, it is unclear whether, for each bootstrapping operation, that operation needs to be performed (a) before or (b) after [§ Implement the initial set of macOS-related settings](#implement-the-initial-set-of-macos-related-settings). 
 
