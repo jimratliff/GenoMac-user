@@ -84,7 +84,7 @@ This public GenoMac-user repo is meant to be cloned locally (using https[^https]
 the repo from the CLI, you would need to change the repo from https to SSH, which can be done via 
 `git remote set-url origin git@github.com:OWNER/REPOSITORY.git`. (Use `git remote -v` to clarify the syntax for your repo.)
 
-### This repo supplies the dotfiles that that help to configure some of the user’s software
+### This repo supplies “dotfiles” that help to configure some of the user’s software
 
 This repository is intended to be used with [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.
 
