@@ -78,7 +78,7 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
 
 ### This repository will be cloned to `~/.genomac-user` of the particular user
 
-This public GenoMac-user repo is meant to be cloned locally (using https[^https]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable $GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
+This public GenoMac-user repo is meant to be cloned locally (using https[^https]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
 
 [^https]: After having cloned the repository via https, GitHub will not let you edit the repo from the CLI (but will from the browser, when logged into your GitHub account). In order to edit
 the repo from the CLI, you would need to change the repo from https to SSH, which can be done via 
@@ -88,7 +88,9 @@ the repo from the CLI, you would need to change the repo from https to SSH, whic
 
 This repository is intended to be used with [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.
 
-The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc., and, within each package, the directory structure mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
+The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc. Within the directory corresponding to each package, the directory structure mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
+
+The `stow_directory` is specified by the environment variable `GENOMAC_USER_LOCAL_STOW_DIRECTORY` (which is exported by the script `assign_environment_variables.sh`).
 
 ### This repo establishes/adjusts numerous user-level settings
 This repo supplies scripts that execute various commands (primarily either `defaults write` or `PlistBuddy`) to establish various user settings for macOS generally and for certain apps in particular.
@@ -99,7 +101,7 @@ For tips about how to figure out what the `defaults write` commands are that cor
 A purely bootstrap operation is one that is intended to be performed typically only once per user. Examples:
 - cloning this repo to the user’s local home directory
 - implementing settings that provide a starting point for the user, from which the user is free to add or subtract without fear that those subsequent changes would be overridden by a later maintenance step.
-  - For example, establishing the initial toolbar configuration for Preview.app. Initially, the toolbar configuration is created to contain certain elements and exclude certain elements. The user can add or subtract to those (or rearrange the order in which they appear on the toolbar) with the understanding that this script won’t be re-run for that user. (If the script *were* re-run, it would undo any of the changes the user made.
+  - For example, establishing the initial toolbar configuration for Preview.app. Initially, the toolbar configuration is created to contain certain elements and exclude certain elements. The user can add or subtract to those (or rearrange the order in which they appear on the toolbar) with the understanding that this script won’t be re-run for that user. (If the script *were* re-run, it could undo some/all of the changes the user made.
 
 More typical is an idempotent operation that is both bootstrap and ongoing maintenance. This characterizes most of the activities of this repo. Sucn an operation establishes a setting the first time the script is run for the user (acting as a bootstrap operation) but the same script also enforces that setting on subsequent maintenance runs.
 
