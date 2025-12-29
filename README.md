@@ -126,7 +126,7 @@ For each user:
   - Launch Dropbox
   - Sign into Dropbox account
   - Selectively sync at least:
-    - `~/Dropbox/Share_prefs`
+    - `~/Dropbox/Preferences_common`
 - BetterTouchTool (BTT)
   - Install the BTT license file that is stored in Dropbox into the appropriate location in `~/Library/Application Support/BetterTouchTool`
     - From `~/.genomac-user`, execute `make btt-license`
