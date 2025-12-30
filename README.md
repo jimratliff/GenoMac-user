@@ -332,6 +332,12 @@ It is expected that BTT’s standard preset will be very stable in the sense of 
 Test the license installation (and BTT more generally) by:
 - Launch BetterTouchTool
   - BTT should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed into `~/.config/BetterTouchTool`.
+ 
+## Set apps that will launch automatically when the user logs in
+```shell
+cd ~/.genomac-user
+make apps-that-launch-on-login
+```
 
 ## Remaining configuration steps that have not been (cannot be) automated
 See the Google Docs document “[Project GenoMac: Post-automation steps](https://docs.google.com/document/d/1jKJpWnCBFcT24MGbaeMq90fbnus2rMHIVlRejkfI9aw/edit?usp=sharing)” (in my standard Google account).
