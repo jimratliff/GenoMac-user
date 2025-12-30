@@ -33,7 +33,7 @@ printf "GENOMAC_HELPER_DIR: %s\n" "$GENOMAC_HELPER_DIR"
 printf "PREFS_FUNCTIONS_DIR:  %s\n\n" "$PREFS_FUNCTIONS_DIR"
 
 # Source function(s)
-source "${PREFS_FUNCTIONS_DIR}/install_btt_license.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/install_btt_license.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 function bootstrap_btt_license() {
