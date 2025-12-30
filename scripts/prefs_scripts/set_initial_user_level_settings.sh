@@ -189,7 +189,7 @@ set_keyboard_maestro_settings
 # Microsoft Office
 # Suite-wide-settings
 set_microsoft_office_suite_wide_settings
-# Microsoft Word (VERY limited)
+# Microsoft Word
 set_microsoft_word_settings
 
 # OmniOutliner
