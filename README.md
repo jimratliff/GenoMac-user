@@ -300,20 +300,16 @@ Verified: SSH agent is working
 - Selectively sync at least:
   - `~/path/to/Dropbox/Preferences_common`
  
-#### Configuring BetterTouchTool (BTT) after Dropbox is synced
-There are two parts to configuring BetterTouchTool
-- [Installing the license file](#install-bettertouchtool-license-file)
-- [Specify the “preset” configuration for BTT to use](#specify-the-preset-configuration-for-btt-to-use)
-
-##### Install BetterTouchTool license file
-The BetterTouchTool license is stored in Dropbox. It needs to be (a) copied from that Dropbox location and (b) installed into the appropriate location of the user’s Library folder.
+#### After Dropbox full syncs `Preferences_common`, execute make command
+The following step can be performed only after `~/path/to/Dropbox/Preferences_common` has completely synced with Dropbox:
 ```shell
 cd ~/.genomac-user
-make btt-license
+make after-dropbox-syncs-common-prefs
 ```
-This is a *bootstrap-only* operation: it need be performed only once per user.
 
-This step can be performed only after `~/path/to/Dropbox/Preferences_common` is synced.
+This command:
+- Keyboard Maestro: enables macro syncing
+- BetterTouchTool: installs license file
  
 ### Set apps that will launch automatically when the user logs in
 ```shell
