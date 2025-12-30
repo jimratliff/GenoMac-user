@@ -126,7 +126,7 @@ For each user:
   - Launch Dropbox
   - Sign into Dropbox account
   - Selectively sync at least:
-    - `~/Dropbox/Preferences_common`
+    - `~/path/to/Dropbox/Preferences_common`
 - BetterTouchTool (BTT)
   - Install the BTT license file that is stored in Dropbox into the appropriate location in `~/Library/Application Support/BetterTouchTool`
     - From `~/.genomac-user`, execute `make btt-license`
@@ -298,7 +298,7 @@ Verified: SSH agent is working
 - A separate dialog asks you to “Turn on accessibility”
   - Follow the instructions to do so: Settings » Accessibility » ✅ Dropbox
 - Selectively sync at least:
-  - `~/Dropbox/Preferences_common`
+  - `~/path/to/Dropbox/Preferences_common`
  
 #### Configuring BetterTouchTool (BTT) after Dropbox is synced
 There are two parts to configuring BetterTouchTool
@@ -306,31 +306,14 @@ There are two parts to configuring BetterTouchTool
 - [Specify the “preset” configuration for BTT to use](#specify-the-preset-configuration-for-btt-to-use)
 
 ##### Install BetterTouchTool license file
-The BetterTouchTool license is stored in Dropbox. It needs to be installed into the appropriate location of the user’s Library folder.
+The BetterTouchTool license is stored in Dropbox. It needs to be (a) copied from that Dropbox location and (b) installed into the appropriate location of the user’s Library folder.
 ```shell
 cd ~/.genomac-user
 make btt-license
 ```
-
 This is a *bootstrap-only* operation: it need be performed only once per user.
 
-This step can be performed only after `~/Dropbox/Share_prefs` is synced.
-
-##### Specify the “preset” configuration for BTT to use
-As of October 2025, BTT has no reliable method for syncing its “preset” configuration across users/Macs (although the promised delivery of this feature is overdue).
-
-Instead, an established preset file is deployed by GenoMac-user to a location where BTT will detect it on BTT’s launching and import it for use.[^BTT-autoload-location]
-
-[^BTT-autoload-location]: By default, BTT expects the preset-to-be-autoloaded to exist at `~/.btt_autoload_preset.json`. However, I override this location to be `~/.config/BetterTouchTool/Default_preset.json` using the syntax `defaults write com.hegenberg.BetterTouchTool BTTAutoLoadPath "~/somepath"`.
-
-This deployment is accomplished by GenoMac-user’s dotfile-stowing process. Hence, no separate operation need be performed here to implement this (given that the dotfile-stowing process is already part of the standard GenoMac-user workflow).
-
-It is expected that BTT’s standard preset will be very stable in the sense of rarely changing. If it *does* change, see [Appendix: What to do when you change the BetterTouchTool preset](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-what-to-do-when-you-change-the-bettertouchtool-preset).
-
-##### Test BTT’s configuration
-Test the license installation (and BTT more generally) by:
-- Launch BetterTouchTool
-  - BTT should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed into `~/.config/BetterTouchTool`.
+This step can be performed only after `~/path/to/Dropbox/Preferences_common` is synced.
  
 ### Set apps that will launch automatically when the user logs in
 ```shell
@@ -429,7 +412,15 @@ where *type* could be, for example, `-bool`, `-str`, or `-int`.
 ## Appendix: What to do when you change the BetterTouchTool preset
 Status: TO DO
 
-As explained in [Configuring BetterTouchTool (BTT) after Dropbox is synced](#configuring-bettertouchtool-btt-after-dropbox-is-synced), it is assumed that the BTT preset is stable (i.e., rarely changes).
+As of October 2025, BetterTouchTool (BTT) has no reliable method for syncing its “preset” configuration across users/Macs (although the promised delivery of this feature is overdue).
+
+Instead, an established preset file is deployed by GenoMac-user to a location where BTT will detect it on BTT’s launching and import it for use.[^BTT-autoload-location]
+
+[^BTT-autoload-location]: By default, BTT expects the preset-to-be-autoloaded to exist at `~/.btt_autoload_preset.json`. However, I override this location to be `~/.config/BetterTouchTool/Default_preset.json` using the syntax `defaults write com.hegenberg.BetterTouchTool BTTAutoLoadPath "~/somepath"`.
+
+This deployment is accomplished by GenoMac-user’s dotfile-stowing process. Hence, no separate operation need be performed here to implement this (given that the dotfile-stowing process is already part of the standard GenoMac-user workflow).
+
+It is expected that BTT’s standard preset will be very stable in the sense of rarely changing.
 
 If the BTT preset *does* change, here are the steps to deploy the updated preset:
 - Export the updated preset
