@@ -13,6 +13,9 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 
 function install_btt_license_file() {
   # To be run only once per user to install the BetterTouchTool license file.
+  # The BetterTouchTool license is stored in Dropbox. It needs to be:
+  # (a) copied from that Dropbox location and 
+  # (b) installed into the appropriate location of the user’s Library folder.
   
   report_start_phase_standard
   report_action_taken "Bootstrap-only installation of BetterTouchTool license file."
