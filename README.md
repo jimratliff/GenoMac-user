@@ -190,7 +190,7 @@ More specifically, `stow_dotfiles.sh` relies on a list of packages enumerated in
 Thus, to add the dotfiles for a new package, it is *not* sufficient to add those dotfiles to a new package in `stow_directory` (though this is necessary)! In addition, the name of the package must be added to the space-separated `PACKAGES_LIST` in `stow_dotfiles.sh
 
 ### Implement the initial set of macOS-related settings
-The next step is to implement settings that aren’t captured by the above dotfiles but instead relate to macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
+The next step is to implement settings that aren’t captured by the above dotfiles such as many macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
 
 ```shell
 cd ~/.genomac-user
@@ -224,7 +224,6 @@ It may appear at first that the toolbar changes have not taken effect. It someti
 This is meant primarily to be a bootstrap step, but it would need to be repeated (or revisited) if there were changes to the Dock/toolbar and/or additional QL plugins. Possibly a migration script would instead be run (to avoid overwriting user customizations).
 
 Note: At this point in development, it is unclear whether, for each bootstrapping operation, that operation needs to be performed (a) before or (b) after [§ Implement the initial set of macOS-related settings](#implement-the-initial-set-of-macos-related-settings). 
-
 
 ### Configure 1Password for authentication with GitHub
 Note:
@@ -333,7 +332,7 @@ Test the license installation (and BTT more generally) by:
 - Launch BetterTouchTool
   - BTT should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed into `~/.config/BetterTouchTool`.
  
-## Set apps that will launch automatically when the user logs in
+### Set apps that will launch automatically when the user logs in
 ```shell
 cd ~/.genomac-user
 make apps-that-launch-on-login
