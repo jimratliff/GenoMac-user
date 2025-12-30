@@ -299,7 +299,7 @@ Verified: SSH agent is working
 - A separate dialog asks you to “Turn on accessibility”
   - Follow the instructions to do so: Settings » Accessibility » ✅ Dropbox
 - Selectively sync at least:
-  - `~/Dropbox/Share_prefs`
+  - `~/Dropbox/Preferences_common`
  
 #### Configuring BetterTouchTool (BTT) after Dropbox is synced
 There are two parts to configuring BetterTouchTool
