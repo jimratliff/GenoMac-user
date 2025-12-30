@@ -28,6 +28,9 @@ verify-ssh-agent:
 btt-license:
 	zsh scripts/install_BTT_license.sh
 
+after-dropbox-syncs-common-prefs:
+	zsh scripts/after_dropbox_syncs_common_prefs.sh
+
 apps-that-launch-on-login:
 	zsh scripts/apps_that_launch_on_login.sh
 
