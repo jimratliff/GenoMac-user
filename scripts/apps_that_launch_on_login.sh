@@ -33,7 +33,7 @@ printf "GENOMAC_HELPER_DIR: %s\n" "$GENOMAC_HELPER_DIR"
 printf "PREFS_FUNCTIONS_DIR:  %s\n\n" "$PREFS_FUNCTIONS_DIR"
 
 # Source function(s)
-source "${PREFS_FUNCTIONS_DIR}/install_btt_license.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_apps_to_launch_at_login.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 function apps_that_launch_on_login() {
