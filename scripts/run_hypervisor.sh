@@ -18,9 +18,9 @@ this_script_dir="${this_script_path:h}"
 source "${this_script_dir}/assign_environment_variables.sh"
 
 # Assign environment variables that correspond to states
-# Assumes that enum_env_vars_for_states.sh is in same directory as the
+# Assumes that assign_enum_env_vars_for_states.sh is in same directory as the
 # current script.
-source "${this_script_dir}/enum_env_vars_for_states.sh"
+source "${this_script_dir}/assign_enum_env_vars_for_states.sh"
 
 # Source helpers
 source "${GENOMAC_HELPER_DIR}/helpers.sh"
