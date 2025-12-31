@@ -123,7 +123,7 @@ GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY="$HOME/.config/BetterTouchTool"
 GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH="${GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY}/${GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME}"
 
 # Export environment variables to be available in all subsequent shells
-echo "Exporting environment variables to be consistently available."
+report_action_taken "Exporting environment variables to be consistently available."
 
 function export_and_report() {
   local var_name="$1"
