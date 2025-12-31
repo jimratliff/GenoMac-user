@@ -320,6 +320,13 @@ function get_yes_no_answer_to_question() {
   done
 }
 
+local state_file_extension="state"
+
+function _state_file_path() {
+    # Internal helper: returns the path for a given state string
+    echo "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}/${1}.${state_file_extension}"
+}
+
 function test_state() {
 	# Test if a run-only-once operation has already been performed.
 	# Returns 0 if the state file exists (operation was performed), 1 otherwise.
@@ -334,7 +341,14 @@ function test_state() {
   #        set_state "launch-and-sign-in-to-microsoft-word"
   #    fi
 	local state_string="$1"
-	[[ -f "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}/${state_string}.state" ]]
+	if [[ -f "$(_state_file_path "$state_string")" ]]; then
+		report "State detected: ${state_string}.state in ${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
+		return 0
+	else
+		report "State not present: ${state_string}.state in ${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
+		return 1
+	fi
+}
 }
 
 function set_state() {
@@ -349,7 +363,7 @@ function set_state() {
 	local state_string="$1"
 	mkdir -p "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
 	report_action_taken "Setting state: ${state_string}.state in ${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
-	touch "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}/${state_string}.state"
+	touch "$(_state_file_path "$state_string")"
 }
 
 function reset_state() {
@@ -359,7 +373,7 @@ function reset_state() {
         return 1
     }
     [[ -d "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}" ]] || return 0
-    rm -f "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"/*.state
+    rm -f "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"/*."${state_file_extension}"
 }
 
 function force_user_logout(){
