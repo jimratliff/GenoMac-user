@@ -13,6 +13,9 @@
 # Targets
 # --------------------------------------------------------------------
 
+run-hypervisor:
+	zsh scripts/run_hypervisor.sh
+
 stow-dotfiles:
 	zsh scripts/stow_dotfiles.sh
 
