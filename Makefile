@@ -25,6 +25,9 @@ bootstrap-user:
 verify-ssh-agent:
 	zsh scripts/verify_ssh_agent_setup.sh
 
+sign-in-to-selected-apps:
+	zsh scripts/sign_in_to_selected_apps.sh
+
 btt-license:
 	zsh scripts/install_BTT_license.sh
 
