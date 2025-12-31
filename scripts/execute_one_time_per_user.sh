@@ -38,6 +38,8 @@ safe_source "${PREFS_FUNCTIONS_DIR}/register_glance_as_quicklook.sh"
 
 ############################## BEGIN SCRIPT PROPER #############################
 
+report_start_phase_standard
+
 # Glance: Register as a QuickLook plug
 register_glance_as_quicklook
 
