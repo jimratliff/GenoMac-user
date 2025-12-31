@@ -88,6 +88,9 @@ GENOMAC_USER_REPO_URL="https://github.com/jimratliff/GenoMac-user.git"
 # Note: This repo is cloned by each user.
 GENOMAC_USER_LOCAL_DIRECTORY="$HOME/.genomac-user"
 
+# Specify local directory that will retain state information about run-only-once operations
+GENOMAC_USER_LOCAL_STATE_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}-state"
+
 # Specify the local directory that holds resources (files or folders) needed for particular
 # operations
 GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}/resources"
@@ -142,6 +145,7 @@ export_and_report GENOMAC_USER_DROPBOX_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS
 export_and_report GENOMAC_USER_LOCAL_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY
+export_and_report GENOMAC_USER_LOCAL_STATE_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_STOW_DIRECTORY
 export_and_report GENOMAC_USER_LOGIN_PICTURES_DIRECTORY
 export_and_report GENOMAC_USER_REPO_URL
