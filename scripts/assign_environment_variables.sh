@@ -63,7 +63,7 @@ GENOMAC_STATE_FILE_EXTENSION="state"
 # Specify local directory in which machine-level state can be stored
 # The following environment variable, despite its name being specific to -system, is used
 # by BOTH GenoMac-system and GenoMac-user
-GENOMAC_SYSTEM_LOCAL_STATE_DIRECTORY="/etc/genomac"
+GENOMAC_SYSTEM_LOCAL_STATE_DIRECTORY="/etc/genomac/state"
 
 ############### CONJECTURE: The following is used only by GenoMac-system
 
