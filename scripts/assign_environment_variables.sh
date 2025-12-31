@@ -45,6 +45,9 @@ printf "\n📂 Path diagnostics:\n"
 printf "this_script_dir:                  %s\n" "$this_script_dir"
 printf "GENOMAC_HELPER_DIR:               %s\n" "$GENOMAC_HELPER_DIR"
 
+# Source the helpers script
+source "${GENOMAC_HELPER_DIR}/helpers.sh"
+
 # Specify name of temporary file to accumulate warning/failure messages for
 #   later regurgitation at the end of a main script.
 # Only create if not already defined (e.g. nested/nested sourcing)
@@ -55,8 +58,12 @@ fi
 
 GENOMAC_NAMESPACE="com.virtualperfection.genomac"
 
-# Source the helpers script
-source "${GENOMAC_HELPER_DIR}/helpers.sh"
+GENOMAC_STATE_FILE_EXTENSION="state"
+
+# Specify local directory in which machine-level state can be stored
+# The following environment variable, despite its name being specific to -system, is used
+# by BOTH GenoMac-system and GenoMac-user
+GENOMAC_SYSTEM_LOCAL_STATE_DIRECTORY="/etc/genomac"
 
 ############### CONJECTURE: The following is used only by GenoMac-system
 
@@ -136,6 +143,7 @@ export_and_report CONTROL_CHAR
 export_and_report GENOMAC_ALERT_LOG
 export_and_report GENOMAC_HELPER_DIR
 export_and_report GENOMAC_NAMESPACE
+export_and_report GENOMAC_STATE_FILE_EXTENSION
 export_and_report GENOMAC_SYSTEM_LOCAL_DIRECTORY
 export_and_report GENOMAC_SYSTEM_REPO_URL
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY
