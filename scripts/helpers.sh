@@ -348,6 +348,7 @@ function set_state() {
 	
 	local state_string="$1"
 	mkdir -p "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
+	report_action_taken "Setting state: ${state_string}.state in ${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
 	touch "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}/${state_string}.state"
 }
 
