@@ -37,6 +37,9 @@ after-dropbox-syncs-common-prefs:
 apps-that-launch-on-login:
 	zsh scripts/apps_that_launch_on_login.sh
 
+reset-state:
+	zsh scripts/reset_state.sh
+
 defaults-detective:
 	zsh scripts/defaults_detective.sh
 
