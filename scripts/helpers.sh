@@ -320,26 +320,31 @@ function get_yes_no_answer_to_question() {
   done
 }
 
-local state_file_extension="state"
+# local state_file_extension="state" # DEPRECATED
 
 function _state_file_path() {
-    # Internal helper: returns the path for a given state string
-    echo "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}/${1}.${state_file_extension}"
+    # Internal helper: returns the path of the state file corresponding to a given state string
+    echo "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}/${1}.${GENOMAC_STATE_FILE_EXTENSION}"
 }
 
 function test_state() {
-	# Test if a run-only-once operation has already been performed.
-	# Returns 0 if the state file exists (operation was performed), 1 otherwise.
+	# Test if the state represented by the state-key string in $1 exists.
+	# Returns 0 if the state exists (operation was performed), 1 otherwise.
 	# Usage: test_state "launch-and-sign-in-to-microsoft-word"
 	#
+	# NOTE: Currently, a state’s existence is equivalent to the existence of a corresponding
+	#		.state (more generally .GENOMAC_STATE_FILE_EXTENSION) file.
+	#		This is an implementation detail. The test_state() API does not rely upon or
+	#		expose this implementation detail.
+	#
 	#	Example:
-  #    if ! test_state "launch-and-sign-in-to-microsoft-word"; then
-  #        # Perform the one-time operation
-  #        open -a "Microsoft Word"
-  #        echo "Please sign in to Microsoft Word, then press Enter..."
-  #        read
-  #        set_state "launch-and-sign-in-to-microsoft-word"
-  #    fi
+    #    if ! test_state "launch-and-sign-in-to-microsoft-word"; then
+    #        # Perform the one-time operation
+    #        open -a "Microsoft Word"
+    #        echo "Please sign in to Microsoft Word, then press Enter..."
+    #        read
+    #        set_state "launch-and-sign-in-to-microsoft-word"
+    #    fi
 	local state_string="$1"
 	if [[ -f "$(_state_file_path "$state_string")" ]]; then
 		report "State detected: ${state_string}.state in ${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
@@ -373,7 +378,7 @@ function reset_state() {
         return 1
     }
     [[ -d "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}" ]] || return 0
-    rm -f "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"/*."${state_file_extension}"
+    rm -f "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"/*."${GENOMAC_STATE_FILE_EXTENSION}"
 }
 
 function force_user_logout(){
