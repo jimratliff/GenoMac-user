@@ -322,9 +322,14 @@ function get_yes_no_answer_to_question() {
 
 # local state_file_extension="state" # DEPRECATED
 
-function user_state_file_path() {
+function _user_state_file_path() {
     # Internal helper: returns the path of the state file corresponding to a given state string
     echo "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}/${1}.${GENOMAC_STATE_FILE_EXTENSION}"
+}
+
+function _system_state_file_path() {
+    # Internal helper: returns the path of the state file corresponding to a given state string
+    echo "${GENOMAC_SYSTEM_LOCAL_STATE_DIRECTORY}/${1}.${GENOMAC_STATE_FILE_EXTENSION}"
 }
 
 function test_state() {
@@ -346,14 +351,13 @@ function test_state() {
     #        set_state "launch-and-sign-in-to-microsoft-word"
     #    fi
 	local state_string="$1"
-	if [[ -f "$(user_state_file_path "$state_string")" ]]; then
+	if [[ -f "$(_user_state_file_path "$state_string")" ]]; then
 		report "State detected: ${state_string}.state in ${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
 		return 0
 	else
 		report "State not present: ${state_string}.state in ${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
 		return 1
 	fi
-}
 }
 
 function set_state() {
@@ -368,7 +372,7 @@ function set_state() {
 	local state_string="$1"
 	mkdir -p "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
 	report_action_taken "Setting state: ${state_string}.state in ${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
-	touch "$(user_state_file_path "$state_string")"
+	touch "$(_user_state_file_path "$state_string")"
 }
 
 function reset_state() {
