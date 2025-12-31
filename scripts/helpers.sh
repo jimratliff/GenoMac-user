@@ -320,6 +320,47 @@ function get_yes_no_answer_to_question() {
   done
 }
 
+function test_state() {
+	# Test if a run-only-once operation has already been performed.
+	# Returns 0 if the state file exists (operation was performed), 1 otherwise.
+	# Usage: test_state "launch-and-sign-in-to-microsoft-word"
+	#
+	#	Example:
+  #    if ! test_state "launch-and-sign-in-to-microsoft-word"; then
+  #        # Perform the one-time operation
+  #        open -a "Microsoft Word"
+  #        echo "Please sign in to Microsoft Word, then press Enter..."
+  #        read
+  #        set_state "launch-and-sign-in-to-microsoft-word"
+  #    fi
+	local state_string="$1"
+	[[ -f "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}/${state_string}.state" ]]
+}
+
+function set_state() {
+	# Mark a run-only-once operation as performed by creating its state file.
+	# Creates the state directory if it doesn't exist.
+	# Usage: set_state "launch-and-sign-in-to-microsoft-word"
+	#
+	# The same mechanism can, more generally, also be used to store any binary-state 
+	# preference, where the presence of the corresponding .state file is an affirmation 
+	# of that state and the absence of that .state file implies the falsity of that state.
+	
+	local state_string="$1"
+	mkdir -p "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"
+	touch "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}/${state_string}.state"
+}
+
+function reset_state() {
+    # Resets all state by deleting all .state files, but leaving the state directory intact
+    [[ -n "${GENOMAC_USER_LOCAL_STATE_DIRECTORY:-}" ]] || {
+        report_fail "Error: GENOMAC_USER_LOCAL_STATE_DIRECTORY is not set"
+        return 1
+    }
+    [[ -d "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}" ]] || return 0
+    rm -f "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}"/*.state
+}
+
 function force_user_logout(){
   report_action_taken $'\n\nYou are about to be logged out…'
   sleep 3  # Give user time to read the message
