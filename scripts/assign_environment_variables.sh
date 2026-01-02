@@ -12,6 +12,9 @@
 
 set -euo pipefail
 
+# NOTE: Even though Homebrew seems directly related only to GenoMac-system rather than
+#       GenoMac-user, the below code (a) enforcing the presence of Homebrew and (b) setting
+#       HOMEBREW_PREFIX *is* used by GenoMac-user.
 # --- Homebrew: hard dependency ------------------------------------------------
 if ! command -v brew >/dev/null 2>&1; then
   # First attempt failed - try adding Homebrew to PATH and retry
