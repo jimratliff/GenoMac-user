@@ -19,7 +19,7 @@ cd ~/.genomac-user
 git pull --recurse-submodules origin main
 ```
 
-(The `--recurse-submodules` ensures that submodule GenoMac-shared is updated to the commit specified by the GenoMac-user remote repository.)
+(The `--recurse-submodules` ensures that the local version of submodule GenoMac-shared is updated to the commit specified by the GenoMac-user origin repository.)
 
 ### Re-“stow” the dotfiles
 
@@ -51,6 +51,8 @@ Generic user-scoped settings are those configuration parameters (a) whose juris
 [^commonAcrossUsers]: The set of generic user-scoped settings won’t exhaust all user-scoped settings. Any user is free to choose their own setting for parameters not covered by the generic settings. However, this raises a nuanced distinction. Each Mac has, for example, a USER_VANILLA. Suppose it is desired that USER_VANILLA has a different choice of some setting than all other users. Nevertheless, it could well be advantageous for that setting to be consistent across all Macs in the sense that, every USER_VANILLA shares that same choice, regardless of which Mac they inhabit. When such a case arises, there could be further refactoring of this process so that each user *type* has its own configurations that would be overlain on the common-across-all-users generic settings. This possibility would apply whether the parameter at issue (a) was not part of the set of generic settings or (b) is covered by, and conflicts with, the prescriptions of the generic settings. In the latter case, applying USER_VANILLA’s choices *after* the generic settings would have the effect of overriding for USER_VANILLA the generic settings.
 
 The current repo is used in conjunction with the [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), which (a) is cloned exclusively by USER_CONFIGURER and (b) is responsible for configurations at the system level, i.e., that affect all users. This includes, among other things, certain systemwide settings, installing all CLI and GUI apps (both on or off the Mac App Store), and the creation of additional users.
+
+GenoMac-user also relies (as does GenoMac-system) on the [GenoMac-shared repository](https://github.com/jimratliff/GenoMac-shared). GenoMac-shared is an externally defined set of common code that specifies some environment variables and defines some helper functions. This common code is incorporated into each of GenoMac-user and GenoMac-system as a submodule located at `external/genomac-shared` of each of the two container repositories. (See GenoMac-shared’s [README](https://github.com/jimratliff/GenoMac-shared/blob/main/README.md) for information on how that affects/complicates work flows, particularly when there is a change to GenoMac-shared’s code.)
 
 The entire configuration process *for a Mac* begins with the  [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), *not* with this repo. If you’re starting the configuration of *a new Mac*, start there, and return to this repo only when directed to.
 
