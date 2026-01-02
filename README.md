@@ -16,8 +16,10 @@
 After initial cloning, to pull down subsequent changes to this repository:
 ```bash
 cd ~/.genomac-user
-git pull origin main
+git pull --recurse-submodules origin main
 ```
+
+(The `--recurse-submodules` ensures that submodule GenoMac-shared is updated to the commit specified by the GenoMac-user remote repository.)
 
 ### Re-“stow” the dotfiles
 
@@ -162,9 +164,11 @@ Launch Terminal. Then copy the following code block and paste into Terminal:
 ```shell
 mkdir -p ~/.genomac-user
 cd ~/.genomac-user
-git clone https://github.com/jimratliff/GenoMac-user.git .
+git clone --recurse-submodules https://github.com/jimratliff/GenoMac-user.git .
 ```
 **Note the trailing “.” at the end of the `git clone` command.**
+
+(The `--recurse-submodules` flag exists because this repo has a submodule ([GenoMac-shared](https://github.com/jimratliff/GenoMac-shared). The `--recurse-submodules` ensures that the submodule’s code is also cloned, not just a pointer to it.)
 
 ### “Stow” the dotfiles
 The following `make` command runs the script `stow_dotfiles.sh`. This script “stows” the dotfiles found in `stow_directory` as symlinks in $HOME (or subdirectories of $HOME).
