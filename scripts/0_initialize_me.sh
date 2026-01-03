@@ -45,16 +45,6 @@ GMU_HELPERS_DIR="${GMU_SCRIPTS_DIR:h}/external/genomac-shared"
 master_common_helpers_script="${GMU_HELPERS_DIR}/helpers.sh"
 repo_specific_environment_variables_script="${GMU_SCRIPTS_DIR}/assign_user_environment_variables.sh"
 
-function export_and_report() {
-  local var_name="$1"
-  report "export $var_name: '${(P)var_name}'"
-  export "$var_name"
-}
-
-export_and_report GMU_SCRIPTS_DIR
-export_and_report GMU_PREFS_SCRIPTS
-export_and_report GMU_HELPERS_DIR
-
 function safe_source() {
   # Ensures that an error is raised if a `source` of the file in the supplied argument fails.
   # Usage:
@@ -68,3 +58,9 @@ function safe_source() {
 
 safe_source "${master_common_helpers_script}"
 safe_source "${repo_specific_environment_variables_script}"
+
+# Note: The above source of master_common_helpers_script will make available export_and_report,
+#       which is used directly below.
+export_and_report GMU_SCRIPTS_DIR
+export_and_report GMU_PREFS_SCRIPTS
+export_and_report GMU_HELPERS_DIR
