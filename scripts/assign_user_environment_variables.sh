@@ -31,9 +31,6 @@ GENOMAC_USER_LOCAL_STOW_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}/stow_director
 # investigations will be saved.
 GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS="$HOME/genomac-detective"
 
-# Specify the location of the user’s `Dropbox` directory
-GENOMAC_USER_DROPBOX_DIRECTORY="$HOME/Library/CloudStorage/Dropbox"
-
 # Specify the local directory in which preferences and other files shared across users are stored
 # These may contain secrets, so this directory is NOT within a repo
 # E.g., this would be within each user’s Dropbox directory.
@@ -58,26 +55,16 @@ function export_and_report() {
 
 export_and_report COMMAND_CHAR
 export_and_report CONTROL_CHAR
-
-export_and_report GENOMAC_HELPER_DIR
 export_and_report GENOMAC_NAMESPACE
-
 export_and_report GENOMAC_SYSTEM_LOCAL_DIRECTORY
-
 export_and_report GENOMAC_SYSTEM_REPO_URL
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH
-export_and_report GENOMAC_USER_DROPBOX_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS
-export_and_report GENOMAC_USER_LOCAL_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY
-export_and_report GENOMAC_USER_LOCAL_STATE_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_STOW_DIRECTORY
-
-export_and_report GENOMAC_USER_REPO_URL
 export_and_report GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY
-
 export_and_report META_MODIFIER_CHARS
 export_and_report MODIFIERS_KEYBOARD_NAVIGATION
 export_and_report OPTION_CHAR
