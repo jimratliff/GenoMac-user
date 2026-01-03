@@ -51,9 +51,9 @@ function source_with_report() {
   # Ensures that an error is raised if a `source` of the file in the supplied argument fails.
   local file="$1"
   if source "$file"; then
-    report "Sourced: $file"
+    echo "Sourced: $file"
   else
-    report_fail "Failed to source: $file"
+    echo "Failed to source: $file"
     exit 1
   fi
 }
