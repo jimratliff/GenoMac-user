@@ -13,7 +13,7 @@
 # Targets
 # --------------------------------------------------------------------
 
-test_refactor:
+test-refactor:
 	zsh scripts/test_refactor.sh
 
 run-hypervisor:
