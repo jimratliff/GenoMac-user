@@ -22,45 +22,36 @@ function test_state_management() {
 
   report_action_taken "Clean slate: I am resetting all state"
   reset_genomac_user_state
-  found_string_or_not "$state_string_1"
-  found_string_or_not "$state_string_2"
+  test_genomac_user_state "$state_string_1"
+  test_genomac_user_state "$state_string_2"
 
   report_action_taken "I am setting: happy to be here"
   set_genomac_user_state "$state_string_1"
-  found_string_or_not "$state_string_1"
-  found_string_or_not "$state_string_2"
+  test_genomac_user_state "$state_string_1"
+  test_genomac_user_state "$state_string_2"
 
   report_action_taken "I am removing state: happy to be here"
   delete_genomac_user_state "$state_string_1"
-  found_string_or_not "$state_string_1"
-  found_string_or_not "$state_string_2"
+  test_genomac_user_state "$state_string_1"
+  test_genomac_user_state "$state_string_2"
 
   report_action_taken "I am removing a state that is not set: not happy to be here"
   delete_genomac_user_state "$state_string_2"
-  found_string_or_not "$state_string_1"
-  found_string_or_not "$state_string_2"
+  test_genomac_user_state "$state_string_1"
+  test_genomac_user_state "$state_string_2"
 
   report_action_taken "I am setting: not happy to be here"
   set_genomac_user_state "$state_string_2"
-  found_string_or_not "$state_string_1"
-  found_string_or_not "$state_string_2"
+  test_genomac_user_state "$state_string_1"
+  test_genomac_user_state "$state_string_2"
 
   report_action_taken "Clean slate: I am resetting all state"
   reset_genomac_user_state
-  found_string_or_not "$state_string_1"
-  found_string_or_not "$state_string_2"
+  test_genomac_user_state "$state_string_1"
+  test_genomac_user_state "$state_string_2"
   
   report_end_phase_standard
 
-}
-
-function found_string_or_not() {
-  local state_string="$1"
-  if test_genomac_user_state "${state_string}" ; then
-    echo "I found state ${state_string}"
-  else
-    echo "I did not find state ${state_string}"
-  fi
 }
 
 function main() {
