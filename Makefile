@@ -16,6 +16,9 @@
 test-refactor:
 	zsh scripts/test_refactor.sh
 
+test-state-management:
+	zsh scripts/test_state_management.sh
+
 run-hypervisor:
 	zsh scripts/run_hypervisor.sh
 
