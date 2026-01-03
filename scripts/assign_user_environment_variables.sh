@@ -4,40 +4,7 @@
 
 set -euo pipefail
 
-
-
-# Resolve directory of the current script
-this_script_path="${0:A}"
-this_script_dir="${this_script_path:h}"
-
-# Specify the directory in which the `helpers.sh` file lives.
-# E.g., when `helpers.sh` lives at the same level as this script:
-# GENOMAC_HELPER_DIR="${this_script_dir}"
-GENOMAC_HELPER_DIR="${this_script_dir}"
-
-# Print assigned paths for diagnostic purposes
-printf "\n📂 Path diagnostics:\n"
-printf "this_script_dir:                  %s\n" "$this_script_dir"
-printf "GENOMAC_HELPER_DIR:               %s\n" "$GENOMAC_HELPER_DIR"
-
-# Source the helpers script
-source "${GENOMAC_HELPER_DIR}/helpers.sh"
-
 GENOMAC_NAMESPACE="com.virtualperfection.genomac"
-
-
-
-############### CONJECTURE: The following is used only by GenoMac-system
-
-# Specify URL for cloning the public GenoMac-system repository using HTTPS
-GENOMAC_SYSTEM_REPO_URL="https://github.com/jimratliff/GenoMac-system.git"
-
-# Specify local directory into which the GenoMac-system repository will be 
-# cloned
-# Note: This repo is cloned only by USER_CONFIGURER.
-GENOMAC_SYSTEM_LOCAL_DIRECTORY="$HOME/.genomac-system"
-
-############### CONJECTURE: The following is used only by GenoMac-user
 
 # Specify location of PlistBuddy
 PLISTBUDDY_PATH='/usr/libexec/PlistBuddy'
@@ -49,9 +16,6 @@ OPTION_CHAR=$'\u2325'    # ⌥
 COMMAND_CHAR=$'\u2318'   # ⌘
 META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
-
-# Specify local directory that will retain state information about run-only-once operations
-GENOMAC_USER_LOCAL_STATE_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}-state"
 
 # Specify the local directory that holds resources (files or folders) needed for particular
 # operations
@@ -76,6 +40,9 @@ GENOMAC_USER_DROPBOX_DIRECTORY="$HOME/Library/CloudStorage/Dropbox"
 GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${GENOMAC_USER_DROPBOX_DIRECTORY}/Preferences_common"
 
 # Specify the file name of the BetterTouchTool (BTT) preset to be auto-loaded at BTT startup
+#
+# TODO: Only GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH is actually used.
+#       The other two are intermediate values that don’t need to be exported.
 GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME="Default_preset.json"
 GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY="$HOME/.config/BetterTouchTool"
 GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH="${GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY}/${GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME}"
