@@ -13,6 +13,9 @@
 # Targets
 # --------------------------------------------------------------------
 
+test_refactor:
+	zsh scripts/test_refactor.sh
+
 run-hypervisor:
 	zsh scripts/run_hypervisor.sh
 
