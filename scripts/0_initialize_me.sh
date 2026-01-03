@@ -35,6 +35,8 @@
 
 set -euo pipefail
 
+echo "Inside /scripts/0_initialize_me.sh"
+
 # Resolve directory of the current script
 this_script_path="${0:A}"
 
@@ -47,11 +49,11 @@ repo_specific_environment_variables_script="${GMU_SCRIPTS_DIR}/assign_user_envir
 
 function safe_source() {
   # Ensures that an error is raised if a `source` of the file in the supplied argument fails.
-  # Usage:
-  #  safe_source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
   local file="$1"
-  if ! source "$file"; then
-    echo "ERROR: Failed to source $file"
+  if source "$file"; then
+    report "Sourced: $file"
+  else
+    report_fail "Failed to source: $file"
     exit 1
   fi
 }
@@ -64,3 +66,5 @@ safe_source "${repo_specific_environment_variables_script}"
 export_and_report GMU_SCRIPTS_DIR
 export_and_report GMU_PREFS_SCRIPTS
 export_and_report GMU_HELPERS_DIR
+
+echo "Leaving /scripts/0_initialize_me.sh"
