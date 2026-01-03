@@ -40,7 +40,7 @@ this_script_path="${0:A}"
 
 GMU_SCRIPTS_DIR="${this_script_path:h}"
 GMU_PREFS_SCRIPTS="${GMU_SCRIPTS_DIR}/prefs_scripts"
-GMU_HELPERS_DIR="${GMU_SCRIPTS_DIR:h}/external/genomac-shared"
+GMU_HELPERS_DIR="${GMU_SCRIPTS_DIR:h}/external/genomac-shared/scripts"
 
 master_common_helpers_script="${GMU_HELPERS_DIR}/helpers.sh"
 repo_specific_environment_variables_script="${GMU_SCRIPTS_DIR}/assign_user_environment_variables.sh"
