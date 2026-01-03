@@ -3,11 +3,20 @@
 # Intended to be sourced at the beginning of every entry-point script in ~/.genomac-user/
 #
 # Performs:
+# - Exports:
+#   - GMU_SCRIPTS_DIR
+#     - the path to ~/.genomac-user/scripts
+#   - GMU_PREFS_SCRIPTS
+#     - the path to ~/.genomac-user/scripts/prefs_scripts
+#   - GMU_HELPERS_DIR
+#     - the path to the helper scripts from the submodule GenoMac-shared
 # - Sources:
 #   - the helpers.sh script from GenoMac-shared, which in turn:
 #     - sources all the other helpers-xxx.sh scripts from GenoMac-shared
-#     - exports the environment variables that are common to both GenoMac-system and GenoMac-user
-#   - the environment variables that are specific to this repository
+#     - sources assign_common_environment_variables, which exports the environment variables 
+#       that are common to both GenoMac-system and GenoMac-user
+#   - assign_user_environment_variables.sh, which exports the environment variables that are 
+#     specific to this repository
 #
 # It is assumed that the sourcing entry-point script is located at ~/.genomac-user/scripts
 #
