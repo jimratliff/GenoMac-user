@@ -17,8 +17,8 @@ function test_state_management() {
 
   report "I am doing something important"
 
-  local state_string_1="I am happy to be here"
-  local state_string_2="I am not happy to be here"
+  local state_string_1="#1: I am happy to be here"
+  local state_string_2="#2: I am not happy to be here"
 
   report_action_taken "Clean slate: I am resetting all state"
   reset_genomac_user_state
