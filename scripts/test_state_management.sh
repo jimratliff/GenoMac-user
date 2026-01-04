@@ -15,43 +15,52 @@ source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 function test_state_management() {
   report_start_phase_standard
 
-  report_action_taken "Testing state management"
+  report "I am doing something important"
 
-  local state_string_1="#1: I am happy to be here"
-  local state_string_2="#2: I am not happy to be here"
+  local state_string_1="I am happy to be here"
+  local state_string_2="I am not happy to be here"
 
   report_action_taken "Clean slate: I am resetting all state"
   reset_genomac_user_state
-  test_genomac_user_state "$state_string_1"
-  test_genomac_user_state "$state_string_2"
+  found_string_or_not "$state_string_1"
+  found_string_or_not "$state_string_2"
 
   report_action_taken "I am setting: happy to be here"
   set_genomac_user_state "$state_string_1"
-  test_genomac_user_state "$state_string_1"
-  test_genomac_user_state "$state_string_2"
+  found_string_or_not "$state_string_1"
+  found_string_or_not "$state_string_2"
 
   report_action_taken "I am removing state: happy to be here"
   delete_genomac_user_state "$state_string_1"
-  test_genomac_user_state "$state_string_1"
-  test_genomac_user_state "$state_string_2"
+  found_string_or_not "$state_string_1"
+  found_string_or_not "$state_string_2"
 
   report_action_taken "I am removing a state that is not set: not happy to be here"
   delete_genomac_user_state "$state_string_2"
-  test_genomac_user_state "$state_string_1"
-  test_genomac_user_state "$state_string_2"
+  found_string_or_not "$state_string_1"
+  found_string_or_not "$state_string_2"
 
   report_action_taken "I am setting: not happy to be here"
   set_genomac_user_state "$state_string_2"
-  test_genomac_user_state "$state_string_1"
-  test_genomac_user_state "$state_string_2"
+  found_string_or_not "$state_string_1"
+  found_string_or_not "$state_string_2"
 
   report_action_taken "Clean slate: I am resetting all state"
   reset_genomac_user_state
-  test_genomac_user_state "$state_string_1"
-  test_genomac_user_state "$state_string_2"
+  found_string_or_not "$state_string_1"
+  found_string_or_not "$state_string_2"
   
   report_end_phase_standard
 
+}
+
+function found_string_or_not() {
+  local state_string="$1"
+  if test_genomac_user_state "${state_string}" ; then
+    echo "I found state ${state_string}"
+  else
+    echo "I did not find state ${state_string}"
+  fi
 }
 
 function main() {
