@@ -15,7 +15,7 @@ source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 function test_state_management() {
   report_start_phase_standard
 
-  report "I am doing something important"
+  report_action_taken "Testing state management"
 
   local state_string_1="#1: I am happy to be here"
   local state_string_2="#2: I am not happy to be here"
