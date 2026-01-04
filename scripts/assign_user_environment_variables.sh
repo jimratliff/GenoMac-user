@@ -3,6 +3,8 @@
 # Establishes values for environment variables used exclusively by GenoMac-user 
 #
 # Assumes that export_and_report() has already been made available
+#
+# See also environment_variables_for_state_enums_script.sh
 
 set -euo pipefail
 
