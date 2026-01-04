@@ -3,8 +3,7 @@
 # Establishes values for environment variables that act as enums corresponding
 # to states.
 #
-# This script is assumed to reside in the same directory as the helpers.sh 
-# script of helper functions.
+# Assumes that export_and_report() has already been made available
 
 set -euo pipefail
 
@@ -26,11 +25,11 @@ GENOMAC_USER_STATE_TEXT_EXPANDER_IS_AUTHENTICATED
 # Export environment variables to be available in all subsequent shells
 report_action_taken "Exporting environment variables corresponding to states."
 
-function export_and_report() {
-  local var_name="$1"
-  report "export $var_name: '${(P)var_name}'"
-  export "$var_name"
-}
+# function export_and_report() {
+#   local var_name="$1"
+#   report "export $var_name: '${(P)var_name}'"
+#   export "$var_name"
+# }
 
 export_and_report GENOMAC_USER_STATE_DO_ENABLE_MICROSOFT_WORD
 export_and_report GENOMAC_USER_STATE_DO_NOT_ENABLE_MICROSOFT_WORD
