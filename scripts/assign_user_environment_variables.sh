@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
 # Establishes values for environment variables used exclusively by GenoMac-user 
+#
+# Assumes that export_and_report() has already been made available
 
 set -euo pipefail
 
@@ -47,11 +49,11 @@ GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH="${GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECT
 # Export environment variables to be available in all subsequent shells
 report_action_taken "Exporting environment variables to be consistently available."
 
-function export_and_report() {
-  local var_name="$1"
-  report "export $var_name: '${(P)var_name}'"
-  export "$var_name"
-}
+# function export_and_report() {
+#   local var_name="$1"
+#   report "export $var_name: '${(P)var_name}'"
+#   export "$var_name"
+# }
 
 export_and_report COMMAND_CHAR
 export_and_report CONTROL_CHAR
