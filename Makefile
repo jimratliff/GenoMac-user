@@ -60,6 +60,8 @@ reset-state:
 defaults-detective:
 	zsh scripts/defaults_detective.sh
 
+## Updates genomac-user repo, including genomac-shared submodule, and pushes it back to GitHub
+## git diff… checks whether there are staged changes to the submodule and, if so, commits them
 dev-update-repo-and-submodule:
 	git pull --recurse-submodules origin main
 	git submodule update --remote
