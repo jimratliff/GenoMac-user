@@ -2,12 +2,20 @@
 # Phony targets (not real files)
 # --------------------------------------------------------------------
 .PHONY: \
-    stow-dotfiles \
-    initial-prefs \
-	execute_one_time_per_user \
-    verify-ssh-agent \
+	after-dropbox-syncs-common-prefs \
+	apps-that-launch-on-login \
+	bootstrap-user \
 	btt-license \
 	defaults_detective \
+	execute_one_time_per_user \
+	initial-prefs \
+	reset-state \
+	run-hypervisor \
+	sign-in-to-selected-apps \
+	stow-dotfiles \
+	test-refactor \
+	test-state-management \
+	verify-ssh-agent \
 
 # --------------------------------------------------------------------
 # Targets
@@ -51,4 +59,11 @@ reset-state:
 
 defaults-detective:
 	zsh scripts/defaults_detective.sh
+
+dev-update-repo-and-submodule:
+	git pull --recurse-submodules origin main
+	git submodule update --remote
+	git add external/genomac-shared
+	git diff --cached --quiet external/genomac-shared || git commit -m "Update genomac-shared submodule"
+	git push origin main
 
