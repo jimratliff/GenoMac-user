@@ -353,6 +353,13 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - NOTE: This may have been fixed on 11/1/2025, when I changed the type of this defaults settings from `bool` to `int`.
   - Despite the automation step, which *does* change in the indication in Settings, it might not take effect. To fix: Manually toggle that switch again.
   - As I recall, this bug goes back years.
+ 
+## Appendix: Compilation of selected settings choices
+- Hot corners[^hot-corners]
+  - Bottom-right: Start screen saver
+  - Bottom-left: Disable screen saver
+ 
+[^hot-corners]: See scripts/prefs_scripts/set_general_dock_settings.sh.
 
 ## Appendix: Determining the `defaults write` commands that correspond to desired changes in settings
 The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped settings.
