@@ -340,6 +340,7 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
     - Preview: the slimmed-down toolbar
   - The moral is: be patient and don’t jump the gun on concluding there has been a failure.
 - Desktop & Dock
+  - “Highlight the element of a grid-view Dock stack over which the cursor hovers” not working as of 7/2/2025
   - Turning off autohide seems not to reliably (a) stick (i.e., the toggle in the GUI doesn’t match the value of `autohide` or the value of `autohide` doesn’t stick at zero) and (b) work (even when `autohide` is zero, the Dock still appears automatically when the cursor reaches the bottom of the screen). (Unless I don’t understand what the effect is supposed to be.)
     - This may be a known issue of early versions of macOS 26 Tahoe. See, e.g., “[Dock auto-hide will still turn itself on after a couple of screen saver / sleep / wake cycles, sometimes even after the first sleep.](https://forums.macrumors.com/threads/macos-tahoe-26-0-bug-fixes-changes-and-more.2465820/page-5#:~:text=The%20official%20release,the%20first%20sleep)”
 - Matrix screensaver and hot-corner activation of screen saver
