@@ -1,15 +1,4 @@
-# This file assumes GENOMAC_HELPER_DIR is already set in the current shell
-# to the absolute path of the directory containing helpers.sh.
-# That variable must be defined before this file is sourced.
-
-if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
-  echo "❌ GENOMAC_HELPER_DIR is not set. Please source `initial_prefs.sh` first."
-  return 1
-fi
-
-source "${GENOMAC_HELPER_DIR}/helpers.sh"
-
-############################## BEGIN SCRIPT PROPER ##############################
+#!/bin/zsh
 
 function set_default_shell() {
   # Ensure user’s login shell is the Homebrew-installed version of zsh (idempotent)
@@ -35,9 +24,9 @@ function set_default_shell() {
   CURRENT_SHELL="$(dscl . -read "/Users/$USER" UserShell 2>/dev/null | awk 'NR==1{print $2}')"
 
   if [[ "$CURRENT_SHELL" == "$BREW_ZSH" ]]; then
-    report_success "$USER already uses $BREW_ZSH"
+    report_success "User:$USER already uses $BREW_ZSH"
   else
-    report_adjust_setting "Switching $USER to $BREW_ZSH"
+    report_adjust_setting "Switching user:$USER to $BREW_ZSH"
     chsh -s "$BREW_ZSH" ; success_or_not
     report "Open a new login shell (new Terminal window or 'zsh -l') for it to take effect."
   fi
