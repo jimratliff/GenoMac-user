@@ -407,6 +407,17 @@ The following is just a few highlights of changed settings, that might seem nota
           - ⇧⌥⌘F6: Move focus to floating window
           - ⇧⌥⌘F1: Turn keyboard access on or off
           - ⇧⌥⌘F7: Change the way Tab moves focus
+    - Trackpad, many settings including, inter alia:
+      - Tap to click
+      - Swipe between pages
+      - Mission Control: Swipe up with four fingers
+      - Show Desktop
+      - Three-finger drag
+      - Remove
+        - Swipe between full-screen applications
+        - Notification Center
+        - App Exposé (I’m not sure why I removed this)
+        - Launchpad
   - Scroll bars always visible
   - Remove irritating Sequoia behavior where click-on-desktop reveals Desktop
   - Restore “Save As…” menu item as first-class visible without requiring ⌥ key
