@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # set_apps_to_launch_at_login(): Declaratively ensure selected apps launch at user login via LaunchAgents.
 #
 # Policy:
@@ -26,8 +28,6 @@ set -euo pipefail
 # - Sync.com is appropriate for only some users and is not present here.
 #   Use of the Sync app requires some manual intervention by the user in any case, during
 #   which it’s likely that this app will be manually specified to launch at login.
-# - Antnotes is commented out because I haven’t found a way to configure it programmatically.
-#   In any case, it has its own preference setting for launching on login.
 #
 # - The following apps *do* launch at user login, but aren’t handled here because they
 # 	have their own login helper:
@@ -48,13 +48,7 @@ set -euo pipefail
 #
 # The "bundle"/"path" value determines how the app is launched.
 #
-# Notes:
-# - The following apps *do* launch at user login, but aren’t handled here because they
-# 	have their own login helper:
-# 	- Dropbox: 			"bundle:com.getdropbox.dropbox"
-# 	- TextExpander	"bundle:com.smileonmymac.textexpander"
-# - Sync.com app needs to launch at login, but only for selected users.
-# 	- The Sync app is excluded from the scope of this script.
+
 typeset -g -A GENOMAC_LOGIN_APPS=(
   # bundle-id based launches
   [bettertouchtool]="bundle:com.hegenberg.BetterTouchTool"
