@@ -56,8 +56,10 @@ function set_symbolichotkeys() {
   disable_command_by_its_id 256
   
   ############### Set new hotkeys (The FOLLOWING NEED TO BE CONFIRMED)
-  
+
+  # Hint: META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
   local modifiers_for_mission_control=$META_MODIFIER_CHARS
+  # Hint: MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
   local modifiers_for_keyboard_navigation=$MODIFIERS_KEYBOARD_NAVIGATION
   
   ####### Mission Control
@@ -93,12 +95,19 @@ function set_symbolichotkeys() {
   assign_hotkey_to_command_id 133 "F6" $modifiers_for_mission_control
   
   ####### Keyboard navigation
+  # Move focus to menu bar 
   assign_hotkey_to_command_id 7 "F2" $modifiers_for_keyboard_navigation
+  # Move focus to the Dock
   assign_hotkey_to_command_id 8 "F3" $modifiers_for_keyboard_navigation
+  # Move focus to active or next window
   assign_hotkey_to_command_id 9 "F4" $modifiers_for_keyboard_navigation
+  # Move focus to window toolbar
   assign_hotkey_to_command_id 10 "F5" $modifiers_for_keyboard_navigation
+  # Move focus to floating window
   assign_hotkey_to_command_id 11 "F6" $modifiers_for_keyboard_navigation
+  # Turn keyboard access on or off
   assign_hotkey_to_command_id 12 "F1" $modifiers_for_keyboard_navigation
+  # Change the way Tab moves focus
   assign_hotkey_to_command_id 13 "F7" $modifiers_for_keyboard_navigation
   
   report_end_phase_standard
