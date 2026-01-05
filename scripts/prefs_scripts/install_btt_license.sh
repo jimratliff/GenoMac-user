@@ -1,15 +1,4 @@
-# This file assumes GENOMAC_HELPER_DIR is already set in the current shell
-# to the absolute path of the directory containing helpers.sh.
-# That variable must be defined before this file is sourced.
-
-if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
-  echo "❌ GENOMAC_HELPER_DIR is not set. Please source `initial_prefs.sh` first."
-  return 1
-fi
-
-source "${GENOMAC_HELPER_DIR}/helpers.sh"
-
-############################## BEGIN SCRIPT PROPER ##############################
+#!/bin/zsh
 
 function install_btt_license_file() {
   # To be run only once per user to install the BetterTouchTool license file.
@@ -23,6 +12,7 @@ function install_btt_license_file() {
   local license_file_name="bettertouchtool.bttlicense"
   
   local source_subpath="BetterTouchTool/LICENSE/${license_file_name}"
+  # Hint: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${GENOMAC_USER_DROPBOX_DIRECTORY}/Preferences_common"
   local source_path="${GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY}/${source_subpath}"
   
   local destination_directory="$HOME/Library/Application Support/BetterTouchTool"
@@ -32,4 +22,5 @@ function install_btt_license_file() {
   copy_resource_between_local_directories "$source_path" "$destination_path" ; success_or_not
   
   report_end_phase_standard
+  
 }
