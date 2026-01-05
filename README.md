@@ -328,6 +328,7 @@ make apps-that-launch-on-login
 See the Google Docs document “[Project GenoMac: Post-automation steps](https://docs.google.com/document/d/1jKJpWnCBFcT24MGbaeMq90fbnus2rMHIVlRejkfI9aw/edit?usp=sharing)” (in my standard Google account).
  
 ## TODOs
+- Keyboard-navigation hotkeys ⇧⌥⌘F2 – ⇧⌥⌘F7 need to be tested
 - Laptop-specific settings
   - To date, my development of Project GenoMac has been performed on a Mac mini. Thus, I have not been able to experiment with settings that are relevant only on a laptop, such as battery settings.
   - In particular, I should explore the Control Center’s Battery module’s setting.
@@ -335,16 +336,21 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - Incorporate new helper function: this_mac_is_a_laptop()
   - Change menubar clock configuration for laptop
   - Change pmset settings for laptop, so that they vary based on battery/charging
+- set_power_management_settings.sh
+  - Finish, and move to a bootstrapping step
 - Finder
   - ✅ Open new window to HOME is meant to be bootstrap only, not maintenance
   - Show hard disks, external drives, connected servers is meant to be different for admin users than for regular users.
 - Assiging wallpapers to Spaces
   - Keyboard Maestro has a “Set Desktop Image” command that, I believe, is limited to the current Space. You could then iterate over Spaces and set the wallpaper.
     - This may not be preferable to AppleScript-ing the entire process.
+- set_screen_capture_settings.sh
+  - Consider making setting the destination for screenshots be user-specific (or occur after Dropbox sync, in order to save to a Dropbox directory)
 - Scripting
   - Main entry-point script: Should check whether there are un-pulled changes to the repo. If so, warn the executing user to refresh the repo.
   - Makefile
     - Add `dev-convert-repo-to-ssh-for-push`
+  - keyboard_maestro_enable_macro_syncing.sh is experimental (untested, as of 1/4/2026)
 - GenoMac-system
   - clone_genomac_user_repo.sh needs to be rewritten for submodules
 - Integration with Mac environment
@@ -372,7 +378,54 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - Despite the automation step, which *does* change in the indication in Settings, it might not take effect. To fix: Manually toggle that switch again.
   - As I recall, this bug goes back years.
  
-## Appendix: Compilation of selected settings choices
+## Appendix: Compilation of selected settings choices (NOT exhaustive!)
+The following is just a few highlights of changed settings, that might seem notable or worth knowing about:
+- Global
+  - Keyboard
+    - Enable keyboard navigation with Tab key
+    - Use F1, F2, … as standard function keys
+    - Press and release globe (🌎) key to bring up emoji picker
+    - Many customizations to symbolic hotkeys, both additions and removals
+      - Remove:
+        - minimize a window
+          - I never minimize on purpose, only accidentally; this prevents that
+        - move left/right/down/up a Space
+          - I use a numeric mental mode, not a spatial mental model, for Spaces
+        - window-moving commands halves, quarters, arrange, since they require “Displays have separate Spaces”
+      - Add
+        - using ⌃⌥⌘ combination (modifiers for Mission Control)
+          - ⌃⌥⌘ + 1, …, 9, 0, F1, …, F6 for navigating to Spaces 1, …, 16
+          - ⌃⌥⌘F8: Activate Mission Control
+          - ⌃⌥⌘F9: Notification Center
+          - ⌃⌥⌘F10: Expose: application windows
+          - ⌃⌥⌘F11: Show Desktop
+        - using ⇧⌥⌘ (modifiers for keyboard navigation)
+          - ⇧⌥⌘F2: Move focus to menu bar
+          - ⇧⌥⌘F3: Move focus to the Dock
+          - ⇧⌥⌘F4: Move focus to active or next window
+          - ⇧⌥⌘F5: Move focus to window toolbar
+          - ⇧⌥⌘F6: Move focus to floating window
+          - ⇧⌥⌘F1: Turn keyboard access on or off
+          - ⇧⌥⌘F7: Change the way Tab moves focus
+  - Scroll bars always visible
+  - Remove irritating Sequoia behavior where click-on-desktop reveals Desktop
+  - Restore “Save As…” menu item as first-class visible without requiring ⌥ key
+  - Cursor: Increase size and change its fill and outline colors
+  - Don’t show widgets on the desktop
+  - Save to disk, not to iCloud (by default)
+  - Always show window proxy icon
+  - Reduce transparency and increase contrast
+  - All autocorrection (correcting spelling automatically, automatic capitalization, adding period with double-space, and smart quotes/dashes) is turned *off*.
+    - Inline predictive text is *not* turned off, but this could be chosen by uncommenting one line.
+  - Alert sound: custom: “Uh oh”
+  - Language & Region: Week starts on Monday
+  - Mission Control/Spaces
+    - Don’t rearrange based on most-recent use
+    - Each Space spans all displays (no separate Space for each monitor)
+    - Don’t jump to a new space when switching applications
+  - Screencaptures
+    - Save to $HOME/Screenshots
+    - Disable drop shadow on screenshots
 - Finder
   - Open new windows to $HOME, not Recents
     - This is meant to be bootstrapped (TODO), not maintenance, so as not to prevent a user from making a different permanent choice.
@@ -380,12 +433,37 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - Preferred window view: List view
     - Calculate all sizes in list views
   - Column view: Resize columns to fit filenames (This is a new setting in macOS 26 Tahoe.)
+  - Icon views: Snap to Grid
   - Search from current folder by default (not from “This Mac”)
-- Hot corners[^hot-corners]
-  - Bottom-right: Start screen saver
-  - Bottom-left: Disable screen saver
- 
-[^hot-corners]: See scripts/prefs_scripts/set_general_dock_settings.sh.
+- Dock
+  - Turn OFF automatic hide/show of Dock
+  - Enable two-finger scrolling on Dock icon to reveal thumbnails of all windows for that app.
+  - Minimize to Dock rather than to app’s dock icon
+    - I choose this because I never minimize on purpose, only by accident
+  - Highlight the element of a grid-viewe Dock stack over which the cursor hoves
+    - Needs re-testing: this wasn’t working as of 7/2/2025
+  - Hot corners
+    - Bottom-right: Start screen saver
+    - Bottom-left: Disable screen saver
+- Text Edit: Make plain text the default format
+- Time Machine: Don’t prompt to use new disk as backup volume
+- Disk Utility
+  - Show all devices in sidebar
+  - Show hidden partitions (untested as of 1/5/2026)
+- Safari
+  - Don’t auto-open “safe” downloads
+  - Never automatically open a website in a tab rather than a window
+  - Don’t navigate tabs with ⌘1 – ⌘9
+  - Show full website address in Smart Search field
+- Third-party software
+  - BBEdit
+    - is the default app to open plain-text, markdown, .plist, shell, AppleScript, and XML files
+    - Soft-wrap text to window width
+    - Show tab stops (as vertical lines) in editing window
+    - Don’t prefer shared window for New and Open
+  - ChatGPT and Claude
+    - Remove hotkey
+    - Do not enable menubar item
 
 ## Appendix: Determining the `defaults write` commands that correspond to desired changes in settings
 The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped settings.
