@@ -1,4 +1,4 @@
-⇧⌥⌘F2
+#!/bin/zsh
 
 function set_terminal_settings() {
 
