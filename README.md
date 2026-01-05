@@ -332,6 +332,23 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - To date, my development of Project GenoMac has been performed on a Mac mini. Thus, I have not been able to experiment with settings that are relevant only on a laptop, such as battery settings.
   - In particular, I should explore the Control Center’s Battery module’s setting.
     - In particular, I believe the legacy mentions of `defaults write com.apple.menuextra.battery ShowPercent -string "NO"` no longer apply.
+  - Incorporate new helper function: this_mac_is_a_laptop()
+  - Change menubar clock configuration for laptop
+  - Change pmset settings for laptop, so that they vary based on battery/charging
+- Finder
+  - Open new window to HOME is meant to be bootstrap only, not maintenance
+  - Show hard disks, external drives, connected servers is meant to be different for admin users than for regular users.
+- Assiging wallpapers to Spaces
+  - Keyboard Maestro has a “Set Desktop Image” command that, I believe, is limited to the current Space. You could then iterate over Spaces and set the wallpaper.
+    - This may not be preferable to AppleScript-ing the entire process.
+- Scripting
+  - Main entry-point script: Should check whether there are un-pulled changes to the repo. If so, warn the executing user to refresh the repo.
+  - Makefile
+    - Add `dev-convert-repo-to-ssh-for-push`
+- GenoMac-system
+  - clone_genomac_user_repo.sh needs to be rewritten for submodules
+- Integration with Mac environment
+  - To replace Antnotes, which can’t be programmatically configured, I now have a Keyboard Maestro macro (“Show Spaces assignments”) that, when trigged from the KM status menu, pops up and displays a `space_descriptions.pgn` that is assumed to be the typical screenshot of ~/Dropbox/Users/$USER/Prefs/Mission_Control_wallpapers. 
  
 ## Known issues
 - Generally
@@ -356,6 +373,14 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - As I recall, this bug goes back years.
  
 ## Appendix: Compilation of selected settings choices
+- Finder
+  - Open new windows to $HOME, not Recents
+    - This is meant to be bootstrapped (TODO), not maintenance, so as not to prevent a user from making a different permanent choice.
+  - Show (a) the Library folder, (b) hidden files, and (c) filename extensions
+  - Preferred window view: List view
+    - Calculate all sizes in list views
+  - Column view: Resize columns to fit filenames (This is a new setting in macOS 26 Tahoe.)
+  - Search from current folder by default (not from “This Mac”)
 - Hot corners[^hot-corners]
   - Bottom-right: Start screen saver
   - Bottom-left: Disable screen saver
