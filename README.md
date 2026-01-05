@@ -336,7 +336,7 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - Change menubar clock configuration for laptop
   - Change pmset settings for laptop, so that they vary based on battery/charging
 - Finder
-  - Open new window to HOME is meant to be bootstrap only, not maintenance
+  - ✅ Open new window to HOME is meant to be bootstrap only, not maintenance
   - Show hard disks, external drives, connected servers is meant to be different for admin users than for regular users.
 - Assiging wallpapers to Spaces
   - Keyboard Maestro has a “Set Desktop Image” command that, I believe, is limited to the current Space. You could then iterate over Spaces and set the wallpaper.
