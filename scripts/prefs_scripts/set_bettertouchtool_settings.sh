@@ -1,17 +1,4 @@
-# This file assumes:
-# - GENOMAC_HELPER_DIR is already set in the current shell to the absolute path of the directory 
-#   containing helpers.sh.
-# - GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH is set to the path at which the preset to be autoloaded is located.
-# These environment variables must be defined by assign_environment_variables.sh
-
-if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
-  echo "❌ GENOMAC_HELPER_DIR is not set. Please source `initial_prefs.sh` first."
-  return 1
-fi
-
-source "${GENOMAC_HELPER_DIR}/helpers.sh"
-
-############################## BEGIN SCRIPT PROPER ##############################
+#!/bin/zsh
 
 function set_btt_settings() {
 
@@ -19,7 +6,7 @@ function set_btt_settings() {
   # across users/Macs (although the promised delivery of this feature is overdue).
   # 
   # Instead, an established preset file is deployed by GenoMac-user to a location where BTT 
-  # will detect it on BTT’s launching and import it for use. By default, BTT expects the 
+  # will detect it when BTT launches and import it for use. By default, BTT expects the 
   # preset-to-be-autoloaded to exist at `~/.btt_autoload_preset.json`. However, we override 
   # this location to be `~/.config/BetterTouchTool/Default_preset.json` using the syntax 
   # `defaults write com.hegenberg.BetterTouchTool BTTAutoLoadPath "~/somepath"`.
