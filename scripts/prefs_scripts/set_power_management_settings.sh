@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 ############### WORK IN PROGRESS
 
 function set_power_management_settings() {
