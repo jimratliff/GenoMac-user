@@ -28,9 +28,9 @@ function set_general_dock_settings() {
   report_adjust_setting "Minimize to Dock rather than to app’s Dock icon"
   defaults write "${domain}" minimize-to-application -bool false ; success_or_not
   
-  # This is NOT working as of 7/2/2025
-  # report_adjust_setting "Highlight the element of a grid-view Dock stack over which the cursor hovers"
-  # defaults write "${domain}" mouse-over-hilte-stack -bool true ; success_or_not
+  # This was NOT working as of 7/2/2025
+  report_adjust_setting "Highlight the element of a grid-view Dock stack over which the cursor hovers"
+  defaults write "${domain}" mouse-over-hilte-stack -bool true ; success_or_not
   
   # Hot-corner settings
   report_adjust_setting "Set bottom-right corner to Start Screen Saver"
