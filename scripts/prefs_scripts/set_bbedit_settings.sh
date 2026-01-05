@@ -1,17 +1,4 @@
-# This file assumes:
-# - GENOMAC_HELPER_DIR is already set in the current shell to the absolute path of the directory 
-#   containing helpers.sh.
-# - PLISTBUDDY_PATH
-# These environment variables must be defined by assign_environment_variables.sh
-
-if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
-  echo "❌ GENOMAC_HELPER_DIR is not set. Please source `initial_prefs.sh` first."
-  return 1
-fi
-
-source "${GENOMAC_HELPER_DIR}/helpers.sh"
-
-############################## BEGIN SCRIPT PROPER ##############################
+#!/bin/zsh
 
 function set_bbedit_settings() {
 
