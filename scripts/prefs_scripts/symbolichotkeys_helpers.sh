@@ -1,17 +1,4 @@
-# Prevent multiple sourcing
-if [[ -n "${__already_loaded_symbolichotkeys_helpers_sh:-}" ]]; then return 0; fi
-__already_loaded_symbolichotkeys_helpers_sh=1
-
-# This file assumes GENOMAC_HELPER_DIR is already set in the current shell
-# to the absolute path of the directory containing helpers.sh.
-# That variable must be defined before this file is sourced.
-
-if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
-  echo "❌ GENOMAC_HELPER_DIR is not set. Please source `initial_prefs.sh` first."
-  return 1
-fi
-
-source "${GENOMAC_HELPER_DIR}/helpers.sh"
+#!/bin/zsh
 
 ############### OVERVIEW OF PUBLIC INTERFACE
 
