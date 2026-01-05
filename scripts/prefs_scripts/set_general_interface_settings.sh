@@ -1,15 +1,4 @@
-# This file assumes GENOMAC_HELPER_DIR is already set in the current shell
-# to the absolute path of the directory containing helpers.sh.
-# That variable must be defined before this file is sourced.
-
-if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
-  echo "❌ GENOMAC_HELPER_DIR is not set. Please source `initial_prefs.sh` first."
-  return 1
-fi
-
-source "${GENOMAC_HELPER_DIR}/helpers.sh"
-
-############################## BEGIN SCRIPT PROPER ##############################
+#!/bin/zsh
 
 function set_general_interface_settings() {
 
@@ -17,8 +6,10 @@ report_start_phase_standard
 report_action_taken "Set general interface settings"
 
 # Change system beep sound to custom beep sound
+# 
+# Hint: custom_beep_sound_path="/Library/Audio/Sounds/Alerts/Uh_oh.aiff"
+local custom_beep_sound_path="${SYSTEM_ALERT_SOUNDS_DIRECTORY}/${CUSTOM_ALERT_SOUND_FILENAME}"
 report_adjust_setting "Change system beep to custom beep sound"
-custom_beep_sound_path="/Library/Audio/Sounds/Alerts/Uh_oh.aiff"
 defaults write NSGlobalDomain com.apple.sound.beep.sound "${custom_beep_sound_path}" ; success_or_not
 
 # Show scroll bars always (not only when scrolling)
@@ -34,7 +25,7 @@ defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool fa
 report_adjust_setting "Restore “Save As…” (⇧⌘S) menu item"
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Save As…' '@$S' ; success_or_not
 
-# Change size and colors of cursor
+############### Change size and colors of cursor
 report_action_taken "Change size and colors of cursor"
 
 report_adjust_setting "Change size of cursor"
@@ -60,6 +51,7 @@ defaults write com.apple.universalaccess cursorOutline -dict \
 
  report_adjust_setting "3 of 3: Mark cursor as customized"
  defaults write com.apple.universalaccess cursorIsCustomized -bool true ; success_or_not
+############### END OF CURSOR MANIPULATION
 
 # Do NOT show widgets on Desktop
 report_adjust_setting "Do NOT show widgets on the desktop"
@@ -109,6 +101,7 @@ report_adjust_setting "1 of 2: PMPrintingExpandedStateForPrint"
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true ; success_or_not
 report_adjust_setting "2 of 2: PMPrintingExpandedStateForPrint2"
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true ; success_or_not
+############### END OF DIALOG BOX EXPANSION
 
 report_end_phase_standard
 
