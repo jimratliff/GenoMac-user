@@ -2,107 +2,107 @@
 
 function set_general_interface_settings() {
 
-report_start_phase_standard
-report_action_taken "Set general interface settings"
-
-# Change system beep sound to custom beep sound
-# 
-# Hint: custom_beep_sound_path="/Library/Audio/Sounds/Alerts/Uh_oh.aiff"
-local custom_beep_sound_path="${SYSTEM_ALERT_SOUNDS_DIRECTORY}/${CUSTOM_ALERT_SOUND_FILENAME}"
-report_adjust_setting "Change system beep to custom beep sound"
-defaults write NSGlobalDomain com.apple.sound.beep.sound "${custom_beep_sound_path}" ; success_or_not
-
-# Show scroll bars always (not only when scrolling)
-report_adjust_setting "Always show scrollbars"
-defaults write NSGlobalDomain AppleShowScrollBars -string "Always" ; success_or_not
-
-# Override change to clicking-on-desktop behavior
-# Desktop & Dock » Desktop & Stage Manager » Click wallpaper to reveal desktop » Only in Stage Manager
-report_adjust_setting "Reverse obnoxious default that revealed desktop anytime you clicked on the desktop"
-defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false ; success_or_not
-
-# Restore to all apps the “Save As…” menu item as a first-class visible-without-option choice
-report_adjust_setting "Restore “Save As…” (⇧⌘S) menu item"
-defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Save As…' '@$S' ; success_or_not
-
-############### Change size and colors of cursor
-report_action_taken "Change size and colors of cursor"
-
-report_adjust_setting "Change size of cursor"
-defaults write com.apple.universalaccess mouseDriverCursorSize -float "1.448976278305054" ; success_or_not
-
-report_action_taken "Change fill and outline colors of cursor"
-
-report_adjust_setting "1 of 3: Change fill color of cursor"
-defaults write com.apple.universalaccess cursorFill -dict \
-  alpha -float 1 \
-  blue  -float 0 \
-  green -float 0.5763723254 \
-  red   -float 1
- success_or_not
-
-report_adjust_setting "2 of 3: Change outline color of cursor"
-defaults write com.apple.universalaccess cursorOutline -dict \
-  alpha -float 1 \
-  blue  -float 0.2586010993 \
-  green -float 0.4751212597 \
-  red   -float 0.6679978967
- success_or_not
-
- report_adjust_setting "3 of 3: Mark cursor as customized"
- defaults write com.apple.universalaccess cursorIsCustomized -bool true ; success_or_not
-############### END OF CURSOR MANIPULATION
-
-# Do NOT show widgets on Desktop
-report_adjust_setting "Do NOT show widgets on the desktop"
-defaults write com.apple.WindowManager StandardHideWidgets -bool true ; success_or_not
-
-# Window tabbing mode
-report_adjust_setting "AppleWindowTabbingMode: manual ⇒ Window should display as tabs according to window’s tabbing mode”"
-defaults write NSGlobalDomain AppleWindowTabbingMode -string "manual" ; success_or_not
-
-# Double-click on titlebar behavior
-# System Settings » Desktop & Dock » Dock » Double-click a window's title bar to: 
-#  - "Fill" Fill
-#  - "Maximize" =Zoom (default)
-#  - "Minimize"
-#  - "None" =Do Nothing
-report_adjust_setting "Double-click on window’s title bar ⇒ Zoom (reinforces default)"
-defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Maximize" ; success_or_not
-
-# By default, save to disk, not to iCloud
-report_adjust_setting "By default, save to disk, not to iCloud"
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false ; success_or_not
-
-# Always show window proxy icon
-report_adjust_setting "Always show window proxy icon"
-defaults write com.apple.universalaccess showWindowTitlebarIcons -bool true ; success_or_not
-
-# Reduce transparency and increase contrast
-report_action_taken "Reduce transparency and increase contrast"
-report_adjust_setting "1 of 4: DarkenSystemColors"
-defaults write com.apple.Accessibility DarkenSystemColors -int 1 ; success_or_not
-report_adjust_setting "2 of 4: EnhancedBackgroundContrastEnabled"
-defaults write com.apple.Accessibility EnhancedBackgroundContrastEnabled -int 1 ; success_or_not
-report_adjust_setting "3 of 4: increaseContrast"
-defaults write com.apple.universalaccess increaseContrast -bool true ; success_or_not
-report_adjust_setting "4 of 4: reduceTransparency"
-defaults write com.apple.universalaccess reduceTransparency -bool true ; success_or_not
-
-############### Expand certain dialog boxes by default
-report_action_taken "Expand “Save As…” dialog boxes"
-report_adjust_setting "1 of 2: NSNavPanelExpandedStateForSaveMode"
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true ; success_or_not
-report_adjust_setting "2 of 2: NSNavPanelExpandedStateForSaveMode2"
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true ; success_or_not
-
-report_action_taken "Expand print dialog boxes"
-report_adjust_setting "1 of 2: PMPrintingExpandedStateForPrint"
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true ; success_or_not
-report_adjust_setting "2 of 2: PMPrintingExpandedStateForPrint2"
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true ; success_or_not
-############### END OF DIALOG BOX EXPANSION
-
-report_end_phase_standard
+  report_start_phase_standard
+  report_action_taken "Set general interface settings"
+  
+  # Change system beep sound to custom beep sound
+  # 
+  # Hint: custom_beep_sound_path="/Library/Audio/Sounds/Alerts/Uh_oh.aiff"
+  local custom_beep_sound_path="${SYSTEM_ALERT_SOUNDS_DIRECTORY}/${CUSTOM_ALERT_SOUND_FILENAME}"
+  report_adjust_setting "Change system beep to custom beep sound"
+  defaults write NSGlobalDomain com.apple.sound.beep.sound "${custom_beep_sound_path}" ; success_or_not
+  
+  # Show scroll bars always (not only when scrolling)
+  report_adjust_setting "Always show scrollbars"
+  defaults write NSGlobalDomain AppleShowScrollBars -string "Always" ; success_or_not
+  
+  # Override change to clicking-on-desktop behavior
+  # Desktop & Dock » Desktop & Stage Manager » Click wallpaper to reveal desktop » Only in Stage Manager
+  report_adjust_setting "Reverse obnoxious default that revealed desktop anytime you clicked on the desktop"
+  defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false ; success_or_not
+  
+  # Restore to all apps the “Save As…” menu item as a first-class visible-without-option choice
+  report_adjust_setting "Restore “Save As…” (⇧⌘S) menu item"
+  defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Save As…' '@$S' ; success_or_not
+  
+  ############### Change size and colors of cursor
+  report_action_taken "Change size and colors of cursor"
+  
+  report_adjust_setting "Change size of cursor"
+  defaults write com.apple.universalaccess mouseDriverCursorSize -float "1.448976278305054" ; success_or_not
+  
+  report_action_taken "Change fill and outline colors of cursor"
+  
+  report_adjust_setting "1 of 3: Change fill color of cursor"
+  defaults write com.apple.universalaccess cursorFill -dict \
+    alpha -float 1 \
+    blue  -float 0 \
+    green -float 0.5763723254 \
+    red   -float 1
+   success_or_not
+  
+  report_adjust_setting "2 of 3: Change outline color of cursor"
+  defaults write com.apple.universalaccess cursorOutline -dict \
+    alpha -float 1 \
+    blue  -float 0.2586010993 \
+    green -float 0.4751212597 \
+    red   -float 0.6679978967
+   success_or_not
+  
+   report_adjust_setting "3 of 3: Mark cursor as customized"
+   defaults write com.apple.universalaccess cursorIsCustomized -bool true ; success_or_not
+  ############### END OF CURSOR MANIPULATION
+  
+  # Do NOT show widgets on Desktop
+  report_adjust_setting "Do NOT show widgets on the desktop"
+  defaults write com.apple.WindowManager StandardHideWidgets -bool true ; success_or_not
+  
+  # Window tabbing mode
+  report_adjust_setting "AppleWindowTabbingMode: manual ⇒ Window should display as tabs according to window’s tabbing mode”"
+  defaults write NSGlobalDomain AppleWindowTabbingMode -string "manual" ; success_or_not
+  
+  # Double-click on titlebar behavior
+  # System Settings » Desktop & Dock » Dock » Double-click a window's title bar to: 
+  #  - "Fill" Fill
+  #  - "Maximize" =Zoom (default)
+  #  - "Minimize"
+  #  - "None" =Do Nothing
+  report_adjust_setting "Double-click on window’s title bar ⇒ Zoom (reinforces default)"
+  defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Maximize" ; success_or_not
+  
+  # By default, save to disk, not to iCloud
+  report_adjust_setting "By default, save to disk, not to iCloud"
+  defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false ; success_or_not
+  
+  # Always show window proxy icon
+  report_adjust_setting "Always show window proxy icon"
+  defaults write com.apple.universalaccess showWindowTitlebarIcons -bool true ; success_or_not
+  
+  # Reduce transparency and increase contrast
+  report_action_taken "Reduce transparency and increase contrast"
+  report_adjust_setting "1 of 4: DarkenSystemColors"
+  defaults write com.apple.Accessibility DarkenSystemColors -int 1 ; success_or_not
+  report_adjust_setting "2 of 4: EnhancedBackgroundContrastEnabled"
+  defaults write com.apple.Accessibility EnhancedBackgroundContrastEnabled -int 1 ; success_or_not
+  report_adjust_setting "3 of 4: increaseContrast"
+  defaults write com.apple.universalaccess increaseContrast -bool true ; success_or_not
+  report_adjust_setting "4 of 4: reduceTransparency"
+  defaults write com.apple.universalaccess reduceTransparency -bool true ; success_or_not
+  
+  ############### Expand certain dialog boxes by default
+  report_action_taken "Expand “Save As…” dialog boxes"
+  report_adjust_setting "1 of 2: NSNavPanelExpandedStateForSaveMode"
+  defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true ; success_or_not
+  report_adjust_setting "2 of 2: NSNavPanelExpandedStateForSaveMode2"
+  defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true ; success_or_not
+  
+  report_action_taken "Expand print dialog boxes"
+  report_adjust_setting "1 of 2: PMPrintingExpandedStateForPrint"
+  defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true ; success_or_not
+  report_adjust_setting "2 of 2: PMPrintingExpandedStateForPrint2"
+  defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true ; success_or_not
+  ############### END OF DIALOG BOX EXPANSION
+  
+  report_end_phase_standard
 
 }
