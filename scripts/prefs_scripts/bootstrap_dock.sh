@@ -1,15 +1,4 @@
-# This file assumes GENOMAC_HELPER_DIR is already set in the current shell
-# to the absolute path of the directory containing helpers.sh.
-# That variable must be defined before this file is sourced.
-
-if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
-  echo "❌ GENOMAC_HELPER_DIR is not set. Please source `initial_prefs.sh` first."
-  return 1
-fi
-
-source "${GENOMAC_HELPER_DIR}/helpers.sh"
-
-############################## BEGIN SCRIPT PROPER ##############################
+#!/bin/zsh
 
 # Define Dock persistent-app items
 #   Does not alter anything for non-persistent apps.
@@ -27,7 +16,6 @@ source "${GENOMAC_HELPER_DIR}/helpers.sh"
 APPS_FOR_DOCK=(
   "/System/Applications/System Settings.app"
   "Applications/1Password.app"
-  # "Applications/Antnotes.app"
   "Applications/TextExpander.app"
   "Applications/Raindrop.io.app"
   "Applications/Obsidian.app"
