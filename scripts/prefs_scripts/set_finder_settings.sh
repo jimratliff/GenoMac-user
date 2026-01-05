@@ -8,11 +8,6 @@ function set_finder_settings() {
   local finder_domain="com.apple.finder"
   local finder_plist="$HOME/Library/Preferences/com.apple.finder.plist"
   
-  # Open new windows to HOME
-  # This is intended for bootstrapping ONLY, not for enforcement
-  report_adjust_setting "By default, new Finder window should open to user’s home directory"
-  defaults write $finder_domain NewWindowTarget -string "PfHm" ; success_or_not
-  
   # Show all hidden files
   # Does NOT correspond to any UI command (except ⌘. which however does not change a default view).
   report_adjust_setting "Show all hidden files (i.e., “dot files”)"
