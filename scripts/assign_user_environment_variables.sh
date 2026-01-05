@@ -22,7 +22,7 @@ META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 
 # Specify the local directory that holds resources (files or folders) needed for particular
-# operations
+# operations by GenoMac-user
 GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}/resources"
 
 # Specify the local directory that is the “stow directory” that GNU Stow uses as
