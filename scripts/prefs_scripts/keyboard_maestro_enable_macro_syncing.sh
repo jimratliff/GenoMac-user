@@ -1,17 +1,4 @@
-# This file assumes:
-# - GENOMAC_HELPER_DIR is already set in the current shell to the absolute path of the directory 
-#   containing helpers.sh.
-# - PLISTBUDDY_PATH
-# These environment variables must be defined by assign_environment_variables.sh
-
-if [[ -z "${GENOMAC_HELPER_DIR:-}" ]]; then
-  echo "❌ GENOMAC_HELPER_DIR is not set. Please source `initial_prefs.sh` first."
-  return 1
-fi
-
-source "${GENOMAC_HELPER_DIR}/helpers.sh"
-
-############################## BEGIN SCRIPT PROPER ##############################
+#!/bin/zsh
 
 function enable_keyboard_maestro_macro_syncing() {
 
@@ -30,7 +17,8 @@ function enable_keyboard_maestro_macro_syncing() {
   local bundle_id_editor="com.stairways.keyboardmaestro.editor"
   
   local macro_file_name="Keyboard Maestro Macros.kmsync"
-  local path_to_Keyboard_Maestro_subdirectory_in_Dropbox="$GENOMAC_USER_DROPBOX_DIRECTORY/Keyboard_Maestro"
+  # Hint: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${GENOMAC_USER_DROPBOX_DIRECTORY}/Preferences_common"
+  local path_to_Keyboard_Maestro_subdirectory_in_Dropbox="$GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY/Keyboard_Maestro"
   local macro_file_path="${path_to_Keyboard_Maestro_subdirectory_in_Dropbox}/${macro_file_name}"
   
   report_action_taken "Quit Keyboard Maestro if running to allow changing its settings"
@@ -41,7 +29,7 @@ function enable_keyboard_maestro_macro_syncing() {
   
   # Editor settings
   report_adjust_setting "Set: Path to Keyboard Maestro macro file in Dropbox"
-  defaults write $domain_editor MacroSharingFile -string macro_file_path ; success_or_not
+  defaults write $domain_editor MacroSharingFile -string "$macro_file_path" ; success_or_not
   
   report_end_phase_standard
 
