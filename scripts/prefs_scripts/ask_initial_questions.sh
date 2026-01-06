@@ -2,8 +2,9 @@
 
 function ask_initial_questions() {
 
-  # Ask questions to the executing user that will guide the remainder of the Hypervisor process
-  # Typically, each question is true/false based on the particular user.
+  # Ask questions to the executing user that will guide the remainder of the Hypervisor process.
+  # Typically, the answer to each true/false question depends only on the particular user,
+  # not on the particular session.
   # Therefore, we ask these questions only once, the first time the user’s preferences are set
   # by GenoMac-user.
 
