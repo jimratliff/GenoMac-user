@@ -2,6 +2,11 @@
 
 function ask_initial_questions() {
 
+  # Ask questions to the executing user that will guide the remainder of the Hypervisor process
+  # Typically, each question is true/false based on the particular user.
+  # Therefore, we ask these questions only once, the first time the user’s preferences are set
+  # by GenoMac-user.
+
   report_start_phase_standard
 
   local prompt
