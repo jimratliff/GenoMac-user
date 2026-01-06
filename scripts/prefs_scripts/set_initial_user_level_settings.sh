@@ -90,7 +90,7 @@ function set_initial_user_level_settings() {
   report_adjust_setting "2 of 2: UserSwitcher = 2 (menubar only)"
   defaults -currentHost write com.apple.controlcenter UserSwitcher -int 2;success_or_not
   
-  ############### Control Center
+  # Control Center
   # Add Bluetooth to Control Center to access battery percentages of Bluetooth devices
   # This needs to be tested on laptop
   report_adjust_setting "Add Bluetooth to Control Center to access battery percentages of Bluetooth devices"
