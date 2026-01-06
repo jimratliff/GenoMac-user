@@ -21,7 +21,7 @@ else
 fi
 
 report "${welcome_message} to the GenoMac-user Hypervisor!"
-report "To get back into the groove at any time, just reexecute ${NAME_OF_PRESENT_MAKE_COMMAND}\nand we’ll pick up where we left off."
+report "$GMU_HYPERVISOR_HOW_TO_RESTART_STRING"
 
 if ! test_genomac_user_state "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED"; then
   ask_initial_questions
@@ -30,10 +30,10 @@ else
   report_action_taken "Skipping introductory questions, because you’ve already answered them."
 fi
 
-if ! test_genomac_user_state "$GNU_SESH_DOTFILES_HAVE_BEEN_STOWED"; then 
+if ! test_genomac_user_state "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED"; then 
   ensure_zshenv_loaded
   stow_packages_dotfiles
-  set_genomac_user_state "$GNU_SESH_DOTFILES_HAVE_BEEN_STOWED"
+  set_genomac_user_state "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED"
 else
   report_action_taken "Skipping stowing dotfiles, because you’ve already stowed them."
 fi
