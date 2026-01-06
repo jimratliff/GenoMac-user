@@ -52,6 +52,9 @@ GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH="${GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECT
 GMU_HYPERVISOR_MAKE_COMMAND_STRING="make run-hypervisor"
 GMU_HYPERVISOR_HOW_TO_RESTART_STRING="To get back into the groove at any time, just reexecute ${GMU_HYPERVISOR_MAKE_COMMAND_STRING}\nand we’ll pick up where we left off."
 
+# Environment variable specifies the packages for which dotfiles will be stowed.
+GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES=("1password" "BetterTouchTool" "git" "homebrew" "ssh" "starship" "stow" "zsh")
+
 # Export environment variables to be available in all subsequent shells
 report_action_taken "Exporting environment variables specific to GenoMac-user."
 
@@ -71,6 +74,7 @@ export_and_report GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS
 export_and_report GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_STOW_DIRECTORY
 export_and_report GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY
+export_and_report GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES
 export_and_report GMU_HYPERVISOR_HOW_TO_RESTART_STRING
 export_and_report GMU_HYPERVISOR_MAKE_COMMAND_STRING
 export_and_report META_MODIFIER_CHARS
