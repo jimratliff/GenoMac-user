@@ -41,8 +41,16 @@ function test_state_management() {
   report_action_taken "Clean slate: I am resetting all state"
   reset_genomac_user_state
   echo_state_pair "$state_string_1" "$state_string_2"
+
+  report_action_taken "Test set_user_state_based_on_yes_no()"
+  set_user_state_based_on_yes_no "$state_string_1" "Do you want ${state_string_1}?"
+  echo_state_pair "$state_string_1" "$state_string_2"
+
+  report_action_taken "Test set_user_state_based_on_yes_no()"
+  set_user_state_based_on_yes_no "$state_string_2" "Do you want ${state_string_2}?"
+  echo_state_pair "$state_string_1" "$state_string_2"
   
-  report_end_phase_standard
+  report_end_phase_standard 
 
 }
 
