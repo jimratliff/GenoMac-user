@@ -53,7 +53,7 @@ GMU_HYPERVISOR_MAKE_COMMAND_STRING="make run-hypervisor"
 GMU_HYPERVISOR_HOW_TO_RESTART_STRING="To get back into the groove at any time, just reexecute ${GMU_HYPERVISOR_MAKE_COMMAND_STRING}\nand we’ll pick up where we left off."
 
 # Export environment variables to be available in all subsequent shells
-report_action_taken "Exporting environment variables to be consistently available."
+report_action_taken "Exporting environment variables specific to GenoMac-user."
 
 # function export_and_report() {
 #   local var_name="$1"
