@@ -11,8 +11,7 @@ source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 safe_source "${GMU_SCRIPTS_DIR}/stow_dotfiles.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/ask_initial_questions.sh"
 
-local NAME_OF_PRESENT_MAKE_COMMAND="make run-hypervisor"
-
+############### Welcome! or Welcome back!
 local welcome_message="Welcome"
 if test_genomac_user_state "$GNU_SESH_SESSION_HAS_STARTED"; then
   welcome_message="Welcome back"
@@ -23,6 +22,7 @@ fi
 report "${welcome_message} to the GenoMac-user Hypervisor!"
 report "$GMU_HYPERVISOR_HOW_TO_RESTART_STRING"
 
+############### Ask initial questions
 if ! test_genomac_user_state "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED"; then
   ask_initial_questions
   set_genomac_user_state "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED"
@@ -30,6 +30,7 @@ else
   report_action_taken "Skipping introductory questions, because you’ve already answered them."
 fi
 
+############### Stow dotfiles
 if ! test_genomac_user_state "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED"; then 
   ensure_zshenv_loaded
   stow_packages_dotfiles
