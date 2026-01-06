@@ -33,7 +33,6 @@
 # 	  	- `defaults write` commands, where you want to continually enforce the choices 
 # 	  	  specified by GenoMac-user, even if the user has deviated from those
 # 	  	  
-# 	  	  
 # The key of each state:
 # - begins with either
 #   - `GMS_` (GenoMac-system) or
