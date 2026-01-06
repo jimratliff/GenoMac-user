@@ -48,6 +48,10 @@ GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME="Default_preset.json"
 GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY="$HOME/.config/BetterTouchTool"
 GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH="${GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY}/${GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME}"
 
+# Environment variables to support the Hypervisor
+GMU_HYPERVISOR_MAKE_COMMAND_STRING="make run-hypervisor"
+GMU_HYPERVISOR_HOW_TO_RESTART_STRING="To get back into the groove at any time, just reexecute ${GMU_HYPERVISOR_MAKE_COMMAND_STRING}\nand we’ll pick up where we left off."
+
 # Export environment variables to be available in all subsequent shells
 report_action_taken "Exporting environment variables to be consistently available."
 
@@ -67,6 +71,8 @@ export_and_report GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS
 export_and_report GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_STOW_DIRECTORY
 export_and_report GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY
+export_and_report GMU_HYPERVISOR_HOW_TO_RESTART_STRING
+export_and_report GMU_HYPERVISOR_MAKE_COMMAND_STRING
 export_and_report META_MODIFIER_CHARS
 export_and_report MODIFIERS_KEYBOARD_NAVIGATION
 export_and_report OPTION_CHAR
