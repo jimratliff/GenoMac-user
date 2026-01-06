@@ -63,7 +63,7 @@ source_with_report "${master_common_helpers_script}"
 source_with_report "${repo_specific_environment_variables_script}"
 source_with_report "${environment_variables_for_state_enums_script}"
 
-# Note: The above source of master_common_helpers_script will make available export_and_report,
+# Note: The above source of master_common_helpers_script will make available export_and_report(),
 #       which is used directly below.
 export_and_report GMU_SCRIPTS_DIR
 export_and_report GMU_PREFS_SCRIPTS
