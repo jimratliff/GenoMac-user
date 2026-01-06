@@ -7,6 +7,7 @@
 	bootstrap-user \
 	btt-license \
 	defaults_detective \
+	dev-update-repo-and-submodule \
 	execute_one_time_per_user \
 	initial-prefs \
 	reset-state \
