@@ -67,12 +67,12 @@
 
 set -euo pipefail
 
-GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED
-GMU_PERM_USER_WILL_USE_DROPBOX
-GMU_PERM_USER_WILL_USE_MICROSOFT_WORD
-GMU_PERM_USER_SHOW_DRIVES_ON_DESKTOP
+GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED="Introductory questions have been asked and answered"
+GMU_PERM_USER_WILL_USE_DROPBOX="This user will use Dropbox"
+GMU_PERM_USER_WILL_USE_MICROSOFT_WORD="This user will use Microsoft Word"
+GMU_PERM_SHOW_DRIVES_ON_DESKTOP="Do show internal and external drives on the desktop"
 
-GMU_SESH_DOTFILES_HAVE_BEEN_STOWED
+GMU_SESH_DOTFILES_HAVE_BEEN_STOWED="During this session, I have stowed the dotfiles"
 
 # Define environment variables corresponding to states
 GENOMAC_USER_STATE_DO_ENABLE_MICROSOFT_WORD
@@ -95,10 +95,8 @@ report_action_taken "Exporting environment variables corresponding to states."
 #   export "$var_name"
 # }
 
-export_and_report GENOMAC_USER_STATE_DO_ENABLE_MICROSOFT_WORD
-export_and_report GENOMAC_USER_STATE_DO_NOT_ENABLE_MICROSOFT_WORD
-export_and_report GENOMAC_USER_STATE_1PASSWORD_IS_CONFIGURED_FOR_SSH_AND_GITHUB
-export_and_report GENOMAC_USER_STATE_DROPBOX_IS_AUTHENTICATED
-export_and_report GENOMAC_USER_STATE_DROPBOX_HAS_SYNCED_COMMON_PREFS
-export_and_report GENOMAC_USER_STATE_BETTERTOUCHTOOL_LICENSE_IS_INSTALLED
-export_and_report GENOMAC_USER_STATE_DOCK_TOOLBARS_QL_PLUGINS_ARE_INITIALIZED
+export_and_report GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED
+export_and_report GMU_PERM_USER_WILL_USE_DROPBOX
+export_and_report GMU_PERM_USER_WILL_USE_MICROSOFT_WORD
+export_and_report GMU_PERM_SHOW_DRIVES_ON_DESKTOP
+export_and_report GMU_SESH_DOTFILES_HAVE_BEEN_STOWED
