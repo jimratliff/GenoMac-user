@@ -175,19 +175,8 @@ function set_initial_user_level_settings() {
   # Keyboard Maestro
   set_keyboard_maestro_settings
   
-  # Microsoft Office
-  # Suite-wide-settings
-  set_microsoft_office_suite_wide_settings
-  # Microsoft Word
-  set_microsoft_word_settings
-  
   # OmniOutliner
   set_omnioutliner_settings
-  
-  # Warp
-  # Warp is now excluded from Project GenoMac because it can’t be reliably configured via `defaults write`
-  # commands or by dotfiles. See Issue: https://github.com/warpdotdev/Warp/issues/7220
-  # set_warp_settings
   
   report_end_phase_standard
 
