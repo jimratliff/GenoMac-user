@@ -85,6 +85,8 @@ function run_hypervisor() {
   report_end_phase_standard
 }
 
+############### SUPPORTING FUNCTIONS ###############
+
 function conditionally_show_drives_on_desktop() {
   report_start_phase_standard
   report_action_taken "Overriding certain settings in a way appropriate for only SysAdmin accounts"
@@ -106,6 +108,7 @@ function conditionally_show_drives_on_desktop() {
   report_end_phase_standard
 }
 
+################# WIP
 function conditionally_configure_1Password() {
   report_start_phase_standard
 
@@ -115,18 +118,16 @@ function conditionally_configure_1Password() {
     exit 0
   fi
 
-  ################# WIP
   if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"; thenthen
-    local bundle_id_microsoft_word="com.microsoft.Word"
+    local bundle_id_1password="com.1password.1password"
     local prompt="I will launch 1Password. Please log in to your 1Password account. This is necessary for me to configure it"
-    launch_app_and_prompt_user_to_authenticate "$bundle_id_microsoft_word" "$prompt"
-    set_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"
+    launch_app_and_prompt_user_to_authenticate "$bundle_id_1password" "$prompt"
+    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
   fi
 
-  set_microsoft_office_suite_wide_settings
-  set_microsoft_word_settings
+  # Take steps to configure 1Password
 
-  set_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"
+  set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
 
   report_end_phase_standard
 }
