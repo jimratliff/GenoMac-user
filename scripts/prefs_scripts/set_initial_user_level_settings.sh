@@ -108,7 +108,7 @@ function set_initial_user_level_settings() {
   report_adjust_setting "Spaces: Don’t rearrange based on most-recent use"
   defaults write com.apple.dock mru-spaces -bool false;success_or_not
   
-  report_adjust_setting "Spaces span all display (no separate space for each monitor)"
+  report_adjust_setting "Spaces span all displays (no separate space for each monitor)"
   defaults write com.apple.spaces "spans-displays" -bool "true";success_or_not
   
   report_adjust_setting "Do not jump to a new space when switching applications"
