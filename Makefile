@@ -28,6 +28,9 @@ test-refactor:
 test-state-management:
 	zsh scripts/test_state_management.sh
 
+test-show-with-quicklook:
+	zsh scripts/test_show_with_quicklook.sh
+
 run-hypervisor:
 	zsh scripts/run_hypervisor.sh
 
