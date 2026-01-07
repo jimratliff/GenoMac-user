@@ -34,7 +34,7 @@ function run_hypervisor() {
     ask_initial_questions
     set_genomac_user_state "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED"
   else
-    report_action_taken "Skipping introductory questions, because you’ve already answered them."
+    report_action_taken "Skipping introductory questions, because you’ve answered them in the past."
   fi
   
   ############### Stow dotfiles
@@ -45,11 +45,10 @@ function run_hypervisor() {
     dump_accumulated_warnings_failures
     hypervisor_force_logout
   else
-    report_action_taken "Skipping stowing dotfiles, because you’ve already stowed them."
+    report_action_taken "Skipping stowing dotfiles, because you’ve already stowed them during this session."
   fi
 
   ############### Configure programmatically implemented settings
-
   if ! test_genomac_user_state "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED"; then
     set_initial_user_level_settings
     set_genomac_user_state "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED"
@@ -85,6 +84,26 @@ function run_hypervisor() {
   report_end_phase_standard
 }
 
+function conditionally_show_drives_on_desktop() {
+  report_start_phase_standard
+  
+  if ! test_genomac_user_state "$GMU_PERM_SHOW_DRIVES_ON_DESKTOP"; then
+    report_action_taken "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
+    report_end_phase_standard
+    exit 0
+  fi
+
+  if test_genomac_user_state "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED"; then
+    report_action_taken "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
+    report_end_phase_standard
+    exit 0
+  fi
+
+  reverse_disk_display_policy_for_some_users
+  set_genomac_user_state "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED"
+  report_end_phase_standard
+}
+
 function conditionally_configure_microsoft_word() {
   report_start_phase_standard
 
@@ -113,27 +132,6 @@ function conditionally_configure_microsoft_word() {
 
   set_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"
 
-  report_end_phase_standard
-}
-
-function conditionally_show_drives_on_desktop() {
-  report_start_phase_standard
-  
-  if ! test_genomac_user_state "$GMU_PERM_SHOW_DRIVES_ON_DESKTOP"; then
-    report_action_taken "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
-    report_end_phase_standard
-    exit 0
-  fi
-
-  if test_genomac_user_state "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED"; then
-    report_action_taken "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
-    report_end_phase_standard
-    exit 0
-  fi
-
-  reverse_disk_display_policy_for_some_users
-
-  set_genomac_user_state "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED"
   report_end_phase_standard
 }
 
