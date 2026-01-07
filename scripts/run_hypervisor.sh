@@ -49,8 +49,31 @@ function run_hypervisor() {
 
   # Add basic prefs here
 
+  ############### Configure Microsoft Word
   
-  
+
+  report_end_phase_standard
+}
+
+function conditionally_configure_microsoft_word() {
+  report_start_phase_standard
+
+  if test_genomac_user_state "$GMU_PERM_USER_WILL_USE_MICROSOFT_WORD"; then
+    if ! test_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"; then
+      if ! test_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"; then
+        launch_microsoft_word_and_prompt_user_to_authenticate
+        set_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"
+      else
+        report_action_taken "Skipping authenticating Microsoft Word, because it’s already authenticated"
+      fi
+      set_microsoft_office_suite_wide_settings
+      set_microsoft_word_settings
+    else
+      report_action_taken "Skipping Microsoft Word configuration, because it’s already been done"
+    fi
+  else
+    report_action_taken "Skipping Microsoft Word configuration, because you don’t it"
+  fi
 
   report_end_phase_standard
 }
