@@ -192,9 +192,9 @@ The dotfile [.zshenv](https://github.com/jimratliff/GenoMac-user/blob/main/stow_
   - Zsh history (`HISTFILE`): `~/.local/.state/history`
   - Zsh sessions (`XDG_ZSH_SESSIONS_DIR`): `~/.local/.state/sessions`
 
-More specifically, `stow_dotfiles.sh` relies on a list of packages enumerated in the variable `PACKAGES_LIST` in that script. It iterates through each of those packages and, for each package, stows the dotfiles associated with that package.
+More specifically, `stow_dotfiles.sh` relies on a list of packages enumerated in the environment variable `GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES`. It iterates through each of those packages and, for each package, stows the dotfiles associated with that package.
 
-Thus, to add the dotfiles for a new package, it is *not* sufficient to add those dotfiles to a new package in `stow_directory` (though this is necessary)! In addition, the name of the package must be added to the space-separated `PACKAGES_LIST` in `stow_dotfiles.sh
+Thus, to add the dotfiles for a new package, it is *not* sufficient to add those dotfiles to a new package in `stow_directory` (though this is necessary)! In addition, the name of the package must be added to the space-separated `GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES` in `scripts/assign_user_environment_variables.sh`.
 
 ### Implement the initial set of macOS-related settings
 The next step is to implement settings that aren’t captured by the above dotfiles such as many macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
@@ -380,6 +380,14 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
  
 ## Appendix: Compilation of selected settings choices (NOT exhaustive!)
 The following is just a few highlights of changed settings, that might seem notable or worth knowing about:
+- Linux-y stuff
+  - `XDG_CONFIG_HOME`: `~/.config`
+    - Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
+  - several environment variables that determine where Zsh-related dotfiles live
+    - Zsh configuration files (`ZDOTDIR`): `~/.config/zsh`
+    - Zsh history (`HISTFILE`): `~/.local/.state/history`
+    - Zsh sessions (`XDG_ZSH_SESSIONS_DIR`): `~/.local/.state/sessions`
+
 - Global
   - Keyboard
     - Enable keyboard navigation with Tab key
