@@ -67,6 +67,9 @@ function run_hypervisor() {
   fi
 
   ############### Configure 1Password
+  # At this point, (a) GenoMac-system has installed both 1Password.app and the 1Password-CLI app and 
+  # (b) GenoMac-user has deployed dotfiles necessary for the integration of 1Password with GitHub authentication
+  
   conditionally_configure_1Password
 
 
@@ -113,17 +116,25 @@ function conditionally_configure_1Password() {
   report_start_phase_standard
 
   if test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"; then
-    report_action_taken "Skipping 1Passwordd configuration, because it’s already been configured and it’s a bootstrapping step"
+    report_action_taken "Skipping 1Password configuration, because it’s already been configured and it’s a bootstrapping step"
     report_end_phase_standard
     exit 0
   fi
 
   if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"; thenthen
     local bundle_id_1password="com.1password.1password"
-    local prompt="I will launch 1Password. Please log in to your 1Password account. This is necessary for me to configure it"
+    report_action_taken "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
+
+    # Display instructions in a separate, Quick Look window
+    doc_to_show="${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md"
+
+    # Launch app and wait for acknowledgment from user
+    local prompt="Log into your 1Password account in the 1Password app"
     launch_app_and_prompt_user_to_authenticate "$bundle_id_1password" "$prompt"
     set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
   fi
+
+  
 
   # Take steps to configure 1Password
 
