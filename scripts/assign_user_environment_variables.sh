@@ -25,6 +25,9 @@ MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 # operations by GenoMac-user
 GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}/resources"
 
+# Specify the local directory that holds documentation files to display to the executing user
+GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/docs_to_display_to_user"
+
 # Specify the local directory that is the “stow directory” that GNU Stow uses as
 # both (a) the raw dotfiles representing various configurations and (b) the
 # structural template defining where each symlink should reside in the user’s
@@ -71,6 +74,7 @@ export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH
 export_and_report GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS
+export_and_report GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY
 export_and_report GENOMAC_USER_LOCAL_STOW_DIRECTORY
 export_and_report GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY
