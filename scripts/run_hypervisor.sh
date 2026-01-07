@@ -47,7 +47,12 @@ function run_hypervisor() {
 
   ############### Configure programmatically implemented settings
 
-  # Add basic prefs here
+  if ! test_genomac_user_state "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED"; then
+    set_initial_user_level_settings
+    set_genomac_user_state "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED"
+  else
+    report_action_taken "Skipping basic user-level settings, because they’ve already been set this session."
+  fi
 
   ############### Configure Microsoft Word
 
