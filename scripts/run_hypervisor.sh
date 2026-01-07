@@ -52,6 +52,10 @@ function run_hypervisor() {
   ############### Configure Microsoft Word
 
   conditionally_configure_microsoft_word
+
+  ############### Last act: Delete all GMU_SESH_ state environment variables
+
+  # TBD
   
 
   report_end_phase_standard
