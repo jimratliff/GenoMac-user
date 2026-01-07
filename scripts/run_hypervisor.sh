@@ -50,6 +50,8 @@ function run_hypervisor() {
   # Add basic prefs here
 
   ############### Configure Microsoft Word
+
+  conditionally_configure_microsoft_word
   
 
   report_end_phase_standard
