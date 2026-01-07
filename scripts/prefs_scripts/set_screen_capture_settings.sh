@@ -4,6 +4,8 @@ function set_screen_capture_settings() {
 
   report_start_phase_standard
   report_action_taken "Implement settings related to Screen Capture"
+
+  report_warning "set_screen_capture_settings() needs to be bifurcated to deal with Dropbox screenshot destinations"
   
   # NOTE: Setting the location should be separated from the other screen-capture preferences because this
   #       would be user-specific
