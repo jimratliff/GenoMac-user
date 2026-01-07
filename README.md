@@ -348,6 +348,8 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - Consider making setting the destination for screenshots be user-specific (or occur after Dropbox sync, in order to save to a Dropbox directory)
 - Scripting
   - Main entry-point script: Should check whether there are un-pulled changes to the repo. If so, warn the executing user to refresh the repo.
+  - `defaults write`
+    - To the extent that all `defaults write` command aren’t in one place (e.g., reversal of defaults re display-disks-on-desktop settings), dynamically build a list of apps to quit. Or is this now moot since I just force a logout?
   - Makefile
     - Add `dev-convert-repo-to-ssh-for-push`
   - keyboard_maestro_enable_macro_syncing.sh is experimental (untested, as of 1/4/2026)
