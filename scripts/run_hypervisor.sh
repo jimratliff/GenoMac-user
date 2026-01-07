@@ -9,7 +9,10 @@ source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 
 # Source required files
 safe_source "${GMU_PREFS_SCRIPTS}/ask_initial_questions.sh"
+safe_source "${GMU_PREFS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
+safe_source "${GMU_PREFS_SCRIPTS}/set_initial_user_level_settings.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/stow_dotfiles.sh"
+
 
 function run_hypervisor() {
 
@@ -54,6 +57,22 @@ function run_hypervisor() {
     report_action_taken "Skipping basic user-level settings, because they’ve already been set this session."
   fi
 
+  ############### Modify Desktop for certain users
+  conditionally_show_drives_on_desktop
+
+  ############### Execute pre-Dropbox bootstrap steps
+  if ! test_genomac_user_state "$GMU_PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED"; then
+    perform_initial_bootstrap_operations
+    set_genomac_user_state "$GMU_PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED"
+  else
+    report_action_taken "Skipping basic bootstrap operations, because they’ve already been performed."
+  fi
+
+
+
+
+  ############### Execute post–Dropbox sync operations
+
   ############### Configure Microsoft Word
 
   conditionally_configure_microsoft_word
@@ -82,7 +101,10 @@ function conditionally_configure_microsoft_word() {
   fi
 
   if ! test_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"; thenthen
-    launch_microsoft_word_and_prompt_user_to_authenticate
+    # You can’t change Microsoft Word’s settings unless the app is first authenticated
+    local bundle_id_microsoft_word="com.microsoft.Word"
+    local prompt="I will launch Microsoft Word. Please log in to your Microsoft 365 account. This is necessary for me to set its preferences"
+    launch_app_and_prompt_user_to_authenticate "$bundle_id_microsoft_word" "$prompt"
     set_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"
   fi
 
@@ -91,6 +113,27 @@ function conditionally_configure_microsoft_word() {
 
   set_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"
 
+  report_end_phase_standard
+}
+
+function conditionally_show_drives_on_desktop() {
+  report_start_phase_standard
+  
+  if ! test_genomac_user_state "$GMU_PERM_SHOW_DRIVES_ON_DESKTOP"; then
+    report_action_taken "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
+    report_end_phase_standard
+    exit 0
+  fi
+
+  if test_genomac_user_state "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED"; then
+    report_action_taken "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
+    report_end_phase_standard
+    exit 0
+  fi
+
+  reverse_disk_display_policy_for_some_users
+
+  set_genomac_user_state "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED"
   report_end_phase_standard
 }
 
