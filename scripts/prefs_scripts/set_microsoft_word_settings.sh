@@ -4,6 +4,22 @@ GENOMAC_USER_LOCAL_MICROSOFT_WORD_RESOURCE_DIRECTORY="$GENOMAC_USER_LOCAL_RESOUR
 
 function set_microsoft_word_settings() {
 
+  # Main function for implementing Microsoft Word settings (after determining that it should be done).
+  #
+  # Microsoft Word exposes very few settings through the traditional `defaults write` API.
+  # As a result, most settings are implemented through a combination of:
+  # - Installing a preconfigured Normal.dotm file
+  # - Using a VBA macro to reach the settings that `defaults write` doesn’t reach.
+  #
+  # Because running the VBA macro involves Word launching (and sometimes, at least, dialogs asking
+  # for permission pop up), executing this function is much more demanding on the executing user’s
+  # work flow.
+  #
+  # As a result, this function is considered a BOOTSTRAP step, not an idempotent, maintenance step.
+  #
+  # This policy finds expression in `run_hypervisior.sh`, where the state environment variables
+  # associated with the configuration of Microsoft Word are `GMU_PERM_` rather than `GMU_SESH_`.
+
   report_start_phase_standard
   
   local domain="com.microsoft.Word"
@@ -23,6 +39,10 @@ function set_microsoft_word_settings() {
 }
 
 function install_microsoft_word_normal_dotm() {
+  # Installs a custom Normal.dotm file.
+  # The pre-configured Normal.dotm file is assumed to available in this repo at: 
+  #   resources/microsoft_word/normal_dotm
+  
   report_start_phase_standard
 
   local global_template_filename="Normal.dotm"
