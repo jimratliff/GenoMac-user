@@ -117,6 +117,10 @@ function set_finder_settings() {
 
 function reverse_disk_display_policy_for_some_users() {
   # Reverses the standard default, when requested: do show internal/external drives on Desktop
+
+  report_start_phase_standard
+  report_action_taken "Reverse certain disk-display-on-Desktop defaults for certain users"
+  
   local finder_domain="com.apple.finder"
 
   # DO show hard drives on desktop
@@ -128,4 +132,6 @@ function reverse_disk_display_policy_for_some_users() {
   # This reverses the default used in set_finder_settings()
   report_adjust_setting "DO show external drives on desktop (reversing, at your request, an earlier action)"
   defaults write $finder_domain ShowExternalHardDrivesOnDesktop -bool true ; success_or_not
+
+  report_end_phase_standard
 }
