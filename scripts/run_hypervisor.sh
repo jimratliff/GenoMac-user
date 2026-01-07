@@ -42,13 +42,12 @@ function run_hypervisor() {
     ensure_zshenv_loaded
     stow_dotfiles
     set_genomac_user_state "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED"
-    dump_accumulated_warnings_failures
     hypervisor_force_logout
   else
     report_action_taken "Skipping stowing dotfiles, because you’ve already stowed them during this session."
   fi
 
-  ############### Configure programmatically implemented settings
+  ############### Configure primary programmatically implemented settings
   if ! test_genomac_user_state "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED"; then
     set_initial_user_level_settings
     set_genomac_user_state "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED"
@@ -67,6 +66,8 @@ function run_hypervisor() {
     report_action_taken "Skipping basic bootstrap operations, because they’ve already been performed."
   fi
 
+  ############### Configure 1Password
+  conditionally_configure_1Password
 
 
 
@@ -80,12 +81,13 @@ function run_hypervisor() {
 
   # TBD
   
-
+  hypervisor_force_logout
   report_end_phase_standard
 }
 
 function conditionally_show_drives_on_desktop() {
   report_start_phase_standard
+  report_action_taken "Overriding certain settings in a way appropriate for only SysAdmin accounts"
   
   if ! test_genomac_user_state "$GMU_PERM_SHOW_DRIVES_ON_DESKTOP"; then
     report_action_taken "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
@@ -101,6 +103,31 @@ function conditionally_show_drives_on_desktop() {
 
   reverse_disk_display_policy_for_some_users
   set_genomac_user_state "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED"
+  report_end_phase_standard
+}
+
+function conditionally_configure_1Password() {
+  report_start_phase_standard
+
+  if test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"; then
+    report_action_taken "Skipping 1Passwordd configuration, because it’s already been configured and it’s a bootstrapping step"
+    report_end_phase_standard
+    exit 0
+  fi
+
+  ################# WIP
+  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"; thenthen
+    local bundle_id_microsoft_word="com.microsoft.Word"
+    local prompt="I will launch 1Password. Please log in to your 1Password account. This is necessary for me to configure it"
+    launch_app_and_prompt_user_to_authenticate "$bundle_id_microsoft_word" "$prompt"
+    set_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"
+  fi
+
+  set_microsoft_office_suite_wide_settings
+  set_microsoft_word_settings
+
+  set_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"
+
   report_end_phase_standard
 }
 
@@ -142,6 +169,7 @@ function hypervisor_force_logout() {
   echo "   $GMU_HYPERVISOR_HOW_TO_RESTART_STRING."
   echo ""
 
+  dump_accumulated_warnings_failures
   force_user_logout
 }
 
