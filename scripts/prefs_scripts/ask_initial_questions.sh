@@ -19,7 +19,7 @@ function ask_initial_questions() {
   set_user_state_based_on_yes_no "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" "$prompt"
 
   prompt="Will this user sync preferences via Dropbox?"
-  set_user_state_based_on_yes_no "$GMU_PERM_USER_WILL_USE_DROPBOX" "$prompt"
+  set_user_state_based_on_yes_no "$GMU_PERM_DROPBOX_USER_WANTS_IT" "$prompt"
 
   prompt="Will this user want to configure Microsoft Word?"
   set_user_state_based_on_yes_no "$GMU_PERM_USER_WILL_USE_MICROSOFT_WORD" "$prompt"
