@@ -14,14 +14,18 @@ safe_source "${GMU_PREFS_SCRIPTS}/set_initial_user_level_settings.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/stow_dotfiles.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/verify_ssh_agent_configuration.sh"
 
-
 function run_hypervisor() {
 
   report_start_phase_standard
 
-  # Consider checking $set_genomac_user_state "$GMU_SESH_REACHED_FINALITY" to
-  # check whether this is an immediate reentry after a complete session and,
-  # if so, to ask whether the user wants to start a new session.
+  # TODO:
+  # - Consider checking $set_genomac_user_state "$GMU_SESH_REACHED_FINALITY" to
+  #   check whether this is an immediate reentry after a complete session and,
+  #   if so, to ask whether the user wants to start a new session.
+  # - Consider adding environment variable GMU_SESH_FORCED_LOGOUT_DIRTY to avoid
+  #   gratuitous logouts. An action requiring --forced-logout would (a) set this
+  #   state rather than immediately triggering a logout.
+  #   Requires new function `hypervisor_forced_logout_if_dirty`
 
   ############### Welcome! or Welcome back!
   local welcome_message="Welcome"
