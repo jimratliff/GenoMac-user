@@ -12,6 +12,7 @@ safe_source "${GMU_PREFS_SCRIPTS}/ask_initial_questions.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/set_initial_user_level_settings.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/stow_dotfiles.sh"
+safe_source "${GMU_PREFS_SCRIPTS}/verify_ssh_agent_configuration.sh"
 
 
 function run_hypervisor() {
@@ -163,14 +164,14 @@ function conditionally_configure_1Password() {
   set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
 
   # Verify configuration of SSH Agent
-  
-
-  
-
-  # Take steps to configure 1Password
-
-  set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
-
+  if ! verify_ssh_agent_configuration; then
+    report_fail "The attempt to configure 1Password to SSH authenticate with GitHub has failed ☹️"
+    report_end_phase_standard
+    exit 1
+  else
+    report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
+    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
+  fi
   report_end_phase_standard
 }
 
