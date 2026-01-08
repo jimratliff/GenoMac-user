@@ -133,5 +133,8 @@ function reverse_disk_display_policy_for_some_users() {
   report_adjust_setting "DO show external drives on desktop (reversing, at your request, an earlier action)"
   defaults write $finder_domain ShowExternalHardDrivesOnDesktop -bool true ; success_or_not
 
+  report_about_to_kill_app "Finder"
+  killall "Finder" ; success_or_not
+
   report_end_phase_standard
 }
