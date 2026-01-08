@@ -69,6 +69,16 @@ function run_hypervisor() {
   
   conditionally_configure_1Password
 
+  ############### Configure Dropbox
+  if test_genomac_user_state "$GMU_PERM_USER_WILL_USE_DROPBOX"; then
+    _run_if_not_done "$GMU_PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED" \
+      perform_initial_bootstrap_operations \
+      "Skipping basic bootstrap operations, because they’ve already been performed"
+
+
+
+  fi
+
 
 
   ############### Execute post–Dropbox sync operations
@@ -114,6 +124,7 @@ function conditionally_configure_1Password() {
 
     # Display instructions in a separate, Quick Look window
     doc_to_show="${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md"
+    show_file_using_quicklook "$doc_to_show"
 
     # Launch app and wait for acknowledgment from user
     prompt="Log into your 1Password account in the 1Password app"
@@ -133,6 +144,7 @@ function conditionally_configure_1Password() {
   
   # Display instructions in a separate, Quick Look window
   doc_to_show="${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_configure.md"
+  show_file_using_quicklook "$doc_to_show"
 
   # Launch app and wait for acknowledgment from user
   prompt="Follow the instructions to configure 1Password"
@@ -154,7 +166,7 @@ function conditionally_configure_1Password() {
 function conditionally_configure_microsoft_word() {
   report_start_phase_standard
 
-  if ! test_genomac_user_state "$GMU_PERM_USER_WILL_USE_MICROSOFT_WORD"; then
+  if ! test_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_USER_WANTS_IT"; then
     report_action_taken "Skipping Microsoft Word configuration, because this user doesn’t want it"
     report_end_phase_standard
     exit 0
