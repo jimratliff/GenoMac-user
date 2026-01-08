@@ -51,13 +51,12 @@ set -euo pipefail
 
 typeset -g -A GENOMAC_LOGIN_APPS=(
   # bundle-id based launches
-  [bettertouchtool]="bundle:com.hegenberg.BetterTouchTool"
-  [alfred]="bundle:com.runningwithcrayons.Alfred"
+  [alan]="bundle:${BUNDLE_ID_ALAN_APP}"
+  [bettertouchtool]="bundle:${BUNDLE_ID_BETTERTOUCHTOOL}"
+  [alfred]="bundle:${BUNDLE_ID_ALFRED}"
 
   # path-based launch (nested app bundle; bundle-id unreliable at login)
   [keyboard-maestro-engine]="path:/Applications/Keyboard Maestro.app/Contents/MacOS/Keyboard Maestro Engine.app"
-  [alan]="bundle:studio.retina.Alan"
-  # [antnotes]="bundle:ua.com.AntLogic.Antnotes"
 )
 
 set_apps_to_launch_at_login() {
