@@ -206,6 +206,50 @@ function conditionally_configure_microsoft_word() {
   report_end_phase_standard
 }
 
+function _run_if_not_already_done() {
+  # Executes a function if a completion state variable is false (absent) indicating a task hasn't been done yet.
+  # Sets the state variable after successful execution.
+  #
+  # Usage:
+  #   _run_if_not_already_done [--force-logout] <state_var> <func_to_run> <skip_message>
+  #
+  # Parameters:
+  #   --force-logout  Optional. If present, calls hypervisor_force_logout after
+  #                   setting state.
+  #   state_var       The state variable to check and set (e.g., $GMU_SESH_...).
+  #   func_to_run     Name of the function to execute if state is not set.
+  #   skip_message    Message to display if state is already set and action is skipped.
+  #
+  # Usage examples:
+  #   _run_if_not_already_done "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED" \
+  #     ask_initial_questions \
+  #     "Skipping introductory questions, because you've answered them in the past."
+  #   
+  #   _run_if_not_already_done --force-logout "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED" \
+  #     stow_dotfiles \
+  #     "Skipping stowing dotfiles, because you've already stowed them during this session."
+
+  local force_logout=false
+  if [[ $1 == "--force-logout" ]]; then
+    force_logout=true
+    shift
+  fi
+
+  local state_var=$1
+  local func_to_run=$2
+  local skip_message=$3
+
+  if ! test_genomac_user_state "$state_var"; then
+    $func_to_run
+    set_genomac_user_state "$state_var"
+    if $force_logout; then
+      hypervisor_force_logout
+    fi
+  else
+    report_action_taken "$skip_message"
+  fi
+}
+
 function hypervisor_force_logout() {
   echo ""
   echo "ℹ️  You will be logged out semi-automatically to fully internalize all the work we’ve done."
