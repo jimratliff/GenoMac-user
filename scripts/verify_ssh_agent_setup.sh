@@ -1,4 +1,13 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env zs
+
+# Fail early on unset variables or command failure
+set -euo pipefail
+
+# Template for entry-point scripts
+
+source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
+
+############################## BEGIN SCRIPT PROPER ##############################
 
 function verify_ssh_agent_setup() {
   report_start_phase_standard
