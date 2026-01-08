@@ -73,15 +73,43 @@ function run_hypervisor() {
   
   conditionally_configure_1Password
 
-  ############### Configure Dropbox
+  ############### Configure Dropbox ################# WIP
   if test_genomac_user_state "$GMU_PERM_USER_WILL_USE_DROPBOX"; then
-    _run_if_not_done "$GMU_PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED" \
-      perform_initial_bootstrap_operations \
+    _run_if_not_done "$GMU_PERM_DROPBOX_HAS_BEEN_AUTHENTICATED" \
+      authenticate_dropbox \
       "Skipping basic bootstrap operations, because they’ve already been performed"
-
-
-
   fi
+
+  function authenticate_dropbox() {
+    # Display instructions in a separate, Quick Look window
+    doc_to_show="${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/Dropbox_how_to_log_in.md"
+    show_file_using_quicklook "$doc_to_show"
+
+    # Launch app and wait for acknowledgment from user
+    prompt="Log into your Dropbox account in the Dropbox app"
+    launch_app_and_prompt_user_to_act "$bundle_id_1password" "$prompt"
+    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
+
+  }
+
+  # Prompt user to authenticate their 1Password account in the 1Password app on the Mac
+  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"; then
+    report_action_taken "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
+
+    # Display instructions in a separate, Quick Look window
+    doc_to_show="${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md"
+    show_file_using_quicklook "$doc_to_show"
+
+    # Launch app and wait for acknowledgment from user
+    prompt="Log into your 1Password account in the 1Password app"
+    launch_app_and_prompt_user_to_act "$bundle_id_1password" "$prompt"
+    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
+
+  else
+    report_action_taken "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step"
+  fi
+
+
 
 
 
@@ -102,7 +130,6 @@ function run_hypervisor() {
 
 ############### SUPPORTING FUNCTIONS ###############
 
-################# WIP
 function conditionally_configure_1Password() {
   # It is assumed that all users want to be authenticated with 1Password.
   # However, each user can choose whether to configure 1Password’s SSH agent
@@ -134,6 +161,9 @@ function conditionally_configure_1Password() {
     prompt="Log into your 1Password account in the 1Password app"
     launch_app_and_prompt_user_to_act "$bundle_id_1password" "$prompt"
     set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
+
+  else
+    report_action_taken "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step"
   fi
 
   # Skip configuration of SSH agent if user doesn’t want to go through that trouble
