@@ -50,8 +50,14 @@ function run_hypervisor() {
     "Skipping basic user-level settings, because they’ve already been set this session"
 
   ############### Modify Desktop for certain users
-  conditionally_show_drives_on_desktop
-
+  if test_genomac_user_state "$GMU_PERM_SHOW_DRIVES_ON_DESKTOP"; then
+    _run_if_not_done "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED" \
+      reverse_disk_display_policy_for_some_users \
+      "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
+  else
+    report_action_taken "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
+  fi
+  
   ############### Execute pre-Dropbox bootstrap steps
   _run_if_not_done "$GMU_PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED" \
     perform_initial_bootstrap_operations \
@@ -81,27 +87,6 @@ function run_hypervisor() {
 }
 
 ############### SUPPORTING FUNCTIONS ###############
-
-function conditionally_show_drives_on_desktop() {
-  report_start_phase_standard
-  report_action_taken "Overriding certain settings in a way appropriate for only SysAdmin accounts"
-  
-  if ! test_genomac_user_state "$GMU_PERM_SHOW_DRIVES_ON_DESKTOP"; then
-    report_action_taken "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
-    report_end_phase_standard
-    exit 0
-  fi
-
-  if test_genomac_user_state "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED"; then
-    report_action_taken "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
-    report_end_phase_standard
-    exit 0
-  fi
-
-  reverse_disk_display_policy_for_some_users
-  set_genomac_user_state "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED"
-  report_end_phase_standard
-}
 
 ################# WIP
 function conditionally_configure_1Password() {
