@@ -50,7 +50,7 @@ function run_hypervisor() {
     "Skipping basic user-level settings, because they’ve already been set this session"
 
   ############### Modify Desktop for certain users
-  if test_genomac_user_state "$GMU_PERM_SHOW_DRIVES_ON_DESKTOP"; then
+  if test_genomac_user_state "$GMU_PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"; then
     _run_if_not_done "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED" \
       reverse_disk_display_policy_for_some_users \
       "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
