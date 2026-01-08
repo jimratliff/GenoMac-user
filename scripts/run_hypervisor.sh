@@ -26,6 +26,8 @@ function run_hypervisor() {
   else
     set_genomac_user_state "$GNU_SESH_SESSION_HAS_STARTED"
   fi
+
+  # TODO: Consider checking for $GMU_SESH_REACHED_FINALITY
   
   report "${welcome_message} to the GenoMac-user Hypervisor!"
   report "$GMU_HYPERVISOR_HOW_TO_RESTART_STRING"
@@ -84,7 +86,7 @@ function run_hypervisor() {
   ############### Last act: Delete all GMU_SESH_ state environment variables
 
   # TBD
-  
+  set_genomac_user_state "$GMU_SESH_REACHED_FINALITY"
   hypervisor_force_logout
   report_end_phase_standard
 }
