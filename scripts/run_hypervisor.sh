@@ -113,26 +113,57 @@ function conditionally_show_drives_on_desktop() {
 
 ################# WIP
 function conditionally_configure_1Password() {
+  # It is assumed that all users want to be authenticated with 1Password.
+  # However, each user can choose whether to configure 1Password’s SSH agent
+  #
+  # It is assumed that: if a user has configured 1Password, then that user has also authenticated 1Password
+  
   report_start_phase_standard
 
+  local bundle_id_1password="com.1password.1password"
+  local doc_to_show
+  local prompt
+
+  # Skip if 1Password has been previously configured for this user (even in an earlier session)
   if test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"; then
     report_action_taken "Skipping 1Password configuration, because it’s already been configured and it’s a bootstrapping step"
     report_end_phase_standard
     exit 0
   fi
 
-  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"; thenthen
-    local bundle_id_1password="com.1password.1password"
+  # Prompt user to authenticate their 1Password account in the 1Password app on the Mac
+  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"; then
     report_action_taken "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
 
     # Display instructions in a separate, Quick Look window
     doc_to_show="${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md"
 
     # Launch app and wait for acknowledgment from user
-    local prompt="Log into your 1Password account in the 1Password app"
-    launch_app_and_prompt_user_to_authenticate "$bundle_id_1password" "$prompt"
+    prompt="Log into your 1Password account in the 1Password app"
+    launch_app_and_prompt_user_to_act "$bundle_id_1password" "$prompt"
     set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
   fi
+
+  # Skip configuration of SSH agent if user doesn’t want to go through that trouble
+  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
+    report_action_taken "Skipping 1Password configuration, because this user doesn’t want it"
+    report_end_phase_standard
+    exit 0
+  fi
+  
+  # Prompt user to configure settings of 1Password
+  report_action_taken "Time to configure 1Password! I’ll launch it, and open a window with instructions to follow"
+  
+  # Display instructions in a separate, Quick Look window
+  doc_to_show="${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_configure.md"
+
+  # Launch app and wait for acknowledgment from user
+  prompt="Follow the instructions to configure 1Password"
+  launch_app_and_prompt_user_to_act "$bundle_id_1password" "$prompt"
+  set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
+
+  # Verify configuration of SSH Agent
+  
 
   
 
