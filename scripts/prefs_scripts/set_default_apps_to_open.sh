@@ -28,33 +28,29 @@ function set_default_apps_to_open() {
   local uti_xml=public.xml
   local uti_applescript=com.apple.applescript.text
   
-  local bundle_id_text_edit_app="com.apple.TextEdit"
-  local bundle_id_bbedit_app="com.barebones.bbedit"
-  local bundle_id_Plain_Text_Editor_app="com.sindresorhus.Plain-Text-Editor"
-  
   report_adjust_setting "Set plain-text files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_plain_text     $bundle_id_bbedit_app ; success_or_not
+  utiluti type set $uti_plain_text     $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set Markdown files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_markdown       $bundle_id_bbedit_app ; success_or_not
+  utiluti type set $uti_markdown       $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set .plist files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_plist          $bundle_id_bbedit_app ; success_or_not
+  utiluti type set $uti_plist          $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set shell scripts to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_shell_script   $bundle_id_bbedit_app ; success_or_not
+  utiluti type set $uti_shell_script   $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set XML files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_xml            $bundle_id_bbedit_app ; success_or_not
+  utiluti type set $uti_xml            $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set AppleScript files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_applescript    $bundle_id_bbedit_app ; success_or_not
+  utiluti type set $uti_applescript    $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_end_phase_standard
 
