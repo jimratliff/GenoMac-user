@@ -9,7 +9,6 @@ function set_claude_settings() {
   report_start_phase_standard
   report_action_taken "Implement Claude desktop settings"
 
-  local claude_bundle_id="com.anthropic.claudefordesktop"
   local claude_config_path="${HOME}/Library/Application Support/Claude/claude_desktop_config.json"
   local claude_config_dir="${claude_config_path:h}"
   local tmpfile
@@ -24,7 +23,7 @@ function set_claude_settings() {
   # If the directory doesn't exist yet, give Claude a chance to create it by launching and quitting
   if [[ ! -d "${claude_config_dir}" ]]; then
     report_action_taken "Claude support directory not found; launching Claude once to seed config"
-    launch_and_quit_app "${claude_bundle_id}" ; success_or_not
+    launch_and_quit_app "${BUNDLE_ID_CLAUDE}" ; success_or_not
   fi
 
   report_action_taken "Ensure Claude config directory exists: ${claude_config_dir}"
