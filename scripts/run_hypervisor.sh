@@ -29,10 +29,10 @@ function run_hypervisor() {
 
   ############### Welcome! or Welcome back!
   local welcome_message="Welcome"
-  if test_genomac_user_state "$GNU_SESH_SESSION_HAS_STARTED"; then
+  if test_genomac_user_state "$GMU_SESH_SESSION_HAS_STARTED"; then
     welcome_message="Welcome back"
   else
-    set_genomac_user_state "$GNU_SESH_SESSION_HAS_STARTED"
+    set_genomac_user_state "$GMU_SESH_SESSION_HAS_STARTED"
   fi
   
   report "${welcome_message} to the GenoMac-user Hypervisor!"
