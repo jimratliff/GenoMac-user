@@ -26,48 +26,32 @@ function run_hypervisor() {
   else
     set_genomac_user_state "$GNU_SESH_SESSION_HAS_STARTED"
   fi
-
-  # TODO: Consider checking for $GMU_SESH_REACHED_FINALITY
   
   report "${welcome_message} to the GenoMac-user Hypervisor!"
   report "$GMU_HYPERVISOR_HOW_TO_RESTART_STRING"
   
   ############### Ask initial questions
-  if ! test_genomac_user_state "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED"; then
-    ask_initial_questions
-    set_genomac_user_state "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED"
-  else
-    report_action_taken "Skipping introductory questions, because you’ve answered them in the past."
-  fi
+  _run_if_not_done "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED" \
+    ask_initial_questions \
+    "Skipping introductory questions, because you've answered them in the past."
   
   ############### Stow dotfiles
-  if ! test_genomac_user_state "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED"; then 
-    ensure_zshenv_loaded
-    stow_dotfiles
-    set_genomac_user_state "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED"
-    hypervisor_force_logout
-  else
-    report_action_taken "Skipping stowing dotfiles, because you’ve already stowed them during this session."
-  fi
+  _run_if_not_done --force-logout "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED" \
+    stow_dotfiles \
+    "Skipping stowing dotfiles, because you've already stowed them during this session."
 
   ############### Configure primary programmatically implemented settings
-  if ! test_genomac_user_state "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED"; then
-    set_initial_user_level_settings
-    set_genomac_user_state "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED"
-  else
-    report_action_taken "Skipping basic user-level settings, because they’ve already been set this session."
-  fi
+  _run_if_not_done --force-logout "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
+    set_initial_user_level_settings \
+    "Skipping basic user-level settings, because they’ve already been set this session"
 
   ############### Modify Desktop for certain users
   conditionally_show_drives_on_desktop
 
   ############### Execute pre-Dropbox bootstrap steps
-  if ! test_genomac_user_state "$GMU_PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED"; then
-    perform_initial_bootstrap_operations
-    set_genomac_user_state "$GMU_PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED"
-  else
-    report_action_taken "Skipping basic bootstrap operations, because they’ve already been performed."
-  fi
+  _run_if_not_done "$GMU_PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED" \
+    perform_initial_bootstrap_operations \
+    "Skipping basic bootstrap operations, because they’ve already been performed"
 
   ############### Configure 1Password
   # At this point, (a) GenoMac-system has installed both 1Password.app and the 1Password-CLI app and 
@@ -86,7 +70,7 @@ function run_hypervisor() {
   ############### Last act: Delete all GMU_SESH_ state environment variables
 
   # TBD
-  set_genomac_user_state "$GMU_SESH_REACHED_FINALITY"
+  
   hypervisor_force_logout
   report_end_phase_standard
 }
