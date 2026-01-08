@@ -19,6 +19,10 @@ function run_hypervisor() {
 
   report_start_phase_standard
 
+  # Consider checking $set_genomac_user_state "$GMU_SESH_REACHED_FINALITY" to
+  # check whether this is an immediate reentry after a complete session and,
+  # if so, to ask whether the user wants to start a new session.
+
   ############### Welcome! or Welcome back!
   local welcome_message="Welcome"
   if test_genomac_user_state "$GNU_SESH_SESSION_HAS_STARTED"; then
@@ -70,7 +74,8 @@ function run_hypervisor() {
   ############### Last act: Delete all GMU_SESH_ state environment variables
 
   # TBD
-  
+
+  set_genomac_user_state "$GMU_SESH_REACHED_FINALITY"
   hypervisor_force_logout
   report_end_phase_standard
 }
