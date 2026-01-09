@@ -9,8 +9,7 @@ function register_glance_as_quicklook() {
   report_start_phase_standard
   report_action_taken "Register Glance as a Quick Look plugin"
 
-  local glance_bundle_id="com.chamburr.Glance"
-  launch_and_quit_app "${glance_bundle_id}" ; success_or_not
+  launch_and_quit_app "${BUNDLE_ID_GLANCE}" ; success_or_not
 
   report_end_phase_standard
 }
