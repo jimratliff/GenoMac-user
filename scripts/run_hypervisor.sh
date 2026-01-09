@@ -87,7 +87,7 @@ function run_hypervisor() {
 
     # Launch app and wait for acknowledgment from user
     prompt="Log into your Dropbox account in the Dropbox app"
-    launch_app_and_prompt_user_to_act "$bundle_id_1password" "$prompt"
+    launch_app_and_prompt_user_to_act "$BUNDLE_ID_1PASSWORD" "$prompt"
     set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
 
   }
@@ -102,7 +102,7 @@ function run_hypervisor() {
 
     # Launch app and wait for acknowledgment from user
     prompt="Log into your 1Password account in the 1Password app"
-    launch_app_and_prompt_user_to_act "$bundle_id_1password" "$prompt"
+    launch_app_and_prompt_user_to_act "$BUNDLE_ID_1PASSWORD" "$prompt"
     set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
 
   else
@@ -138,7 +138,6 @@ function conditionally_configure_1Password() {
   
   report_start_phase_standard
 
-  local bundle_id_1password="com.1password.1password"
   local doc_to_show
   local prompt
 
@@ -159,7 +158,7 @@ function conditionally_configure_1Password() {
 
     # Launch app and wait for acknowledgment from user
     prompt="Log into your 1Password account in the 1Password app"
-    launch_app_and_prompt_user_to_act "$bundle_id_1password" "$prompt"
+    launch_app_and_prompt_user_to_act "$BUNDLE_ID_1PASSWORD" "$prompt"
     set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
 
   else
@@ -182,7 +181,7 @@ function conditionally_configure_1Password() {
 
   # Launch app and wait for acknowledgment from user
   prompt="Follow the instructions to configure 1Password"
-  launch_app_and_prompt_user_to_act "$bundle_id_1password" "$prompt"
+  launch_app_and_prompt_user_to_act "$BUNDLE_ID_1PASSWORD" "$prompt"
   set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
 
   # Verify configuration of SSH Agent
@@ -214,9 +213,8 @@ function conditionally_configure_microsoft_word() {
 
   if ! test_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"; thenthen
     # You can’t change Microsoft Word’s settings unless the app is first authenticated
-    local bundle_id_microsoft_word="com.microsoft.Word"
     local prompt="I will launch Microsoft Word. Please log in to your Microsoft 365 account. This is necessary for me to set its preferences"
-    launch_app_and_prompt_user_to_authenticate "$bundle_id_microsoft_word" "$prompt"
+    launch_app_and_prompt_user_to_authenticate "$BUNDLE_ID_MICROSOFT_WORD" "$prompt"
     set_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"
   fi
 
