@@ -87,8 +87,8 @@ function run_hypervisor() {
 
     # Launch app and wait for acknowledgment from user
     prompt="Log into your Dropbox account in the Dropbox app"
-    launch_app_and_prompt_user_to_act "$BUNDLE_ID_1PASSWORD" "$prompt"
-    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
+    launch_app_and_prompt_user_to_act "$BUNDLE_ID_DROPBOX" "$prompt"
+    set_genomac_user_state "$GMU_PERM_DROPBOX_HAS_BEEN_AUTHENTICATED"
 
   }
 
