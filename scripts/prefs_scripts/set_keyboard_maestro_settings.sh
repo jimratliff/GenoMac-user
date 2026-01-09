@@ -9,14 +9,11 @@ function set_keyboard_maestro_settings() {
   local domain_engine="com.stairways.keyboardmaestro.engine"
   local domain_editor="com.stairways.keyboardmaestro.editor"
   
-  local bundle_id_engine="com.stairways.keyboardmaestro.engine"
-  local bundle_id_editor="com.stairways.keyboardmaestro.editor"
-  
   report_action_taken "Quit Keyboard Maestro if running to allow setting its settings"
   report_adjust_setting "Quitting the Editor"
-  quit_app_by_bundle_id_if_running "$bundle_id_editor" ; success_or_not
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_KEYBOARDMAESTRO_EDITOR" ; success_or_not
   report_adjust_setting "Quitting the Engine"
-  quit_app_by_bundle_id_if_running "$bundle_id_engine" ; success_or_not
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_KEYBOARDMAESTRO_ENGINE" ; success_or_not
   
   # Editor settings
   report_adjust_setting "Set: Do NOT show spash screen at launch"
