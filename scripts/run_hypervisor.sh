@@ -124,6 +124,8 @@ function run_hypervisor() {
   # TBD
 
   set_genomac_user_state "$GMU_SESH_REACHED_FINALITY"
+  # TODO: Un-comment-out the below 'figlet' line after GenoMac-system is refactored so that it works
+  # figlet "The End"
   hypervisor_force_logout
   report_end_phase_standard
 }
