@@ -98,12 +98,6 @@ GMU_SESH_SESSION_HAS_STARTED="GMU_SESH_SESSION_HAS_STARTED"
 # Export environment variables to be available in all subsequent shells
 report_action_taken "Exporting environment variables corresponding to states."
 
-# function export_and_report() {
-#   local var_name="$1"
-#   report "export $var_name: '${(P)var_name}'"
-#   export "$var_name"
-# }
-
 export_and_report GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED
 export_and_report GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED
 export_and_report GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT
