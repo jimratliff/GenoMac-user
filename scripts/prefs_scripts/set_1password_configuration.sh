@@ -10,6 +10,9 @@
 # - 1Password_how_to_configure.md
 
 function conditionally_configure_1Password() {
+  # At this point, (a) GenoMac-system has installed both 1Password.app and the 1Password-CLI app and 
+  # (b) GenoMac-user has deployed dotfiles necessary for the integration of 1Password with GitHub authentication
+  #
   # It is assumed that all users want to be authenticated with 1Password.
   # However, each user can choose whether to go to the extra effort to configure 1Password’s SSH agent
   #
