@@ -152,6 +152,29 @@ function conditionally_configure_1Password() {
     authenticate_1Password \
     "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step."
 
+  # Conditionally prompt user to configure their already-authenticated 1Password
+    _run_if_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" \
+    configure_authenticated_1Password \
+    "Skipping 1Password configuration, because this user doesn’t want it."
+
+  # Skip verification of SSH agent if user doesn’t want that configuration
+  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
+  if ! verify_ssh_agent_configuration; then
+    report_fail "The attempt to configure 1Password to SSH authenticate with GitHub has failed ☹️"
+    report_end_phase_standard
+    exit 1
+  else
+    report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
+    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
+  fi
+
+  
+    report_action_taken "Skipping 1Password configuration, because this user doesn’t want it"
+    report_end_phase_standard
+    exit 0
+  fi
+
+
   # Skip configuration of SSH agent if user doesn’t want to go through that trouble
   if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
     report_action_taken "Skipping 1Password configuration, because this user doesn’t want it"
