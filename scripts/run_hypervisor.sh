@@ -134,7 +134,7 @@ function run_hypervisor() {
 
 function conditionally_configure_1Password() {
   # It is assumed that all users want to be authenticated with 1Password.
-  # However, each user can choose whether to configure 1Password’s SSH agent
+  # However, each user can choose whether to go to the extra effort to configure 1Password’s SSH agent
   #
   # It is assumed that: if a user has configured 1Password, then that user has also authenticated 1Password
   
@@ -152,15 +152,13 @@ function conditionally_configure_1Password() {
 
   # Prompt user to authenticate their 1Password account in the 1Password app on the Mac
   if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"; then
-    report_action_taken "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
+    report "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
 
-    # Display instructions in a separate, Quick Look window
-    doc_to_show="${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md"
-    show_file_using_quicklook "$doc_to_show"
-
-    # Launch app and wait for acknowledgment from user
-    prompt="Log into your 1Password account in the 1Password app"
-    launch_app_and_prompt_user_to_act "$BUNDLE_ID_1PASSWORD" "$prompt"
+    launch_app_and_prompt_user_to_act \
+      --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md" \
+      "$BUNDLE_ID_1PASSWORD" \
+      "Log into your 1Password account in the 1Password app"
+    
     set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
 
   else
