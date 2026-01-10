@@ -150,20 +150,8 @@ function conditionally_configure_1Password() {
     exit 0
   fi
 
-  # Prompt user to authenticate their 1Password account in the 1Password app on the Mac
-  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"; then
-    report "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
-
-    launch_app_and_prompt_user_to_act \
-      --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md" \
-      "$BUNDLE_ID_1PASSWORD" \
-      "Log into your 1Password account in the 1Password app"
-    
-    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
-
-  else
-    report_action_taken "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step"
-  fi
+  # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
+  conditionally_authenticate_1Password
 
   # Skip configuration of SSH agent if user doesn’t want to go through that trouble
   if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
@@ -173,16 +161,14 @@ function conditionally_configure_1Password() {
   fi
   
   # Prompt user to configure settings of 1Password
-  report_action_taken "Time to configure 1Password! I’ll launch it, and open a window with instructions to follow"
-  
-  # Display instructions in a separate, Quick Look window
-  doc_to_show="${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_configure.md"
-  show_file_using_quicklook "$doc_to_show"
+  report_action_taken "Time to configure 1Password! I'll launch it, and open a window with instructions to follow"
 
-  # Launch app and wait for acknowledgment from user
-  prompt="Follow the instructions to configure 1Password"
-  launch_app_and_prompt_user_to_act "$BUNDLE_ID_1PASSWORD" "$prompt"
-  set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_configure.md" \
+    "$BUNDLE_ID_1PASSWORD" \
+    "Follow the instructions in the Quick Look window to configure 1Password"
+  
+  set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
 
   # Verify configuration of SSH Agent
   if ! verify_ssh_agent_configuration; then
@@ -193,6 +179,30 @@ function conditionally_configure_1Password() {
     report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
     set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
   fi
+  report_end_phase_standard
+}
+
+function conditionally_authenticate_1Password() {
+  # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
+  report_start_phase_standard
+  
+  local doc_to_show = "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md"
+  local prompt
+  
+  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"; then
+    report "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
+
+    launch_app_and_prompt_user_to_act \
+      --show-doc "${doc_to_show}" \
+      "$BUNDLE_ID_1PASSWORD" \
+      "Log into your 1Password account in the 1Password app"
+    
+    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
+
+  else
+    report_action_taken "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step"
+  fi
+  
   report_end_phase_standard
 }
 
