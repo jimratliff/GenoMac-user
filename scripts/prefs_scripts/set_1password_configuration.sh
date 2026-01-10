@@ -1,5 +1,14 @@
 #!/usr/bin/env zs
 
+# Conditionally prompts/guides user to (a) sign into their 1Password account and (b) configure its SSH agent
+#
+# Much of the 1Password configuration must be done by the user manually, because it doesn’t admit
+# to standard `defaults write` techniques.
+#
+# Relies on the following Markdown files residing in resources/docs_to_display_to_user:
+# - 1Password_how_to_log_in.md
+# - 1Password_how_to_configure.md
+
 function conditionally_configure_1Password() {
   # It is assumed that all users want to be authenticated with 1Password.
   # However, each user can choose whether to go to the extra effort to configure 1Password’s SSH agent
@@ -21,7 +30,7 @@ function conditionally_configure_1Password() {
     "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step."
 
   # Conditionally prompt user to configure their already-authenticated 1Password
-    _run_if_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" \
+  _run_if_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" \
     configure_and_verify_authenticated_1Password \
     "Skipping 1Password configuration, because this user doesn’t want it."
 
@@ -35,7 +44,7 @@ function authenticate_1Password() {
   launch_app_and_prompt_user_to_act \
     --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md" \
     "$BUNDLE_ID_1PASSWORD" \
-    "Log into your 1Password account in the 1Password app"
+    "Follow the instructions in the Quick Look window to log into your 1Password account in the 1Password app"
   
   set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
   report_end_phase_standard
@@ -61,9 +70,9 @@ function configure_and_verify_authenticated_1Password() {
     report_fail "The attempt to configure 1Password to SSH authenticate with GitHub has failed ☹️"
     report_end_phase_standard
     exit 1
-  else
-    report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
   fi
+  
+  report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
   set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
   report_end_phase_standard
 }
@@ -87,9 +96,13 @@ function verify_ssh_agent_configuration() {
     report_end_phase_standard
     exit 0
   else
-    report_warning "SSH authentication failed. Output:"
-    print -r -- "$ssh_output"
-    print -r -- "${SYMBOL_FAILURE}SSH authentication with GitHub failed"
+    local lines=(
+          "SSH authentication failed. Output:"
+          "${ssh_output}"
+          "${SYMBOL_FAILURE}SSH authentication with GitHub failed"
+        )
+    local warning_msg="${(F)lines}"  # (F) joins with newlines
+	report_warning "$warning_msg"
     report_end_phase_standard
     exit 1
   fi
