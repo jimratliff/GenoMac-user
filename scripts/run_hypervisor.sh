@@ -140,9 +140,6 @@ function conditionally_configure_1Password() {
   
   report_start_phase_standard
 
-  local doc_to_show
-  local prompt
-
   # Skip if 1Password has been previously configured for this user (even in an earlier session)
   if test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"; then
     report_action_taken "Skipping 1Password configuration, because it’s already been configured and it’s a bootstrapping step"
@@ -151,11 +148,6 @@ function conditionally_configure_1Password() {
   fi
 
   # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
-  _run_if_not_done "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
-    authenticate_1Password \
-    "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step."
-
-  # Conditionally configure 1Password
   _run_if_not_done "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
     authenticate_1Password \
     "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step."
@@ -274,7 +266,7 @@ function _run_based_on_state() {
   #   skip_message    Message to display if condition is not met and action is skipped.
   #
   # If func_to_run is executed, then state_var is SET. (This has effect only when --negate-state,
-  # because when --negate-state is absent, func_to_run is executed only when state_var is already set.
+  # because when --negate-state is absent, func_to_run is executed only when state_var is already set.)
 
   local negate_state=false
   local force_logout=false
