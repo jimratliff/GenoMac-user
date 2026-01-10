@@ -258,7 +258,7 @@ function conditionally_configure_microsoft_word() {
 
 function _run_based_on_state() {
   # Executes a function based on whether a state variable is set or not.
-  # Core helper that powers both _run_if_not_already_done and _run_if_already_done.
+  # Core helper that powers both _run_if_not_already_done and _run_if_state.
   #
   # Usage:
   #   _run_based_on_state [--negate-state] [--force-logout] <state_var> <func_to_run> <skip_message>
@@ -356,11 +356,11 @@ function _run_if_not_already_done() {
   _run_based_on_state --negate-state "$@"
 }
 
-function _run_if_already_done() {
+function _run_if_state() {
   # Executes a function if a completion state variable is true (present) indicating a task has been done.
   #
   # Usage:
-  #   _run_if_already_done [--force-logout] <state_var> <func_to_run> <skip_message>
+  #   _run_if_state [--force-logout] <state_var> <func_to_run> <skip_message>
   #
   # Flags can appear in any position.
   #
@@ -371,92 +371,6 @@ function _run_if_already_done() {
   #   skip_message    Message to display if state is not set and action is skipped.
 
   _run_based_on_state "$@"
-}
-
-function _run_if_not_already_done() {
-  # Executes a function if a completion state variable is false (absent) indicating a task hasn't been done yet.
-  # Sets the state variable after successful execution.
-  #
-  # Usage:
-  #   _run_if_not_already_done [--force-logout] <state_var> <func_to_run> <skip_message>
-  #
-  # Parameters:
-  #   --force-logout  Optional. If present, calls hypervisor_force_logout after
-  #                   setting state.
-  #   state_var       The state variable to check and set (e.g., $GMU_SESH_...).
-  #   func_to_run     Name of the function to execute if state is not set.
-  #   skip_message    Message to display if state is already set and action is skipped.
-  #
-  # Usage examples:
-  #   _run_if_not_already_done "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED" \
-  #     ask_initial_questions \
-  #     "Skipping introductory questions, because you've answered them in the past."
-  #   
-  #   _run_if_not_already_done --force-logout "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED" \
-  #     stow_dotfiles \
-  #     "Skipping stowing dotfiles, because you've already stowed them during this session."
-
-  local force_logout=false
-  if [[ $1 == "--force-logout" ]]; then
-    force_logout=true
-    shift
-  fi
-
-  local state_var=$1
-  local func_to_run=$2
-  local skip_message=$3
-
-  if ! test_genomac_user_state "$state_var"; then
-    $func_to_run
-    set_genomac_user_state "$state_var"
-    if $force_logout; then
-      hypervisor_force_logout
-    fi
-  else
-    report_action_taken "$skip_message"
-  fi
-}
-
-function _run_if_state() {
-  # Executes a function if a give state variable is true.
-  #
-  # Usage:
-  #   _run_if_state [--force-logout] <state_var> <func_to_run> <skip_message>
-  #
-  # Parameters:
-  #   --force-logout  Optional. If present, calls hypervisor_force_logout after
-  #                   setting state.
-  #   state_var       The state variable to check (e.g., $GMU_PERM_...).
-  #   func_to_run     Name of the function to execute if state is not set.
-  #   skip_message    Message to display if state is not set and action is skipped.
-  #
-  # Usage examples:
-  #   _run_if_state "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED" \
-  #     ask_initial_questions \
-  #     "Skipping introductory questions, because you've answered them in the past."
-  #   
-  #   _run_if_state --force-logout "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED" \
-  #     stow_dotfiles \
-  #     "Skipping stowing dotfiles, because you've already stowed them during this session."
-
-  local force_logout=false
-  if [[ $1 == "--force-logout" ]]; then
-    force_logout=true
-    shift
-  fi
-
-  local state_var=$1
-  local func_to_run=$2
-  local skip_message=$3
-
-  if test_genomac_user_state "$state_var"; then
-    $func_to_run
-    if $force_logout; then
-      hypervisor_force_logout
-    fi
-  else
-    report_action_taken "$skip_message"
-  fi
 }
 
 function hypervisor_force_logout() {
