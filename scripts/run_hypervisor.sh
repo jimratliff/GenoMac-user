@@ -151,7 +151,9 @@ function conditionally_configure_1Password() {
   fi
 
   # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
-  conditionally_authenticate_1Password
+  _run_if_not_done "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
+    authenticate_1Password \
+    "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step."
 
   # Skip configuration of SSH agent if user doesn’t want to go through that trouble
   if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
@@ -182,28 +184,20 @@ function conditionally_configure_1Password() {
   report_end_phase_standard
 }
 
-function conditionally_authenticate_1Password() {
-  # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
-  report_start_phase_standard
-  
-  local doc_to_show = "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md"
-  local prompt
-  
-  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"; then
-    report "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
+function authenticate_1Password() {
+	report_start_phase_standard
+  report "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
 
-    launch_app_and_prompt_user_to_act \
-      --show-doc "${doc_to_show}" \
-      "$BUNDLE_ID_1PASSWORD" \
-      "Log into your 1Password account in the 1Password app"
-    
-    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
-
-  else
-    report_action_taken "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step"
-  fi
+	local doc_to_show = "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md"
+	local prompt
+	
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${doc_to_show}" \
+    "$BUNDLE_ID_1PASSWORD" \
+    "Log into your 1Password account in the 1Password app"
   
-  report_end_phase_standard
+  set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
+	report_end_phase_standard
 }
 
 function conditionally_configure_microsoft_word() {
