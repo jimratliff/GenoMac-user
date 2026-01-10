@@ -103,7 +103,7 @@ function run_hypervisor() {
 
   ############### Last act: Delete all GMU_SESH_ state environment variables
 
-  # TBD
+  delete_all_GMU_SESH_states
 
   set_genomac_user_state "$GMU_SESH_REACHED_FINALITY"
   # TODO: Un-comment-out the below 'figlet' line after GenoMac-system is refactored so that it works
