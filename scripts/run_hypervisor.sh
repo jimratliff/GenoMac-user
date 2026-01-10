@@ -9,6 +9,7 @@ source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 
 # Source required files
 safe_source "${GMU_PREFS_SCRIPTS}/ask_initial_questions.sh"
+safe_source "${GMU_PREFS_SCRIPTS}/authenticate_textexpander.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/set_initial_user_level_settings.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/stow_dotfiles.sh"
@@ -39,23 +40,29 @@ function run_hypervisor() {
   report "$GMU_HYPERVISOR_HOW_TO_RESTART_STRING"
   
   ############### Ask initial questions
-  _run_if_not_done "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED" \
+  _run_if_not_done \
+    "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED" \
     ask_initial_questions \
     "Skipping introductory questions, because you've answered them in the past."
   
   ############### Stow dotfiles
-  _run_if_not_done --force-logout "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED" \
+  _run_if_not_done \
+    --force-logout \
+    "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED" \
     stow_dotfiles \
     "Skipping stowing dotfiles, because you've already stowed them during this session."
 
   ############### Configure primary programmatically implemented settings
-  _run_if_not_done --force-logout "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
+  _run_if_not_done 
+    --force-logout \
+    "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
     set_initial_user_level_settings \
     "Skipping basic user-level settings, because they’ve already been set this session"
 
   ############### Modify Desktop for certain users
   if test_genomac_user_state "$GMU_PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"; then
-    _run_if_not_done "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED" \
+    _run_if_not_done \
+      "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED" \
       reverse_disk_display_policy_for_some_users \
       "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
   else
@@ -63,14 +70,16 @@ function run_hypervisor() {
   fi
   
   ############### Execute pre-Dropbox bootstrap steps
-  _run_if_not_done "$GMU_PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED" \
+  _run_if_not_done \
+    --force-logout \
+    "$GMU_PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED" \
     perform_initial_bootstrap_operations \
     "Skipping basic bootstrap operations, because they’ve already been performed"
 
+  ############### Conditionally authenticate TextExpander
+  conditionally_authenticate_TextExpander
+
   ############### Configure 1Password
-  # At this point, (a) GenoMac-system has installed both 1Password.app and the 1Password-CLI app and 
-  # (b) GenoMac-user has deployed dotfiles necessary for the integration of 1Password with GitHub authentication
-  
   conditionally_configure_1Password
 
   ############### Configure Dropbox ################# WIP
