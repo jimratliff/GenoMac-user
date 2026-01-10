@@ -48,8 +48,7 @@ function authenticate_1Password() {
     --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md" \
     "$BUNDLE_ID_1PASSWORD" \
     "Follow the instructions in the Quick Look window to log into your 1Password account in the 1Password app"
-  
-  set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
+
   report_end_phase_standard
 }
 
