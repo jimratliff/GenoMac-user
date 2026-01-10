@@ -157,50 +157,6 @@ function conditionally_configure_1Password() {
     configure_and_verify_authenticated_1Password \
     "Skipping 1Password configuration, because this user doesn’t want it."
 
-  # Skip verification of SSH agent if user doesn’t want that configuration
-  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
-  if ! verify_ssh_agent_configuration; then
-    report_fail "The attempt to configure 1Password to SSH authenticate with GitHub has failed ☹️"
-    report_end_phase_standard
-    exit 1
-  else
-    report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
-    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
-  fi
-
-  
-    report_action_taken "Skipping 1Password configuration, because this user doesn’t want it"
-    report_end_phase_standard
-    exit 0
-  fi
-
-
-  # Skip configuration of SSH agent if user doesn’t want to go through that trouble
-  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
-    report_action_taken "Skipping 1Password configuration, because this user doesn’t want it"
-    report_end_phase_standard
-    exit 0
-  fi
-  
-  # Prompt user to configure settings of 1Password
-  report_action_taken "Time to configure 1Password! I'll launch it, and open a window with instructions to follow"
-
-  launch_app_and_prompt_user_to_act \
-    --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_configure.md" \
-    "$BUNDLE_ID_1PASSWORD" \
-    "Follow the instructions in the Quick Look window to configure 1Password"
-  
-  set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
-
-  # Verify configuration of SSH Agent
-  if ! verify_ssh_agent_configuration; then
-    report_fail "The attempt to configure 1Password to SSH authenticate with GitHub has failed ☹️"
-    report_end_phase_standard
-    exit 1
-  else
-    report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
-    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
-  fi
   report_end_phase_standard
 }
 
