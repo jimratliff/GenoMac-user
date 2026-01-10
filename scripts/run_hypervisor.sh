@@ -92,24 +92,6 @@ function run_hypervisor() {
 
   }
 
-  # Prompt user to authenticate their 1Password account in the 1Password app on the Mac
-  if ! test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"; then
-    report_action_taken "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
-
-    # Display instructions in a separate, Quick Look window
-    doc_to_show="${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md"
-    show_file_using_quicklook "$doc_to_show"
-
-    # Launch app and wait for acknowledgment from user
-    prompt="Log into your 1Password account in the 1Password app"
-    launch_app_and_prompt_user_to_act "$BUNDLE_ID_1PASSWORD" "$prompt"
-    set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
-
-  else
-    report_action_taken "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step"
-  fi
-
-
 
 
 
