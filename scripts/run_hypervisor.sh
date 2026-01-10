@@ -185,11 +185,11 @@ function conditionally_configure_1Password() {
 }
 
 function authenticate_1Password() {
-	report_start_phase_standard
+  report_start_phase_standard
   report "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
 
-	local doc_to_show = "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md"
-	local prompt
+  local doc_to_show = "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_log_in.md"
+  local prompt
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${doc_to_show}" \
@@ -197,7 +197,7 @@ function authenticate_1Password() {
     "Log into your 1Password account in the 1Password app"
   
   set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED"
-	report_end_phase_standard
+  report_end_phase_standard
 }
 
 function conditionally_configure_microsoft_word() {
