@@ -23,5 +23,4 @@ function perform_initial_bootstrap_operations() {
   bootstrap_preview_app
 
   report_end_phase_standard
-
 }
