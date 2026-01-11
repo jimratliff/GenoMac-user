@@ -77,30 +77,14 @@ function run_hypervisor() {
     perform_initial_bootstrap_operations \
     "Skipping basic bootstrap operations, because they’ve already been performed"
 
-  ############### Conditionally authenticate TextExpander
+  ############### Conditionally configure TextExpander
   conditionally_authenticate_TextExpander
 
-  ############### Configure 1Password
+  ############### Conditionally configure 1Password
   conditionally_configure_1Password
 
-  ############### Configure Dropbox ################# WIP
-  if test_genomac_user_state "$GMU_PERM_USER_WILL_USE_DROPBOX"; then
-    _run_if_not_done "$GMU_PERM_DROPBOX_HAS_BEEN_AUTHENTICATED" \
-      authenticate_dropbox \
-      "Skipping basic bootstrap operations, because they’ve already been performed"
-  fi
-
-  function authenticate_dropbox() {
-    # Display instructions in a separate, Quick Look window
-    doc_to_show="${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/Dropbox_how_to_log_in.md"
-    show_file_using_quicklook "$doc_to_show"
-
-    # Launch app and wait for acknowledgment from user
-    prompt="Log into your Dropbox account in the Dropbox app"
-    launch_app_and_prompt_user_to_act "$BUNDLE_ID_DROPBOX" "$prompt"
-    set_genomac_user_state "$GMU_PERM_DROPBOX_HAS_BEEN_AUTHENTICATED"
-
-  }
+  ############### Conditionally configure Dropbox #################
+  conditionally_configure_dropbox
 
 
 
@@ -108,7 +92,6 @@ function run_hypervisor() {
   ############### Execute post–Dropbox sync operations
 
   ############### Configure Microsoft Word
-
   conditionally_configure_microsoft_word
 
   ############### Last act: Delete all GMU_SESH_ state environment variables
