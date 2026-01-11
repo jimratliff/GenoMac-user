@@ -40,9 +40,9 @@ echo "Inside /scripts/0_initialize_me.sh"
 # Resolve directory of the current script
 this_script_path="${0:A}"
 
-GMU_SCRIPTS_DIR="${this_script_path:h}"
-GMU_PREFS_SCRIPTS="${GMU_SCRIPTS_DIR}/prefs_scripts"
-GMU_HELPERS_DIR="${GMU_SCRIPTS_DIR:h}/external/genomac-shared/scripts"
+GMU_SCRIPTS_DIR="${this_script_path:h}"                                 # scripts
+GMU_PREFS_SCRIPTS="${GMU_SCRIPTS_DIR}/prefs_scripts"                    # scripts/prefs_scripts
+GMU_HELPERS_DIR="${GMU_SCRIPTS_DIR:h}/external/genomac-shared/scripts"  # external/genomac-shared/scripts
 
 master_common_helpers_script="${GMU_HELPERS_DIR}/helpers.sh"
 repo_specific_environment_variables_script="${GMU_SCRIPTS_DIR}/assign_user_environment_variables.sh"
@@ -50,6 +50,10 @@ environment_variables_for_state_enums_script="${GMU_SCRIPTS_DIR}/assign_enum_env
 
 function source_with_report() {
   # Ensures that an error is raised if a `source` of the file in the supplied argument fails.
+  #
+  # Defining this function here solves a chicken-or-egg problem: We’d like to use the helper 
+  # safe_source(), but it hasn’t been sourced yet. The current function is quite as full functional 
+  # but will do for the initial sourcing of helpers.
   local file="$1"
   if source "$file"; then
     echo "Sourced: $file"
