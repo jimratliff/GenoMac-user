@@ -22,5 +22,4 @@ function install_btt_license_file() {
   copy_resource_between_local_directories "$source_path" "$destination_path" ; success_or_not
   
   report_end_phase_standard
-  
 }
