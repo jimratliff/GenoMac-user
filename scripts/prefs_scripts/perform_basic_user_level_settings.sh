@@ -26,7 +26,6 @@ safe_source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_symbolichotkeys.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_terminal_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_trackpad_settings.sh"
-# safe_source "${PREFS_FUNCTIONS_DIR}/set_warp_settings.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
