@@ -12,8 +12,8 @@ safe_source "${GMU_PREFS_SCRIPTS}/interactive_ask_initial_questions.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_1password.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_dropbox.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_textexpander.sh"
+safe_source "${GMU_PREFS_SCRIPTS}/perform_basic_user_level_settings.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_initial_user_level_settings.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/stow_dotfiles.sh"
 
 function run_hypervisor() {
@@ -57,7 +57,7 @@ function run_hypervisor() {
   _run_if_not_done 
     --force-logout \
     "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
-    set_initial_user_level_settings \
+    perform_basic_user_level_settings \
     "Skipping basic user-level settings, because they’ve already been set this session"
 
   ############### Modify Desktop for certain users
