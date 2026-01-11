@@ -14,6 +14,7 @@
 	run-hypervisor \
 	sign-in-to-selected-apps \
 	stow-dotfiles \
+	test-launch-and-prompt \
 	test-refactor \
 	test-state-management \
 	verify-ssh-agent \
@@ -21,6 +22,11 @@
 # --------------------------------------------------------------------
 # Targets
 # --------------------------------------------------------------------
+
+
+
+test-launch-and-prompt:
+	zsh scripts/test_launch_and_prompt.sh
 
 test-refactor:
 	zsh scripts/test_refactor.sh
