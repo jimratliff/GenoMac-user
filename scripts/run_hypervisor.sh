@@ -8,12 +8,12 @@ source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 ############################## BEGIN SCRIPT PROPER ##############################
 
 # Source required files
-safe_source "${GMU_PREFS_SCRIPTS}/ask_initial_questions.sh"
+safe_source "${GMU_PREFS_SCRIPTS}/interactive_ask_initial_questions.sh"
+safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_1password.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_textexpander.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/set_initial_user_level_settings.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/stow_dotfiles.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_1password_configuration.sh"
 
 function run_hypervisor() {
 
