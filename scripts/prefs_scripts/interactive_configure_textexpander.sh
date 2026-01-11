@@ -15,10 +15,9 @@ function authenticate_TextExpander() {
   report_start_phase_standard
   
   launch_app_and_prompt_user_to_act \
-    # --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/TextExpander_how_to_log_in.md" \
+    --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/TextExpander_how_to_configure.md" \
     "$BUNDLE_ID_TEXTEXPANDER" \
-    # "Follow the instructions in the Quick Look window to log into your 1Password account in the 1Password app"
-    "I will launch TextExpander. Log into the TextExpander service and acknowledge when you’ve done so"
+    "Follow the instructions in the Quick Look window to log into and configure TextExpander"
     
   report_end_phase_standard
 }
