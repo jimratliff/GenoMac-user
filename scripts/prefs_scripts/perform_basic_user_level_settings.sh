@@ -30,7 +30,7 @@ safe_source "${PREFS_FUNCTIONS_DIR}/set_trackpad_settings.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
-function perform_initial_user_level_settings() {
+function perform_basic_user_level_settings() {
 
   report_start_phase_standard
   
