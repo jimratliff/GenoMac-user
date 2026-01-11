@@ -1,17 +1,17 @@
 #!/usr/bin/env zs
 
-function conditionally_authenticate_TextExpander() {
+function conditionally_configure_TextExpander() {
   report_start_phase_standard
 
   _run_if_not_already_done \
-    "$GMU_PERM_TEXTEXPANDER_HAS_BEEN_AUTHENTICATED" \
+    "$GMU_PERM_TEXTEXPANDER_HAS_BEEN_CONFIGURED" \
     authenticate_TextExpander \
     "Skipping authenticating TextExpander because it’s already been done"
 
   report_end_phase_standard
 }
 
-function authenticate_TextExpander() {
+function configure_TextExpander() {
   report_start_phase_standard
   
   launch_app_and_prompt_user_to_act \
