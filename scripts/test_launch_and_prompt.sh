@@ -12,7 +12,7 @@ source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 # Source required files
 # safe_source "${GMU_PREFS_SCRIPTS}/install_btt_license.sh"
 
-function test_launch__app_and_prompt_user_to_act() {
+function test_launch_app_and_prompt_user_to_act() {
   report_start_phase_standard
 
   launch_app_and_prompt_user_to_act "$BUNDLE_ID_TEXTEDIT" "Please do the thing"
@@ -23,7 +23,7 @@ function test_launch__app_and_prompt_user_to_act() {
 }
 
 function main() {
-  test_state_management
+  test_launch_app_and_prompt_user_to_act
 }
 
 main
