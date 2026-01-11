@@ -13,12 +13,11 @@ function bootstrap_preview_app() {
   local toolbar_key="NSToolbar Configuration CommonToolbar_v5.1"
   
   report_action_taken "Launching and quitting Preview to prepare the plist."
-  launch_and_quit_app "$domain"
+  launch_and_quit_app "$BUNDLE_ID_PREVIEW"
   sleep 2 # Give Preview plenty of time to quit before trying to modify its plist
 
-  # The following is removed because unnecessary. Remove this code after full testing.
   # report_action_taken "Ensuring the plist for ${domain} exists."
-  # ensure_plist_path_exists "${plist_path}"
+  ensure_plist_path_exists "${plist_path}"
   
   # Preview: Reconfigure Toolbar
   report_action_taken "Reconfigure Toolbar"
