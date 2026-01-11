@@ -173,7 +173,9 @@ function set_initial_user_level_settings() {
   set_iterm_settings
   
   # Keyboard Maestro
-  set_keyboard_maestro_settings
+  # 1/10/2026: Commenting out implementing these KM settings here in order to consolidate this
+  #            operation with authentication and—post–Dropbox syncing—setting up macro syncing
+  # set_keyboard_maestro_settings
   
   # OmniOutliner
   set_omnioutliner_settings
