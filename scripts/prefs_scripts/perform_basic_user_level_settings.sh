@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+
+safe_source "${PREFS_FUNCTIONS_DIR}/interactive_configure_keyboard_maestro.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_alan_app_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_app_state_persistence.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_auto_correction_suggestion_settings.sh"
@@ -15,7 +17,6 @@ safe_source "${PREFS_FUNCTIONS_DIR}/set_finder_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_general_dock_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_general_interface_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_iterm_settings.sh"
-safe_source "${PREFS_FUNCTIONS_DIR}/set_keyboard_maestro_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_notifications_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_microsoft_office_suite_wide_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_microsoft_word_settings.sh"
@@ -173,9 +174,9 @@ function perform_basic_user_level_settings() {
   set_iterm_settings
   
   # Keyboard Maestro
-  # 1/10/2026: Commenting out implementing these KM settings here in order to consolidate this
-  #            operation with authentication and—post–Dropbox syncing—setting up macro syncing
-  # set_keyboard_maestro_settings
+  # NOTE: The following function performs the idempotent maintenace steps, which is
+  #       separate from the bootstrapping steps of (a) authentication and (b) setting up macro syncing
+  set_keyboard_maestro_settings
   
   # OmniOutliner
   set_omnioutliner_settings
