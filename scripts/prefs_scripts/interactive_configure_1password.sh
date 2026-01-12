@@ -28,7 +28,7 @@ function conditionally_configure_1Password() {
   fi
 
   # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
-  _run_if_not_done "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
+  _run_if_not_already_done "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
     authenticate_1Password \
     "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step."
 
