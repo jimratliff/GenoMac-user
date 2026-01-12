@@ -10,19 +10,20 @@ source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 ############################## BEGIN SCRIPT PROPER ##############################
 
 # Source required files
-# safe_source "${GMU_PREFS_SCRIPTS}/install_btt_license.sh"
+safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
 
-function some_function() {
+function prep_keyboard_maestro_for_experiments() {
   report_start_phase_standard
 
-  report "I am doing something important"
+  set_keyboard_maestro_settings
+  enable_keyboard_maestro_macro_syncing
 
   report_end_phase_standard
 
 }
 
 function main() {
-  some_function
+  prep_keyboard_maestro_for_experiments
 }
 
 main
