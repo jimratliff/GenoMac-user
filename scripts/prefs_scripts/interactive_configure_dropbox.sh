@@ -4,7 +4,7 @@ function conditionally_configure_dropbox() {
   report_start_phase_standard
   
   if test_genomac_user_state "$GMU_PERM_USER_WILL_USE_DROPBOX"; then
-    _run_if_not_done "$GMU_PERM_DROPBOX_HAS_BEEN_CONFIGURED" \
+    _run_if_not_already_done "$GMU_PERM_DROPBOX_HAS_BEEN_CONFIGURED" \
       configure_dropbox \
       "Skipping basic bootstrap operations, because they’ve already been performed"
   fi
