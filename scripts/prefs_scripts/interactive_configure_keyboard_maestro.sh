@@ -41,9 +41,9 @@ function set_keyboard_maestro_settings() {
   report_start_phase_standard
   report_action_taken "Implement Keyboard Maestro settings"
   
-  local domain="com.stairways.keyboardmaestro"
-  local domain_engine="com.stairways.keyboardmaestro.engine"
-  local domain_editor="com.stairways.keyboardmaestro.editor"
+  # local domain="com.stairways.keyboardmaestro"
+  # local domain_engine="com.stairways.keyboardmaestro.engine"
+  # local domain_editor="com.stairways.keyboardmaestro.editor"
   
   report_action_taken "Quit Keyboard Maestro if running to allow setting its settings"
   report_adjust_setting "Quitting the Editor"
@@ -53,26 +53,26 @@ function set_keyboard_maestro_settings() {
   
   # Editor settings
   report_adjust_setting "Set: Do NOT show spash screen at launch"
-  defaults write $domain_editor DisplayWelcomeWindow -bool false ; success_or_not
+  defaults write $DEFAULTS_DOMAINS_KEYBOARD_MAESTRO_EDITOR DisplayWelcomeWindow -bool false ; success_or_not
   
   # Engine settings
   report_adjust_setting "Set menu-bar status icon to Classic"
-  defaults write $domain_engine StatusMenuIcon -string "Classic" ; success_or_not
+  defaults write $DEFAULTS_DOMAINS_KEYBOARD_MAESTRO_ENGINE StatusMenuIcon -string "Classic" ; success_or_not
   
   report_adjust_setting "Set: Do NOT show application palette"
-  defaults write $domain_engine ShowApplicationsPalette -bool false ; success_or_not
+  defaults write $DEFAULTS_DOMAINS_KEYBOARD_MAESTRO_ENGINE ShowApplicationsPalette -bool false ; success_or_not
   
   report_adjust_setting "Set: Include macro icons when listing macros in status menu"
-  defaults write $domain_engine StatusMenuIncludeIcons -bool true ; success_or_not
+  defaults write $DEFAULTS_DOMAINS_KEYBOARD_MAESTRO_ENGINE StatusMenuIncludeIcons -bool true ; success_or_not
   
   report_adjust_setting "Set: Do NOT list applications in status menu"
-  defaults write $domain_engine StatusMenuIncludeApplications -bool false ; success_or_not
+  defaults write $DEFAULTS_DOMAINS_KEYBOARD_MAESTRO_ENGINE StatusMenuIncludeApplications -bool false ; success_or_not
   
   report_adjust_setting "Set: Do NOT save recent applications between launches"
-  defaults write $domain_engine SaveRecentApplicationsID -bool false ; success_or_not
+  defaults write $DEFAULTS_DOMAINS_KEYBOARD_MAESTRO_ENGINE SaveRecentApplicationsID -bool false ; success_or_not
   
   report_adjust_setting "Set: DO save clipboard history between launches"
-  defaults write $domain_engine SaveClipboardHistory -bool true ; success_or_not
+  defaults write $DEFAULTS_DOMAINS_KEYBOARD_MAESTRO_ENGINE SaveClipboardHistory -bool true ; success_or_not
   
   report_end_phase_standard
 }
@@ -88,9 +88,7 @@ function enable_keyboard_maestro_macro_syncing() {
   report_start_phase_standard
   report_action_taken "Enable Keyboard Maestro macro syncing"
   
-  local domain_editor="com.stairways.keyboardmaestro.editor"
-  
-  local bundle_id_engine="com.stairways.keyboardmaestro.engine"
+  local bundle_id_engine="com.stairwa"com.stairys.keyboardmaestro.engine"
   local bundle_id_editor="com.stairways.keyboardmaestro.editor"
   
   local macro_file_name="Keyboard Maestro Macros.kmsync"
@@ -106,8 +104,14 @@ function enable_keyboard_maestro_macro_syncing() {
   
   # Editor settings
   report_adjust_setting "Set: Path to Keyboard Maestro macro file in Dropbox"
-  defaults write $domain_editor MacroSharingFile -string "$macro_file_path" ; success_or_not
+  defaults write $DEFAULTS_DOMAINS_KEYBOARD_MAESTRO_EDITOR MacroSharingFile -string "$macro_file_path" ; success_or_not
   
+  report_end_phase_standard
+}
+
+function quit_keyboard_maestro_editor_and_engine() {
+  report_start_phase_standard
+
   report_end_phase_standard
 }
 
