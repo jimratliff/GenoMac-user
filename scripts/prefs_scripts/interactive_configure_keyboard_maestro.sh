@@ -27,9 +27,9 @@ function interactive_configure_keyboard_maestro() {
     --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/Keyboard_Maestro_how_to_configure.md" \
     "$BUNDLE_ID_KEYBOARDMAESTRO_EDITOR" \
     "Follow the instructions in the Quick Look window to log into and configure Keyboard Maestro"
-  
-  
 
+    # TODO WIP TBD
+  
   report_end_phase_standard
 }
 
