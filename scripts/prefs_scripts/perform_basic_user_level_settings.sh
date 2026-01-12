@@ -20,6 +20,7 @@ safe_source "${PREFS_FUNCTIONS_DIR}/set_notifications_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_microsoft_office_suite_wide_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_microsoft_word_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_omnioutliner_settings.sh"
+safe_source "${PREFS_FUNCTIONS_DIR}/set_plain_text_editor_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_preview_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_safari_settings.sh"
 safe_source "${PREFS_FUNCTIONS_DIR}/set_screen_capture_settings.sh"
@@ -178,6 +179,9 @@ function perform_basic_user_level_settings() {
   
   # OmniOutliner
   set_omnioutliner_settings
+
+  # Plain Text Editor
+  set_plain_text_editor_settings
   
   report_end_phase_standard
 
