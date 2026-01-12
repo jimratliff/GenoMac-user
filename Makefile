@@ -47,6 +47,9 @@ verify-ssh-agent:
 reset-state:
 	zsh scripts/reset_state.sh
 
+dev-prep-keyboard-maestro-for-experiments:
+	zsh scripts/dev_prep_keyboard_maestro_for_experiments.sh
+
 
 ## Updates genomac-user repo, including genomac-shared submodule, and pushes it back to GitHub
 ## git diff… checks whether there are staged changes to the submodule and, if so, commits them
