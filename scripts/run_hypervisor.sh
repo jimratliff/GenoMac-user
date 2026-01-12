@@ -41,20 +41,20 @@ function run_hypervisor() {
   report "$GMU_HYPERVISOR_HOW_TO_RESTART_STRING"
   
   ############### Ask initial questions
-  _run_if_not_done \
+  _run_if_not_already_done \
     "$GMU_PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED" \
     ask_initial_questions \
     "Skipping introductory questions, because you've answered them in the past."
   
   ############### Stow dotfiles
-  _run_if_not_done \
+  _run_if_not_already_done \
     --force-logout \
     "$GMU_SESH_DOTFILES_HAVE_BEEN_STOWED" \
     stow_dotfiles \
     "Skipping stowing dotfiles, because you've already stowed them during this session."
 
   ############### Configure primary programmatically implemented settings
-  _run_if_not_done 
+  _run_if_not_already_done 
     --force-logout \
     "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
     perform_basic_user_level_settings \
@@ -62,7 +62,7 @@ function run_hypervisor() {
 
   ############### Modify Desktop for certain users
   if test_genomac_user_state "$GMU_PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"; then
-    _run_if_not_done \
+    _run_if_not_already_done \
       "$GMU_SESH_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED" \
       reverse_disk_display_policy_for_some_users \
       "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
@@ -71,7 +71,7 @@ function run_hypervisor() {
   fi
   
   ############### Execute pre-Dropbox bootstrap steps
-  _run_if_not_done \
+  _run_if_not_already_done \
     --force-logout \
     "$GMU_PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED" \
     perform_initial_bootstrap_operations \
