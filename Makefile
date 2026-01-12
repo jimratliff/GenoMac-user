@@ -23,7 +23,11 @@
 # Targets
 # --------------------------------------------------------------------
 
+run-hypervisor:
+	zsh scripts/run_hypervisor.sh
 
+defaults-detective:
+	zsh scripts/defaults_detective.sh
 
 test-launch-and-prompt:
 	zsh scripts/test_launch_and_prompt.sh
@@ -37,38 +41,12 @@ test-state-management:
 test-show-with-quicklook:
 	zsh scripts/test_show_with_quicklook.sh
 
-run-hypervisor:
-	zsh scripts/run_hypervisor.sh
-
-stow-dotfiles:
-	zsh scripts/stow_dotfiles.sh
-
-initial-prefs:
-	zsh scripts/initial_prefs.sh
-
-bootstrap-user:
-	zsh scripts/execute_one_time_per_user.sh
-
 verify-ssh-agent:
 	zsh scripts/verify_ssh_agent_setup.sh
-
-sign-in-to-selected-apps:
-	zsh scripts/sign_in_to_selected_apps.sh
-
-btt-license:
-	zsh scripts/install_BTT_license.sh
-
-after-dropbox-syncs-common-prefs:
-	zsh scripts/after_dropbox_syncs_common_prefs.sh
-
-apps-that-launch-on-login:
-	zsh scripts/apps_that_launch_on_login.sh
 
 reset-state:
 	zsh scripts/reset_state.sh
 
-defaults-detective:
-	zsh scripts/defaults_detective.sh
 
 ## Updates genomac-user repo, including genomac-shared submodule, and pushes it back to GitHub
 ## git diff… checks whether there are staged changes to the submodule and, if so, commits them
