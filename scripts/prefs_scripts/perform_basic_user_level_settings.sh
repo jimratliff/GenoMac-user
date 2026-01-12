@@ -146,7 +146,7 @@ function perform_basic_user_level_settings() {
   
   # Text Edit
   report_adjust_setting "Text Edit: Make plain text the default format"
-  defaults write com.apple.TextEdit RichText -bool false;success_or_not
+  defaults write com.apple.TextEdit RichText -bool false ; success_or_not
   
   # Safari
   set_safari_settings
@@ -184,5 +184,4 @@ function perform_basic_user_level_settings() {
   set_plain_text_editor_settings
   
   report_end_phase_standard
-
 }
