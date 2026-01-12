@@ -40,16 +40,8 @@ function set_keyboard_maestro_settings() {
 
   report_start_phase_standard
   report_action_taken "Implement Keyboard Maestro settings"
-  
-  # local domain="com.stairways.keyboardmaestro"
-  # local domain_engine="com.stairways.keyboardmaestro.engine"
-  # local domain_editor="com.stairways.keyboardmaestro.editor"
-  
-  report_action_taken "Quit Keyboard Maestro if running to allow setting its settings"
-  report_adjust_setting "Quitting the Editor"
-  quit_app_by_bundle_id_if_running "$BUNDLE_ID_KEYBOARDMAESTRO_EDITOR" ; success_or_not
-  report_adjust_setting "Quitting the Engine"
-  quit_app_by_bundle_id_if_running "$BUNDLE_ID_KEYBOARDMAESTRO_ENGINE" ; success_or_not
+
+  quit_keyboard_maestro_editor_and_engine
   
   # Editor settings
   report_adjust_setting "Set: Do NOT show spash screen at launch"
@@ -95,12 +87,8 @@ function enable_keyboard_maestro_macro_syncing() {
   # Hint: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${GENOMAC_USER_DROPBOX_DIRECTORY}/Preferences_common"
   local path_to_Keyboard_Maestro_subdirectory_in_Dropbox="$GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY/Keyboard_Maestro"
   local macro_file_path="${path_to_Keyboard_Maestro_subdirectory_in_Dropbox}/${macro_file_name}"
-  
-  report_action_taken "Quit Keyboard Maestro if running to allow changing its settings"
-  report_adjust_setting "Quitting the Editor"
-  quit_app_by_bundle_id_if_running "$bundle_id_editor" ; success_or_not
-  report_adjust_setting "Quitting the Engine"
-  quit_app_by_bundle_id_if_running "$bundle_id_engine" ; success_or_not
+
+  quit_keyboard_maestro_editor_and_engine
   
   # Editor settings
   report_adjust_setting "Set: Path to Keyboard Maestro macro file in Dropbox"
@@ -111,7 +99,13 @@ function enable_keyboard_maestro_macro_syncing() {
 
 function quit_keyboard_maestro_editor_and_engine() {
   report_start_phase_standard
-
+  
+  report_action_taken "Quit Keyboard Maestro if running to allow setting its settings"
+  report_adjust_setting "Quitting the Editor"
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_KEYBOARDMAESTRO_EDITOR" ; success_or_not
+  report_adjust_setting "Quitting the Engine"
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_KEYBOARDMAESTRO_ENGINE" ; success_or_not
+  
   report_end_phase_standard
 }
 
