@@ -80,9 +80,6 @@ function enable_keyboard_maestro_macro_syncing() {
   report_start_phase_standard
   report_action_taken "Enable Keyboard Maestro macro syncing"
   
-  local bundle_id_engine="com.stairwa"com.stairys.keyboardmaestro.engine"
-  local bundle_id_editor="com.stairways.keyboardmaestro.editor"
-  
   local macro_file_name="Keyboard Maestro Macros.kmsync"
   # Hint: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${GENOMAC_USER_DROPBOX_DIRECTORY}/Preferences_common"
   local path_to_Keyboard_Maestro_subdirectory_in_Dropbox="$GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY/Keyboard_Maestro"
