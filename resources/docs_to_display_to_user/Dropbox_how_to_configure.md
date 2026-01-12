@@ -1,3 +1,50 @@
-# Configuring Dropbox
+# How to configure Dropbox
 
+## Launch Dropbox
+- Make Dropbox the active app. (The Hypervisor should have launched Dropbox for you already.)
+
+## TBD
 WIP: Add instructions for (a) signing into Dropbox, (b) adjusting any settings, (c) implementing Selective Sync.
+
+- Dialog box: Welcome to Dropbox!
+  - Press button: Sign in with Dropbox
+    - “Leave this screen open. A sign-in prompt will appear.”
+- This launches your default browser
+  - The URL of the new browser window is www.dropbox.com/oath2/…
+  - “Log in or sign up to Dropbox to link with Dropbox”
+  - This could require (a) an email address, (b) a password, and (c) a 2FA using an authenticator device
+  - In a popup dialog box, agree to “Allow this site to open the dropbox-client link with Dropbox?”
+      - Also ✅ for “Always allow https://www.dropbox.com to open dropbox-client links”
+      - Click on “Open Link”
+- This launches the Dropbox app
+  - Dialog box: “Welcome to Dropbox”
+    - “Dropbox can’t sync over 500,000 files to this computer”
+      - (Question: Was this shown to me only because I have enough files that they can’t all be synced and therefore I *must* use Selective Sync?”
+      - “Very impressive! But because of this, choose specific folders you want to sync to this computer. The rest of your files are available on dropbox.com.”
+    - Click on “Choose folders”
+  - New window: “Selective Sync”
+    - “Choose which folders you see on this device”
+      - “Only selected folders will take up hard drive space on this device. You can still access unselected folders anytime at dropbox.com”
+      - Choose only the “Preferences_common” folder
+        - First, deselect all
+        - Then, select “Preferences_common”
+        - Then, click “Save”
+        - Then a new dialog: “Confirm selection”
+          - Only selected folders will live on this computer. Unselected folders can be accessed on dropbox.com
+          - Click “Confirm”
+    - New window: “Welcome back!
+      - “Use the right-click menu to share, send for signature, view version history, and more.”
+      - Click “Next”
+    - New window: “We’re happy you’re back”
+      - “Setup is finished.”
+      - Click “Open Dropbox”
+    - Several new windows pop up:
+      - Frontmost: “Dropbox.app” would like to start syncing.”
+        - Click “OK” (other choice is “Don’t allow”)
+        - 
+
+## Return to terminal and acknowledge
+- [ ] Type `done` to acknowledge that you’ve completed these manual steps.
+
+
+
