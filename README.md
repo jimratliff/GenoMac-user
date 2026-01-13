@@ -382,12 +382,12 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - As I recall, this bug goes back years.
  
 ## Appendix: Dev issues
-The preceding content of this README focuses on the “user” experience, i.e., the experience from the USER_CONFIGURER’s experience, as a consumer of the repository in its contemperaneous state.
+The preceding content of this README focuses on the “user” experience, i.e., the experience from USER_CONFIGURER’s experience, as a consumer of the repository in its contemperaneous state.
 
 In constrast, the present appendix addresses issues about how this repo can be changed and those changes propagated and used by USER_CONFIGURER (even if USER_CONFIGURER is the entity making those changes).
 
 ### Configure the GitHub remote to use SSH for pushing from local to GitHub
-This repo is public so that it can be easily cloned at the beginning of setting up a user (way before 1Password and its SSH agent gets set up). But, ultimately, the configuring user will want to make changes to the repo, and this requires being able to authenticate with GitHub.
+This repo is public so that it can be easily cloned at the beginning of setting up a user (way before 1Password and its SSH agent get set up). But, ultimately, the configuring user will want to make changes to the repo, and this requires being able to authenticate with GitHub.
 
 Since GitHub doesn’t authenticate in the CLI via HTTPS, the repo needs to be configured so that it can be modified locally and pushed to GitHub, which requires SSH. Although the repo could be configured to require SSH for both fetch and push, that would require authentication even to fetch, which is a needless hassle.
 
