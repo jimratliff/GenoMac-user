@@ -26,6 +26,9 @@
 run-hypervisor:
 	zsh scripts/run_hypervisor.sh
 
+refresh-repo:
+	git -C ~/.genomac-user pull --recurse-submodules origin main
+
 defaults-detective:
 	zsh scripts/defaults_detective.sh
 
