@@ -6,6 +6,7 @@
 - [Remaining configuration steps that have not been (cannot be) automated](#remaining-configuration-steps-that-have-not-been-cannot-be-automated)
 - [TODOs](#todos)
 - [Known issues](#known-issues)
+- [Dev issues](#appendix-dev-issues)
 - [Appendix: Compilation of selected settings choices (NOT exhaustive!)](#appendix-compilation-of-selected-settings-choices-not-exhaustive)
 - [Appendix: Determining the defaults write commands that correspond to desired changes in settings](#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings)
 - [Appendix: What to do when you change the BetterTouchTool preset](#appendix-what-to-do-when-you-change-the-bettertouchtool-preset)
