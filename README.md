@@ -174,6 +174,17 @@ git clone --recurse-submodules https://github.com/jimratliff/GenoMac-user.git .
 
 (The `--recurse-submodules` flag exists because this repo has a submodule ([GenoMac-shared](https://github.com/jimratliff/GenoMac-shared)). The `--recurse-submodules` ensures that the submodule’s code is also cloned, not just a pointer to it.)
 
+### Running the Hypervisor
+The Hypervisor is a scripting function that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
+
+The Hypervisor is run by:
+```
+cd ~/.genomac-user
+make run-hypervisor
+```
+
+At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again. The Hypervisor keeps track of its state, and it will restart where you last left off.
+
 ### “Stow” the dotfiles
 The following `make` command runs the script `stow_dotfiles.sh`. This script “stows” the dotfiles found in `stow_directory` as symlinks in $HOME (or subdirectories of $HOME).
 
