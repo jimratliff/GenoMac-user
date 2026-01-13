@@ -96,7 +96,7 @@ function run_hypervisor() {
   ############### Execute post–Dropbox sync operations
 
   ############### Configure Microsoft Word
-  conditionally_configure_microsoft_word
+  # conditionally_configure_microsoft_word
 
   ############### Last act: Delete all GMU_SESH_ state environment variables
 
