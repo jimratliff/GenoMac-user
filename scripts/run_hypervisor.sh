@@ -54,7 +54,7 @@ function run_hypervisor() {
     "Skipping stowing dotfiles, because you've already stowed them during this session."
 
   ############### Configure primary programmatically implemented settings
-  _run_if_not_already_done 
+  _run_if_not_already_done \
     --force-logout \
     "$GMU_SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
     perform_basic_user_level_settings \
