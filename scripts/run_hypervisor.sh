@@ -77,11 +77,13 @@ function run_hypervisor() {
     perform_initial_bootstrap_operations \
     "Skipping basic bootstrap operations, because they’ve already been performed"
 
+  ############### Conditionally configure 1Password
+  # 1Password is configured at this point in order to be available when subsequent
+  # apps need to be signed into
+  conditionally_configure_1Password
+
   ############### Conditionally configure TextExpander
   conditionally_authenticate_TextExpander
-
-  ############### Conditionally configure 1Password
-  conditionally_configure_1Password
 
   ############### Conditionally configure Dropbox
   conditionally_configure_Dropbox
