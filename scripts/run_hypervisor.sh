@@ -84,12 +84,12 @@ function run_hypervisor() {
   conditionally_configure_1Password
 
   ############### Conditionally configure Dropbox
-  conditionally_configure_dropbox
+  conditionally_configure_Dropbox
 
   ############### (Further) configure apps that rely upon Dropbox
   if test_genomac_user_state "$GMU_PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
-    interactive_configure_alfred
-    interactive_configure_keyboard_maestro
+    # interactive_configure_alfred
+    # interactive_configure_keyboard_maestro
   fi
 
 
