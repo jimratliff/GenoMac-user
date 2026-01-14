@@ -2,10 +2,6 @@
 
 ## Launch Dropbox
 - Make Dropbox the active app. (The Hypervisor should have launched Dropbox for you already.)
-
-## TBD
-WIP: Add instructions for (a) signing into Dropbox, (b) adjusting any settings, (c) implementing Selective Sync.
-
 - Dialog box: Welcome to Dropbox!
   - Press button: Sign in with Dropbox
     - “Leave this screen open. A sign-in prompt will appear.”
@@ -16,6 +12,7 @@ WIP: Add instructions for (a) signing into Dropbox, (b) adjusting any settings, 
   - In a popup dialog box, agree to “Allow this site to open the dropbox-client link with Dropbox?”
       - Also ✅ for “Always allow https://www.dropbox.com to open dropbox-client links”
       - Click on “Open Link”
+## Configure Selective Sync
 - This launches the Dropbox app
   - Dialog box: “Welcome to Dropbox”
     - “Dropbox can’t sync over 500,000 files to this computer”
@@ -32,20 +29,21 @@ WIP: Add instructions for (a) signing into Dropbox, (b) adjusting any settings, 
         - Then a new dialog: “Confirm selection”
           - Only selected folders will live on this computer. Unselected folders can be accessed on dropbox.com
           - Click “Confirm”
-    - New window: “Welcome back!
-      - “Use the right-click menu to share, send for signature, view version history, and more.”
-      - Click “Next”
-    - New window: “We’re happy you’re back”
-      - “Setup is finished.”
-      - Click “Open Dropbox”
-    - Several new windows pop up:
-      - Frontmost: “Dropbox.app” would like to start syncing.”
-        - Click “OK” (other choice is “Don’t allow”)
-          - (This makes all the new windows, even ones I didn’t read, disappear)
-    - New window: “More reasons to love Dropbox”
-      - “Your Dropbox now lives in a secure location”
-      - “Dropbox can be accessed from the shortcut under Locations in Finder.”
-      - “Take our tour to check out flexible options for file storage on this Mac.”
+## Remainder of onboarding
+- New window: “Welcome back!
+  - “Use the right-click menu to share, send for signature, view version history, and more.”
+  - Click “Next”
+- New window: “We’re happy you’re back”
+  - “Setup is finished.”
+  - Click “Open Dropbox”
+- Several new windows pop up:
+  - Frontmost: “Dropbox.app” would like to start syncing.”
+    - ❑ Click “OK” (other choice is “Don’t allow”)
+      - (This makes all the new windows, even ones I didn’t read, disappear)
+- New window: “More reasons to love Dropbox”
+  - “Your Dropbox now lives in a secure location”
+  - “Dropbox can be accessed from the shortcut under Locations in Finder.”
+  - “Take our tour to check out flexible options for file storage on this Mac.”
 
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
