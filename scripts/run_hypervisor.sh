@@ -83,7 +83,7 @@ function run_hypervisor() {
   conditionally_configure_1Password
 
   ############### Conditionally configure TextExpander
-  conditionally_authenticate_TextExpander
+  conditionally_configure_textexpander
 
   ############### Conditionally configure Dropbox
   conditionally_configure_Dropbox
