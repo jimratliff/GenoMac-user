@@ -24,7 +24,7 @@ function conditionally_configure_1Password() {
   if test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"; then
     report_action_taken "Skipping 1Password configuration, because it’s already been configured and it’s a bootstrapping step"
     report_end_phase_standard
-    exit 0
+    return 0
   fi
 
   # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
@@ -74,7 +74,7 @@ function configure_and_verify_authenticated_1Password() {
   if ! verify_ssh_agent_configuration; then
     report_fail "The attempt to configure 1Password to SSH authenticate with GitHub has failed ☹️"
     report_end_phase_standard
-    exit 1
+    return 1
   fi
   
   report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
@@ -87,7 +87,7 @@ function verify_ssh_agent_configuration() {
   if [[ -z "${SSH_AUTH_SOCK:-}" ]]; then
     report_error "SSH_AUTH_SOCK is not set. Failed: SSH agent not configured"
     report_end_phase_standard
-    exit 1
+    return 1
   fi
   
   # Try to authenticate to GitHub via SSH
@@ -99,7 +99,7 @@ function verify_ssh_agent_configuration() {
     print -r -- "${SYMBOL_SUCCESS}SSH authentication with GitHub succeeded"
     report_success "Verified: SSH agent is working"
     report_end_phase_standard
-    exit 0
+    return 0
   else
     local lines=(
           "SSH authentication failed. Output:"
@@ -109,7 +109,7 @@ function verify_ssh_agent_configuration() {
     local warning_msg="${(F)lines}"  # (F) joins with newlines
 	report_warning "$warning_msg"
     report_end_phase_standard
-    exit 1
+    return 1
   fi
 
 }
