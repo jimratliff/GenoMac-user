@@ -40,6 +40,12 @@
   - Frontmost: “Dropbox.app” would like to start syncing.”
     - ❑ Click “OK” (other choice is “Don’t allow”)
       - (This makes all the new windows, even ones I didn’t read, disappear)
+    - “Set Up Drobox”
+      - “Allow Dropbox to sync”
+        - “That way, when you add or edit files, those changes will sync across everywhere you access Dropbox.”
+        - Button: “Allow”
+          - But this button seems moot, because the other dialog box dismisses this dialog box.
+    - A Finder window pointing to the local Dropbox directory (with no obvious path information)
 - New window: “More reasons to love Dropbox”
   - “Your Dropbox now lives in a secure location”
   - “Dropbox can be accessed from the shortcut under Locations in Finder.”
