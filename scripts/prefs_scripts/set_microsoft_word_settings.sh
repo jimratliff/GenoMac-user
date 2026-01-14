@@ -10,13 +10,13 @@ function conditionally_configure_microsoft_word() {
   if ! test_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_USER_WANTS_IT"; then
     report_action_taken "Skipping Microsoft Word configuration, because this user doesn’t want it"
     report_end_phase_standard
-    exit 0
+    return 0
   fi
 
   if test_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"; then
     report_action_taken "Skipping Microsoft Word configuration, because it’s already been configured and it’s a bootstrapping step"
     report_end_phase_standard
-    exit 0
+    return 0
   fi
 
   if ! test_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"; then
@@ -107,7 +107,7 @@ function run_vba_script_to_implement_microsoft_word_preferences() {
   # Confirm existence of macro-containing Word file
   if [[ ! -f "$source_path" ]]; then
     report_fail "Missing macro-containing Word document at ${source_path}"
-    exit 1
+    return 1
   fi
   report_success "Macro-containing Word document found at ${source_path}"
   
@@ -117,7 +117,7 @@ function run_vba_script_to_implement_microsoft_word_preferences() {
       report_success "Created ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
   else
       report_fail "Failed to create directory at ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
-      exit 1
+      return 1
   fi
   
   report_action_taken "Remove, if necessary, any stale log file from a previous run"
@@ -163,7 +163,7 @@ function run_vba_script_to_implement_microsoft_word_preferences() {
     success_or_not
   else
     report_fail "Word preferences macro did not complete within ${timeout}s"
-    exit 1
+    return 1
   fi
   report_end_phase_standard
 }
