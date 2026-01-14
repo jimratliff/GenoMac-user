@@ -116,7 +116,7 @@ function prepare_zsh_sessions_for_outside_zdotdir() {
   ZDOT_SESS_PATH="$ZDOTDIR/.zsh_sessions"
   if [[ -e "$ZDOT_SESS_PATH" && ! -L "$ZDOT_SESS_PATH" ]]; then
     echo "ERROR: '$ZDOT_SESS_PATH' exists and is not a symlink. Resolve manually, then re-run." >&2
-    exit 1
+    return 1
   fi
 
   report_action_taken "Linking '$ZDOT_SESS_PATH' -> '$XDG_ZSH_SESSIONS_DIR' (idempotent)"
