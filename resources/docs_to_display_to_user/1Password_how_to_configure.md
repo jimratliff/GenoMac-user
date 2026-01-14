@@ -2,14 +2,14 @@
 
 Make 1Password active.
 
-## Make 1Password persistent
+## Make 1Password persistent (probably already the default)
 (Note: The two checkboxes below may indeed be turned on by default, as desired.)
 - In the 1Password app, turn on two checkboxes to ensure that 1Password’s SSH Agent will be live even if the 1Password app itself is closed.
   - 1Password » Settings » General
     - ✅ Keep 1Password in the menu bar
     - ✅ Start 1Password at login
 ## Enable 1Password SSH Agent
-- ENTER YOUR PASSCODE to unlock the 1Password vault
+- <span style="color: red;">ENTER YOUR PASSCODE to unlock the 1Password vault</span>
   - Otherwise, you will not be able to access the Developer settings below
 - Again in the 1Password app:
   - 1Password » Settings » Developer:
