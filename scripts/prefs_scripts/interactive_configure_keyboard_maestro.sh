@@ -1,5 +1,13 @@
 #!/bin/zsh
 
+# Functions for the configuration of Keyboard Maestro
+#
+# - The script perform_basic_user_level_settings.sh executes set_keyboard_maestro_settings(),
+#   which doesn’t require that Dropbox has synced
+# - Later, after Dropbox has been configured to sync the common-preferences directory,
+#   conditionally_configure_keyboard_maestro() should be executed to authenticate Keyboard Maestro
+#   and set up macro syncing.
+
 function conditionally_configure_keyboard_maestro() {
   report_start_phase_standard
   _run_if_not_already_done \
