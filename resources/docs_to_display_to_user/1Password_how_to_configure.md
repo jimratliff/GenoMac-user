@@ -28,9 +28,9 @@ Make 1Password active.
            
 ## Return to the terminal
 Now return to the terminal and acknowledge you have cpmpleted the configuration of 1Password.
-
-## Respond to question about verifying the configuration
-The script will test that the SSH Agent configuration works. Assuming everything works as planned, in the terminal, you’ll see something like:
+## The test to confirm the configuration of the SSH agent
+### Authorize the test to confirm the configuration
+The script will test that the SSH Agent configuration works. In the terminal, you’ll see something like:
 ```
 ********************************************************************************
 Entering: verify_ssh_agent_configuration
@@ -40,7 +40,7 @@ Entering: verify_ssh_agent_configuration
 The authenticity of host 'github.com (140.82.116.3)' can't be established.
 ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
 This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])?
+**Are you sure you want to continue connecting (yes/no/[fingerprint])?**
 ```
-Respond to that final question with “yes”.
-
+❑ **Respond to that question with “yes”.**
+### Grant 1Password access to use SSH key for this confirmation test
