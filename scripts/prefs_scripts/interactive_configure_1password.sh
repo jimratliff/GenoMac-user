@@ -32,6 +32,8 @@ function conditionally_configure_1Password() {
     authenticate_1Password \
     "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step."
 
+  # EXPERIMENT TO FIX LAUNCHING PROBLEM
+  sleep 5
   # Conditionally prompt user to configure their already-authenticated 1Password
   _run_if_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" \
     configure_and_verify_authenticated_1Password \
