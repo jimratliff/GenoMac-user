@@ -9,6 +9,8 @@ Make 1Password active.
     - ✅ Keep 1Password in the menu bar
     - ✅ Start 1Password at login
 ## Enable 1Password SSH Agent
+- ENTER YOUR PASSCODE to unlock the 1Password vault
+  - Otherwise, you will not be able to access the Developer settings below
 - Again in the 1Password app:
   - 1Password » Settings » Developer:
     - Click on "Setup SSH Agent"
