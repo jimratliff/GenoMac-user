@@ -391,6 +391,8 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - NOTE: This may have been fixed on 11/1/2025, when I changed the type of this defaults settings from `bool` to `int`.
   - Despite the automation step, which *does* change in the indication in Settings, it might not take effect. To fix: Manually toggle that switch again.
   - As I recall, this bug goes back years.
+- Keyboard Maestro
+  - Despite best efforts, trying to change the menubar status icon to “Classic” doesn’t take
  
 ## Appendix: Dev issues
 The preceding content of this README focuses on the “user” experience, i.e., the experience from USER_CONFIGURER’s experience, as a consumer of the repository in its contemperaneous state.
