@@ -6,11 +6,11 @@
 # Fail early on unset variables or command failure
 set -euo pipefail
 
+source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
+
 # Resolve this script's directory (even if sourced)
 this_script_path="${0:A}"
 this_script_dir="${this_script_path:h}"
-
-source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 
 DEFAULTS_DETECTIVE_FUNCTIONS_DIR="${this_script_dir}/defaults_detective"
 report "this_script_dir: $this_script_dir"
