@@ -42,6 +42,7 @@ function conditionally_configure_1Password() {
 
 function authenticate_1Password() {
   report_start_phase_standard
+  
   report "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
 	
   launch_app_and_prompt_user_to_act \
@@ -54,14 +55,16 @@ function authenticate_1Password() {
 
 function configure_authenticated_1Password() {
   # Prompt user to configure settings of 1Password
+  report_start_phase_standard
+  
   report_action_taken "Time to configure 1Password! I'll launch it, and open a window with instructions to follow"
   
   launch_app_and_prompt_user_to_act \
     --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/1Password_how_to_configure.md" \
     "$BUNDLE_ID_1PASSWORD" \
     "Follow the instructions in the Quick Look window to configure 1Password"
-  
-  set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
+
+	report_end_phase_standard
 }
 
 function configure_and_verify_authenticated_1Password() {
