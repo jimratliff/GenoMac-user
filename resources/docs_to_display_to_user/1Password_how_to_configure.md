@@ -40,7 +40,30 @@ Entering: verify_ssh_agent_configuration
 The authenticity of host 'github.com (140.82.116.3)' can't be established.
 ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
 This key is not known by any other names.
-**Are you sure you want to continue connecting (yes/no/[fingerprint])?**
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 ❑ **Respond to that question with “yes”.**
 ### Grant 1Password access to use SSH key for this confirmation test
+1Password will then popup a dialog box: “1Password Access Requested” and “Allow iTerm2 to use SSH Key”
+- Optionally click “Approve for all applications”
+- ❑ Click Authorize
+### Success message
+If the verification test works, you’ll see:
+```
+🪚 Testing SSH auth with: ssh -T git@github.com
+✅ SSH authentication with GitHub succeeded
+✅ Verified: SSH agent is working
+```
+(In fact, this may replace text you already saw on your screen.)
+### Troubleshooting
+#### Make sure the 1Password app is running
+Instead of the success message, you could see:
+```
+🚨 SSH authentication failed. Output:
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+git@github.com: Permission denied (publickey).
+❌ SSH authentication with GitHub failed
+```
+One likely cause of this is that the 1Password app was quit prior to the verification test. Make sure 1Password is running and try again.
+
+
