@@ -342,7 +342,7 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
 ## TODOs
 - Keyboard-navigation hotkeys ⇧⌥⌘F2 – ⇧⌥⌘F7 need to be tested
 - Laptop-specific settings
-  - To date, my development of Project GenoMac has been performed on a Mac mini. Thus, I have not been able to experiment with settings that are relevant only on a laptop, such as battery settings.
+  - To date, my development of Project GenoMac has been performed on a Mac mini. Thus,  I have not been able to experiment with settings that are relevant only on a laptop, such as battery settings.
   - In particular, I should explore the Control Center’s Battery module’s setting.
     - In particular, I believe the legacy mentions of `defaults write com.apple.menuextra.battery ShowPercent -string "NO"` no longer apply.
   - Incorporate new helper function: this_mac_is_a_laptop()
@@ -353,6 +353,8 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
 - Finder
   - ✅ Open new window to HOME is meant to be bootstrap only, not maintenance
   - Show hard disks, external drives, connected servers is meant to be different for admin users than for regular users.
+- Setting apps “Assign to: All Desktops” requires that there already be multiple Spaces
+  - Thus, I need either (a) create at least a second Space early or (b) defer making these assignments until after there are multiple Spaces.
 - Assiging wallpapers to Spaces
   - Keyboard Maestro has a “Set Desktop Image” command that, I believe, is limited to the current Space. You could then iterate over Spaces and set the wallpaper.
     - This may not be preferable to AppleScript-ing the entire process.
