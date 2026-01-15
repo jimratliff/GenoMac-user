@@ -21,19 +21,19 @@ function conditionally_configure_1Password() {
   report_start_phase_standard
 
   # Skip if 1Password has been previously configured for this user (even in an earlier session)
-  if test_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"; then
+  if test_genomac_user_state "$PERM_1PASSWORD_HAS_BEEN_CONFIGURED"; then
     report_action_taken "Skipping 1Password configuration, because it’s already been configured and it’s a bootstrapping step"
     report_end_phase_standard
     return 0
   fi
 
   # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
-  _run_if_not_already_done "$GMU_PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
+  _run_if_not_already_done "$PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
     authenticate_1Password \
     "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step."
 
   # Conditionally prompt user to configure their already-authenticated 1Password
-  _run_if_state "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" \
+  _run_if_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" \
     configure_and_verify_authenticated_1Password \
     "Skipping 1Password configuration, because this user doesn’t want it."
 
@@ -78,7 +78,7 @@ function configure_and_verify_authenticated_1Password() {
   fi
   
   report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
-  set_genomac_user_state "$GMU_PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
+  set_genomac_user_state "$PERM_1PASSWORD_HAS_BEEN_CONFIGURED"
   report_end_phase_standard
 }
 
