@@ -13,16 +13,16 @@ function ask_initial_questions() {
   local prompt
 
   prompt="Does this user want to see, on the desktop, the built-in and external drives?"
-  set_user_state_based_on_yes_no "$GMU_PERM_FINDER_SHOW_DRIVES_ON_DESKTOP" "$prompt"
+  set_user_state_based_on_yes_no "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP" "$prompt"
 
   prompt="Will this user want to SSH authenticate GitHub using 1Password"
-  set_user_state_based_on_yes_no "$GMU_PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" "$prompt"
+  set_user_state_based_on_yes_no "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" "$prompt"
 
   prompt="Will this user sync preferences via Dropbox?"
-  set_user_state_based_on_yes_no "$GMU_PERM_DROPBOX_USER_WANTS_IT" "$prompt"
+  set_user_state_based_on_yes_no "$PERM_DROPBOX_USER_WANTS_IT" "$prompt"
 
   prompt="Will this user want to configure Microsoft Word?"
-  set_user_state_based_on_yes_no "$GMU_PERM_MICROSOFT_WORD_USER_WANTS_IT" "$prompt"
+  set_user_state_based_on_yes_no "$PERM_MICROSOFT_WORD_USER_WANTS_IT" "$prompt"
 
   report_end_phase_standard
 
