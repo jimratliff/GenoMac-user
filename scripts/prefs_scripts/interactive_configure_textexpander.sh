@@ -4,7 +4,7 @@ function conditionally_configure_textexpander() {
   report_start_phase_standard
 
   _run_if_not_already_done \
-    "$GMU_PERM_TEXTEXPANDER_HAS_BEEN_CONFIGURED" \
+    "$PERM_TEXTEXPANDER_HAS_BEEN_CONFIGURED" \
     configure_textexpander \
     "Skipping authenticating TextExpander because it’s already been done"
 
