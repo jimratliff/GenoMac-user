@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 
-safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
+# safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/set_alan_app_settings.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/set_app_state_persistence.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/set_auto_correction_suggestion_settings.sh"
@@ -176,7 +176,7 @@ function perform_basic_user_level_settings() {
   # Keyboard Maestro
   # NOTE: The following function performs the idempotent maintenace steps, which is
   #       separate from the bootstrapping steps of (a) authentication and (b) setting up macro syncing
-  set_keyboard_maestro_settings
+  # set_keyboard_maestro_settings
   
   # OmniOutliner
   set_omnioutliner_settings
