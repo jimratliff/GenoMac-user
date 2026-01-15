@@ -91,7 +91,7 @@ function run_hypervisor() {
   ############### (Further) configure apps that rely upon Dropbox
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
     # interactive_configure_alfred
-    # interactive_configure_keyboard_maestro
+    interactive_configure_keyboard_maestro
   fi
 
 
