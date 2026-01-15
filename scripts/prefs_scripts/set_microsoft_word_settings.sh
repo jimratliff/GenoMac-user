@@ -7,29 +7,29 @@ GENOMAC_USER_LOCAL_MICROSOFT_WORD_RESOURCE_DIRECTORY="$GENOMAC_USER_LOCAL_RESOUR
 function conditionally_configure_microsoft_word() {
   report_start_phase_standard
 
-  if ! test_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_USER_WANTS_IT"; then
+  if ! test_genomac_user_state "$PERM_MICROSOFT_WORD_USER_WANTS_IT"; then
     report_action_taken "Skipping Microsoft Word configuration, because this user doesn’t want it"
     report_end_phase_standard
     return 0
   fi
 
-  if test_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"; then
+  if test_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"; then
     report_action_taken "Skipping Microsoft Word configuration, because it’s already been configured and it’s a bootstrapping step"
     report_end_phase_standard
     return 0
   fi
 
-  if ! test_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"; then
+  if ! test_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"; then
     # You can’t change Microsoft Word’s settings unless the app is first authenticated
     launch_app_and_prompt_user_to_authenticate "$BUNDLE_ID_MICROSOFT_WORD" \
       "I will launch Microsoft Word. Please log in to your Microsoft 365 account. This is necessary for me to set its preferences"
-    set_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"
+    set_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"
   fi
 
   set_microsoft_office_suite_wide_settings
   set_microsoft_word_settings
 
-  set_genomac_user_state "$GMU_PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"
+  set_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"
 
   report_end_phase_standard
 }
@@ -50,7 +50,7 @@ function set_microsoft_word_settings() {
   # As a result, this function is considered a BOOTSTRAP step, not an idempotent, maintenance step.
   #
   # This policy finds expression in `run_hypervisior.sh`, where the state environment variables
-  # associated with the configuration of Microsoft Word are `GMU_PERM_` rather than `GMU_SESH_`.
+  # associated with the configuration of Microsoft Word are `PERM_` rather than `SESH_`.
 
   report_start_phase_standard
   
