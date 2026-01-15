@@ -22,10 +22,12 @@ function interactive_configure_keyboard_maestro() {
   # Because macro syncing relies on the existence of a directory in the user’s Dropbox directory,
   # this bootstrapping step must wait until Dropbox is configured for the user. (It is up
   # to the hypervisor to perform this check before calling this function.)
-  
+
   report_start_phase_standard
   report_action_taken "I will bootstrap Keyboard Maestro for (a) authentication and (b) macro syncing"
 
+  quit_keyboard_maestro_editor_and_engine
+  set_keyboard_maestro_settings
   # Experimental: It’s untested whether the following `defaults write` will, on its own, configure
   # macro syncing with the local directory
   enable_keyboard_maestro_macro_syncing
@@ -48,8 +50,6 @@ function set_keyboard_maestro_settings() {
 
   report_start_phase_standard
   report_action_taken "Implement Keyboard Maestro settings"
-
-  quit_keyboard_maestro_editor_and_engine
   
   # Editor settings
   report_adjust_setting "Set: Do NOT show spash screen at launch"
