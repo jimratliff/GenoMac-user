@@ -10,6 +10,7 @@ source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 # Source required files
 safe_source "${GMU_PREFS_SCRIPTS}/interactive_ask_initial_questions.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_1password.sh"
+safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_alfred.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_dropbox.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_textexpander.sh"
