@@ -26,8 +26,18 @@
   - ❑ You’ll see, *inter alia*, “Thank you, you’re amazing ;)”
 - ❑ Click on the button: “Next Step…”
 
+## Migrate Preferences to Alfred 5
+Suprisingly, and I don’t totally understand it…
+- The window changes to “Migrate Preferences to Alfred 5”
+  - “An older version of Alfred’s preferences has been found”
+  - Preferences: ~/Library/CloudStorage/Dropbox/Preferences_common/Alfred_preferences/ (this may simply be truncated here, because it should have the Alfred_5_preferences subfolder
+  - Local Data: ~/Library/Application Support/Alfred 2
+    - I have no idea where this comes from! Maybe it’s related to setting the sync folder programmatically.
+- ❑ Click the button: “Skip Migration…”
+
 ## Configure macOS permissions
 - (Because this is the configuration of a new user, there are no existing preferences to either backup or migrate. Thus the flow switches directoy to macOS permissions.)
+- **NOTE** Some of the below permissions may already be set if you’ve previously configured another user on the same Mac to use Alfred. Some/all of these permissions appear to be at the system level.
 - The window changes to “Configure macOS Permissions: Alfred needs some simple permissions to serve you efficiently.”
   - “macOS may ask to quit or restart Alfred when granting access, select ‘Later’.”
   - “Alfred will restart at the end of the setup process.”
@@ -50,9 +60,10 @@
         - **NOTE:** I still had to click on “Request macOS Contacts acess” (in order to get the “Next Step…” option, but I declined to turn that permission on.
        
 ## Configure syncing
+- **NOTE** Programmatically setting the sync folder (using defaults write) didn’t seem to work.
 - Preferences » Advanced
   - Syncing
-    - Set preferences folder…
+    - Set preferences folder… (to the Dropbox directory that holds the synced prefs)
     - Confirmation dialog box
       - “Alfred will use the Alfred.alfredprefeences in the specified folder.”
         - “Don’t forget, Time Machine backups are your friend!”
