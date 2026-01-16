@@ -28,6 +28,8 @@ function interactive_configure_alfred() {
   # Specify directory where synced Alfred preferences reside
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_ALFRED" ; success_or_not
   enable_alfred_preferences_syncing
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_ALFRED" ; success_or_not
+  sleep 2
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/Alfred_how_to_configure.md" \
