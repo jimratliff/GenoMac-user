@@ -10,15 +10,18 @@
 
 function conditionally_configure_keyboard_maestro() {
   report_start_phase_standard
+  
   _run_if_not_already_done \
     "$PERM_KEYBOARD_MAESTRO_HAS_BEEN_CONFIGURED" \
     interactive_configure_keyboard_maestro \
     "Skipping bootstrapping of Keyboard Maestro, because this has been done in the past."
+    
   report_end_phase_standard
 }
 
 function interactive_configure_keyboard_maestro() {
-  # Bootstrap Keyboard Maestro for (a) authentication and (b) macro syncing
+  # Bootstrap Keyboard Maestro for (a) registration and (b) macro syncing.
+  #
   # Because macro syncing relies on the existence of a directory in the user’s Dropbox directory,
   # this bootstrapping step must wait until Dropbox is configured for the user. (It is up
   # to the hypervisor to perform this check before calling this function.)
@@ -78,13 +81,9 @@ function set_keyboard_maestro_settings() {
 }
 
 function enable_keyboard_maestro_macro_syncing() {
-
-  # Status as of 12/30/2025: EXPERIMENTAL
-  # `make defaults-detective` perceived only one change following turning macro-syncing on,
-  # and the current function addresses that change.
-  # It is possible that the process of turning on syncing had additional side effects not replicated
-  # by this function.
-
+  # Sets path to synced macro file
+  # This is sufficient to replace the manual interaction for “Sync macros”.
+  
   report_start_phase_standard
   report_action_taken "Enable Keyboard Maestro macro syncing"
   
