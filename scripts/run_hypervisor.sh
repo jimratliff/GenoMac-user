@@ -91,10 +91,12 @@ function run_hypervisor() {
 
   ############### PERM: (Further) configure apps that rely upon Dropbox
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
-    interactive_configure_alfred
     interactive_configure_keyboard_maestro
-  fi
 
+    # Alfred must be configured *after* Keyboard Maestro, because activating the
+    # Powerpack uses a custom Keyboard Maestro macro
+    interactive_configure_alfred
+  fi
 
   ############### Execute post–Dropbox sync operations
 
