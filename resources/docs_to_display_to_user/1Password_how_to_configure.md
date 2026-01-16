@@ -27,7 +27,7 @@ Make 1Password active.
           - (“Use the desktop app to sign in to 1Password in the terminal.”)
            
 ## Return to the terminal
-Now return to the terminal and acknowledge you have cpmpleted the configuration of 1Password.
+Now return to the terminal and acknowledge you have completed the configuration of 1Password.
 ## The test to confirm the configuration of the SSH agent
 ### Authorize the test to confirm the configuration
 The script will test that the SSH Agent configuration works. In the terminal, you’ll see something like:
