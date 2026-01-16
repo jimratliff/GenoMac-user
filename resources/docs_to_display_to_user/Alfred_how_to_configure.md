@@ -16,7 +16,13 @@
 
 ## Activate Alfred Powerpack
 - The window changes to “Activate Alfred Powerpack: Enter your Alfred 5 Powerpack License, or skip to use Alfred’s core features.”
-  - 
+  - “If you have a Mega Supporter License, or purchased since 1st Jan 2022, select ‘Buy or Upgrade Powerpack’ to obtain your free upgrade.’”
+- You can activate Alfred’s Powerpack by using an already-synced custom macro!
+- When you reach this “Activate Alfred Powerpack” window, the focus is already in the text box into which to paste the License.
+- ❑ Click on the Keyboard Macro menubar status icon, and choose “GenoMac Bootstrap » Paste Alfred Powerpack License”
+- This will paste the License code into the text box.
+  - Note that this License text does *not* exist in this repo, but rather is stored in my securely privately synced macro set.
+- ❑ Click on the “Activate” button to confirm the assignments and complete the activation process.
 
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
