@@ -27,17 +27,17 @@ function interactive_configure_alfred() {
 
   # Specify directory where synced Alfred preferences reside
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_ALFRED" ; success_or_not
+  enable_alfred_preferences_syncing
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/Alfred_how_to_configure.md" \
     "$BUNDLE_ID_ALFRED" \
-    "Follow the instructions in the Quick Look window to log into and configure Alfred"
+    "Follow the instructions in the Quick Look window to configure Alfred"
   
   report_end_phase_standard
 }
 
 function enable_alfred_preferences_syncing() {
-
   # Status as of 1/15/2026: EXPERIMENTAL
   # `make defaults-detective` perceived only one change following turning preferences-syncing on,
   # and the current function addresses that change.
@@ -50,9 +50,8 @@ function enable_alfred_preferences_syncing() {
   # Hint: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${GENOMAC_USER_DROPBOX_DIRECTORY}/Preferences_common"
   local Alfred_directory_in_Dropbox="$GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY/Alfred_preferences/Alfred_5_preferences"
   
-  # Editor settings
   report_adjust_setting "Set: Path to Alfred preferences directory in Dropbox"
-  defaults write $DEFAULTS_DOMAINS_KEYBOARD_MAESTRO_EDITOR MacroSharingFile -string "$macro_file_path" ; success_or_not
+  defaults write $DEFAULTS_DOMAINS_ALFRED syncfolder -string "$Alfred_directory_in_Dropbox" ; success_or_not
   
   report_end_phase_standard
 }
