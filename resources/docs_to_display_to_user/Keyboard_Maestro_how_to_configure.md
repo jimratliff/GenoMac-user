@@ -1,13 +1,26 @@
 # How to configure Keyboard Maestro
 
+Context:
+- Keyboard Maestro doesn’t demand that a new user immediately register the app. There is an initial trial period.
+- The following will already have been done by the time you read this:
+  - Your settings for Keyboard Maestro will have been programmatically specified
+  - Keyboard Maestro has been informed where your custom Keyboard Maestro macros are, and has synced them.
+
 ## Launch Keyboard Maestro Editor
 - Make Keyboard Maestro Editor the active app. (The Hypervisor should have launched it for you already.)
 - A dialog may popup: “Allow ‘Keyboard Maestro Engine’ to find devices on local networks?”
   - “This will allow the app to discover, connect to, and collect data from devices on your networks.”
   - ❑ Click “Allow”
- 
-Note: At some point, the editor might popup a dialog box: “We would love to contact you with some helpful tips on how to get the most out of Keyboard Maestro…”
-- ❑ Click “No Thanks”
+  - At some point, the editor might popup a dialog box: “We would love to contact you with some helpful tips on how to get the most out of Keyboard Maestro…”
+    - ❑ Click “No Thanks”
+   
+## Register Keyboard Maestro
+You can register Keyboard Maestro (which requires an email address and serial number) by using an already-synced custom macro!
+
+- ❑ Click on the Keyboard Macro menubar status icon, and choose “Keyboard Maestro Bootstrap » Register Keyboard Maestro”
+- This will choose the menu item: “Keyboard Maestro” » “Register Keyboard Maestro…”, and then populate the email-address and serial-number fields with the credentials under which my Keyboard Maestro is registered.
+  - Note that these credentials do *not* exist in this repo, but rather are stored in my securely privately synced macro set.
+- ❑ Click on the “Register” button to confirm the assignments and complete the registration process.
   
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
