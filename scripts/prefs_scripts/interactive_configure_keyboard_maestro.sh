@@ -27,21 +27,17 @@ function interactive_configure_keyboard_maestro() {
   # to the hypervisor to perform this check before calling this function.)
 
   report_start_phase_standard
-  report_action_taken "I will bootstrap Keyboard Maestro for (a) authentication and (b) macro syncing"
+  report_action_taken "I will bootstrap Keyboard Maestro for (a) registration and (b) macro syncing"
 
   quit_keyboard_maestro_editor_and_engine
   set_keyboard_maestro_settings
-  # Experimental: It’s untested whether the following `defaults write` will, on its own, configure
-  # macro syncing with the local directory
   enable_keyboard_maestro_macro_syncing
 
-  # Interactively prompt the user to authenticate Keyboard Maestro
+  # Interactively prompt the user to register Keyboard Maestro
   launch_app_and_prompt_user_to_act \
     --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/Keyboard_Maestro_how_to_configure.md" \
     "$BUNDLE_ID_KEYBOARDMAESTRO_EDITOR" \
-    "Follow the instructions in the Quick Look window to log into and configure Keyboard Maestro"
-
-    # TODO WIP TBD
+    "Follow the instructions in the Quick Look window to register and configure Keyboard Maestro"
   
   report_end_phase_standard
 }
