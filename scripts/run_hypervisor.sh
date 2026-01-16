@@ -41,27 +41,27 @@ function run_hypervisor() {
   report "${welcome_message} to the GenoMac-user Hypervisor!"
   report "$GMU_HYPERVISOR_HOW_TO_RESTART_STRING"
   
-  ############### Ask initial questions
+  ############### PERM: Ask initial questions
   _run_if_not_already_done \
     "$PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED" \
     ask_initial_questions \
     "Skipping introductory questions, because you've answered them in the past."
   
-  ############### Stow dotfiles
+  ############### SESH: Stow dotfiles
   _run_if_not_already_done \
     --force-logout \
     "$SESH_DOTFILES_HAVE_BEEN_STOWED" \
     stow_dotfiles \
     "Skipping stowing dotfiles, because you've already stowed them during this session."
 
-  ############### Configure primary programmatically implemented settings
+  ############### SESH: Configure primary programmatically implemented settings
   _run_if_not_already_done \
     --force-logout \
     "$SESH_BASIC_IDEMPOTENT_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
     perform_basic_user_level_settings \
     "Skipping basic user-level settings, because they’ve already been set this session"
 
-  ############### Modify Desktop for certain users
+  ############### SESH: Modify Desktop for certain users
   if test_genomac_user_state "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"; then
     _run_if_not_already_done \
       "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED" \
@@ -71,7 +71,7 @@ function run_hypervisor() {
     report_action_taken "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
   fi
   
-  ############### Execute pre-Dropbox bootstrap steps
+  ############### PERM: Execute pre-Dropbox bootstrap steps
   _run_if_not_already_done \
     --force-logout \
     "$PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED" \
@@ -83,13 +83,13 @@ function run_hypervisor() {
   # apps need to be signed into
   conditionally_configure_1Password
 
-  ############### Conditionally configure TextExpander
+  ############### PERM: Conditionally configure TextExpander
   conditionally_configure_textexpander
 
-  ############### Conditionally configure Dropbox
+  ############### PERM: Conditionally configure Dropbox
   conditionally_configure_Dropbox
 
-  ############### (Further) configure apps that rely upon Dropbox
+  ############### PERM: (Further) configure apps that rely upon Dropbox
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
     interactive_configure_alfred
     interactive_configure_keyboard_maestro
