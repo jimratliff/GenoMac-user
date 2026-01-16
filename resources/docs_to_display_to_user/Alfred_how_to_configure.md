@@ -51,11 +51,12 @@
        
 ## Configure syncing
 - Preferences » Advanced
-  - sdfsdfsdf
-  - Confirmation dialog box
-    - “Alfred will use the Alfred.alfredprefeences in the specified folder.”
-      - “Don’t forget, Time Machine backups are your friend!”
-      - “IMPORTANT: If the specified folder is a synced folder, be sure to set up syncing on your primary Mac first and allow Alfred’s settings to fully sync and propagate before setting up other Macs. These Macs will then use the synced preferences.”
+  - Syncing
+    - Set preferences folder…
+    - Confirmation dialog box
+      - “Alfred will use the Alfred.alfredprefeences in the specified folder.”
+        - “Don’t forget, Time Machine backups are your friend!”
+        - “IMPORTANT: If the specified folder is a synced folder, be sure to set up syncing on your primary Mac first and allow Alfred’s settings to fully sync and propagate before setting up other Macs. These Macs will then use the synced preferences.”
       - ❑ Click on the button “Set folder and restart Alfred”
 
 ## Return to terminal and acknowledge
