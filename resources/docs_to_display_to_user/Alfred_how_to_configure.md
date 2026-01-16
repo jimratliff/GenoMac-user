@@ -23,6 +23,8 @@
 - This will paste the License code into the text box.
   - Note that this License text does *not* exist in this repo, but rather is stored in my securely privately synced macro set.
 - ❑ Click on the “Activate” button to confirm the assignments and complete the activation process.
+  - ❑ You’ll see, *inter alia*, “Thank you, you’re amazing ;)”
+- ❑ Click on the button: “Next Step…”
 
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
