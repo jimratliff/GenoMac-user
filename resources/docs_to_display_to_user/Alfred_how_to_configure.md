@@ -26,5 +26,20 @@
   - ❑ You’ll see, *inter alia*, “Thank you, you’re amazing ;)”
 - ❑ Click on the button: “Next Step…”
 
+## Configure macOS permissions
+- (Because this is the configuration of a new user, there are no existing preferences to either backup or migrate. Thus the flow switches directoy to macOS permissions.)
+- The window changes to “Configure macOS Permissions: Alfred needs some simple permissions to serve you efficiently.”
+  - “macOS may ask to quit or restart Alfred when granting access, select ‘Later’.”
+  - “Alfred will restart at the end of the setup process.”
+  - The three permissions sought
+    - “Accessibility”
+      - ❑ Click on “Request macOS Accessibility access” and follow instructions.
+    - “Full Disk Access”
+      - ❑ Click on “Open macOS Full Disk Access perferences” and follow instructions.
+    - “Contacts”
+      - ❌ Click on “Request macOS Contacts access” and follow instructions.
+        - “Needed to search and display contacts in Alfred’s contact viewer”
+        - I’m electing **not** to take this step, until/unless I have a need for it
+
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
