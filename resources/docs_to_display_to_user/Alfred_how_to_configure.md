@@ -33,13 +33,30 @@
   - “Alfred will restart at the end of the setup process.”
   - The three permissions sought
     - “Accessibility”
+      - “Alfred requires accessibility access on your Mac if you’d like to use snippet expansion, or to simulate key events (from workflows, file selection, clipboard integration and system commands).
       - ❑ Click on “Request macOS Accessibility access” and follow instructions.
+        - Dialog box: “‘Alfred 5.app’ would like to control this computer using accessibility features.”
+          - “Grant access to this application in Privacy & Security settings, located in System Settings.”
+          - ❑ Click on “Open System Settings”
     - “Full Disk Access”
+      - “Allowing Full Disk Access gives Alfred access to the user-level files on your Disk. This is essential if you’d like Alfred to be able to search for your browser bookmarks and other files in your home Library folder.”
       - ❑ Click on “Open macOS Full Disk Access perferences” and follow instructions.
+      - **NOTE:** Although System Settings » Full Disk Access window did open, Alfred was *not* listed by default.
+      - ❑ **Manually** add Alfred 5 to the list of Full Disk Access apps.
     - “Contacts”
       - ❌ Click on “Request macOS Contacts access” and follow instructions.
         - “Needed to search and display contacts in Alfred’s contact viewer”
         - I’m electing **not** to take this step, until/unless I have a need for it
+        - **NOTE:** I still had to click on “Request macOS Contacts acess” (in order to get the “Next Step…” option, but I declined to turn that permission on.
+       
+## Configure syncing
+- Preferences » Advanced
+  - sdfsdfsdf
+  - Confirmation dialog box
+    - “Alfred will use the Alfred.alfredprefeences in the specified folder.”
+      - “Don’t forget, Time Machine backups are your friend!”
+      - “IMPORTANT: If the specified folder is a synced folder, be sure to set up syncing on your primary Mac first and allow Alfred’s settings to fully sync and propagate before setting up other Macs. These Macs will then use the synced preferences.”
+      - ❑ Click on the button “Set folder and restart Alfred”
 
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
