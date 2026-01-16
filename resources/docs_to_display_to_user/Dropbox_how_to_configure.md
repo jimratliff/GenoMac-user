@@ -30,16 +30,18 @@
           - Only selected folders will live on this computer. Unselected folders can be accessed on dropbox.com
           - Click “Confirm”
 ## Remainder of onboarding
+### Open Dropbox
 - New window: “Welcome back!
   - “Use the right-click menu to share, send for signature, view version history, and more.”
   - Click “Next”
 - New window: “We’re happy you’re back”
   - “Setup is finished.”
   - Click “Open Dropbox”
+### Allow syncing
 - Several new windows pop up:
   - Frontmost: “Dropbox.app” would like to start syncing.”
     - ❑ Click “OK” (other choice is “Don’t allow”)
-      - (This makes all the new windows, even ones I didn’t read, disappear)
+      - (This makes all the other Dropbox dialog box—but not the Finder window—disappear)
     - “Set Up Drobox”
       - “Allow Dropbox to sync”
         - “That way, when you add or edit files, those changes will sync across everywhere you access Dropbox.”
@@ -50,9 +52,11 @@
   - “Your Dropbox now lives in a secure location”
   - “Dropbox can be accessed from the shortcut under Locations in Finder.”
   - “Take our tour to check out flexible options for file storage on this Mac.”
+### Make Preferences_common available offline
+-The Finder window pointing to the Dropbox folder shows all of its contents as online-only.
+- The Preferences_common directory should be available-offline
+  - ❑ Right-click on the Preferences_common directory and choose “Make available offline”
 
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
-
-
 
