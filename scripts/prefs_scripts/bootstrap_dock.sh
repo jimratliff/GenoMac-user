@@ -47,6 +47,7 @@ function bootstrap_dock() {
   
   report_action_taken "Remove all persistent apps from Dock in preparation for repopulation" 
   defaults delete $domain $dock_persistent_apps_key ; success_or_not
+  kill_the_dock_metaphorically
   
   # In this implementation, the 'persistent-others' key is not used.
   # local dock_ephemeral_files_folders_key="persistent-others"
@@ -64,6 +65,14 @@ function bootstrap_dock() {
     dock_item="$(dock_app_entry $app_path)"
     defaults write $domain $dock_persistent_apps_key -array-add $dock_item  ; success_or_not
   done
+  
+  kill_the_dock_metaphorically
+  
+  report_end_phase_standard
+}
+
+function kill_the_dock_metaphorically() {
+  report_start_phase_standard
   
   report_action_taken "Killing Dock (metaphorically)."
   killall Dock 2>/dev/null || true ; success_or_not
