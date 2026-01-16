@@ -91,7 +91,7 @@ function run_hypervisor() {
 
   ############### (Further) configure apps that rely upon Dropbox
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
-    # interactive_configure_alfred
+    interactive_configure_alfred
     interactive_configure_keyboard_maestro
   fi
 
@@ -103,12 +103,15 @@ function run_hypervisor() {
 
   ############### Last act: Delete all SESH_ state environment variables
 
-  delete_all_user_SESH_states
+  # delete_all_user_SESH_states
 
   set_genomac_user_state "$SESH_REACHED_FINALITY"
+  
   # TODO: Un-comment-out the below 'figlet' line after GenoMac-system is refactored so that it works
   # figlet "The End"
-  hypervisor_force_logout
+  
+  # hypervisor_force_logout
+  
   report_end_phase_standard
 }
 
