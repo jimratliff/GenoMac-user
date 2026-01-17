@@ -5,13 +5,13 @@ function conditionally_configure_textexpander() {
 
   _run_if_not_already_done \
     "$PERM_TEXTEXPANDER_HAS_BEEN_CONFIGURED" \
-    configure_textexpander \
+    interactive_configure_textexpander \
     "Skipping authenticating TextExpander because it’s already been done"
 
   report_end_phase_standard
 }
 
-function configure_textexpander() {
+function interactive_configure_textexpander() {
   report_start_phase_standard
   
   launch_app_and_prompt_user_to_act \
