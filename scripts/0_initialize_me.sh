@@ -24,7 +24,7 @@
 #   ~/.genomac-user/
 #     external/
 #       genomac-shared/
-#         assign_coomon_environment_variables.sh
+#         assign_common_environment_variables.sh
 #         helpers-apps.h
 #         …
 #         helpers.sh
