@@ -60,15 +60,27 @@ Suprisingly, and I don’t totally understand it…
         - **NOTE:** I still had to click on “Request macOS Contacts acess” (in order to get the “Next Step…” option, but I declined to turn that permission on.
        
 ## Configure syncing
-- **NOTE** Programmatically setting the sync folder (using defaults write) didn’t seem to work.
-- Preferences » Advanced
-  - Syncing
-    - Set preferences folder… (to the Dropbox directory that holds the synced prefs)
-    - Confirmation dialog box
-      - “Alfred will use the Alfred.alfredprefeences in the specified folder.”
-        - “Don’t forget, Time Machine backups are your friend!”
-        - “IMPORTANT: If the specified folder is a synced folder, be sure to set up syncing on your primary Mac first and allow Alfred’s settings to fully sync and propagate before setting up other Macs. These Macs will then use the synced preferences.”
-      - ❑ Click on the button “Set folder and restart Alfred”
+### Context for configuring perference syncing
+- **NOTE:** The Hypervisor has opened the following folder in the Finder. You may need to look behind some other windows for it.
+  - ~/Library/CloudStorage/Dropbox/Preferences_common/Alfred_preferences
+  - This `Alfred_preferences` folder itself contains a subfolder: `Alfred_5_preferences`, which Alfred will use to find the `Alfred.alfredpreferences` file.
+### Procedure to configure preference syncing
+- Make Alfred’s Preferences window active
+- Click “Advanced” in the left column
+- In the lower right-hand side of that window, is the “Syncing” area
+- Click the “Set preferences folder…” button
+- This opens an Open File dialog, which is looking for a particular **folder* (not a file)
+- You will want to select a particular path:
+  - ~/Library/CloudStorage/Dropbox/Preferences_common/Alfred_preferences/Alfred_5_preferences
+  - The easiest way to provide this path is to find the Finder window the Hypervisor has already opened:
+    - ~/Library/CloudStorage/Dropbox/Preferences_common/Alfred_preferences
+    - This folder contains within it: Alfred_5_preferences
+    - Drag the folder icon for Alfred_5_preferences into the Open File dialog box in the Alfred preferences window.
+  - Confirmation dialog box
+    - “Alfred will use the Alfred.alfredprefeences in the specified folder.”
+      - “Don’t forget, Time Machine backups are your friend!”
+      - “IMPORTANT: If the specified folder is a synced folder, be sure to set up syncing on your primary Mac first and allow Alfred’s settings to fully sync and propagate before setting up other Macs. These Macs will then use the synced preferences.”
+    - ❑ Click on the button “Set folder and restart Alfred”
 
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
