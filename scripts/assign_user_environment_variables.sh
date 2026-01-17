@@ -59,12 +59,6 @@ GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES=("1password" "BetterTouchTool" "git" "hom
 # Export environment variables to be available in all subsequent shells
 report_action_taken "Exporting environment variables specific to GenoMac-user."
 
-# function export_and_report() {
-#   local var_name="$1"
-#   report "export $var_name: '${(P)var_name}'"
-#   export "$var_name"
-# }
-
 export_and_report COMMAND_CHAR
 export_and_report CONTROL_CHAR
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY
