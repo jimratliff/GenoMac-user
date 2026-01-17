@@ -96,7 +96,7 @@ function run_hypervisor() {
 
     # Alfred must be configured *after* Keyboard Maestro, because activating the
     #   Powerpack uses a custom Keyboard Maestro macro
-    # interactive_configure_alfred
+    interactive_configure_alfred
   fi
 
   ############### Execute post–Dropbox sync operations
