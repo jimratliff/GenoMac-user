@@ -3,7 +3,7 @@
 function conditionally_configure_alfred() {
   report_start_phase_standard
   
-  _run_if_not_already_done "$PERM_ALFRED_HAS_BEEN_CONFIGURED" \
+  run_if_user_has_not_done "$PERM_ALFRED_HAS_BEEN_CONFIGURED" \
     interactive_configure_alfred \
     "Skipping configuring Alfred, because it’s already been configured"
   
