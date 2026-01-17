@@ -69,7 +69,7 @@ Suprisingly, and I don’t totally understand it…
 - Click “Advanced” in the left column
 - In the lower right-hand side of that window, is the “Syncing” area
 - Click the “Set preferences folder…” button
-- This opens an Open File dialog, which is looking for a particular **folder* (not a file)
+- This opens an Open File dialog, which is looking for a particular **folder** (not a file)
 - You will want to select a particular path:
   - ~/Library/CloudStorage/Dropbox/Preferences_common/Alfred_preferences/Alfred_5_preferences
   - The easiest way to provide this path is to find the Finder window the Hypervisor has already opened:
