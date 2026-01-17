@@ -8,8 +8,6 @@
 
 set -euo pipefail
 
-GENOMAC_NAMESPACE="com.virtualperfection.genomac"
-
 # Specify location of PlistBuddy
 PLISTBUDDY_PATH='/usr/libexec/PlistBuddy'
 
@@ -69,7 +67,6 @@ report_action_taken "Exporting environment variables specific to GenoMac-user."
 
 export_and_report COMMAND_CHAR
 export_and_report CONTROL_CHAR
-export_and_report GENOMAC_NAMESPACE
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH
