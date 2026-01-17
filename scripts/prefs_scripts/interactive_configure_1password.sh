@@ -28,12 +28,12 @@ function conditionally_configure_1Password() {
   fi
 
   # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
-  _run_if_not_already_done "$PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
+  run_if_user_has_not_done "$PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
     authenticate_1Password \
     "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step."
 
   # Conditionally prompt user to configure their already-authenticated 1Password
-  _run_if_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" \
+  run_if_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" \
     configure_and_verify_authenticated_1Password \
     "Skipping 1Password configuration, because this user doesn’t want it."
 
