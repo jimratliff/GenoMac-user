@@ -25,14 +25,14 @@ function bootstrap_preview_app() {
   "$PLISTBUDDY_PATH" -c "Delete '$toolbar_key'" "$plist_path" 2>/dev/null || true
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key' dict" "$plist_path"
   
-  # Basic toolbar settings (match your sample: all 1)
-  report_adjust_setting "Show Icon and text in toolbar"
+  # Basic toolbar settings
+  report_adjust_setting "Show Icon and text in toolbar${NEWLINE}"
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Display Mode' integer 1" "$plist_path"
-  report_adjust_setting "Small toolbar icons"
+  report_adjust_setting "Small toolbar icons${NEWLINE}"
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Icon Size Mode' integer 1" "$plist_path"
-  report_adjust_setting "Show toolbar"
+  report_adjust_setting "Show toolbar${NEWLINE}"
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Is Shown' bool true" "$plist_path"
-  report_adjust_setting "Small/compact toolbar size"
+  report_adjust_setting "Small/compact toolbar size${NEWLINE}"
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Size Mode' integer 1" "$plist_path"
   
   # The toolbar items, in order
