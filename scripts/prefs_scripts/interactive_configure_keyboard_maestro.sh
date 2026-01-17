@@ -11,7 +11,7 @@
 function conditionally_configure_keyboard_maestro() {
   report_start_phase_standard
   
-  _run_if_not_already_done \
+  run_if_user_has_not_done \
     "$PERM_KEYBOARD_MAESTRO_HAS_BEEN_CONFIGURED" \
     interactive_configure_keyboard_maestro \
     "Skipping bootstrapping of Keyboard Maestro, because this has been done in the past."
