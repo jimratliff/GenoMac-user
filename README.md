@@ -23,6 +23,17 @@ git pull --recurse-submodules origin main
 
 (The `--recurse-submodules` ensures that the local version of submodule GenoMac-shared is updated to the commit specified by the GenoMac-user origin repository.)
 
+### Running the Hypervisor
+The Hypervisor is a scripting function that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
+
+The Hypervisor is run by:
+```
+cd ~/.genomac-user
+make run-hypervisor
+```
+
+At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again (`make run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off.
+
 ### Re-“stow” the dotfiles
 
 Any changes to existing dotfiles will be pulled down to the local clone as a result of “[Refresh local clone](#refresh-local-clone).” Only if the *structure* of the dotfiles has changed is it necessary to re-“stow” the dotfiles. By a change in structure, I mean the addition or removal of a dotfile or a change in location of a dotfile.
