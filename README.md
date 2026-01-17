@@ -399,7 +399,7 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
 ## Appendix: Dev issues
 The preceding content of this README focuses on the “user” experience, i.e., the experience from USER_CONFIGURER’s experience, as a consumer of the repository in its contemperaneous state.
 
-In constrast, the present appendix addresses issues about how this repo can be changed and those changes propagated and used by USER_CONFIGURER (even if USER_CONFIGURER is the entity making those changes).
+In contrast, the present appendix addresses issues about how this repo can be changed and those changes propagated and used by USER_CONFIGURER (even if USER_CONFIGURER is the entity making those changes).
 
 ### Configure the GitHub remote to use SSH for pushing from local to GitHub
 This repo is public so that it can be easily cloned at the beginning of setting up a user (way before 1Password and its SSH agent get set up). But, ultimately, the configuring user will want to make changes to the repo, and this requires being able to authenticate with GitHub.
@@ -411,13 +411,18 @@ Thus, we instead configure separate URLs for fetch and push:
 cd ~/.genomac-user
 
 # Set the fetch URL to HTTPS (no auth needed for public repo)
-git remote set-url origin https://github.com/USERNAME/REPO.git
+git remote set-url origin https://github.com/jimratliff/genomac-user.git
 
 # Set the push URL to SSH (uses 1Password SSH agent)
-git remote set-url --push origin git@github.com:USERNAME/REPO.git
+git remote set-url --push origin git@github.com:jimratliff/genomac-user.git
 ```
 
 ### Incorporating the GenoMac-shared repo as a submodule
+#### To add GenoMac-shared as a submodule of GenoMac-user
+```
+cd ~/.genomac-user
+git submodule add https://github.com/jimratliff/genomac-shared.git external/genomac-shared
+```
 #### For the consumer
 For the consumer of GenoMac-user (and indirectly of GenoMac-shared), updating the local clone of GenoMac-user is done via:
 ```
