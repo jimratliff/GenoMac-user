@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-function ask_initial_questions() {
+function interactive_ask_initial_questions() {
 
   # Ask questions to the executing user that will guide the remainder of the Hypervisor process.
   # Typically, the answer to each true/false question depends only on the particular user,
