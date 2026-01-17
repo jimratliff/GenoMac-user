@@ -25,14 +25,21 @@ function interactive_configure_alfred() {
 
   report "Time to configure Alfred! I’ll launch it, and open a window with instructions for next steps"
 
+  # DEPRECATED: See function enable_alfred_preferences_syncing() below for more details
+  #
   # Specify directory where synced Alfred preferences reside
-  quit_app_by_bundle_id_if_running "$BUNDLE_ID_ALFRED" ; success_or_not
-  enable_alfred_preferences_syncing
-  quit_app_by_bundle_id_if_running "$BUNDLE_ID_ALFRED" ; success_or_not
-  sleep 2
-	
+  # quit_app_by_bundle_id_if_running "$BUNDLE_ID_ALFRED" ; success_or_not
+  # enable_alfred_preferences_syncing
+  # quit_app_by_bundle_id_if_running "$BUNDLE_ID_ALFRED" ; success_or_not
+  # sleep 2
+
+  # Specify folder that contains the `Alfred_5_preferences` directory that contains the Alfred preferences file
+  # By opening this container folder, the executing user can drag the `Alfred_5_preferences` folder icon
+  # into the Open-file dialog presented under Advanced » Syncing » Set preferences folder…
+  local container_directory="$GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY/Alfred_preferences"
   launch_app_and_prompt_user_to_act \
     --show-doc "${GENOMAC_USER_LOCAL_DOCUMENTATION_DIRECTORY}/Alfred_how_to_configure.md" \
+	--show-folder "$container_directory" \
     "$BUNDLE_ID_ALFRED" \
     "Follow the instructions in the Quick Look window to configure Alfred"
   
@@ -40,11 +47,12 @@ function interactive_configure_alfred() {
 }
 
 function enable_alfred_preferences_syncing() {
-  # Status as of 1/15/2026: EXPERIMENTAL
-  # `make defaults-detective` perceived only one change following turning preferences-syncing on,
-  # and the current function addresses that change.
-  # It is possible that the process of turning on syncing had additional side effects not replicated
-  # by this function.
+  # Status as of 1/16/2026: DEPRECATED
+  # Even when the `syncfolder` defaults write key is successfully set to $Alfred_directory_in_Dropbox,
+  #   Alfred doesn’t successfully pull workflows from it.
+  # Diagnosis: Although Alfred internally stores the sync directory in this key, merely setting this key
+  #            doesn’t by itself cause Alfred to that directory as the sync directory.
+  # Conclusion: There’s no alternative to manually setting the Preferences » Advanced » Syncing setting.
 
   report_start_phase_standard
   report_action_taken "Enable Alfred preference syncing"
