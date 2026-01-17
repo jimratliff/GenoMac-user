@@ -5,14 +5,14 @@ function conditionally_configure_Dropbox() {
   
   if test_genomac_user_state "$PERM_DROPBOX_USER_WANTS_IT"; then
     _run_if_not_already_done "$PERM_DROPBOX_HAS_BEEN_CONFIGURED" \
-      configure_Dropbox \
+      interactive_configure_Dropbox \
       "Skipping basic bootstrap operations, because they’ve already been performed"
   fi
   
   report_end_phase_standard
 }
 
-function configure_Dropbox() {
+function interactive_configure_Dropbox() {
   report_start_phase_standard
 
   report "Time to configure Dropbox! I’ll launch it, and open a window with instructions for next steps"
