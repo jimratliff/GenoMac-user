@@ -44,10 +44,6 @@ GMU_SCRIPTS_DIR="${this_script_path:h}"                                 # script
 GMU_PREFS_SCRIPTS="${GMU_SCRIPTS_DIR}/prefs_scripts"                    # scripts/prefs_scripts
 GMU_HELPERS_DIR="${GMU_SCRIPTS_DIR:h}/external/genomac-shared/scripts"  # external/genomac-shared/scripts
 
-master_common_helpers_script="${GMU_HELPERS_DIR}/helpers.sh"
-repo_specific_environment_variables_script="${GMU_SCRIPTS_DIR}/assign_user_environment_variables.sh"
-environment_variables_for_state_enums_script="${GMU_SCRIPTS_DIR}/assign_enum_env_vars_for_states.sh"
-
 function source_with_report() {
   # Ensures that an error is raised if a `source` of the file in the supplied argument fails.
   #
@@ -63,9 +59,14 @@ function source_with_report() {
   fi
 }
 
-source_with_report "${master_common_helpers_script}"
-source_with_report "${repo_specific_environment_variables_script}"
-source_with_report "${environment_variables_for_state_enums_script}"
+# Source master helpers script from GenoMac-shared submodule
+source_with_report "${GMU_HELPERS_DIR}/helpers.sh}"
+
+# Source repo-specific environment-variables script
+source_with_report "${GMU_SCRIPTS_DIR}/assign_user_environment_variables.sh"
+
+# Source environment variables corresponding to enums for states
+source_with_report "${GMU_SCRIPTS_DIR}/assign_enum_env_vars_for_states.sh"
 
 # Note: The above source of master_common_helpers_script will make available export_and_report(),
 #       which is used directly below.
