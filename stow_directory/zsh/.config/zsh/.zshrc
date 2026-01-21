@@ -6,14 +6,7 @@ case $- in
   *) return ;;   # non-interactive: exit early
 esac
 
-# ======================================================================
-# Homebrew prefix helper (for plugins below)
-# ======================================================================
-# This system REQUIRES Homebrew - fail loudly if missing
-if ! HOMEBREW_PREFIX="$(/opt/homebrew/bin/brew --prefix 2>/dev/null)"; then
-  echo >&2 "FATAL: Homebrew not found. Bootstrap/maintenance system may have failed."
-  return 1
-fi
+crash_if_homebrew_not_installed
 
 # ======================================================================
 # Programmable completion (system zsh)
