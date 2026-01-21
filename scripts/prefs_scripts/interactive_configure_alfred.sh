@@ -57,7 +57,7 @@ function enable_alfred_preferences_syncing() {
   report_start_phase_standard
   report_action_taken "Enable Alfred preference syncing"
 
-  # Hint: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${GENOMAC_USER_DROPBOX_DIRECTORY}/Preferences_common"
+  # Hint: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Preferences_common"
   local Alfred_directory_in_Dropbox="$GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY/Alfred_preferences/Alfred_5_preferences"
   
   report_adjust_setting "Set: Path to Alfred preferences directory in Dropbox"
