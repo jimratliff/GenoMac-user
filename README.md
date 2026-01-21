@@ -384,6 +384,9 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - To replace Antnotes, which can’t be programmatically configured, I now have a Keyboard Maestro macro (“Show Spaces assignments”) that, when trigged from the KM status menu, pops up and displays a `space_descriptions.pgn` that is assumed to be the typical screenshot of ~/Dropbox/Users/$USER/Prefs/Mission_Control_wallpapers. 
  
 ## Known issues
+- The test for existence of Homebrew assumes an Apple Silicon Mac rather than an Intel Mac.
+  - See `crash_if_homebrew_not_installed` in GenoMac-shared/scripts/helpers-apps.sh and, in particular, its
+    reliance on the location `/opt/homebrew/bin/brew`.
 - Generally
   - Some settings *appear* *initially* not to take, but do in fact take effect after a few logout/login cycles. Examples of these include:
     - Finder: Calculate all sizes
