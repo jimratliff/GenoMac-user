@@ -425,10 +425,10 @@ Thus, we instead configure separate URLs for fetch and push:
 cd ~/.genomac-user
 
 # Set the fetch URL to HTTPS (no auth needed for public repo)
-git remote set-url origin https://github.com/jimratliff/genomac-user.git
+git remote set-url origin https://github.com/jimratliff/GenoMac-user.git
 
 # Set the push URL to SSH (uses 1Password SSH agent)
-git remote set-url --push origin git@github.com:jimratliff/genomac-user.git
+git remote set-url --push origin git@github.com:jimratliff/GenoMac-user.git
 ```
 
 ### Incorporating the GenoMac-shared repo as a submodule
