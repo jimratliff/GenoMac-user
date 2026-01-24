@@ -63,3 +63,11 @@ dev-update-repo-and-submodule:
 	git diff --cached --quiet external/genomac-shared || git commit -m "Update genomac-shared submodule"
 	git push origin main
 
+# Configure remote for HTTPS fetch and SSH push
+# Sets the fetch URL to HTTPS (no auth needed for public repo)
+# Sets the push URL to SSH (uses 1Password SSH agent)
+dev-configure-remote-for-https-fetch-and-ssh-push:
+	cd ~/.genomac-user
+	git remote set-url origin https://github.com/jimratliff/GenoMac-user.git
+	git remote set-url --push origin git@github.com:jimratliff/GenoMac-user.git
+
