@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 ############### OVERVIEW OF PUBLIC INTERFACE
 
