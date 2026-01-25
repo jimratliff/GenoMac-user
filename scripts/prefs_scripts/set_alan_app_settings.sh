@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 function set_alan_app_settings() {
   # HOW TO IMPLEMENT A CHANGE OF COLORS:
