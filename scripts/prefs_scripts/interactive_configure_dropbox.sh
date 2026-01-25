@@ -1,4 +1,4 @@
-#!/usr/bin/env zs
+#!/usr/bin/env zsh
 
 function conditionally_configure_Dropbox() {
   report_start_phase_standard
