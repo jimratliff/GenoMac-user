@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # Enable and/or disable hotkey activation of particular commands.
 #
