@@ -1,4 +1,4 @@
-#!/usr/bin/env zs
+#!/usr/bin/env zsh
 
 # Conditionally prompts/guides user to (a) sign into their 1Password account and (b) configure its SSH agent
 #
