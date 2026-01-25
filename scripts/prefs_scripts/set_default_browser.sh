@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 function set_default_browser() {
   # Sets the user’s chosen browser as the default browser. (See "$chosen_browser_id".)
