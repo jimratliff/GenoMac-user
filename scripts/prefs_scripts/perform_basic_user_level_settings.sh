@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-
 # safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/set_alan_app_settings.sh"
 safe_source "${GMU_PREFS_SCRIPTS}/set_app_state_persistence.sh"
