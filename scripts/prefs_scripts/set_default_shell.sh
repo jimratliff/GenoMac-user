@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 function set_default_shell() {
   # Ensure user’s login shell is the Homebrew-installed version of zsh (idempotent)
