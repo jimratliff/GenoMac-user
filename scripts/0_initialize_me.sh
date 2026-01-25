@@ -1,4 +1,4 @@
-#!/usr/bin/env zs
+#!/usr/bin/env zsh
 
 # Intended to be sourced at the beginning of every entry-point script in ~/.genomac-user/
 #
