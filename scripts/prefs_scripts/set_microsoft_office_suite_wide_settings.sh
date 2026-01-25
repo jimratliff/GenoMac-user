@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 function set_microsoft_office_suite_wide_settings() {
 
