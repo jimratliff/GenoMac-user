@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 safe_source "${GMU_PREFS_SCRIPTS}/set_microsoft_office_suite_wide_settings.sh"
 
