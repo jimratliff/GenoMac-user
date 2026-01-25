@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 safe_source "${GMU_PREFS_SCRIPTS}/bootstrap_dock.sh" 
 safe_source "${GMU_PREFS_SCRIPTS}/bootstrap_finder.sh" 
