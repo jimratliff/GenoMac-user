@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 function set_default_apps_to_open() {
   # Sets default app(s) for certain document type(s)
