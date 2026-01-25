@@ -1,6 +1,4 @@
-#!/bin/zsh
-
-############################## BEGIN SCRIPT PROPER ##############################
+#!/usr/bin/env zsh
 
 function set_iterm_settings() {
 
