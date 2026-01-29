@@ -37,10 +37,19 @@ set -euo pipefail
 
 echo "Inside /scripts/0_initialize_me_first.sh"
 
-# Resolve directory of the current script
-this_script_path="${0:A}"
+# Get path of THIS script, even when sourced
+# Explanation:
+# %x — zsh prompt escape meaning "path of the script being sourced"
+# ${(%):-%x} — trick to evaluate a prompt escape outside a prompt (the (%) flag)
+# ${...:A} — resolve to absolute path
+# So ${${(%):-%x}:A} means "the absolute path of the file currently being sourced."
+this_script_path="${${(%):-%x}:A}"                  # ~/.genomac-system/scripts/0_initialize_me_first.sh
 
-GMU_SCRIPTS_DIR="${this_script_path:h}"                                 # scripts
+GENOMAC_SYSTEM_SCRIPTS="${this_script_path:h}"      # ~/.genomac-system/scripts
+GENOMAC_SYSTEM_ROOT="${GENOMAC_SYSTEM_SCRIPTS:h}"   # ~/.genomac-system
+GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_SYSTEM="${GENOMAC_SYSTEM_ROOT}/external/genomac-shared" # ~/.genomac-system/external/genomac-shared
+
+GENOMAC_USER_SCRIPTS="${this_script_path:h}"                                 # scripts
 GMU_PREFS_SCRIPTS="${GMU_SCRIPTS_DIR}/prefs_scripts"                    # scripts/prefs_scripts
 GMU_HELPERS_DIR="${GMU_SCRIPTS_DIR:h}/external/genomac-shared/scripts"  # external/genomac-shared/scripts
 
