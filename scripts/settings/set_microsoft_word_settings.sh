@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
-safe_source "${GMU_PREFS_SCRIPTS}/set_microsoft_office_suite_wide_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_microsoft_office_suite_wide_settings.sh"
 
-GENOMAC_USER_LOCAL_MICROSOFT_WORD_RESOURCE_DIRECTORY="$GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY/microsoft_word"
+GENOMAC_USER_LOCAL_MICROSOFT_WORD_RESOURCE_DIRECTORY="$GMU_RESOURCES/microsoft_word"
 
 function conditionally_configure_microsoft_word() {
   report_start_phase_standard
