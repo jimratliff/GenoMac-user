@@ -2,14 +2,6 @@
 This list is being generated January 28, 2026 during a major refactoring of GenoMac-user
 (to conform to the advancements during the recent Hypervisor-transformation of GenoMac-system).
 
-- shebang: Use portable version: #!/usr/bin/env zsh
-  - ✅ GenoMac-user: Use only #!/usr/bin/env zsh
-  - ❑ GeoMac-system: Use only #!/usr/bin/env zsh
-- ✅ scripts/tests
-  - ✅ Create scripts/tests directory
-  - ✅ rename path of each test script
-  - ✅ All of the `make` recipes that target these scripts must be updated to reflect the current directory
-    scripts/tests (instead of the prior scripts/).
 - ❑ Renamimg 0_initialize_me.sh to 0_initialize_me_first.sh
   - ✅ Rename the function itself
   - ❑ Make more robust how it determines its own directory (i.e., don’t use `"${0:A}"`)
@@ -39,3 +31,11 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - set_power_management_settings.sh
     - Is this really at the user level instead of system level?
   - ❑ Add an interactive request to set the screensaver to Matrix
+- ✅ shebang: Use portable version: #!/usr/bin/env zsh
+  - ✅ GenoMac-user: Use only #!/usr/bin/env zsh
+  - ✅ GeoMac-system: Use only #!/usr/bin/env zsh
+- ✅ scripts/tests
+  - ✅ Create scripts/tests directory
+  - ✅ rename path of each test script
+  - ✅ All of the `make` recipes that target these scripts must be updated to reflect the current directory
+    scripts/tests (instead of the prior scripts/).
