@@ -69,40 +69,4 @@ repo_specific_environment_variables="${GENOMAC_USER_SCRIPTS}/assign_user_environ
 echo "Source ${repo_specific_environment_variables}"
 source "${repo_specific_environment_variables}"
 
-############### vvvvvvvvv DEPRECATED vvvvvvvvv ###############
-
-# TODO: These should be moved to scripts/assign_user_environment_variables.sh
-# GMU_PREFS_SCRIPTS="${GMU_SCRIPTS_DIR}/prefs_scripts"                    # scripts/prefs_scripts
-# DEPRECATED: GMU_HELPERS_DIR="${GMU_SCRIPTS_DIR:h}/external/genomac-shared/scripts"  # external/genomac-shared/scripts
-
-function source_with_report() {
-  # Ensures that an error is raised if a `source` of the file in the supplied argument fails.
-  #
-  # Defining this function here solves a chicken-or-egg problem: We’d like to use the helper 
-  # safe_source(), but it hasn’t been sourced yet. The current function is quite as full functional 
-  # but will do for the initial sourcing of helpers.
-  local file="$1"
-  if source "$file"; then
-    echo "Sourced: $file"
-  else
-    return "Failed to source: $file"
-    return 1
-  fi
-}
-
-# Source master helpers script from GenoMac-shared submodule
-source_with_report "${GMU_HELPERS_DIR}/helpers.sh}"
-
-# Source repo-specific environment-variables script
-source_with_report "${GMU_SCRIPTS_DIR}/assign_user_environment_variables.sh"
-
-# Source environment variables corresponding to enums for states
-source_with_report "${GMU_SCRIPTS_DIR}/assign_enum_env_vars_for_states.sh"
-
-# Note: The above source of master_common_helpers_script will make available export_and_report(),
-#       which is used directly below.
-export_and_report GMU_SCRIPTS_DIR
-export_and_report GMU_PREFS_SCRIPTS
-export_and_report GMU_HELPERS_DIR
-
 echo "Leaving /scripts/0_initialize_me_first.sh"
