@@ -2,6 +2,8 @@
 
 # Intended to be sourced at the beginning of every entry-point script in ~/.genomac-user/
 #
+# TODO: Revisit, after 1/29/2026 refactoring, the below claims about what this script does.
+#
 # Performs:
 # - Exports:
 #   - GMU_SCRIPTS_DIR
