@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # Functions for the configuration of Keyboard Maestro
 #
