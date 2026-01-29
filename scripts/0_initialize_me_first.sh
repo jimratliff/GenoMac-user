@@ -43,15 +43,37 @@ echo "Inside /scripts/0_initialize_me_first.sh"
 # ${(%):-%x} — trick to evaluate a prompt escape outside a prompt (the (%) flag)
 # ${...:A} — resolve to absolute path
 # So ${${(%):-%x}:A} means "the absolute path of the file currently being sourced."
-this_script_path="${${(%):-%x}:A}"                  # ~/.genomac-system/scripts/0_initialize_me_first.sh
+this_script_path="${${(%):-%x}:A}"              # ~/.genomac-user/scripts/0_initialize_me_first.sh
 
-GENOMAC_SYSTEM_SCRIPTS="${this_script_path:h}"      # ~/.genomac-system/scripts
-GENOMAC_SYSTEM_ROOT="${GENOMAC_SYSTEM_SCRIPTS:h}"   # ~/.genomac-system
-GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_SYSTEM="${GENOMAC_SYSTEM_ROOT}/external/genomac-shared" # ~/.genomac-system/external/genomac-shared
+GENOMAC_USER_SCRIPTS="${this_script_path:h}"    # ~/.genomac-user/scripts
+GENOMAC_USER_ROOT="${GENOMAC_USER_SCRIPTS:h}"   # ~/.genomac-user
+GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER="${GENOMAC_USER_ROOT}/external/genomac-shared" # ~/.genomac-user/external/genomac-shared
 
-GENOMAC_USER_SCRIPTS="${this_script_path:h}"                                 # scripts
-GMU_PREFS_SCRIPTS="${GMU_SCRIPTS_DIR}/prefs_scripts"                    # scripts/prefs_scripts
-GMU_HELPERS_DIR="${GMU_SCRIPTS_DIR:h}/external/genomac-shared/scripts"  # external/genomac-shared/scripts
+echo "Paths determined in 0_initialize_me_first.sh:"
+echo "• this_script_path: ${this_script_path}"
+echo "• GENOMAC_USER_SCRIPTS: ${GENOMAC_USER_SCRIPTS}"
+echo "• GENOMAC_USER_ROOT: ${GENOMAC_USER_ROOT}"
+echo "• GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER: ${GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER}"
+
+# Source the master-helper script from GenoMac-shared submodule, which sources helpers
+# and environment variables from GenoMac-shared
+HELPERS_FROM_GENOMAC_SHARED="${GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER}/scripts"  # external/genomac-shared/scripts
+master_helper_script="${HELPERS_FROM_GENOMAC_SHARED}/helpers.sh"
+
+echo "Source ${master_helper_script}"
+source "${master_helper_script}"
+
+# Source repo-specific environment-variables script
+repo_specific_environment_variables="${GENOMAC_USER_SCRIPTS}/assign_user_environment_variables.sh"
+
+echo "Source ${repo_specific_environment_variables}"
+source "${repo_specific_environment_variables}"
+
+############### vvvvvvvvv DEPRECATED vvvvvvvvv ###############
+
+# TODO: These should be moved to scripts/assign_user_environment_variables.sh
+# GMU_PREFS_SCRIPTS="${GMU_SCRIPTS_DIR}/prefs_scripts"                    # scripts/prefs_scripts
+# DEPRECATED: GMU_HELPERS_DIR="${GMU_SCRIPTS_DIR:h}/external/genomac-shared/scripts"  # external/genomac-shared/scripts
 
 function source_with_report() {
   # Ensures that an error is raised if a `source` of the file in the supplied argument fails.
