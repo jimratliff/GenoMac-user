@@ -47,9 +47,6 @@ test-show-with-quicklook:
 verify-ssh-agent:
 	zsh scripts/verify_ssh_agent_setup.sh
 
-reset-state:
-	zsh scripts/reset_state.sh
-
 dev-prep-keyboard-maestro-for-experiments:
 	zsh scripts/tests/dev_prep_keyboard_maestro_for_experiments.sh
 
