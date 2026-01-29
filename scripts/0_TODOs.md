@@ -3,7 +3,7 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
 (to conform to the advancements during the recent Hypervisor-transformation of GenoMac-system).
 
 - shebang: Use portable version: #!/usr/bin/env zsh
-  - ❑ GenoMac-user: Use only #!/usr/bin/env zsh
+  - ✅ GenoMac-user: Use only #!/usr/bin/env zsh
   - ❑ GeoMac-system: Use only #!/usr/bin/env zsh
 - ✅ scripts/tests
   - ✅ Create scripts/tests directory
