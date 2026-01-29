@@ -12,7 +12,8 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
 - environment variables
   - ❑ GMU_SCRIPTS_DIR    → GENOMAC_USER_SCRIPTS
 - ❑ pref_scripts → settings
-  - ❑ rename the path of each script
+  - ✅ rename the path of each script
+  - ❑ update the environment variable that points to this directory
   - ❑ update the `source` statements that load them
 - Other stuff
   - set_power_management_settings.sh
