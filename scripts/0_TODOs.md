@@ -2,18 +2,24 @@
 This list is being generated January 28, 2026 during a major refactoring of GenoMac-user
 (to conform to the advancements during the recent Hypervisor-transformation of GenoMac-system).
 
-- scripts/tests
-  - ❑ Renamimg 0_initialize_me.sh to 0_initialize_me_first.sh
-    - ✅ Rename the function itself
-    - ❑ Make more robust how it determines its own directory (i.e., don’t use `"${0:A}"`)
-      - IN PROCESS
+- ✅ scripts/tests
+  - ✅ Create scripts/tests directory
+  - ✅ rename path of each test script
   - ✅ All of the `make` recipes that target these scripts must be updated to reflect the current directory
     scripts/tests (instead of the prior scripts/).
-  - Hypervisor
-    - ✅ Make scripts/hypervisor directory
-    - ✅ scripts/hypervisor/hypervisor.sh
+- ❑ Renamimg 0_initialize_me.sh to 0_initialize_me_first.sh
+  - ✅ Rename the function itself
+  - ❑ Make more robust how it determines its own directory (i.e., don’t use `"${0:A}"`)
+    - IN PROCESS
+- Hypervisor
+  - ✅ Make scripts/hypervisor directory
+  - ✅ scripts/hypervisor/hypervisor.sh
+  - ❑ subdermis
+  - ❑ Re-write scripts/run_hypervisor.sh entry point for Make recipe
 - environment variables
   - ❑ GMU_SCRIPTS_DIR    → GENOMAC_USER_SCRIPTS
+  - ❑ Create GMU_HYPERVISOR_SCRIPTS
+  - ❑ GMU_PREFS_SCRIPTS → ??
 - ❑ pref_scripts → settings
   - ✅ rename the path of each script
   - ❑ update the environment variable that points to this directory
@@ -21,3 +27,4 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
 - Other stuff
   - set_power_management_settings.sh
     - Is this really at the user level instead of system level?
+  - ❑ Add an interactive request to set the screensaver to Matrix
