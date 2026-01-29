@@ -32,24 +32,8 @@ refresh-repo:
 defaults-detective:
 	zsh scripts/utilities/defaults_detective.sh
 
-test-launch-and-prompt:
-	zsh scripts/tests/test_launch_and_prompt.sh
-
-test-refactor:
-	zsh scripts/tests/test_refactor.sh
-
-test-state-management:
-	zsh scripts/tests/test_state_management.sh
-
-test-show-with-quicklook:
-	zsh scripts/tests/test_show_with_quicklook.sh
-
 verify-ssh-agent:
-	zsh scripts/verify_ssh_agent_setup.sh
-
-dev-prep-keyboard-maestro-for-experiments:
-	zsh scripts/tests/dev_prep_keyboard_maestro_for_experiments.sh
-
+	zsh scripts/utilities/verify_ssh_agent_setup.sh
 
 ## Updates genomac-user repo, including genomac-shared submodule, and pushes it back to GitHub
 ## git diff… checks whether there are staged changes to the submodule and, if so, commits them
@@ -67,4 +51,19 @@ dev-configure-remote-for-https-fetch-and-ssh-push:
 	cd ~/.genomac-user
 	git remote set-url origin https://github.com/jimratliff/GenoMac-user.git
 	git remote set-url --push origin git@github.com:jimratliff/GenoMac-user.git
+
+test-launch-and-prompt:
+	zsh scripts/tests/test_launch_and_prompt.sh
+
+test-refactor:
+	zsh scripts/tests/test_refactor.sh
+
+test-state-management:
+	zsh scripts/tests/test_state_management.sh
+
+test-show-with-quicklook:
+	zsh scripts/tests/test_show_with_quicklook.sh
+
+dev-prep-keyboard-maestro-for-experiments:
+	zsh scripts/tests/dev_prep_keyboard_maestro_for_experiments.sh
 
