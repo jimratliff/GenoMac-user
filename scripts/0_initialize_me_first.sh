@@ -8,8 +8,6 @@
 # - Exports:
 #   - GMU_SCRIPTS_DIR
 #     - the path to ~/.genomac-user/scripts
-#   - GMU_PREFS_SCRIPTS
-#     - the path to ~/.genomac-user/scripts/prefs_scripts
 #   - GMU_HELPERS_DIR
 #     - the path to the helper scripts from the submodule GenoMac-shared
 # - Sources:
