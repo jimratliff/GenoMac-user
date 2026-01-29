@@ -2,6 +2,9 @@
 This list is being generated January 28, 2026 during a major refactoring of GenoMac-user
 (to conform to the advancements during the recent Hypervisor-transformation of GenoMac-system).
 
+- shebang: Use portable version: #!/usr/bin/env zsh
+  - ❑ GenoMac-user: Use only #!/usr/bin/env zsh
+  - ❑ GeoMac-system: Use only #!/usr/bin/env zsh
 - ✅ scripts/tests
   - ✅ Create scripts/tests directory
   - ✅ rename path of each test script
@@ -11,6 +14,8 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ✅ Rename the function itself
   - ❑ Make more robust how it determines its own directory (i.e., don’t use `"${0:A}"`)
     - IN PROCESS
+- ❑ Each script file (other than hypervisor and some utility scripts)
+  - ❑ Remove entire preamble, e.g.,: source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 - Hypervisor
   - ✅ Make scripts/hypervisor directory
   - ✅ scripts/hypervisor/hypervisor.sh
