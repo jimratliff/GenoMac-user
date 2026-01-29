@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 
-safe_source "${GMU_PREFS_SCRIPTS}/bootstrap_dock.sh" 
-safe_source "${GMU_PREFS_SCRIPTS}/bootstrap_finder.sh" 
-safe_source "${GMU_PREFS_SCRIPTS}/bootstrap_preview_app.sh" 
-safe_source "${GMU_PREFS_SCRIPTS}/register_glance_as_quicklook.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_dock.sh" 
+safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_finder.sh" 
+safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_preview_app.sh" 
+safe_source "${GMU_SETTINGS_SCRIPTS}/register_glance_as_quicklook.sh"
 
 function perform_initial_bootstrap_operations() {
   report_start_phase_standard
