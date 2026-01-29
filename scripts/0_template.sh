@@ -10,7 +10,7 @@ source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 ############################## BEGIN SCRIPT PROPER ##############################
 
 # Source required files
-# safe_source "${GMU_PREFS_SCRIPTS}/install_btt_license.sh"
+# safe_source "${GMU_SETTINGS_SCRIPTS}/install_btt_license.sh"
 
 function some_function() {
   report_start_phase_standard
