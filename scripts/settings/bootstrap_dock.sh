@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # Define Dock persistent-app items
 #   Does not alter anything for non-persistent apps.
