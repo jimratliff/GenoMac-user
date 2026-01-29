@@ -45,6 +45,8 @@ echo "Inside /scripts/0_initialize_me_first.sh"
 # So ${${(%):-%x}:A} means "the absolute path of the file currently being sourced."
 this_script_path="${${(%):-%x}:A}"              # ~/.genomac-user/scripts/0_initialize_me_first.sh
 
+# NOTE: The following are NOT exported. They are defined/calculated here only for the purpose
+#       of sourcing other scripts.
 GENOMAC_USER_SCRIPTS="${this_script_path:h}"    # ~/.genomac-user/scripts
 GENOMAC_USER_ROOT="${GENOMAC_USER_SCRIPTS:h}"   # ~/.genomac-user
 GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER="${GENOMAC_USER_ROOT}/external/genomac-shared" # ~/.genomac-user/external/genomac-shared
