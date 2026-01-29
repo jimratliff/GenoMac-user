@@ -5,12 +5,12 @@ set -euo pipefail
 
 # Template for entry-point scripts
 
-source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
+source "${HOME}/.genomac-user/scripts/0_initialize_me_first.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
 # Source required files
-# safe_source "${GMU_PREFS_SCRIPTS}/install_btt_license.sh"
+# safe_source "${GMU_SETTINGS_SCRIPTS}/install_btt_license.sh"
 
 function test_state_management() {
   report_start_phase_standard
