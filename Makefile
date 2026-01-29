@@ -30,7 +30,7 @@ refresh-repo:
 	git -C ~/.genomac-user pull --recurse-submodules origin main
 
 defaults-detective:
-	zsh scripts/defaults_detective.sh
+	zsh scripts/utilities/defaults_detective.sh
 
 test-launch-and-prompt:
 	zsh scripts/test_launch_and_prompt.sh
