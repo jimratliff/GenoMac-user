@@ -14,6 +14,7 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ✅ Rename the function itself
   - ❑ Make more robust how it determines its own directory (i.e., don’t use `"${0:A}"`)
     - IN PROCESS
+  - ❑ Replace 0_initialize_me.sh → 0_initialize_me_first.sh in all scripts that retain a preamble
 - ❑ Each script file (other than hypervisor and some utility scripts)
   - ❑ Remove entire preamble, e.g.,: source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
 - Hypervisor
@@ -26,7 +27,7 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ❑ GMU_SCRIPTS_DIR    → GENOMAC_USER_SCRIPTS
   - ❑ GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY →   GMU_RESOURCES
   - ✅ Create GMU_HYPERVISOR_SCRIPTS
-  - ❑ GMU_PREFS_SCRIPTS → GMU_SETTINGS_SCRIPTS
+  - ✅ GMU_PREFS_SCRIPTS → GMU_SETTINGS_SCRIPTS
   - ❑ New?: GMU_DOCS_TO_DISPLAY
   - ❑ New?: GMU_RESOURCES
   - ❑ New?: GMU_SCRIPTS
