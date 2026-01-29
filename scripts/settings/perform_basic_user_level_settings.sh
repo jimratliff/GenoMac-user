@@ -1,32 +1,31 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
-# safe_source "${GMU_PREFS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_alan_app_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_app_state_persistence.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_auto_correction_suggestion_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_bbedit_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_bettertouchtool_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_chatgpt_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_claude_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_default_apps_to_open.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_default_browser.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_default_shell.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_diskutility_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_finder_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_general_dock_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_general_interface_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_iterm_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_notifications_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_microsoft_office_suite_wide_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_microsoft_word_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_omnioutliner_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_plain_text_editor_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_preview_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_safari_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_screen_capture_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_symbolichotkeys.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_terminal_settings.sh"
-safe_source "${GMU_PREFS_SCRIPTS}/set_trackpad_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_alan_app_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_app_state_persistence.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_auto_correction_suggestion_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_bbedit_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_bettertouchtool_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_chatgpt_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_claude_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_default_apps_to_open.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_default_browser.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_default_shell.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_diskutility_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_finder_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_general_dock_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_general_interface_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_iterm_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_notifications_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_microsoft_office_suite_wide_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_microsoft_word_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_omnioutliner_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_plain_text_editor_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_preview_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_safari_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_screen_capture_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_symbolichotkeys.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_terminal_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_trackpad_settings.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
@@ -171,11 +170,6 @@ function perform_basic_user_level_settings() {
   
   # iTerm2
   set_iterm_settings
-  
-  # Keyboard Maestro
-  # NOTE: The following function performs the idempotent maintenace steps, which is
-  #       separate from the bootstrapping steps of (a) authentication and (b) setting up macro syncing
-  # set_keyboard_maestro_settings
   
   # OmniOutliner
   set_omnioutliner_settings
