@@ -1,38 +1,15 @@
 #!/usr/bin/env zsh
 
-# Intended to be sourced at the beginning of every entry-point script in ~/.genomac-user/
+# Initializes any entry-point script by sourcing:
+# - helpers and cross-repo environment variables from GenoMac-shared
+# - environment variables specific to the GenoMac-user repository
 #
-# TODO: Revisit, after 1/29/2026 refactoring, the below claims about what this script does.
-#
-# Performs:
-# - Exports:
-#   - GMU_SCRIPTS_DIR
-#     - the path to ~/.genomac-user/scripts
-#   - GMU_HELPERS_DIR
-#     - the path to the helper scripts from the submodule GenoMac-shared
-# - Sources:
-#   - the helpers.sh script from GenoMac-shared, which in turn:
-#     - sources all the other helpers-xxx.sh scripts from GenoMac-shared
-#     - sources assign_common_environment_variables, which exports the environment variables 
-#       that are common to both GenoMac-system and GenoMac-user
-#   - assign_user_environment_variables.sh, which exports the environment variables that are 
-#     specific to this repository
-#
-# It is assumed that the sourcing entry-point script is located at ~/.genomac-user/scripts
-#
-# Assumed directory structure
-#   ~/.genomac-user/
-#     external/
-#       genomac-shared/
-#         assign_common_environment_variables.sh
-#         helpers-apps.h
-#         …
-#         helpers.sh
-#     scripts/
-#       0_initialize_me.sh        # You are HERE!
-#       an_entry_point_script.sh  # The script of interest, will source 0_initialize_me.sh
-#       prefs_scripts/
+# WARNING: There are hard-wired paths in this script. Some/all of these paths are
+#          referred to in other scripts (typically referenced by exported 
+#          environment variables). Because this is a bootstrap script, the paths
+#          are hard-wired rather than referring to those environment variables.
 
+# Fail early on unset variables or command failure
 set -euo pipefail
 
 echo "Inside /scripts/0_initialize_me_first.sh"
