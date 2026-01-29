@@ -35,7 +35,7 @@
 
 set -euo pipefail
 
-echo "Inside /scripts/0_initialize_me.sh"
+echo "Inside /scripts/0_initialize_me_first.sh"
 
 # Resolve directory of the current script
 this_script_path="${0:A}"
@@ -74,4 +74,4 @@ export_and_report GMU_SCRIPTS_DIR
 export_and_report GMU_PREFS_SCRIPTS
 export_and_report GMU_HELPERS_DIR
 
-echo "Leaving /scripts/0_initialize_me.sh"
+echo "Leaving /scripts/0_initialize_me_first.sh"
