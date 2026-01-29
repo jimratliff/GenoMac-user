@@ -33,16 +33,16 @@ defaults-detective:
 	zsh scripts/utilities/defaults_detective.sh
 
 test-launch-and-prompt:
-	zsh scripts/test_launch_and_prompt.sh
+	zsh scripts/tests/test_launch_and_prompt.sh
 
 test-refactor:
-	zsh scripts/test_refactor.sh
+	zsh scripts/tests/test_refactor.sh
 
 test-state-management:
-	zsh scripts/test_state_management.sh
+	zsh scripts/tests/test_state_management.sh
 
 test-show-with-quicklook:
-	zsh scripts/test_show_with_quicklook.sh
+	zsh scripts/tests/test_show_with_quicklook.sh
 
 verify-ssh-agent:
 	zsh scripts/verify_ssh_agent_setup.sh
@@ -51,7 +51,7 @@ reset-state:
 	zsh scripts/reset_state.sh
 
 dev-prep-keyboard-maestro-for-experiments:
-	zsh scripts/dev_prep_keyboard_maestro_for_experiments.sh
+	zsh scripts/tests/dev_prep_keyboard_maestro_for_experiments.sh
 
 
 ## Updates genomac-user repo, including genomac-shared submodule, and pushes it back to GitHub
