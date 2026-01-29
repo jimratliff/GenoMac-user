@@ -1,12 +1,50 @@
 #!/usr/bin/env zsh
 
-# Establishes values for environment variables used exclusively by GenoMac-user 
+# Establishes values for environment variables used exclusively by GenoMac-user
+#
+# Intended to be sourced by scripts/0_initialize_me_first.sh
 #
 # Assumes that export_and_report() has already been made available
 #
 # See also environment_variables_for_state_enums_script.sh
 
-set -euo pipefail
+#############################################
+#                  Aliases to intra-repository hierarchical structures
+#
+############### Local directory into which the GenoMac-user repo is cloned
+# ~/.genomac-user
+# Defined in GenoMac-shared/scripts/assign_common_environment_variables.sh
+# GENOMAC_USER_LOCAL_DIRECTORY="$HOME/.genomac-user"
+
+############### ~/.genomac-user/resources
+# Local directory that holds resources (files or folders) needed for particular
+# operations by GenoMac-user, typically personalized resources that are not shell scripts
+# and not otherwise available online
+GMU_RESOURCES="${GENOMAC_USER_LOCAL_DIRECTORY}/resources"
+
+# Specify the local directory that holds documentation files to display to the executing user
+# ~/.genomac-user/resources/docs_to_display_to_user
+GMU_DOCS_TO_DISPLAY="${GMU_RESOURCES}/docs_to_display_to_user"
+
+############### ~/.genomac-user/scripts
+# - Local directory that holds scripts: ~/.genomac-system/scripts
+GMU_SCRIPTS="${GENOMAC_USER_LOCAL_DIRECTORY}/scripts"
+
+# ~/.genomac-user/scripts/hypervisor
+# - Local subdirectory of GMU_SCRIPTS that holds scripts specific to Hypervisor
+GMU_HYPERVISOR_SCRIPTS="${GMU_SCRIPTS}/hypervisor" 
+
+# ~/.genomac-user/scripts/settings
+GMU_SETTINGS_SCRIPTS="${GMU_SCRIPTS}/settings"
+
+# ~/.genomac-system/scripts/user_scope
+GMS_USER_SCOPE_SCRIPTS="${GMS_SCRIPTS}/user_scope"
+
+############### ~/.genomac-system/utilities
+# Holds narrow-focused scripts to be individually accessed by make recipes
+GMS_UTILITIES="${GENOMAC_SYSTEM_LOCAL_DIRECTORY}/utilities"
+
+##############################
 
 # Specify location of PlistBuddy
 PLISTBUDDY_PATH='/usr/libexec/PlistBuddy'
