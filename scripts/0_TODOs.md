@@ -14,3 +14,6 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
 - ❑ pref_scripts → settings
   - ❑ rename the path of each script
   - ❑ update the `source` statements that load them
+- Other stuff
+  - set_power_management_settings.sh
+    - Is this really at the user level instead of system level?
