@@ -14,7 +14,7 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ✅ scripts/hypervisor/hypervisor.sh
   - ❑ subdermis
   - ❑ Re-write scripts/run_hypervisor.sh entry point for Make recipe
-  - ❑ Move assign_enum_env_vars_for_states.sh to scripts/hypervisor
+  - ✅ Move assign_enum_env_vars_for_states.sh to scripts/hypervisor
 - environment variables
   - ❑ GMU_SCRIPTS_DIR    → GENOMAC_USER_SCRIPTS
   - ❑ GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY →   GMU_RESOURCES
