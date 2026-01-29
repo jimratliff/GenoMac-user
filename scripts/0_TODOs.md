@@ -19,8 +19,11 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ❑ Move assign_enum_env_vars_for_states.sh to scripts/hypervisor
 - environment variables
   - ❑ GMU_SCRIPTS_DIR    → GENOMAC_USER_SCRIPTS
-  - ❑ Create GMU_HYPERVISOR_SCRIPTS
-  - ❑ GMU_PREFS_SCRIPTS → ??
+  - ✅ Create GMU_HYPERVISOR_SCRIPTS
+  - ❑ GMU_PREFS_SCRIPTS → GENOMAC_USER_SCRIPTS
+  - ❑ New?: GMU_DOCS_TO_DISPLAY
+  - ❑ New?: GMU_RESOURCES
+  - ❑ New?: GMU_SCRIPTS
 - ❑ pref_scripts → settings
   - ✅ rename the path of each script
   - ❑ update the environment variable that points to this directory
