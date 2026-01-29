@@ -13,7 +13,7 @@
 # META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 # MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 
-safe_source "${GMU_PREFS_SCRIPTS}/symbolichotkeys_helpers.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/symbolichotkeys_helpers.sh"
 
 function set_symbolichotkeys() {
 
