@@ -107,7 +107,7 @@ This repository is intended to be used with [GNU Stow](https://www.gnu.org/softw
 
 The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc. Within the directory corresponding to each package, the directory structure mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
 
-The `stow_directory` is specified by the environment variable `GENOMAC_USER_LOCAL_STOW_DIRECTORY` (which is exported by the script `assign_environment_variables.sh`).
+The `stow_directory` is specified by the environment variable `GMU_STOW_DIR` (which is exported by the script `assign_environment_variables.sh`).
 
 ### This repo establishes/adjusts numerous user-level settings
 This repo supplies scripts that execute various commands (primarily either `defaults write` or `PlistBuddy`) to establish various user settings for macOS generally and for certain apps in particular.
