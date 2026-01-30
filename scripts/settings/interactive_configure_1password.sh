@@ -46,7 +46,7 @@ function authenticate_1Password() {
   report "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
 	
   launch_app_and_prompt_user_to_act \
-    --show-doc "${GENOMAC_USER_DOCS_TO_DISPLAY_DIRECTORY}/1Password_how_to_log_in.md" \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_log_in.md" \
     "$BUNDLE_ID_1PASSWORD" \
     "Follow the instructions in the Quick Look window to log into your 1Password account in the 1Password app"
 
@@ -60,7 +60,7 @@ function configure_authenticated_1Password() {
   report_action_taken "Time to configure 1Password! I'll launch it, and open a window with instructions to follow"
   
   launch_app_and_prompt_user_to_act \
-    --show-doc "${GENOMAC_USER_DOCS_TO_DISPLAY_DIRECTORY}/1Password_how_to_configure.md" \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_configure.md" \
     "$BUNDLE_ID_1PASSWORD" \
     "Follow the instructions in the Quick Look window to configure 1Password"
 
