@@ -27,10 +27,10 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
     - ✅ GENOMAC_USER_LOCAL_STOW_DIRECTORY → GMU_STOW_DIR
   - ✅ Refactor name of GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS for consistency with similar names
     - ✅ GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS → GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS
-- ❑ pref_scripts → settings
+- ✅ pref_scripts → settings
   - ✅ rename the path of each script
-  - ❑ update the environment variable that points to this directory
-  - ❑ update the `source` statements that load them
+  - ✅ update the environment variable that points to this directory (GMU_SETTINGS_SCRIPTS)
+  - ✅ update the `source` statements that load them
 - Other stuff
   - ❑ verify_ssh_agent_configuration may be in two places?
     - It’s in scripts/settings/interactive_configure_1password.sh at the least
