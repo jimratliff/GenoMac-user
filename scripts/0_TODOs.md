@@ -12,7 +12,7 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ✅ Make scripts/hypervisor directory
   - ✅ scripts/hypervisor/hypervisor.sh
   - ❑ subdermis
-  - ❑ Re-write scripts/run_hypervisor.sh entry point for Make recipe
+  - ✅ Re-write scripts/run_hypervisor.sh entry point for Make recipe
   - ✅ Move assign_enum_env_vars_for_states.sh to scripts/hypervisor
 - environment variables
   - ✅ Why isn't GMU_SCRIPTS_DIR used anywhere? Is there something else, by a different name, doing the same thing?
