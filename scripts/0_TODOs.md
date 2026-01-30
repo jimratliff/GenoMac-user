@@ -16,17 +16,25 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ❑ Re-write scripts/run_hypervisor.sh entry point for Make recipe
   - ✅ Move assign_enum_env_vars_for_states.sh to scripts/hypervisor
 - environment variables
-  - ❑ Why isn't GMU_SCRIPTS_DIR used anywhere? Is there something else, by a different name, doing the same thing?
-  - ❑ GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY →   GMU_RESOURCES (These BOTH seem to exist!)
+  - ✅ Why isn't GMU_SCRIPTS_DIR used anywhere? Is there something else, by a different name, doing the same thing?
+    - ✅ Refactored into oblivion
+  - ✅ GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY →   GMU_RESOURCES (These BOTH seem to exist!)
   - ✅ Create GMU_HYPERVISOR_SCRIPTS
   - ✅ GMU_PREFS_SCRIPTS → GMU_SETTINGS_SCRIPTS
-  - ❑ GENOMAC_USER_DOCS_TO_DISPLAY_DIRECTORY → GMU_DOCS_TO_DISPLAY
-  - ❑ New?: GMU_SCRIPTS
+  - ✅ GENOMAC_USER_DOCS_TO_DISPLAY_DIRECTORY → GMU_DOCS_TO_DISPLAY
+  - ✅ New?: GMU_SCRIPTS
+    - Yes, Exported but not used outside its defining script. But worth exporting anyway
+  - ✅ Refactor name of GENOMAC_USER_LOCAL_STOW_DIRECTORY for consistency with similar names
+    - ✅ GENOMAC_USER_LOCAL_STOW_DIRECTORY → GMU_STOW_DIR
+  - ✅ Refactor name of GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS for consistency with similar names
+    - ✅ GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS → GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS
 - ❑ pref_scripts → settings
   - ✅ rename the path of each script
   - ❑ update the environment variable that points to this directory
   - ❑ update the `source` statements that load them
 - Other stuff
+  - ❑ verify_ssh_agent_configuration may be in two places?
+    - It’s in scripts/settings/interactive_configure_1password.sh at the least
   - ✅ defaults-detective
     - Currently partly misfiled (This should be rationalized)
       - the entry point (defaults_detective.sh) is OK: scripts/utilities
