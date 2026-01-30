@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# “Stows” the dotfiles in GENOMAC_USER_LOCAL_STOW_DIRECTORY (which were supplied
+# “Stows” the dotfiles in GMU_STOW_DIR (which were supplied
 # by the `stow_directory` of this repo) by creating corresponding symlinks 
 # in the home directory using GNU Stow.
 #
@@ -8,7 +8,7 @@
 # - GNU Stow has been installed by GenoMac-system.
 # - This repo has been cloned locally to GENOMAC_USER_LOCAL_DIRECTORY.
 # - Thus, the `stow_directory` of this repo is cloned to 
-#   GENOMAC_USER_LOCAL_STOW_DIRECTORY (typically, 
+#   GMU_STOW_DIR (typically, 
 #   `~/.genomac-user/stow_directory`).
 # - GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES is an environment variable that is an array
 #   of the names of packages whose dotfiles should be stowed.
@@ -55,7 +55,7 @@ function stow_dotfiles_for_each_package() {
 
   for package in "${GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES[@]}"; do
     report_action_taken "Stowing package: $package"
-    stow --dir="$GENOMAC_USER_LOCAL_STOW_DIRECTORY" \
+    stow --dir="$GMU_STOW_DIR" \
          --target="$HOME" \
          --adopt \
          --ignore='\.DS_Store' \
