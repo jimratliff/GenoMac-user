@@ -35,7 +35,7 @@ function interactive_configure_keyboard_maestro() {
 
   # Interactively prompt the user to register Keyboard Maestro
   launch_app_and_prompt_user_to_act \
-    --show-doc "${GENOMAC_USER_DOCS_TO_DISPLAY_DIRECTORY}/Keyboard_Maestro_how_to_configure.md" \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/Keyboard_Maestro_how_to_configure.md" \
     "$BUNDLE_ID_KEYBOARDMAESTRO_EDITOR" \
     "Follow the instructions in the Quick Look window to register and configure Keyboard Maestro"
   
