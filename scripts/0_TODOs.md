@@ -17,7 +17,7 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ✅ Replace 0_initialize_me.sh → 0_initialize_me_first.sh in all scripts that retain a preamble
 - ✅ Each script file (other than hypervisor and some utility scripts)
   - ✅ Remove entire preamble, e.g.,: source "${HOME}/.genomac-user/scripts/0_initialize_me.sh"
-- Hypervisor
+- ❑ Hypervisor
   - ✅ Make scripts/hypervisor directory
   - ✅ scripts/hypervisor/hypervisor.sh
   - ❑ subdermis
