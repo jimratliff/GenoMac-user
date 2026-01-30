@@ -2,7 +2,7 @@
 
 function set_safari_settings() {
 
-  local domain="com.apple.Safari"
+  local domain="$DEFAULTS_DOMAINS_SAFARI"
 
   report_start_phase_standard
   report_action_taken "Implement Safari settings"
