@@ -22,17 +22,7 @@ function run_hypervisor() {
   #   Requires new function `hypervisor_forced_logout_if_dirty`
 
   output_hypervisor_welcome_banner "$GENOMAC_SCOPE_USER"
-
-  ############### Welcome! or Welcome back!
-  local welcome_message="Welcome"
-  if test_genomac_user_state "$SESH_SESSION_HAS_STARTED"; then
-    welcome_message="Welcome back"
-  else
-    set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
-  fi
-  
-  report "${welcome_message} to the GenoMac-user Hypervisor!"
-  report "$GMU_HYPERVISOR_HOW_TO_RESTART_STRING"
+  set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
 
   interactive_ensure_terminal_has_fda
   
