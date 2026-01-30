@@ -14,6 +14,10 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ❑ subdermis
   - ✅ Re-write scripts/run_hypervisor.sh entry point for Make recipe
   - ✅ Move assign_enum_env_vars_for_states.sh to scripts/hypervisor
+- ❑ Configure split remote URLs for each repo
+  - ❑ GenoMac-shared has helpers-git.sh, including configure_split_remote_URLs_for_GenoMac_user() and configure_split_remote_URLs_for_GenoMac_system(), but I can't find that I'm actually using them.
+- ❑ Features to add
+  - ❑ Interactive prompt for the user to select Matrix as their screensaver
 - environment variables
   - ✅ Why isn't GMU_SCRIPTS_DIR used anywhere? Is there something else, by a different name, doing the same thing?
     - ✅ Refactored into oblivion
