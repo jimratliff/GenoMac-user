@@ -34,7 +34,7 @@ function find_diff_from_setting_change(){
 	#     `defaults read-type *domain* *key*` or
 	#     `defaults -currentHost read-type *domain* *key*`
 	
-	# Relies on the environment variable GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS having been set
+	# Relies on the environment variable GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS having been set
 	# in assign_environment_variables.sh. This is the directory in which the results of the 
 	# `defaults read` of each branch of the before-and-after experiment will be stored.
 	# (Most of the time you won’t need to access directly the contents of that directory, and this 
@@ -50,7 +50,7 @@ function find_diff_from_setting_change(){
 	name=$(get_nonblank_answer_to_question "Choose a name for this detective exercise:")
 	
 	timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
-	results_dir="${GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS}/$(sanitize_filename "$name"_${timestamp})"
+	results_dir="${GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS}/$(sanitize_filename "$name"_${timestamp})"
 	
 	# Inform about save location
 	report "I’m saving the before-and-after 'defaults read' output files to: '$results_dir'"
