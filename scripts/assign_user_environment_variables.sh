@@ -70,7 +70,7 @@ GMU_STOW_DIR="${GENOMAC_USER_LOCAL_DIRECTORY}/stow_directory"
 
 # Specify the local directory into which the diff results of defaults_detective
 # investigations will be saved.
-GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS="$HOME/genomac-detective"
+GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS="$HOME/genomac-detective"
 
 # Specify the local directory in which preferences and other files shared across users are stored
 # These may contain secrets, so this directory is NOT within a repo
@@ -100,7 +100,7 @@ export_and_report CONTROL_CHAR
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH
-export_and_report GENOMAC_USER_LOCAL_DEFAULTS_DETECTIVE_RESULTS
+export_and_report GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS
 export_and_report GMU_STOW_DIR
 export_and_report GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY
 export_and_report GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES
