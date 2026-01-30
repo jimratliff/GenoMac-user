@@ -21,6 +21,8 @@ function run_hypervisor() {
   #   state rather than immediately triggering a logout.
   #   Requires new function `hypervisor_forced_logout_if_dirty`
 
+  output_hypervisor_welcome_banner "$GENOMAC_SCOPE_USER"
+
   ############### Welcome! or Welcome back!
   local welcome_message="Welcome"
   if test_genomac_user_state "$SESH_SESSION_HAS_STARTED"; then
@@ -95,18 +97,13 @@ function run_hypervisor() {
 
   ############### Configure Microsoft Word
   # conditionally_configure_microsoft_word
-
-  ############### Last act: Delete all SESH_ state environment variables
-
-  # delete_all_user_SESH_states
-
-  set_genomac_user_state "$SESH_REACHED_FINALITY"
   
-  # TODO: Un-comment-out the below 'figlet' line after GenoMac-system is refactored so that it works
-  # figlet "The End"
+  output_hypervisor_departure_banner "$ "$GENOMAC_SCOPE_USER""
   
-  # hypervisor_force_logout
+  hypervisor_force_logout
   
   report_end_phase_standard
 }
+
+
 
