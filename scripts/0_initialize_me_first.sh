@@ -16,14 +16,14 @@ echo "Inside /scripts/0_initialize_me_first.sh"
 
 # Get path of THIS script, even when sourced
 # Explanation:
-# %x — zsh prompt escape meaning "path of the script being sourced"
-# ${(%):-%x} — trick to evaluate a prompt escape outside a prompt (the (%) flag)
-# ${...:A} — resolve to absolute path
-# So ${${(%):-%x}:A} means "the absolute path of the file currently being sourced."
+#   %x — zsh prompt escape meaning "path of the script being sourced"
+#   ${(%):-%x} — trick to evaluate a prompt escape outside a prompt (the (%) flag)
+#   ${...:A} — resolve to absolute path
+#   So ${${(%):-%x}:A} means "the absolute path of the file currently being sourced."
 this_script_path="${${(%):-%x}:A}"              # ~/.genomac-user/scripts/0_initialize_me_first.sh
 
 # NOTE: The following are NOT exported. They are defined/calculated here only for the purpose
-#       of sourcing other scripts.
+#       of sourcing other scripts from this script.
 GENOMAC_USER_SCRIPTS="${this_script_path:h}"    # ~/.genomac-user/scripts
 GENOMAC_USER_ROOT="${GENOMAC_USER_SCRIPTS:h}"   # ~/.genomac-user
 GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER="${GENOMAC_USER_ROOT}/external/genomac-shared" # ~/.genomac-user/external/genomac-shared
