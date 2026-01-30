@@ -21,6 +21,8 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ✅ Make scripts/hypervisor directory
   - ✅ scripts/hypervisor/hypervisor.sh
   - ❑ subdermis
+    - ❑ Compact the conditional operations into single calls to `conditionally_` functions
+      - ❑ Start at scripts/settings/interactive_ask_initial_questions.sh ###############WIP
   - ✅ Re-write scripts/run_hypervisor.sh entry point for Make recipe
   - ✅ Move assign_enum_env_vars_for_states.sh to scripts/hypervisor
 - ❑ Configure split remote URLs for each repo
