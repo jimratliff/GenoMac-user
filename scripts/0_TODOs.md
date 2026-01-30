@@ -3,6 +3,8 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
 (to conform to the advancements during the recent Hypervisor-transformation of GenoMac-system).
 
 ############### GenoMac-system
+- ❑ function interactive-get_loginwindow_message() has TWO DIFFERENT VERSIONS!
+  - ❑ See Claude’s analysis of the differences between the two
 - ✅ Why does GenoMac-system scripts/settings have a file from GenoMac-user!?!?!?!? 🤪
   - ✅ interactive_ask_initial_questions.sh
     - ✅ DELETED
