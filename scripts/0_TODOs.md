@@ -16,12 +16,11 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ❑ Re-write scripts/run_hypervisor.sh entry point for Make recipe
   - ✅ Move assign_enum_env_vars_for_states.sh to scripts/hypervisor
 - environment variables
-  - ❑ GMU_SCRIPTS_DIR    → GENOMAC_USER_SCRIPTS
-  - ❑ GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY →   GMU_RESOURCES
+  - ❑ Why isn't GMU_SCRIPTS_DIR used anywhere? Is there something else, by a different name, doing the same thing?
+  - ❑ GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY →   GMU_RESOURCES (These BOTH seem to exist!)
   - ✅ Create GMU_HYPERVISOR_SCRIPTS
   - ✅ GMU_PREFS_SCRIPTS → GMU_SETTINGS_SCRIPTS
-  - ❑ New?: GMU_DOCS_TO_DISPLAY
-  - ❑ New?: GMU_RESOURCES
+  - ❑ GENOMAC_USER_DOCS_TO_DISPLAY_DIRECTORY → GMU_DOCS_TO_DISPLAY
   - ❑ New?: GMU_SCRIPTS
 - ❑ pref_scripts → settings
   - ✅ rename the path of each script
