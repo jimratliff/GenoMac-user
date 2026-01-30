@@ -16,7 +16,7 @@ function test_launch_app_and_prompt_user_to_act() {
   report_start_phase_standard
 
   launch_app_and_prompt_user_to_act "$BUNDLE_ID_TEXTEDIT" "Please do the thing"
-  launch_app_and_prompt_user_to_act --show-doc "${GENOMAC_USER_DOCS_TO_DISPLAY_DIRECTORY}/TextExpander_how_to_configure.md" "$BUNDLE_ID_TEXTEDIT" "Please do the thing"
+  launch_app_and_prompt_user_to_act --show-doc "${GMU_DOCS_TO_DISPLAY}/TextExpander_how_to_configure.md" "$BUNDLE_ID_TEXTEDIT" "Please do the thing"
   
   report_end_phase_standard 
 
