@@ -43,7 +43,6 @@ function hypervisor() {
 	report_action_taken "Skipping test for changes to repo, because this has already been tested this session."
   fi
 
-
   # Run the subdermal layer of the hypervisor, which supervises the remainder of the process.
   subdermis
 
