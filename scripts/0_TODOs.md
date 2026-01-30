@@ -28,7 +28,7 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
   - ❑ update the environment variable that points to this directory
   - ❑ update the `source` statements that load them
 - Other stuff
-  - defaults-detective
+  - ✅ defaults-detective
     - Currently partly misfiled (This should be rationalized)
       - the entry point (defaults_detective.sh) is OK: scripts/utilities
       - but there’s a separate scripts/default_detective directory
