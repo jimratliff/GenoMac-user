@@ -11,7 +11,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/perform_basic_user_level_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_stow_dotfiles.sh"
 
-function run_hypervisor() {
+function subdermis() {
 
   report_start_phase_standard
 
