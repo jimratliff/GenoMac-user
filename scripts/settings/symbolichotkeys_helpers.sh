@@ -23,7 +23,7 @@
 # COMMAND_CHAR=$'\u2318'   # ⌘
 # META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 
-domain="com.apple.symbolichotkeys"
+domain="$DEFAULTS_DOMAINS_SYMBOLICHOTKEYS"
 symdict="AppleSymbolicHotKeys"
 
 function disable_command_by_its_id() {
