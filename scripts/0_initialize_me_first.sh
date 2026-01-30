@@ -27,6 +27,7 @@ this_script_path="${${(%):-%x}:A}"              # ~/.genomac-user/scripts/0_init
 GENOMAC_USER_SCRIPTS="${this_script_path:h}"    # ~/.genomac-user/scripts
 GENOMAC_USER_ROOT="${GENOMAC_USER_SCRIPTS:h}"   # ~/.genomac-user
 GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER="${GENOMAC_USER_ROOT}/external/genomac-shared" # ~/.genomac-user/external/genomac-shared
+HELPERS_FROM_GENOMAC_SHARED="${GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER}/scripts"  # external/genomac-shared/scripts
 
 echo "Paths determined in 0_initialize_me_first.sh:"
 echo "• this_script_path: ${this_script_path}"
@@ -36,7 +37,6 @@ echo "• GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER: ${GENOMAC_SHARED_ROOT_RE
 
 # Source the master-helper script from GenoMac-shared submodule, which sources helpers
 # and environment variables from GenoMac-shared
-HELPERS_FROM_GENOMAC_SHARED="${GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER}/scripts"  # external/genomac-shared/scripts
 master_helper_script="${HELPERS_FROM_GENOMAC_SHARED}/helpers.sh"
 
 echo "Source ${master_helper_script}"
