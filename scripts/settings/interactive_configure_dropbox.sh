@@ -18,7 +18,7 @@ function interactive_configure_Dropbox() {
   report "Time to configure Dropbox! I’ll launch it, and open a window with instructions for next steps"
 	
   launch_app_and_prompt_user_to_act \
-    --show-doc "${GENOMAC_USER_DOCS_TO_DISPLAY_DIRECTORY}/Dropbox_how_to_configure.md" \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/Dropbox_how_to_configure.md" \
     "$BUNDLE_ID_DROPBOX" \
     "Follow the instructions in the Quick Look window to log into and configure Dropbox"
   
