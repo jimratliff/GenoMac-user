@@ -32,8 +32,10 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
     - Currently partly misfiled (This should be rationalized)
       - the entry point (defaults_detective.sh) is OK: scripts/utilities
       - but there’s a separate scripts/default_detective directory
-  - set_power_management_settings.sh
-    - Is this really at the user level instead of system level?
+  - ❑ set_power_management_settings.sh
+    - ❑ Marked as WIP
+    - ❑ The test for laptop should be pulled out into GenoMac-shared as a helper (if it's not already)
+    - ❑ Is this really at the user level instead of system level?
   - ❑ Add an interactive request to set the screensaver to Matrix
 - ✅ shebang: Use portable version: #!/usr/bin/env zsh
   - ✅ GenoMac-user: Use only #!/usr/bin/env zsh
