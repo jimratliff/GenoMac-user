@@ -62,13 +62,6 @@ COMMAND_CHAR=$'\u2318'   # ⌘
 META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 
-# Specify the local directory that holds resources (files or folders) needed for particular
-# operations by GenoMac-user
-GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}/resources"
-
-# Specify the local directory that holds documentation files to display to the executing user
-GENOMAC_USER_DOCS_TO_DISPLAY_DIRECTORY="${GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY}/docs_to_display_to_user"
-
 # Specify the local directory that is the “stow directory” that GNU Stow uses as
 # both (a) the raw dotfiles representing various configurations and (b) the
 # structural template defining where each symlink should reside in the user’s
