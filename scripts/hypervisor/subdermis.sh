@@ -25,15 +25,8 @@ function subdermis() {
   set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
 
   interactive_ensure_terminal_has_fda
-  
   conditionally_interactive_ask_initial_questions
-  
-  ############### SESH: Stow dotfiles
-  run_if_user_has_not_done \
-    --force-logout \
-    "$SESH_DOTFILES_HAVE_BEEN_STOWED" \
-    stow_dotfiles \
-    "Skipping stowing dotfiles, because you've already stowed them during this session."
+  conditionally_stow_dotfiles
 
   ############### SESH: Configure primary programmatically implemented settings
   run_if_user_has_not_done \
