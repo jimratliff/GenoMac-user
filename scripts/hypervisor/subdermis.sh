@@ -26,11 +26,7 @@ function subdermis() {
 
   interactive_ensure_terminal_has_fda
   
-  ############### PERM: Ask initial questions
-  run_if_user_has_not_done \
-    "$PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED" \
-    interactive_ask_initial_questions \
-    "Skipping introductory questions, because you've answered them in the past."
+  conditionally_interactive_ask_initial_questions
   
   ############### SESH: Stow dotfiles
   run_if_user_has_not_done \
