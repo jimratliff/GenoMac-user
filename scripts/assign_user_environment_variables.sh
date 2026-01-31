@@ -37,12 +37,9 @@ GMU_HYPERVISOR_SCRIPTS="${GMU_SCRIPTS}/hypervisor"
 # ~/.genomac-user/scripts/settings
 GMU_SETTINGS_SCRIPTS="${GMU_SCRIPTS}/settings"
 
-# ~/.genomac-system/scripts/user_scope
-GMS_USER_SCOPE_SCRIPTS="${GMS_SCRIPTS}/user_scope"
-
-############### ~/.genomac-system/utilities
+############### ~/.genomac-user/utilities
 # Holds narrow-focused scripts to be individually accessed by make recipes
-GMS_UTILITIES="${GENOMAC_SYSTEM_LOCAL_DIRECTORY}/utilities"
+GMU_UTILITIES="${GENOMAC_USER_LOCAL_DIRECTORY}/utilities"
 
 ##############################
 
@@ -100,13 +97,19 @@ export_and_report CONTROL_CHAR
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH
+export_and_report GMU_DOCS_TO_DISPLAY
 export_and_report GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS
 export_and_report GMU_STOW_DIR
 export_and_report GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY
 export_and_report GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES
 export_and_report GMU_HYPERVISOR_HOW_TO_RESTART_STRING
 export_and_report GMU_HYPERVISOR_MAKE_COMMAND_STRING
+export_and_report GMU_HYPERVISOR_SCRIPTS
+export_and_report GMU_RESOURCES
 export_and_report GMU_SCRIPTS
+export_and_report GMU_SETTINGS_SCRIPTS
+export_and_report GMS_USER_SCOPE_SCRIPTS
+export_and_report GMU_UTILITIES
 export_and_report META_MODIFIER_CHARS
 export_and_report MODIFIERS_KEYBOARD_NAVIGATION
 export_and_report OPTION_CHAR
