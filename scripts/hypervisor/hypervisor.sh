@@ -40,7 +40,7 @@ function hypervisor() {
       exec "$0"
 	else
 	  set_genomac_user_state "SESH_REPO_HAS_BEEN_TESTED_FOR_CHANGES"
-	  report "Local clone of ${GENOMAC_SYSTEM_REPO_NAME} was up to date"
+	  report "Local clone of ${GENOMAC_USER_REPO_NAME} was up to date"
 	fi
   else
 	report_action_taken "Skipping test for changes to repo, because this has already been tested this session."
