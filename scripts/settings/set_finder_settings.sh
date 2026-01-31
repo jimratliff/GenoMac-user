@@ -115,6 +115,21 @@ function set_finder_settings() {
 
 }
 
+function conditionally_reverse_disk_display_policy_for_some_users() {
+  report_start_phase_standard
+
+  if test_genomac_user_state "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"; then
+    run_if_user_has_not_done \
+      "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED" \
+      reverse_disk_display_policy_for_some_users \
+      "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
+  else
+    report_action_taken "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
+  fi
+  
+  report_end_phase_standard
+}
+
 function reverse_disk_display_policy_for_some_users() {
   # Reverses the standard default, when requested: do show internal/external drives on Desktop
 
