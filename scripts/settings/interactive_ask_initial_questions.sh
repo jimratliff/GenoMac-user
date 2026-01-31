@@ -1,8 +1,15 @@
 #!/usr/bin/env zsh
 
-############### TODO: WIP
+function conditionally_interactive_ask_initial_questions() {
+  report_start_phase_standard
 
-function conditionally_ask_i
+  run_if_system_has_not_done \
+    "$PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED" \
+    interactive_ask_initial_questions \
+    "Skipping introductory questions, because you've answered them in the past."
+  
+  report_end_phase_standard
+}
 
 function interactive_ask_initial_questions() {
 
