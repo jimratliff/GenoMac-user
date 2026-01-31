@@ -45,11 +45,11 @@ function subdermis() {
     conditionally_configure_keyboard_maestro
 
     # Alfred must be configured *after* Keyboard Maestro, because activating the
-    #   Powerpack uses a custom Keyboard Maestro macro
+    # Powerpack uses a custom Keyboard Maestro macro
     conditionally_configure_alfred
   fi
 
-  # conditionally_configure_microsoft_word
+  conditionally_configure_microsoft_word
   
   output_hypervisor_departure_banner "$GENOMAC_SCOPE_USER"
   
