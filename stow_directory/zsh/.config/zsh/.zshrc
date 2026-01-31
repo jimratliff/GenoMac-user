@@ -6,8 +6,6 @@ case $- in
   *) return ;;   # non-interactive: exit early
 esac
 
-crash_if_homebrew_not_installed
-
 # ======================================================================
 # Programmable completion (system zsh)
 # - fpath is configured system-wide in /etc/zshenv for Homebrew completions
