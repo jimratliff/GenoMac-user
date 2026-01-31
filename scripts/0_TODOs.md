@@ -9,6 +9,8 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
 - ✅ Why does GenoMac-system scripts/settings have a file from GenoMac-user!?!?!?!? 🤪
   - ✅ interactive_ask_initial_questions.sh
     - ✅ DELETED
+- ❑ Integrate `just` as a a partial replacement for `make`, except that `make` is required until after
+  `just` is installed by Homebrew.
 
 ############### GenoMac-user
 - ✅ Renamimg 0_initialize_me.sh to 0_initialize_me_first.sh
@@ -51,6 +53,7 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
 - Other stuff
   - ❑ verify_ssh_agent_configuration may be in two places?
     - It’s in scripts/settings/interactive_configure_1password.sh at the least
+  - ❑ Integrate `just` as a replacement for `make`
   - ✅ defaults-detective
     - Currently partly misfiled (This should be rationalized)
       - the entry point (defaults_detective.sh) is OK: scripts/utilities
