@@ -27,7 +27,7 @@ GMU_RESOURCES="${GENOMAC_USER_LOCAL_DIRECTORY}/resources"
 GMU_DOCS_TO_DISPLAY="${GMU_RESOURCES}/docs_to_display_to_user"
 
 ############### ~/.genomac-user/scripts
-# - Local directory that holds scripts: ~/.genomac-system/scripts
+# - Local directory that holds scripts: ~/.genomac-user/scripts
 GMU_SCRIPTS="${GENOMAC_USER_LOCAL_DIRECTORY}/scripts"
 
 # ~/.genomac-user/scripts/hypervisor
