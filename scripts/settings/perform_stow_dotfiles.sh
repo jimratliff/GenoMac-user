@@ -19,6 +19,18 @@
 # Fail early on unset variables or command failure
 set -euo pipefail
 
+function conditionally_stow_dotfiles() {
+  report_start_phase_standard
+
+  run_if_user_has_not_done \
+    --force-logout \
+    "$SESH_DOTFILES_HAVE_BEEN_STOWED" \
+    stow_dotfiles \
+    "Skipping stowing dotfiles, because you've already stowed them during this session."
+  
+  report_end_phase_standard
+}
+
 function stow_dotfiles() {
   report_start_phase_standard
 
