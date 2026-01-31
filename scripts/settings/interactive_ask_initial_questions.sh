@@ -3,7 +3,7 @@
 function conditionally_interactive_ask_initial_questions() {
   report_start_phase_standard
 
-  run_if_system_has_not_done \
+  run_if_user_has_not_done \
     "$PERM_INTRO_QUESTIONS_ASKED_AND_ANSWERED" \
     interactive_ask_initial_questions \
     "Skipping introductory questions, because you've answered them in the past."
