@@ -30,7 +30,8 @@ This list is being generated January 28, 2026 during a major refactoring of Geno
 - ❑ Features to add
   - ❑ Interactive prompt for the user to select Matrix as their screensaver
 - environment variables
-  - ✅ HOMEBREW_PREFIX needs to be exported from somewhere
+  - ❑ HOMEBREW_PREFIX calculation needs to be moved to GenoMac-shared/scripts/assign_common_rnvironment_variables.sh
+    - This is safe because Homebrew *must* be installed *before* either GenoMac-system or GenoMac-user runs.
   - ✅ Why isn't GMU_SCRIPTS_DIR used anywhere? Is there something else, by a different name, doing the same thing?
     - ✅ Refactored into oblivion
   - ✅ GENOMAC_USER_LOCAL_RESOURCE_DIRECTORY →   GMU_RESOURCES (These BOTH seem to exist!)
