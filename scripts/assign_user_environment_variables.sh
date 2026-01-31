@@ -109,6 +109,7 @@ export_and_report GMU_RESOURCES
 export_and_report GMU_SCRIPTS
 export_and_report GMU_SETTINGS_SCRIPTS
 export_and_report GMU_UTILITIES
+export_and_report HOMEBREW_PREFIX
 export_and_report META_MODIFIER_CHARS
 export_and_report MODIFIERS_KEYBOARD_NAVIGATION
 export_and_report OPTION_CHAR
