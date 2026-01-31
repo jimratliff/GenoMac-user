@@ -30,25 +30,17 @@ function subdermis() {
   conditionally_perform_basic_user_level_settings
   conditionally_reverse_disk_display_policy_for_some_users
   
-  ############### PERM: Execute pre-Dropbox bootstrap steps
-  run_if_user_has_not_done \
-    --force-logout \
-    "$PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED" \
-    perform_initial_bootstrap_operations \
-    "Skipping basic bootstrap operations, because they’ve already been performed"
+  # Execute pre-Dropbox bootstrap steps
+  conditionally_perform_initial_bootstrap_operations
 
-  ############### Conditionally configure 1Password
   # 1Password is configured at this point in order to be available when subsequent
   # apps need to be signed into
   conditionally_configure_1Password
 
-  ############### PERM: Conditionally configure TextExpander
   conditionally_configure_textexpander
-
-  ############### PERM: Conditionally configure Dropbox
   conditionally_configure_Dropbox
 
-  ############### PERM: (Further) configure apps that rely upon Dropbox
+  ############### PERM: (Further) configure apps that rely upon Dropbox having synced
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
     conditionally_configure_keyboard_maestro
 
@@ -57,12 +49,9 @@ function subdermis() {
     conditionally_configure_alfred
   fi
 
-  ############### Execute post–Dropbox sync operations
-
-  ############### Configure Microsoft Word
   # conditionally_configure_microsoft_word
   
-  output_hypervisor_departure_banner "$ "$GENOMAC_SCOPE_USER""
+  output_hypervisor_departure_banner "$GENOMAC_SCOPE_USER"
   
   hypervisor_force_logout
   
