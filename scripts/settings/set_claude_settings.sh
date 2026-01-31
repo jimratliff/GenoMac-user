@@ -5,6 +5,8 @@ function set_claude_settings() {
   # Specify settings for Claude
   # - Turn off quick-entry shortcut
   # - Turn off menubar item
+  #
+  # Requires jq
 
   report_start_phase_standard
   report_action_taken "Implement Claude desktop settings"
