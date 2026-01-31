@@ -3,6 +3,9 @@ This list is being generated beginning January 28, 2026 during a major refactori
 (to conform to the advancements during the recent Hypervisor-transformation of GenoMac-system).
 
 ############### GenoMac-system
+- ❑ Integrate `just` as a a partial replacement for `make`, except that `make` is required until after
+  `just` is installed by Homebrew.
+  - However, read “§ [Shell Completion Scripts](https://github.com/casey/just#shell-completion-scripts)” from just’s README
 - ✅ Configure split remote URLs for the repo
   - ✅ GenoMac-shared has helpers-git.sh, including configure_split_remote_URLs_for_GenoMac_user() and configure_split_remote_URLs_for_GenoMac_system(), but I can't find that I'm actually using them.
 - ✅ State management
@@ -13,10 +16,6 @@ This list is being generated beginning January 28, 2026 during a major refactori
 - ✅ Why does GenoMac-system scripts/settings have a file from GenoMac-user!?!?!?!? 🤪
   - ✅ interactive_ask_initial_questions.sh
     - ✅ DELETED
-- ❑ Integrate `just` as a a partial replacement for `make`, except that `make` is required until after
-  `just` is installed by Homebrew.
-  - However, read “§ [Shell Completion Scripts](https://github.com/casey/just#shell-completion-scripts)” from just’s README
-
 ############### GenoMac-user
 - ✅ Renamimg 0_initialize_me.sh to 0_initialize_me_first.sh
   - ✅ Rename the function itself
@@ -57,19 +56,20 @@ This list is being generated beginning January 28, 2026 during a major refactori
   - ✅ update the environment variable that points to this directory (GMU_SETTINGS_SCRIPTS)
   - ✅ update the `source` statements that load them
 - Other stuff
-  - ❑ verify_ssh_agent_configuration may be in two places?
-    - It’s in scripts/settings/interactive_configure_1password.sh at the least
   - ❑ Integrate `just` as a replacement for `make`
     - However, read “§ [Shell Completion Scripts](https://github.com/casey/just#shell-completion-scripts)” from just’s README
-  - ✅ defaults-detective
-    - Currently partly misfiled (This should be rationalized)
-      - the entry point (defaults_detective.sh) is OK: scripts/utilities
-      - but there’s a separate scripts/default_detective directory
   - ❑ set_power_management_settings.sh
     - ❑ Marked as WIP
     - ❑ The test for laptop should be pulled out into GenoMac-shared as a helper (if it's not already)
     - ❑ Is this really at the user level instead of system level?
   - ❑ Add an interactive request to set the screensaver to Matrix
+  - ✅ verify_ssh_agent_configuration may be in two places?
+    - It’s in scripts/settings/interactive_configure_1password.sh at the least
+    - ✅ False alarm. It’s defined in only one place. It has a separate, standalone entry point.
+  - ✅ defaults-detective
+    - Currently partly misfiled (This should be rationalized)
+      - the entry point (defaults_detective.sh) is OK: scripts/utilities
+      - but there’s a separate scripts/default_detective directory
 - ✅ shebang: Use portable version: #!/usr/bin/env zsh
   - ✅ GenoMac-user: Use only #!/usr/bin/env zsh
   - ✅ GeoMac-system: Use only #!/usr/bin/env zsh
