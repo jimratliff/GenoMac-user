@@ -1,5 +1,5 @@
-# To Dos for scripts directory
-This list is being generated January 28, 2026 during a major refactoring of GenoMac-user
+# To Dos
+This list is being generated beginning January 28, 2026 during a major refactoring of GenoMac-user
 (to conform to the advancements during the recent Hypervisor-transformation of GenoMac-system).
 
 ############### GenoMac-system
