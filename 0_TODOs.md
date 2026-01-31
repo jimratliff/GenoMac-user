@@ -3,8 +3,8 @@ This list is being generated beginning January 28, 2026 during a major refactori
 (to conform to the advancements during the recent Hypervisor-transformation of GenoMac-system).
 
 ############### GenoMac-system
-- ❑ State management
-  - ❑ Fix inconsistency about referring to state-file aliases: With or without $????
+- ✅ State management
+  - ✅ Fix inconsistency about referring to state-file aliases: With or without $????
 - ✅ function interactive-get_loginwindow_message() has TWO DIFFERENT VERSIONS!
   - ✅ See Claude’s analysis of the differences between the two
   - ✅ DEPRECATED version in standalone file
