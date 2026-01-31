@@ -6,8 +6,7 @@ function set_default_shell() {
   report_start_phase_standard
   report_action_taken "Ensure Homebrew’s Zsh is user’s default shell"
 
-  # HOMEBREW_PREFIX is now an environment variable already exported
-  # local HOMEBREW_PREFIX="$(/usr/bin/env brew --prefix)"   # e.g., /opt/homebrew
+  # HOMEBREW_PREFIX is an environment variable exported from GenoMac-shared
   local BREW_ZSH="$HOMEBREW_PREFIX/bin/zsh"
 
   if [[ ! -x "$BREW_ZSH" ]]; then
