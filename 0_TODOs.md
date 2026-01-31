@@ -3,8 +3,8 @@ This list is being generated beginning January 28, 2026 during a major refactori
 (to conform to the advancements during the recent Hypervisor-transformation of GenoMac-system).
 
 ############### GenoMac-system
-- ❑ Configure split remote URLs for the repo
-  - ❑ GenoMac-shared has helpers-git.sh, including configure_split_remote_URLs_for_GenoMac_user() and configure_split_remote_URLs_for_GenoMac_system(), but I can't find that I'm actually using them.
+- ✅ Configure split remote URLs for the repo
+  - ✅ GenoMac-shared has helpers-git.sh, including configure_split_remote_URLs_for_GenoMac_user() and configure_split_remote_URLs_for_GenoMac_system(), but I can't find that I'm actually using them.
 - ✅ State management
   - ✅ Fix inconsistency about referring to state-file aliases: With or without $????
 - ✅ function interactive-get_loginwindow_message() has TWO DIFFERENT VERSIONS!
@@ -32,8 +32,8 @@ This list is being generated beginning January 28, 2026 during a major refactori
       - ✅ Start at scripts/settings/interactive_ask_initial_questions.sh ###############WIP
   - ✅ Re-write scripts/run_hypervisor.sh entry point for Make recipe
   - ✅ Move assign_enum_env_vars_for_states.sh to scripts/hypervisor
-- ❑ Configure split remote URLs for the repo
-  - ❑ GenoMac-shared has helpers-git.sh, including configure_split_remote_URLs_for_GenoMac_user() and configure_split_remote_URLs_for_GenoMac_system(), but I can't find that I'm actually using them.
+- ✅ Configure split remote URLs for the repo
+  - ✅ GenoMac-shared has helpers-git.sh, including configure_split_remote_URLs_for_GenoMac_user() and configure_split_remote_URLs_for_GenoMac_system(), but I can't find that I'm actually using them.
 - ❑ Features to add
   - ❑ Interactive prompt for the user to select Matrix as their screensaver
 - environment variables
