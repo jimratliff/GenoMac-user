@@ -46,11 +46,6 @@ GMU_UTILITIES="${GENOMAC_USER_LOCAL_DIRECTORY}/utilities"
 # Specify location of PlistBuddy
 PLISTBUDDY_PATH='/usr/libexec/PlistBuddy'
 
-# Resolve once (don’t recompute if already set by the environment)
-# The execution of any GenoMac-user script always follows completion of GenoMac-system’s installation
-# of Homebrew. Thus, this prefix is defined.
-HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-$(/usr/bin/env brew --prefix)}"
-
 # Establish symbolic names for modifier keys
 SHIFT_CHAR=$'\u21e7'     # ⇧
 CONTROL_CHAR=$'\u2303'   # ⌃  
