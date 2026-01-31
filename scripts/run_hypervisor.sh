@@ -6,7 +6,7 @@
 set -euo pipefail
 
 # Source (a) helpers and cross-repo environment variables from GenoMac-shared and
-# (b) environment variables specific to the GenoMac-system repository
+# (b) environment variables specific to the GenoMac-user repository
 initial_initialization_script="$HOME/.genomac-user/scripts/0_initialize_me_first.sh"
 echo "Source ${initial_initialization_script}"
 source "${initial_initialization_script}"
