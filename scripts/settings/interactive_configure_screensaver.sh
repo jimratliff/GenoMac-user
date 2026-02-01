@@ -14,11 +14,11 @@ function conditionally_interactive_configure_screensaver() {
 function interactive_configure_screensaver() {
   report_start_phase_standard
 
-  open_wallpaper_panel
+  
 
   report "Let’s implement the default custom screen saver: Matrix."
   report_action_taken "I’ve opened (a) the Wallpaper panel in System Settings and (b) a Quick Look window with instructions"
-  open_privacy_panel_for_full_disk_permissions
+  open_wallpaper_panel
   launch_app_and_prompt_user_to_act \
     --no-app \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Screensaver_how_to_configure.md" \
