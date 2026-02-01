@@ -32,6 +32,7 @@ function subdermis() {
   
   # Execute pre-Dropbox bootstrap steps
   conditionally_perform_initial_bootstrap_operations
+  conditionally_interactive_configure_screensaver
 
   # 1Password is configured at this point in order to be available when subsequent
   # apps need to be signed into
