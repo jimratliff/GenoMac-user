@@ -34,7 +34,7 @@ This list is being generated beginning January 28, 2026 during a major refactori
 - ✅ Configure split remote URLs for the repo
   - ✅ GenoMac-shared has helpers-git.sh, including configure_split_remote_URLs_for_GenoMac_user() and configure_split_remote_URLs_for_GenoMac_system(), but I can't find that I'm actually using them.
 - ❑ Features to add
-  - ❑ Interactive prompt for the user to select Matrix as their screensaver
+  - ✅ Interactive prompt for the user to select Matrix as their screensaver
 - environment variables
   - ✅ HOMEBREW_PREFIX calculation needs to be moved to GenoMac-shared/scripts/assign_common_rnvironment_variables.sh
     - This is safe because Homebrew *must* be installed *before* GenoMac-system is even *installed* and therefore before GenoMac-user runs.
@@ -62,7 +62,6 @@ This list is being generated beginning January 28, 2026 during a major refactori
     - ❑ Marked as WIP
     - ❑ The test for laptop should be pulled out into GenoMac-shared as a helper (if it's not already)
     - ❑ Is this really at the user level instead of system level?
-  - ❑ Add an interactive request to set the screensaver to Matrix
   - ✅ verify_ssh_agent_configuration may be in two places?
     - It’s in scripts/settings/interactive_configure_1password.sh at the least
     - ✅ False alarm. It’s defined in only one place. It has a separate, standalone entry point.
