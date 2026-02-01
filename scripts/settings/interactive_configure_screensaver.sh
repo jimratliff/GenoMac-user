@@ -14,8 +14,6 @@ function conditionally_interactive_configure_screensaver() {
 function interactive_configure_screensaver() {
   report_start_phase_standard
 
-  
-
   report "Let’s implement the default custom screen saver: Matrix."
   report_action_taken "I’ve opened (a) the Wallpaper panel in System Settings and (b) a Quick Look window with instructions"
   open_wallpaper_panel
