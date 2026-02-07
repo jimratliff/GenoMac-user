@@ -22,7 +22,14 @@
 - Go to the bottom of that pane, under the “Other” heading and click “Show All”
 - Go to the end of the selection of screen savers and select “Matrix”
 - Return to the top, you’ll see “Matrix” under the two rows (“Start Screen Saver…” and “Use Screen Saver”)
-- Click the “Options…” button (this doesn’t seem to be working)
+- Click the “Options…” button
+  - Renderer: Metal
+  - ✅ 3D fade
+  - ✅ Minor instability
+  - ❌ Rotate
+  - Glyph Size: Medium
+  - Colors: white, green, green
+  - ✅ legacyScreenSaver fix
 - Click “Done”
 
 ## Return to terminal and acknowledge
