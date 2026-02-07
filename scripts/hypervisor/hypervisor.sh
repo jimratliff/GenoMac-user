@@ -55,6 +55,10 @@ function hypervisor() {
 
   # Reset SESH states for next session
   delete_all_user_SESH_states
+  
+  output_hypervisor_departure_banner "$GENOMAC_SCOPE_USER"
+  
+  hypervisor_force_logout
 
   report_end_phase_standard
 }
