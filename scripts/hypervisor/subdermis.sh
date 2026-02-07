@@ -52,10 +52,6 @@ function subdermis() {
 
   conditionally_configure_microsoft_word
   
-  output_hypervisor_departure_banner "$GENOMAC_SCOPE_USER"
-  
-  hypervisor_force_logout
-  
   report_end_phase_standard
 }
 
