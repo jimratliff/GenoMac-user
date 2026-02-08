@@ -13,6 +13,14 @@ function conditionally_configure_microsoft_word() {
     return 0
   fi
 
+  ############### WARNING: WIP!!!!
+
+  if test_genomac_user_state "$PERM_MICROSOFT_WORD_PREFS_HAVE_BEEN_CONFIGURED"; then
+    report_action_taken "Skipping setting Microsoft Word preferences, because they’ve already been set and it’s a bootstrapping step"
+    report_end_phase_standard
+    return 0
+  fi
+
   if test_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"; then
     report_action_taken "Skipping Microsoft Word configuration, because it’s already been configured and it’s a bootstrapping step"
     report_end_phase_standard
@@ -25,16 +33,23 @@ function conditionally_configure_microsoft_word() {
       "I will launch Microsoft Word. Please log in to your Microsoft 365 account.${NEWLINE}This is necessary for me to set its preferences"
     set_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"
   fi
+  
+  run_if_user_has_not_done \
+    "$PERM_MICROSOFT_WORD_NORMAL_DOTM_HAS_BEEN_INSTALLED" \
+    install_microsoft_word_normal_dotm \
+    "Skipping installation of Normal.dotm for Microsoft Word, because it’s already been done"
+  fi
 
-  set_microsoft_office_suite_wide_settings
-  set_microsoft_word_settings
-
-  set_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"
+  run_if_user_has_not_done \
+    "$PERM_MICROSOFT_WORD_PREFS_HAVE_BEEN_CONFIGURED" \
+    set_microsoft_word_and_suite_settings \
+    "Skipping settings preferences for Microsoft Word, because it’s already been done and it’s a bootstrapping step"
+  fi
 
   report_end_phase_standard
 }
 
-function set_microsoft_word_settings() {
+function set_microsoft_word_and_suite_settings() {
 
   # Main function for implementing Microsoft Word settings (after determining that it should be done).
   #
