@@ -13,6 +13,7 @@
     - “Set up macOS Permissions”
       - “Alfred requires certain macOS permissions to automate your Mac. This step will get you started.”
     - There are three buttons: “Quit,” “Skip Setup,” and “Begin Setup…”
+  - ❑ Click “Begin Setup…”
 
 ## Activate Alfred Powerpack
 - The window changes to “Activate Alfred Powerpack: Enter your Alfred 5 Powerpack License, or skip to use Alfred’s core features.”
