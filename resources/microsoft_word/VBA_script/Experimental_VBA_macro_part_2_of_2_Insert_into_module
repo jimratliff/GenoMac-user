@@ -1,6 +1,3 @@
-Here's the module with comprehensive diagnostics:
-
-```vba
 ' This file contains the subset of macro code that is to be pasted inside a module of
 ' the macro-enabled Word document `Container_for_VBA_macro_to_set_Word_preferences.docm`.
 ' 
@@ -229,12 +226,3 @@ WriteError:
     Close #fileNum
     On Error GoTo 0
 End Sub
-```
-
-This will show you:
-1. Initial value of PictureWrapType before anything runs
-2. Before/after for each of the three problematic settings
-3. Final values of all three at the end
-4. Whether the log file write succeeds
-
-The MsgBox dialogs will pause execution so you can read each value. This should reveal whether the values are being accepted and what they actually are.
