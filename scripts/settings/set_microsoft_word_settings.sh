@@ -20,19 +20,19 @@ function conditionally_configure_microsoft_word() {
     launch_app_and_prompt_user_to_act "$BUNDLE_ID_MICROSOFT_WORD" \
       "I will launch Microsoft Word. Please log in to your Microsoft 365 account.${NEWLINE}This is necessary for me to set its preferences"
     set_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"
+  else
+    report "Microsoft Word is already authenticated. No further action required for that."
   fi
   
   run_if_user_has_not_done \
     "$PERM_MICROSOFT_WORD_NORMAL_DOTM_HAS_BEEN_INSTALLED" \
     install_microsoft_word_normal_dotm \
     "Skipping installation of Normal.dotm for Microsoft Word, because it’s already been done"
-  fi
 
   run_if_user_has_not_done \
     "$PERM_MICROSOFT_WORD_PREFS_HAVE_BEEN_CONFIGURED" \
     set_microsoft_word_and_suite_settings \
     "Skipping settings preferences for Microsoft Word, because it’s already been done and it’s a bootstrapping step"
-  fi
 
   report_end_phase_standard
 }
