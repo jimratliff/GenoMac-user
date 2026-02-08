@@ -19,7 +19,7 @@ This README file addresses:
     - Contains the substantive VBA code for implementing the executing user’s preferences for Microsoft Word
     - This code is to be pasted within `Module1` of this Word document, within the VBA editor
     - See comments within this file for detailed instructions about (a) how to create `Module1` and
-      (b) how these 3 lines of codes are to be pasted within `Module1`
+      (b) how these lines of codes are to be pasted within `Module1`
     - This is the file that should be edited when a revision to the VBA macro is required (either to fix an
       error or because there is change in the desired preferences)
     - But then the revised code must be manually reinserted into `Module1` (replacing the prior code)
