@@ -91,16 +91,6 @@ Public Sub SetMyPreferences()
         End If
         logMessages = logMessages & ReportSetting("Grammar > Check grammar as you type → OFF", actionTaken)
         
-        ' Output and Sharing > Save > "Prompt before saving Normal template"
-        ' Default: OFF (False) → Desired: ON (True)
-        If .SaveNormalPrompt <> True Then
-            .SaveNormalPrompt = True
-            actionTaken = "CHANGED"
-        Else
-            actionTaken = "already set"
-        End If
-        logMessages = logMessages & ReportSetting("Save > Prompt before saving Normal template → ON", actionTaken)
-        
     End With
     
     ' -----------------------------------------------------------------
