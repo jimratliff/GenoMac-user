@@ -77,6 +77,9 @@ function install_microsoft_word_normal_dotm() {
   
   report_start_phase_standard
 
+  # Quit Microsoft Word if necessary
+  quit_app_by_bundle_id_if_running "${BUNDLE_ID_MICROSOFT_WORD}"
+
   local global_template_filename="Normal.dotm"
   local path_for_Microsoft_Word_templates="${HOME}/Library/Group Containers/UBF8T346G9.Office/User Content.localized/Templates.localized"
 
