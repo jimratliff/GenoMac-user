@@ -27,8 +27,8 @@
   - ❑ You’ll see, *inter alia*, “Thank you, you’re amazing ;)”
 - ❑ Click on the button: “Next Step…”
 
-## Migrate Preferences to Alfred 5
-Suprisingly, and I don’t totally understand it…
+## Migrate Preferences to Alfred 5 (possibly, likely not)
+(Suprisingly, and I don’t totally understand it… I once encounterd this. But on other new users, this section about migration was skipped.)
 - The window changes to “Migrate Preferences to Alfred 5”
   - “An older version of Alfred’s preferences has been found”
   - Preferences: ~/Library/CloudStorage/Dropbox/Preferences_common/Alfred_preferences/ (this may simply be truncated here, because it should have the Alfred_5_preferences subfolder
