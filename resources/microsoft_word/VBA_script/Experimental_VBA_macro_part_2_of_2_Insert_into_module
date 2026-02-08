@@ -1,3 +1,6 @@
+Here's the module with comprehensive diagnostics:
+
+```vba
 ' This file contains the subset of macro code that is to be pasted inside a module of
 ' the macro-enabled Word document `Container_for_VBA_macro_to_set_Word_preferences.docm`.
 ' 
@@ -6,7 +9,7 @@
 ' - From the macOS menubar, choose Insert » Module, which opens a new, blank window corresponding to `Module1`
 ' - Paste only the below code below (beginning with `Option Explicit`) into the `Module1` window
 '
-' NOTE: Changing this file doesn’t by itself effect the change. The new version of this code must be
+' NOTE: Changing this file doesn't by itself effect the change. The new version of this code must be
 '	    reinserted into `Module1` of the macro-enabled Word document 
 '       `Container_for_VBA_macro_to_set_Word_preferences.docm`
 
@@ -26,7 +29,7 @@ Public Sub SetMyPreferences()
     ' Writes summary of actions taken to a log file to be read by the enveloping shell script
     ' =============================================================================
 
-    ' MsgBox "SetMyPreferences started!"
+    MsgBox "SetMyPreferences started!"
     
     Dim logMessages As String
     logMessages = ""
@@ -37,11 +40,19 @@ Public Sub SetMyPreferences()
     On Error Resume Next ' Some properties may not exist on all Mac versions
     
 Dim actionTaken As String
+Dim diagMsg As String
 
 ' -----------------------------------------------------------------
 ' Application.Options settings (stored in user preferences)
 ' -----------------------------------------------------------------
 With Application.Options
+    
+    ' ===================== DIAGNOSTIC BLOCK FOR PictureWrapType =====================
+    diagMsg = "=== PictureWrapType Diagnostic ===" & vbCrLf
+    diagMsg = diagMsg & "BEFORE any changes:" & vbCrLf
+    diagMsg = diagMsg & "  .PictureWrapType = " & .PictureWrapType & vbCrLf
+    MsgBox diagMsg
+    ' ================================================================================
     
     ' General > Settings > "Update automatic links at Open"
     ' Default: ON (True) → Desired: OFF (False)
@@ -75,13 +86,31 @@ With Application.Options
     
     ' Edit > Editing Options > "Insert/paste pictures as"
     ' Default: 0 (In line with text) → Desired: 4 (Top and bottom)
+    diagMsg = "=== PictureWrapType Before Setting ===" & vbCrLf
+    diagMsg = diagMsg & "Current value: " & .PictureWrapType & vbCrLf
+    diagMsg = diagMsg & "About to set to: 4" & vbCrLf
+    MsgBox diagMsg
+    
     If .PictureWrapType <> 4 Then
         .PictureWrapType = 4
         actionTaken = "CHANGED"
     Else
         actionTaken = "already set"
     End If
+    
+    diagMsg = "=== PictureWrapType After Setting ===" & vbCrLf
+    diagMsg = diagMsg & "Value after assignment: " & .PictureWrapType & vbCrLf
+    diagMsg = diagMsg & "actionTaken: " & actionTaken & vbCrLf
+    MsgBox diagMsg
+    
     logMessages = logMessages & ReportSetting("Edit > Insert/paste pictures as → Top and bottom", actionTaken)
+    logMessages = logMessages & "  [DEBUG: PictureWrapType final value = " & .PictureWrapType & "]" & vbLf
+    
+    ' ===================== DIAGNOSTIC BLOCK FOR EnableMisusedWordsDictionary =====================
+    diagMsg = "=== EnableMisusedWordsDictionary Before Setting ===" & vbCrLf
+    diagMsg = diagMsg & "Current value: " & .EnableMisusedWordsDictionary & vbCrLf
+    diagMsg = diagMsg & "About to set to: False" & vbCrLf
+    MsgBox diagMsg
     
     ' Spelling & Grammar > Spelling > "Frequently confused words"
     ' Default: ON (True) → Desired: OFF (False)
@@ -91,7 +120,14 @@ With Application.Options
     Else
         actionTaken = "already set"
     End If
+    
+    diagMsg = "=== EnableMisusedWordsDictionary After Setting ===" & vbCrLf
+    diagMsg = diagMsg & "Value after assignment: " & .EnableMisusedWordsDictionary & vbCrLf
+    diagMsg = diagMsg & "actionTaken: " & actionTaken & vbCrLf
+    MsgBox diagMsg
+    
     logMessages = logMessages & ReportSetting("Spelling > Frequently confused words → OFF", actionTaken)
+    logMessages = logMessages & "  [DEBUG: EnableMisusedWordsDictionary final value = " & .EnableMisusedWordsDictionary & "]" & vbLf
     
     ' Spelling & Grammar > Grammar > "Check grammar as you type"
     ' Default: ON (True) → Desired: OFF (False)
@@ -120,6 +156,12 @@ End With
 ' -----------------------------------------------------------------
 With Application.AutoCorrect
     
+    ' ===================== DIAGNOSTIC BLOCK FOR ReplaceText =====================
+    diagMsg = "=== AutoCorrect.ReplaceText Before Setting ===" & vbCrLf
+    diagMsg = diagMsg & "Current value: " & .ReplaceText & vbCrLf
+    diagMsg = diagMsg & "About to set to: False" & vbCrLf
+    MsgBox diagMsg
+    
     ' AutoCorrect > "Automatically correct spelling and formatting as you type"
     ' Default: ON (True) → Desired: OFF (False)
     If .ReplaceText <> False Then
@@ -128,14 +170,32 @@ With Application.AutoCorrect
     Else
         actionTaken = "already set"
     End If
+    
+    diagMsg = "=== AutoCorrect.ReplaceText After Setting ===" & vbCrLf
+    diagMsg = diagMsg & "Value after assignment: " & .ReplaceText & vbCrLf
+    diagMsg = diagMsg & "actionTaken: " & actionTaken & vbCrLf
+    MsgBox diagMsg
+    
     logMessages = logMessages & ReportSetting("AutoCorrect > Automatically correct spelling and formatting → OFF", actionTaken)
+    logMessages = logMessages & "  [DEBUG: AutoCorrect.ReplaceText final value = " & .ReplaceText & "]" & vbLf
     
 End With
+
+    ' -----------------------------------------------------------------
+    ' Final diagnostic summary
+    ' -----------------------------------------------------------------
+    diagMsg = "=== Final Values Summary ===" & vbCrLf
+    diagMsg = diagMsg & "PictureWrapType: " & Application.Options.PictureWrapType & vbCrLf
+    diagMsg = diagMsg & "EnableMisusedWordsDictionary: " & Application.Options.EnableMisusedWordsDictionary & vbCrLf
+    diagMsg = diagMsg & "AutoCorrect.ReplaceText: " & Application.AutoCorrect.ReplaceText & vbCrLf
+    MsgBox diagMsg
     
     ' -----------------------------------------------------------------
     ' Write logMessages to file
     ' -----------------------------------------------------------------
     WriteToLogFile logMessages
+    
+    MsgBox "About to close document. Check log file for results."
     
     ' Close this document without saving (it's just a container for the macro)
     ' Comment out the next line if you want the document to remain open
@@ -150,7 +210,7 @@ Private Sub WriteToLogFile(ByVal message As String)
     filePath = GetLogFilePath()
     
     ' DEBUG: Show what we're trying to do
-    ' MsgBox "Attempting to write to: " & filePath
+    MsgBox "Attempting to write to: " & filePath
     
     On Error GoTo WriteError
     
@@ -159,13 +219,22 @@ Private Sub WriteToLogFile(ByVal message As String)
     Print #fileNum, message;
     Close #fileNum
     
-    ' MsgBox "Write succeeded!"
+    MsgBox "Write succeeded!"
 
     Exit Sub
     
 WriteError:
-    ' MsgBox "Write failed with error: " & Err.Description
+    MsgBox "Write failed with error: " & Err.Description
     On Error Resume Next
     Close #fileNum
     On Error GoTo 0
 End Sub
+```
+
+This will show you:
+1. Initial value of PictureWrapType before anything runs
+2. Before/after for each of the three problematic settings
+3. Final values of all three at the end
+4. Whether the log file write succeeds
+
+The MsgBox dialogs will pause execution so you can read each value. This should reveal whether the values are being accepted and what they actually are.
