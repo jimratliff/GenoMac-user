@@ -11,6 +11,7 @@ This README file addresses:
     All of the other files in this directory contribute to the construction of
     `Container_for_VBA_macro_to_set_Word_preferences.docm`
 - VBA macro code to be incorporated into `Container_for_VBA_macro_to_set_Word_preferences.docm`
+  - The VBA macro editor can be accessed by either (a) ⌥F11 or (b) Tools » Macro » Visual Basic Editor
   - `VBA_macro_part_1_of_2_Insert_into_ThisDocument.bas`
     - Contains 3 lines of VBA code to be pasted into `ThisDocument` of this Word document, within the VBA editor
     - See comments within this file for detailed instructions about how these 3 linese of codes are to be
