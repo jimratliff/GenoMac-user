@@ -15,18 +15,6 @@ function conditionally_configure_microsoft_word() {
 
   ############### WARNING: WIP!!!!
 
-  if test_genomac_user_state "$PERM_MICROSOFT_WORD_PREFS_HAVE_BEEN_CONFIGURED"; then
-    report_action_taken "Skipping setting Microsoft Word preferences, because they’ve already been set and it’s a bootstrapping step"
-    report_end_phase_standard
-    return 0
-  fi
-
-  if test_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_CONFIGURED"; then
-    report_action_taken "Skipping Microsoft Word configuration, because it’s already been configured and it’s a bootstrapping step"
-    report_end_phase_standard
-    return 0
-  fi
-
   if ! test_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"; then
     # You can’t change Microsoft Word’s settings unless the app is first authenticated
     launch_app_and_prompt_user_to_act "$BUNDLE_ID_MICROSOFT_WORD" \
