@@ -21,8 +21,8 @@ function conditionally_configure_microsoft_word() {
 
   if ! test_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"; then
     # You can’t change Microsoft Word’s settings unless the app is first authenticated
-    launch_app_and_prompt_user_to_authenticate "$BUNDLE_ID_MICROSOFT_WORD" \
-      "I will launch Microsoft Word. Please log in to your Microsoft 365 account. This is necessary for me to set its preferences"
+    launch_app_and_prompt_user_to_act "$BUNDLE_ID_MICROSOFT_WORD" \
+      "I will launch Microsoft Word. Please log in to your Microsoft 365 account.${NEWLINE}This is necessary for me to set its preferences"
     set_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"
   fi
 
