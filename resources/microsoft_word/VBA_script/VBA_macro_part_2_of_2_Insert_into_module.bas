@@ -9,6 +9,8 @@
 ' NOTE: Changing this file doesn't by itself effect the change. The new version of this code must be
 '       reinserted into `Module1` of the macro-enabled Word document 
 '       `Container_for_VBA_macro_to_set_Word_preferences.docm`
+'
+' STATUS: 
 
 Option Explicit
 
