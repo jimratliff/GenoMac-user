@@ -10,7 +10,77 @@
 '       reinserted into `Module1` of the macro-enabled Word document 
 '       `Container_for_VBA_macro_to_set_Word_preferences.docm`
 '
-' STATUS: 
+' CONTEXT:
+' 	Below are the settings I initially identified as wanting to programmatically set. 
+' 	I divide them between (a) the settings I successfully implemented and (b) the
+' 	settings I was unable to successfully implement and, thus, the code for which I have
+' 	dropped.
+' 	
+' 	Settings that are successfully implemented:
+' 	* General » Settings » "Update automatic links at Open"
+' 	  * This defaults to ON, but I want to turn it OFF
+' 	* View » Show in Document » Field shading:
+' 	  * This defaults to "When selected"
+' 	  * Instead, I want: "Always"
+' 	* Edit » Editing Options » "Select entire word when selecting text"
+' 	  * This defaults to ON
+' 	  * Instead, I want: OFF
+' 	* Edit » Editing Options » "Insert/paste pictures as"
+' 	  * This defaults to "in line with text"
+' 	  * Instead, I want "Top and bottom"
+' 	* Edit » Click and Type » Enable click and type
+' 	  * This defaults to ON
+' 	  * Instead, I want: OFF
+' 	* Spelling & Grammar » Grammar » Check grammar as you type
+' 	  * This defaults to ON
+' 	  * Instead, I want: OFF
+' 	* Output and Sharing » Save » Save Options » Prompt before saving Normal template
+' 	  * This defaults to OFF
+' 	  * Instead, I want: ON
+' 		 
+' 	Settings that weren’t successfully implemented. To be clear… for each:
+'   - I *did* identify a VBA attribute that I believed to be relevant to the setting
+' 	- The macro *did* successfully change that attribute to its desired value
+' 	- However, nevertheless, (a) the associated checkbox in Word’s Settings GUI interface
+' 	  was *not* changed by the macro and (b) the desired behavior by Word wasn’t 
+' 	  achieved.
+' 	- I removed the ineffective code
+' 		  
+' 	* Spelling & Grammar » Spelling » Frequently confused words
+' 	  * This defaults to ON
+' 	  * Instead, I want: OFF
+' 	* AutoCorrect » Automatically correct spelling and formatting as you type
+' 	  * This defaults to ON
+' 	  * Instead, I want: OFF
+' 		 
+' 	For reference purposes, below is (commented-out) the ineffective code:
+' 	
+'     ' Spelling & Grammar > Spelling > "Frequently confused words"
+'     ' Default: ON (True) → Desired: OFF (False)
+'     If .EnableMisusedWordsDictionary <> False Then
+'         .EnableMisusedWordsDictionary = False
+'         actionTaken = "CHANGED"
+'     Else
+'         actionTaken = "already set"
+'     End If
+'     logMessages = logMessages & ReportSetting("Spelling > Frequently confused words → OFF", actionTaken)
+'     
+'     ' Spelling & Grammar > Grammar > "Check grammar as you type"
+'     ' Default: ON (True) → Desired: OFF (False)
+'     If .CheckGrammarAsYouType <> False Then
+'         .CheckGrammarAsYouType = False
+'         actionTaken = "CHANGED"
+'     Else
+'         actionTaken = "already set"
+'     End If
+'     logMessages = logMessages & ReportSetting("Grammar > Check grammar as you type → OFF", actionTaken)
+' 		 
+' Claude Opus 4.5 and I were inspired by the following article that explains about a macro to set
+' Word defaults: https://wordmvp.com/Mac/MacroSetDefaults.html
+' 
+' Claude and I discussed this project at: 
+' https://claude.ai/share/7f12f9fb-1ce8-4c1f-b880-a80ee69faf92
+' Sorry, it was a private conversation. ☹️
 
 Option Explicit
 
