@@ -5,6 +5,22 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/set_microsoft_office_suite_wide_settings.sh
 GENOMAC_USER_LOCAL_MICROSOFT_WORD_RESOURCE_DIRECTORY="$GMU_RESOURCES/microsoft_word"
 
 function conditionally_configure_microsoft_word() {
+  # Determines which actions with respect to Microsoft Word are ripe to take.
+  #
+  # Microsoft Word exposes very few settings through the traditional `defaults write` API.
+  # As a result, most settings are implemented through a combination of:
+  # - Installing a preconfigured Normal.dotm file
+  # - Using a VBA macro to reach the settings that `defaults write` doesn’t reach.
+  #
+  # Because running the VBA macro involves Word launching (and sometimes, at least, dialogs asking
+  # for permission pop up), executing this function is much more demanding on the executing user’s
+  # work flow.
+  #
+  # As a result, this function is considered a BOOTSTRAP step, not an idempotent, maintenance step.
+  #
+  # This policy finds expression in the associated state environment variables,
+  # which are `PERM_` rather than `SESH_`.
+  
   report_start_phase_standard
 
   if ! test_genomac_user_state "$PERM_MICROSOFT_WORD_USER_WANTS_IT"; then
@@ -12,8 +28,6 @@ function conditionally_configure_microsoft_word() {
     report_end_phase_standard
     return 0
   fi
-
-  ############### WARNING: WIP!!!!
 
   if ! test_genomac_user_state "$PERM_MICROSOFT_WORD_HAS_BEEN_AUTHENTICATED"; then
     # You can’t change Microsoft Word’s settings unless the app is first authenticated
@@ -40,20 +54,6 @@ function conditionally_configure_microsoft_word() {
 function set_microsoft_word_and_suite_settings() {
 
   # Main function for implementing Microsoft Word settings (after determining that it should be done).
-  #
-  # Microsoft Word exposes very few settings through the traditional `defaults write` API.
-  # As a result, most settings are implemented through a combination of:
-  # - Installing a preconfigured Normal.dotm file
-  # - Using a VBA macro to reach the settings that `defaults write` doesn’t reach.
-  #
-  # Because running the VBA macro involves Word launching (and sometimes, at least, dialogs asking
-  # for permission pop up), executing this function is much more demanding on the executing user’s
-  # work flow.
-  #
-  # As a result, this function is considered a BOOTSTRAP step, not an idempotent, maintenance step.
-  #
-  # This policy finds expression in `run_hypervisior.sh`, where the state environment variables
-  # associated with the configuration of Microsoft Word are `PERM_` rather than `SESH_`.
 
   report_start_phase_standard
   
@@ -96,6 +96,13 @@ function install_microsoft_word_normal_dotm() {
 }
 
 function run_vba_script_to_implement_microsoft_word_preferences() {
+  # Runs the VBA script embedded in the .docm Microsoft Word document at
+  #   resources/microsoft_word/VBA_script/Container_for_VBA_macro_to_set_Word_preferences.docm
+  #
+  # Theoretically, the embedded VBA script *should* be identical to the code in:
+  #   resources/microsoft_word/VBA_script/VBA_macro_part_2_of_2_Insert_into_module.bas
+  # However, that code *should* have been *manually embedded* into Container_for_VBA_macro_to_set_Word_preferences.docm
+
   report_start_phase_standard
 
   local Word_document_filename="Container_for_VBA_macro_to_set_Word_preferences.docm"
@@ -171,5 +178,6 @@ function run_vba_script_to_implement_microsoft_word_preferences() {
     report_fail "Word preferences macro did not complete within ${timeout}s"
     return 1
   fi
+  
   report_end_phase_standard
 }
