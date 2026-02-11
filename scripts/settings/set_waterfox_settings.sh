@@ -5,6 +5,8 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/web_extension_data_gecko.sh"
 PROFILES_PATH_WATERFOX="$HOME/Library/Application Support/Waterfox/Profiles"
 
 function conditionally_set_waterfox_settings() {
+  # TODO: Although extensions are installed, also need to configure other settings
+
   report_start_phase_standard
 
   run_if_user_has_not_done \
