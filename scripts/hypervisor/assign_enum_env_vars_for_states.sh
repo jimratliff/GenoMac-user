@@ -82,6 +82,7 @@ SESH_FINDER_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED="SESH_finder_show_drives
 SESH_REACHED_FINALITY="SESH_reached_finality"
 SESH_REPO_HAS_BEEN_TESTED_FOR_CHANGES="SESH_repo_has_been_tested_for_changes"
 SESH_SESSION_HAS_STARTED="SESH_session_has_started"
+SESH_WATERFOX_EXTENSIONS_HAVE_BEEN_INSTALLED="SESH_waterfox_extensions_have_been_installed"
 
 # Export environment variables to be available in all subsequent shells
 report_action_taken "Exporting environment variables corresponding to states."
@@ -110,3 +111,4 @@ export_and_report SESH_FINDER_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED
 export_and_report SESH_REACHED_FINALITY
 export_and_report SESH_REPO_HAS_BEEN_TESTED_FOR_CHANGES
 export_and_report SESH_SESSION_HAS_STARTED
+export_and_report SESH_WATERFOX_EXTENSIONS_HAVE_BEEN_INSTALLED
