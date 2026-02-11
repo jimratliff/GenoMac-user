@@ -7,12 +7,14 @@ PROFILES_PATH_WATERFOX="$HOME/Library/Application Support/Waterfox/Profiles"
 function conditionally_set_waterfox_settings() {
   report_start_phase_standard
 
+  run_if_user_has_not_done \
+    "$SESH_WATERFOX_EXTENSIONS_HAVE_BEEN_INSTALLED" \
+    install_waterfox_extensions \
+    "Skipping installation of Waterfox extensions, because they’ve already been installed this session"
+  
+
   report_end_phase_standard
 }
-
-############### WIP!
-
-
 
 function install_waterfox_extensions() {
   # Install each web-browser extension named in STANDARD_WEB_BROWSER_EXTENSIONS_GECKO into
