@@ -13,8 +13,7 @@ function conditionally_set_waterfox_settings() {
     "$SESH_WATERFOX_EXTENSIONS_HAVE_BEEN_INSTALLED" \
     install_waterfox_extensions \
     "Skipping installation of Waterfox extensions, because they’ve already been installed this session"
-  
-
+	
   report_end_phase_standard
 }
 
