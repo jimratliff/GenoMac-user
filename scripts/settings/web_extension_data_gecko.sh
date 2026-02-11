@@ -26,8 +26,14 @@
 # The naming convention is GECKO_EXTENSION_EXAMPLE_SLUG and GECKO_EXTENSION_EXAMPLE_ID,
 # where EXAMPLE is an arbitrary GenoMac-internal identifier of the extension.
 
-GECKO_EXTENSION_EXAMPLE_SLUG="string"
-GECKO_EXTENSION_EXAMPLE_ID="string"
+# The download URL for an extention is:
+# "${PATH_TO_EXTENSION_SLUG_GECKO}/${slug}/latest.xpi"
+PATH_TO_EXTENSION_SLUG_GECKO="https://addons.mozilla.org/firefox/downloads/latest"
+
+# GECKO_EXTENSION_EXAMPLE_SLUG="string"
+# GECKO_EXTENSION_EXAMPLE_ID="string"
+# export_and_report GECKO_EXTENSION_EXAMPLE_SLUG
+# export_and_report GECKO_EXTENSION_EXAMPLE_ID
 
 GECKO_EXTENSION_1PASSWORD_SLUG="1password-x-password-manager"
 GECKO_EXTENSION_1PASSWORD_ID="{d634138d-c276-4fc8-924b-40a0ea21d284}"
@@ -56,6 +62,11 @@ GECKO_EXTENSION_RAINDROPIO_ID="jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack.xpi"
 GECKO_EXTENSION_TABS2LIST_SLUG="tabs-2-list"
 GECKO_EXTENSION_TABS2LIST_ID="TabsList@example.com"
 
+GECKO_EXTENSION_TREESTYLETAB_SLUG="tree-style-tab"
+GECKO_EXTENSION_TREESTYLETAB_ID="treestyletab@piro.sakura.ne.jp"
+
+export_and_report PATH_TO_EXTENSION_SLUG_GECKO
+
 export_and_report GECKO_EXTENSION_1PASSWORD_ID
 export_and_report GECKO_EXTENSION_1PASSWORD_SLUG
 export_and_report GECKO_EXTENSION_ALLOWRIGHTCLICK_ID
@@ -66,8 +77,6 @@ export_and_report GECKO_EXTENSION_CONSENTOMATIC_ID
 export_and_report GECKO_EXTENSION_CONSENTOMATIC_SLUG
 export_and_report GECKO_EXTENSION_DOWNIE_ID
 export_and_report GECKO_EXTENSION_DOWNIE_SLUG
-export_and_report GECKO_EXTENSION_EXAMPLE_ID
-export_and_report GECKO_EXTENSION_EXAMPLE_SLUG
 export_and_report GECKO_EXTENSION_MANAGEMYTABS_ID
 export_and_report GECKO_EXTENSION_MANAGEMYTABS_SLUG
 export_and_report GECKO_EXTENSION_MULTIACCOUNTCONTAINERS_ID
@@ -77,7 +86,3 @@ export_and_report GECKO_EXTENSION_RAINDROPIO_SLUG
 export_and_report GECKO_EXTENSION_TABS2LIST_ID
 export_and_report GECKO_EXTENSION_TABS2LIST_SLUG
 
-
-
-GECKO_EXTENSION_TREESTYLETAB_SLUG="tree-style-tab"
-GECKO_EXTENSION_TREESTYLETAB_ID="treestyletab@piro.sakura.ne.jp"
