@@ -2,9 +2,6 @@
 
 # Compile data for individual Gecko web-browser extensions to be downloaded and
 # installed from addons.mozilla.org
-# 
-# NOTE: For each extension, there are two variables (a _SLUG and an _ID). Both must
-#       be exported.
 #
 # For a new extension:
 # 1. Finding the extension ID:
@@ -30,10 +27,22 @@
 # "${PATH_TO_EXTENSION_SLUG_GECKO}/${slug}/latest.xpi"
 PATH_TO_EXTENSION_SLUG_GECKO="https://addons.mozilla.org/firefox/downloads/latest"
 
+STANDARD_WEB_BROWSER_EXTENSIONS_GECKO=(
+  1PASSWORD
+  ALLOWRIGHTCLICK
+  CHESSVISIONAI
+  CONSENTOMATIC
+  DOWNIE
+  MANAGEMYTABS
+  MULTIACCOUNTCONTAINERS
+  RAINDROPIO
+  TABS2LIST
+  TREESTYLETAB
+  THEME_ACTIVISTBALANCED
+)
+
 # GECKO_EXTENSION_EXAMPLE_SLUG="string"
 # GECKO_EXTENSION_EXAMPLE_ID="string"
-# export_and_report GECKO_EXTENSION_EXAMPLE_SLUG
-# export_and_report GECKO_EXTENSION_EXAMPLE_ID
 
 GECKO_EXTENSION_1PASSWORD_SLUG="1password-x-password-manager"
 GECKO_EXTENSION_1PASSWORD_ID="{d634138d-c276-4fc8-924b-40a0ea21d284}"
@@ -70,26 +79,6 @@ GECKO_EXTENSION_TREESTYLETAB_ID="treestyletab@piro.sakura.ne.jp"
 GECKO_EXTENSION_THEME_ACTIVISTBALANCED_SLUG="activist-balanced_"
 GECKO_EXTENSION_THEME_ACTIVISTBALANCED_ID="activist-balanced-colorway@mozilla.org.xpi"
 
-export_and_report PATH_TO_EXTENSION_SLUG_GECKO
 
-export_and_report GECKO_EXTENSION_1PASSWORD_ID
-export_and_report GECKO_EXTENSION_1PASSWORD_SLUG
-export_and_report GECKO_EXTENSION_ALLOWRIGHTCLICK_ID
-export_and_report GECKO_EXTENSION_ALLOWRIGHTCLICK_SLUG
-export_and_report GECKO_EXTENSION_CHESSVISIONAI_ID
-export_and_report GECKO_EXTENSION_CHESSVISIONAI_SLUG
-export_and_report GECKO_EXTENSION_CONSENTOMATIC_ID
-export_and_report GECKO_EXTENSION_CONSENTOMATIC_SLUG
-export_and_report GECKO_EXTENSION_DOWNIE_ID
-export_and_report GECKO_EXTENSION_DOWNIE_SLUG
-export_and_report GECKO_EXTENSION_MANAGEMYTABS_ID
-export_and_report GECKO_EXTENSION_MANAGEMYTABS_SLUG
-export_and_report GECKO_EXTENSION_MULTIACCOUNTCONTAINERS_ID
-export_and_report GECKO_EXTENSION_MULTIACCOUNTCONTAINERS_SLUG
-export_and_report GECKO_EXTENSION_RAINDROPIO_ID
-export_and_report GECKO_EXTENSION_RAINDROPIO_SLUG
-export_and_report GECKO_EXTENSION_TABS2LIST_ID
-export_and_report GECKO_EXTENSION_TABS2LIST_SLUG
-export_and_report GECKO_EXTENSION_THEME_ACTIVISTBALANCED_ID
 export_and_report GECKO_EXTENSION_THEME_ACTIVISTBALANCED_SLUG
 
