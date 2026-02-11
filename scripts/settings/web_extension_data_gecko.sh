@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
 
-# Compile data for individual Gecko web-browser extensions to be downloaded and
+# Compilation of data for individual Gecko web-browser extensions to be downloaded and
 # installed from addons.mozilla.org
+#
+# This script file is intended to be sourced to make its defined values available.
 #
 # For a new extension:
 # 1. Finding the extension ID:
@@ -34,6 +36,7 @@ STANDARD_WEB_BROWSER_EXTENSIONS_GECKO=(
   CONSENTOMATIC
   DOWNIE
   MANAGEMYTABS
+  MARKDOWNVIEWER
   MULTIACCOUNTCONTAINERS
   RAINDROPIO
   TABS2LIST
@@ -61,6 +64,10 @@ GECKO_EXTENSION_DOWNIE_ID="downie@charliemonroe.net"
 
 GECKO_EXTENSION_MANAGEMYTABS_SLUG="manage-my-tabs"
 GECKO_EXTENSION_MANAGEMYTABS_ID="{d3851178-4022-4b97-8746-08c051ba21bc}"
+
+# NOTE: Yes, the slug for the Firefox version of Markdown Viewer includes “chrome” in its string
+GECKO_EXTENSION_MARKDOWNVIEWER_SLUG="markdown-viewer-chrome"
+GECKO_EXTENSION_MARKDOWNVIEWER_ID="markdown-viewer@outofindex.com"
 
 GECKO_EXTENSION_MULTIACCOUNTCONTAINERS_SLUG="multi-account-containers"
 GECKO_EXTENSION_MULTIACCOUNTCONTAINERS_ID="@testpilot-containers"
