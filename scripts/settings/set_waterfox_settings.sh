@@ -56,9 +56,9 @@ function install_waterfox_extensions() {
 	report "DEBUG: slug_var: ${slug_var}"
 	id_var="GECKO_EXTENSION_${extension_name}_ID"
 	report "DEBUG: id_var: ${id_var}"
-	
-	slug="${!slug_var}"
-	ext_id="${!id_var}"
+
+	slug="${(P)slug_var}"
+	ext_id="${(P)id_var}"
 
 	source_url="${PATH_TO_EXTENSION_SLUG_GECKO}/${slug}/latest.xpi"
 	destination="$extensions_dir/${ext_id}.xpi"
