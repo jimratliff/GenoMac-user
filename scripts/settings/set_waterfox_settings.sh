@@ -200,6 +200,8 @@ function ensure_waterfox_profiles_path_exists() {
     report_fail "Waterfox profiles path still not found at $PROFILES_PATH_WATERFOX after launching Waterfox"
     return 1
   fi
+
+  report_success "Waterfox profiles path found at $PROFILES_PATH_WATERFOX"
   
   report_end_phase_standard
 }
