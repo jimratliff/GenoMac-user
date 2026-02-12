@@ -189,6 +189,8 @@ EOF
 }
 
 function ensure_waterfox_profiles_path_exists() {
+  report_start_phase_standard
+  
   if [[ ! -d "$PROFILES_PATH_WATERFOX" ]]; then
     report_action_taken "Waterfox profiles path not found; launching Waterfox to create it"
     launch_and_quit_app "$BUNDLE_ID_WATERFOX"
@@ -198,6 +200,8 @@ function ensure_waterfox_profiles_path_exists() {
     report_fail "Waterfox profiles path still not found at $PROFILES_PATH_WATERFOX after launching Waterfox"
     return 1
   fi
+  
+  report_end_phase_standard
 }
 
 function get_unique_active_Waterfox_profile() {
