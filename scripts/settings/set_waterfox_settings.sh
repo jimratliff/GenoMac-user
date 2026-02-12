@@ -85,9 +85,6 @@ function implement_waterfox_preferences() {
 	# 
   report_start_phase_standard
   report_action_taken "Configuring Waterfox preferences"
-  
-  local profile_dir
-  local prefs_file
 
   ensure_waterfox_profiles_path_exists
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_WATERFOX"
