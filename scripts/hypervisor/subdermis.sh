@@ -30,6 +30,7 @@ function subdermis() {
   conditionally_stow_dotfiles
   conditionally_perform_basic_user_level_settings
   conditionally_reverse_disk_display_policy_for_some_users
+  conditionally_implement_waterfox_settings_and_install_extensions
   
   # Execute pre-Dropbox bootstrap steps
   conditionally_perform_initial_bootstrap_operations
