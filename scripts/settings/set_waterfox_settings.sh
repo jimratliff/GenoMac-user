@@ -22,35 +22,45 @@ function conditionally_implement_waterfox_settings_and_install_extensions() {
 }
 
 function install_waterfox_extensions() {
-  # Install each web-browser extension named in STANDARD_WEB_BROWSER_EXTENSIONS_GECKO into
-  # Waterfox, in disabled state.
+  # Install each browser extension named in environment variable STANDARD_WEB_BROWSER_EXTENSIONS_GECKO
+  # into Waterfox, in disabled state.
   #
-  # Waterfox, if running, will be quit.
+  # If Waterfox has never run (and therefore never created its directory structure), it will be
+  # launched and quit.
+  #
+  # If already running, will be quit.
+  #
+  # Assumes that, for each extension xxxx in STANDARD_WEB_BROWSER_EXTENSIONS_GECKO,
+  # a pair of variables GECKO_EXTENSION_xxxx_SLUG and GECKO_EXTENSION_xxxx_ID has been 
+  # defined and are available to this function.
+  #
+  # See scripts/settings/web_extension_data_gecko.sh
 
   report_start_phase_standard
   report_action_taken "Install web-browser extensions into Waterfox"
 
+  ensure_waterfox_profiles_path_exists
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_WATERFOX"
 
   profile_dir=$(get_unique_active_Waterfox_profile)
-	extensions_dir="$profile_dir/extensions"
-	mkdir -p "$extensions_dir"
+  extensions_dir="$profile_dir/extensions"
+  mkdir -p "$extensions_dir"
 
   extensions_to_install=("${STANDARD_WEB_BROWSER_EXTENSIONS_GECKO[@]}")
 
-	for extension_name in "${extensions_to_install[@]}"; do
-		slug_var="GECKO_EXTENSION_${extension_name}_SLUG"
-		id_var="GECKO_EXTENSION_${extension_name}_ID"
-		
-		slug="${!slug_var}"
-		ext_id="${!id_var}"
+  for extension_name in "${extensions_to_install[@]}"; do
+	slug_var="GECKO_EXTENSION_${extension_name}_SLUG"
+	id_var="GECKO_EXTENSION_${extension_name}_ID"
+	
+	slug="${!slug_var}"
+	ext_id="${!id_var}"
 
-    source_url="${PATH_TO_EXTENSION_SLUG_GECKO}/${slug}/latest.xpi"
-    destination="$extensions_dir/${ext_id}.xpi"
+	source_url="${PATH_TO_EXTENSION_SLUG_GECKO}/${slug}/latest.xpi"
+	destination="$extensions_dir/${ext_id}.xpi"
 
-    report_action_taken "Downloading and installing extension ${extension_name} (${ext_id}) from ${source_url}"
-    curl --silent --location --output "$destination" "$source_url" ; success_or_not
-	done
+	report_action_taken "Downloading and installing extension ${extension_name} (${ext_id}) from ${source_url}"
+	curl --silent --location --output "$destination" "$source_url" ; success_or_not
+  done
   
   report_end_phase_standard
 }
@@ -75,7 +85,11 @@ function implement_waterfox_preferences() {
 	# 
   report_start_phase_standard
   report_action_taken "Configuring Waterfox preferences"
+  
+  local profile_dir
+  local prefs_file
 
+  ensure_waterfox_profiles_path_exists
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_WATERFOX"
 
   local profile_dir=$(get_unique_active_Waterfox_profile)
@@ -86,6 +100,8 @@ function implement_waterfox_preferences() {
     return 1
   fi
 
+  # NOTE: Do not change start_marker or end_marker! Later runs will search for exact
+  #       matches of these strings.
   local start_marker="// >>> GenoMac-user preferences start <<<"
   local end_marker="// >>> GenoMac-user preferences end <<<"
 
@@ -173,6 +189,18 @@ EOF
   fi
 
   report_end_phase_standard
+}
+
+function ensure_waterfox_profiles_path_exists() {
+  if [[ ! -d "$PROFILES_PATH_WATERFOX" ]]; then
+    report_action_taken "Waterfox profiles path not found; launching Waterfox to create it"
+    launch_and_quit_app "$BUNDLE_ID_WATERFOX"
+  fi
+
+  if [[ ! -d "$PROFILES_PATH_WATERFOX" ]]; then
+    report_fail "Waterfox profiles path still not found at $PROFILES_PATH_WATERFOX after launching Waterfox"
+    return 1
+  fi
 }
 
 function get_unique_active_Waterfox_profile() {
