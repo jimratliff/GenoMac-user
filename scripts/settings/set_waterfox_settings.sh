@@ -48,7 +48,7 @@ function install_waterfox_extensions() {
   mkdir -p "$extensions_dir"
 
   extensions_to_install=("${STANDARD_WEB_BROWSER_EXTENSIONS_GECKO[@]}")
-  report "Extensions I will install: ${STANDARD_WEB_BROWSER_EXTENSIONS_GECKO[@]}"
+  report "Extensions I will install: ${(j:, :)STANDARD_WEB_BROWSER_EXTENSIONS_GECKO}"
 
   for extension_name in "${extensions_to_install[@]}"; do
   	report "DEBUG: extension_name: ${extension_name}"
