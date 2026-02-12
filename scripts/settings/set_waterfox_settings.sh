@@ -211,8 +211,6 @@ function get_unique_active_Waterfox_profile() {
 	#
 	# We target only .default-release. If the user has created additional profiles,
 	# there may be multiple matches; we treat that as an error rather than guessing.
-
-	report_start_phase_standard
   
 	local profile_matches=$(find "${PROFILES_PATH_WATERFOX}" -maxdepth 1 -type d -name "*.default-release")
 	local profile_count=$(echo "$profile_matches" | grep -c .)
@@ -228,5 +226,4 @@ function get_unique_active_Waterfox_profile() {
   local profile_dir="$profile_matches"
   echo "$profile_dir"
   
-  report_end_phase_standard
 }
