@@ -44,13 +44,18 @@ function install_waterfox_extensions() {
 
   profile_dir=$(get_unique_active_Waterfox_profile)
   extensions_dir="$profile_dir/extensions"
+  report_action_taken "Ensuring existence of extensions directory at ${extensions_dir}"
   mkdir -p "$extensions_dir"
 
   extensions_to_install=("${STANDARD_WEB_BROWSER_EXTENSIONS_GECKO[@]}")
+  report "Extensions I will install: ${STANDARD_WEB_BROWSER_EXTENSIONS_GECKO[@]}"
 
   for extension_name in "${extensions_to_install[@]}"; do
+  	report "DEBUG: extension_name: ${extension_name}"
 	slug_var="GECKO_EXTENSION_${extension_name}_SLUG"
+	report "DEBUG: slug_var: ${slug_var}"
 	id_var="GECKO_EXTENSION_${extension_name}_ID"
+	report "DEBUG: id_var: ${id_var}"
 	
 	slug="${!slug_var}"
 	ext_id="${!id_var}"
