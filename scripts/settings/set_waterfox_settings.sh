@@ -76,7 +76,8 @@ function implement_waterfox_preferences() {
 	# the pref.js file within a user’s profile, e.g.,
 	# '~/Library/Application Support/Waterfox/Profiles/abcdefgh.default-release/prefs.js',
 	# abcdefgh is a string specific to the user’s profile.
-	# However, that file contains the following instructions:
+	#
+	# However, that file contains the following instructions, which are implemented here:
 	#   // If you make changes to this file while the application is running,
     #   // the changes will be overwritten when the application exits.
     #   //
