@@ -51,11 +51,8 @@ function install_waterfox_extensions() {
   report "Extensions I will install: ${(j:, :)STANDARD_WEB_BROWSER_EXTENSIONS_GECKO}"
 
   for extension_name in "${extensions_to_install[@]}"; do
-  	report "DEBUG: extension_name: ${extension_name}"
 	slug_var="GECKO_EXTENSION_${extension_name}_SLUG"
-	report "DEBUG: slug_var: ${slug_var}"
 	id_var="GECKO_EXTENSION_${extension_name}_ID"
-	report "DEBUG: id_var: ${id_var}"
 
 	slug="${(P)slug_var}"
 	ext_id="${(P)id_var}"
