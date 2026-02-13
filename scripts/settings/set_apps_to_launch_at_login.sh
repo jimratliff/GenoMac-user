@@ -60,7 +60,18 @@ typeset -g -A GENOMAC_LOGIN_APPS=(
   [keyboard-maestro-engine]="path:/Applications/Keyboard Maestro.app/Contents/MacOS/Keyboard Maestro Engine.app"
 )
 
-set_apps_to_launch_at_login() {
+function conditionally_set_apps_to_launch_at_login() {
+  report_start_phase_standard
+
+  run_if_user_has_not_done \
+    "$PERM_APPS_TO_LAUNCH_AT_LOGIN_HAVE_BEEN_SPECIFIED" \
+    set_apps_to_launch_at_login \
+    "Skipping specifications of apps to launch at login, because they’ve been specified in the past"
+	
+  report_end_phase_standard
+}
+
+function set_apps_to_launch_at_login() {
   # Dispatcher: installs all declared login agents (and prunes removed ones).
   # Expects:
   #   - GENOMAC_NAMESPACE
