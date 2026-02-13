@@ -96,7 +96,7 @@ function implement_waterfox_preferences() {
   local profile_dir=$(get_unique_active_Waterfox_profile)
   local destination_path="$profile_dir/user.js"
 
-  copy_resource_between_local_directories "$source_file" "$dest_file"
+  copy_resource_between_local_directories "$source_path" "$destination_path"
 
   report_end_phase_standard
 }
