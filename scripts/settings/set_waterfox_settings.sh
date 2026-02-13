@@ -87,6 +87,11 @@ function implement_waterfox_preferences() {
 	#
 	# Subsequent runs of this script detects preexistence of a start_marker … end_marker
 	# snippet and replaces it instead of appending again.
+	#
+	# NOTE: FAIL. The following was intended to change the default search engine to Google,
+	#       but it didn’t work.
+	#         // Search » Default search engine: Google
+    #         user_pref("browser.urlbar.placeholderName", "Google");
 
   report_start_phase_standard
   report_action_taken "Configuring Waterfox preferences"
@@ -138,9 +143,6 @@ user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
 
 // Home » New Tabs » Blank Page
 user_pref("browser.newtabpage.enabled", false);
-
-// Search » Default search engine: Google
-user_pref("browser.urlbar.placeholderName", "Google");
 
 // Privacy & Security » WebRTC peer connection » Do NOT enable WebRTC peer connection
 user_pref("media.peerconnection.enabled", false);
