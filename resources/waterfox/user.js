@@ -1,6 +1,12 @@
 // GenoMac-user modifications to Waterfox user preferences
 // The master copy of this file is located at:
-//   
+//   GenoMac-user/resources/waterfox
+//
+// NOTE: FAIL. The following was intended to change the default search engine to Google,
+//       but it didn’t work.
+//         // Search » Default search engine: Google
+//         user_pref("browser.urlbar.placeholderName", "Google");
+
 // General » Always check if Waterfox is your default browser? NO
 user_pref("browser.shell.checkDefaultBrowser", false);
 
