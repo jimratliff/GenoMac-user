@@ -2,6 +2,9 @@
 // The master copy of this file is located at:
 //   GenoMac-user/resources/waterfox
 //
+// GenoMac-user/scripts/settings/set_waterfox_settings.sh idempotently copies the
+// master file to its destination within ~/Library/Application\ Support/Waterfox
+//
 // NOTE: FAIL. The following was intended to change the default search engine to Google,
 //       but it didn’t work.
 //         // Search » Default search engine: Google
