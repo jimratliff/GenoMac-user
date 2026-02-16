@@ -110,6 +110,9 @@ function set_finder_settings() {
   ${PLISTBUDDY_PATH} -c "Set :'FK_StandardViewSettings':'ListViewSettings':'calculateAllSizes' true" $finder_plist ; success_or_not
   report_adjust_setting "4 of 4: FK (dialog box), extended list view"
   ${PLISTBUDDY_PATH} -c "Set :'FK_StandardViewSettings':'ExtendedListViewSettingsV2':'calculateAllSizes' true" $finder_plist ; success_or_not
+
+  report_about_to_kill_app "Finder"
+  killall "Finder" ; success_or_not
   
   report_end_phase_standard
 
