@@ -20,8 +20,8 @@ function conditionally_configure_1Password() {
 
   # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
   run_if_user_has_not_done "$PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
-    authenticate_1Password \
-    "Skipping authenticating 1Password, because it’s already been authenticated and it’s a bootstrapping step."
+    interactive_authenticate_1Password \
+    "Skipping authenticating 1Password, because it’s been authenticated in the past"
 
   # Conditionally prompt user to configure basic settings for their already-authenticated 1Password
   run_if_user_has_not_done \
@@ -31,18 +31,19 @@ function conditionally_configure_1Password() {
 
   if ! test_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
     report_action_taken "Skipping configuring 1Password for SSH with GitHub, because it’s not desired"
+	report_end_phase_standard
 	return 0
 
   # Conditionally prompt user to configure SSH settings for use with GitHub
   run_if_user_has_not_done \
     "$PERM_1PASSWORD_HAS_BEEN_CONFIGURED_FOR_SSH" \
-    interactive_basic_configure_1password \
+    configure_and_verify_1Password_for_SSH_with_GitHub \
     "Skipping SSH configuration of 1Password, because you've done that in the past."
 
   report_end_phase_standard
 }
 
-function authenticate_1Password() {
+function interactive_authenticate_1Password() {
   report_start_phase_standard
   
   report "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
@@ -93,7 +94,6 @@ function configure_and_verify_1Password_for_SSH_with_GitHub() {
   fi
   
   report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
-  set_genomac_user_state "$PERM_1PASSWORD_HAS_BEEN_CONFIGURED_FOR_SSH"
   report_end_phase_standard
 }
 
