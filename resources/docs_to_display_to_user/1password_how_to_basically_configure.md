@@ -33,7 +33,7 @@ using a script.)
 #### Unlock
 - “Unlock using Touch ID”
   - ❑ Change from ❌ → ✅
-- “Require password after”:
+- “Require password after”
   - ❑ Set at **14 days**
 #### Auto-lock
 - “Lock after the device is idle for”
