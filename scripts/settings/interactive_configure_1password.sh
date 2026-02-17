@@ -29,10 +29,15 @@ function conditionally_configure_1Password() {
     interactive_basic_configure_1password \
     "Skipping basic configuration of 1Password, because you've done that in the past."
 
-  # Conditionally prompt user to configure their already-authenticated 1Password
-  run_if_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" \
-    configure_and_verify_authenticated_1Password \
-    "Skipping 1Password configuration, because this user doesn’t want it."
+  if ! test_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
+    report_action_taken "Skipping configuring 1Password for SSH with GitHub, because it’s not desired"
+	return 0
+
+  # Conditionally prompt user to configure SSH settings for use with GitHub
+  run_if_user_has_not_done \
+    "$PERM_1PASSWORD_HAS_BEEN_CONFIGURED_FOR_SSH" \
+    interactive_basic_configure_1password \
+    "Skipping SSH configuration of 1Password, because you've done that in the past."
 
   report_end_phase_standard
 }
@@ -63,12 +68,11 @@ function interactive_basic_configure_1password() {
   report_end_phase_standard
 }
 
-
 function configure_authenticated_1Password_for_ssh() {
   # Prompt user to configure settings of 1Password
   report_start_phase_standard
   
-  report_action_taken "Time to configure 1Password! I'll launch it, and open a window with instructions to follow"
+  report_action_taken "Time to configure 1Password for SSH with GitHub! I'll launch it, and open a window with instructions"
   
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_configure_for_ssh.md" \
@@ -78,10 +82,10 @@ function configure_authenticated_1Password_for_ssh() {
 	report_end_phase_standard
 }
 
-function configure_and_verify_authenticated_1Password() {
+function configure_and_verify_1Password_for_SSH_with_GitHub() {
   # Prompt user to configure settings of 1Password
   report_start_phase_standard
-  configure_authenticated_1Password
+  configure_authenticated_1Password_for_ssh
   if ! verify_ssh_agent_configuration_for_GitHub; then
     report_fail "The attempt to configure 1Password to SSH authenticate with GitHub has failed ☹️"
     report_end_phase_standard
