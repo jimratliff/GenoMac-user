@@ -50,17 +50,15 @@ function authenticate_1Password() {
   report_end_phase_standard
 }
 
-
-
 function interactive_basic_configure_1password() {
   report_start_phase_standard
   
-  report "Time to configure basic settings for 1Password! I’ll launch it, and open a window with instructions for next steps"
+  report "Time to configure basic settings for 1Password! I’ll launch it, and open a window with instructions"
 	
   launch_app_and_prompt_user_to_act \
-    --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_log_in.md" \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_basically_configure.md" \
     "$BUNDLE_ID_1PASSWORD" \
-    "Follow the instructions in the Quick Look window to log into your 1Password account in the 1Password app"
+    "Follow the instructions in the Quick Look window to basically configure your 1Password app"
 
   report_end_phase_standard
 }
