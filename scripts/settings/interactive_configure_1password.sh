@@ -76,20 +76,6 @@ function interactive_basic_configure_1password() {
   report_end_phase_standard
 }
 
-function configure_1Password_for_ssh() {
-  # Prompt user to configure settings of 1Password
-  report_start_phase_standard
-  
-  report_action_taken "Time to configure 1Password for SSH with GitHub! I'll launch it, and open a window with instructions"
-  
-  launch_app_and_prompt_user_to_act \
-    --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_configure_for_ssh.md" \
-    "$BUNDLE_ID_1PASSWORD" \
-    "Follow the instructions in the Quick Look window to configure 1Password"
-
-	report_end_phase_standard
-}
-
 function configure_and_verify_1Password_for_SSH_with_GitHub() {
   # Prompt user to configure settings of 1Password
   report_start_phase_standard
@@ -102,6 +88,20 @@ function configure_and_verify_1Password_for_SSH_with_GitHub() {
   
   report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
   report_end_phase_standard
+}
+
+function configure_1Password_for_ssh() {
+  # Prompt user to configure settings of 1Password
+  report_start_phase_standard
+  
+  report_action_taken "Time to configure 1Password for SSH with GitHub! I'll launch it, and open a window with instructions"
+  
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_configure_for_ssh.md" \
+    "$BUNDLE_ID_1PASSWORD" \
+    "Follow the instructions in the Quick Look window to configure 1Password"
+
+	report_end_phase_standard
 }
 
 function verify_ssh_agent_configuration_for_GitHub() {
