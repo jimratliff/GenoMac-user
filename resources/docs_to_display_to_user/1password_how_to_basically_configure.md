@@ -1,4 +1,4 @@
-# How to basically configure youru 1Password app
+# How to basically configure your 1Password app
 “Basic configuration” covers everything except for the Developer section of 1Password’s settings.
 
 ## Why do I have to do this myself?
