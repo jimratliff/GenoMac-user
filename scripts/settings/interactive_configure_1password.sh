@@ -2,19 +2,26 @@
 
 # Conditionally prompts/guides user to (a) sign into their 1Password account and (b) configure its SSH agent
 #
-# Much of the 1Password configuration must be done by the user manually, because it doesn’t admit
-# to standard `defaults write` techniques.
+# Essentially all of the 1Password configuration must be done by the user manually, because 1Password
+# erects a not practically surmountable obstacle to programmatic modification of its preferences.
 #
 # Relies on the following Markdown files residing in resources/docs_to_display_to_user:
 # - 1Password_how_to_log_in.md
-# - 1Password_how_to_configure.md
+# - 1password_how_to_basically_configure.sh
+# - 1Password_how_to_configure_for_ssh.md
 
 function conditionally_configure_1Password() {
   # At this point, (a) GenoMac-system has installed both 1Password.app and the 1Password-CLI app and 
-  # (b) GenoMac-user has deployed dotfiles necessary for the integration of 1Password with GitHub authentication
+  # (b) GenoMac-user has deployed dotfiles necessary for the integration of 1Password with GitHub
+  # authentication
   #
-  # It is assumed that all users want to be authenticated with 1Password.
-  # However, each user can choose whether to go to the extra effort to configure 1Password’s SSH agent
+  # It is assumed that all users want to be authenticated with 1Password, and therefore 1Password must be
+  # basically configured.
+  #
+  # However, each user can choose whether to go to the extra effort to configure 1Password’s SSH agent.
+  # This user decision is determined via
+  # scripts/settings/interactive_ask_initial_questions.sh » interactive_ask_initial_questions
+  # via the state PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT
   
   report_start_phase_standard
 
@@ -46,7 +53,7 @@ function conditionally_configure_1Password() {
 function interactive_authenticate_1Password() {
   report_start_phase_standard
   
-  report "Time to authenticate 1Password! I’ll launch it, and open a window with instructions for logging into 1Password"
+  report "Time to sign into 1Password! I’ll launch it, and open a window with instructions"
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_log_in.md" \
