@@ -28,9 +28,9 @@ function conditionally_configure_1Password() {
   # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
   run_if_user_has_not_done "$PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
     interactive_authenticate_1Password \
-    "Skipping authenticating 1Password, because it’s been authenticated in the past"
+    "Skipping signing into 1Password, because you’ve signed into it in the past"
 
-  # Conditionally prompt user to configure basic settings for their already-authenticated 1Password
+  # Conditionally prompt user to configure basic settings for 1Password
   run_if_user_has_not_done \
     "$PERM_1PASSWORD_HAS_BEEN_BASICALLY_CONFIGURED" \
     interactive_basic_configure_1password \
@@ -76,7 +76,7 @@ function interactive_basic_configure_1password() {
   report_end_phase_standard
 }
 
-function configure_authenticated_1Password_for_ssh() {
+function configure_1Password_for_ssh() {
   # Prompt user to configure settings of 1Password
   report_start_phase_standard
   
@@ -93,7 +93,7 @@ function configure_authenticated_1Password_for_ssh() {
 function configure_and_verify_1Password_for_SSH_with_GitHub() {
   # Prompt user to configure settings of 1Password
   report_start_phase_standard
-  configure_authenticated_1Password_for_ssh
+  configure_1Password_for_ssh
   if ! verify_ssh_agent_configuration_for_GitHub; then
     report_fail "The attempt to configure 1Password to SSH authenticate with GitHub has failed ☹️"
     report_end_phase_standard
