@@ -6,9 +6,10 @@
 # erects a not practically surmountable obstacle to programmatic modification of its preferences.
 #
 # Relies on the following Markdown files residing in resources/docs_to_display_to_user:
-# - 1Password_how_to_log_in.md
+# - 1Password_how_to_add_nonstandard_browsers.md
 # - 1password_how_to_basically_configure.sh
 # - 1Password_how_to_configure_for_ssh.md
+# - 1Password_how_to_log_in.md
 
 function conditionally_configure_1Password() {
   # At this point, (a) GenoMac-system has installed both 1Password.app and the 1Password-CLI app and 
@@ -35,6 +36,12 @@ function conditionally_configure_1Password() {
     "$PERM_1PASSWORD_HAS_BEEN_BASICALLY_CONFIGURED" \
     interactive_basic_configure_1password \
     "Skipping basic configuration of 1Password, because you've done that in the past."
+
+  # Conditionally prompt user to add nonstandard browsers for 1Password
+  run_if_user_has_not_done \
+    "$PERM_1PASSWORD_NONSTANDARD_BROWSERS_HAVE_BEEN_CONFIGURED" \
+    interactive_permit_1password_use_nonstandard_browsers \
+    "Skipping adding nonstandard browsers for 1Password, because you've done that in the past."
 
   if ! test_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
     report_action_taken "Skipping configuring 1Password for SSH with GitHub, because it’s not desired"
@@ -72,6 +79,19 @@ function interactive_basic_configure_1password() {
     --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_basically_configure.md" \
     "$BUNDLE_ID_1PASSWORD" \
     "Follow the instructions in the Quick Look window to basically configure your 1Password app"
+
+  report_end_phase_standard
+}
+
+function interactive_permit_1password_use_nonstandard_browsers() {
+  report_start_phase_standard
+  
+  report "Time to add nonstandard browsers for 1Password! I’ll launch it, and open a window with instructions"
+	
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_add_nonstandard_browsers.md" \
+    "$BUNDLE_ID_1PASSWORD" \
+    "Follow the instructions in the Quick Look window to add nonstandard browsers to 1Password"
 
   report_end_phase_standard
 }
