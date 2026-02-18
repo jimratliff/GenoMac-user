@@ -77,9 +77,13 @@ function interactive_basic_configure_1password() {
 }
 
 function configure_and_verify_1Password_for_SSH_with_GitHub() {
-  # Prompt user to configure settings of 1Password
+  # Prompt user to configure SSH-related settings of 1Password
+  
   report_start_phase_standard
+  
   configure_1Password_for_ssh
+
+  # Programmatically verify valid SSH configuration
   if ! verify_ssh_agent_configuration_for_GitHub; then
     report_fail "The attempt to configure 1Password to SSH authenticate with GitHub has failed ☹️"
     report_end_phase_standard
@@ -87,6 +91,7 @@ function configure_and_verify_1Password_for_SSH_with_GitHub() {
   fi
   
   report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
+  
   report_end_phase_standard
 }
 
