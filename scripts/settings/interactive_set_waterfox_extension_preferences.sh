@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function conditionally_implement_preferences_for_waterfox_extensions() {
+function interactive_set_preferences_for_waterfox_extensions() {
 
   report_start_phase_standard
 
