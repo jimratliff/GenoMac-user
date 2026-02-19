@@ -8,6 +8,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_dropbox.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_screensaver.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_textexpander.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_waterfox_extension_preferences.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_basic_user_level_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_stow_dotfiles.sh"
@@ -32,7 +33,9 @@ function subdermis() {
   conditionally_stow_dotfiles
   conditionally_perform_basic_user_level_settings
   conditionally_reverse_disk_display_policy_for_some_users
+  
   conditionally_implement_waterfox_settings_and_install_extensions
+  conditionally_interactive_set_preferences_for_waterfox_extensions
   
   # Execute pre-Dropbox bootstrap steps
   conditionally_perform_initial_bootstrap_operations
