@@ -31,7 +31,8 @@
   - Glyph Size: Medium
   - Colors: white, green, green
   - ✅ legacyScreenSaver fix
-- Click “OK”
+  - Click “OK”
+- Click “Done”
 
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
