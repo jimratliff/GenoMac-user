@@ -35,7 +35,7 @@ function subdermis() {
   conditionally_reverse_disk_display_policy_for_some_users
   
   conditionally_implement_waterfox_settings_and_install_extensions
-  interactively_conditionally_set_preferences_for_waterfox_extensions
+  interactive_set_preferences_for_waterfox_extensions
   
   # Execute pre-Dropbox bootstrap steps
   conditionally_perform_initial_bootstrap_operations
