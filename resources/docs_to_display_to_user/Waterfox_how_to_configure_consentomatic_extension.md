@@ -12,6 +12,14 @@
 ## Open the preferences for Consent-O-Matic
 - ❑ Context-click on the “…” button to the right of the switch you just toggled, and select “Preferences”
 
+## Grant requested permissions
+You will be asked for the following perissions:
+- Access to read all pages
+- Information about tab URLs
+- Storage
+
+Grant the requested permissions in order to use this extension.
+
 ## Selectively turn on some of the tracking switches
 For each of the following, toggle the switch ON ✅
 - ❑ “Preferences and Functionality”
