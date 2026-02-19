@@ -33,6 +33,8 @@ function interactive_set_preferences_for_waterfox_extensions() {
       "$PERM_WATERFOX_EXTENSION_YOUTUBE_HAS_BEEN_CONFIGURED" \
       interactive_configure_waterfox_youtube_extension \
       "Skipping configuring Enhanced for YouTube extension for Waterfox, because it’s already been specified in the past"
+
+  ############### WIP: REVIEW THE KEYBOARD SHORTCUTS FOR ALL EXTENSIONS
 	
   report_end_phase_standard
 }
