@@ -86,6 +86,7 @@ function interactive_configure_waterfox_managemytabs_extension() {
 }
 
 function interactive_configure_waterfox_raindropio_extension() {
+  ############### TODO: Why isn’t the installation of Raindrop.io working?
   report_start_phase_standard
   
   report "Time to install and configure the Raindrop.io extension for Waterfox! I’ll launch Waterfox, and open a window with instructions"
