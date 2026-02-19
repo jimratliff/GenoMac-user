@@ -26,6 +26,9 @@ function interactive_ask_initial_questions() {
   prompt="Does this user want to see, on the desktop, the built-in and external drives?"
   set_user_state_based_on_yes_no "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP" "$prompt"
 
+  prompt="Does this user want to configure the Enhancer for YouTube browser extension for Waterfox?"
+  set_user_state_based_on_yes_no "$PERM_WATERFOX_EXTENSION_YOUTUBE_WANTS_TO_CONFIGURE" "$prompt"
+
   prompt="Will this user want to SSH authenticate GitHub using 1Password"
   set_user_state_based_on_yes_no "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT" "$prompt"
 
