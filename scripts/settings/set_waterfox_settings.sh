@@ -17,7 +17,26 @@ function conditionally_implement_waterfox_settings_and_install_extensions() {
     "$SESH_WATERFOX_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
     implement_waterfox_preferences \
     "Skipping specifying Waterfox preferences, because they’ve already been specified this session"
+
+  if test_user_state "$PERM_WATERFOX_EXTENSION_YOUTUBE_WANTS_TO_CONFIGURE"; then
+    run_if_user_has_not_done \
+      "$PERM_WATERFOX_EXTENSION_YOUTUBE_HAS_BEEN_CONFIGURED" \
+      waterfox_how_to_configure_youtube_extension \
+      "Skipping configuring Enhanced for YouTube extension for Waterfox, because it’s already been specified in the past"
 	
+  report_end_phase_standard
+}
+
+function interactive_configure_waterfox_youtube_extension() {
+  report_start_phase_standard
+  
+  report "Time to configure the Enhanced for YouTube browser extension for Waterfox! I’ll launch it, and open a window with instructions"
+	
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_basically_configure.md" \
+    "$BUNDLE_ID_1PASSWORD" \
+    "Follow the instructions in the Quick Look window to basically configure your 1Password app"
+
   report_end_phase_standard
 }
 
@@ -26,13 +45,11 @@ function install_waterfox_extensions() {
   # into Waterfox, in disabled state.
   #
   # If Waterfox has never run (and therefore never created its directory structure), it will be
-  # launched and quit.
-  #
-  # If already running, will be quit.
+  # launched and quit. If already running, it will be quit.
   #
   # Assumes that, for each extension xxxx in STANDARD_WEB_BROWSER_EXTENSIONS_GECKO,
   # a pair of variables GECKO_EXTENSION_xxxx_SLUG and GECKO_EXTENSION_xxxx_ID has been 
-  # defined and are available to this function.
+  # defined and is available to this function.
   #
   # See scripts/settings/web_extension_data_gecko.sh
 
