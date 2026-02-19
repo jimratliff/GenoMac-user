@@ -51,6 +51,7 @@ dev-configure-remote-for-https-fetch-and-ssh-push:
 	cd ~/.genomac-user
 	git remote set-url origin https://github.com/jimratliff/GenoMac-user.git
 	git remote set-url --push origin git@github.com:jimratliff/GenoMac-user.git
+	git config pull.rebase false
 
 test-launch-and-prompt:
 	zsh scripts/tests/test_launch_and_prompt.sh
