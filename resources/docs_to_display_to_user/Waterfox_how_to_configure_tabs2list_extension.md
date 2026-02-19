@@ -1,4 +1,4 @@
-# How to configure the TabsList extension for the Waterfox web browser
+# How to configure the Tabs2List extension for the Waterfox web browser
 
 ## Make Waterfox active and open the list of installed extensions
 - ❑ Make Waterfox active
