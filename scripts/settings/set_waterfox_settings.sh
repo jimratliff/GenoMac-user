@@ -33,9 +33,9 @@ function interactive_configure_waterfox_youtube_extension() {
   report "Time to configure the Enhanced for YouTube browser extension for Waterfox! I’ll launch it, and open a window with instructions"
 	
   launch_app_and_prompt_user_to_act \
-    --show-doc "${GMU_DOCS_TO_DISPLAY}/1Password_how_to_basically_configure.md" \
-    "$BUNDLE_ID_1PASSWORD" \
-    "Follow the instructions in the Quick Look window to basically configure your 1Password app"
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/waterfox_how_to_configure_youtube_extension.md" \
+    "$BUNDLE_ID_WATERFOX" \
+    "Follow the instructions in the Quick Look window to configure Enhancer for YouTube for Waterfox"
 
   report_end_phase_standard
 }
