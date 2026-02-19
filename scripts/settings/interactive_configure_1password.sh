@@ -1,10 +1,11 @@
 #!/usr/bin/env zsh
 
-# Conditionally prompts/guides user to (a) sign into their 1Password account, implement basic
+# Conditionally prompts/guides user to (a) sign into their 1Password account, (b) implement basic
 # preferences, and (c) if desired, configure its SSH agent
 #
 # Essentially all of the 1Password configuration must be done by the user manually, because 1Password
-# erects a not practically surmountable obstacle to programmatic modification of its preferences.
+# erects a not practically surmountable obstacle to programmatic modification of its preferences
+# (hashes the key-value pairs in a nonreplicable-by-me way).
 #
 # Relies on the following Markdown files residing in resources/docs_to_display_to_user:
 # - 1Password_how_to_add_nonstandard_browsers.md
@@ -17,8 +18,8 @@ function conditionally_configure_1Password() {
   # (b) GenoMac-user has deployed dotfiles necessary for the integration of 1Password with GitHub
   # authentication
   #
-  # It is assumed that all users want to be authenticated with 1Password, and therefore 1Password must be
-  # basically configured.
+  # It is assumed that all users want to use 1Password to authenticate at least on websites. Thus, all
+  # users want to sign into their 1Password account and basically configure the 1Password app.
   #
   # However, each user can choose whether to go to the extra effort to configure 1Password’s SSH agent.
   # This user decision is determined via
@@ -48,6 +49,7 @@ function conditionally_configure_1Password() {
     report_action_taken "Skipping configuring 1Password for SSH with GitHub, because it’s not desired"
 	report_end_phase_standard
 	return 0
+  fi
 
   # Conditionally prompt user to configure SSH settings for use with GitHub
   run_if_user_has_not_done \
