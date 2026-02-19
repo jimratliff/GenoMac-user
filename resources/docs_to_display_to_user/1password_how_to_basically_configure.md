@@ -31,6 +31,7 @@ using a script.)
   - ❑ Change from ✅ → ❌
 ### Security
 #### Unlock
+*NOTE: The following applies only to accounts that will use Touch ID to authenticate in macOS*
 - “Unlock using Touch ID”
   - ❑ Change from ❌ → ✅
 - “Require password after”
