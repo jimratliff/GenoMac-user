@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-# Conditionally prompts/guides user to (a) sign into their 1Password account and (b) configure its SSH agent
+# Conditionally prompts/guides user to (a) sign into their 1Password account, implement basic
+# preferences, and (c) if desired, configure its SSH agent
 #
 # Essentially all of the 1Password configuration must be done by the user manually, because 1Password
 # erects a not practically surmountable obstacle to programmatic modification of its preferences.
