@@ -44,10 +44,8 @@ function interactive_set_preferences_for_waterfox_extensions() {
     "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
     interactive_configure_waterfox_raindropio_extension \
     "Skipping configuring the Raindrop.io extension for Waterfox, because it’s already been configured in the past"
-  fi
 
   ############### WIP: REVIEW THE KEYBOARD SHORTCUTS FOR ALL EXTENSIONS
-  ############### WIP: The theme isn’t getting installed correctly.
 	
   report_end_phase_standard
 }
