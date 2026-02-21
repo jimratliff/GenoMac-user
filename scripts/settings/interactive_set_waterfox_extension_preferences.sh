@@ -9,11 +9,6 @@ function interactive_set_preferences_for_waterfox_extensions() {
   report_start_phase_standard
 
   run_if_user_has_not_done \
-    "$PERM_WATERFOX_EXTENSION_THEME_HAS_BEEN_CONFIGURED" \
-    interactive_configure_waterfox_theme \
-    "Skipping installing the Activist-balanced Waterfox theme, because it’s already been installed in the past"
-
-  run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSIONS_BASIC_HAVE_BEEN_CONFIGURED" \
     interactive_configure_waterfox_basic_extensions \
     "Skipping configuring the most-basic Waterfox extensions, because they’ve already been configured in the past"
@@ -33,16 +28,21 @@ function interactive_set_preferences_for_waterfox_extensions() {
     interactive_configure_waterfox_tabs2list_extension \
     "Skipping configuring the Tabs2List extension for Waterfox, because it’s already been configured in the past"
 
-  run_if_user_has_not_done \
-    "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
-    interactive_configure_waterfox_raindropio_extension \
-    "Skipping configuring the Raindrop.io extension for Waterfox, because it’s already been configured in the past"
-
   if test_user_state "$PERM_WATERFOX_EXTENSION_YOUTUBE_WANTS_TO_CONFIGURE"; then
     run_if_user_has_not_done \
       "$PERM_WATERFOX_EXTENSION_YOUTUBE_HAS_BEEN_CONFIGURED" \
       interactive_configure_waterfox_youtube_extension \
       "Skipping configuring Enhanced for YouTube extension for Waterfox, because it’s already been specified in the past"
+
+  run_if_user_has_not_done \
+    "$PERM_WATERFOX_EXTENSION_THEME_HAS_BEEN_CONFIGURED" \
+    interactive_configure_waterfox_theme \
+    "Skipping installing the Activist-balanced Waterfox theme, because it’s already been installed in the past"
+
+  run_if_user_has_not_done \
+    "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
+    interactive_configure_waterfox_raindropio_extension \
+    "Skipping configuring the Raindrop.io extension for Waterfox, because it’s already been configured in the past"
   fi
 
   ############### WIP: REVIEW THE KEYBOARD SHORTCUTS FOR ALL EXTENSIONS
