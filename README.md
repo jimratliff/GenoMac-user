@@ -409,6 +409,11 @@ See the Google Docs document “[Project GenoMac: Post-automation steps](https:/
   - As I recall, this bug goes back years.
 - Keyboard Maestro
   - Despite best efforts, trying to change the menubar status icon to “Classic” doesn’t take
+- Waterfox
+  - Extensions
+    - Neither (a) the Raindrop.io extension nor (b) the “Activist - Balanced” theme successfully installs, even though I’m installing them in the same way
+      that I install all the other successfully installed extensions. The implemented workaround: Interactively prompt the executing user to manually
+      install each extension.
  
 ## Appendix: Dev issues
 The preceding content of this README focuses on the “user” experience, i.e., the experience from USER_CONFIGURER’s experience, as a consumer of the repository in its contemperaneous state.
