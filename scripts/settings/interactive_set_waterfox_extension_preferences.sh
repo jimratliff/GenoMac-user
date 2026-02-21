@@ -45,6 +45,11 @@ function interactive_set_preferences_for_waterfox_extensions() {
     interactive_configure_waterfox_raindropio_extension \
     "Skipping configuring the Raindrop.io extension for Waterfox, because it’s already been configured in the past"
 
+  run_if_user_has_not_done \
+    "$PERM_WATERFOX_EXTENSION_SHORTCUTS_HAVE_BEEN_CONFIGURED" \
+    interactive_configure_waterfox_extension_shortcuts \
+    "Skipping configuring keyboard shortcuts for the extensions for Waterfox, because they’ve already been configured in the past"
+
   ############### WIP: REVIEW THE KEYBOARD SHORTCUTS FOR ALL EXTENSIONS
 	
   report_end_phase_standard
@@ -139,6 +144,19 @@ function interactive_configure_waterfox_youtube_extension() {
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_youtube_extension.md" \
     "$BUNDLE_ID_WATERFOX" \
     "Follow the instructions in the Quick Look window to configure Enhancer for YouTube for Waterfox"
+
+  report_end_phase_standard
+}
+
+function interactive_configure_waterfox_extension_shortcuts() {
+  report_start_phase_standard
+  
+  report "Time to configure keyboard shortcuts for extensions for Waterfox! I’ll launch Waterfox, and open a window with instructions"
+	
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_extension_keyboard_shortcuts.md" \
+    "$BUNDLE_ID_WATERFOX" \
+    "Follow the instructions in the Quick Look window to configure keyboard shortcuts for extensions for Waterfox"
 
   report_end_phase_standard
 }
