@@ -28,7 +28,7 @@ function interactive_set_preferences_for_waterfox_extensions() {
     interactive_configure_waterfox_tabs2list_extension \
     "Skipping configuring the Tabs2List extension for Waterfox, because it’s already been configured in the past"
 
-  if test_user_state "$PERM_WATERFOX_EXTENSION_YOUTUBE_WANTS_TO_CONFIGURE"; then
+  if test_genomac_user_state "$PERM_WATERFOX_EXTENSION_YOUTUBE_WANTS_TO_CONFIGURE"; then
     run_if_user_has_not_done \
       "$PERM_WATERFOX_EXTENSION_YOUTUBE_HAS_BEEN_CONFIGURED" \
       interactive_configure_waterfox_youtube_extension \
