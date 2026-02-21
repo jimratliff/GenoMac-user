@@ -9,6 +9,11 @@ function interactive_set_preferences_for_waterfox_extensions() {
   report_start_phase_standard
 
   run_if_user_has_not_done \
+    "$PERM_WATERFOX_EXTENSION_THEME_HAS_BEEN_CONFIGURED" \
+    interactive_configure_waterfox_theme \
+    "Skipping installing the Activist-balanced Waterfox theme, because it’s already been installed in the past"
+
+  run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSIONS_BASIC_HAVE_BEEN_CONFIGURED" \
     interactive_configure_waterfox_basic_extensions \
     "Skipping configuring the most-basic Waterfox extensions, because they’ve already been configured in the past"
@@ -95,6 +100,20 @@ function interactive_configure_waterfox_raindropio_extension() {
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_raindropio_extension.md" \
     "$BUNDLE_ID_WATERFOX" \
     "Follow the instructions in the Quick Look window to install and configure the Raindrop.io extension for Waterfox"
+
+  report_end_phase_standard
+}
+
+function interactive_configure_waterfox_theme() {
+  ############### TODO: Why isn’t the installation of this theme working?
+  report_start_phase_standard
+  
+  report "Time to install the “Activist - Balanced” theme for Waterfox! I’ll launch Waterfox, and open a window with instructions"
+	
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_theme_extension.md" \
+    "$BUNDLE_ID_WATERFOX" \
+    "Follow the instructions in the Quick Look window to install and configure the “Activist - Balanced” theme for Waterfox"
 
   report_end_phase_standard
 }
