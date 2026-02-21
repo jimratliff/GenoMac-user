@@ -1,7 +1,7 @@
 # How to install and configure the Raindrop.io extension for the Waterfox web browser
 
 ## Context: GenoMac-user can’t currently install the Raindrop.io extension for you
-Although, GenoMac-user *can* install every other extension it’s tried to install, for some reason GenoMac-user
+Although, GenoMac-user *can* install many other extensions it’s tried to install, for some reason GenoMac-user
 can’t successfully install the Raindrop.io extension. So you’ll need to manually install it.
 
 ## Make Waterfox active and install from the Raindrop.io extension web page
