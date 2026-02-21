@@ -45,7 +45,7 @@ function conditionally_configure_1Password() {
     interactive_permit_1password_use_nonstandard_browsers \
     "Skipping adding nonstandard browsers for 1Password, because you've done that in the past."
 
-  if ! test_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
+  if ! test_genomac_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
     report_action_taken "Skipping configuring 1Password for SSH with GitHub, because it’s not desired"
 	report_end_phase_standard
 	return 0
