@@ -50,6 +50,7 @@ function subdermis() {
 
   conditionally_configure_textexpander
   conditionally_configure_Dropbox
+  install_btt_license_file ############### NEEDS REVIEW BEFORE MOVING FORWARD
 
   ############### PERM: (Further) configure apps that rely upon Dropbox having synced
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
