@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function conditionally_configure_helium() {
+function conditionally_interactive_configure_helium() {
   report_start_phase_standard
 
   run_if_user_has_not_done \
