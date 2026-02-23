@@ -3,7 +3,8 @@
 ## Make Helium active and open the list of installed extensions
 - ❑ Make Helium active
   - The script will already have opened the Helium application for you.
-- ❑ From the application menu, choose Window » Extensions (or click the jigsaw-puzzle icon in the toolbar)
+- ❑ From the application menu, choose Window » Extensions (or click the jigsaw-puzzle icon in the toolbar and
+  then “Manage Extensions”)
 
 ## Enable, and optionally pin, each of the following extensions
 - ❑ 1Password - Password Manager
