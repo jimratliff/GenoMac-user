@@ -25,16 +25,20 @@ Select:
 - ❑ View » Always Show Bookmarks Bar
 - ❑ View » Always Show Full URLs
 
-## Adjust Settings
+## Adjust some Settings
 - ❑ From the application menubar, choose Helium » Settings… (⌘,)
 
 ### Search engine
-- ❑ Click on “Search engine” in the right sidebar of Settings, or go to [helium://settings/search]
+- ❑ Click on “Search engine” in the left sidebar of Settings, or go to [helium://settings/search]
   - A new page will be displayed titled “Search engine”, showing the default engine of DuckDuckGo
 - ❑ Click the “Change” button
   - A dialog box will open listing Microsoft Bing, Ecosia, …, Google, DuckDuckGo, etc.
 - ❑ Select “Google” and click “Set as Default”
 
+### On startup
+- ❑ Click on “On startup” in the left sidebar of Settings, or go to [helium://settings/onStartup]
+  - A new page will be displayed titled “On startup”, showing the default setting of “Open the New Tab page”
+- ❑ Select “Continue where you left off”
+
 ## Return to the terminal
-Now return to the terminal and acknowledge you have completed the configuration of the Enhancer for YouTube
-extension for Waterfox.
+Now return to the terminal and acknowledge you have completed the configuration of Helium.
