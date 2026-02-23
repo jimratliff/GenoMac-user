@@ -2,8 +2,9 @@
 
 ## Why am I doing this interactively?
 Unlike other Mac apps and even, for example, the Waterfox browser, as far as I’ve been able
-to determine in my abbreviated investigation, Helium doesn’t expose its setting to scripting
-in a sufficiently easy-to-deduce way. (Helium won’t be my daily driver. Instead, it’s what
+to determine in my abbreviated investigation, Helium doesn’t expose its settings to scripting
+in a sufficiently easy-to-deduce way. Thus, the Hypervisor directs you to configure Helium
+settings interactively. (Helium won’t be my daily driver. Instead, it’s what
 I’ll use when I need to use a Chromium browser.)
 
 ## Make Helium active
