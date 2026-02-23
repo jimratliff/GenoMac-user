@@ -13,22 +13,15 @@ additional extensions.
 - Menubar » Bookmarks » Bookmark This Tab… (⌘D)
 
 ## Install 1Password
-- ❑ Go to the [1Password extension page](https://chromewebstore.google.com/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
+- ❑ Go to the [1Password Chrome web store page](https://chromewebstore.google.com/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
+- ❑ Click on “Add to Helium”
 
-- ❑ From the application menu, choose Tools » Extensions and Themes (⇧⌘A)
+## Install Chessvision.ai Chess Position Scanner
+- ❑ Go to the [Chessvision.ai Chess Position Scanner Chrome web store page](https://chromewebstore.google.com/detail/chessvisionai-chess-posit/johejpedmdkeiffkdaodgoipdjodhlld)
 
-## Enable, and optionally pin, each of the following extensions
-- ❑ 1Password - Password Manager
-  - ❑ Pin 📌 ? ✅
-- ❑ Allow Right-Click
-  - ❑ Pin 📌 ? ✅
-- ❑ Chessvision.ai Chess Position Scanner
-  - ❑ Pin 📌 ? OPTIONAL, whatever choice this user would prefer
-- ❑ Downie
-  - ❑ Pin 📌 ? OPTIONAL, whatever choice this user would prefer
-- ❑ Tree Style Tab
-  - ❑ Pin 📌 ? ✅
+## Install Enhancer for YouTube
+- ❑ Go to the [Enhancer for YouTube™ Chrome web store page](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle)
+- ❑ Click on “Add to Helium”
 
 ## Return to the terminal
-Now return to the terminal and acknowledge you have completed the configuration of the Enhancer for YouTube
-extension for Waterfox.
+Now return to the terminal and acknowledge you have completed the installation of your desired extensions for Helium.
