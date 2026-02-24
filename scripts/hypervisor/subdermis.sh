@@ -14,6 +14,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/perform_basic_user_level_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_stow_dotfiles.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_apps_to_launch_at_login.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_bettertouchtool_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_waterfox_settings.sh"
 
 function subdermis() {
@@ -50,10 +51,14 @@ function subdermis() {
 
   conditionally_configure_textexpander
   conditionally_configure_Dropbox
-  install_btt_license_file ############### NEEDS REVIEW BEFORE MOVING FORWARD
 
   ############### PERM: (Further) configure apps that rely upon Dropbox having synced
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
+
+    # BetterTouchTool relies on Dropbox because that’s where its license file is stored
+    conditionally_configure_bettertouchtool
+
+    # Keyboard Maestro relies on Dropbox because that’s where its synced preferences are stored
     conditionally_configure_keyboard_maestro
 
     # Alfred must be configured *after* Keyboard Maestro, because activating the
