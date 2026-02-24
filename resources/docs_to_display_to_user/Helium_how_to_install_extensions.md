@@ -12,6 +12,10 @@ additional extensions.
 - ❑ Bookmark this site so that you can easily return to it
 - Menubar » Bookmarks » Bookmark This Tab… (⌘D)
 
+## Install theme
+- ❑ Go to the [Sea Foam theme Chrome web store page](https://chromewebstore.google.com/detail/sea-foam/lahipjfggmgneaopcckkaipmoandaboo)
+- ❑ Click on “Add to Helium”
+
 ## Install 1Password
 - ❑ Go to the [1Password Chrome web store page](https://chromewebstore.google.com/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
 - ❑ Click on “Add to Helium”
