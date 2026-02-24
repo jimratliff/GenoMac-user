@@ -1,5 +1,25 @@
 #!/usr/bin/env zsh
 
+conditionally_configure_bettertouchtool() {
+  report_start_phase_standard
+  
+  run_if_user_has_not_done \
+    "$PERM_BTT_HAS_BEEN_CONFIGURED" \
+    set_btt_settings_and_install_license \
+    "Skipping configuring BetterTouchTool because it’s been done in the past"
+    
+  report_end_phase_standard
+}
+
+function set_btt_settings_and_install_license() {
+  report_start_phase_standard
+  
+  set_btt_settings
+  install_btt_license_file
+  
+  report_end_phase_standard
+}
+
 function set_btt_settings() {
 
   # As of October 2025, BTT has no reliable method for syncing its “preset” configuration 
@@ -20,6 +40,7 @@ function set_btt_settings() {
   # the BetterTouchTool preset” of the README of this repository.
   
   report_start_phase_standard
+  
   report_action_taken "Implement BetterTouchTool settings"
   
   local domain="com.hegenberg.BetterTouchTool"
@@ -37,6 +58,7 @@ function install_btt_license_file() {
   # (b) installed into the appropriate location of the user’s Library folder.
   
   report_start_phase_standard
+  
   report_action_taken "Bootstrap-only installation of BetterTouchTool license file."
 
   local license_file_name="bettertouchtool.bttlicense"
