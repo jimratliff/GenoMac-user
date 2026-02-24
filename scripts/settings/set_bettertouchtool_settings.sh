@@ -44,6 +44,8 @@ function set_btt_settings() {
   report_action_taken "Implement BetterTouchTool settings"
   
   local domain="com.hegenberg.BetterTouchTool"
+
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_BETTERTOUCHTOOL"
   
   report_adjust_setting "Define preset location to ${GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH}"
   defaults write ${domain} BTTAutoLoadPath "${GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH}" ; success_or_not
