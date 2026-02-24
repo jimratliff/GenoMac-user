@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function conditionally_interactive_configure_helium() {
+function conditionally_interactive_configure_helium_and_extensions() {
   report_start_phase_standard
 
   run_if_user_has_not_done \
@@ -23,6 +23,8 @@ function conditionally_interactive_configure_helium() {
 
 function interactive_configure_helium() {
   report_start_phase_standard
+
+  report "Time to configure settings for Helium! I’ll launch Helium, and open a window with instructions"
   
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Helium_how_to_configure.md" \
@@ -34,6 +36,8 @@ function interactive_configure_helium() {
 
 function interactive_install_helium_extensions() {
   report_start_phase_standard
+
+  report "Time to install extensions for Helium! I’ll launch Helium, and open a window with instructions"
   
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Helium_how_to_install_extensions.md" \
@@ -46,10 +50,10 @@ function interactive_install_helium_extensions() {
 function interactive_configure_helium_basic_extensions() {
   report_start_phase_standard
   
-  report "Time to configure basic browser extensions for Waterfox! I’ll launch Waterfox, and open a window with instructions"
+  report "Time to configure basic browser extensions for Helium! I’ll launch Helium, and open a window with instructions"
 	
   launch_app_and_prompt_user_to_act \
-    --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_basic_extensions.md" \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/Helium_how_to_configure_basic_extensions.md" \
     "$BUNDLE_ID_HELIUM" \
     "Follow the instructions in the Quick Look window to configure some basic extensions for Helium"
 
