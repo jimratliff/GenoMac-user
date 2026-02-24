@@ -29,17 +29,6 @@ Select:
 ## Adjust some Settings
 - ❑ From the application menubar, choose Helium » Settings… (⌘,)
 
-### Appearance » Theme
-- ❑ Click on “Appearance and behavior” in the left sidebar of Settings, or go to [helium://settings/appearance]
-  - A new page will be displayed titled “Appearance”
-- Find the top row labeled “Theme”
-- ❑ Click the “share”-icon button on the right side of that row.
-    - A left sidebar labeled “Customize Helium” and “Appearance” will open.
-    - You will see a 4×4 grid of colored rectangles, each representing three choices of colors
-- Click the rectangle that is (a) on the 2nd row and (b) third from the left (for definiteness, this rectangle
-  has (a) light green in the top half, (b) dark green in the lower left quadrant, and (c) an intermediate green
-  in the lower-right quadrant
-
 ### Search engine
 - ❑ Click on “Search engine” in the left sidebar of Settings, or go to [helium://settings/search]
   - A new page will be displayed titled “Search engine”, showing the default engine of DuckDuckGo
