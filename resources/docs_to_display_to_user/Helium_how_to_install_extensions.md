@@ -1,8 +1,8 @@
 # How to install my desired extensions for the Helium web browser
 
 ## Make Helium active
-- ❑ Make Waterfox active
-  - The script will already have opened the Waterfox application for you.
+- ❑ Make Helium active
+  - The script will already have opened the Helium application for you.
  
 ## Visit the Chrome Web Store and bookmark it
 Although I will provide a link for each app to be installed, it’s good to know where to go to find
