@@ -9,7 +9,7 @@
 - Tabs2List
   - ❑ Toggle the switch to ON ✅
  
-## Open the preferences for Consent-O-Matic
+## Open the preferences for Tabs2List
 - ❑ Context-click on the “…” button to the right of the switch you just toggled, and select “Preferences”
 
 ## Selectively change the following default settings
