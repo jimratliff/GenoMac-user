@@ -11,10 +11,21 @@
 - ❑ Context-click on the “…” button to the right of the switch you just toggled, and select “Preferences”
 
 ## Selectively change the following settings from their default values
+Note: The order/layout of the below sections may change. You may need to look around to find the section in question.
 ### “Video player”
+#### “Autoplay”
+- “Disable autoplay”
+  - ❑ Turn ON ✅
+- “Prevent videos loaded in background tabs from automatically playing as well”
+  - “Prevent videos loaded in the foreground tab from automatically playing as well”
+    - ❑ Turn ON ✅
 #### “Controls”
-Note: Each control is represented by an icon that I can’t replicate here. Instead, I’ll refer to
-each icon by a position and text that you’d see if you hover over the icon.
+Notes:
+- Each control is represented by an icon that I can’t replicate here. Instead, I’ll refer to
+  each icon by a position and text that you’d see if you hover over the icon.
+- The row, and position within a row, of each of the below control may change. You can hover over
+  each icon, at which time a “(i)” will appear in its upper-righthand corner. Hovering over the “(i)” will show a
+  tooltip telling you what the function of that control is.
 
 - Row 1 of controls:
   - Item 1: Loop mode (“Click or right-click to toggle the loop mode”)
@@ -29,12 +40,6 @@ each icon by a position and text that you’d see if you hover over the icon.
   - Item 3: Video filters (“Click to toggle the video filters or right-click to toggle
     the video filters panel visibility”)
     - ❑ Turn OFF ❌ this item
-#### “Autoplay”
-- “Disable autoplay”
-  - ❑ Turn ON ✅
-- “Prevent videos loaded in background tabs from automatically playing as well”
-  - “Prevent videos loaded in the foreground tab from automatically playing as well”
-    - ❑ Turn ON ✅
 
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the configuration of the Enhancer for YouTube
