@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-############### WIP as of 2/14/2026 INCONSISTENT STATE
+############### WIP as of 2/26/2026 INCONSISTENT STATE
 
 function conditionally_configure_witch() {
   report_start_phase_standard
@@ -8,6 +8,14 @@ function conditionally_configure_witch() {
   run_if_user_has_not_done "$PERM_WITCH_HAS_BEEN_CONFIGURED" \
     interactive_configure_witch \
     "Skipping configuring Witch, because it’s already been configured"
+  
+  report_end_phase_standard
+}
+
+function set_witch_settings() {
+  report_start_phase_standard
+
+  # TODO
   
   report_end_phase_standard
 }
