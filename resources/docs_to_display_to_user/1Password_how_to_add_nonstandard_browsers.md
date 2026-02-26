@@ -20,6 +20,7 @@ There may, or may not, already be one or more nonstandard browsers listed in thi
   - ❑ Waterfox
 - For each of these browsers:
   - ❑ Open 1Password’s Settings… (⌘,)
+  - ❑ Click on the “Browser” tab
   - ❑ Click the “Add Browser” button, which opens an Open dialog pointing at /Applications
     - ❑ In the list of applications, double-click on the nonstandard browser you wish to authorize
   - 1Password will pop up a Touch ID authorization dialog: “Authorize the browser Waterfox to access 1Password”
