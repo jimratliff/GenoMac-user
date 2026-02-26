@@ -14,12 +14,7 @@ I’ll use when I need to use a Chromium browser.)
 ## Initial splash screen
 - If this is literally the first time this user has launched Helium, you’ll see a splash screen that
   asks you whether you (a) want to accept the defaults or (b) configure.
-  - ❑ Choose “Defaults” (though this may not matter[^MAYBE_CONFIGURE_INSTEAD])
- 
-[^MAYBE_CONFIGURE_INSTEAD]: This is worth checking the next time I configure a pristine user. I had
-assumed that “Configure” meant (a) avoiding all defaults and (b) start from scratch. That presumption
-might have been incorrect. It might just be asking me whether (a) I wanted to accept the defaults
-vis-à-vis (b) I wanted to build upon the defaults.
+  - ❑ Choose “Defaults”
 
 ## Make selections from the View menu of the menubar
 Select:
