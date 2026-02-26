@@ -18,7 +18,7 @@ using a script.)
   - ❑ Change from ✅ → ❌
 #### Keyboard Shortcuts
 - “Show Quick Access”
-  - ❑ Change to ⌃⌥⌘]
+  - ❑ Change to ⌃⌥⌘]   (To be clear, the last character is a closing square bracket. That *is* part of the shortcut.)
 - “Lock 1Password”
   - ❑ REMOVE SHORTCUT
 - “Autofill”
