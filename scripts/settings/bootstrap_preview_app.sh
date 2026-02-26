@@ -41,6 +41,9 @@ function bootstrap_preview_app() {
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:1' string form_filling" "$plist_path"
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:2' string scale" "$plist_path"
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:3' string search" "$plist_path"
+
+  # Quit Preview to lock-in the changes
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_PREVIEW"
   
   report_end_phase_standard
 
