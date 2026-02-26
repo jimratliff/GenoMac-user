@@ -27,6 +27,14 @@ You can register Keyboard Maestro (which requires an email address and serial nu
 - This will choose the menu item: “Keyboard Maestro” » “Register Keyboard Maestro…”, and then populate the email-address and serial-number fields with the credentials under which my Keyboard Maestro is registered.
   - Note that these credentials do *not* exist in this repo, but rather are stored in my securely privately synced macro set.
 - ❑ Click on the “Register” button to confirm the assignments and complete the registration process.
+
+## Change the Status Menu Icon
+NOTE: Although I have tried to do the following programmatically, it never takes. Hence, we’ll do it interactively.
+
+- ❑ From the Keyboard Mastro status menu icon, choose “Launch Keyboard Maestro Editor”
+- ❑ After the Editor opens,open Settings… (⌘,)
+- In the General panel (which should be opened by default), find the “Status Menu Icon” setting
+- ❑ Change the dropdown menu to “Classic”
   
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
