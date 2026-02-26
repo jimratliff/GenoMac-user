@@ -120,7 +120,12 @@ function conditionally_interactive_configure_waterfox_raindropio_extension() {
 }
 
 function interactive_configure_waterfox_raindropio_extension() {
-  ############### TODO: Why isn’t the installation of Raindrop.io working?
+  # NOTE: This requires logging into your Raindrop.io account. Thus, defer executing this function
+  #       until after 1Password is configured.
+  #
+  # NOTE: The programmatic installation of Raindrop.io isn’t working, so this interactive configuration
+  #       includes the installation step. TODO
+
   report_start_phase_standard
   
   report "Time to install and configure the Raindrop.io extension for Waterfox! I’ll launch Waterfox, and open a window with instructions"
@@ -134,7 +139,9 @@ function interactive_configure_waterfox_raindropio_extension() {
 }
 
 function interactive_configure_waterfox_theme() {
-  ############### TODO: Why isn’t the installation of this theme working?
+  # NOTE: The programmatic installation of this theme isn’t working, so this interactive configuration
+  #       includes the installation step. TODO
+  
   report_start_phase_standard
   
   report "Time to install the “Activist - Balanced” theme for Waterfox! I’ll launch Waterfox, and open a window with instructions"
