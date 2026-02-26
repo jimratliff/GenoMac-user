@@ -8,11 +8,29 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/register_glance_as_quicklook.sh"
 function conditionally_perform_initial_bootstrap_operations() {
   report_start_phase_standard
 
+  # Glance: Register as a QuickLook plug
   run_if_user_has_not_done \
-    --force-logout \
-    "$PERM_BASIC_BOOTSTRAP_OPERATIONS_HAVE_BEEN_PERFORMED" \
-    perform_initial_bootstrap_operations \
-    "Skipping basic bootstrap operations, because they’ve already been performed"
+    "$PERM_GLANCE_HAS_BEEN_REGISTERED_AS_QUICKLOOK" \
+    register_glance_as_quicklook \
+    "Skipping registering Glance as QuickLook plugin, because this was done in the past"
+
+  # Dock: Define initial configuration of persistent apps
+  run_if_user_has_not_done \
+    "$PERM_DOCK_BASE_PERSISTENT_APPS_HAVE_BEEN_SPECIFIED" \
+    bootstrap_dock \
+    "Skipping initial configuration of Dock, because this was done in the past"
+
+  # Finder: Define initial toolbar
+  run_if_user_has_not_done \
+    "$PERM_FINDER_BASE_TOOLBAR_HAS_BEEN_SPECIFIED" \
+    bootstrap_finder \
+    "Skipping configuring Finder toolbar, because this was done in the past"
+
+  # Preview.app: Define initial toolbar
+  run_if_user_has_not_done \
+    "$PERM_PREVIEW_BASE_TOOLBAR_HAS_BEEN_SPECIFIED" \
+    bootstrap_preview_app \
+    "Skipping configuring Preview toolbar, because this was done in the past"
   
   report_end_phase_standard
 }
