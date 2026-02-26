@@ -51,6 +51,7 @@ function subdermis() {
 
   conditionally_configure_textexpander
   conditionally_configure_Dropbox
+  conditionally_interactive_configure_waterfox_raindropio_extension
 
   ############### PERM: (Further) configure apps that rely upon Dropbox having synced
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
