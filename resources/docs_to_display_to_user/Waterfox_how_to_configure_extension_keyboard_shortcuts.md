@@ -7,7 +7,7 @@
 - ❑ Click-and-hold the gear (⚙️) icon in the upper-right corner of the page and select “Manage Extension Shortcuts”
   - The “Manage Extension Shortcuts” page will be displayed
  
-## For each of the following extensions, make the indicate change in the assigned shortcut
+## For each of the following extensions, make the indicated change in the assigned shortcut
 - In some cases, the assigned shortcut will be removed entirely.
 - In other cases, the shortcut assigned to an action will be replaced with a different shortcut.
 ### 1Password - Password Manager
