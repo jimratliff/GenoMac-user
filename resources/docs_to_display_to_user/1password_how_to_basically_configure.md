@@ -38,10 +38,10 @@ using a script.)
   - ❑ Set at **14 days**
 #### Auto-lock
 - “Lock after the device is idle for”
-- ❑ Change from 1 hour → **8 hours**
+  - ❑ Change from 1 hour → **8 hours**
 #### Concealed Fields
 - “Hold Option to toggle revealed fields”
-- ❑ Change from ❌ → ✅
+  - ❑ Change from ❌ → ✅
 
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the basic configuration of 1Password.
