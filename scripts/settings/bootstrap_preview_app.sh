@@ -9,10 +9,8 @@ function bootstrap_preview_app() {
   report_action_taken "Bootstrap-only configuration of Preview.app’s toolbar"
 
   local plist_path
-  local toolbar_key
-  
   plist_path=$(sandboxed_plist_path_from_domain "$DEFAULTS_DOMAINS_PREVIEW")
-  toolbar_key="NSToolbar Configuration CommonToolbar_v5.1"
+  local toolbar_key="NSToolbar Configuration CommonToolbar_v5.1"
   
   report_action_taken "Launching and quitting Preview to prepare the plist."
   launch_and_quit_app "$BUNDLE_ID_PREVIEW"
