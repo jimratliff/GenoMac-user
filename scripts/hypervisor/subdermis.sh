@@ -66,7 +66,8 @@ function subdermis() {
     # Powerpack uses a custom Keyboard Maestro macro
     conditionally_configure_alfred
 
-    conditionally_copy_Witch_license_files_from_Dropbox
+    # Installation of Witch license files relies on Dropbox because that’s where its license files are stored
+    conditionally_install_Witch_license_files
   fi
 
   conditionally_configure_microsoft_word
