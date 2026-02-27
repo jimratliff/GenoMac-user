@@ -8,15 +8,14 @@ function bootstrap_preview_app() {
   report_start_phase_standard
   report_action_taken "Bootstrap-only configuration of Preview.app’s toolbar"
   
-  local domain="com.apple.Preview"
-  local plist_path=$(sandboxed_plist_path_from_domain "$domain")
+  local plist_path=$(sandboxed_plist_path_from_domain "$DEFAULTS_DOMAINS_PREVIEW")
   local toolbar_key="NSToolbar Configuration CommonToolbar_v5.1"
   
   report_action_taken "Launching and quitting Preview to prepare the plist."
   launch_and_quit_app "$BUNDLE_ID_PREVIEW"
   sleep 2 # Give Preview plenty of time to quit before trying to modify its plist
 
-  # report_action_taken "Ensuring the plist for ${domain} exists."
+  # report_action_taken "Ensuring the plist for ${DEFAULTS_DOMAINS_PREVIEW} exists."
   ensure_plist_path_exists "${plist_path}"
   
   # Preview: Reconfigure Toolbar
