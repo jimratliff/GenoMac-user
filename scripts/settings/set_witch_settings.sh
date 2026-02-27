@@ -24,7 +24,7 @@ function set_witch_settings() {
   tempfile_containing_action_configurations=$(create_temp_file_with_witch_action_configurations) ; success_or_not
 
   report_action_taken "Writing new configurations to Witch’s Settings.plist"
-  /usr/libexec/PlistBuddy \
+  "$PLISTBUDDY_PATH" \
     -c "Delete 'Action Configurations'" \
     -c "Import 'Action Configurations' $tempfile_containing_action_configurations" \
     -c "Set 'Show Search Field' false" \
