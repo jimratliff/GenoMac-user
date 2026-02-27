@@ -1,15 +1,5 @@
 #!/usr/bin/env zsh
 
-function conditionally_configure_witch() {
-  report_start_phase_standard
-  
-  run_if_user_has_not_done "$PERM_WITCH_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
-    set_witch_settings \
-    "Skipping setting preferences for Witch, because this was done in the past"
-  
-  report_end_phase_standard
-}
-
 function set_witch_settings() {
   report_start_phase_standard
 
