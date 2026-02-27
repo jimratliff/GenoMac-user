@@ -13,6 +13,7 @@ function conditionally_configure_witch() {
 function set_witch_settings() {
   report_start_phase_standard
 
+  local witch_plist_path
   witch_plist_path="${HOME}/Library/Application Support/Witch/Settings.plist"
 
   report_action_taken "Creating tempfile containing desired Witch action configurations"
@@ -31,7 +32,7 @@ function set_witch_settings() {
   success_or_not
 
   report_action_taken "Removing tempfile"
-  rm tempfile_containing_action_configurations ; success_or_not
+  rm "${tempfile_containing_action_configurations}" ; success_or_not
   
   report_end_phase_standard
 }
