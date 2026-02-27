@@ -13,14 +13,15 @@ function conditionally_configure_witch() {
 function set_witch_settings() {
   report_start_phase_standard
 
+  report_action_taken "Launching and quitting Witch to prepare the plist."
+  launch_and_quit_app "$BUNDLE_ID_WITCH"
+
   local witch_plist_path
   witch_plist_path="${HOME}/Library/Application Support/Witch/Settings.plist"
 
   report_action_taken "Creating tempfile containing desired Witch action configurations"
   local tempfile_containing_action_configurations
   tempfile_containing_action_configurations=$(create_temp_file_with_witch_action_configurations) ; success_or_not
-
-  quit_app_by_bundle_id_if_running "$BUNDLE_ID_WITCH"
 
   report_action_taken "Writing new configurations to Witch’s Settings.plist"
   /usr/libexec/PlistBuddy \
