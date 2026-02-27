@@ -18,7 +18,6 @@ function bootstrap_preview_app() {
   
   report_action_taken "Launching and quitting Preview to prepare the plist."
   launch_and_quit_app "$BUNDLE_ID_PREVIEW"
-  sleep 2 # Give Preview plenty of time to quit before trying to modify its plist
 
   # report_action_taken "Ensuring the plist for ${DEFAULTS_DOMAINS_PREVIEW} exists."
   ensure_plist_path_exists "${plist_path}"
