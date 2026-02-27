@@ -11,7 +11,7 @@ function bootstrap_preview_app() {
   local plist_path
 
   ############### DEBUG
-  print_warning "DEBUG: DEFAULTS_DOMAINS_PREVIEW: ${DEFAULTS_DOMAINS_PREVIEW}"
+  report_warning "DEBUG: DEFAULTS_DOMAINS_PREVIEW: ${DEFAULTS_DOMAINS_PREVIEW}"
   
   plist_path=$(sandboxed_plist_path_from_domain "$DEFAULTS_DOMAINS_PREVIEW")
   local toolbar_key="NSToolbar Configuration CommonToolbar_v5.1"
