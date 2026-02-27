@@ -66,6 +66,7 @@ function install_btt_license_file() {
   local license_file_name="bettertouchtool.bttlicense"
   
   local source_subpath="BetterTouchTool/LICENSE/${license_file_name}"
+  
   # Hint: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Preferences_common"
   local source_path="${GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY}/${source_subpath}"
   
