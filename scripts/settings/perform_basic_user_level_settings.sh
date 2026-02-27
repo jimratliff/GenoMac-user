@@ -188,6 +188,9 @@ function perform_basic_user_level_settings() {
 
   # Plain Text Editor
   set_plain_text_editor_settings
+
+  # Witch
+  set_witch_settings
   
   report_end_phase_standard
 }
