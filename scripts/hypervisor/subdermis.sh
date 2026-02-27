@@ -65,6 +65,8 @@ function subdermis() {
     # Alfred must be configured *after* Keyboard Maestro, because activating the
     # Powerpack uses a custom Keyboard Maestro macro
     conditionally_configure_alfred
+
+    conditionally_copy_Witch_license_files_from_Dropbox
   fi
 
   conditionally_configure_microsoft_word
