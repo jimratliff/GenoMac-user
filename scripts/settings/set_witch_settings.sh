@@ -45,6 +45,14 @@ function set_witch_settings() {
   local witch_plist_path
   witch_plist_path="${HOME}/Library/Application Support/Witch/Settings.plist"
 
+  report_action_taken "Ensuring Witch’s Settings.plist exists"
+  mkdir -p "${witch_plist_path:h}"
+  if [[ ! -f "$witch_plist_path" ]]; then
+    # Creates a no-content template .plist file
+    "$PLISTBUDDY_PATH" -c "Save" "$witch_plist_path"
+  fi
+  success_or_not
+
   report_action_taken "Creating tempfile containing desired Witch action configurations"
   local tempfile_containing_action_configurations
   tempfile_containing_action_configurations=$(create_temp_file_with_witch_action_configurations) ; success_or_not
