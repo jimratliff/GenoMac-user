@@ -43,9 +43,6 @@ GMU_UTILITIES="${GENOMAC_USER_LOCAL_DIRECTORY}/utilities"
 
 ##############################
 
-# Specify location of PlistBuddy
-PLISTBUDDY_PATH='/usr/libexec/PlistBuddy'
-
 # Establish symbolic names for modifier keys
 SHIFT_CHAR=$'\u21e7'     # ⇧
 CONTROL_CHAR=$'\u2303'   # ⌃  
@@ -107,5 +104,4 @@ export_and_report GMU_UTILITIES
 export_and_report META_MODIFIER_CHARS
 export_and_report MODIFIERS_KEYBOARD_NAVIGATION
 export_and_report OPTION_CHAR
-export_and_report PLISTBUDDY_PATH
 export_and_report SHIFT_CHAR
