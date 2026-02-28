@@ -81,7 +81,7 @@ function create_temp_file_with_witch_action_configurations() {
   # desired `Action Configurations` key as an array.
 
   local tmpfile
-  tmpfile=$(mktemp /tmp/witch_action_configs.XXXXXX.plist)
+  tmpfile=$(mktemp /tmp/${GENOMAC_NAMESPACE}.witch_action_configs.XXXXXX)
   cat > "$tmpfile" <<'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
