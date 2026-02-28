@@ -65,9 +65,11 @@ function set_witch_settings() {
   report_action_taken "Writing new configurations to Witch’s Settings.plist"
   "$PLISTBUDDY_PATH" \
       -c "Import 'Action Configurations' $tempfile_containing_action_configurations" \
-      -c "Add 'Show Search Field' bool false" \
-      -c "Add 'Spring-Load' bool true" \
       "$witch_plist_path"
+      
+  set_or_add_plist_value 'Show Search Field' bool false "$witch_plist_path"
+  set_or_add_plist_value 'Spring-Load'       bool true  "$witch_plist_path"
+
   success_or_not
 
   report_action_taken "Removing tempfile"
