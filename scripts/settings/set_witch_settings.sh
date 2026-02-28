@@ -1,5 +1,39 @@
 #!/usr/bin/env zsh
 
+conditionally_install_Witch_license_files() {
+  report_start_phase_standard
+
+  run_if_user_has_not_done "$PERM_WITCH_LICENSE_FILES_HAVE_BEEN_INSTALLED" \
+    install_Witch_license_files \
+    "Skipping installing license files for Witch, because this was done in the past"
+
+  report_end_phase_standard
+}
+
+function install_Witch_license_files() {
+  # To be run (a) as a bootstrap step on a pristine user or (b) after a change in the configuration
+  # of license files for Many Tricks software, which can happen after (a) licensing a new Many Tricks
+  # app (i.e., other than Witch) or (b) a future upgrade of the Witch license when a newer version of
+  # Witch is released.
+  #
+  # This function expects to find all Many Tricks license files in the shared Dropbox folder:
+  # ~/Dropbox/Preferences_common/Witch/LICENSE/Files_to_transfer
+  
+  report_start_phase_standard
+
+  local source_subdirectory="Witch/LICENSE/Files_to_transfer"
+  
+  # Hint: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Preferences_common"
+  local source_directory="${GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY}/${source_subdirectory}"
+
+  local destination_directory="$HOME/Library/Application Support/Many Tricks/Licenses"
+
+  report_action_taken "Copy Many Tricks license files from Dropbox to user’s Library"
+  copy_resource_between_local_directories "$source_directory" "$destination_directory" ; success_or_not
+
+  report_end_phase_standard
+}
+
 function set_witch_settings() {
   report_start_phase_standard
 
@@ -113,5 +147,3 @@ EOF
   print -- "$tmpfile"
   
 }
-
-
