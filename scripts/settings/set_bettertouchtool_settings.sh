@@ -73,7 +73,7 @@ function install_btt_license_file() {
   local destination_directory="$HOME/Library/Application Support/BetterTouchTool"
   local destination_path="${destination_directory}/${license_file_name}"
 
-  report_action_taken "Copy BTT license file from Dropbox to Library"
+  report_action_taken "Copy BTT license file from Dropbox to user’s Library"
   copy_resource_between_local_directories "$source_path" "$destination_path" ; success_or_not
   
   report_end_phase_standard
