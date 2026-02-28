@@ -39,9 +39,6 @@ function install_Witch_license_files() {
 function set_witch_settings() {
   report_start_phase_standard
 
-  report_action_taken "Launching and quitting Witch to prepare the plist."
-  launch_and_quit_app "$BUNDLE_ID_WITCH"
-
   local witch_plist_path
   witch_plist_path="${HOME}/Library/Application Support/Witch/Settings.plist"
 
