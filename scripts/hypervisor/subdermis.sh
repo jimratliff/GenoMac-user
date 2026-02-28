@@ -16,6 +16,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/perform_stow_dotfiles.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_apps_to_launch_at_login.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_bettertouchtool_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_waterfox_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_witch_settings.sh"
 
 function subdermis() {
 
