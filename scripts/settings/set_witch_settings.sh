@@ -54,13 +54,19 @@ function set_witch_settings() {
   local tempfile_containing_action_configurations
   tempfile_containing_action_configurations=$(create_temp_file_with_witch_action_configurations) ; success_or_not
 
+  
+  report_action_taken "Delete 'Action Configurations' key if it exists"
+  # Delete only if key already exists (e.g., on a re-run)
+  "$PLISTBUDDY_PATH" -c "Print 'Action Configurations'" "$witch_plist_path" &>/dev/null \
+      && "$PLISTBUDDY_PATH" -c "Delete 'Action Configurations'" "$witch_plist_path"
+  success_or_not
+
   report_action_taken "Writing new configurations to Witch’s Settings.plist"
   "$PLISTBUDDY_PATH" \
-    -c "Delete 'Action Configurations'" \
-    -c "Import 'Action Configurations' $tempfile_containing_action_configurations" \
-    -c "Set 'Show Search Field' false" \
-    -c "Set 'Spring-Load' true" \
-    "$witch_plist_path"
+      -c "Import 'Action Configurations' $tempfile_containing_action_configurations" \
+      -c "Add 'Show Search Field' bool false" \
+      -c "Add 'Spring-Load' bool true" \
+      "$witch_plist_path"
   success_or_not
 
   report_action_taken "Removing tempfile"
