@@ -54,13 +54,16 @@ typeset -g -A GENOMAC_LOGIN_APPS=(
   [alan]="bundle:${BUNDLE_ID_ALAN_APP}"
 )
 
+GENOMAC_LOGIN_APPS[bettertouchtool]="bundle:${BUNDLE_ID_BETTERTOUCHTOOL}"
+
+# path-based launch (nested app bundle; bundle-id unreliable at login)
+GENOMAC_LOGIN_APPS[keyboard-maestro-engine]="path:/Applications/Keyboard Maestro.app/Contents/MacOS/Keyboard Maestro Engine.app"
+
 # I’m leaving the following commented out because they might auto-launch without this intervention.
 # If that turns out not to be true for any, just uncomment the line corresponding to that app.
 # Uncomment to enable:
-# GENOMAC_LOGIN_APPS[bettertouchtool]="bundle:${BUNDLE_ID_BETTERTOUCHTOOL}"
 # GENOMAC_LOGIN_APPS[alfred]="bundle:${BUNDLE_ID_ALFRED}"
-# path-based launch (nested app bundle; bundle-id unreliable at login)
-# GENOMAC_LOGIN_APPS[keyboard-maestro-engine]="path:/Applications/Keyboard Maestro.app/Contents/MacOS/Keyboard Maestro Engine.app"
+
 
 function conditionally_set_apps_to_launch_at_login() {
   report_start_phase_standard
