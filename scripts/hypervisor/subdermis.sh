@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 # Source required files
+safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_ask_initial_questions.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_1password.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_alfred.sh"
@@ -66,6 +67,11 @@ function subdermis() {
     # Alfred must be configured *after* Keyboard Maestro, because activating the
     # Powerpack uses a custom Keyboard Maestro macro
     conditionally_configure_alfred
+
+    # Installation of Witch preference pane relies on Dropbox as the source of the binary
+    # Installed for each user separately because Witch pref pane won’t launch automatically at login
+    # when installed systemwide
+    conditionally_install_witch_prefpane_for_user
 
     # Installation of Witch license files relies on Dropbox because that’s where its license files are stored
     conditionally_install_Witch_license_files
