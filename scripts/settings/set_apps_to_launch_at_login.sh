@@ -51,14 +51,14 @@ set -euo pipefail
 #
 
 typeset -g -A GENOMAC_LOGIN_APPS=(
-  # bundle-id based launches
   [alan]="bundle:${BUNDLE_ID_ALAN_APP}"
-  [bettertouchtool]="bundle:${BUNDLE_ID_BETTERTOUCHTOOL}"
-  [alfred]="bundle:${BUNDLE_ID_ALFRED}"
-
-  # path-based launch (nested app bundle; bundle-id unreliable at login)
-  [keyboard-maestro-engine]="path:/Applications/Keyboard Maestro.app/Contents/MacOS/Keyboard Maestro Engine.app"
 )
+
+# Uncomment to enable:
+# GENOMAC_LOGIN_APPS[bettertouchtool]="bundle:${BUNDLE_ID_BETTERTOUCHTOOL}"
+# GENOMAC_LOGIN_APPS[alfred]="bundle:${BUNDLE_ID_ALFRED}"
+# path-based launch (nested app bundle; bundle-id unreliable at login)
+# GENOMAC_LOGIN_APPS[keyboard-maestro-engine]="path:/Applications/Keyboard Maestro.app/Contents/MacOS/Keyboard Maestro Engine.app"
 
 function conditionally_set_apps_to_launch_at_login() {
   report_start_phase_standard
