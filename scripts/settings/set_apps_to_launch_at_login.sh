@@ -54,6 +54,8 @@ typeset -g -A GENOMAC_LOGIN_APPS=(
   [alan]="bundle:${BUNDLE_ID_ALAN_APP}"
 )
 
+# I’m leaving the following commented out because they might auto-launch without this intervention.
+# If that turns out not to be true for any, just uncomment the line corresponding to that app.
 # Uncomment to enable:
 # GENOMAC_LOGIN_APPS[bettertouchtool]="bundle:${BUNDLE_ID_BETTERTOUCHTOOL}"
 # GENOMAC_LOGIN_APPS[alfred]="bundle:${BUNDLE_ID_ALFRED}"
@@ -64,9 +66,9 @@ function conditionally_set_apps_to_launch_at_login() {
   report_start_phase_standard
 
   run_if_user_has_not_done \
-    "$PERM_APPS_TO_LAUNCH_AT_LOGIN_HAVE_BEEN_SPECIFIED" \
+    "$SESH_APPS_TO_LAUNCH_AT_LOGIN_HAVE_BEEN_SPECIFIED" \
     set_apps_to_launch_at_login \
-    "Skipping specifications of apps to launch at login, because they’ve been specified in the past"
+    "Skipping specifications of apps to launch at login, because they’ve already been specified this session"
 	
   report_end_phase_standard
 }
