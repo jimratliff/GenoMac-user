@@ -10,7 +10,7 @@
 function conditionally_install_witch_prefpane_for_user() {
   report_start_phase_standard
 
-  run_if_system_has_not_done \
+  run_if_user_has_not_done \
     "$PERM_WITCH_HAS_BEEN_INSTALLED_FOR_USER" \
     install_witch_prefpane_for_user \
     "Skipping installation of Witch, because it has been installed for this user in the past."
