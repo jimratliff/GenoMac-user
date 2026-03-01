@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-############### WIP 2026_02_28_2055 Transitioning away from temp file and Import → separate Add commands
-
 conditionally_install_Witch_license_files() {
   report_start_phase_standard
 
@@ -62,14 +60,10 @@ function set_witch_settings() {
       && "$PLISTBUDDY_PATH" -c "Delete 'Action Configurations'" "$witch_plist_path"
   success_or_not
 
-#   report_action_taken "Writing new configurations to Witch’s Settings.plist"
-#   "$PLISTBUDDY_PATH" \
-#       -c "Import 'Action Configurations' $tempfile_containing_action_configurations" \
-#       "$witch_plist_path"
-
+  report_action_taken "Writing new configurations to Witch’s Settings.plist"
   "$PLISTBUDDY_PATH" -c "Add 'Action Configurations' array" "$witch_plist_path"
-  
-# First action dict
+
+  # First action dict
   "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0' dict" "$witch_plist_path"
   "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Action Type' integer 0" "$witch_plist_path"
   "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Hot Key\: Standard' dict" "$witch_plist_path"
@@ -113,86 +107,4 @@ function set_witch_settings() {
   rm "${tempfile_containing_action_configurations}" ; success_or_not
   
   report_end_phase_standard
-}
-
-function create_temp_file_with_witch_action_configurations() {
-  # Create a temp file into which to write a .plist that contains the entire
-  # desired `Action Configurations` key as an array.
-
-  local tmpfile
-  tmpfile=$(mktemp /tmp/${GENOMAC_NAMESPACE}.witch_action_configs.XXXXXX)
-  cat > "$tmpfile" <<'EOF'
-<array>
-    <dict>
-        <key>Action Type</key>
-        <integer>0</integer>
-        <key>Hot Key: Standard</key>
-        <dict>
-            <key>Key Code</key>
-            <integer>48</integer>
-            <key>Modifiers</key>
-            <integer>1573160</integer>
-            <key>Visual Representation</key>
-            <string>⌥⌘⇥</string>
-        </dict>
-        <key>Hot Key: Standard: Trigger Menu</key>
-        <true/>
-        <key>Menu</key>
-        <true/>
-        <key>Orientation</key>
-        <integer>0</integer>
-        <key>Placeholder</key>
-        <false/>
-        <key>Sort Order</key>
-        <integer>5</integer>
-        <key>Sort Order: Invert</key>
-        <false/>
-        <key>Spaces</key>
-        <true/>
-        <key>Tabs</key>
-        <true/>
-        <key>Tabs: Frontmost Window Only</key>
-        <false/>
-        <key>Tabs: Mode</key>
-        <integer>1</integer>
-    </dict>
-    <dict>
-        <key>Hot Key: Standard</key>
-        <dict>
-            <key>Key Code</key>
-            <integer>48</integer>
-            <key>Modifiers</key>
-            <integer>524576</integer>
-            <key>Visual Representation</key>
-            <string>⌥⇥</string>
-        </dict>
-        <key>Menu</key>
-        <false/>
-        <key>Orientation</key>
-        <integer>0</integer>
-        <key>Placeholder</key>
-        <false/>
-        <key>Placeholder: Mode</key>
-        <integer>1</integer>
-        <key>Sort Order</key>
-        <integer>5</integer>
-        <key>Sort Order: Invert</key>
-        <false/>
-        <key>Spaces</key>
-        <false/>
-        <key>Tabs</key>
-        <true/>
-        <key>Tabs: Frontmost Window Only</key>
-        <false/>
-        <key>Tabs: Mode</key>
-        <integer>2</integer>
-    </dict>
-</array>
-EOF
-
-  # Return the path of the temp file, to be captured via `$()` in the caller
-  # `print --` is preferred over `echo` in Zshell for returning values from functions,
-  # since it won’t misinterpret strings that begin with `-` as flags.
-  print -- "$tmpfile"
-  
 }
