@@ -34,6 +34,10 @@ GMU_SCRIPTS="${GENOMAC_USER_LOCAL_DIRECTORY}/scripts"
 # - Local subdirectory of GMU_SCRIPTS that holds scripts specific to Hypervisor
 GMU_HYPERVISOR_SCRIPTS="${GMU_SCRIPTS}/hypervisor" 
 
+# ~/.genomac-user/scripts/installations
+# - Local subdirectory of GMU_SCRIPTS that holds scripts specific to installations
+GMU_INSTALLATION_SCRIPTS="${GMU_SCRIPTS}/installations" 
+
 # ~/.genomac-user/scripts/settings
 GMU_SETTINGS_SCRIPTS="${GMU_SCRIPTS}/settings"
 
@@ -97,6 +101,7 @@ export_and_report GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES
 export_and_report GMU_HYPERVISOR_HOW_TO_RESTART_STRING
 export_and_report GMU_HYPERVISOR_MAKE_COMMAND_STRING
 export_and_report GMU_HYPERVISOR_SCRIPTS
+export_and_report GMU_INSTALLATION_SCRIPTS
 export_and_report GMU_RESOURCES
 export_and_report GMU_SCRIPTS
 export_and_report GMU_SETTINGS_SCRIPTS
