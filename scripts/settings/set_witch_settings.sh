@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-# DEBUG: Inconsequential change to advance the commit
-
 conditionally_install_Witch_license_files() {
   report_start_phase_standard
 
