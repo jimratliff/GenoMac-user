@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+############### WIP 2026_02_28_2055 Transitioning away from temp file and Import → separate Add commands
+
 conditionally_install_Witch_license_files() {
   report_start_phase_standard
 
@@ -60,10 +62,47 @@ function set_witch_settings() {
       && "$PLISTBUDDY_PATH" -c "Delete 'Action Configurations'" "$witch_plist_path"
   success_or_not
 
-  report_action_taken "Writing new configurations to Witch’s Settings.plist"
-  "$PLISTBUDDY_PATH" \
-      -c "Import 'Action Configurations' $tempfile_containing_action_configurations" \
-      "$witch_plist_path"
+#   report_action_taken "Writing new configurations to Witch’s Settings.plist"
+#   "$PLISTBUDDY_PATH" \
+#       -c "Import 'Action Configurations' $tempfile_containing_action_configurations" \
+#       "$witch_plist_path"
+
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations' array" "$witch_plist_path"
+  
+  # First action dict
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0' dict" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Action Type' integer 0" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Hot Key: Standard' dict" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Hot Key: Standard:Key Code' integer 48" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Hot Key: Standard:Modifiers' integer 1573160" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Hot Key: Standard:Visual Representation' string '⌥⌘⇥'" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Hot Key: Standard: Trigger Menu' bool true" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Menu' bool true" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Orientation' integer 0" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Placeholder' bool false" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Sort Order' integer 5" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Sort Order: Invert' bool false" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Spaces' bool true" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Tabs' bool true" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Tabs: Frontmost Window Only' bool false" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:0:Tabs: Mode' integer 1" "$witch_plist_path"
+  
+  # Second action dict
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1' dict" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Hot Key: Standard' dict" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Hot Key: Standard:Key Code' integer 48" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Hot Key: Standard:Modifiers' integer 524576" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Hot Key: Standard:Visual Representation' string '⌥⇥'" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Menu' bool false" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Orientation' integer 0" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Placeholder' bool false" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Placeholder: Mode' integer 1" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Sort Order' integer 5" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Sort Order: Invert' bool false" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Spaces' bool false" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Tabs' bool true" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Tabs: Frontmost Window Only' bool false" "$witch_plist_path"
+  "$PLISTBUDDY_PATH" -c "Add 'Action Configurations:1:Tabs: Mode' integer 2" "$witch_plist_path"
       
   set_or_add_plist_value 'Show Search Field' bool false "$witch_plist_path"
   set_or_add_plist_value 'Spring-Load'       bool true  "$witch_plist_path"
