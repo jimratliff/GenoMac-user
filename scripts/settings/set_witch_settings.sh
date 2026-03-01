@@ -85,9 +85,6 @@ function create_temp_file_with_witch_action_configurations() {
   local tmpfile
   tmpfile=$(mktemp /tmp/${GENOMAC_NAMESPACE}.witch_action_configs.XXXXXX)
   cat > "$tmpfile" <<'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
 <array>
     <dict>
         <key>Action Type</key>
@@ -154,7 +151,6 @@ function create_temp_file_with_witch_action_configurations() {
         <integer>2</integer>
     </dict>
 </array>
-</plist>
 EOF
 
   # Return the path of the temp file, to be captured via `$()` in the caller
