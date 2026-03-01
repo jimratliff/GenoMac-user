@@ -30,8 +30,8 @@ function install_Witch_license_files() {
 
   local destination_directory="$HOME/Library/Application Support/Many Tricks/Licenses"
 
-  report_action_taken "Copy Many Tricks license files from Dropbox to user’s Library"
-  copy_resource_between_local_directories "$source_directory" "$destination_directory" ; success_or_not
+  report_action_taken "Copy Many Tricks license files from Dropbox to user’s Library${NEWLINE}${source_directory} → ${destination_directory}"
+  copy_resource_between_local_directories "$source_directory" "$destination_directory"
 
   report_end_phase_standard
 }
