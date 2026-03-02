@@ -39,7 +39,7 @@ function interactive_configure_alfred() {
   local container_directory="$GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY/Alfred_preferences"
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Alfred_how_to_configure.md" \
-	--show-folder "$container_directory" \
+	--open "$container_directory" \
     "$BUNDLE_ID_ALFRED" \
     "Follow the instructions in the Quick Look window to configure Alfred"
   
