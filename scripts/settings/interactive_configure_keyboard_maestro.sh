@@ -50,11 +50,14 @@ function set_keyboard_maestro_settings() {
   report_start_phase_standard
   report_action_taken "Implement Keyboard Maestro settings"
   
-  # Editor settings
+  ############### Editor settings
+  
   report_adjust_setting "Set: Do NOT show spash screen at launch"
   defaults write $DEFAULTS_DOMAINS_KEYBOARD_MAESTRO_EDITOR DisplayWelcomeWindow -bool false ; success_or_not
   
-  # Engine settings
+  ############### Engine settings
+
+  # WARNING: Attempts to set the menu-bar status icon never seem to work
   report_adjust_setting "Set menu-bar status icon to Classic"
   defaults write $DEFAULTS_DOMAINS_KEYBOARD_MAESTRO_ENGINE StatusMenuIcon -string "Classic" ; success_or_not
   
