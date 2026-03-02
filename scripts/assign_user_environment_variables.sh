@@ -78,6 +78,8 @@ GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME="Default_preset.json"
 GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY="$HOME/.config/BetterTouchTool"
 GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH="${GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY}/${GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME}"
 
+WITCH_PATH_TO_USER_PREFPANE="$HOME/Library/PreferencePanes/Witch.prefPane"
+
 # Environment variables to support the Hypervisor
 GMU_HYPERVISOR_MAKE_COMMAND_STRING="make run-hypervisor"
 GMU_HYPERVISOR_HOW_TO_RESTART_STRING="To get back into the groove at any time, just re-execute ${GMU_HYPERVISOR_MAKE_COMMAND_STRING}${NEWLINE}and we’ll pick up where we left off."
@@ -110,3 +112,4 @@ export_and_report META_MODIFIER_CHARS
 export_and_report MODIFIERS_KEYBOARD_NAVIGATION
 export_and_report OPTION_CHAR
 export_and_report SHIFT_CHAR
+export_and_report WITCH_PATH_TO_USER_PREFPANE
