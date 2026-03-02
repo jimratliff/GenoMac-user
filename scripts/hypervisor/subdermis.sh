@@ -3,6 +3,7 @@
 # Source required files
 safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_ask_initial_questions.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_assign_apps_a_mission_control_assign_to_setting.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_1password.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_alfred.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_dropbox.sh"
@@ -28,7 +29,10 @@ function subdermis() {
   # - Consider adding environment variable SESH_FORCED_LOGOUT_DIRTY to avoid
   #   gratuitous logouts. An action requiring --forced-logout would (a) set this
   #   state rather than immediately triggering a logout.
-  #   Requires new function `hypervisor_forced_logout_if_dirty`
+  #   - Requires new function `hypervisor_forced_logout_if_dirty`
+  #   - Possibly should also require a `defaults write` helper that first does a `defaults read`
+  #     and then does the defaults write only if it would change state. Only if it would change
+  #     state, then set a dirty flag.
 
   output_hypervisor_welcome_banner "$GENOMAC_SCOPE_USER"
   set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
@@ -82,6 +86,7 @@ function subdermis() {
   conditionally_configure_microsoft_word
 
   conditionally_create_additional_mission_control_spaces
+  conditionally_assign_apps_a_mission_control_assign_to_setting
 
   conditionally_set_apps_to_launch_at_login
   
