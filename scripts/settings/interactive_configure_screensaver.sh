@@ -16,9 +16,10 @@ function interactive_configure_screensaver() {
 
   report "Let’s implement the default custom screen saver: Matrix."
   report_action_taken "I’ve opened (a) the Wallpaper panel in System Settings and (b) a Quick Look window with instructions"
-  open_wallpaper_panel
+
   launch_app_and_prompt_user_to_act \
     --no-app \
+    --open "$SYSTEM_SETTINGS_WALLPAPER_PANEL_URL" \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Screensaver_how_to_configure.md" \
     "Follow the instructions in the Quick Look window to choose your screen saver."
 
