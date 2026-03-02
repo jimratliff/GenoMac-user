@@ -122,9 +122,6 @@ function set_witch_settings() {
   set_or_add_plist_value 'Spring-Load'       bool true  "$witch_plist_path"
 
   success_or_not
-
-  report_action_taken "Removing tempfile"
-  rm "${tempfile_containing_action_configurations}" ; success_or_not
   
   report_end_phase_standard
 }
