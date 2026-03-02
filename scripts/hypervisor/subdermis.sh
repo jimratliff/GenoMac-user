@@ -10,6 +10,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_helium.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_screensaver.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_textexpander.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_create_mission_control_spaces.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_waterfox_extension_preferences.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_basic_user_level_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
@@ -79,6 +80,8 @@ function subdermis() {
   fi
 
   conditionally_configure_microsoft_word
+
+  conditionally_create_additional_mission_control_spaces
 
   conditionally_set_apps_to_launch_at_login
   
