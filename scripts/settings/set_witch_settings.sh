@@ -74,12 +74,6 @@ function set_witch_settings() {
   fi
   success_or_not
 
-  report_action_taken "Creating tempfile containing desired Witch action configurations"
-  local tempfile_containing_action_configurations
-  tempfile_containing_action_configurations=$(create_temp_file_with_witch_action_configurations) ; success_or_not
-  trap "rm -f '$tempfile_containing_action_configurations'" EXIT
-
-  
   report_action_taken "Delete 'Action Configurations' key if it exists"
   # Delete only if key already exists (e.g., on a re-run)
   "$PLISTBUDDY_PATH" -c "Print 'Action Configurations'" "$witch_plist_path" &>/dev/null \
