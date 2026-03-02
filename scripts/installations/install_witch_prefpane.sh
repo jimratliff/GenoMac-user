@@ -22,7 +22,8 @@ function install_witch_prefpane_for_user() {
   # Installs Witch.prefPane for *only this user* from a zipped copy stored in the
   # at .genomac-user/resources/witch/witch_prefpane.zip.
   #
-  # Installs to ~/Library/PreferencePanes/Witch.prefPane so the pane is available for this user.
+  # Installs to ~/Library/PreferencePanes/Witch.prefPane ($WITCH_PATH_TO_USER_PREFPANE) so the pane 
+  # is available for this user.
   #
   # This is a bootstrap function: Any existing prefPane at the destination is overwritten.
   # Anticipated to be called by conditionally_install_witch_prefpane_for_user(), which calls this only
@@ -33,11 +34,10 @@ function install_witch_prefpane_for_user() {
   report_start_phase_standard
   report_action_taken "Installing Witch preference pane for use by this user"
 
-  local prefpane_name="Witch.prefPane"
+  # Hint: WITCH_PREFPANE_NAME="Witch.prefPane"
   # Hint: GMU_RESOURCES="${GENOMAC_USER_LOCAL_DIRECTORY}/resources" = GMU_RESOURCES="$HOME/.genomac-user/resources"
+  
   local zip_source="${GMU_RESOURCES}/witch/witch_prefpane.zip"
-  local user_prefpanes_dir="$HOME/Library/PreferencePanes"
-  local destination_path="${user_prefpanes_dir}/${prefpane_name}"
 
   if [[ ! -f "$zip_source" ]]; then
     report_warning "Zip of Witch preference pane not found at ${zip_source}"
@@ -52,18 +52,18 @@ function install_witch_prefpane_for_user() {
   report_action_taken "Unzipping ${zip_source}"
   unzip -q "$zip_source" -d "$temp_dir" ; success_or_not
 
-  local source_path="${temp_dir}/${prefpane_name}"
+  local source_path="${temp_dir}/${WITCH_PREFPANE_NAME}"
 
   if [[ -z "$source_path" || ! -d "$source_path" ]]; then
-    report_warning "${prefpane_name} not found inside ${zip_source}"
+    report_warning "${WITCH_PREFPANE_NAME} not found inside ${zip_source}"
     report_end_phase_standard
     return 1
   fi
 
-  report_action_taken "Installing ${prefpane_name} to ${destination_path}"
+  report_action_taken "Installing ${WITCH_PREFPANE_NAME} to ${WITCH_PATH_TO_USER_PREFPANE}"
   copy_resource_between_local_directories \
     "$source_path" \
-    "$destination_path" 
+    "$WITCH_PATH_TO_USER_PREFPANE" 
   local result=$?
   success_or_not
 
