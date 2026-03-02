@@ -14,8 +14,6 @@ function conditionally_create_additional_mission_control_spaces() {
 function interactive_create_mission_control_spaces() {
   report_start_phase_standard
 
-  ############### WIP TODO 3/2/2026
-
   report "Let’s create come more Mission Control Spaces"
   report_action_taken "I’ve opened (a) the Wallpaper panel in System Settings and (b) a Quick Look window with instructions"
   launch_app_and_prompt_user_to_act \
