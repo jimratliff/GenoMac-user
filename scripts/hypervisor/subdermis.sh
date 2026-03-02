@@ -75,6 +75,7 @@ function subdermis() {
 
     # Installation of Witch license files relies on Dropbox because that’s where its license files are stored
     conditionally_install_Witch_license_files
+    conditionally_interactive_enable_Witch
   fi
 
   conditionally_configure_microsoft_word
