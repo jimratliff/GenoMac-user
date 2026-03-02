@@ -17,10 +17,12 @@ APPS_FOR_DOCK=(
   "/System/Applications/System Settings.app"
   "Applications/1Password.app"
   "Applications/TextExpander.app"
+  "Applications/Waterfox.app"
+  "Applications/Helium.app"
   "Applications/Raindrop.io.app"
   "Applications/Obsidian.app"
   "/System/Applications/Utilities/Activity Monitor.app"
-  "/System/Applications/Utilities/Terminal.app"
+  # "/System/Applications/Utilities/Terminal.app"
   "Applications/iTerm.app"
 )
 
