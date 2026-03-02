@@ -10,6 +10,32 @@ conditionally_install_Witch_license_files() {
   report_end_phase_standard
 }
 
+conditionally_interactive_enable_Witch() {
+  report_start_phase_standard
+
+  run_if_user_has_not_done "$PERM_WITCH_HAS_BEEN_ENABLED" \
+    interactive_enable_witch_for_user \
+    "Skipping enabling Witch, because this was done for this user in the past"
+
+  report_end_phase_standard
+}
+
+function interactive_enable_witch_for_user() {
+  report_start_phase_standard
+  
+  report "Time to activate Witch! I’ll launch its preference pane, and open a window with instructions"
+
+  # HINT: $WITCH_PATH_TO_USER_PREFPANE: ~/Library/PreferencePanes/Witch.prefPane
+	
+  launch_app_and_prompt_user_to_act \
+    --no-app \
+    --open "${WITCH_PATH_TO_USER_PREFPANE}" \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/Witch_how_to_enable.md" \
+    "Follow the instructions in the Quick Look window to enable the Witch preference pane"
+
+  report_end_phase_standard
+}
+
 function install_Witch_license_files() {
   # To be run (a) as a bootstrap step on a pristine user or (b) after a change in the configuration
   # of license files for Many Tricks software, which can happen after (a) licensing a new Many Tricks
