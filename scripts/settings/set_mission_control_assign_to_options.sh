@@ -22,7 +22,7 @@ function set_bundle_id_to_AllSpaces(){
   # $1: Bundle ID of app to assign to AllSpaces
   #
   # Empirically, the required defaults write doesn’t seem to work properly when the bundle_ID is
-  # not fully lowercase: It doesn’t result in the Assign-to option being set to "AllSpaces"
+  # not fully lowercase: It doesn’t result in the Assign-to option being set to "AllSpaces".
   # I don't want to change all my BUNDLE_ID_XXXX environment variables to be lowercase,
   # because I want to keep them faithful to what mdls tells me.
   # Thus, this function lowercases the BUNDLE_ID before using it.
