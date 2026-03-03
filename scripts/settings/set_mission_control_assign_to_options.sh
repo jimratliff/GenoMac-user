@@ -1,16 +1,5 @@
 #!/usr/bin/env zsh
 
-function conditionally_set_mission_control_assign_to_options() {
-  report_start_phase_standard
-
-  run_if_user_has_not_done \
-    "$PERM_MISSION_CONTROL_ASSIGN_TO_OPTIONS_HAVE_BEEN_CONFIGURED" \
-    implement_mission_control_assign_to_options_for_selected_apps \
-    "Skipping assigning apps a Mission Control assign-to option, because it’s already been done"
-
-  report_end_phase_standard
-}
-
 function implement_mission_control_assign_to_options_for_selected_apps(){
   report_start_phase_standard
 
