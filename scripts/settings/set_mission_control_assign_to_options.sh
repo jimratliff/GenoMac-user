@@ -42,7 +42,7 @@ function set_bundle_id_to_AllSpaces(){
   local bundle_id
   local lower_case_bundle_id
   bundle_id="$1"
-  lower_case_bundle_id="${bundle_id,,}"
+  lower_case_bundle_id="${bundle_id:l}"
 
   report_adjust_setting "Setting app $bundle_id to show all of its windows on All Desktops"
   defaults write com.apple.spaces app-bindings -dict-add "${lower_case_bundle_id}" "AllSpaces"
