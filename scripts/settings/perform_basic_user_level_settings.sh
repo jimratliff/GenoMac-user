@@ -101,6 +101,10 @@ function perform_basic_user_level_settings() {
   report_adjust_setting "2 of 2: UserSwitcher = 2 (menubar only)"
   defaults -currentHost write com.apple.controlcenter UserSwitcher -int 2 ; success_or_not
 
+  # Show text-input menu in menubar
+  report_adjust_setting "Show Input menu in menubar"
+  defaults write com.apple.TextInputMenu visible -bool true ; success_or_not
+
   ###############
   
   # Control Center
