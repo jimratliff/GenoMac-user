@@ -20,6 +20,12 @@ function conditionally_perform_initial_bootstrap_operations() {
     bootstrap_dock \
     "Skipping initial configuration of Dock, because this was done in the past"
 
+  # Dock/Spaces: Assign apps to open in AllSpaces
+  run_if_user_has_not_done \
+    "$PERM_MISSION_CONTROL_ASSIGN_TO_OPTIONS_HAVE_BEEN_CONFIGURED" \
+    implement_mission_control_assign_to_options_for_selected_apps \
+    "Skipping assigning apps a Mission Control assign-to option, because it’s already been done"
+
   # Finder: Define initial toolbar
   run_if_user_has_not_done \
     "$PERM_FINDER_BASE_TOOLBAR_HAS_BEEN_SPECIFIED" \
