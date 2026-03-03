@@ -86,7 +86,6 @@ function subdermis() {
   conditionally_configure_microsoft_word
 
   conditionally_create_additional_mission_control_spaces
-  conditionally_assign_apps_a_mission_control_assign_to_setting
 
   conditionally_set_apps_to_launch_at_login
   
