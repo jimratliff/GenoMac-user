@@ -3,7 +3,6 @@
 # Source required files
 safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_ask_initial_questions.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_assign_apps_a_mission_control_assign_to_setting.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_1password.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_alfred.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_dropbox.sh"
@@ -18,6 +17,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_stow_dotfiles.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_apps_to_launch_at_login.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_bettertouchtool_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_mission_control_assign_to_options.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_waterfox_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_witch_settings.sh"
 
