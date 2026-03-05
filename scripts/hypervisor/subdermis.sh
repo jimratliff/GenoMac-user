@@ -89,8 +89,6 @@ function subdermis() {
     conditionally_interactive_enable_Witch
   fi
 
-  
-
   conditionally_create_additional_mission_control_spaces
 
   conditionally_set_apps_to_launch_at_login
