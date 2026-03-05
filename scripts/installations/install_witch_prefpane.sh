@@ -39,31 +39,12 @@ function install_witch_prefpane_for_user() {
   
   local zip_source="${GMU_RESOURCES}/witch/witch_prefpane.zip"
 
-  if [[ ! -f "$zip_source" ]]; then
-    report_warning "Zip of Witch preference pane not found at ${zip_source}"
-    report_end_phase_standard
-    return 1
-  fi
-
-  local temp_dir
-  temp_dir="$(mktemp -d)"
-  trap '[[ -n "${temp_dir:-}" ]] && rm -rf "$temp_dir"' EXIT
-
-  report_action_taken "Unzipping ${zip_source}"
-  unzip -q "$zip_source" -d "$temp_dir" ; success_or_not
-
-  local source_path="${temp_dir}/${WITCH_PREFPANE_NAME}"
-
-  if [[ -z "$source_path" || ! -d "$source_path" ]]; then
-    report_warning "${WITCH_PREFPANE_NAME} not found inside ${zip_source}"
-    report_end_phase_standard
-    return 1
-  fi
-
   report_action_taken "Installing ${WITCH_PREFPANE_NAME} to ${WITCH_PATH_TO_USER_PREFPANE}"
   copy_resource_between_local_directories \
-    "$source_path" \
-    "$WITCH_PATH_TO_USER_PREFPANE" 
+    "$zip_source" \
+    "$WITCH_PATH_TO_USER_PREFPANE" \
+    --unzip
+    
   local result=$?
   success_or_not
 
