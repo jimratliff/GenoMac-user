@@ -1,12 +1,5 @@
 #!/usr/bin/env zsh
 
-# Witch seems not to behave well when it is installed centrally for all users in the sense that it
-# won’t automatically launch at login.
-# 
-# Instead, Witch needs to be installed independently for *each user*.
-# 
-# See [Why doesn't Witch launch at login in macOS Catalina?](https://manytricks.com/osticket/kb/faq.php?id=116).
-
 function conditionally_install_witch_prefpane_for_user() {
   report_start_phase_standard
 
