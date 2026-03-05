@@ -2,6 +2,7 @@
 
 # Source required files
 safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
+safe_source "${GMU_INSTALLATION_SCRIPTS}/install_zed_icon_theme.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_ask_initial_questions.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_1password.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_alfred.sh"
@@ -38,7 +39,9 @@ function subdermis() {
   set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
 
   interactive_ensure_terminal_has_fda
+  
   conditionally_interactive_ask_initial_questions
+  
   conditionally_stow_dotfiles
   conditionally_perform_basic_user_level_settings
   conditionally_reverse_disk_display_policy_for_some_users
@@ -51,10 +54,13 @@ function subdermis() {
   # Execute pre-Dropbox bootstrap steps
   conditionally_perform_initial_bootstrap_operations
   conditionally_interactive_configure_screensaver
+  conditionally_install_zed_icon_theme
+  conditionally_configure_microsoft_word
 
-  # 1Password will configured at this point in order to be available when subsequent
-  # apps need to be signed into
+  # Configure 1Password here to make available credentials for later steps
   conditionally_configure_1Password
+
+  ############### BELOW THIS POINT: 1Password credentials are available
 
   conditionally_configure_textexpander
   conditionally_configure_Dropbox
@@ -83,7 +89,7 @@ function subdermis() {
     conditionally_interactive_enable_Witch
   fi
 
-  conditionally_configure_microsoft_word
+  
 
   conditionally_create_additional_mission_control_spaces
 
