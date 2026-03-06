@@ -39,6 +39,13 @@ sock="$HOME/.1password/agent.sock"
 [[ -r "$ZDOTDIR/.zsh_aliases" ]] && source "$ZDOTDIR/.zsh_aliases"
 
 # ======================================================================
+# Enable shell autocompletion for uv and uvx
+# See https://docs.astral.sh/uv/getting-started/installation/#shell-autocompletion
+# ======================================================================
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx generate-shell-completion zsh)"
+
+# ======================================================================
 # zoxide (TAB completion via compinit; `zi` uses fzf if installed)
 # ======================================================================
 if command -v zoxide >/dev/null 2>&1; then
