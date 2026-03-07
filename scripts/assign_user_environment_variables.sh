@@ -87,7 +87,7 @@ GMU_HYPERVISOR_MAKE_COMMAND_STRING="make run-hypervisor"
 GMU_HYPERVISOR_HOW_TO_RESTART_STRING="To get back into the groove at any time, just re-execute ${GMU_HYPERVISOR_MAKE_COMMAND_STRING}${NEWLINE}and we’ll pick up where we left off."
 
 # Environment variable specifies the packages for which dotfiles will be stowed.
-GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES=("1password" "BetterTouchTool" "git" "homebrew" "ssh" "starship" "stow" "zsh")
+GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES=("1password" "BetterTouchTool" "git" "homebrew" "ssh" "starship" "stow" "zed" "zsh")
 
 # Export environment variables to be available in all subsequent shells
 report_action_taken "Exporting environment variables specific to GenoMac-user."
