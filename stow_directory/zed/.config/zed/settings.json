@@ -9,15 +9,15 @@
 
 {
 
-	//Auto-install extensions and themes
-    "auto_install_extensions": {
+  //Auto-install extensions and themes
+  "auto_install_extensions": {
       "vscode-dark-high-contrast": true,
       "vscode-icons": true
     },
 
-	// Appearance
+  // Appearance
 
-	"experimental.theme_overrides": {
+  "experimental.theme_overrides": {
     "editor.wrap_guide": "#333",
   },
 
