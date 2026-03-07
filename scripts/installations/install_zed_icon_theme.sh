@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+# DEPRECATED: The icon theme is now auto-installed by Zed per its settings file
+
 function conditionally_install_zed_icon_theme() {
   report_start_phase_standard
 
