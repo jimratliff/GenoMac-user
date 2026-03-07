@@ -56,9 +56,6 @@ function subdermis() {
   conditionally_interactive_configure_screensaver
   conditionally_configure_microsoft_word
 
-  # DEPRECATED: The icon theme is now auto-installed by Zed per its settings file
-  # conditionally_install_zed_icon_theme
-
   # Configure 1Password here to make available credentials for later steps
   conditionally_configure_1Password
 
