@@ -28,7 +28,7 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "VSCode Nicer Dark High Contrast"
+    "dark": "VSCode Dark High Contrast"
   },
 
   "icon_theme": {
