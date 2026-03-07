@@ -7,9 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 
-
-
 {
+
+	//Auto-install extensions and themes
+    "auto_install_extensions": {
+      "vscode-dark-high-contrast": true,
+      "vscode-icons": true
+    }
+
 	// Appearance
 
 	"experimental.theme_overrides": {
