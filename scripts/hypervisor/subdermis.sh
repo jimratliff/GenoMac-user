@@ -2,7 +2,7 @@
 
 # Source required files
 safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
-safe_source "${GMU_INSTALLATION_SCRIPTS}/install_zed_icon_theme.sh"
+# safe_source "${GMU_INSTALLATION_SCRIPTS}/install_zed_icon_theme.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_ask_initial_questions.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_1password.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_alfred.sh"
@@ -53,9 +53,12 @@ function subdermis() {
   
   # Execute pre-Dropbox bootstrap steps
   conditionally_perform_initial_bootstrap_operations
+
   conditionally_interactive_configure_screensaver
-  conditionally_install_zed_icon_theme
   conditionally_configure_microsoft_word
+
+  # DEPRECATED: The icon theme is now auto-installed by Zed per its settings file
+  # conditionally_install_zed_icon_theme
 
   # Configure 1Password here to make available credentials for later steps
   conditionally_configure_1Password
