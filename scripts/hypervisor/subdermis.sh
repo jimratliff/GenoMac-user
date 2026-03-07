@@ -2,7 +2,6 @@
 
 # Source required files
 safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
-# safe_source "${GMU_INSTALLATION_SCRIPTS}/install_zed_icon_theme.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_ask_initial_questions.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_1password.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_alfred.sh"
