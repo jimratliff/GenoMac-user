@@ -14,6 +14,9 @@
       "vscode-dark-high-contrast": true,
       "vscode-icons": true
     },
+    
+  // Auto-update set to false because Zed won’t let a normal (non-Homebrew) user update.
+  "auto_update": false,
 
   // Appearance
 
@@ -45,16 +48,16 @@
      "calt": false
    },
 
-   "soft_wrap": "preferred_line_length",
-   "preferred_line_length": 120,
-   "show_wrap_guides": true,
-   "wrap_guides": [80, 100, 120],
-   "hard_tabs": true,
-
-   "colorize_brackets": true,
-   "show_completion_documentation": false,
-   "show_completions_on_input": false,
-   "format_on_save": "off",
+	"soft_wrap": "preferred_line_length",
+	"preferred_line_length": 120,
+	"show_wrap_guides": true,
+	"wrap_guides": [80, 100, 120],
+	"hard_tabs": true,
+	
+	"colorize_brackets": true,
+	"show_completion_documentation": false,
+	"show_completions_on_input": false,
+	"format_on_save": "off",
 
   // UI stuff (outside the editor)
   "ui_font_family": ".SystemUIFont",
