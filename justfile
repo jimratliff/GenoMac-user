@@ -1,16 +1,17 @@
 default:
     # Typing only 'just' will run this default recipe, which lists the available recipes.
-    just --list
+    # just --summary would list on one line
+    @just --list --list-heading $'just options:\n' --list-prefix ····
 
+# Run the Hypervisor
 run-hypervisor:
     zsh scripts/run_hypervisor.sh
 
 test-recipe:
     echo "Hi, Jim!"
 
+# Pull latest changes from origin/main, including any submodule updates. Does not require authenticating with GitHub
 refresh-repo-and-module:
-    # Pull latest changes from origin/main, including any submodule updates.
-    # Does *not* require authenticating with GitHub
     git -C ~/.genomac-user pull --recurse-submodules origin main
 
 defaults-detective:
@@ -19,8 +20,8 @@ defaults-detective:
 verify-ssh-agent:
     zsh scripts/utilities/verify_ssh_agent_setup.sh
 
+# Updates genomac-user repo, including genomac-shared submodule, and pushes it back to GitHub
 dev-update-repo-and-submodule:
-    # Updates genomac-user repo, including genomac-shared submodule, and pushes it back to GitHub
     # git diff… checks whether there are staged changes to the submodule and, if so, commits them
     # Requires authenticating with GitHub (hence the 'dev-' prefix to distinguish from refresh-repo-and-module recipe.
     git pull --recurse-submodules origin main
@@ -29,8 +30,8 @@ dev-update-repo-and-submodule:
     git diff --cached --quiet external/genomac-shared || git commit -m "Update genomac-shared submodule"
     git push origin main
 
+# Configure remote for HTTPS fetch and SSH push
 dev-configure-remote-for-https-fetch-and-ssh-push:
-    # Configure remote for HTTPS fetch and SSH push
     # Sets the fetch URL to HTTPS (no auth needed for public repo)
     # Sets the push URL to SSH (uses 1Password SSH agent)
     git remote set-url origin https://github.com/jimratliff/GenoMac-user.git
