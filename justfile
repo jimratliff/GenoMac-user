@@ -1,9 +1,19 @@
 # For syntax/behavior of just, see https://github.com/casey/just
 
+# use `just --choose` to be presented with an interactive chooser to select the particular recipe
+
+# Typing only 'just' will run this default recipe, displaying interactive chooser.
 default:
+    @just --choose
+
+
+
+
+# default-alternative:
     # Typing only 'just' will run this default recipe, which lists the available recipes.
     # just --summary would list on one line
-    @just --list --list-heading $'just options:\n' --list-prefix ····
+    # @just --list --list-heading $'just options:\n' --list-prefix ····
+
 
 # Run the Hypervisor
 run-hypervisor:
