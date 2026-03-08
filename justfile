@@ -1,6 +1,9 @@
 run-hypervisor:
     zsh scripts/run_hypervisor.sh
 
+test-recipe:
+    echo "Hi, Jim!"
+
 refresh-repo:
     git -C ~/.genomac-user pull --recurse-submodules origin main
 
