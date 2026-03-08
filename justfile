@@ -4,33 +4,25 @@
 
 # Typing only 'just' will run this default recipe, displaying interactive chooser.
 default:
-    @just --choose
-
-
-
-
-# default-alternative:
-    # Typing only 'just' will run this default recipe, which lists the available recipes.
-    # just --summary would list on one line
-    # @just --list --list-heading $'just options:\n' --list-prefix ····
+	@just --choose
 
 
 # Run the Hypervisor
 run-hypervisor:
-    zsh scripts/run_hypervisor.sh
+	zsh scripts/run_hypervisor.sh
 
 test-recipe:
-    echo "Hi, Jim!"
+	echo "Hi, Jim!"
 
 # Pull latest changes from origin/main, including any submodule updates. Does not require authenticating with GitHub
 refresh-repo-and-module:
-    git -C ~/.genomac-user pull --recurse-submodules origin main
+	git -C ~/.genomac-user pull --recurse-submodules origin main
 
 defaults-detective:
-    zsh scripts/utilities/defaults_detective.sh
+	zsh scripts/utilities/defaults_detective.sh
 
 verify-ssh-agent:
-    zsh scripts/utilities/verify_ssh_agent_setup.sh
+	zsh scripts/utilities/verify_ssh_agent_setup.sh
 
 # Updates genomac-user repo, including genomac-shared submodule, and pushes it back to GitHub
 dev-update-repo-and-submodule:
