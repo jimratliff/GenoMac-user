@@ -31,6 +31,8 @@ function set_default_apps_to_open() {
   local uti_mpeg=public.mpeg
   local uti_quicktime_movie=com.apple.quicktime-movie
   local uti_m4v=com.apple.m4v-video
+
+  local uti_avi=public.avi
   
   report_adjust_setting "Set plain-text files to open with BBEdit"
   printf "\n"
@@ -56,17 +58,21 @@ function set_default_apps_to_open() {
   printf "\n"
   utiluti type set $uti_applescript      $BUNDLE_ID_BBEDIT ; success_or_not
 
-  report_adjust_setting "Set MPEG files to open with QuickTime Player"
+  report_adjust_setting "Set MPEG files to open with Elmedia Player"
   printf "\n"
-  utiluti type set $uti_mpeg             $BUNDLE_ID_QUICKTIMEPLAYER ; success_or_not
+  utiluti type set $uti_mpeg             $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
 
-  report_adjust_setting "Set QuickTime movie files to open with QuickTime Player"
+  report_adjust_setting "Set QuickTime movie files to open with Elmedia Player"
   printf "\n"
-  utiluti type set $uti_quicktime_movie  $BUNDLE_ID_QUICKTIMEPLAYER ; success_or_not
+  utiluti type set $uti_quicktime_movie  $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
 
-  report_adjust_setting "Set m4v files to open with QuickTime Player"
+  report_adjust_setting "Set m4v files to open with Elmedia Player"
   printf "\n"
-  utiluti type set $uti_m4v               $BUNDLE_ID_QUICKTIMEPLAYER ; success_or_not
+  utiluti type set $uti_m4v               $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
+
+  report_adjust_setting "Set .avi files to open with Elmedia Player"
+  printf "\n"
+  utiluti type set $uti_avi               $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
   
   report_end_phase_standard
 
