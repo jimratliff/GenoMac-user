@@ -1,3 +1,7 @@
+default:
+    # Typing only 'just' will run this default recipe, which lists the available recipes.
+    just --list
+
 run-hypervisor:
     zsh scripts/run_hypervisor.sh
 
