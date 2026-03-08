@@ -11,6 +11,7 @@
 
   //Auto-install extensions and themes
   "auto_install_extensions": {
+	  "just": true,  // Just language support
       "vscode-dark-high-contrast": true,
       "vscode-icons": true
     },
