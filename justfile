@@ -1,3 +1,5 @@
+# For syntax/behavior of just, see https://github.com/casey/just
+
 default:
     # Typing only 'just' will run this default recipe, which lists the available recipes.
     # just --summary would list on one line
