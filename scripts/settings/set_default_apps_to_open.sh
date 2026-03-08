@@ -27,30 +27,46 @@ function set_default_apps_to_open() {
   local uti_plist=com.apple.property-list
   local uti_xml=public.xml
   local uti_applescript=com.apple.applescript.text
+
+  local uti_mpeg=public.mpeg
+  local uti_quicktime_movie=com.apple.quicktime-movie
+  local uti_m4v=com.apple.m4v-video
   
   report_adjust_setting "Set plain-text files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_plain_text     $BUNDLE_ID_BBEDIT ; success_or_not
+  utiluti type set $uti_plain_text       $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set Markdown files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_markdown       $BUNDLE_ID_BBEDIT ; success_or_not
+  utiluti type set $uti_markdown         $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set .plist files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_plist          $BUNDLE_ID_BBEDIT ; success_or_not
+  utiluti type set $uti_plist            $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set shell scripts to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_shell_script   $BUNDLE_ID_BBEDIT ; success_or_not
+  utiluti type set $uti_shell_script     $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set XML files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_xml            $BUNDLE_ID_BBEDIT ; success_or_not
+  utiluti type set $uti_xml              $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set AppleScript files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_applescript    $BUNDLE_ID_BBEDIT ; success_or_not
+  utiluti type set $uti_applescript      $BUNDLE_ID_BBEDIT ; success_or_not
+
+  report_adjust_setting "Set MPEG files to open with QuickTime Player"
+  printf "\n"
+  utiluti type set $uti_mpeg             $BUNDLE_ID_QUICKTIMEPLAYER ; success_or_not
+
+  report_adjust_setting "Set QuickTime movie files to open with QuickTime Player"
+  printf "\n"
+  utiluti type set $uti_quicktime_movie  $BUNDLE_ID_QUICKTIMEPLAYER ; success_or_not
+
+  report_adjust_setting "Set m4v files to open with QuickTime Player"
+  printf "\n"
+  utiluti type set $uti_m4v               $BUNDLE_ID_QUICKTIMEPLAYER ; success_or_not
   
   report_end_phase_standard
 
