@@ -58,9 +58,9 @@ The very first time the Hypervisor is run for a particular user account, that us
 
 In normal operation, then, there’s no reason to rerun the Hypervisor unless something changes. The below discusses what kind of changes would warrant rerunning the Hypervisor.
 #### If the dotfiles change…
-If you make changes to the dotfiles stored in `GenoMac-user/stow_directory`, whether or not to re-run the Hypervisor depends on whether (a) only the contents of an existing dotfile have changed or (b) there’s a change in the *structure* of the dotfiles.
+If you make changes to the dotfiles stored in `GenoMac-user/stow_directory`, whether or not to re-run the Hypervisor depends on whether (a) only the contents of existing dotfiles have changed or (b) there’s a change in the *structure* of the dotfiles.
 ##### If only the *contents* of one or more *existing* dotfiles change
-If the only changes to your dotfiles are the *contents* of one or more *existing* dotfiles, it’s sufficient to (a) refresh the local repo (`cd ~/.genomac-user` and `just refresh-repo-and-module`), which will update the dotfiles on local disk, and (b) log out of the user account and log back in.
+If the only changes to your dotfiles are the *contents* of one or more *existing* dotfiles, it’s sufficient to (a) refresh the local repo (see [Refresh local clone](#refresh-local-clone)), which will update the dotfiles on local disk, and (b) log out of the user account and log back in.
 ##### If the *structure* of the dotfiles changes
 In contrast, if the *structure* of the dotfiles changes, run the Hypervisor.
 
