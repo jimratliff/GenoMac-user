@@ -117,7 +117,20 @@ For many/most of the macOS settings and for many/most of the GUI apps, these scr
 
 [^find_defaults]: For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
 
-### The distinction between operations that are (a) purely bootstrap and (b) idempotent and therefore both bootstrap and ongoing maintenance
+Some apps, particularly cross-platform apps such as web browsers, don’t rely entirely or at all upon macOS’s `defaults` system and instead use other mechanisms to expose their preferences to scripting. This repo nevertheless attempts to script those apps’ preferences to the extent possible/feasible/practical. Examples of apps in this category:
+- Apps whose preferences are stored remotely associated with the user’s account for that app. E.g., Text Expander.
+- Microsoft Word: This repo implements settings for Word by a combination of (a) installing a preconfigured Normal.dotm template file and (b) running a VBA script stored within a Word document to set some Word preferences.
+
+Some apps require additional steps to authorize the user to execute the app. These call into the following categories:
+- Apps that require signing into an account for that app. These include 1Password, Microsoft Office, Text Expander
+- Apps that require a license file.
+- Apps that require entering a key to authorize.
+  - Alfred: Alfred’s basic functionality is free to use, but more-advanced functionality (the Alfred Powerpack) requires entering a Powerpack license. GenoMac-user assumes you will enter a Powerpack license via a Keyboard Maestro status-menu-triggered macro that pastes the Alfred Powerpack textual license code into the appropriate text box in Alfred’s preferences.[^Alfred_key_is_secure]
+  - Keyboard Maestro: Keyboard Maestro has an initial trial period for every new user account. This solves a chicken-and-egg hurdle, allowing you to use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item and populates the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.
+ 
+[^Alfred_key_is_secure]: Note that the Alfred Powerpack license key is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
+
+### The distinction between operations that are (a) purely bootstrap vis-à-vis (b) idempotent and therefore both bootstrap and ongoing maintenance
 A purely bootstrap operation is one that is intended to be performed typically only once per user or perhaps performed again only under exceptional circumstances (e.g., a change in desired settings or an external change in macOS or in third-party software). Examples:
 - cloning this repo to the user’s local home directory
 - implementing settings that provide a starting point for the user, from which the user is free to add or subtract without fear that those subsequent changes would be overridden by a later maintenance step.
