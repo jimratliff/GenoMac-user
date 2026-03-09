@@ -62,7 +62,7 @@ If you make changes to the dotfiles stored in `GenoMac-user/stow_directory`, whe
 ##### If only the *contents* of one or more *existing* dotfiles change
 If the only changes to your dotfiles are the *contents* of one or more *existing* dotfiles, it’s sufficient to (a) refresh the local repo (see [Refresh local clone](#refresh-local-clone)), which will update the dotfiles on local disk, and (b) log out of the user account and log back in.
 ##### If the *structure* of the dotfiles changes
-In contrast, if the *structure* of the dotfiles changes, run the Hypervisor.
+In contrast, if the *structure* of the dotfiles changes, run the Hypervisor. (See [Run the Hypervisor](#run-the-hypervisor).)
 
 A change in the structure of the dotfiles would be any combination of (a) adding a new package or removing a package (for example, if you add a new terminal app, such as Kitty or Ghostty, and adds its dotfiles to stow_directory), (b) adding a new file or directory to an existing package’s dotfiles, or (c) in any other way modify the file structure of stow_directory. Running Hypervisor will run `stow`, which will properly remap symlinks to reflect the changes in structure. (In other words, `stow` doesn’t care what’s *in* each *file* in `stow_directory`, but it does care about the file and directory structure of `stow_directory`.)
 
