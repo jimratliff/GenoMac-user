@@ -160,7 +160,7 @@ Even though the Hypervisor can’t fully automate these operations, the Hypervis
 - [Connect to the user’s Dropbox account and configure apps that rely on Dropbox](#connect-to-the-users-dropbox-account-and-configure-apps-that-rely-on-dropbox)
 
 ### Establish real-time connection to communicate text back and forth
-(NOTE: USER_CONFIGURER will have already performed this step.)
+(NOTE: USER_CONFIGURER will have already performed this step. Other users will need to do that at this time.)
 
 Open a Google Docs document to be used as/if needed for real-time exchange of text, error messages, etc., between the target Mac and other devices.
 - In Safari
@@ -191,10 +191,19 @@ The Hypervisor is a scripting function that manages the configuration of the use
 The Hypervisor is run by:
 ```
 cd ~/.genomac-user
-make run-hypervisor
+just run-hypervisor
 ```
 
 At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again. The Hypervisor keeps track of its state, and it will restart where you last left off.
+
+The Hypervisor produces a *lot* of output, typically many screenfulls. If an important warning is issued, the Hypervisor keeps track of it and redisplays it when it reaches a standard stopping point (either when it urges you to logout or when it completes the entire configuration). If no warnings were detected, the Hypervisor will state that explicitly:
+```
+✅ No GenoMac warnings or failures detected in this run.
+```
+
+By compiling any warnings and repeating them at the end, you’re relieved of the necessity of wading through all of the output to look for anomalies.
+
+Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against silent failures that you wouldn’t notice.
 
 ### “Stow” the dotfiles
 The following `make` command runs the script `stow_dotfiles.sh`. This script “stows” the dotfiles found in `stow_directory` as symlinks in $HOME (or subdirectories of $HOME).
