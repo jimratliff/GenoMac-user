@@ -74,29 +74,29 @@ If USER_CONFIGURER of a Mac has already been created and configured and you’re
 ### Using this repo as USER_CONFIGURER vis-à-vis any other user
 USER_CONFIGURER, like any other user, needs to have its user-scoped settings be configured, and thus uses this repo to do so.
 
-However, the difference in this regard between USER_CONFIGURER and any other user is that USER_CONFIGURER is called upon to use the repo as part of the process in implementing its more-ambitious mandate of configuring the entire Mac:
+However, the difference in this regard between USER_CONFIGURER and any other user is that USER_CONFIGURER has a broader, more-ambitious mandate: configuring the *entire Mac* at the system level and creating the user accounts for all other users:
 - First, USER_CONFIGURER uses the GenoMac-system repo to set up the Mac from a systemwide perspective, including installing crucial apps and other resources for systemwide use by all users
 - USER_CONFIGURER will then clone this repo (GenoMac-user) to USER_CONFIGURER’s home directory and follow this repo’s instructions to configure USER_CONFIGURER’s user-scoped settings.
 - USER_CONFIGURER will then return to GenoMac-system to create the additional user accounts for the Mac.
 - Then the GenoMac-system repo will direct you to iterate through all other users—many of which are newly created by USER_CONFIGURER—where, for each other user, you follow the instructions of GenoMac-user with respect to that user.
 
-- In contrast, for any user other than USER_CONFIGURER, the current repo is the *starting point* for configuring that user.
+In contrast, for any user other than USER_CONFIGURER, the current repo is the *starting point* for configuring that user.
 
-### Assumed prerequisites for all users
-Before you do anything with this repo, GenoMac-user, the following system-level prerequisites need to have been fulfilled (via the GenoMac-system repo):
-- Homebrew, and therefore indirectly, Git, have been installed
+### What this repo assumes has already been performed by GenoMac-system
+Before you do anything with this repo, GenoMac-user, the following system-level prerequisites need to have been fulfilled (via USER_CONFIGURER using the GenoMac-system repo):
+- Homebrew and, therefore indirectly, Git have been installed
 - The systemwide PATH has been modified to make all Homebrew-installed apps and man pages available to all users, with no additional user-specific modification of the user’s PATH required
-- iTerm has been granted full-disk access by USER-CONFIGURER
-- iTerm has been granted control of System Events (in order to run AppleScripts)
-- GNU Stow has been installed
-- More generally, USER_CONFIGURER has installed
+- The following have been installed
+  - iTerm
+  - GNU Stow
   - certain other utilities required by GenoMac-user (e.g., jq, just, mas)
   - all of the third-party apps whose user-specific settings will be specified by GenoMac-user
   - all of the resources (fonts, sounds, screensavers, etc.) that will be referenced by user-specific settings by GenoMac-user
+- iTerm has been granted by USER_CONFIGURER (a) Full Disk Access and (b) control of System Events (in order to run AppleScripts)
 
 ### This repository will be cloned to `~/.genomac-user` of the particular user
 
-This public GenoMac-user repo is meant to be cloned locally (using https[^https]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
+This public GenoMac-user repo is meant to be cloned locally (using https[^https]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`.
 
 [^https]: After having cloned the repository via https, GitHub will not let you edit the repo from the CLI (but will from the browser, when logged into your GitHub account). In order to edit
 the repo from the CLI, you would need to change the repo from https to SSH, which can be done via the command
@@ -106,14 +106,16 @@ the repo from the CLI, you would need to change the repo from https to SSH, whic
 
 This repository is intended to be used with [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.
 
-The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc. Within the directory corresponding to each package, the directory structure mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
+The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc. For example, famous examples of dotfiles are `.zshrc` (for Zshell) and Git’s `config` files.
 
-The `stow_directory` is specified by the environment variable `GMU_STOW_DIR` (which is exported by the script `assign_environment_variables.sh`).
+Within the directory corresponding to each package, the directory structure mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
 
 ### This repo establishes/adjusts numerous user-level settings
-This repo supplies scripts that execute various commands (primarily either `defaults write` or `PlistBuddy`) to establish various user settings for macOS generally and for certain apps in particular.
+This repo supplies scripts that execute various commands to establish various user settings for macOS generally and for certain apps in particular.
 
-For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
+For many/most of the macOS settings and for many/most of the GUI apps, these scripts use `defaults write` or `PlistBuddy` commands to set preferences using macOS `defaults` system.[^find_defaults]
+
+[^find_defaults]: For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
 
 ### The distinction between operations that are (a) purely bootstrap and (b) idempotent and therefore both bootstrap and ongoing maintenance
 A purely bootstrap operation is one that is intended to be performed typically only once per user or perhaps performed again only under exceptional circumstances (e.g., a change in desired settings or an external change in macOS or in third-party software). Examples:
