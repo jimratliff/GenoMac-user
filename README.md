@@ -14,7 +14,7 @@
 ## Quick-reference cheat sheet for occasional maintenance
 (First time here? Please go to the next major heading, viz., [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac).)
 
-The remainder of this section assumes you’ve already locally cloned the GenoMac-user repository to `~/.genomac-user` and that you’ve run the Hypervisor once completly through.
+The remainder of this section assumes you’ve already locally cloned the GenoMac-user repository to `~/.genomac-user` and that you’ve run the Hypervisor once completely through.
 
 ### Refresh local clone
 Every time you run the Hypervisor, it will check the remote of GenoMac-user on GitHub to determine whether there are changes relative to the local copy and, if so, will pull those down.
@@ -35,7 +35,21 @@ cd ~/.genomac-user
 just run-hypervisor
 ```
 
-At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again (`just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off.
+At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again (`just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in and running `just run-hypervisor` until you see:
+```
+ _____  _____  _____  _   _  _
+|_   _||_   _||  ___|| \ | || |
+  | |    | |  | |_   |  \| || |
+  | |    | |  |  _|  | |\  ||_|
+  |_|    |_|  |_|    |_| \_|(_)
+
+
+ℹ️  You will be logged out semi-automatically to fully internalize all the work we’ve done.
+   Please log back in.
+   To restart, re-execute make run-hypervisor and we’ll pick up where we left off..
+
+✅ No GenoMac warnings or failures detected in this run.
+```
 
 ### When to run the Hypervisor
 #### If the dotfiles change…
