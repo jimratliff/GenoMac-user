@@ -83,7 +83,7 @@ WITCH_PREFPANE_NAME="Witch.prefPane"
 WITCH_PATH_TO_USER_PREFPANE="${USER_PREFPANE_DIRECTORY}/${WITCH_PREFPANE_NAME}"
 
 # Environment variables to support the Hypervisor
-GMU_HYPERVISOR_MAKE_COMMAND_STRING="make run-hypervisor"
+GMU_HYPERVISOR_MAKE_COMMAND_STRING="just run-hypervisor"
 GMU_HYPERVISOR_HOW_TO_RESTART_STRING="To get back into the groove at any time, just re-execute ${GMU_HYPERVISOR_MAKE_COMMAND_STRING}${NEWLINE}and we’ll pick up where we left off."
 
 # Environment variable specifies the packages for which dotfiles will be stowed.
