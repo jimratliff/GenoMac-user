@@ -129,25 +129,27 @@ The `justfile` provides the interface for the user to effect the functionalities
 
 ## Overview of using this repo to implement the user-scoped settings for a particular user
 For each user:
-- In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc. (USER_CONFIGURER will already have performed this step as a result of using the repository GenoMac-system.)
+- In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc.
+  - USER_CONFIGURER will already have performed this step as a result of using the repository GenoMac-system.  
 - Clone this repo to the user’s home directory in `~/.genomac-user`
 - Repeatedly run “the Hypervisor,” which is a script that oversees the execution of the many steps involved in configuring the user’s account.
   - I say repeatedly because the Hypervisor will at various points force/urge the user to logout and log back into the user’s account. After logging back in, the user will once again launch the Hypervisor. The Hypervisor maintains state to know what steps have been completed and which step is the next one to perform.
  
 The steps performed/managed by the Hypervisor include:
 - “Stow”-ing the user’s dotfiles, which provides configuration for some software (e.g., Git, Zshell, Homebrew, SSH, BetterTouchTool, 1Password’s SSH agent, the Starship terminal prompt, and the Zed editor)
-- Setting preferences for the overall macOS interface, some Apple apps (e.g., Safari) and approximately 20 third-party GUI apps.
+- Setting preferences for the overall macOS interface, some Apple apps (e.g., Safari), and approximately 20 third-party GUI apps.
 - Integrating 1Password’s SSH agent with SSH, allowing the user to authenticate with GitHub via the terminal
-- Connect to Dropbox for file syncing (including to provide shared preferences and/or proof of license for certain apps, e.g., BetterTouchTool, Keyboard Maestro, Witch).
+- Connect to Dropbox for selective file syncing
+  - In particular, the user selectively syncs with a particular Dropbox directory containing shared preferences and/or proof of license for certain apps, e.g., BetterTouchTool, Keyboard Maestro, and Witch.
 - Microsoft Word: install a preconfigured Normal.dotm file and implement preferences using a VBA macro
 
 While the vast majority of the settings specified by GenoMac-user are implemented entirely via automated scripting, not all steps can be entirely automated. For example:
 - Generally, any app that requires signing into an account (e.g., 1Password, Text Expander, Microsoft Word) requires manual intervention by the user
-- Some apps requires special macOS-level permissions (e.g., Full Disk Access, Accessibility permissions). Apple does not permit these settings to performed by scripting.
-- 1Password: Presumably out of a heightened concern for security, 1Password erects obstacles preventing setting preferences by scripting. These preferences need to be set manually.
+- Some apps require special macOS-level permissions (e.g., Full Disk Access, Accessibility permissions). Apple does not permit these settings to be performed by scripting.
+- 1Password: Presumably out of a heightened concern for security, 1Password erects obstacles preventing setting its preferences by scripting. These preferences need to be set manually.
 - Configuring certain extensions for the Waterfox browsers requires some manual steps.
 
-Even though the Hypervisor can’t fully automate these operations, the Hypervisor *does* walk you through each of the manual steps, both by launching the relevant app or System Settings panel and by popping up detailed written instructions to follow for each operation.
+Even though the Hypervisor can’t fully automate these operations, the Hypervisor *does* cue you to perform each one, walking you through each of the manual steps, both by (a) launching the relevant app, System Settings panel, or folder and (b) popping up (in a QuickLook window) detailed written instructions to follow for each operation.
 
 ## Step-by-step implementation (for a particular user)
 - [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
