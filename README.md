@@ -129,10 +129,9 @@ The `justfile` provides the interface for the user to effect the functionalities
 
 ## Overview of using this repo to implement the user-scoped settings for a particular user
 For each user:
-- For each user other than USER_CONFIGURER (who will already have performed these steps)
-  - In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc.
-  - Clone this repo to the user’s home directory in `~/.genomac-user`
-  - Repeatedly run “the Hypervisor,” which is a script that oversees the execution of the many steps involved in configuring the user’s account.
+- In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc. (USER_CONFIGURER will already have performed this step as a result of using the repository GenoMac-system.)
+- Clone this repo to the user’s home directory in `~/.genomac-user`
+- Repeatedly run “the Hypervisor,” which is a script that oversees the execution of the many steps involved in configuring the user’s account.
   - I say repeatedly because the Hypervisor will at various points force/urge the user to logout and log back into the user’s account. After logging back in, the user will once again launch the Hypervisor. The Hypervisor maintains state to know what steps have been completed and which step is the next one to perform.
  
 The steps performed/managed by the Hypervisor include:
