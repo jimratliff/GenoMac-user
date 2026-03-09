@@ -15,14 +15,14 @@
 # 			  - e.g., a Dock lineup, toolbar configurations of particular apps
 # 			- an action that, despite being idempotent, you wouldn’t want to repeat
 # 			  because the action is time consuming or otherwise costly
-# 			  - e.g., setting the default browser (I don’t know why this is so time consuming, 
+# 			  - e.g., setting the default browser (I don’t know why this is so time consuming,
 # 			    but it is!)
-# 			  - e.g., registering a QuickLook plugin (costly because launching and then quitting 
+# 			  - e.g., registering a QuickLook plugin (costly because launching and then quitting
 # 			    an app takes time)
 # 			- a manual configuration that can’t be automated (and therefore is too expensive for
 # 			  thoughtless repetition, even if doing so would be idempotent)
 # 			  - e.g., authentication of an app or external service
-# 			  - e.g., implementing a setting that isn’t exposed to scripting (e.g., granting 
+# 			  - e.g., implementing a setting that isn’t exposed to scripting (e.g., granting
 # 			    full-disk access to an app)
 # - Maintenance
 # 	- Must be idempotent
@@ -30,27 +30,27 @@
 # 	  recent changes
 # 	  - Examples:
 # 	  	- stowing dotfiles
-# 	  	- `defaults write` commands, where you want to continually enforce the choices 
+# 	  	- `defaults write` commands, where you want to continually enforce the choices
 # 	  	  specified by GenoMac-user, even if the user has deviated from those
 #
 # GenoMac-user and GenoMac-system each is its own distinct set of states. These two sets of
 # states are kept segregated by being stored in separate directories. Nothing about their names
 # is sufficient to distinguish GenoMac-user states from GenoMac-system states.
-# 	  	  
+#
 # The key of each state begins with either
 # 	- `PERM_` for “permanent”
 # 		- Such a `PERM_` key persists across sessions. It is reset (i.e., deleted) only
-# 		  if an extraordinary circumstance arises that, after deliberation, is found to 
+# 		  if an extraordinary circumstance arises that, after deliberation, is found to
 # 		  warrant the repetition of this otherwise-bootstrap step.
 # 	- `SESH_` for “session”
 # 		- is cleared/reset/deleted as the final step of each successful session (or possibly
-# 		  at the beginning of each “new” session, though it’s not clear how to easily 
-# 		  determine that—without determining that the current SESH states take you all the 
+# 		  at the beginning of each “new” session, though it’s not clear how to easily
+# 		  determine that—without determining that the current SESH states take you all the
 # 		  way to the end)
 # 		- `SESH_` states provide a mechanism such that the hypervisor script can be re-entered
 # 			(for example, following an enforced logout) and be able to determine which steps
 # 			can be skipped over and where to pick up the remaining sequence.
-# 		  
+#
 # The state mechanism is managed by the repository (i.e., GenoMac-system or GenoMac-user).
 # Therefore the state mechanism doesn’t cover the earliest stages of the GenoMac-system
 # or GenoMac-user processes that instruct/direct the user to achieve the local cloning
@@ -83,6 +83,10 @@ PERM_MICROSOFT_WORD_USER_WANTS_IT="PERM_microsoft_word_user_wants_it"
 PERM_MISSION_CONTROL_ASSIGN_TO_OPTIONS_HAVE_BEEN_CONFIGURED="PERM_mission_control_assign_to_options_have_been_configured"
 PERM_MISSION_CONTROL_SPACES_CREATED="PERM_mission_control_spaces_created"
 PERM_PREVIEW_BASE_TOOLBAR_HAS_BEEN_SPECIFIED="PERM_preview_base_toolbar_has_been_specified"
+PERM_Q_ASKED_FINDER_SHOW_DRIVES_ON_DESKTOP="PERM_q_asked_finder_show_drives_on_desktop"
+PERM_Q_ASKED_CONFIGURE_YOUTUBE_ENHANCER_FOR_WATERFOX="PERM_q_asked_configure_youtube_enhancer_for_waterfox"
+PERM_Q_ASKED_WANT_MICROSOFT_WORD="PERM_q_asked_want_microsoft_word"
+PERM_Q_ASKED_WANT_SSH_AUTHENTICATE_GITHUB_USING_1PASSWORD="PERM_q_asked_want_ssh_authenticate_github_using_1password"
 PERM_SCREENSAVER_HAS_BEEN_CHOSEN_AND_CONFIGURED="PERM_screensaver_has_been_chosen_and_configured"
 PERM_TEXTEXPANDER_HAS_BEEN_CONFIGURED="PERM_textexpander_has_been_configured"
 PERM_WATERFOX_EXTENSION_CONSENTOMATIC_HAS_BEEN_CONFIGURED="PERM_waterfox_extension_consentomatic_has_been_configured"
@@ -138,6 +142,10 @@ export_and_report PERM_MICROSOFT_WORD_USER_WANTS_IT
 export_and_report PERM_MISSION_CONTROL_ASSIGN_TO_OPTIONS_HAVE_BEEN_CONFIGURED
 export_and_report PERM_MISSION_CONTROL_SPACES_CREATED
 export_and_report PERM_PREVIEW_BASE_TOOLBAR_HAS_BEEN_SPECIFIED
+export_and_report PERM_Q_ASKED_FINDER_SHOW_DRIVES_ON_DESKTOP
+export_and_report PERM_Q_ASKED_CONFIGURE_YOUTUBE_ENHANCER_FOR_WATERFOX
+export_and_report PERM_Q_ASKED_WANT_MICROSOFT_WORD
+export_and_report PERM_Q_ASKED_WANT_SSH_AUTHENTICATE_GITHUB_USING_1PASSWORD
 export_and_report PERM_SCREENSAVER_HAS_BEEN_CHOSEN_AND_CONFIGURED
 export_and_report PERM_TEXTEXPANDER_HAS_BEEN_CONFIGURED
 export_and_report PERM_WATERFOX_EXTENSION_CONSENTOMATIC_HAS_BEEN_CONFIGURED

@@ -10,6 +10,7 @@
 {
 
   //Auto-install extensions and themes
+  "cursor_shape": "underline",
   "auto_install_extensions": {
 	  "just": true,  // Just language support
       "vscode-dark-high-contrast": true,
