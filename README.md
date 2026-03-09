@@ -16,6 +16,8 @@
 
 The remainder of this section assumes you’ve already locally cloned the GenoMac-user repository to `~/.genomac-user` and that you’ve run the Hypervisor once completely through.
 
+Project GenoMac-user does *not* require regular maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor](#when-to-run-the-hypervisor) for a discussion of what kinds of changes warrant some kind of action on your part.
+
 ### Refresh local clone
 Every time you run the Hypervisor, it will check the remote of GenoMac-user on GitHub to determine whether there are changes relative to the local copy and, if so, will pull those down.
 
