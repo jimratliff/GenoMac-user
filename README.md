@@ -74,7 +74,7 @@ If USER_CONFIGURER of a Mac has already been created and configured and you’re
 ### Using this repo as USER_CONFIGURER vis-à-vis any other user
 USER_CONFIGURER, like any other user, needs to have its user-scoped settings be configured, and thus uses this repo to do so.
 
-However, the difference in this regard between USER_CONFIGURER and any other user is that USER_CONFIGURER is called upon to use the repo as an intermediate step in implementing its more-ambitious mandate of configuring the entire Mac:
+However, the difference in this regard between USER_CONFIGURER and any other user is that USER_CONFIGURER is called upon to use the repo as part of the process in implementing its more-ambitious mandate of configuring the entire Mac:
 - First, USER_CONFIGURER uses the GenoMac-system repo to set up the Mac from a systemwide perspective, including installing crucial apps and other resources for systemwide use by all users
 - USER_CONFIGURER will then clone this repo (GenoMac-user) to USER_CONFIGURER’s home directory and follow this repo’s instructions to configure USER_CONFIGURER’s user-scoped settings.
 - USER_CONFIGURER will then return to GenoMac-system to create the additional user accounts for the Mac.
@@ -86,10 +86,11 @@ However, the difference in this regard between USER_CONFIGURER and any other use
 Before you do anything with this repo, GenoMac-user, the following system-level prerequisites need to have been fulfilled (via the GenoMac-system repo):
 - Homebrew, and therefore indirectly, Git, have been installed
 - The systemwide PATH has been modified to make all Homebrew-installed apps and man pages available to all users, with no additional user-specific modification of the user’s PATH required
-- Terminal and iTerm have both been granted full-disk access by USER-CONFIGURER
+- iTerm has been granted full-disk access by USER-CONFIGURER
 - iTerm has been granted control of System Events (in order to run AppleScripts)
 - GNU Stow has been installed
 - More generally, USER_CONFIGURER has installed
+  - certain other utilities required by GenoMac-user (e.g., jq, just, mas)
   - all of the third-party apps whose user-specific settings will be specified by GenoMac-user
   - all of the resources (fonts, sounds, screensavers, etc.) that will be referenced by user-specific settings by GenoMac-user
 
@@ -98,8 +99,8 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
 This public GenoMac-user repo is meant to be cloned locally (using https[^https]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`, specified by the environment variable GENOMAC_USER_LOCAL_DIRECTORY (which is exported by the script `assign_environment_variables.sh`).
 
 [^https]: After having cloned the repository via https, GitHub will not let you edit the repo from the CLI (but will from the browser, when logged into your GitHub account). In order to edit
-the repo from the CLI, you would need to change the repo from https to SSH, which can be done via 
-`git remote set-url origin git@github.com:OWNER/REPOSITORY.git`. (Use `git remote -v` to clarify the syntax for your repo.)
+the repo from the CLI, you would need to change the repo from https to SSH, which can be done via the command
+`just dev-configure-remote-for-https-fetch-and-ssh-push`.
 
 ### This repo supplies “dotfiles” that help to configure some of the user’s software
 
@@ -115,40 +116,39 @@ This repo supplies scripts that execute various commands (primarily either `defa
 For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
 
 ### The distinction between operations that are (a) purely bootstrap and (b) idempotent and therefore both bootstrap and ongoing maintenance
-A purely bootstrap operation is one that is intended to be performed typically only once per user. Examples:
+A purely bootstrap operation is one that is intended to be performed typically only once per user or perhaps performed again only under exceptional circumstances (e.g., a change in desired settings or an external change in macOS or in third-party software). Examples:
 - cloning this repo to the user’s local home directory
 - implementing settings that provide a starting point for the user, from which the user is free to add or subtract without fear that those subsequent changes would be overridden by a later maintenance step.
   - For example, establishing the initial toolbar configuration for Preview.app. Initially, the toolbar configuration is created to contain certain elements and exclude certain elements. The user can add or subtract to those (or rearrange the order in which they appear on the toolbar) with the understanding that this script won’t be re-run for that user. (If the script *were* re-run, it could undo some/all of the changes the user made.
 
 More typical is an idempotent operation that is both bootstrap and ongoing maintenance. This characterizes most of the activities of this repo. Sucn an operation establishes a setting the first time the script is run for the user (acting as a bootstrap operation) but the same script also enforces that setting on subsequent maintenance runs.
 
-### The Makefile is the user’s interface with the functionality of this repo
+### The justfile is the user’s interface with the functionality of this repo
 
-The `Makefile` provides the interface for the user to effect the functionalities of this repo, such as commanding the execution of (a) “stowing” the dotfiles and (b) changing the macOS settings using `defaults write` commands.
+The `justfile` provides the interface for the user to effect the functionalities of this repo, such as commanding the execution of “the Hypervisor” that oversees the operation of the user-level settings or refreshing the local copy of the repository.
 
 ## Overview of using this repo to implement the user-scoped settings for a particular user
 For each user:
 - For each user other than USER_CONFIGURER (who will already have performed these steps)
   - In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc.
   - Clone this repo to the user’s home directory in `~/.genomac-user`
-- Dotfiles
-    - From `~/.genomac-user`, execute `make stow-dotfiles`
-    - Log out and log back in
-- macOS settings
-    - From `~/.genomac-user`, execute `make initial-prefs`
-    - Log out and log back in
-- Implement bootstrap-only starting points for (a) the app lineup in the Dock (b) the toolbar for Finder windows, and (c) the toolbar for Preview.app windows
-- Integrate 1Password’s SSH agent with SSH, allowing the user to authenticate with GitHub via the terminal
-- Connect Dropbox to provide access to some required resources
-  - Launch Dropbox
-  - Sign into Dropbox account
-  - Selectively sync at least:
-    - `~/path/to/Dropbox/Preferences_common`
-- BetterTouchTool (BTT)
-  - Install the BTT license file that is stored in Dropbox into the appropriate location in `~/Library/Application Support/BetterTouchTool`
-    - From `~/.genomac-user`, execute `make btt-license`
-  - Launch BetterTouchTool
-    - It should (a) recognize the installed license file and (b) automatically load the configuration file that has been “stow”-ed from `~/.genomac-user/stow_directory/BetterTouchTool/.btt_autoload_preset.json`
+  - Repeatedly run “the Hypervisor,” which is a script that oversees the execution of the many steps involved in configuring the user’s account.
+  - I say repeatedly because the Hypervisor will at various points force/urge the user to logout and log back into the user’s account. After logging back in, the user will once again launch the Hypervisor. The Hypervisor maintains state to know what steps have been completed and which step is the next one to perform.
+ 
+The steps performed/managed by the Hypervisor include:
+- “Stow”-ing the user’s dotfiles, which provides configuration for some software (e.g., Git, Zshell, Homebrew, SSH, BetterTouchTool, 1Password’s SSH agent, the Starship terminal prompt, and the Zed editor)
+- Setting preferences for the overall macOS interface, some Apple apps (e.g., Safari) and approximately 20 third-party GUI apps.
+- Integrating 1Password’s SSH agent with SSH, allowing the user to authenticate with GitHub via the terminal
+- Connect to Dropbox for file syncing (including to provide shared preferences and/or proof of license for certain apps, e.g., BetterTouchTool, Keyboard Maestro, Witch).
+- Microsoft Word: install a preconfigured Normal.dotm file and implement preferences using a VBA macro
+
+While the vast majority of the settings specified by GenoMac-user are implemented entirely via automated scripting, not all steps can be entirely automated. For example:
+- Generally, any app that requires signing into an account (e.g., 1Password, Text Expander, Microsoft Word) requires manual intervention by the user
+- Some apps requires special macOS-level permissions (e.g., Full Disk Access, Accessibility permissions). Apple does not permit these settings to performed by scripting.
+- 1Password: Presumably out of a heightened concern for security, 1Password erects obstacles preventing setting preferences by scripting. These preferences need to be set manually.
+- Configuring certain extensions for the Waterfox browsers requires some manual steps.
+
+Even though the Hypervisor can’t fully automate these operations, the Hypervisor *does* walk you through each of the manual steps, both by launching the relevant app or System Settings panel and by popping up detailed written instructions to follow for each operation.
 
 ## Step-by-step implementation (for a particular user)
 - [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
