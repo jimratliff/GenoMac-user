@@ -29,7 +29,7 @@ just refresh-repo-and-module
 [^git_pull_interpretation]: This `just` recipe is just a shorthand for `git pull --recurse-submodules origin main`. The `--recurse-submodules` ensures that the local version of submodule GenoMac-shared is updated to the commit specified by the GenoMac-user origin repository.
 
 ### Running the Hypervisor
-The Hypervisor is a scripting function that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
+The Hypervisor is a scripting system that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
 
 The Hypervisor is run by:
 ```
