@@ -35,7 +35,7 @@ cd ~/.genomac-user
 just run-hypervisor
 ```
 
-At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again (`just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in and running `just run-hypervisor` until you see:
+At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again (`just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see:
 ```
  _____  _____  _____  _   _  _
 |_   _||_   _||  ___|| \ | || |
@@ -46,34 +46,23 @@ At certain points in the process, the Hypervisor will force a logout. When you l
 
 ℹ️  You will be logged out semi-automatically to fully internalize all the work we’ve done.
    Please log back in.
-   To restart, re-execute make run-hypervisor and we’ll pick up where we left off..
+   To restart, re-execute just run-hypervisor and we’ll pick up where we left off.
 
 ✅ No GenoMac warnings or failures detected in this run.
 ```
 
 ### When to run the Hypervisor
+The very first time the Hypervisor is run for a particular user account, that user’s local settings will be established based on what the Hypervisor believed at that time to be the desired configuration.
+
+In normal operation, then, there’s no reason to rerun the Hypervisor unless something changes. The below discusses what kind of changes would warrant rerunning the Hypervisor.
 #### If the dotfiles change…
-If there are changes to your dotfiles, whether or not to re-run the Hypervisor depends on whether (a) only the contents of an existing dotfile have changed or (b) there’s a change in the *structure* of the dotfiles.
-##### If the *contents* of an *existing* dotfile change
+If you make changes to the dotfiles stored in `GenoMac-user/stow_directory`, whether or not to re-run the Hypervisor depends on whether (a) only the contents of an existing dotfile have changed or (b) there’s a change in the *structure* of the dotfiles.
+##### If only the *contents* of one or more *existing* dotfiles change
 If the only changes to your dotfiles are the *contents* of one or more *existing* dotfiles, it’s sufficient to (a) refresh the local repo (`cd ~/.genomac-user` and `just refresh-repo-and-module`), which will update the dotfiles on local disk, and (b) log out of the user account and log back in.
 ##### If the *structure* of the dotfiles changes
 In contrast, if the *structure* of the dotfiles changes, run the Hypervisor.
 
-A change in the structure of the dotfiles would be any combination of (a) adding a new package or removing a package (for example, if you add a new terminal app, such as Kitty or Ghostty), (b) adding a new file or directory to an existing package’s dotfiles, or (c) in any other way modify the file structure of stow_directory. Running Hypervisor will run `stow`, which will properly remap symlinks to reflect the changes in structure.
-
-### Re-“stow” the dotfiles
-
-Any changes to existing dotfiles will be pulled down to the local clone as a result of “[Refresh local clone](#refresh-local-clone).” Only if the *structure* of the dotfiles has changed is it necessary to re-“stow” the dotfiles. By a change in structure, I mean the addition or removal of a dotfile or a change in location of a dotfile.
-
-If the *only* changes to the dotfiles are in the contents of existing dotfiles, there is no need to re-“stow” the dotfiles (which the next section explains how to do).
-
-It is possible, however, that the new content of those dotfiles will not take effect until after the user logs out and logs back in.
-
-To re-“stow” the dotfiles (after refreshing the local clone):
-```bash
-cd ~/.genomac-user
-make stow-dotfiles
-```
+A change in the structure of the dotfiles would be any combination of (a) adding a new package or removing a package (for example, if you add a new terminal app, such as Kitty or Ghostty, and adds its dotfiles to stow_directory), (b) adding a new file or directory to an existing package’s dotfiles, or (c) in any other way modify the file structure of stow_directory. Running Hypervisor will run `stow`, which will properly remap symlinks to reflect the changes in structure. (In other words, `stow` doesn’t care what’s *in* each *file* in `stow_directory`, but it does care about the file and directory structure of `stow_directory`.)
 
 ### Reassert user-scoped settings
 To reassert the user-scoped settings (in response to any changes in them in this repo) after refreshing the local clone:
