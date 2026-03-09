@@ -29,10 +29,10 @@ The Hypervisor is a scripting function that manages the configuration of the use
 The Hypervisor is run by:
 ```
 cd ~/.genomac-user
-make run-hypervisor
+just run-hypervisor
 ```
 
-At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again (`make run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off.
+At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again (`just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off.
 
 ### Re-“stow” the dotfiles
 
