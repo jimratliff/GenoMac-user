@@ -14,7 +14,7 @@
 ## Quick-reference cheat sheet for occasional maintenance
 (First time here? Please go to the next major heading, viz., [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac).)
 
-The remainder of this section assumes you’ve already locally cloned the GenoMac-user repository to `~/.genomac-user`.
+The remainder of this section assumes you’ve already locally cloned the GenoMac-user repository to `~/.genomac-user` and that you’ve run the Hypervisor once completly through.
 
 ### Refresh local clone
 Every time you run the Hypervisor, it will check the remote of GenoMac-user on GitHub to determine whether there are changes relative to the local copy and, if so, will pull those down.
