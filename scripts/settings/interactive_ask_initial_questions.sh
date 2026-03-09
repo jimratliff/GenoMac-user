@@ -51,7 +51,7 @@ function conditionally_ask_question_and_assign_user_state_if_yes() {
 
 	run_func_and_args_if_user_has_not_done \
 	  "$state_after_question_is_asked" \
-	  "skip_message" \
+	  "$skip_message" \
 	  set_user_state_based_on_yes_no \
 	  "$prompt" \
 	  "$state_if_yes"
