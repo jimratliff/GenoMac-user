@@ -14,14 +14,17 @@
 ## Quick-reference cheat sheet for occasional maintenance
 (First time here? Please go to the next major heading, viz., [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac).)
 
+The remainder of this section assumes you’ve already locally cloned the GenoMac-user repository to `~/.genomac-user`.
+
 ### Refresh local clone
-After initial cloning, to pull down subsequent changes to this repository:
+Every time you run the Hypervisor, it will check the remote of GenoMac-user on GitHub to determine whether there are changes relative to the local copy and, if so, will pull those down.
+
+Alternatively, you can do that check-and-update yourself with:[^git_pull_interpretation]
 ```bash
 cd ~/.genomac-user
-git pull --recurse-submodules origin main
+just refresh-repo-and-module
 ```
-
-(The `--recurse-submodules` ensures that the local version of submodule GenoMac-shared is updated to the commit specified by the GenoMac-user origin repository.)
+[^git_pull_interpretation]: This `just` recipe is just a shorthand for `git pull --recurse-submodules origin main`. The `--recurse-submodules` ensures that the local version of submodule GenoMac-shared is updated to the commit specified by the GenoMac-user origin repository.
 
 ### Running the Hypervisor
 The Hypervisor is a scripting function that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
@@ -33,6 +36,16 @@ just run-hypervisor
 ```
 
 At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again (`just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off.
+
+### When to run the Hypervisor
+#### If the dotfiles change…
+If there are changes to your dotfiles, whether or not to re-run the Hypervisor depends on whether (a) only the contents of an existing dotfile have changed or (b) there’s a change in the *structure* of the dotfiles.
+##### If the *contents* of an *existing* dotfile change
+If the only changes to your dotfiles are the *contents* of one or more *existing* dotfiles, it’s sufficient to (a) refresh the local repo (`cd ~/.genomac-user` and `just refresh-repo-and-module`), which will update the dotfiles on local disk, and (b) log out of the user account and log back in.
+##### If the *structure* of the dotfiles changes
+In contrast, if the *structure* of the dotfiles changes, run the Hypervisor.
+
+A change in the structure of the dotfiles would be any combination of (a) adding a new package or removing a package (for example, if you add a new terminal app, such as Kitty or Ghostty), (b) adding a new file or directory to an existing package’s dotfiles, or (c) in any other way modify the file structure of stow_directory. Running Hypervisor will run `stow`, which will properly remap symlinks to reflect the changes in structure.
 
 ### Re-“stow” the dotfiles
 
