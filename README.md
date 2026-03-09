@@ -113,13 +113,17 @@ Within the directory corresponding to each package, the directory structure mimi
 ### This repo establishes/adjusts numerous user-level settings
 This repo supplies scripts that execute various commands to establish various user settings for macOS generally and for certain apps in particular.
 
-For many/most of the macOS settings and for many/most of the GUI apps, these scripts use `defaults write` or `PlistBuddy` commands to set preferences using macOS `defaults` system.[^find_defaults]
+For many/most of the macOS settings and for many/most of the GUI apps, these scripts use macOS `defaults write` or `PlistBuddy` commands to set preferences using macOS `defaults` system.[^find_defaults]
 
 [^find_defaults]: For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
 
-Some apps, particularly cross-platform apps such as web browsers, don’t rely entirely or at all upon macOS’s `defaults` system and instead use other mechanisms to expose their preferences to scripting. This repo nevertheless attempts to script those apps’ preferences to the extent possible/feasible/practical. Examples of apps in this category:
-- Apps whose preferences are stored remotely associated with the user’s account for that app. E.g., Text Expander.
-- Microsoft Word: This repo implements settings for Word by a combination of (a) installing a preconfigured Normal.dotm template file and (b) running a VBA script stored within a Word document to set some Word preferences.
+Some apps, particularly non-Apple cross-platform apps such as web browsers, don’t rely entirely or at all upon macOS’s `defaults` system but instead use other mechanisms to expose their preferences to scripting. This repo nevertheless attempts to script those apps’ preferences to the extent possible/feasible/practical. Examples of apps in this category:
+- Apps whose preferences are stored remotely associated with the user’s account for that app. E.g., Text Expander. This repo relies upon the user logging into their account with such an app to provide the desired configuration.
+- Apps based on Electron, which store their settings in JSON configuration files.
+- 1Password: 1Password is an Electron-based app and reveals its preferences in a `settings.json` file, which should make it straightforward to manipulate those preferences via scripting. However, presumably driven by a security concern, 1Password makes it impossible to effectively script those preferences.[^1Password_HMAC]
+- Microsoft Word: Very few of Word’s preferences are revealed through the macOS `defaults` system. Instead, this repo implements settings for Word by a combination of (a) installing a preconfigured Normal.dotm template file and (b) running a VBA script stored within a Word document to set some Word preferences.
+
+[^1Password_HMAC]: 1Password’s preferences are stored at `~/Library/Group Containers/2BUA8C4S2C.com.1password/Library/Application Support/1Password/Data/settings/settings.json`. Each substantive key-value pair representing a preference is accompanied by an `authTags` key-value pair, with the same key but the value of which is a cryptographic signature. The hashing is unpredictable to me, so I can’t write a script to provide new key-value preference pairs with `authTags` pairs that survive validation.
 
 Some apps require additional steps to authorize the user to execute the app. These call into the following categories:
 - Apps that require signing into an account for that app. These include 1Password, Microsoft Office, Text Expander
