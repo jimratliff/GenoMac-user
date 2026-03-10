@@ -21,6 +21,7 @@ APPS_FOR_DOCK=(
   "Applications/Helium.app"
   "Applications/Raindrop.io.app"
   "Applications/Obsidian.app"
+  "Applications/Zed.app"
   "/System/Applications/Utilities/Activity Monitor.app"
   # "/System/Applications/Utilities/Terminal.app"
   "Applications/iTerm.app"
