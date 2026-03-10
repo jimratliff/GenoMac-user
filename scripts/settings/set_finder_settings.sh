@@ -95,7 +95,7 @@ function set_finder_settings() {
   # Set Icon Views to Snap to Grid
   report_action_taken "Setting Icon Views to Snap to Grid"
   # Computer View removed because it isn’t always present
-  # report_adjust_setting "1 of 4: Computer Icon View"
+  # report_adjust_setting "1 of 3: Computer Icon View"
   # ${PLISTBUDDY_PATH} -c "Set :ComputerViewSettings:IconViewSettings:arrangeBy grid" $finder_plist ; success_or_not
   report_adjust_setting "1 of 3: Desktop Icon View"
   ${PLISTBUDDY_PATH} -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" $finder_plist ; success_or_not
