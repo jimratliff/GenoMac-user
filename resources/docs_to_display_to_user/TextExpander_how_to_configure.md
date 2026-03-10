@@ -8,8 +8,5 @@
 - For first account on Mac:
   - Dialog: “'TextExpander.app' would like to control this computer using accessibility features. Grant access to this application in Privacy & Security settings, located in System Settings.”
   - [ ] Action: Open System Settings: Accessibility: Privacy & Security: Turn ON ✅ TextExpander
-## Change Mission Control “Assign To” setting
-- **NOTE:** This requires that there already be multiple Spaces.
-- [ ] Click on the TextExpander icon in the Dock: Change Mission Control “Assign To” to: “All Desktops”
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
