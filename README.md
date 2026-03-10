@@ -19,7 +19,9 @@ The remainder of this section assumes you’ve already locally cloned the GenoMa
 Project GenoMac-user does *not* require regular maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor](#when-to-run-the-hypervisor) for a discussion of what kinds of changes warrant some kind of action on your part.
 
 ### Refresh local clone
-Every time you run the Hypervisor, it will check the remote of GenoMac-user on GitHub to determine whether there are changes relative to the local copy and, if so, will pull those down.
+Every time you run the Hypervisor, it will check the remote of GenoMac-user on GitHub to determine whether there are changes relative to the local copy and, if so, will pull those down.[^TODO_validate_auto_updating]
+
+[^TODO_validate_auto_updating]: This the desired behavior and how Hypervisor is intended to be designed to work. However, it needs further testing to see whether it is doing so, particularly with regard to changes in the GenoMac-shared submodule.
 
 Alternatively, you can do that check-and-update yourself with:[^git_pull_interpretation]
 ```bash
@@ -66,12 +68,19 @@ In contrast, if the *structure* of the dotfiles changes, run the Hypervisor. (Se
 
 A change in the structure of the dotfiles would be any combination of (a) adding a new package or removing a package (for example, if you add a new terminal app, such as Kitty or Ghostty, and adds its dotfiles to stow_directory), (b) adding a new file or directory to an existing package’s dotfiles, or (c) in any other way modify the file structure of stow_directory. Running Hypervisor will run `stow`, which will properly remap symlinks to reflect the changes in structure. (In other words, `stow` doesn’t care what’s *in* each *file* in `stow_directory`, but it does care about the file and directory structure of `stow_directory`.)
 
-### Reassert user-scoped settings
-To reassert the user-scoped settings (in response to any changes in them in this repo) after refreshing the local clone:
-```bash
-cd ~/.genomac-user
-make initial-prefs
-```
+#### If there have been changes to the desired user settings
+**TODO** This discussion needs to be elevated by addressing the distinction between (a) bootstrap and (b) maintenance settings. This should probably wait until a robust discussion of this topic exists further below that can be referenced.
+
+Over time, there may be changes in the *desired* settings for users. This could result from (a) adopting new apps that require configuration, (b) changes in macOS or apps that add new settings or change what values are desired to assign to existing settings, or (c) changes, based on experience, that a different values are desired for some settings.
+
+After GenoMac-user is modified to reflect these changes in desired user settings, each user should run Hypervisor. (See [Run the Hypervisor](#run-the-hypervisor).)
+
+#### If a user has experimentally or inadvertently modified a setting set by GenoMac-user
+A user might have—either experimentally or inadvertently—changed a value assigned to a setting that had been originally set by Hypervisor. If that change is no longer desired, and the user wants their configuration to be restored to GenoMac-user’s canonical configuration, the user should [Run the Hypervisor](#run-the-hypervisor).
+
+Be aware, however, that rerunning the Hypervisor will reset the values of only those settings that GenoMac-user addresses. If the user changed a setting on which GenoMac-user takes no action, rerunning Hypervisor will not reverse the user’s experimentation/mistake.
+
+**TODO** Must discuss also: For the most part, GenoMac-user implements values for settings *only when they differ from the defaults*. If a user changes the value of a setting away from its default value, the Hypervisor likely won’t restore that setting to its default value.
 
 ## The role of GenoMac-user within the larger Project GenoMac
 ### Context
