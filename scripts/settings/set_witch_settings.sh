@@ -44,6 +44,9 @@ function install_Witch_license_files() {
   #
   # This function expects to find all Many Tricks license files in the shared Dropbox folder:
   # ~/Dropbox/Preferences_common/Witch/LICENSE/Files_to_transfer
+  #
+  # You can find your Many Tricks license files at: ~/Library/Application Support/Many Tricks/Licenses
+  # See “FAQ: How do I copy my licenses to another computer?” https://manytricks.com/osticket/kb/faq.php?id=2
   
   report_start_phase_standard
 
