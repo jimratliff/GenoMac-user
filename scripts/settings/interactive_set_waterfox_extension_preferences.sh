@@ -144,12 +144,12 @@ function interactive_configure_waterfox_theme() {
   
   report_start_phase_standard
   
-  report "Time to install the “Activist - Balanced” theme for Waterfox! I’ll launch Waterfox, and open a window with instructions"
+  report "Time to install the “Blue Sharepoint” theme for Waterfox! I’ll launch Waterfox, and open a window with instructions"
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_theme_extension.md" \
     "$BUNDLE_ID_WATERFOX" \
-    "Follow the instructions in the Quick Look window to install and configure the “Activist - Balanced” theme for Waterfox"
+    "Follow the instructions in the Quick Look window to install and configure the “Blue Sharepoint” theme for Waterfox"
 
   report_end_phase_standard
 }
