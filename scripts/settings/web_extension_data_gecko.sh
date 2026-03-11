@@ -42,7 +42,6 @@ STANDARD_WEB_BROWSER_EXTENSIONS_GECKO=(
   RAINDROPIO
   TABS2LIST
   TREESTYLETAB
-  # THEME_ACTIVISTBALANCED
   THEME_BLUESHAREPOINT
 )
 
@@ -91,7 +90,7 @@ GECKO_EXTENSION_MARKDOWNVIEWERWEBEXT_ID="{943b8007-a895-44af-a672-4f4ea548c95f}"
 
 # Themes
 
-# Activist–Balanced is perhaps DEPRECATED
+# Activist–Balanced is DEPRECATED because text in the status bar doesn’t show up due to low contrast
 # GECKO_EXTENSION_THEME_ACTIVISTBALANCED_SLUG="activist-balanced_"
 # GECKO_EXTENSION_THEME_ACTIVISTBALANCED_ID="activist-balanced-colorway@mozilla.org"
 
