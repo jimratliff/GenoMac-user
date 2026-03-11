@@ -23,10 +23,11 @@ Click “Allow”
 You can register Keyboard Maestro (which requires an email address and serial number) by using an already-synced custom macro!
 
 - ❑ Make Keyboard Maestro Editor active.
-- ❑ Click on the Keyboard Macro menubar status icon, and choose “GenoMac Bootstrap » Register Keyboard Maestro”
+- ❑ Click on the Keyboard Maestro menubar status icon, and choose “GenoMac Bootstrap » Register Keyboard Maestro”
   - This will choose the menu item: “Keyboard Maestro” » “Register Keyboard Maestro…”, and then populate the
     email-address and serial-number fields with the credentials under which my Keyboard Maestro is registered.
     - Note that these credentials do *not* exist in this repo, but rather are stored in my securely privately synced macro set.
+  - Note that this Keyboard Maestro macro will be visible under the Keyboard Maestro menubar status icon *only* when either (a) Keyboard Maestro or (b) Alfred Preferences is the active app.
 - ❑ Click on the “Register” button to confirm the assignments and complete the registration process.
 
 ## Change the Status Menu Icon
