@@ -53,6 +53,6 @@ function conditionally_ask_question_and_assign_user_state_if_yes() {
 	  "$state_after_question_is_asked" \
 	  "$skip_message" \
 	  set_user_state_based_on_yes_no \
-	  "$prompt" \
-	  "$state_if_yes"
+	  "$state_if_yes" \
+	  "$prompt"
 }
