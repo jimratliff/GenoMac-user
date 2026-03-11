@@ -21,6 +21,7 @@
 - You can activate Alfred’s Powerpack by using an already-synced custom macro!
 - When you reach this “Activate Alfred Powerpack” window, the focus is already in the text box into which to paste the License.
 - ❑ Click on the Keyboard Macro menubar status icon, and choose “GenoMac Bootstrap » Paste Alfred Powerpack License”
+  - Note that this Keyboard Maestro macro will be visible under the Keyboard Maestro menubar status icon *only* when either (a) Keyboard Maestro or (b) Alfred Preferences is the active app.
 - This will paste the License code into the text box.
   - Note that this License text does *not* exist in this repo, but rather is stored in my securely privately synced macro set.
 - ❑ Click on the “Activate” button to confirm the assignments and complete the activation process.
