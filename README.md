@@ -15,8 +15,11 @@
 ## Executive summary
 GenoMac-user is the user-specific component of Project GenoMac. Project GenoMac automates via scripting the configuration of any number of multi-user Macs, at both the system-scoped (see [GenoMac-system](https://github.com/jimratliff/GenoMac-system)) and user-scoped levels.
 
+**First time here?**
+Please go to the next major heading, viz., [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac).
+
 ## Quick-reference cheat sheet for occasional maintenance
-(First time here? Please go to the next major heading, viz., [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac).)
+If you’re beginning the user-scoped configuration of a particular user on this Mac, go directly to this section: [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user).
 
 The remainder of this section assumes you’ve already locally cloned the GenoMac-user repository to `~/.genomac-user` and that you’ve run the Hypervisor once completely through.
 
@@ -43,7 +46,7 @@ cd ~/.genomac-user
 just run-hypervisor
 ```
 
-At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again (`just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see:
+At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again (type the following into iTerm: `just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see:
 ```
  _____  _____  _____  _   _  _
 |_   _||_   _||  ___|| \ | || |
@@ -66,7 +69,7 @@ In normal operation, then, there’s no reason to rerun the Hypervisor unless so
 #### If the dotfiles change…
 If you make changes to the dotfiles stored in `GenoMac-user/stow_directory`, whether or not to re-run the Hypervisor depends on whether (a) only the contents of existing dotfiles have changed or (b) there’s a change in the *structure* of the dotfiles.
 ##### If only the *contents* of one or more *existing* dotfiles change
-If the only changes to your dotfiles are the *contents* of one or more *existing* dotfiles, it’s sufficient to (a) refresh the local repo (see [Refresh local clone](#refresh-local-clone)), which will update the dotfiles on local disk, and (b) log out of the user account and log back in.
+If the only changes to your dotfiles are the *contents* of one or more *existing* dotfiles, it’s sufficient to (a) refresh the local repo (see [Refresh local clone](#refresh-local-clone)), which will update the dotfiles on local disk, and (b) log out of the user account and log back in.
 ##### If the *structure* of the dotfiles changes
 In contrast, if the *structure* of the dotfiles changes, run the Hypervisor. (See [Run the Hypervisor](#run-the-hypervisor).)
 
