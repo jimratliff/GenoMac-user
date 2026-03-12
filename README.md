@@ -96,7 +96,11 @@ After the code of GenoMac-user is modified to reflect these changes in desired u
 #### If a particular user has experimentally or inadvertently modified a setting set by GenoMac-user
 A user might have—either experimentally or inadvertently—changed a value assigned to a setting that had been originally set by Hypervisor. If that change is no longer desired, and the user wants their configuration to be restored to GenoMac-user’s canonical configuration, that user should [Run the Hypervisor](#run-the-hypervisor).
 
-Be aware, however, that rerunning the Hypervisor will reset the values of only those settings that GenoMac-user addresses. If the user changed a setting on which GenoMac-user takes no action, rerunning Hypervisor will not reverse the user’s experimentation/mistake.
+Be aware, however, that rerunning the Hypervisor will reset the values of at most only those settings that GenoMac-user addresses. If the user changed a setting on which GenoMac-user takes no action, rerunning Hypervisor will not reverse the user’s experimentation/mistake.
+
+There is an additional nuance if the setting a particular experimentally or inadvertently modified falls into the PERM category rather than the SESH category. A PERM-category setting is typically implemented by GenoMac-user *only the first time* that user account runs the Hypervisor. (SESH-category settings are implemented *every* time the Hypervisor is run.) In order to coerce the Hypervisor to reimplement a PERM-category setting, this user would need to manually delete the corresponding PERM-state file.[^DELETE_PERM_STATE_FILE_FOR_SETTING] (**TODO** Reference forthcoming discussion below.)
+
+[^DELETE_PERM_STATE_FILE_FOR_SETTING]: A user’s state files for GenoMac-user are stored in the user’s home directory at `~/.genomac-user-state`. Deleting a PERM state file in effect gives Hypervisor amnesia that it had ever implemented this setting for this user. Hence, the next time this user runs Hypervisor, it will implement this setting anew.
 
 ## The role of GenoMac-user within the larger Project GenoMac
 ### Context
