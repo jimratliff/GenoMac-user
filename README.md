@@ -156,6 +156,15 @@ This public GenoMac-user repo is meant to be cloned locally (using https[^https]
 the repo from the CLI, you would need to change the repo from https to SSH, which can be done via the command
 `just dev-configure-remote-for-https-fetch-and-ssh-push`.
 
+### Once you clone the GenoMac-user repo, the Hypervisor takes over
+There are many scripts and other resources involved in GenoMac-user. But, from the perspective of the user configuring their account, there is a single overarching entity: the Hypervisor, which oversees all the steps of the process.
+
+The Hypervisor becomes available as soon as GenoMac-user is locally cloned.
+
+Then, the Hypervisor can be run, from `~/.genomac-user`, by the single command `just run-hypervisor`.
+
+At certain points in the process, the Hypervisor will encourage/prompt the user to logout of the user account. When you log in after the logout, simply start the Hypervisor again (type the following into iTerm: `just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN”.
+
 ### This repo supplies “dotfiles” that help to configure some of the user’s software
 
 This repository is intended to be used with [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.
@@ -166,6 +175,11 @@ GNU Stow, guided by the directory structure of `stow_directory`, creates symlink
 
 [^STOW_DIR_METHOD]: `stow_directory` is structured such that, for each package, the structure of the directory corresponding to that package mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.) Jake Wiesler’s “[Manage Your Dotfiles Like a Superhero](https://www.jakewiesler.com/blog/managing-dotfiles),” September 20, 2021, has the best explanation of this I’ve ever seen.
 
+### GenoMac-user assumes that certain critical and sensitive resources are available in a shared Dropbox directory
+Some apps, such as Alfred and Keyboard Maestro, are assumed to sync their preferences across users and Macs via a common, shared [Dropbox](https://www.dropbox.com/) directory: Dropbox/Preferences_common.[^SHARED_PREFS_ENV_VAR] Similarly, other sensitive resources, like Witch license files, are stored in this Dropbox directory to make them available to GenoMac-user without being committed to a public repository.
+
+[^SHARED_PREFS_ENV_VAR]: The location/name of the shared Dropbox directory can be changed. It is governed by the environment variable `GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY`, which is set in `scripts/assign_user_environment_variables.sh`.
+
 ### This repo establishes/adjusts numerous user-level settings
 This repo supplies scripts that execute various commands to establish various user settings for macOS generally and for certain apps in particular.
 
@@ -173,23 +187,25 @@ For many/most of the macOS settings and for many/most of the GUI apps, these scr
 
 [^find_defaults]: For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
 
-Some apps, particularly non-Apple cross-platform apps such as web browsers, don’t rely entirely or at all upon macOS’s `defaults` system but instead use other mechanisms to expose their preferences to scripting. This repo nevertheless often attempts to script those apps’ preferences to the extent possible/feasible/practical. Examples of apps in this category:
+Some apps, particularly non-Apple cross-platform apps such as web browsers, don’t rely entirely or at all upon macOS’s `defaults` system but instead use other mechanisms to expose their preferences to scripting. This repo nevertheless often attempts to script those apps’ preferences to the extent possible/feasible/practical. Examples of apps that use other methods for implementing preferences:
 - Apps whose preferences are stored remotely associated with the user’s account for that app. E.g., Text Expander. This repo relies upon the user logging into their account with such an app to provide the desired configuration.
 - Apps based on Electron, which store their settings in JSON configuration files.
-- 1Password: 1Password is an Electron-based app and reveals its preferences in a `settings.json` file, which *should* make it straightforward to manipulate those preferences via scripting. However, presumably driven by a security concern, 1Password makes it impossible to effectively script those preferences.[^1Password_HMAC]
-- Microsoft Word: Very few of Word’s preferences are revealed through the macOS `defaults` system. This repo implements settings for Word by a combination of (a) installing a preconfigured Normal.dotm template file and (b) running a VBA script stored within a Word document to set some Word preferences.
+- 1Password: 1Password is an Electron-based app and reveals its preferences in a `settings.json` file, which *should* make it straightforward to manipulate those preferences via scripting. However, presumably driven by a security concern, 1Password makes it impossible to effectively script those preferences.[^1Password_HMAC] Thus, the Hypervisor interactively walks you through configuring 1Password’s settings.
+- Microsoft Word: Very few of Word’s preferences are revealed through the macOS `defaults` system. This repo implements settings for Word primarily by a combination of (a) installing a preconfigured Normal.dotm template file and (b) running a VBA script (stored within a Word document) to set some Word preferences.
 
 [^1Password_HMAC]: 1Password’s preferences are stored at `~/Library/Group Containers/2BUA8C4S2C.com.1password/Library/Application Support/1Password/Data/settings/settings.json`. Each substantive key-value pair representing a preference is accompanied by an `authTags` key-value pair, with the same key but the value of which is a cryptographic signature. The hashing is unpredictable to me (e.g.,  the hash of one key-value pair is different on one Mac than on another Mac), so I can’t write a script to provide new key-value preference pairs with `authTags` pairs that survive validation.
 
 Some apps require additional steps to authorize the user to execute the app. These fall into the following categories:
-- Apps that require signing into an account for that app. These include 1Password, Microsoft Office, Text Expander.
-- Apps that require a license file.
+- Apps that require signing into an account for that app. These include 1Password, Microsoft Office, and Text Expander.
+- Apps that require a license file, such as [Witch](https://manytricks.com/witch/).
 - Apps that require entering a key to authorize.
-  - Alfred: Alfred’s basic functionality is free to use, but more-advanced functionality (the Alfred Powerpack) requires entering a Powerpack license. GenoMac-user interactively prompts you to enter a Powerpack license via a Keyboard Maestro status-menu-triggered macro that pastes the Alfred Powerpack textual license code into the appropriate text box in Alfred’s preferences.[^Alfred_key_is_secure]
-  - Keyboard Maestro: Because Keyboard Maestro has an initial trial period for every new user account, you can use a Keyboard Maestro macro to register your license to Keyboard Maestro! Specifically, GenoMac-user interactively prompts you to use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item to populate the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.[^KM_key_is_secure]
+  - Alfred: Alfred’s basic functionality is free to use, but more-advanced functionality (the Alfred Powerpack) requires entering a Powerpack license. The Hypervisor interactively prompts you to enter a Powerpack license via a Keyboard Maestro status-menu-triggered macro that pastes the Alfred Powerpack textual license code into the appropriate text box in Alfred’s preferences.[^Alfred_key_is_secure]
+  - Keyboard Maestro: Because Keyboard Maestro has an initial trial period for every new user account, you can use a Keyboard Maestro macro to register your license to Keyboard Maestro! Specifically, the Hypervisor interactively prompts you to use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item to populate the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.[^KM_key_is_secure]
  
 [^Alfred_key_is_secure]: Note that the Alfred Powerpack license key is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
 [^KM_key_is_secure]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
+
+One way or another, the Hypervisor has you covered, whether (a) programmatically installing license files or (b) interactively walking you through the required process.
 
 ### The distinction between operations that are (a) purely bootstrap vis-à-vis (b) idempotent and therefore both bootstrap and ongoing maintenance
 A purely bootstrap operation is one that is intended to be performed typically only once per user or perhaps performed again only under exceptional circumstances (e.g., a change in desired settings or an external change in macOS or in third-party software). Examples:
