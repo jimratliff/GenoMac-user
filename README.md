@@ -199,9 +199,10 @@ Some apps, particularly non-Apple cross-platform apps such as web browsers, don�
 
 [^1Password_HMAC]: 1Password’s preferences are stored at `~/Library/Group Containers/2BUA8C4S2C.com.1password/Library/Application Support/1Password/Data/settings/settings.json`. Each substantive key-value pair representing a preference is accompanied by an `authTags` key-value pair, with the same key but the value of which is a cryptographic signature. The hashing is unpredictable to me (e.g.,  the hash of one key-value pair is different on one Mac than on another Mac), so I can’t write a script to provide new key-value preference pairs with `authTags` pairs that survive validation.
 
+### Authorization to use particular apps
 Some apps require additional steps to authorize the user to execute the app. These fall into the following categories:
 - Apps that require signing into an account for that app. These include 1Password, Microsoft Office, and Text Expander.
-- Apps that require a license file, such as [Witch](https://manytricks.com/witch/).
+- Apps that require a license file, such as BetterTouchTool and [Witch](https://manytricks.com/witch/).
 - Apps that require entering a key to authorize.
   - Alfred: Alfred’s basic functionality is free to use, but more-advanced functionality (the Alfred Powerpack) requires entering a Powerpack license. The Hypervisor interactively prompts you to enter a Powerpack license via a Keyboard Maestro status-menu-triggered macro that pastes the Alfred Powerpack textual license code into the appropriate text box in Alfred’s preferences.[^Alfred_key_is_secure]
   - Keyboard Maestro: Because Keyboard Maestro has an initial trial period for every new user account, you can use a Keyboard Maestro macro to register your license to Keyboard Maestro! Specifically, the Hypervisor interactively prompts you to use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item to populate the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.[^KM_key_is_secure]
@@ -209,7 +210,7 @@ Some apps require additional steps to authorize the user to execute the app. The
 [^Alfred_key_is_secure]: Note that the Alfred Powerpack license key is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
 [^KM_key_is_secure]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
 
-One way or another, the Hypervisor has you covered, whether (a) programmatically installing license files or (b) interactively walking you through the required process.
+One way or another, the Hypervisor has you covered, whether (a) programmatically installing license files or (b) interactively walking you through the required process to authorize your use of the app.
 
 ### The distinction between operations that are (a) purely bootstrap vis-à-vis (b) idempotent and therefore both bootstrap and ongoing maintenance
 A purely bootstrap operation is one that is intended to be performed typically only once per user or perhaps performed again only under exceptional circumstances (e.g., a change in desired settings or an external change in macOS or in third-party software). Examples:
