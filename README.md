@@ -142,6 +142,7 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
   - all of the resources (fonts, sounds, screensavers, etc.) that will be referenced by user-specific settings by GenoMac-user
 - iTerm has been granted by USER_CONFIGURER (a) Full Disk Access and (b) control of System Events (in order to run AppleScripts)
 
+## Overview of using this repo to implement the user-scoped settings for a particular user
 ### This repository will be cloned to `~/.genomac-user` of the particular user
 
 This public GenoMac-user repo is meant to be cloned locally (using https[^https]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`.
@@ -195,7 +196,7 @@ More typical is an idempotent operation that is both bootstrap and ongoing maint
 
 The `justfile` provides the interface for the user to effect the functionalities of this repo, such as commanding the execution of “the Hypervisor” that oversees the operation of the user-level settings or refreshing the local copy of the repository.
 
-## Overview of using this repo to implement the user-scoped settings for a particular user
+
 For each user:
 - In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc.
   - USER_CONFIGURER will already have performed this step as a result of using the repository GenoMac-system.  
