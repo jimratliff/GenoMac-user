@@ -163,7 +163,7 @@ The Hypervisor becomes available as soon as GenoMac-user is locally cloned.
 
 Then, the Hypervisor can be run, from `~/.genomac-user`, by the single command `just run-hypervisor`.[^WHAT_IS_JUST]
 
-[^WHAT_IS_JUST]: `[just](https://github.com/casey/just)` is a “command runner” or “a handy way to save and run project-specific commands.” It is a modern successor to `[make](https://man7.org/linux/man-pages/man1/make.1.html)`.
+[^WHAT_IS_JUST]: [just command](https://github.com/casey/just) is a “command runner” or “a handy way to save and run project-specific commands.” It is a modern successor to the [make command](https://man7.org/linux/man-pages/man1/make.1.html).
 
 At certain points in the process, the Hypervisor will encourage/prompt the user to logout of the user account. When you log in after the logout, simply start the Hypervisor again (type the following into iTerm: `just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN”.
 
