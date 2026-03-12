@@ -164,7 +164,7 @@ The `stow_directory` of the current repo contains a set of *dotfiles* for the us
 
 GNU Stow, guided by the directory structure of `stow_directory`, creates symlinks near the root of the user’s directory to make it appear like the supplied dotfiles are located when various programs expect them to be, e.g., in `~/.config`.[^STOW_DIR_METHOD]
 
-[^STOW_DIR_METHOD]: Within the directory corresponding to each package, the directory structure mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
+[^STOW_DIR_METHOD]: `stow_directory` is structured such that, for each package, the structure of the directory corresponding to that package mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.) Jake Wiesler’s “[Manage Your Dotfiles Like a Superhero](https://www.jakewiesler.com/blog/managing-dotfiles),” September 20, 2021, has the best explanation of this I’ve ever seen.
 
 ### This repo establishes/adjusts numerous user-level settings
 This repo supplies scripts that execute various commands to establish various user settings for macOS generally and for certain apps in particular.
