@@ -214,7 +214,8 @@ Some apps require additional steps to authorize the user to execute the app. The
 
 One way or another, the Hypervisor has you covered, whether (a) programmatically installing license files or (b) interactively walking you through the required process to authorize your use of the app.
 
-### The distinction between operations that are (a) purely bootstrap vis-à-vis (b) idempotent and therefore both bootstrap and ongoing maintenance
+### GenoMac-user distinguishes settings (a) between purely bootstrap vis-à-vis idempotent and (b) run only once (PERM) vis-à-vis run everytime the Hypervisor is run (SESH)
+
 A purely bootstrap operation is one that is intended to be performed typically only once per user or perhaps performed again only under exceptional circumstances (e.g., a change in desired settings or an external change in macOS or in third-party software). Examples:
 - cloning this repo to the user’s local home directory
 - implementing settings that provide a starting point for the user, from which the user is free to add or subtract without fear that those subsequent changes would be overridden by a later maintenance step.
