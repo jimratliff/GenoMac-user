@@ -160,7 +160,7 @@ the repo from the CLI, you would need to change the repo from https to SSH, whic
 
 This repository is intended to be used with [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.
 
-The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by “package,” e.g., git, ssh, zsh, etc. For example, famous examples of dotfiles are `.zshrc` (for Zshell) and Git’s `config` files.
+The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by package, e.g., git, ssh, zsh, etc. For example, famous examples of dotfiles are `.zshrc` (for Zshell) and Git’s `config` files.
 
 Within the directory corresponding to each package, the directory structure mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.)
 
