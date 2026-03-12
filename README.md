@@ -114,13 +114,12 @@ The current repo is used in conjunction with the [GenoMac-system repo](https://g
 
 GenoMac-user also relies (as does GenoMac-system) on the [GenoMac-shared repository](https://github.com/jimratliff/GenoMac-shared). GenoMac-shared is an externally defined set of common code that specifies some environment variables and defines some helper functions. This common code is incorporated into each of GenoMac-user and GenoMac-system repositories as a Git submodule located at `external/genomac-shared` of each of the two container repositories. (See GenoMac-shared’s [README](https://github.com/jimratliff/GenoMac-shared/blob/main/README.md) for information on how that affects/complicates work flows, particularly when there is a change to GenoMac-shared’s code.)
 
-The entire configuration process *for a Mac* begins with the  [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), *not* with this repo. If you’re starting the configuration of *a new Mac*, start there, and return to this repo only when directed to do so.
+The entire configuration process *for a Mac* begins with the  [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), *not* with this repo. If you’re starting the configuration of *a new Mac*, start there, *as USER_CONFIGURER*, and return to this repo only when directed to do so.
 
+### Using this repo as USER_CONFIGURER vis-à-vis any other user
 USER_CONFIGURER is the designated user for performing systemwide configurations. In particular, USER_CONFIGURER is the only user authorized to use Homebrew to install applications managed by Homebrew (or update them, unless they have auto-upgrade mechanisms).[^HOMEBREW_UPDATE_IS_DIFFERENT] If USER_CONFIGURER of a Mac has already been created and configured and you’re starting to configure an additional user, the current GenoMac-user repo *is* the correct place to start.
 
 [^HOMEBREW_UPDATE_IS_DIFFERENT]: While Homebrew will typically attempt to update all CLI applications, Homebrew will not attempt to update GUI apps that have their own auto-updating mechanisms. Thus, users other than USER_CONFIGURER may be asked to accept an app’s auto-updating prompt. (“[Many applications update themselves, so their casks are ignored by `brew outdated` and `brew upgrade`. This behaviour can be overridden by adding `--greedy` to either command](https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md#:~:text=Many%20applications%20update%20themselves%2C%20so%20their%20casks%20are%20ignored%20by%20brew%20outdated%20and%20brew%20upgrade%2E%20This%20behaviour%20can%20be%20overridden%20by%20adding%20%2D%2Dgreedy%20to%20either%20command%2E).”)
-
-### Using this repo as USER_CONFIGURER vis-à-vis any other user
 USER_CONFIGURER, like any other user, needs to have its user-scoped settings be configured, and thus uses this repo to do so.
 
 However, the difference in this regard between USER_CONFIGURER and any other user is that USER_CONFIGURER has a broader, more-ambitious mandate: configuring the *entire Mac* at the system level and creating the user accounts for all other users:
@@ -138,7 +137,7 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
 - The following have been installed
   - iTerm
   - GNU Stow
-  - certain other utilities required by GenoMac-user (e.g., jq, just, mas)
+  - certain other utilities required by GenoMac-user (e.g., `jq`, `just`, `mas`)
   - all of the third-party apps whose user-specific settings will be specified by GenoMac-user
   - all of the resources (fonts, sounds, screensavers, etc.) that will be referenced by user-specific settings by GenoMac-user
 - iTerm has been granted by USER_CONFIGURER (a) Full Disk Access and (b) control of System Events (in order to run AppleScripts)
@@ -166,20 +165,20 @@ For many/most of the macOS settings and for many/most of the GUI apps, these scr
 
 [^find_defaults]: For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
 
-Some apps, particularly non-Apple cross-platform apps such as web browsers, don’t rely entirely or at all upon macOS’s `defaults` system but instead use other mechanisms to expose their preferences to scripting. This repo nevertheless attempts to script those apps’ preferences to the extent possible/feasible/practical. Examples of apps in this category:
+Some apps, particularly non-Apple cross-platform apps such as web browsers, don’t rely entirely or at all upon macOS’s `defaults` system but instead use other mechanisms to expose their preferences to scripting. This repo nevertheless often attempts to script those apps’ preferences to the extent possible/feasible/practical. Examples of apps in this category:
 - Apps whose preferences are stored remotely associated with the user’s account for that app. E.g., Text Expander. This repo relies upon the user logging into their account with such an app to provide the desired configuration.
 - Apps based on Electron, which store their settings in JSON configuration files.
-- 1Password: 1Password is an Electron-based app and reveals its preferences in a `settings.json` file, which should make it straightforward to manipulate those preferences via scripting. However, presumably driven by a security concern, 1Password makes it impossible to effectively script those preferences.[^1Password_HMAC]
-- Microsoft Word: Very few of Word’s preferences are revealed through the macOS `defaults` system. Instead, this repo implements settings for Word by a combination of (a) installing a preconfigured Normal.dotm template file and (b) running a VBA script stored within a Word document to set some Word preferences.
+- 1Password: 1Password is an Electron-based app and reveals its preferences in a `settings.json` file, which *should* make it straightforward to manipulate those preferences via scripting. However, presumably driven by a security concern, 1Password makes it impossible to effectively script those preferences.[^1Password_HMAC]
+- Microsoft Word: Very few of Word’s preferences are revealed through the macOS `defaults` system. This repo implements settings for Word by a combination of (a) installing a preconfigured Normal.dotm template file and (b) running a VBA script stored within a Word document to set some Word preferences.
 
-[^1Password_HMAC]: 1Password’s preferences are stored at `~/Library/Group Containers/2BUA8C4S2C.com.1password/Library/Application Support/1Password/Data/settings/settings.json`. Each substantive key-value pair representing a preference is accompanied by an `authTags` key-value pair, with the same key but the value of which is a cryptographic signature. The hashing is unpredictable to me, so I can’t write a script to provide new key-value preference pairs with `authTags` pairs that survive validation.
+[^1Password_HMAC]: 1Password’s preferences are stored at `~/Library/Group Containers/2BUA8C4S2C.com.1password/Library/Application Support/1Password/Data/settings/settings.json`. Each substantive key-value pair representing a preference is accompanied by an `authTags` key-value pair, with the same key but the value of which is a cryptographic signature. The hashing is unpredictable to me (e.g.,  the hash of one key-value pair is different on one Mac than on another Mac), so I can’t write a script to provide new key-value preference pairs with `authTags` pairs that survive validation.
 
-Some apps require additional steps to authorize the user to execute the app. These call into the following categories:
-- Apps that require signing into an account for that app. These include 1Password, Microsoft Office, Text Expander
+Some apps require additional steps to authorize the user to execute the app. These fall into the following categories:
+- Apps that require signing into an account for that app. These include 1Password, Microsoft Office, Text Expander.
 - Apps that require a license file.
 - Apps that require entering a key to authorize.
-  - Alfred: Alfred’s basic functionality is free to use, but more-advanced functionality (the Alfred Powerpack) requires entering a Powerpack license. GenoMac-user assumes you will enter a Powerpack license via a Keyboard Maestro status-menu-triggered macro that pastes the Alfred Powerpack textual license code into the appropriate text box in Alfred’s preferences.[^Alfred_key_is_secure]
-  - Keyboard Maestro: Because Keyboard Maestro has an initial trial period for every new user account, you can use a Keyboard Maestro macro to register your license to Keyboard Maestro! Specifically, you can use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item to populate the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.[^KM_key_is_secure]
+  - Alfred: Alfred’s basic functionality is free to use, but more-advanced functionality (the Alfred Powerpack) requires entering a Powerpack license. GenoMac-user interactively prompts you to enter a Powerpack license via a Keyboard Maestro status-menu-triggered macro that pastes the Alfred Powerpack textual license code into the appropriate text box in Alfred’s preferences.[^Alfred_key_is_secure]
+  - Keyboard Maestro: Because Keyboard Maestro has an initial trial period for every new user account, you can use a Keyboard Maestro macro to register your license to Keyboard Maestro! Specifically, GenoMac-user interactively prompts you to use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item to populate the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.[^KM_key_is_secure]
  
 [^Alfred_key_is_secure]: Note that the Alfred Powerpack license key is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
 [^KM_key_is_secure]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
