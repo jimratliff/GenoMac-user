@@ -36,14 +36,14 @@ Contents of quick-reference cheat sheet for occasional maintenance:
 ### Refresh local clone
 Every time you run the Hypervisor, it will check the remote of GenoMac-user on GitHub to determine whether there are changes relative to the local copy and, if so, will pull those down.[^TODO_validate_auto_updating]
 
-[^TODO_validate_auto_updating]: This the desired behavior and how Hypervisor is intended to be designed to work. However, it needs further testing to see whether it is doing so, particularly with regard to changes in the GenoMac-shared submodule.
+[^TODO_validate_auto_updating]: This the desired behavior and how Hypervisor is intended to be designed to work. However, it needs further testing to see whether it is doing so, particularly with regard to changes in the [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared) submodule.
 
 Alternatively, you can do that check-and-update yourself with:[^git_pull_interpretation]
 ```bash
 cd ~/.genomac-user
 just refresh-repo-and-module
 ```
-[^git_pull_interpretation]: This `just` recipe is just a shorthand for `git pull --recurse-submodules origin main`. The `--recurse-submodules` ensures that the local version of submodule GenoMac-shared is updated to the commit specified by the GenoMac-user origin repository.
+[^git_pull_interpretation]: This `just` recipe is just a shorthand for `git pull --recurse-submodules origin main`. The `--recurse-submodules` ensures that the local version of submodule [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared) is updated to the commit specified by the GenoMac-user origin repository.
 
 ### Run the Hypervisor
 The Hypervisor is a scripting system that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
@@ -54,7 +54,7 @@ cd ~/.genomac-user
 just run-hypervisor
 ```
 
-At certain points in the process, the Hypervisor will force a logout. When you log in after the logout, simply start the Hypervisor again (type the following into iTerm: `just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see:
+At certain points in the process, the Hypervisor will encourage/prompt the user to logout of the user account. When you log in after the logout, simply start the Hypervisor again (type the following into iTerm: `just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN”:
 ```
  _____  _____  _____  _   _  _
 |_   _||_   _||  ___|| \ | || |
@@ -75,14 +75,14 @@ The very first time the Hypervisor is run for a particular user account, that us
 
 In normal operation, then, there’s no reason to rerun the Hypervisor unless something changes. The below discusses what kind of changes would warrant rerunning the Hypervisor.
 #### If the dotfiles change
-If you make changes to the dotfiles stored in `GenoMac-user/stow_directory`, whether or not to re-run the Hypervisor depends on whether (a) only the contents of existing dotfiles have changed or (b) there’s a change in the *structure* of the dotfiles.
+If changes to GenoMac-user include changes to the dotfiles stored in `GenoMac-user/stow_directory`, whether or not to re-run the Hypervisor depends on whether (a) only the contents of existing dotfiles have changed or (b) there’s a change in the *structure* of the dotfiles.
 ##### If only the *contents* of one or more *existing* dotfiles change
-If the only changes to your dotfiles are the *contents* of one or more *existing* dotfiles, it’s sufficient to (a) refresh the local repo (see [Refresh local clone](#refresh-local-clone)), which will update the dotfiles on local disk, and (b) log out of the user account and log back in.
+If the only changes to GenoMac-user’s dotfiles are the *contents* of one or more *existing* dotfiles, it’s sufficient to (a) refresh the local repo (see [Refresh local clone](#refresh-local-clone)), which will update the dotfiles on local disk, and (b) log out of the user account and log back in.
 ##### If the *structure* of the dotfiles changes
-In contrast, if the *structure* of the dotfiles changes, run the Hypervisor. (See [Run the Hypervisor](#run-the-hypervisor).)
+In contrast, if the *structure* of the dotfiles changes, each user should rerun the Hypervisor. (See [Run the Hypervisor](#run-the-hypervisor).)
 
-A change in the structure of the dotfiles would be any combination of (a) adding a new package or removing a package. The following are examples of what would constitute a change in *structure* of the dotfiles and therefore requires rerunning Hypervisor:
-- add a new terminal app, such as Kitty or Ghostty, and adds its dotfiles to stow_directory),
+A change in the structure of the dotfiles would be any combination of (a) adding a new package, (b) removing a package, (c) adding a file to a package, or (d) removing a file from a package. The following are examples of what would constitute a change in *structure* of the dotfiles and therefore requires rerunning Hypervisor:
+- add a new terminal app, such as Kitty or Ghostty, and add its dotfiles to stow_directory),
 - add a new file or directory to an existing package’s dotfiles, or
 - in any other way modify the file structure of stow_directory.
 
@@ -91,7 +91,7 @@ Running Hypervisor will run `stow`, which will properly remap symlinks to reflec
 #### If there have been changes to the desired user settings
 Over time, there may be changes in the *desired* settings for users. This could result from (a) adopting new apps that require configuration, (b) changes in macOS or apps that add new settings or change what values are desired to assign to existing settings, or (c) changes, based on experience, that different values are desired for some settings.
 
-After the code of GenoMac-user is modified to reflect these changes in desired user settings, each user should run Hypervisor. (See [Run the Hypervisor](#run-the-hypervisor).)
+After the code of GenoMac-user is modified to reflect these changes in desired user settings, each user should rerun Hypervisor. (See [Run the Hypervisor](#run-the-hypervisor).)
 
 #### If a particular user has experimentally or inadvertently modified a setting set by GenoMac-user
 A user might have—either experimentally or inadvertently—changed a value assigned to a setting that had been originally set by Hypervisor. If that change is no longer desired, and the user wants their configuration to be restored to GenoMac-user’s canonical configuration, that user should [Run the Hypervisor](#run-the-hypervisor).
