@@ -148,7 +148,7 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
 [^FDA_and_Homebrew]: One reason Full Disk Access for the terminal program is helpful is that this is sufficient for Homebrew to be able to perform app upgrades “in place” (rather than uninstall/reinstall). Upgrading in place prevents app from losing their position in the Dock as a result of the upgrade. (See “[Why do my cask apps lose their Dock position / Launchpad position / permission settings when I run brew upgrade?](https://docs.brew.sh/FAQ#why-do-my-cask-apps-lose-their-dock-position--launchpad-position--permission-settings-when-i-run-brew-upgrade),” Homebrew Documentation » FAQs.)
 
 ## Overview of using this repo to implement the user-scoped settings for a particular user
-### This repository will be cloned to `~/.genomac-user` of the particular user
+### This repository will be cloned to `~/.genomac-user` of each particular user
 
 This public GenoMac-user repo is meant to be cloned locally (using https[^https]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`.
 
