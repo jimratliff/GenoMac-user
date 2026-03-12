@@ -25,6 +25,14 @@ The remainder of this section assumes you’ve already locally cloned the GenoMa
 
 Project GenoMac-user does *not* require regular maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor](#when-to-run-the-hypervisor) for a discussion of what kinds of changes warrant some kind of action on your part.
 
+Contents of quick-reference cheat sheet for occasional maintenance:
+- [Refresh local clone](#refresh-local-clone)
+- [Run the Hypervisor](#run-the-hypervisor)
+- [When to run the Hypervisor](#when-to-run-the-hypervisor)
+  - [If the dotfiles change](#if-the-dotfiles-change)
+  - [If there have been changes to the desired user settings](#if-there-have-been-changes-to-the-desired-user-settings)
+  - [If a particular user has experimentally or inadvertently modified a setting set by GenoMac-user](#if-a-particular-user-has-experimentally-or-inadvertently-modified-a-setting-set-by-genomac-user)
+
 ### Refresh local clone
 Every time you run the Hypervisor, it will check the remote of GenoMac-user on GitHub to determine whether there are changes relative to the local copy and, if so, will pull those down.[^TODO_validate_auto_updating]
 
@@ -66,7 +74,7 @@ At certain points in the process, the Hypervisor will force a logout. When you l
 The very first time the Hypervisor is run for a particular user account, that user’s local settings will be established based on what the Hypervisor believed at that time to be the desired configuration.
 
 In normal operation, then, there’s no reason to rerun the Hypervisor unless something changes. The below discusses what kind of changes would warrant rerunning the Hypervisor.
-#### If the dotfiles change…
+#### If the dotfiles change
 If you make changes to the dotfiles stored in `GenoMac-user/stow_directory`, whether or not to re-run the Hypervisor depends on whether (a) only the contents of existing dotfiles have changed or (b) there’s a change in the *structure* of the dotfiles.
 ##### If only the *contents* of one or more *existing* dotfiles change
 If the only changes to your dotfiles are the *contents* of one or more *existing* dotfiles, it’s sufficient to (a) refresh the local repo (see [Refresh local clone](#refresh-local-clone)), which will update the dotfiles on local disk, and (b) log out of the user account and log back in.
