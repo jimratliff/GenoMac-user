@@ -235,7 +235,8 @@ Nevertheless, the Hypervisor distinguishes between (a) operations that are perf
 
 ##### Operations that do *not* run every time Hypervisor is run
 There are two buckets of operations that do *not* run everytime Hypervisor is run:
-- Purely bootstrap operations (see
+- Purely bootstrap operations. These don’t even make sense being run more than once (unless there has been an exceptional change)
+- Operations that are costly because they require user interaction. The settings that these interaction-requiring operations implement are in principle no different from non-interactive idempotent settings (such as those implemented via `defaults write`). There would be harm (in the sense of not damaging the configuration) to run them repeatedly, but because they’re costly to run the costs outweight the benefits.
 
 
 For each user:
