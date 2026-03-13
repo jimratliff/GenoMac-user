@@ -149,7 +149,6 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
 
 ## Overview of using this repo to implement the user-scoped settings for a particular user
 ### This repository will be cloned to `~/.genomac-user` of each particular user
-
 This public GenoMac-user repo is meant to be cloned locally (using https[^https]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`.
 
 [^https]: After having cloned the repository via https, GitHub will not let you edit the repo from the CLI (but will from the browser, when logged into your GitHub account). In order to edit
@@ -157,7 +156,7 @@ the repo from the CLI, you would need to change the repo from https to SSH, whic
 `just dev-configure-remote-for-https-fetch-and-ssh-push`.
 
 ### Once you clone the GenoMac-user repo, the Hypervisor takes over
-There are many scripts and other resources involved in GenoMac-user. But, from the perspective of the user configuring their account, there is a single overarching entity: the Hypervisor, which oversees all the steps of the process.
+There are many scripts and other resources involved in GenoMac-user. But, from the perspective of the user configuring their account, there is a single overarching entity: the Hypervisor, which oversees all the remaining steps of the process.
 
 The Hypervisor becomes available as soon as GenoMac-user is locally cloned.
 
@@ -173,7 +172,27 @@ This repository is intended to be used with [GNU Stow](https://www.gnu.org/softw
 
 The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by package, e.g., git, ssh, zsh, etc. For example, famous examples of dotfiles are `.zshrc` (for Zshell) and Git’s `config` files.
 
-A dotfile is also used to provide settings for [BetterTouchTool](https://folivora.ai/) to all users and Macs.[^POINTING_BTT_TO_DOTFILE]
+Note, in particular, the following non-exhaustive list of particular settings scattered among the dotfiles:
+- 1Password
+  - `stow_directory/1password/.config/1Password/ssh/agent.toml` specifies that the keys only from the 'Dev' vault are accessible to the 1Password SSH Agent
+- BetterTouchTool
+  - `stow_directory/BetterTouchTool/.config/BetterTouchTool/Default_preset.json` provides settings for [BetterTouchTool](https://folivora.ai/) to all users and Macs.[^POINTING_BTT_TO_DOTFILE]
+- Git
+  - `stow_directory/git/.config/git/git_ignore_global` specifies a default, global .gitignore file
+  - `stow_directory/git/.config/git/config`
+    - This file is where your name and email for commits should be entered
+    - Specifies `rebase = true`, `autostash = true`, and `editor = bbedit`
+- Homebrew
+  - `stow_directory/homebrew/.config/homebrew/brew.env` specifies that Homebrew should install apps so that they will not be quarantined on first use (`HOMEBREW_CASK_OPTS=--no-quarantine`)
+- Starship
+  - `stow_directory/starship/.config/starship.toml` defines a highly opinionated, two-line shell prompt. It relies on a Nerd Font being installed, which is satisfied by GenoMac-system
+- Zed
+  - `stow_directory/zed/.config/zed/settings.json` provides the settings for the Zed editor
+- zsh
+  - `stow_directory/zsh/.config/zsh/.zshenv` defines `XDG_CONFIG_HOME` to be `~/.config`. Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
+  - `stow_directory/zsh/.config/zsh/.zsh_aliases` defines numerous *aliases*, many of which depend on particular programmed that were installed by GenoMac-system. For example, `alias ls="eza"` and `alias cat="bat"`.
+
+
 
 [^POINTING_BTT_TO_DOTFILE]: BetterTouchTool must be instructed, by a `defaults write` command, to refer to that dotfile to obtain its settings. See [Andreas Hegenberg’s answer](https://community.folivora.ai/t/syncing-the-config-in-git/34840) to “Syncing the config in Git.” This instruction is taken care of by the Hypervisor; see `scripts/settings/set_bettertouchtool_settings.sh`.
 
