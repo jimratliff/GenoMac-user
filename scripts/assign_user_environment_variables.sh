@@ -16,6 +16,10 @@
 # Defined in GenoMac-shared/scripts/assign_common_environment_variables.sh
 # GENOMAC_USER_LOCAL_DIRECTORY="$HOME/.genomac-user"
 
+# The GenoMac-user auxiliary directory lives outside the cloned repo to provide a home
+# for files that should not show up as uncommitted changes to GenoMac-user itself
+GENOMAC_USER_AUXILIARY_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}-auxiliary"
+
 ############### ~/.genomac-user/resources
 # Local directory that holds resources (files or folders) needed for particular
 # operations by GenoMac-user, typically personalized resources that are not shell scripts
@@ -94,6 +98,7 @@ report_action_taken "Exporting environment variables specific to GenoMac-user."
 
 export_and_report COMMAND_CHAR
 export_and_report CONTROL_CHAR
+export_and_report GENOMAC_USER_AUXILIARY_DIRECTORY
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH
