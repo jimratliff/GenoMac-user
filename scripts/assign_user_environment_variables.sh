@@ -56,10 +56,23 @@ GMU_STOW_DIR="${GENOMAC_USER_LOCAL_DIRECTORY}/stow_directory"
 #                  Aliases to directories OUTSIDE of the local repo clone
 #
 
+# ~/.config/genomac-user
+GENOMAC_USER_CONFIG="${XDG_CONFIG_HOME}/genomac-user"
+
+# ~/.config/genomac-user/git/gitconfig-personal
+# Holds user-specific overrides to the git/config managed by GNU Stow at:
+# stow_directory/git/.config/git/config
+GENOMAC_USER_GITCONFIG_OVERRIDE="${GENOMAC_USER_CONFIG}/git/gitconfig-personal"
+
 # ~/.genomac-user-auxiliary
 # The GenoMac-user auxiliary directory lives outside the cloned repo to provide a home
 # for files that should not show up as uncommitted changes to GenoMac-user itself
 GENOMAC_USER_AUXILIARY_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}-auxiliary"
+
+# ~/.genomac-user-auxiliary/gitconfig
+# The GenoMac-user auxiliary directory lives outside the cloned repo to provide a home
+# for files that should not show up as uncommitted changes to GenoMac-user itself
+#GENOMAC_USER_AUXILIARY_DIRECTORY="${GENOMAC_USER_AUXILIARY_DIRECTORY}/gitconfig"
 
 # ~/.genomac-detective
 # Specify the local directory into which the diff results of defaults_detective
@@ -115,10 +128,12 @@ report_action_taken "Exporting environment variables specific to GenoMac-user."
 
 export_and_report COMMAND_CHAR
 export_and_report CONTROL_CHAR
-export_and_report GENOMAC_USER_AUXILIARY_DIRECTORY
+# export_and_report GENOMAC_USER_AUXILIARY_DIRECTORY
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECTORY
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH
+export_and_report GENOMAC_USER_CONFIG
+export_and_report GENOMAC_USER_GITCONFIG_OVERRIDE
 export_and_report GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY
 export_and_report GMU_DOCS_TO_DISPLAY
 export_and_report GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS
