@@ -214,18 +214,28 @@ Some apps require additional steps to authorize the user to execute the app. The
 
 One way or another, the Hypervisor has you covered, whether (a) programmatically installing license files or (b) interactively walking you through the required process to authorize your use of the app.
 
-### GenoMac-user distinguishes settings (a) between purely bootstrap vis-à-vis idempotent and (b) run only once (PERM) vis-à-vis run everytime the Hypervisor is run (SESH)
+### GenoMac-user distinguishes settings between (a) purely bootstrap vis-à-vis idempotent and (b) normally run only once (PERM) vis-à-vis run everytime the Hypervisor is run (SESH)
 
-A purely bootstrap operation is one that is intended to be performed typically only once per user or perhaps performed again only under exceptional circumstances (e.g., a change in desired settings or an external change in macOS or in third-party software). Examples:
+GenoMac-user’s Hypervisor is intended to run a first time to initialize the configuration of a user’s account directory. It can then be run “as needed.”
+
+#### Purely bootstrap vis-à-vis idempotent, maintenance settings
+A purely bootstrap operation is one that makes sense being done only once, as a startup configuration setup. Examples:
 - cloning this repo to the user’s local home directory
 - implementing settings that provide a starting point for the user, from which the user is free to add or subtract without fear that those subsequent changes would be overridden by a later maintenance step.
   - For example, establishing the initial toolbar configuration for Preview.app. Initially, the toolbar configuration is created to contain certain elements and exclude certain elements. The user can add or subtract to those (or rearrange the order in which they appear on the toolbar) with the understanding that this script won’t be re-run for that user. (If the script *were* re-run, it could undo some/all of the changes the user made.
 
-More typical is an idempotent operation that is both bootstrap and ongoing maintenance. This characterizes most of the activities of this repo. Sucn an operation establishes a setting the first time the script is run for the user (acting as a bootstrap operation) but the same script also enforces that setting on subsequent maintenance runs.
+A maintenance operation is an idempotent operation that—in addition to a bootstrapping role to establish an initial configuration—is intended to *enforce* a setting over time.
 
-### The justfile is the user’s interface with the functionality of this repo
+Most of the operations in GenoMac-user are bootstrap operations, but not purely so, because they are also maintenance operations. Sucn an operation establishes a setting the first time the script is run for the user (acting as a bootstrap operation) but the same script also enforces that setting on subsequent maintenance runs.
 
-The `justfile` provides the interface for the user to effect the functionalities of this repo, such as commanding the execution of “the Hypervisor” that oversees the operation of the user-level settings or refreshing the local copy of the repository.
+#### Operations (a) normally run only once (PERM) vis-à-vis (b) run everytime Hypervisor is run (SESH)
+Project GenoMac-user does *not* require regular maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor](#when-to-run-the-hypervisor) for a discussion of what kinds of changes warrant some kind of action on your part.
+
+Nevertheless, the Hypervisor distinguishes between (a) operations that are performed typically *only once* vis-à-vis (b) operations that are performed *every time the Hypervisor is run*.
+
+##### Operations that do *not* run every time Hypervisor is run
+There are two buckets of operations that do *not* run everytime Hypervisor is run:
+- Purely bootstrap operations (see
 
 
 For each user:
