@@ -16,10 +16,6 @@
 # Defined in GenoMac-shared/scripts/assign_common_environment_variables.sh
 # GENOMAC_USER_LOCAL_DIRECTORY="$HOME/.genomac-user"
 
-# The GenoMac-user auxiliary directory lives outside the cloned repo to provide a home
-# for files that should not show up as uncommitted changes to GenoMac-user itself
-GENOMAC_USER_AUXILIARY_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}-auxiliary"
-
 ############### ~/.genomac-user/resources
 # Local directory that holds resources (files or folders) needed for particular
 # operations by GenoMac-user, typically personalized resources that are not shell scripts
@@ -45,26 +41,27 @@ GMU_INSTALLATION_SCRIPTS="${GMU_SCRIPTS}/installations"
 # ~/.genomac-user/scripts/settings
 GMU_SETTINGS_SCRIPTS="${GMU_SCRIPTS}/settings"
 
-############### ~/.genomac-user/utilities
-# Holds narrow-focused scripts to be individually accessed by make recipes
-GMU_UTILITIES="${GENOMAC_USER_LOCAL_DIRECTORY}/utilities"
+# ~/.genomac-user/scripts/utilities
+# Holds narrowly focused scripts to be individually accessed by make recipes
+GMU_UTILITY_SCRIPTS="${GMU_SCRIPTS}/utilities"
 
-##############################
-
-# Establish symbolic names for modifier keys
-SHIFT_CHAR=$'\u21e7'     # ⇧
-CONTROL_CHAR=$'\u2303'   # ⌃  
-OPTION_CHAR=$'\u2325'    # ⌥
-COMMAND_CHAR=$'\u2318'   # ⌘
-META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
-MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
-
+############### ~/.genomac-user/stow_directory
 # Specify the local directory that is the “stow directory” that GNU Stow uses as
 # both (a) the raw dotfiles representing various configurations and (b) the
 # structural template defining where each symlink should reside in the user’s
 # $HOME directory.
 GMU_STOW_DIR="${GENOMAC_USER_LOCAL_DIRECTORY}/stow_directory"
 
+#############################################
+#                  Aliases to directories OUTSIDE of the local repo clone
+#
+
+# ~/.genomac-user-auxiliary
+# The GenoMac-user auxiliary directory lives outside the cloned repo to provide a home
+# for files that should not show up as uncommitted changes to GenoMac-user itself
+GENOMAC_USER_AUXILIARY_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}-auxiliary"
+
+# ~/.genomac-detective
 # Specify the local directory into which the diff results of defaults_detective
 # investigations will be saved.
 GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS="$HOME/genomac-detective"
@@ -72,7 +69,10 @@ GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS="$HOME/genomac-detective"
 # Specify the local directory in which preferences and other files shared across users are stored
 # These may contain secrets, so this directory is NOT within a repo
 # E.g., this would be within each user’s Dropbox directory.
+# HINT: LOCAL_DROPBOX_DIRECTORY="$HOME/Library/CloudStorage/Dropbox"
 GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Preferences_common"
+
+############### Destinations within the user’s home directory
 
 # Specify the file name of the BetterTouchTool (BTT) preset to be auto-loaded at BTT startup
 #
@@ -86,12 +86,28 @@ USER_PREFPANE_DIRECTORY="$HOME/Library/PreferencePanes"
 WITCH_PREFPANE_NAME="Witch.prefPane"
 WITCH_PATH_TO_USER_PREFPANE="${USER_PREFPANE_DIRECTORY}/${WITCH_PREFPANE_NAME}"
 
-# Environment variables to support the Hypervisor
+############### Environment variables to support the Hypervisor
+#
+# TODO: This needs to be revisited, because (a) name of GMU_HYPERVISOR_MAKE_COMMAND_STRING includes "make",
+#       (b) GenoMac-system can’t use `just` until after Homebrew does initial installations
 GMU_HYPERVISOR_MAKE_COMMAND_STRING="just run-hypervisor"
 GMU_HYPERVISOR_HOW_TO_RESTART_STRING="To get back into the groove at any time, just re-execute ${GMU_HYPERVISOR_MAKE_COMMAND_STRING}${NEWLINE}and we’ll pick up where we left off."
 
 # Environment variable specifies the packages for which dotfiles will be stowed.
 GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES=("1password" "BetterTouchTool" "git" "homebrew" "ssh" "starship" "stow" "zed" "zsh")
+
+# Establish symbolic names for modifier keys
+SHIFT_CHAR=$'\u21e7'     # ⇧
+CONTROL_CHAR=$'\u2303'   # ⌃  
+OPTION_CHAR=$'\u2325'    # ⌥
+COMMAND_CHAR=$'\u2318'   # ⌘
+META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
+MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
+
+############### System-domain states that must be accessible to users (and aren’t used by GenoMac-system)
+# System-domain states that must be accessible by users
+PERM_DEFAULT_GIT_USER_NAME="PERM_default_git_user_name"
+PERM_DEFAULT_GIT_USER_EMAIL="PERM_default_git_user_email"
 
 # Export environment variables to be available in all subsequent shells
 report_action_taken "Exporting environment variables specific to GenoMac-user."
@@ -114,10 +130,12 @@ export_and_report GMU_INSTALLATION_SCRIPTS
 export_and_report GMU_RESOURCES
 export_and_report GMU_SCRIPTS
 export_and_report GMU_SETTINGS_SCRIPTS
-export_and_report GMU_UTILITIES
+export_and_report GMU_UTILITY_SCRIPTS
 export_and_report META_MODIFIER_CHARS
 export_and_report MODIFIERS_KEYBOARD_NAVIGATION
 export_and_report OPTION_CHAR
+export_and_report PERM_DEFAULT_GIT_USER_EMAIL
+export_and_report PERM_DEFAULT_GIT_USER_NAME
 export_and_report SHIFT_CHAR
 export_and_report USER_PREFPANE_DIRECTORY
 export_and_report WITCH_PATH_TO_USER_PREFPANE
