@@ -106,6 +106,7 @@ MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 
 ############### System-domain states that must be accessible to users (and aren’t used by GenoMac-system)
 # System-domain states that must be accessible by users
+# Each of these PERM states is extraordinary in that its file’s *content* is significant.
 PERM_DEFAULT_GIT_USER_NAME="PERM_default_git_user_name"
 PERM_DEFAULT_GIT_USER_EMAIL="PERM_default_git_user_email"
 
