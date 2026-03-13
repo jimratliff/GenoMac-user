@@ -214,7 +214,7 @@ Some apps require additional steps to authorize the user to execute the app. The
 
 One way or another, the Hypervisor has you covered, whether (a) programmatically installing license files or (b) interactively walking you through the required process to authorize your use of the app.
 
-### GenoMac-user distinguishes settings between (a) purely bootstrap vis-à-vis idempotent and (b) normally performed only once (PERM) vis-à-vis performed every complete run of Hypervisor (SESH)
+### Settings are distinguished on two dimensions: between (a) purely bootstrap vis-à-vis idempotent and (b) normally performed only once (PERM) vis-à-vis performed every complete run of Hypervisor (SESH)
 
 GenoMac-user’s Hypervisor is intended to run completely a first time to initialize the configuration of a user’s account directory. It can then be rerun completely at later times *only as needed*.
 
@@ -249,32 +249,10 @@ Every other operation (i.e., neither interactive nor purely bootstrap) is run ev
 
 These operations are associated with SESH states. Every time Hypervisor finishes a complete run successfully, all SESH states are deleted. As a result, the next time Hypervisor is run, all of these steps will be performed.
 
-For each user:
-- In Safari, access a pre-defined Google Doc to establish a real-time textual connection to other devices to be used as/if needed for real-time exchange of text, error messages, etc.
-  - USER_CONFIGURER will already have performed this step as a result of using the repository GenoMac-system.  
-- Clone this repo to the user’s home directory in `~/.genomac-user`
-- Repeatedly run “the Hypervisor,” which is a script that oversees the execution of the many steps involved in configuring the user’s account.
-  - I say repeatedly because the Hypervisor will at various points force/urge the user to logout and log back into the user’s account. After logging back in, the user will once again launch the Hypervisor. The Hypervisor maintains state to know what steps have been completed and which step is the next one to perform.
- 
-The steps performed/managed by the Hypervisor include:
-- “Stow”-ing the user’s dotfiles, which provides configuration for some software (e.g., Git, Zshell, Homebrew, SSH, BetterTouchTool, 1Password’s SSH agent, the Starship terminal prompt, and the Zed editor)
-- Setting preferences for the overall macOS interface, some Apple apps (e.g., Safari), and approximately 20 third-party GUI apps.
-- Integrating 1Password’s SSH agent with SSH, allowing the user to authenticate with GitHub via the terminal
-- Connect to Dropbox for selective file syncing
-  - In particular, the user selectively syncs with a particular Dropbox directory containing shared preferences and/or proof of license for certain apps, e.g., BetterTouchTool, Keyboard Maestro, and Witch.
-- Microsoft Word: install a preconfigured Normal.dotm file and implement preferences using a VBA macro
-
-While the vast majority of the settings specified by GenoMac-user are implemented entirely via automated scripting, not all steps can be entirely automated. For example:
-- Generally, any app that requires signing into an account (e.g., 1Password, Text Expander, Microsoft Word) requires manual intervention by the user
-- Some apps require special macOS-level permissions (e.g., Full Disk Access, Accessibility permissions). Apple does not permit these settings to be performed by scripting.
-- 1Password: Presumably out of a heightened concern for security, 1Password erects obstacles preventing setting its preferences by scripting. These preferences need to be set manually.
-- Configuring certain extensions for the Waterfox browsers requires some manual steps.
-
-Even though the Hypervisor can’t fully automate these operations, the Hypervisor *does* cue you to perform each one, walking you through each of the manual steps, both by (a) launching the relevant app, System Settings panel, or folder and (b) popping up (in a QuickLook window) detailed written instructions to follow for each operation.
-
 ## Step-by-step implementation (for a particular user)
 - [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
 - [Cloning this repo](#cloning-this-repo)
+- [Repeatedly run the Hypervisor until it completes](#----------)
 - [“Stow” the dotfiles](#stow-the-dotfiles)
 - [Implement the initial set of macOS-related settings](#implement-the-initial-set-of-macos-related-settings)
 - [Run certain one-time-only bootstrapping operations](#run-certain-one-time-only-bootstrapping-operations)
@@ -297,7 +275,7 @@ Open a Google Docs document to be used as/if needed for real-time exchange of te
 
 For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`. 
 
-Launch Terminal. Then copy the following code block and paste into Terminal:
+Launch Terminal. Then copy the following code block and paste into iTerm:
 ```shell
 mkdir -p ~/.genomac-user
 cd ~/.genomac-user
@@ -308,7 +286,7 @@ git clone --recurse-submodules https://github.com/jimratliff/GenoMac-user.git .
 (The `--recurse-submodules` flag exists because this repo has a submodule ([GenoMac-shared](https://github.com/jimratliff/GenoMac-shared)). The `--recurse-submodules` ensures that the submodule’s code is also cloned, not just a pointer to it.)
 
 ### Running the Hypervisor
-The Hypervisor is a scripting function that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
+The Hypervisor is a scripting function that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
 
 The Hypervisor is run by:
 ```
@@ -323,163 +301,9 @@ The Hypervisor produces a *lot* of output, typically many screenfulls. If an imp
 ✅ No GenoMac warnings or failures detected in this run.
 ```
 
-By compiling any warnings and repeating them at the end, you’re relieved of the necessity of wading through all of the output to look for anomalies.
+By collecting any warnings and repeating them at the end, you’re relieved of the necessity of wading through all of the output to look for anomalies.
 
 Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against silent failures that you wouldn’t notice.
-
-### “Stow” the dotfiles
-The following `make` command runs the script `stow_dotfiles.sh`. This script “stows” the dotfiles found in `stow_directory` as symlinks in $HOME (or subdirectories of $HOME).
-
-Launch Terminal. Then copy the following code block and paste into Terminal:
-
-```shell
-cd ~/.genomac-user
-make stow-dotfiles
-```
-
-<div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>
-
-The dotfile [.zshenv](https://github.com/jimratliff/GenoMac-user/blob/main/stow_directory/zsh/.config/zsh/.zshenv) defines:
-- `XDG_CONFIG_HOME` to be `~/.config`. Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
-- several environment variables that determine where Zsh-related dotfiles live:
-  - Zsh configuration files (`ZDOTDIR`): `~/.config/zsh`
-  - Zsh history (`HISTFILE`): `~/.local/.state/history`
-  - Zsh sessions (`XDG_ZSH_SESSIONS_DIR`): `~/.local/.state/sessions`
-
-More specifically, `stow_dotfiles.sh` relies on a list of packages enumerated in the environment variable `GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES`. It iterates through each of those packages and, for each package, stows the dotfiles associated with that package.
-
-Thus, to add the dotfiles for a new package, it is *not* sufficient to add those dotfiles to a new package in `stow_directory` (though this is necessary)! In addition, the name of the package must be added to the space-separated `GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES` in `scripts/assign_user_environment_variables.sh`.
-
-### Implement the initial set of macOS-related settings
-The next step is to implement settings that aren’t captured by the above dotfiles such as many macOS settings or settings of the built-in GUI apps that come automatically on every Mac.
-
-```shell
-cd ~/.genomac-user
-make initial-prefs
-```
-Note: This will produce *pages* of terminal output.
-
-<div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>
-
-### Run certain one-time-only bootstrapping operations
-This next step is intended to be executed *only one time per user*. It implements:
-- a default configuration of apps in the Dock
-- default toolbar configuration for each of Finder and Preview
-- register QuickLook plugins[^QL]
-
-[^QL]: It’s possible, but I’m not sure, that a QuickLook plugins needs to be registered only once *per Mac* rather than once per user.
-
-The user is then free to adjust that configuration with no concern that a maintenance/enforcement script will come around and clobber those toolbar changes.
-
-Launch Terminal. Then copy the following code block and paste into Terminal:
-
-```shell
-cd ~/.genomac-user
-make bootstrap-user
-```
-
-It may appear at first that the toolbar changes have not taken effect. It sometimes, mysteriously, takes a few logout/login cycles for the changes to be reflected.
-
-<div align="center"><strong>You will be automatically logged out. Please then log back into this account to continue the configuration.</strong></div>.
-
-This is meant primarily to be a bootstrap step, but it would need to be repeated (or revisited) if there were changes to the Dock/toolbar and/or additional QL plugins. Possibly a migration script would instead be run (to avoid overwriting user customizations).
-
-Note: At this point in development, it is unclear whether, for each bootstrapping operation, that operation needs to be performed (a) before or (b) after [§ Implement the initial set of macOS-related settings](#implement-the-initial-set-of-macos-related-settings). 
-
-### Configure 1Password for authentication with GitHub
-Note:
-- The GenoMac-system repo will have installed both 1Password (the GUI app) and 1Password-CLI
-- The current repo (GenoMac-user) will previously have deployed dotfiles necessary for the integration of 1Password with GitHub authentication.
-
-#### Log into your 1Password account.
-Launch 1Password and/or make it active.
-
-Log into my 1Password account. The best way to do this is:
-- When you launch the desktop 1Password app for the first time, it will prominently display a "Sign in" button. Click that. It will display a sign-in dialog box, including a QR code you can use to make the sign-in process quicker.
-- Get your iPhone.
-  - Launch 1Password on iPhone
-  - From the 1Password logo in the upper-left corner of the 1Password app on iPhone, select “Scan QR Code…”
-  - Follow the instructions
-
-#### Adjust settings of 1Password
-Make 1Password active.
-
-##### Make 1Password persistent
-(Note: The two checkboxes below may indeed be turned on by default, as desired.)
-
-In the 1Password app, turn on two checkboxes to ensure that 1Password’s SSH Agent will be live even if the 1Password app itself is closed.
-- 1Password » Settings » General
-  - ✅ Keep 1Password in the menu bar
-  - ✅ Start 1Password at login
- 
-##### Enable 1Password SSH Agent
-Again in the 1Password app:
-- 1Password » Settings » Developer:
-  - Click on "Setup SSH Agent"
-    - SSH Agent
-      - ✅ Use the SSH Agent
-      - You will see a dialog box “Allow 1Password to save SSH key names to disk?”
-      - Click the default “Use Key Names” button
-    - Advanced
-      - Remember key approval: **until 1Password quits**
-      - Do **not** check “Generate SSH config file with bookmarked hosts”
-  - Command-Line Interface (CLI)
-    - ✅ Integrate with 1Password CLI
-      - I don’t know much about this, but it seems like a good idea.
-      - (“Use the desktop app to sign in to 1Password in the terminal.”)
-
-#### Test the SSH connection with GitHub
-```shell
-cd ~/.genomac-user
-make verify-ssh-agent
-```
-
-You will see:
-```
-🪚 Testing SSH auth with: ssh -T git@github.com
-The authenticity of host 'github.com (140.82.116.4)' can't be established.
-ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-```
-Type yes. Then 1Password will present a dialog allowing you to authorize.
-
-If successful, you will see:
-```
-🪚 Testing SSH auth with: ssh -T git@github.com
-✅ SSH authentication with GitHub succeeded
-Verified: SSH agent is working
-```
-
-### Connect to the user’s Dropbox account and configure apps that rely on Dropbox
-#### Connect to the user’s Dropbox account
-- Launch Dropbox
-- A splash dialog will invite you to “Sign in with Dropbox”
-- Accept the invitation ⇒ A browser window opens: “API Request Authorization - Dropbox”
-- A separate dialog asks you to “Turn on accessibility”
-  - Follow the instructions to do so: Settings » Accessibility » ✅ Dropbox
-- Selectively sync at least:
-  - `~/path/to/Dropbox/Preferences_common`
- 
-#### After Dropbox full syncs `Preferences_common`, execute make command
-The following step can be performed only after `~/path/to/Dropbox/Preferences_common` has completely synced with Dropbox:
-```shell
-cd ~/.genomac-user
-make after-dropbox-syncs-common-prefs
-```
-
-This command:
-- Keyboard Maestro: enables macro syncing
-- BetterTouchTool: installs license file
- 
-### Set apps that will launch automatically when the user logs in
-```shell
-cd ~/.genomac-user
-make apps-that-launch-on-login
-```
-
-## Remaining configuration steps that have not been (cannot be) automated
-See the Google Docs document “[Project GenoMac: Post-automation steps](https://docs.google.com/document/d/1jKJpWnCBFcT24MGbaeMq90fbnus2rMHIVlRejkfI9aw/edit?usp=sharing)” (in my standard Google account).
  
 ## TODOs
 - Keyboard-navigation hotkeys ⇧⌥⌘F2 – ⇧⌥⌘F7 need to be tested
