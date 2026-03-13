@@ -186,7 +186,7 @@ Some apps, such as Alfred and Keyboard Maestro, are assumed to sync their prefer
 
 [^SHARED_PREFS_ENV_VAR]: The location/name of the shared Dropbox directory can be changed. It is governed by the environment variable `GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY`, which is set in `scripts/assign_user_environment_variables.sh`.
 
-### This repo establishes/adjusts numerous user-level settings
+### This repo establishes/adjusts numerous user-level settings using a variety of techniques
 This repo supplies scripts that execute various commands to establish various user settings for macOS generally and for certain apps in particular.
 
 For many/most of the macOS settings and for many/most of the GUI apps, these scripts use macOS `defaults write` or `PlistBuddy` commands to set preferences using macOS `defaults` system.[^find_defaults]
