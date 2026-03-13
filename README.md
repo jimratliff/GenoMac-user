@@ -216,13 +216,14 @@ One way or another, the Hypervisor has you covered, whether (a) programmatically
 
 ### GenoMac-user distinguishes settings between (a) purely bootstrap vis-à-vis idempotent and (b) normally run only once (PERM) vis-à-vis run everytime the Hypervisor is run (SESH)
 
-GenoMac-user’s Hypervisor is intended to run a first time to initialize the configuration of a user’s account directory. It can then be run “as needed.”
+GenoMac-user’s Hypervisor is intended to run a first time to initialize the configuration of a user’s account directory. It can then be run *as needed.*
 
 #### Purely bootstrap vis-à-vis idempotent, maintenance settings
 A purely bootstrap operation is one that makes sense being done only once, as a startup configuration setup. Examples:
 - cloning this repo to the user’s local home directory
 - implementing settings that provide a starting point for the user, from which the user is free to add or subtract without fear that those subsequent changes would be overridden by a later maintenance step.
-  - For example, establishing the initial toolbar configuration for Preview.app. Initially, the toolbar configuration is created to contain certain elements and exclude certain elements. The user can add or subtract to those (or rearrange the order in which they appear on the toolbar) with the understanding that this script won’t be re-run for that user. (If the script *were* re-run, it could undo some/all of the changes the user made.
+  - For example, establishing the initial toolbar configuration for Preview.app. Initially, the toolbar configuration is created to contain certain elements and exclude certain elements. The user can add or subtract to those (or rearrange the order in which they appear on the toolbar) with the understanding that this script won’t be re-run for that user. (If the script *were* re-run, it could undo some/all of the changes the user made.)
+  - Other examples of bootstrap operations: setting the initial Dock configuration; setting the initial toolbar configurations for Finder; creating additional Mission Control Spaces.
 
 A maintenance operation is an idempotent operation that—in addition to a bootstrapping role to establish an initial configuration—is intended to *enforce* a setting over time.
 
@@ -236,7 +237,11 @@ Nevertheless, the Hypervisor distinguishes between (a) operations that are perf
 ##### Operations that do *not* run every time Hypervisor is run
 There are two buckets of operations that do *not* run everytime Hypervisor is run:
 - Purely bootstrap operations. These don’t even make sense being run more than once (unless there has been an exceptional change)
-- Operations that are costly because they require user interaction. The settings that these interaction-requiring operations implement are in principle no different from non-interactive idempotent settings (such as those implemented via `defaults write`). There would be harm (in the sense of not damaging the configuration) to run them repeatedly, but because they’re costly to run the costs outweight the benefits.
+- Operations that are costly because they require user interaction. The settings that these interaction-requiring operations implement are in principle no different from non-interactive idempotent settings (such as those implemented via `defaults write`). There would be no harm (in the sense of not damaging the configuration) to run them repeatedly, but because they’re costly to run the costs outweight the benefits.
+
+**TODO** (a) Add discussion in the Developer section about states. (b) Add reference here to that discussion.
+
+These typically one-time-only operations (whether because bootstrap, interactive, or both) are associated with PERM states: Each time Hypervisor is run, it checks whether the relevant PERM state has been set. If not, it implements the setting and sets the PERM state, so that the setting won’t (typically) be implemented again.
 
 
 For each user:
