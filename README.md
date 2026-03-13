@@ -192,7 +192,7 @@ Note, in particular, the following non-exhaustive list of particular settings sc
   - `stow_directory/zsh/.config/zsh/.zshenv` defines `XDG_CONFIG_HOME` to be `~/.config`. Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
   - `stow_directory/zsh/.config/zsh/.zsh_aliases` defines numerous *aliases*, many of which depend on particular programmed that were installed by GenoMac-system. For example, `alias ls="eza"` and `alias cat="bat"`.
 
-
+############### WIP, RETURN HERE. TODO ###############
 
 [^POINTING_BTT_TO_DOTFILE]: BetterTouchTool must be instructed, by a `defaults write` command, to refer to that dotfile to obtain its settings. See [Andreas Hegenberg’s answer](https://community.folivora.ai/t/syncing-the-config-in-git/34840) to “Syncing the config in Git.” This instruction is taken care of by the Hypervisor; see `scripts/settings/set_bettertouchtool_settings.sh`.
 
