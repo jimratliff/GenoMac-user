@@ -40,7 +40,7 @@ function set_git_config_user() {
   local user_name
   user_name="$(interactive_get_git_user_field_value\
                "name"\
-			   "${PERM_DEFAULT_GIT_USER_EMAIL}")"
+			   "${PERM_DEFAULT_GIT_USER_NAME}")"
 
   local email_address
   email_address="$(interactive_get_git_user_field_value\
