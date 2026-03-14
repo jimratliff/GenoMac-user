@@ -23,16 +23,30 @@ function conditionally_interactive_ask_initial_questions() {
     "$PERM_WATERFOX_EXTENSION_YOUTUBE_WANTS_TO_CONFIGURE"
 
   conditionally_ask_question_and_assign_user_state_if_yes \
+    "$PERM_Q_ASKED_WANT_DROPBOX" \
+    "Skipping asking about using Dropbox, because already answered." \
+    "Will this user sync preferences via Dropbox?" \
+    "$PERM_DROPBOX_USER_WANTS_IT"
+
+###############
+
+  conditionally_ask_question_and_assign_user_state_if_yes \
     "$PERM_Q_ASKED_WANT_SSH_AUTHENTICATE_GITHUB_USING_1PASSWORD" \
     "Skipping asking about using 1Password to authenticate GitHub, because already answered." \
     "Will this user want to SSH authenticate GitHub using 1Password?" \
     "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
 
-  conditionally_ask_question_and_assign_user_state_if_yes \
-    "$PERM_Q_ASKED_WANT_DROPBOX" \
-    "Skipping asking about using Dropbox, because already answered." \
-    "Will this user sync preferences via Dropbox?" \
-    "$PERM_DROPBOX_USER_WANTS_IT"
+  if test_genomac_user_state "PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
+    set_genomac_user_state "$PERM_USER_WANTS_TO_COMMIT_ON_GITHUB"
+  else
+    conditionally_ask_question_and_assign_user_state_if_yes \
+      "$PERM_Q_ASKED_WANT_TO_COMMIT_ON_GITHUB" \
+      "Skipping asking about wanting to commit GitHub, because already answered." \
+      "Will this user want to make commits on GitHub" \
+      "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
+  fi
+
+###############
 
   conditionally_ask_question_and_assign_user_state_if_yes \
     "$PERM_Q_ASKED_WANT_MICROSOFT_WORD" \
