@@ -22,6 +22,12 @@
 function conditionally_set_git_config_user() {
   report_start_phase_standard
 
+  if ! test_genomac_user_state "$PERM_USER_WANTS_TO_COMMIT_ON_GITHUB"; then
+    report_action_taken "Skipping creating user’s supplemental git-config, because user doesn’t want to commit on GitHub."
+	report_end_phase_standard
+	return 0
+  fi
+
   run_if_user_has_not_done \
     "$PERM_SUPPLEMENTAL_GIT_CONFIG_HAS_BEEN_SET" \
     set_git_config_user \
