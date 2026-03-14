@@ -55,7 +55,7 @@ function get_default_git_user_field_value() {
   fi
 
   local path_to_state_file
-  path_to_state_file="$(_system_state_file_path "$1")"
+  path_to_state_file="$(_system_state_file_path "${system_state_for_default_value}")"
 
   local field_value
   # Gets first line (head -1) and strips leading/trailing whitespace (xargs)
@@ -116,12 +116,14 @@ function set_default_value_for_git_user_field() {
   local value_for_field=$1
   local system_state_for_default_value=$2
 
-  set_genomac_system_state "${system_state_for_default_value}
+  set_genomac_system_state "${system_state_for_default_value}"
 
-  # TODO: Write $value_for_field to first line of file
+  local path_to_state_file
+  path_to_state_file="$(_system_state_file_path "${system_state_for_default_value}")"
 
+  echo "$value_for_field" > "$path_to_state_file"
 
-
+  report_end_phase_standard
 }
 
 function resolve_git_user_field() {
