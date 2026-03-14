@@ -36,11 +36,13 @@ function subdermis() {
   #     state, then set a dirty flag.
 
   output_hypervisor_welcome_banner "$GENOMAC_SCOPE_USER"
+  
   set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
 
   interactive_ensure_terminal_has_fda
   
   conditionally_interactive_ask_initial_questions
+  conditionally_set_git_config_user
   
   conditionally_stow_dotfiles
   conditionally_perform_basic_user_level_settings
