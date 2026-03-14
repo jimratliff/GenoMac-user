@@ -41,6 +41,9 @@ function set_git_config_user() {
   local user_name
   local email_address
 
+  user_name="$(interactive_get_git_user_field_value "name" "${PERM_DEFAULT_GIT_USER_EMAIL}")"
+  email_address="$(interactive_get_git_user_field_value "name" "${PERM_DEFAULT_GIT_USER_EMAIL}")"
+
   write_gitconfig_personal "${user_name}" "${email_address}"
 
   report_end_phase_standard
@@ -55,7 +58,7 @@ function interactive_get_git_user_field_value() {
   # value the default value.
   #
   # Arguments:
-  # $1: field description is either "user" or "email address"
+  # $1: field description is either "name" or "email address"
   #     (Solely for annotating messages to the user)
   # $2: The system-domain state that would contain the default value for this field, if a
   #     a default value were defined
@@ -64,7 +67,7 @@ function interactive_get_git_user_field_value() {
 
   report_start_phase_standard
   
-  # field description is either "user" or "email address"
+  # field description is either "name" or "email address"
   local field_description=$1
   local system_state_for_default_value=$2
 
