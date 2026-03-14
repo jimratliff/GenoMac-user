@@ -148,7 +148,7 @@ function set_default_value_for_git_user_field() {
   local path_to_state_file
   path_to_state_file="$(_system_state_file_path "${system_state_for_default_value}")"
 
-  sudo echo "$value_for_field" > "$path_to_state_file"
+  echo "$value_for_field" | sudo tee "$path_to_state_file" > /dev/null
 
   report_end_phase_standard
 }
