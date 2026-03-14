@@ -70,6 +70,60 @@ function get_default_git_user_field_value() {
   echo "$field_value"
 }
 
+function interactive_get_git_user_field_value() {
+
+  report_start_phase_standard
+  
+  # field description is either "user" or "email address"
+  local field_description=$1
+  local system_state_for_default_value=$2
+
+  local default_was_set=false
+  local default_value
+  local field_value
+
+  if default_value=$(get_default_git_user_field_value "$system_state_for_default_value"); then
+    default_was_set=true
+  fi
+
+  if $default_was_set; then
+    report "I found this default value for the ${field_description} field for your Git profile: “${default_value}”"
+	if get_yes_no_answer_to_question "Do you accept the default value?"; then
+	  # Returns the default_value as the accepted answer
+	  echo "$default_value"
+	  report_end_phase_standard
+	  return 0
+	fi
+  fi
+
+  # Either no default answer or the default wasn’t accepted
+  field_value=$(get_confirmed_answer_to_question "Enter the ${field_description} for your Git profile")
+
+  # If there was no default value, offer to make the current answer the default for other users
+  # This is the mechanism by which any default answer is set
+  if ! $default_was_set; then
+    if get_yes_no_answer_to_question "Would you like to make this the default value for other users?"; then
+	  set_default_value_for_git_user_field "${field_value}" "${system_state_for_default_value}"
+	fi
+  fi
+
+  echo "${field_value}"
+  
+  report_end_phase_standard
+}
+
+function set_default_value_for_git_user_field() {
+  local value_for_field=$1
+  local system_state_for_default_value=$2
+
+  set_genomac_system_state "${system_state_for_default_value}
+
+  # TODO: Write $value_for_field to first line of file
+
+
+
+}
+
 function resolve_git_user_field() {
   report_start_phase_standard
   local system_state_for_default_value=$1
