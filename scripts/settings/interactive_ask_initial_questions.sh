@@ -28,7 +28,12 @@ function conditionally_interactive_ask_initial_questions() {
     "Will this user sync preferences via Dropbox?" \
     "$PERM_DROPBOX_USER_WANTS_IT"
 
-###############
+  ############### Questions re developing on GitHub
+  #
+  # If user wants to use 1Password to authenticate GitHub, necessarily the user also wants
+  # to make commits on GitHub. Thus, no need to ask that question separately.
+  # Conceivably, though barely, a user could want to make commits on GitHub but doesn’t want
+  # to configure SSH via 1Password.
 
   conditionally_ask_question_and_assign_user_state_if_yes \
     "$PERM_Q_ASKED_WANT_SSH_AUTHENTICATE_GITHUB_USING_1PASSWORD" \
@@ -36,17 +41,14 @@ function conditionally_interactive_ask_initial_questions() {
     "Will this user want to SSH authenticate GitHub using 1Password?" \
     "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
 
-  if test_genomac_user_state "PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
+  if test_genomac_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
     set_genomac_user_state "$PERM_USER_WANTS_TO_COMMIT_ON_GITHUB"
   else
-    conditionally_ask_question_and_assign_user_state_if_yes \
-      "$PERM_Q_ASKED_WANT_TO_COMMIT_ON_GITHUB" \
-      "Skipping asking about wanting to commit GitHub, because already answered." \
-      "Will this user want to make commits on GitHub" \
-      "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
+    set_user_state_based_on_yes_no \
+	  "$PERM_USER_WANTS_TO_COMMIT_ON_GITHUB" \
+	  "Will this user want to make commits on GitHub? (If so, will set name/email for Git config)"
   fi
-
-###############
+  ###############
 
   conditionally_ask_question_and_assign_user_state_if_yes \
     "$PERM_Q_ASKED_WANT_MICROSOFT_WORD" \
