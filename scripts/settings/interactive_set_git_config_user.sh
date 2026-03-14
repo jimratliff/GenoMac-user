@@ -33,9 +33,15 @@ function conditionally_set_git_config_user() {
 function set_git_config_user() {
   # Creates file at GENOMAC_USER_GITCONFIG_OVERRIDE that contains a [user] block that is 
   # [include]-d by stow_directory/git/.config/git/config
+  
   report_start_phase_standard
 
-  
+  report_action_taken "Create supplementary git config file for user’s name and email address"
+
+  local user_name
+  local email_address
+
+  write_gitconfig_personal "${user_name}" "${email_address}"
 
   report_end_phase_standard
 }
@@ -71,6 +77,20 @@ function get_default_git_user_field_value() {
 }
 
 function interactive_get_git_user_field_value() {
+  # Interactively gets the specified Git config user field (either "user" or "email address")
+  # If a default value has previously been defined, gives user the opportunity to accept it.
+  # If no default, or the user doesn’t accept the default, interactively asks user to provide
+  # value.
+  # If there was no default, after the user provides a value, offers user opportunity to make
+  # value the default value.
+  #
+  # Arguments:
+  # $1: field description is either "user" or "email address"
+  #     (Solely for annotating messages to the user)
+  # $2: The system-domain state that would contain the default value for this field, if a
+  #     a default value were defined
+  #     name: PERM_DEFAULT_GIT_USER_NAME
+  #     email address: PERM_DEFAULT_GIT_USER_EMAIL
 
   report_start_phase_standard
   
@@ -127,20 +147,9 @@ function set_default_value_for_git_user_field() {
   report_end_phase_standard
 }
 
-function resolve_git_user_field() {
-  report_start_phase_standard
-  local system_state_for_default_value=$1
-  
-
-  
-
-
-  report_end_phase_standard
-}
-
-function write_gitconfig-personal() {
-  # Writes a file at path $GENOMAC_USER_GITCONFIG_OVERRIDE containing a [user] block that 
-  # overrides that block of the main gitconfig file.
+function write_gitconfig_personal() {
+  # Writes a file at path $GENOMAC_USER_GITCONFIG_OVERRIDE containing a [user] block with 
+  # user’s name and email address that overrides that block of the main gitconfig file.
   # Assumes that the main gitconfig file uses `[include]` to pull in this content.
   # HINT: GENOMAC_USER_GITCONFIG_OVERRIDE: ~/.config/genomac-user/git/gitconfig-personal
 
