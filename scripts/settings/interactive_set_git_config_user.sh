@@ -35,14 +35,17 @@ function set_git_config_user() {
   # [include]-d by stow_directory/git/.config/git/config
   
   report_start_phase_standard
-
-  report_action_taken "Create supplementary git config file for user’s name and email address"
-
+  report_action_taken "Get name and email address for this user’s Git config"
+  
   local user_name
-  local email_address
+  user_name="$(interactive_get_git_user_field_value\
+               "name"\
+			   "${PERM_DEFAULT_GIT_USER_EMAIL}")"
 
-  user_name="$(interactive_get_git_user_field_value "name" "${PERM_DEFAULT_GIT_USER_EMAIL}")"
-  email_address="$(interactive_get_git_user_field_value "name" "${PERM_DEFAULT_GIT_USER_EMAIL}")"
+  local email_address
+  email_address="$(interactive_get_git_user_field_value\
+                   "email address"\
+				   "${PERM_DEFAULT_GIT_USER_EMAIL}")"
 
   write_gitconfig_personal "${user_name}" "${email_address}"
 
@@ -50,16 +53,16 @@ function set_git_config_user() {
 }
 
 function interactive_get_git_user_field_value() {
-  # Interactively gets the specified Git config user field (either "user" or "email address")
+  # Interactively gets the specified Git config user field (either "name" or "email address")
   # If a default value has previously been defined, gives user the opportunity to accept it.
   # If no default, or the user doesn’t accept the default, interactively asks user to provide
   # value.
   # If there was no default, after the user provides a value, offers user opportunity to make
-  # value the default value.
+  # the new value the default value.
   #
   # Arguments:
   # $1: field description is either "name" or "email address"
-  #     (Solely for annotating messages to the user)
+  #     (Solely for annotating messages to the user; doesn’t affect logic of function)
   # $2: The system-domain state that would contain the default value for this field, if a
   #     a default value were defined
   #     name: PERM_DEFAULT_GIT_USER_NAME
