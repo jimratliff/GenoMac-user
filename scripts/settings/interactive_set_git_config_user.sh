@@ -46,36 +46,6 @@ function set_git_config_user() {
   report_end_phase_standard
 }
 
-function get_default_git_user_field_value() {
-  # Get default value, if it exists, stored in first line of system state file in $1.
-  # If the state file does not exist (a normal occurrence) return 1 to communicate it doesn’t exist.
-  # Gets string from first line of the file, stripping leading/trailing whitespace.
-  # Echo that string if nonempty.
-  # If string is empty, return 1
-
-  local system_state_for_default_value=$1
-
-  if ! test_genomac_system_state "${system_state_for_default_value}"; then
-    report "State $1 not present ⇒ No default value found."
-    return 1
-  fi
-
-  local path_to_state_file
-  path_to_state_file="$(_system_state_file_path "${system_state_for_default_value}")"
-
-  local field_value
-  # Gets first line (head -1) and strips leading/trailing whitespace (xargs)
-  field_value=$(head -1 "$path_to_state_file" | xargs)
-
-  if [[ -z "$field_value" ]]; then
-    report_action_taken "State $1 existed but empty.${NEWLINE}Deleting state"
-    delete_genomac_system_state "$1"
-    return 1
-  fi
-
-  echo "$field_value"
-}
-
 function interactive_get_git_user_field_value() {
   # Interactively gets the specified Git config user field (either "user" or "email address")
   # If a default value has previously been defined, gives user the opportunity to accept it.
@@ -130,6 +100,36 @@ function interactive_get_git_user_field_value() {
   echo "${field_value}"
   
   report_end_phase_standard
+}
+
+function get_default_git_user_field_value() {
+  # Get default value, if it exists, stored in first line of system state file in $1.
+  # If the state file does not exist (a normal occurrence) return 1 to communicate it doesn’t exist.
+  # Gets string from first line of the file, stripping leading/trailing whitespace.
+  # Echo that string if nonempty.
+  # If string is empty, return 1
+
+  local system_state_for_default_value=$1
+
+  if ! test_genomac_system_state "${system_state_for_default_value}"; then
+    report "State $1 not present ⇒ No default value found."
+    return 1
+  fi
+
+  local path_to_state_file
+  path_to_state_file="$(_system_state_file_path "${system_state_for_default_value}")"
+
+  local field_value
+  # Gets first line (head -1) and strips leading/trailing whitespace (xargs)
+  field_value=$(head -1 "$path_to_state_file" | xargs)
+
+  if [[ -z "$field_value" ]]; then
+    report_action_taken "State $1 existed but empty.${NEWLINE}Deleting state"
+    delete_genomac_system_state "$1"
+    return 1
+  fi
+
+  echo "$field_value"
 }
 
 function set_default_value_for_git_user_field() {
