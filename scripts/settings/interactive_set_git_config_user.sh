@@ -116,12 +116,13 @@ function set_default_value_for_git_user_field() {
   local value_for_field=$1
   local system_state_for_default_value=$2
 
+  # requires sudo
   set_genomac_system_state "${system_state_for_default_value}"
 
   local path_to_state_file
   path_to_state_file="$(_system_state_file_path "${system_state_for_default_value}")"
 
-  echo "$value_for_field" > "$path_to_state_file"
+  sudo echo "$value_for_field" > "$path_to_state_file"
 
   report_end_phase_standard
 }
@@ -141,6 +142,7 @@ function write_gitconfig-personal() {
   # Writes a file at path $GENOMAC_USER_GITCONFIG_OVERRIDE containing a [user] block that 
   # overrides that block of the main gitconfig file.
   # Assumes that the main gitconfig file uses `[include]` to pull in this content.
+  # HINT: GENOMAC_USER_GITCONFIG_OVERRIDE: ~/.config/genomac-user/git/gitconfig-personal
 
   report_start_phase_standard
 
