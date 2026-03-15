@@ -54,7 +54,7 @@ cd ~/.genomac-user
 just run-hypervisor
 ```
 
-At certain points in the process, the Hypervisor will encourage/prompt the user to logout of the user account. When you log in after the logout, simply start the Hypervisor again (type the following into iTerm: `just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN”:
+At certain points in the process, the Hypervisor will encourage/prompt the user to logout of the user account. When you log in after the logout, simply start the Hypervisor again (type the following into iTerm: `just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN,” signaling completion of the fully Hypervisor cycle:
 ```
  _____  _____  _____  _   _  _
 |_   _||_   _||  ___|| \ | || |
@@ -164,23 +164,23 @@ Then, the Hypervisor can be run, from `~/.genomac-user`, by the single command `
 
 [^WHAT_IS_JUST]: The [just command](https://github.com/casey/just) is a “command runner” or “a handy way to save and run project-specific commands.” It is a modern successor to the [make command](https://man7.org/linux/man-pages/man1/make.1.html).
 
-At certain points in the process, the Hypervisor will encourage/prompt the user to logout of the user account. When you log in after the logout, simply start the Hypervisor again (type the following into iTerm: `just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN”.
+At certain points in the process, the Hypervisor will encourage/prompt the user to logout of the user account. When you log in after the logout, simply start the Hypervisor again (type the following into iTerm: `just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN,” signaling completion of the fully Hypervisor cycle.
 
 ### This repo supplies “dotfiles” that help to configure some of the user’s software
 
 This repository is intended to be used with [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.
 
-The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by package, e.g., git, ssh, zsh, etc. For example, famous examples of dotfiles are `.zshrc` (for Zshell) and Git’s `config` files.
+The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by package, e.g., Git, SSH, zsh, etc.
 
 Note, in particular, the following non-exhaustive list of particular settings scattered among the dotfiles:
 - 1Password
   - `stow_directory/1password/.config/1Password/ssh/agent.toml` specifies that the keys only from the 'Dev' vault are accessible to the 1Password SSH Agent
 - BetterTouchTool
-  - `stow_directory/BetterTouchTool/.config/BetterTouchTool/Default_preset.json` provides settings for [BetterTouchTool](https://folivora.ai/) to all users and Macs.[^POINTING_BTT_TO_DOTFILE]
+  - `stow_directory/BetterTouchTool/.config/BetterTouchTool/Default_preset.json` provides customized settings for [BetterTouchTool](https://folivora.ai/) to all users and Macs.[^POINTING_BTT_TO_DOTFILE]
 - Git
   - `stow_directory/git/.config/git/git_ignore_global` specifies a default, global .gitignore file
   - `stow_directory/git/.config/git/config`
-    - This file is where your name and email for commits should be entered
+    - Typically, this file is where your name and email for commits *could* be entered, but GenoMac-user does things differently.[^GIT_CONFIG_USER_IS_INCLUDED]
     - Specifies `rebase = true`, `autostash = true`, and `editor = bbedit`
 - Homebrew
   - `stow_directory/homebrew/.config/homebrew/brew.env` specifies that Homebrew should install apps so that they will not be quarantined on first use (`HOMEBREW_CASK_OPTS=--no-quarantine`)
@@ -191,6 +191,8 @@ Note, in particular, the following non-exhaustive list of particular settings sc
 - zsh
   - `stow_directory/zsh/.config/zsh/.zshenv` defines `XDG_CONFIG_HOME` to be `~/.config`. Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
   - `stow_directory/zsh/.config/zsh/.zsh_aliases` defines numerous *aliases*, many of which depend on particular programmed that were installed by GenoMac-system. For example, `alias ls="eza"` and `alias cat="bat"`.
+ 
+[^GIT_CONFIG_USER_IS_INCLUDED]: To avoid hardwiring any particular user name and email address into this repo, `stow_directory/git/.config/git/config` (a) supplies the dummy values “Default User” and “default@example.com”, respectively, and (b) ends with an `[include]` that references the file `~/.config/genomac-user/git/gitconfig-personal`, which exists outside the local clone. That `gitconfig-personal` file is written by the Hypervisor, using a name and email address supplied by the user running the Hypervisor. (This assumes the user either (a) answers 'y' to “Will this user want to SSH authenticate GitHub using 1Password?” or (b) answers 'y' to “Will this user want to make commits on GitHub?,” which is asked if the answer to the 1Password question is 'n'.)
 
 ############### WIP, RETURN HERE. TODO ###############
 
