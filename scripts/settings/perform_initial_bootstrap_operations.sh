@@ -28,7 +28,7 @@ function conditionally_perform_initial_bootstrap_operations() {
 
   # Finder: Define initial toolbar
   run_if_user_has_not_done \
-    "$PERM_FINDER_BASE_TOOLBAR_HAS_BEEN_SPECIFIED" \
+    "$PERM_FINDER_HAS_BEEN_BOOTSTRAPPED" \
     bootstrap_finder \
     "Skipping configuring Finder toolbar, because this was done in the past"
 
