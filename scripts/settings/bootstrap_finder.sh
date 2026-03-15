@@ -17,7 +17,6 @@ function bootstrap_finder() {
   ensure_plist_path_exists "${plist_path}"
 
   # Open new windows to HOME
-  # This is intended for bootstrapping ONLY, not for enforcement
   report_adjust_setting "By default, new Finder window should open to user’s home directory"
   defaults write $domain NewWindowTarget -string "PfHm" ; success_or_not
   
