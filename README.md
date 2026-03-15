@@ -28,7 +28,7 @@ The remainder of this section assumes you’ve already locally cloned the GenoMa
 
 Project GenoMac-user does *not* require regular maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor](#when-to-run-the-hypervisor) for a discussion of what kinds of changes warrant some kind of action on your part.
 
-Contents of quick-reference cheat sheet for occasional maintenance:
+Contents of this section:
 - [Refresh local clone](#refresh-local-clone)
 - [Run the Hypervisor](#run-the-hypervisor)
 - [When to run the Hypervisor](#when-to-run-the-hypervisor)
