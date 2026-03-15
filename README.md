@@ -34,7 +34,7 @@ Contents of this section:
 - [When to run the Hypervisor](#when-to-run-the-hypervisor)
   - [If the dotfiles change](#if-the-dotfiles-change)
   - [If there have been changes to the desired user settings](#if-there-have-been-changes-to-the-desired-user-settings)
-  - [If a particular user has experimentally or inadvertently modified a setting set by GenoMac-user](#if-a-particular-user-has-experimentally-or-inadvertently-modified-a-setting-set-by-genomac-user)
+  - [If a particular user has experimentally or inadvertently modified a setting set by GenoMac-user](#if-a-particular-user-has-experimentally-or-inadvertently-modified-a-setting-governed-by-genomac-user)
 
 ### Refresh local clone
 Every time you run the Hypervisor, it will check the remote of GenoMac-user on GitHub to determine whether there are changes relative to the local copy and, if so, will pull those down.[^TODO_VALIDATE_AUTO_UPDATING]
@@ -96,7 +96,7 @@ Over time, there may be changes in the *desired* settings for users. This could 
 
 After the code of GenoMac-user is modified to reflect these changes in desired user settings, each user should rerun Hypervisor. (See [Run the Hypervisor](#run-the-hypervisor).)
 
-#### If a particular user has experimentally or inadvertently modified a setting set by GenoMac-user
+#### If a particular user has experimentally or inadvertently modified a setting governed by GenoMac-user
 A user might have—either experimentally or inadvertently—changed a value assigned to a setting that had been originally set by Hypervisor. If that change is no longer desired, and the user wants their configuration to be restored to GenoMac-user’s canonical configuration, that user should [Run the Hypervisor](#run-the-hypervisor).
 
 Be aware, however, that rerunning the Hypervisor will reset the values of at most only those settings that GenoMac-user addresses. If the user changed a setting on which GenoMac-user takes no action, rerunning Hypervisor will not reverse the user’s experimentation/mistake.
