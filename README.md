@@ -237,6 +237,12 @@ Some apps require additional steps to authorize the user to execute the app. The
 [^KM_KEY_IS_SECURE]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
 [^KM_MACRO_IN_RESOURCES]: A redacted version of this Keyboard Maestro macro is provided in this repo at `resources/keyboard_maestro_macros_for_hypervisor/GenoMac Bootstrap Macros.kmmacros`. There are placeholders where the two license credentials need to be. You can replace those placeholders with your own credentials.
 
+### Miscellaneous settings implemented
+
+############### WIP, RETURN HERE. TODO ###############
+
+- Assign certain apps to AllSpaces
+
 ### Settings are distinguished on two dimensions: between (a) purely bootstrap vis-à-vis idempotent and (b) normally performed only once (PERM) vis-à-vis performed every complete run of Hypervisor (SESH)
 
 GenoMac-user’s Hypervisor is intended to run completely through from start to finish a first time to initialize the configuration of a user’s account directory. It can then be rerun completely at later times *only as needed*.
