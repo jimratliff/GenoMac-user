@@ -34,16 +34,16 @@ Contents of quick-reference cheat sheet for occasional maintenance:
   - [If a particular user has experimentally or inadvertently modified a setting set by GenoMac-user](#if-a-particular-user-has-experimentally-or-inadvertently-modified-a-setting-set-by-genomac-user)
 
 ### Refresh local clone
-Every time you run the Hypervisor, it will check the remote of GenoMac-user on GitHub to determine whether there are changes relative to the local copy and, if so, will pull those down.[^TODO_validate_auto_updating]
+Every time you run the Hypervisor, it will check the remote of GenoMac-user on GitHub to determine whether there are changes relative to the local copy and, if so, will pull those down.[^TODO_VALIDATE_AUTO_UPDATING]
 
-[^TODO_validate_auto_updating]: This the desired behavior and how Hypervisor is intended to be designed to work. However, it needs further testing to see whether it is doing so, particularly with regard to changes in the [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared) submodule.
+[^TODO_VALIDATE_AUTO_UPDATING]: This the desired behavior and how Hypervisor is intended to be designed to work. However, it needs further testing to see whether it is doing so, particularly with regard to changes in the [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared) submodule.
 
-Alternatively, you can do that check-and-update yourself with:[^git_pull_interpretation]
+Alternatively, you can do that check-and-update yourself with:[^GIT_PULL_INTERPRETATION]
 ```bash
 cd ~/.genomac-user
 just refresh-repo-and-module
 ```
-[^git_pull_interpretation]: This `just` recipe is just a shorthand for `git pull --recurse-submodules origin main`. The `--recurse-submodules` ensures that the local version of submodule [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared) is updated to the commit specified by the GenoMac-user origin repository.
+[^GIT_PULL_INTERPRETATION]: This `just` recipe is just a shorthand for `git pull --recurse-submodules origin main`. The `--recurse-submodules` ensures that the local version of submodule [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared) is updated to the commit specified by the GenoMac-user origin repository.
 
 ### Run the Hypervisor
 The Hypervisor is a scripting system that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
@@ -106,9 +106,9 @@ There is an additional nuance if the setting a particular experimentally or inad
 ### Context
 This public repo, [GenoMac-user](https://github.com/jimratliff/GenoMac-user) implements generic user-level settings for each user on each Mac that is governed by Project GenoMac. 
 
-*Generic* user-scoped settings are those configuration parameters (a) whose jurisdiction is that of an individual user but (b) whose *desired* values are assumed to be common across all users within the GenoMac project. In other words, these are settings that (a) are set independently for each user account but (b) are assumed to be desired to be the same across users. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.[^commonAcrossUsers])
+*Generic* user-scoped settings are those configuration parameters (a) whose jurisdiction is that of an individual user but (b) whose *desired* values are assumed to be common across all users within the GenoMac project. In other words, these are settings that (a) are set independently for each user account but (b) are assumed to be desired to be the same across users. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.[^COMMON_ACROSS_USERS])
 
-[^commonAcrossUsers]: The set of generic user-scoped settings won’t exhaust all user-scoped settings. Any user is free to choose their own setting for parameters not covered by the generic settings. However, this raises a nuanced distinction. Each Mac has, for example, a USER_VANILLA. Suppose it is desired that USER_VANILLA has a different choice of some setting than all other users. Nevertheless, it could well be advantageous for that setting to be consistent across all Macs in the sense that, every USER_VANILLA shares that same choice, regardless of which Mac they inhabit. When such a case arises, there could be further refactoring of the GenoMac-user framework so that each user *type* (e.g., USER_VANILLA, USER_CONFIGURER, or USER_DEV) has its own configurations that would be overlain on the common-across-all-users generic settings. This possibility would apply whether the parameter at issue (a) was not part of the set of generic settings or (b) is covered by, and conflicts with, the prescriptions of the generic settings. In the latter case, applying USER_VANILLA’s choices *after* the generic settings would have the effect of overriding for USER_VANILLA the generic settings.
+[^COMMON_ACROSS_USERS]: The set of generic user-scoped settings won’t exhaust all user-scoped settings. Any user is free to choose their own setting for parameters not covered by the generic settings. However, this raises a nuanced distinction. Each Mac has, for example, a USER_VANILLA. Suppose it is desired that USER_VANILLA has a different choice of some setting than all other users. Nevertheless, it could well be advantageous for that setting to be consistent across all Macs in the sense that, every USER_VANILLA shares that same choice, regardless of which Mac they inhabit. When such a case arises, there could be further refactoring of the GenoMac-user framework so that each user *type* (e.g., USER_VANILLA, USER_CONFIGURER, or USER_DEV) has its own configurations that would be overlain on the common-across-all-users generic settings. This possibility would apply whether the parameter at issue (a) was not part of the set of generic settings or (b) is covered by, and conflicts with, the prescriptions of the generic settings. In the latter case, applying USER_VANILLA’s choices *after* the generic settings would have the effect of overriding for USER_VANILLA the generic settings.
 
 The current repo is used in conjunction with the [GenoMac-system repo](https://github.com/jimratliff/GenoMac-system), which (a) is cloned exclusively by USER_CONFIGURER and (b) is responsible for configurations at the system level, i.e., that affect all users. These configurations include, among other things, (a) certain systemwide settings, (b) installing all CLI and GUI apps (both on or off the Mac App Store), and (c) the creation of additional users. **It is assumed that GenoMac-system has been used to configure this Mac at the system level before *any* user attempts to use GenoMac-user to configure a user account at the user-scoped level.**
 
@@ -143,15 +143,15 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
   - certain other utilities required by GenoMac-user (e.g., `jq`, `just`, `mas`)
   - all of the third-party apps whose user-specific settings will be specified by GenoMac-user
   - all of the resources (fonts, sounds, screensavers, etc.) that will be referenced by user-specific settings by GenoMac-user
-- iTerm has been granted by USER_CONFIGURER (a) Full Disk Access[^FDA_and_Homebrew] and (b) control of System Events (in order to run AppleScripts)
+- iTerm has been granted by USER_CONFIGURER (a) Full Disk Access[^FDA_&_HOMEBREW] and (b) control of System Events (in order to run AppleScripts)
 
-[^FDA_and_Homebrew]: One reason Full Disk Access for the terminal program is helpful is that this is sufficient for Homebrew to be able to perform app upgrades “in place” (rather than uninstall/reinstall). Upgrading in place prevents app from losing their position in the Dock as a result of the upgrade. (See “[Why do my cask apps lose their Dock position / Launchpad position / permission settings when I run brew upgrade?](https://docs.brew.sh/FAQ#why-do-my-cask-apps-lose-their-dock-position--launchpad-position--permission-settings-when-i-run-brew-upgrade),” Homebrew Documentation » FAQs.)
+[^FDA_&_HOMEBREW]: One reason Full Disk Access for the terminal program is helpful is that this is sufficient for Homebrew to be able to perform app upgrades “in place” (rather than uninstall/reinstall). Upgrading in place prevents app from losing their position in the Dock as a result of the upgrade. (See “[Why do my cask apps lose their Dock position / Launchpad position / permission settings when I run brew upgrade?](https://docs.brew.sh/FAQ#why-do-my-cask-apps-lose-their-dock-position--launchpad-position--permission-settings-when-i-run-brew-upgrade),” Homebrew Documentation » FAQs.)
 
 ## Overview of using this repo to implement the user-scoped settings for a particular user
 ### This repository will be cloned to `~/.genomac-user` of each particular user
-This public GenoMac-user repo is meant to be cloned locally (using https[^https]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`.
+This public GenoMac-user repo is meant to be cloned locally (using https[^HTTPS]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`.
 
-[^https]: After having cloned the repository via https, GitHub will not let you edit the repo from the CLI (but will from the browser, when logged into your GitHub account). In order to edit
+[^HTTPS]: After having cloned the repository via https, GitHub will not let you edit the repo from the CLI (but will from the browser, when logged into your GitHub account). In order to edit
 the repo from the CLI, you would need to change the repo from https to SSH, which can be done via the command
 `just dev-configure-remote-for-https-fetch-and-ssh-push`.
 
@@ -208,9 +208,9 @@ Some apps, such as Alfred and Keyboard Maestro, are assumed to sync their prefer
 ### This repo establishes/adjusts numerous user-level settings using a variety of techniques
 This repo supplies scripts that execute various commands to establish various user settings for macOS generally and for certain apps in particular.
 
-For many/most of the macOS settings and for many/most of the GUI apps, these scripts use macOS `defaults write` or `PlistBuddy` commands to set preferences using macOS `defaults` system.[^find_defaults]
+For many/most of the macOS settings and for many/most of the GUI apps, these scripts use macOS `defaults write` or `PlistBuddy` commands to set preferences using macOS `defaults` system.[^FIND_DEFAULTS]
 
-[^find_defaults]: For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
+[^FIND_DEFAULTS]: For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
 
 Some apps, particularly non-Apple cross-platform apps such as web browsers, don’t rely entirely or at all upon macOS’s `defaults` system but instead use other mechanisms to expose their preferences to scripting. This repo nevertheless often attempts to script those apps’ preferences to the extent possible/feasible/practical. Examples of apps that use other methods for implementing preferences:
 - Apps whose preferences are stored remotely associated with the user’s account for that app. E.g., Text Expander. This repo relies upon the user logging into their account with such an app to provide the desired configuration.
@@ -222,17 +222,17 @@ Some apps, particularly non-Apple cross-platform apps such as web browsers, don�
 
 ### Authorization to use particular apps
 Some apps require additional steps to authorize the user to execute the app. These fall into the following categories:
-- Apps that require signing into an account for that app. These include 1Password, Microsoft Office, and Text Expander. The Hypervisor walks the user through this process, launching the relevant app and displaying, via Quick Look, a document detailing the process.[^Example_walk-through_authorization]
-- Apps that require a license file, such as BetterTouchTool and [Witch](https://manytricks.com/witch/). The Hypervisor programmatically installs these files.[^Hypervisor_installs_license_files]
+- Apps that require signing into an account for that app. These include 1Password, Microsoft Office, and Text Expander. The Hypervisor walks the user through this process, launching the relevant app and displaying, via Quick Look, a document detailing the process.[^EXAMPLE_WALK-THROUGH_AUTHORIZATION]
+- Apps that require a license file, such as BetterTouchTool and [Witch](https://manytricks.com/witch/). The Hypervisor programmatically installs these files.[^HYPERVISOR_INSTALLS_LICENSE_FILES]
 - Apps that require entering a key to authorize.
-  - Alfred: Alfred’s basic functionality is free to use, but more-advanced functionality (the Alfred Powerpack) requires entering a Powerpack license. The Hypervisor interactively prompts you to enter a Powerpack license via a Keyboard Maestro status-menu-triggered macro that pastes the Alfred Powerpack textual license code into the appropriate text box in Alfred’s preferences.[^Alfred_key_is_secure]<sup>,</sup>[^KM_macro_in_resources]
-  - Keyboard Maestro: Because Keyboard Maestro has an initial trial period for every new user account, you can use a Keyboard Maestro macro to register your license to Keyboard Maestro! Specifically, the Hypervisor interactively prompts you to use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item to populate the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.[^KM_key_is_secure]<sup>,</sup>[^KM_macro_in_resources]
+  - Alfred: Alfred’s basic functionality is free to use, but more-advanced functionality (the Alfred Powerpack) requires entering a Powerpack license. The Hypervisor interactively prompts you to enter a Powerpack license via a Keyboard Maestro status-menu-triggered macro that pastes the Alfred Powerpack textual license code into the appropriate text box in Alfred’s preferences.[^ALFRED_KEY_IS_SECURE]<sup>,</sup>[^KM_MACRO_IN_RESOURCES]
+  - Keyboard Maestro: Because Keyboard Maestro has an initial trial period for every new user account, you can use a Keyboard Maestro macro to register your license to Keyboard Maestro! Specifically, the Hypervisor interactively prompts you to use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item to populate the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.[^KM_KEY_IS_SECURE]<sup>,</sup>[^KM_MACRO_IN_RESOURCES]
 
-[^Example_walk-through_authorization]: See, e.g., `scripts/settings/interactive_configure_textexpander.sh`, which launches Text Expander and displays the Markdown document `resources/docs_to_display_to_user/TextExpander_how_to_configure.md`.
-[^Hypervisor_installs_license_files]: (a) The BetterTouchTool license file is installed by the Hypervisor using `install_btt_license_file()` from `scripts/settings/set_bettertouchtool_settings.sh`. The license file is expected to be sourced from the user’s Dropbox: `~/Dropbox/Preferences_common/BetterTouchTool/LICENSE/bettertouchtool.bttlicense`. (b) The Witch license file(s) is/are installed by the Hypervisor using `install_Witch_license_files()` from `scripts/settings/set_witch_settings.sh`. The Witch license files are expected to be found in the shared Dropbox folder: `~/Dropbox/Preferences_common/Witch/LICENSE/Files_to_transfer`.
-[^Alfred_key_is_secure]: Note that the Alfred Powerpack license key is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
-[^KM_key_is_secure]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
-[^KM_macro_in_resources]: A redacted version of this Keyboard Maestro macro is provided in this repo at `resources/keyboard_maestro_macros_for_hypervisor/GenoMac Bootstrap Macros.kmmacros`. There are placeholders where the two license credentials need to be. You can replace those placeholders with your own credentials.
+[^EXAMPLE_WALK-THROUGH_AUTHORIZATION]: See, e.g., `scripts/settings/interactive_configure_textexpander.sh`, which launches Text Expander and displays the Markdown document `resources/docs_to_display_to_user/TextExpander_how_to_configure.md`.
+[^HYPERVISOR_INSTALLS_LICENSE_FILES]: (a) The BetterTouchTool license file is installed by the Hypervisor using `install_btt_license_file()` from `scripts/settings/set_bettertouchtool_settings.sh`. The license file is expected to be sourced from the user’s Dropbox: `~/Dropbox/Preferences_common/BetterTouchTool/LICENSE/bettertouchtool.bttlicense`. (b) The Witch license file(s) is/are installed by the Hypervisor using `install_Witch_license_files()` from `scripts/settings/set_witch_settings.sh`. The Witch license files are expected to be found in the shared Dropbox folder: `~/Dropbox/Preferences_common/Witch/LICENSE/Files_to_transfer`.
+[^ALFRED_KEY_IS_SECURE]: Note that the Alfred Powerpack license key is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
+[^KM_KEY_IS_SECURE]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
+[^KM_MACRO_IN_RESOURCES]: A redacted version of this Keyboard Maestro macro is provided in this repo at `resources/keyboard_maestro_macros_for_hypervisor/GenoMac Bootstrap Macros.kmmacros`. There are placeholders where the two license credentials need to be. You can replace those placeholders with your own credentials.
 
 ############### WIP, RETURN HERE. TODO ###############
 
@@ -243,10 +243,10 @@ GenoMac-user’s Hypervisor is intended to run completely through from start to 
 #### Purely bootstrap vis-à-vis idempotent, maintenance settings
 A *purely bootstrap* operation is one that makes sense only being performed exactly once, as a startup configuration setup. Examples:
 - cloning this repo to the user’s local home directory
-- creating a full set of 15 additional Mission Control Spaces[^Mission_control_additional_spaces_interactive]
+- creating a full set of 15 additional Mission Control Spaces[^MISSION_CONTROL_ADDITIONAL_SPACES_INTERACTIVE]
 - implementing settings that provide a starting point from which the user is free to modify without fear that those subsequent changes would be overridden by a later maintenance step, such as the initial configuration of the Dock or a toolbar of an app.
 
-[^Mission_control_additional_spaces_interactive]: The Hypervisor interactively guides the user to create 15 additional Mission Control Spaces (to achieve the maximum allowed of 16) using `interactive_create_mission_control_spaces()` in `scripts/settings/interactive_create_mission_control_spaces.sh`. You can, of course, adjust that guidance to your preferences.
+[^MISSION_CONTROL_ADDITIONAL_SPACES_INTERACTIVE]: The Hypervisor interactively guides the user to create 15 additional Mission Control Spaces (to achieve the maximum allowed of 16) using `interactive_create_mission_control_spaces()` in `scripts/settings/interactive_create_mission_control_spaces.sh`. You can, of course, adjust that guidance to your preferences.
 
 A *maintenance* operation is an idempotent operation that—in addition to a bootstrapping role to establish an initial configuration—is intended to *enforce* a setting over time.
 
