@@ -26,7 +26,7 @@ function conditionally_perform_initial_bootstrap_operations() {
     implement_mission_control_assign_to_options_for_selected_apps \
     "Skipping assigning apps a Mission Control assign-to option, because it’s already been done"
 
-  # Finder: Define initial toolbar
+  # Finder: Define initial toolbar and default folder for new windows
   run_if_user_has_not_done \
     "$PERM_FINDER_HAS_BEEN_BOOTSTRAPPED" \
     bootstrap_finder \
