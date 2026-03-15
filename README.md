@@ -229,49 +229,47 @@ Some apps require additional steps to authorize the user to execute the app. The
   - Keyboard Maestro: Because Keyboard Maestro has an initial trial period for every new user account, you can use a Keyboard Maestro macro to register your license to Keyboard Maestro! Specifically, the Hypervisor interactively prompts you to use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item to populate the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.[^KM_key_is_secure]<sup>,</sup>[^KM_macro_in_resources]
 
 [^Example_walk-through_authorization]: See, e.g., `scripts/settings/interactive_configure_textexpander.sh`, which launches Text Expander and displays the Markdown document `resources/docs_to_display_to_user/TextExpander_how_to_configure.md`.
-[^Hypervisor_installs_license_files]: (a) The BetterTouchTool license file is installed by the Hypervisor using `install_btt_license_file()` from `scripts/settings/set_bettertouchtool_settings.sh`. The license file is expected to be sourced from the user’s Dropbox: `~/Dropbox/Preferences_common/BetterTouchTool/LICENSE/bettertouchtool.bttlicense`. (b) The Witch license file(s) is/are installed by the Hypervisor using `install_Witch_license_files()` from `scripts/settings/set_witch_settings.sh`. The Many Tricks license files are expected to be found in the shared Dropbox folder: `~/Dropbox/Preferences_common/Witch/LICENSE/Files_to_transfer`.
+[^Hypervisor_installs_license_files]: (a) The BetterTouchTool license file is installed by the Hypervisor using `install_btt_license_file()` from `scripts/settings/set_bettertouchtool_settings.sh`. The license file is expected to be sourced from the user’s Dropbox: `~/Dropbox/Preferences_common/BetterTouchTool/LICENSE/bettertouchtool.bttlicense`. (b) The Witch license file(s) is/are installed by the Hypervisor using `install_Witch_license_files()` from `scripts/settings/set_witch_settings.sh`. The Witch license files are expected to be found in the shared Dropbox folder: `~/Dropbox/Preferences_common/Witch/LICENSE/Files_to_transfer`.
 [^Alfred_key_is_secure]: Note that the Alfred Powerpack license key is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
 [^KM_key_is_secure]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
 [^KM_macro_in_resources]: A redacted version of this Keyboard Maestro macro is provided in this repo at `resources/keyboard_maestro_macros_for_hypervisor/GenoMac Bootstrap Macros.kmmacros`. There are placeholders where the two license credentials need to be. You can replace those placeholders with your own credentials.
-
-One way or another, the Hypervisor has you covered, whether (a) programmatically installing license files or (b) interactively walking you through the required process to authorize your use of the app.
 
 ############### WIP, RETURN HERE. TODO ###############
 
 ### Settings are distinguished on two dimensions: between (a) purely bootstrap vis-à-vis idempotent and (b) normally performed only once (PERM) vis-à-vis performed every complete run of Hypervisor (SESH)
 
-GenoMac-user’s Hypervisor is intended to run completely a first time to initialize the configuration of a user’s account directory. It can then be rerun completely at later times *only as needed*.
+GenoMac-user’s Hypervisor is intended to run completely through from start to finish a first time to initialize the configuration of a user’s account directory. It can then be rerun completely at later times *only as needed*.
 
 #### Purely bootstrap vis-à-vis idempotent, maintenance settings
-A purely bootstrap operation is one that makes sense being performed only once, as a startup configuration setup. Examples:
+A *purely bootstrap* operation is one that makes sense only being performed exactly once, as a startup configuration setup. Examples:
 - cloning this repo to the user’s local home directory
-- creating additional Mission Control Spaces
+- creating a full set of 15 additional Mission Control Spaces[^Mission_control_additional_spaces_interactive]
 - implementing settings that provide a starting point from which the user is free to modify without fear that those subsequent changes would be overridden by a later maintenance step, such as the initial configuration of the Dock or a toolbar of an app.
 
-A maintenance operation is an idempotent operation that—in addition to a bootstrapping role to establish an initial configuration—is intended to *enforce* a setting over time.
+[^Mission_control_additional_spaces_interactive]: The Hypervisor interactively guides the user to create 15 additional Mission Control Spaces (to achieve the maximum allowed of 16) using `interactive_create_mission_control_spaces()` in `scripts/settings/interactive_create_mission_control_spaces.sh`. You can, of course, adjust that guidance to your preferences.
 
-Most of the operations in GenoMac-user are bootstrap operations, but not purely so, because they are also maintenance operations. Sucn an operation establishes a setting the first time the script is run for the user (acting as a bootstrap operation) but the same script also enforces that setting on subsequent maintenance runs.
+A *maintenance* operation is an idempotent operation that—in addition to a bootstrapping role to establish an initial configuration—is intended to *enforce* a setting over time.
+
+Most of the operations in GenoMac-user are also bootstrap operations, but not purely so, because they are also maintenance operations. Sucn an operation establishes a setting the first time the script is run for the user (acting as a bootstrap operation) but the same script also enforces that setting on subsequent maintenance runs.
 
 #### Operations (a) normally performed only once (PERM) vis-à-vis (b) performed every complete run of Hypervisor (SESH)
-Project GenoMac-user does *not* require regular maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor](#when-to-run-the-hypervisor) for a discussion of what kinds of changes warrant some kind of action on your part.
+Project GenoMac-user does *not* require *regular* maintenance but rather only *occasional* maintenance, i.e., in response to a particular occasion that compels maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor](#when-to-run-the-hypervisor) for a discussion of what kinds of changes warrant some kind of action on your part.
 
 Nevertheless, the Hypervisor distinguishes between (a) operations that are performed typically *only once* (unless an exceptional development warrants repetition) vis-à-vis (b) operations that are performed *every time the Hypervisor is run*.
 
 ##### Operations that do *not* run every time Hypervisor is run
-There are two buckets of operations that do *not* run every time Hypervisor is run:
-- Purely bootstrap operations. These don’t even make sense being run more than once (unless there has been an exceptional change)
-- Operations that are costly because they require user interaction. The settings that these interaction-requiring operations implement are in principle no different from non-interactive idempotent settings (such as those implemented via `defaults write`). There would be no harm (in the sense of not damaging the configuration) to run them repeatedly, but because they’re costly to run the costs outweighs the benefits.
+There are two buckets of operations that do *not* run every time Hypervisor is run:[^PERM_STATES_NOT_EVERY_TIME]
+- Purely bootstrap operations. These don’t even make sense being run more than once (unless there has been an extraordinary development).
+- Operations that are costly because they require user interaction. The settings that these interaction-requiring operations implement are in principle no different from non-interactive idempotent settings (such as those implemented via `defaults write`). There would be no harm (in the sense of not damaging the configuration) to run them repeatedly. But, because they’re costly to run, the costs of repeating every time Hypervisor is run outweighs the benefits.
 
-**TODO** (a) Add discussion in the Developer section about states. (b) Add reference here to that discussion.
-
-These typically one-time-only operations (whether because bootstrap, interactive, or both) are associated with PERM states: Each time Hypervisor is run, it checks whether the relevant PERM state has been set. If not, Hypervisor implements the setting and sets the PERM state, so that the setting won’t (typically) be implemented again.
+[^PERM_STATES_NOT_EVERY_TIME]: Implementation detail: These typically one-time-only operations (whether because bootstrap, interactive, or both) are associated with PERM states: Each time Hypervisor is run, it checks whether the relevant PERM state has been set. If not, Hypervisor implements the setting and sets the PERM state, so that the setting won’t (typically) be implemented again. **TODO** (a) Add discussion in the Developer section about states. (b) Add reference here to that discussion.
 
 ##### Operations that run every time Hypervisor is run
-Every other operation (i.e., neither interactive nor purely bootstrap) is run every time Hypervisor is run from start to finish.[^NUANCE_EVERY_TIME]
+Every other operation (i.e., neither interactive nor purely bootstrap) is run every time Hypervisor is run from start to finish.[^NUANCE_EVERY_TIME]<sup>,</sup>[^SESH_STATES_EVERY_TIME]
 
 [^NUANCE_EVERY_TIME]: I’m emphaszing “run completely” or “run from start to finish” to acknowledge that, even during a complete run of Hypervisor, the user might be logged out and log back in and then reenter the same run of Hypervisor by issuing `just run-hypervisor`.
 
-These operations are associated with SESH states. Every time Hypervisor finishes a complete run successfully, all SESH states are deleted. As a result, the next time Hypervisor is run, all of these steps will be performed.
+[^SESH_STATES_EVERY_TIME]: Implementation detail: These operations are associated with SESH states. Every time Hypervisor finishes a complete run successfully, all SESH states are deleted. As a result, the next time Hypervisor is run, all of these steps will be performed. **TODO** (a) Add discussion in the Developer section about states. (b) Add reference here to that discussion.
 
 ## Step-by-step implementation (for a particular user)
 - [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
