@@ -194,8 +194,6 @@ Note, in particular, the following non-exhaustive list of particular settings sc
  
 [^GIT_CONFIG_USER_IS_INCLUDED]: To avoid hardwiring any particular user name and email address into this repo, `stow_directory/git/.config/git/config` (a) supplies the dummy values “Default User” and “default@example.com”, respectively, and (b) ends with an `[include]` that references the overriding file `~/.config/genomac-user/git/gitconfig-personal`, which exists outside the local clone. That `gitconfig-personal` file is written by the Hypervisor, using a name and email address supplied by the user running the Hypervisor. (This assumes the user either (a) answers 'y' to “Will this user want to SSH authenticate GitHub using 1Password?” or (b) answers 'y' to “Will this user want to make commits on GitHub?,” which is asked if the answer to the 1Password question is 'n'.)
 
-############### WIP, RETURN HERE. TODO ###############
-
 [^POINTING_BTT_TO_DOTFILE]: BetterTouchTool must be instructed, by a `defaults write` command, to refer to that dotfile to obtain its settings. See [Andreas Hegenberg’s answer](https://community.folivora.ai/t/syncing-the-config-in-git/34840) to “Syncing the config in Git.” This instruction is taken care of by the Hypervisor; see `scripts/settings/set_bettertouchtool_settings.sh`.
 
 GNU Stow, guided by the directory structure of `stow_directory`, creates symlinks near the root of the user’s directory to make it appear like the supplied dotfiles are located when various programs expect them to be, e.g., in `~/.config`.[^STOW_DIR_METHOD]
@@ -237,6 +235,8 @@ Some apps require additional steps to authorize the user to execute the app. The
 [^KM_macro_in_resources]: A redacted version of this Keyboard Maestro macro is provided in this repo at `resources/keyboard_maestro_macros_for_hypervisor/GenoMac Bootstrap Macros.kmmacros`. There are placeholders where the two license credentials need to be. You can replace those placeholders with your own credentials.
 
 One way or another, the Hypervisor has you covered, whether (a) programmatically installing license files or (b) interactively walking you through the required process to authorize your use of the app.
+
+############### WIP, RETURN HERE. TODO ###############
 
 ### Settings are distinguished on two dimensions: between (a) purely bootstrap vis-à-vis idempotent and (b) normally performed only once (PERM) vis-à-vis performed every complete run of Hypervisor (SESH)
 
