@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
 function set_finder_settings() {
+  # Set Finder settings that are enforced every time Hypervisor runs.
+  # See bootstrap_finder.sh for bootstrap Finder settings.
 
   report_start_phase_standard
   report_action_taken "Adjust settings for Finder"
