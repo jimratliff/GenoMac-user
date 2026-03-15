@@ -16,7 +16,10 @@
 GenoMac-user is the user-specific component of Project GenoMac. Project GenoMac automates via scripting a highly opinionated configuration of any number of multi-user Macs, at both the system-scoped (see [GenoMac-system](https://github.com/jimratliff/GenoMac-system)) and user-scoped levels.
 
 **First time here?**
-Please go to the next major heading, viz., [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac).
+If this is your first time visiting GenoMac-user, please go first to the next major heading, viz., [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac).
+
+**Starting the configuration of a new user?**
+If you’re already familiar with GenoMac-user—perhaps you’ve already configured one or more user accounts with it—you can go directly to [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user)
 
 ## Quick-reference cheat sheet for occasional maintenance
 If you’re beginning the user-scoped configuration of a particular user on this Mac, go directly to this section: [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user).
@@ -234,8 +237,6 @@ Some apps require additional steps to authorize the user to execute the app. The
 [^KM_KEY_IS_SECURE]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
 [^KM_MACRO_IN_RESOURCES]: A redacted version of this Keyboard Maestro macro is provided in this repo at `resources/keyboard_maestro_macros_for_hypervisor/GenoMac Bootstrap Macros.kmmacros`. There are placeholders where the two license credentials need to be. You can replace those placeholders with your own credentials.
 
-############### WIP, RETURN HERE. TODO ###############
-
 ### Settings are distinguished on two dimensions: between (a) purely bootstrap vis-à-vis idempotent and (b) normally performed only once (PERM) vis-à-vis performed every complete run of Hypervisor (SESH)
 
 GenoMac-user’s Hypervisor is intended to run completely through from start to finish a first time to initialize the configuration of a user’s account directory. It can then be rerun completely at later times *only as needed*.
@@ -271,15 +272,12 @@ Every other operation (i.e., neither interactive nor purely bootstrap) is run ev
 
 [^SESH_STATES_EVERY_TIME]: Implementation detail: These operations are associated with SESH states. Every time Hypervisor finishes a complete run successfully, all SESH states are deleted. As a result, the next time Hypervisor is run, all of these steps will be performed. **TODO** (a) Add discussion in the Developer section about states. (b) Add reference here to that discussion.
 
+############### WIP, RETURN HERE. TODO ###############
+
 ## Step-by-step implementation (for a particular user)
 - [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
 - [Cloning this repo](#cloning-this-repo)
 - [Repeatedly run the Hypervisor until it completes](#----------)
-- [“Stow” the dotfiles](#stow-the-dotfiles)
-- [Implement the initial set of macOS-related settings](#implement-the-initial-set-of-macos-related-settings)
-- [Run certain one-time-only bootstrapping operations](#run-certain-one-time-only-bootstrapping-operations)
-- [Configure 1Password for authentication with GitHub](#configure-1password-for-authentication-with-github)
-- [Connect to the user’s Dropbox account and configure apps that rely on Dropbox](#connect-to-the-users-dropbox-account-and-configure-apps-that-rely-on-dropbox)
 
 ### Establish real-time connection to communicate text back and forth
 (NOTE: USER_CONFIGURER will have already performed this step. Other users will need to do that at this time.)
