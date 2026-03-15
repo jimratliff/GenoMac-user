@@ -272,8 +272,6 @@ Every other operation (i.e., neither interactive nor purely bootstrap) is run ev
 
 [^SESH_STATES_EVERY_TIME]: Implementation detail: These operations are associated with SESH states. Every time Hypervisor finishes a complete run successfully, all SESH states are deleted. As a result, the next time Hypervisor is run, all of these steps will be performed. **TODO** (a) Add discussion in the Developer section about states. (b) Add reference here to that discussion.
 
-############### WIP, RETURN HERE. TODO ###############
-
 ## Step-by-step implementation (for a particular user)
 - [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
 - [Cloning this repo](#cloning-this-repo)
@@ -346,6 +344,8 @@ The Hypervisor produces a *lot* of output, typically many screenfulls. If an imp
 By collecting any warnings and repeating them at the end, you’re relieved of the necessity of wading through all of the output to look for anomalies.
 
 Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against silent failures that you wouldn’t notice.
+
+############### WIP, RETURN HERE. TODO ###############
  
 ## TODOs
 - Keyboard-navigation hotkeys ⇧⌥⌘F2 – ⇧⌥⌘F7 need to be tested
@@ -358,8 +358,6 @@ Also note that the Hypervisor runs under `set -euo pipefail`, which is designed 
   - Change pmset settings for laptop, so that they vary based on battery/charging
 - set_power_management_settings.sh
   - Finish, and move to a bootstrapping step
-- Finder
-  - ✅ Open new window to HOME is meant to be bootstrap only, not maintenance
 - Setting apps “Assign to: All Desktops” requires that there already be multiple Spaces
   - Thus, I need either (a) create at least a second Space early or (b) defer making these assignments until after there are multiple Spaces.
 - Assiging wallpapers to Spaces
