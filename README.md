@@ -239,14 +239,25 @@ Some apps require additional steps to authorize the user to execute the app. The
 
 ### Miscellaneous settings implemented
 
-############### WIP, RETURN HERE. TODO ###############
+GenoMac-user modifies too many settings to recount here. The code itself is the ultimate source of truth.
+
+The place to start reviewing to discover the settings implemented is `scripts/hypervisor/subdermis.sh`.
+
+More specifically, the bulk of the settings that are normally thought about in this kind of macOS account customization exercise will be found branching out from `scripts/settings/perform_basic_user_level_settings.sh`.
+
+I’ll mention here just a few areas of settings, mainly to help remind *me* where they take place:
 
 - Set the default browser[^SET_DEFAULT_BROWSER]
+- Set a default Dock configuration[^DEFAULT_DOCK_CONFIG]
 - Specify certain apps to have their window(s) appear in all Mission Control Spaces[^APPS_IN_ALL_SPACES]
 - Specify certain apps to automatically launch at login via LaunchAgents (in addition to apps that already have their own mechanisms for this)[^APPS_AUTO_OPEN_AT_LOGIN]
 - Set the default app to open each of several file types[^DEFAULT_APPS_TO_OPEN_TYPES_OF_FILES]
+- Hypervisor interactively walks you through configuring 1Password both (a) for normal user and (b) to use the 1Password SSH agent to authenticate with GitHub in the CLI.
+- Hypervisor prompts you to create additional Mission Control Spaces
 
 [^SET_DEFAULT_BROWSER]: See `set_default_browser()` in `scripts/settings/set_default_browser.sh`. This causes five different handlers to be set. Mysteriously to me, one of these steps can take a long time. Be patient.
+
+[^DEFAULT_DOCK_CONFIG]: As a bootstrap step, the Dock is deleted and is replaced by a lineup (System Settings, 1Password, TextExpander, Waterfox, Helium, Raindrop.io, Obsidian, Zed, Activity Monitor, and iTerm) that is defined in `scripts/settings/bootstrap_dock.sh`. This is a *bootstrap* step, but not an enforcement/maintenance step: the Dock configuration can be changed by the user and subsequent runs of Hypervisor will *not* overrule those user changes.
 
 [^APPS_IN_ALL_SPACES]: These apps (1Password, Activity Monitor, Calendar, Contacts, Notes, Reminders, Stickies, System Settings, and TextExpander) are specified in `implement_mission_control_assign_to_options_for_selected_apps()` in `scripts/settings/set_mission_control_assign_to_options.sh`. These particular apps were chosen primarily because (a) with the exception of Stickies, they are single-window apps and (b) each could reasonably be desired to appear in multiple Spaces. Thus, if one of these apps was *not* desired in a particular Space, the app could be hidden and re-displayed when needed.
 
