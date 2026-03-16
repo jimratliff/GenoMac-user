@@ -216,7 +216,7 @@ For many/most of the macOS settings and for many/most of the GUI apps, these scr
 [^FIND_DEFAULTS]: For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
 
 Some apps, particularly non-Apple cross-platform apps such as web browsers, don’t rely entirely or at all upon macOS’s `defaults` system but instead use other mechanisms to expose their preferences to scripting. This repo nevertheless often attempts to script those apps’ preferences to the extent possible/feasible/practical. Examples of apps that use other methods for implementing preferences:
-- Apps whose preferences are stored remotely associated with the user’s account for that app. E.g., Text Expander. This repo relies upon the user logging into their account with such an app to provide the desired configuration.
+- Apps whose preferences are stored remotely associated with the user’s account for that app. E.g., TextExpander. This repo relies upon the user logging into their account with such an app to provide the desired configuration.
 - Apps based on Electron, which store their settings in JSON configuration files.
 - 1Password: 1Password is an Electron-based app and reveals its preferences in a `settings.json` file, which *should* make it straightforward to manipulate those preferences via scripting. However, presumably driven by security concerns, 1Password makes it impossible to effectively script those preferences.[^1Password_HMAC] Thus, the Hypervisor interactively walks you through configuring 1Password’s settings.
 - Microsoft Word: Very few of Word’s preferences are revealed through the macOS `defaults` system. This repo implements settings for Word primarily by a combination of (a) installing a preconfigured Normal.dotm template file and (b) running a VBA script (stored within a Word document) to set some Word preferences.
@@ -225,13 +225,13 @@ Some apps, particularly non-Apple cross-platform apps such as web browsers, don�
 
 ### Authorization to use particular apps
 Some apps require additional steps to authorize the user to execute the app. These fall into the following categories:
-- Apps that require signing into an account for that app. These include 1Password, Microsoft Office, and Text Expander. The Hypervisor walks the user through this process, launching the relevant app and displaying, via Quick Look, a document detailing the process.[^EXAMPLE_WALK-THROUGH_AUTHORIZATION]
+- Apps that require signing into an account for that app. These include 1Password, Microsoft Office, and TextExpander. The Hypervisor walks the user through this process, launching the relevant app and displaying, via Quick Look, a document detailing the process.[^EXAMPLE_WALK-THROUGH_AUTHORIZATION]
 - Apps that require a license file, such as BetterTouchTool and [Witch](https://manytricks.com/witch/). The Hypervisor programmatically installs these files.[^HYPERVISOR_INSTALLS_LICENSE_FILES]
 - Apps that require entering a key to authorize.
   - Alfred: Alfred’s basic functionality is free to use, but more-advanced functionality (the Alfred Powerpack) requires entering a Powerpack license. The Hypervisor interactively prompts you to enter a Powerpack license via a Keyboard Maestro status-menu-triggered macro that pastes the Alfred Powerpack textual license code into the appropriate text box in Alfred’s preferences.[^ALFRED_KEY_IS_SECURE]<sup>,</sup>[^KM_MACRO_IN_RESOURCES]
   - Keyboard Maestro: Because Keyboard Maestro has an initial trial period for every new user account, you can use a Keyboard Maestro macro to register your license to Keyboard Maestro! Specifically, the Hypervisor interactively prompts you to use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item to populate the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.[^KM_KEY_IS_SECURE]<sup>,</sup>[^KM_MACRO_IN_RESOURCES]
 
-[^EXAMPLE_WALK-THROUGH_AUTHORIZATION]: See, e.g., `scripts/settings/interactive_configure_textexpander.sh`, which launches Text Expander and displays the Markdown document `resources/docs_to_display_to_user/TextExpander_how_to_configure.md`.
+[^EXAMPLE_WALK-THROUGH_AUTHORIZATION]: See, e.g., `scripts/settings/interactive_configure_textexpander.sh`, which launches TextExpander and displays the Markdown document `resources/docs_to_display_to_user/TextExpander_how_to_configure.md`.
 [^HYPERVISOR_INSTALLS_LICENSE_FILES]: (a) The BetterTouchTool license file is installed by the Hypervisor using `install_btt_license_file()` from `scripts/settings/set_bettertouchtool_settings.sh`. The license file is expected to be sourced from the user’s Dropbox: `~/Dropbox/Preferences_common/BetterTouchTool/LICENSE/bettertouchtool.bttlicense`. (b) The Witch license file(s) is/are installed by the Hypervisor using `install_Witch_license_files()` from `scripts/settings/set_witch_settings.sh`. The Witch license files are expected to be found in the shared Dropbox folder: `~/Dropbox/Preferences_common/Witch/LICENSE/Files_to_transfer`.
 [^ALFRED_KEY_IS_SECURE]: Note that the Alfred Powerpack license key is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
 [^KM_KEY_IS_SECURE]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
@@ -241,7 +241,18 @@ Some apps require additional steps to authorize the user to execute the app. The
 
 ############### WIP, RETURN HERE. TODO ###############
 
-- Assign certain apps to AllSpaces
+- Set the default browser[^SET_DEFAULT_BROWSER]
+- Specify certain apps to have their window(s) appear in all Mission Control Spaces[^APPS_IN_ALL_SPACES]
+- Specify certain apps to automatically launch at login via LaunchAgents (in addition to apps that already have their own mechanisms for this)[^APPS_AUTO_OPEN_AT_LOGIN]
+- Set the default app to open each of several file types[^DEFAULT_APPS_TO_OPEN_TYPES_OF_FILES]
+
+[^SET_DEFAULT_BROWSER]: See `set_default_browser()` in `scripts/settings/set_default_browser.sh`. This causes five different handlers to be set. Mysteriously to me, one of these steps can take a long time. Be patient.
+
+[^APPS_IN_ALL_SPACES]: These apps (1Password, Activity Monitor, Calendar, Contacts, Notes, Reminders, Stickies, System Settings, and TextExpander) are specified in `implement_mission_control_assign_to_options_for_selected_apps()` in `scripts/settings/set_mission_control_assign_to_options.sh`. These particular apps were chosen primarily because (a) with the exception of Stickies, they are single-window apps and (b) each could reasonably be desired to appear in multiple Spaces. Thus, if one of these apps was *not* desired in a particular Space, the app could be hidden and re-displayed when needed.
+
+[^APPS_AUTO_OPEN_AT_LOGIN]: The apps currently specified to auto-launch on login are (a) [Alan.app](https://tyler.io/2025/11/26/alan/), (b) BetterTouchTool, and (c) Keyboard Maestro Engine. The following apps are *not* added to this list, even though it *is* desired that they auto-launch at login, because empirically these apps have their own mechanism to enforce auto-launch at login without being added to this LaunchAgents list: (a) Dropbox, (b) TextExpander, and (c) Alfred. When specifying an app to auto-open at login, the app can be referenced by either its (a) bundle ID or (b) its absolute path. The apps to auto-open are specified by adding them to the associative array `GENOMAC_LOGIN_APPS` in `scripts/settings/set_apps_to_launch_at_login.sh`.
+
+[^DEFAULT_APPS_TO_OPEN_TYPES_OF_FILES]: These assignments are made by `set_default_apps_to_open()` in `scripts/settings/set_default_apps_to_open.sh`. For example, BBEdit is assigned to open plain-text, Markdown, .plist, shell scripts, XML, and AppleScript files. Elmedia Player is assigned to open MPEG, QuickTime, m4v, and .avi files.
 
 ### Settings are distinguished on two dimensions: between (a) purely bootstrap vis-à-vis idempotent and (b) normally performed only once (PERM) vis-à-vis performed every complete run of Hypervisor (SESH)
 
