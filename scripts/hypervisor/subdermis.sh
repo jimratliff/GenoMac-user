@@ -9,7 +9,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_dropbox.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_helium.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_screensaver.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_textexpander.sh"
+# safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_textexpander.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_create_mission_control_spaces.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_git_config_user.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_waterfox_extension_preferences.sh"
@@ -64,7 +64,8 @@ function subdermis() {
 
   ############### BELOW THIS POINT: 1Password credentials are available
 
-  conditionally_configure_textexpander
+  # conditionally_configure_
+  
   conditionally_configure_Dropbox
   conditionally_interactive_configure_waterfox_raindropio_extension
 
