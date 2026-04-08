@@ -16,7 +16,7 @@
 APPS_FOR_DOCK=(
   "/System/Applications/System Settings.app"
   "Applications/1Password.app"
-  "Applications/TextExpander.app"
+  # "Applications/TextExpander.app"
   "Applications/Waterfox.app"
   "Applications/Helium.app"
   "Applications/Raindrop.io.app"
