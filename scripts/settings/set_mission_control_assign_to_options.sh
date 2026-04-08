@@ -11,7 +11,7 @@ function implement_mission_control_assign_to_options_for_selected_apps(){
   set_bundle_id_to_AllSpaces "${BUNDLE_ID_REMINDERS}"
   set_bundle_id_to_AllSpaces "${BUNDLE_ID_STICKIES}"
   set_bundle_id_to_AllSpaces "${BUNDLE_ID_SYSTEM_SETTINGS}"
-  set_bundle_id_to_AllSpaces "${BUNDLE_ID_TEXTEXPANDER}"
+  # set_bundle_id_to_AllSpaces "${BUNDLE_ID_TEXTEXPANDER}"
 
   killall Dock
   
