@@ -28,6 +28,5 @@
 #
 # More examples can be found here:
 #  https://developer.1password.com/docs/ssh/agent/config
-# NOTE: The vault name below should conform to the 1PASSWORD_VAULT_FOR_GENOMAC_STUFF environment variable.
 [[ssh-keys]]
 vault = "Dev"
