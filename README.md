@@ -13,7 +13,9 @@
 - [Appendix: What to do when you change the BetterTouchTool preset](#appendix-what-to-do-when-you-change-the-bettertouchtool-preset)
 
 ## Executive summary
-GenoMac-user is the user-specific component of Project GenoMac. Project GenoMac automates via scripting a highly opinionated configuration of any number of multi-user Macs, at both the system-scoped (see [GenoMac-system](https://github.com/jimratliff/GenoMac-system)) and user-scoped levels.
+Project GenoMac is an implementation of automated setup and maintenance of multiple Macs, each with multiple users. The current repository (GenoMac-user) is one of three repositories in Project GenoMac. It addresses user-level configuration of each user. The other two repositories are: (a) [GenoMac-system](https://github.com/jimratliff/GenoMac-system), which addresses system-level configuration of each Mac and (b) [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared), which provides shared code used by both GenoMac-system and GenoMac-user.
+
+GenoMac-user assumes that the Mac has already been configured using GenoMac-system.
 
 **First time here?**
 If this is your first time visiting GenoMac-user, please go first to the next major heading, viz., [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac).
