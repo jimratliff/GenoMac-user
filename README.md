@@ -7,7 +7,7 @@ Project GenoMac automates setup and maintenance of multiple Macs, each with mult
 
 Both GenoMac-system and GenoMac-user are intended to be cloned locally, in order to provide access to the necessary scripts and other resources. (GenoMac-system is cloned only by the designated configuring user, USER_CONFIGURER, for that Mac. GenoMac-user is cloned separately by *each user*.)
 
-GenoMac-user assumes that the Mac has already been configured using GenoMac-system.
+GenoMac-user assumes that the Mac has already been configured using GenoMac-system. If you are USER_CONFIGURER, go first to [GenoMac-system](https://github.com/jimratliff/GenoMac-system) to set up the Mac from a system-wide perspective before coming here to set your own user up.
 
 ## Table of contents
 - [Quick-reference cheat sheet for occasional maintenance](#quick-reference-cheat-sheet-for-occasional-maintenance)
