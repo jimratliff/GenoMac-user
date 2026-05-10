@@ -96,7 +96,7 @@ just run-hypervisor
 
 [^WHAT_IS_JUST_2]: The [just command](https://github.com/casey/just) is a “command runner” or “a handy way to save and run project-specific commands.” It is a modern successor to the [make command](https://man7.org/linux/man-pages/man1/make.1.html). 
 
-At certain points in the process, the Hypervisor will force a logout. This is done to increase the reliability of the changes. When you log in after the logout, simply start the Hypervisor again. The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN,” signaling completion of the fully Hypervisor cycle:
+At certain points in the process, within a single Hypervisor session, the Hypervisor will force a logout. This is done to increase the reliability of the changes—so that they’ll “stick.” When you log in after the logout, simply start the Hypervisor again with `just run-hypervisor`. The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN,” signaling completion of the full Hypervisor session:
 ```
  _____  _____  _____  _   _  _
 |_   _||_   _||  ___|| \ | || |
