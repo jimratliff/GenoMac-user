@@ -32,6 +32,79 @@ If this is your first time visiting GenoMac-user, please go first to the next ma
 **Starting the configuration of a new user?**
 If you’re already familiar with GenoMac-user—perhaps you’ve already configured one or more user accounts with it—you can go directly to [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user)
 
+## Setting up a new user
+- [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
+- [Cloning this repo](#cloning-this-repo)
+- [Repeatedly run the Hypervisor until it completes](#----------)
+
+### Establish real-time connection to communicate text back and forth
+It’s useful to have a live, collaborative document—where changes on one propagate to all others. When you’re configuring a new Mac, it’s helpful to have another, fully working Mac running to provide backup and research support. For example, you can copy a terminal error message from the new Mac into the Google Doc, and then go to the working Mac to retrieve that text and research it.
+
+I use a Google Doc for this purpose. The main requirement is that it have very low setup requirements on the new Mac.[^TEXT_EXCHANGE_DOC_EXAMPLE]
+
+[^TEXT_EXCHANGE_DOC_EXAMPLE]: For example, you wouldn’t want to use Dropbox to exchange notes, because one of GenoMac-user’s tasks is setting up Dropbox, but that doesn’t happen until pretty far in the process.
+
+(NOTE: USER_CONFIGURER will have already performed this step. Other users will need to do that at this time.)
+
+Open a Google Docs document to be used as/if needed for real-time exchange of text, error messages, etc., between the target Mac and other devices.
+- In Safari
+  - sign into my standard Google account:
+    - Go to google.com and click “Log in”
+    - Enter the username of my Google account
+    - A QR code will appear. Scan it with my iPhone and complete the authentication.
+  - Open the Google Doc document “[Project GenoMac: Text-exchange Document](https://docs.google.com/document/d/1RCbwjLHPidxRJJcvzILKGwtSkKpDrm8dT1fgJxlUdZ4/edit?usp=sharing)]”
+
+### Cloning this repo
+(NOTE: USER_CONFIGURER will have already performed this step because the GenoMac-system performs this step for USER_CONFIGURER.)
+
+For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`. 
+
+Launch iTerm. Then copy the following code block and paste into iTerm:
+```shell
+mkdir -p ~/.genomac-user
+cd ~/.genomac-user
+git clone --recurse-submodules https://github.com/jimratliff/GenoMac-user.git .
+```
+**Note the trailing “.” at the end of the `git clone` command.**
+
+(The `--recurse-submodules` flag exists because this repo has a submodule ([GenoMac-shared](https://github.com/jimratliff/GenoMac-shared)). The `--recurse-submodules` ensures that the submodule’s code is also cloned, not just a pointer to it.)
+
+### Running the Hypervisor
+The Hypervisor is a scripting function that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
+
+The Hypervisor is run by:[^WHAT_IS_JUST_2]
+```
+cd ~/.genomac-user
+just run-hypervisor
+```
+
+[^WHAT_IS_JUST_2]: The [just command](https://github.com/casey/just) is a “command runner” or “a handy way to save and run project-specific commands.” It is a modern successor to the [make command](https://man7.org/linux/man-pages/man1/make.1.html). 
+
+At certain points in the process, the Hypervisor will force a logout. This is done to increase the reliability of the changes. When you log in after the logout, simply start the Hypervisor again. The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN,” signaling completion of the fully Hypervisor cycle:
+```
+ _____  _____  _____  _   _  _
+|_   _||_   _||  ___|| \ | || |
+  | |    | |  | |_   |  \| || |
+  | |    | |  |  _|  | |\  ||_|
+  |_|    |_|  |_|    |_| \_|(_)
+
+
+ℹ️  You will be logged out semi-automatically to fully internalize all the work we’ve done.
+   Please log back in.
+   To restart, re-execute just run-hypervisor and we’ll pick up where we left off.
+
+✅ No GenoMac warnings or failures detected in this run.
+```
+
+The Hypervisor produces a *lot* of output, typically many screenfulls. If an important warning is issued, the Hypervisor keeps track of it and redisplays it when it reaches a standard stopping point (either when it urges you to logout or when it completes the entire configuration). If no warnings were detected, the Hypervisor will state that explicitly:
+```
+✅ No GenoMac warnings or failures detected in this run.
+```
+
+By collecting any warnings and repeating them at the end, you’re relieved of the necessity of wading through all of the output to look for anomalies.
+
+Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against silent failures that you wouldn’t notice.
+
 ## Quick-reference cheat sheet for occasional maintenance
 If you’re beginning the user-scoped configuration of a particular user on this Mac, go directly to this section: [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user).
 
@@ -309,78 +382,7 @@ Every other operation (i.e., neither interactive nor purely bootstrap) is run ev
 
 [^SESH_STATES_EVERY_TIME]: Implementation detail: These operations are associated with SESH states. Every time Hypervisor finishes a complete run successfully, all SESH states are deleted. As a result, the next time Hypervisor is run, all of these steps will be performed. **TODO** (a) Add discussion in the Developer section about states. (b) Add reference here to that discussion.
 
-## Step-by-step implementation (for a particular user)
-- [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
-- [Cloning this repo](#cloning-this-repo)
-- [Repeatedly run the Hypervisor until it completes](#----------)
 
-### Establish real-time connection to communicate text back and forth
-It’s useful to have a live, collaborative document—where changes on one propagate to all others. When you’re configuring a new Mac, it’s helpful to have another, fully working Mac running to provide backup and research support. For example, you can copy a terminal error message from the new Mac into the Google Doc, and then go to the working Mac to retrieve that text and research it.
-
-I use a Google Doc for this purpose. The main requirement is that it have very low setup requirements on the new Mac.[^TEXT_EXCHANGE_DOC_EXAMPLE]
-
-[^TEXT_EXCHANGE_DOC_EXAMPLE]: For example, you wouldn’t want to use Dropbox to exchange notes, because one of GenoMac-user’s tasks is setting up Dropbox, but that doesn’t happen until pretty far in the process.
-
-(NOTE: USER_CONFIGURER will have already performed this step. Other users will need to do that at this time.)
-
-Open a Google Docs document to be used as/if needed for real-time exchange of text, error messages, etc., between the target Mac and other devices.
-- In Safari
-  - sign into my standard Google account:
-    - Go to google.com and click “Log in”
-    - Enter the username of my Google account
-    - A QR code will appear. Scan it with my iPhone and complete the authentication.
-  - Open the Google Doc document “[Project GenoMac: Text-exchange Document](https://docs.google.com/document/d/1RCbwjLHPidxRJJcvzILKGwtSkKpDrm8dT1fgJxlUdZ4/edit?usp=sharing)]”
-
-### Cloning this repo
-(NOTE: USER_CONFIGURER will have already performed this step because the GenoMac-system performs this step for USER_CONFIGURER.)
-
-For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`. 
-
-Launch iTerm. Then copy the following code block and paste into iTerm:
-```shell
-mkdir -p ~/.genomac-user
-cd ~/.genomac-user
-git clone --recurse-submodules https://github.com/jimratliff/GenoMac-user.git .
-```
-**Note the trailing “.” at the end of the `git clone` command.**
-
-(The `--recurse-submodules` flag exists because this repo has a submodule ([GenoMac-shared](https://github.com/jimratliff/GenoMac-shared)). The `--recurse-submodules` ensures that the submodule’s code is also cloned, not just a pointer to it.)
-
-### Running the Hypervisor
-The Hypervisor is a scripting function that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
-
-The Hypervisor is run by:[^WHAT_IS_JUST_2]
-```
-cd ~/.genomac-user
-just run-hypervisor
-```
-
-[^WHAT_IS_JUST_2]: The [just command](https://github.com/casey/just) is a “command runner” or “a handy way to save and run project-specific commands.” It is a modern successor to the [make command](https://man7.org/linux/man-pages/man1/make.1.html). 
-
-At certain points in the process, the Hypervisor will force a logout. This is done to increase the reliability of the changes. When you log in after the logout, simply start the Hypervisor again. The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN,” signaling completion of the fully Hypervisor cycle:
-```
- _____  _____  _____  _   _  _
-|_   _||_   _||  ___|| \ | || |
-  | |    | |  | |_   |  \| || |
-  | |    | |  |  _|  | |\  ||_|
-  |_|    |_|  |_|    |_| \_|(_)
-
-
-ℹ️  You will be logged out semi-automatically to fully internalize all the work we’ve done.
-   Please log back in.
-   To restart, re-execute just run-hypervisor and we’ll pick up where we left off.
-
-✅ No GenoMac warnings or failures detected in this run.
-```
-
-The Hypervisor produces a *lot* of output, typically many screenfulls. If an important warning is issued, the Hypervisor keeps track of it and redisplays it when it reaches a standard stopping point (either when it urges you to logout or when it completes the entire configuration). If no warnings were detected, the Hypervisor will state that explicitly:
-```
-✅ No GenoMac warnings or failures detected in this run.
-```
-
-By collecting any warnings and repeating them at the end, you’re relieved of the necessity of wading through all of the output to look for anomalies.
-
-Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against silent failures that you wouldn’t notice.
 
 ############### WIP, RETURN HERE. TODO ###############
  
