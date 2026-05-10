@@ -11,7 +11,7 @@ Both GenoMac-system and GenoMac-user are intended to be cloned locally, in order
 GenoMac-user assumes that the Mac has already been configured using GenoMac-system.
 
 ## Table of contents
-- [Introduction to Project GenoMac](#executive-summary)
+- [Introduction to Project GenoMac](#introduction-to-project-genomac)
 - [Quick-reference cheat sheet for occasional maintenance](#quick-reference-cheat-sheet-for-occasional-maintenance)
 - [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
 - [Overview of using this repo to implement the user-scoped settings for a particular user](#overview-of-using-this-repo-to-implement-the-user-scoped-settings-for-a-particular-user)
