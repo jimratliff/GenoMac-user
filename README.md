@@ -13,7 +13,7 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 
 ## Table of contents
 - [Overview of configuring a user with GenoMac-user](#overview-of-configuring-a-user-with-genomac-user)
-- [Step-by-step: Set up a new user](#setting-up-a-new-user)
+- [Step-by-step: Set up a new user](#step-by-step-set-up-a-new-user)
 - [Appendices](#appendices)
 - [Quick-reference cheat sheet for occasional maintenance](#quick-reference-cheat-sheet-for-occasional-maintenance)
 - [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
@@ -66,8 +66,8 @@ Open a Google Docs document to be used as/if needed for real-time exchange of te
     - A QR code will appear. Scan it with my iPhone and complete the authentication.
   - Open the Google Doc document “[Project GenoMac: Text-exchange Document](https://docs.google.com/document/d/1RCbwjLHPidxRJJcvzILKGwtSkKpDrm8dT1fgJxlUdZ4/edit?usp=sharing)]”
 
-### Cloning this repo
-(NOTE: USER_CONFIGURER will have already performed this step because the GenoMac-system performs this step for USER_CONFIGURER.)
+### Clone this repo
+(NOTE: USER_CONFIGURER will have already performed this step for its home directory because the GenoMac-system performs this step for USER_CONFIGURER. All other users need to follow the below step.)
 
 For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`. 
 
