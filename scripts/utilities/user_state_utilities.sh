@@ -1,0 +1,59 @@
+#!/usr/bin/env zsh
+
+# Utility script to perform maintenance and informational actions on the set of user states
+
+set -euo pipefail
+
+this_script_path="${0:A}"
+this_script_dir="${this_script_path:h}"
+
+initialization_script="$HOME/.genomac-user/scripts/0_initialize_me_first.sh"
+echo "Source ${initialization_script}"
+source "${initialization_script}"
+
+function usage() {
+  local script_name="${0:t}"
+  cat >&2 <<'EOF'
+Usage:
+  ${script_name} show
+  ${script_name} clear-session
+  ${script_name} clear-all
+EOF
+}
+
+function main() {
+  emulate -L zsh
+  set -euo pipefail
+
+  if (( $# != 1 )); then
+    usage
+    return 64
+  fi
+
+  local command="$1"
+
+  case "${command}" in
+    show)
+      report_action_taken "Open user local state directory"
+      open "${GENOMAC_USER_LOCAL_STATE_DIRECTORY}" ; success_or_not
+      ;;
+
+    clear-session)
+      report_action_taken "Clear user SESH states"
+      delete_all_user_SESH_states ; success_or_not
+      ;;
+
+    clear-all)
+      report_action_taken "Clear all user states"
+      delete_all_user_states ; success_or_not
+      ;;
+
+    *)
+      report_fail "Unknown user-states command: ${command}"
+      usage
+      return 64
+      ;;
+  esac
+}
+
+main "$@"
