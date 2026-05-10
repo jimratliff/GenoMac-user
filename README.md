@@ -1,6 +1,8 @@
 # GenoMac-user
 Project GenoMac automates setup and maintenance of multiple Macs, each with multiple users.[^multiple_users] The current repository (GenoMac-user) is one of three repositories in Project GenoMac. It addresses user-level configuration of each user. The other two repositories are: (a) [GenoMac-system](https://github.com/jimratliff/GenoMac-system), which addresses system-level configuration of each Mac and (b) [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared), which provides shared code used by both GenoMac-system and GenoMac-user.[^genomac_shared_purpose]
 
+See GenoMac-system’s README for a [more-extensive overview of Project GenoMac](https://github.com/jimratliff/GenoMac-system/blob/main/README.md#overview-of-the-entire-genomac-process).
+
 [^multiple_users]: The envisioned case is: there is a set of users and each Mac has all (or almost all) of those users. In other words, this is a scenario of a set of users residing on each of several Macs.
 
 [^genomac_shared_purpose]: GenoMac-shared is an externally defined set of common code that specifies some environment variables and defines some helper functions. This common code is incorporated into each of GenoMac-system and GenoMac-user as a submodule located at `external/genomac-shared` of each of the two container repositories. See GenoMac-shared’s [README](https://github.com/jimratliff/GenoMac-shared/blob/main/README.md) for information on how that affects/complicates work flows, particularly when there is a change to GenoMac-shared’s code.
