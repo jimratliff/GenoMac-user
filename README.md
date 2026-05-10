@@ -12,6 +12,8 @@ Both GenoMac-system and GenoMac-user are intended to be cloned locally, in order
 GenoMac-user assumes that the Mac has already been configured using GenoMac-system. If you are USER_CONFIGURER, go first to [GenoMac-system](https://github.com/jimratliff/GenoMac-system) to set up the Mac from a system-wide perspective before coming here to set your own user up.
 
 ## Table of contents
+- [Setting up a new user](#setting-up-a-new-user)
+- 38<sup>th</sup> Parallel
 - [Quick-reference cheat sheet for occasional maintenance](#quick-reference-cheat-sheet-for-occasional-maintenance)
 - [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
 - [Overview of using this repo to implement the user-scoped settings for a particular user](#overview-of-using-this-repo-to-implement-the-user-scoped-settings-for-a-particular-user)
