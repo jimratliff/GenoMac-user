@@ -50,7 +50,7 @@ If you’re already familiar with GenoMac-user—perhaps you’ve already config
 - [Repeatedly run the Hypervisor until it completes](#----------)
 
 ### Establish real-time connection to communicate text back and forth
-It’s useful to have a live, collaborative document—where changes on one propagate to all others. When you’re configuring a new Mac, it’s helpful to have another, fully working Mac running to provide backup and research support. For example, you can copy a terminal error message from the new Mac into the Google Doc, and then go to the working Mac to retrieve that text and research it.
+It’s useful to have a live, collaborative document—where changes on one device propagate to all others. When you’re configuring a new Mac, it’s helpful to have another, fully working Mac running to provide backup and research support. For example, you can copy a terminal error message from the new Mac into the Google Doc, and then go to the working Mac to retrieve that text and research it. Further, if you need to make a change to this repo, you can make those changes using a Mac that’s already authenticated at GitHub; for the user being configured, that step comes relatively late in the process.
 
 I use a Google Doc for this purpose. The main requirement is that it have very low setup requirements on the new Mac.[^TEXT_EXCHANGE_DOC_EXAMPLE]
 
@@ -64,20 +64,24 @@ Open a Google Docs document to be used as/if needed for real-time exchange of te
     - Go to google.com and click “Log in”
     - Enter the username of my Google account
     - A QR code will appear. Scan it with my iPhone and complete the authentication.
-  - Open the Google Doc document “[Project GenoMac: Text-exchange Document](https://docs.google.com/document/d/1RCbwjLHPidxRJJcvzILKGwtSkKpDrm8dT1fgJxlUdZ4/edit?usp=sharing)]”
+  - Open the Google Doc document “[Project GenoMac: Text-exchange Document](https://docs.google.com/document/d/1RCbwjLHPidxRJJcvzILKGwtSkKpDrm8dT1fgJxlUdZ4/edit?usp=sharing)]”[^my_google_doc]
+ 
+[^my_google_doc]: Of course, this document is specific to, and accessible by, only me. Make your own!
 
 ### Clone this repo
-(NOTE: USER_CONFIGURER will have already performed this step for its home directory because the GenoMac-system performs this step for USER_CONFIGURER. All other users need to follow the below step.)
+(NOTE: USER_CONFIGURER will have already performed this step for its home directory because the GenoMac-system performs this step for USER_CONFIGURER. All other users need to follow the below step at this time.)
 
 For each user, this repo should be cloned to the user’s home directory at `~/.genomac-user`. 
 
-Launch iTerm. Then copy the following code block and paste into iTerm:
+Launch iTerm.[^terminal_choice] Then copy the following code block and paste into iTerm:
 ```shell
 mkdir -p ~/.genomac-user
 cd ~/.genomac-user
 git clone --recurse-submodules https://github.com/jimratliff/GenoMac-user.git .
 ```
 **Note the trailing “.” at the end of the `git clone` command.**
+
+[^terminal_choice]: You can pick any terminal app you want as long as it’s installed by GenoMac-system. Currently, GenoMac-system installs iTerm as an alternative to Apple’s own Terminal.app.
 
 (The `--recurse-submodules` flag exists because this repo has a submodule ([GenoMac-shared](https://github.com/jimratliff/GenoMac-shared)). The `--recurse-submodules` ensures that the submodule’s code is also cloned, not just a pointer to it.)
 
