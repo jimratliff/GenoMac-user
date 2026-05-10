@@ -20,7 +20,6 @@ genomac_user_dir := env_var('HOME') / '.genomac-user'
 refresh-repo-and-module:
 	git -C "{{genomac_user_dir}}" pull --recurse-submodules origin main
 
-
 # Updates genomac-user repo, including genomac-shared submodule, and pushes it back to GitHub
 # The git diff check detects whether there are staged changes to the submodule and, if so, commits them.
 # Requires authenticating with GitHub (hence the 'dev-' prefix to distinguish from refresh-repo-and-module recipe.
@@ -48,6 +47,21 @@ verify-ssh-agent:
 
 defaults-detective:
 	zsh scripts/utilities/defaults_detective.sh
+
+
+############### User state utilities
+
+user-states command:
+    zsh scripts/utilities/user_state_utilities.sh '{{command}}'
+
+user-states-show:
+    just user-states show
+
+user-states-clear-session-states:
+    just user-states clear-session
+
+user-states-clear-all-states:
+    just user-states clear-all
 
 ############### Tests
 
