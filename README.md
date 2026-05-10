@@ -46,7 +46,7 @@ If you’re already familiar with GenoMac-user—perhaps you’ve already config
 
 ## Step-by-step: Set up a new user
 - [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
-- [Cloning this repo](#cloning-this-repo)
+- [Clone this repo](#clone-this-repo)
 - [Repeatedly run the Hypervisor until it completes](#----------)
 
 ### Establish real-time connection to communicate text back and forth
