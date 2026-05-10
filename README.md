@@ -34,6 +34,15 @@ If this is your first time visiting GenoMac-user, please go first to the next ma
 **Starting the configuration of a new user?**
 If you’re already familiar with GenoMac-user—perhaps you’ve already configured one or more user accounts with it—you can go directly to [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user)
 
+## Overview of configuring a user with GenoMac-user
+
+- It’s assumed that this Mac has already had its system-scoped settings (including app installations) performed by [GenoMac-system](https://github.com/jimratliff/GenoMac-system).
+- You’ll manually clone this repo to your home directory at `~/.genomac-user`.
+- You’ll run a script, referred to as the Hypervisor,[^two_hypervisors] which will orchestrate the entire process of configuring the user-scoped settings of this user.
+- You will sometimes be commanded/strongly encouraged to log out in order to let a set of changes be reliably incorporated. When you log back in, you’ll re-run the Hypervisor. It will have kept track of how far you had already gotten and will pick up where you left off.
+
+[^two_hypervisors]: GenoMac-system has its own Hypervisor, and GenoMac-user has its own Hypervisor. These are different scripts, but each does for its repo the same overall function: Orchestrating the implementation of the relevent configurations.
+
 ## Setting up a new user
 - [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
 - [Cloning this repo](#cloning-this-repo)
@@ -106,6 +115,8 @@ The Hypervisor produces a *lot* of output, typically many screenfulls. If an imp
 By collecting any warnings and repeating them at the end, you’re relieved of the necessity of wading through all of the output to look for anomalies.
 
 Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against silent failures that you wouldn’t notice.
+
+## Appendices
 
 ## Quick-reference cheat sheet for occasional maintenance
 If you’re beginning the user-scoped configuration of a particular user on this Mac, go directly to this section: [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user).
