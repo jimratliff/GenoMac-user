@@ -6,7 +6,7 @@
 - [Programmatic steps](#programmatic-steps)
 - [Dotfiles](#dotfiles)
 ## Programmatic steps
-(Of course, it’s possible that the below list of programmatic steps will become out of sync with the actual state of the Hypervisor’s code. So… trust, but verify!)
+(Of course, it’s possible that the below list of programmatic steps will become out of sync with the actual state of the Hypervisor’s code. So… trust, but verify! The code itself is the ultimate source of truth. The place to start reviewing to discover the settings implemented is `scripts/hypervisor/subdermis.sh`.)
 
 Some of the following need to be performed only once, viz., the first time this user runs the Hypervisor. Thus, some of the following will be automatically skipped over on subsequent Hypervisor runs.
 
@@ -56,7 +56,7 @@ Some of the following need to be performed only once, viz., the first time this 
     - Show Fast User Switching in menubar only as Account Name
     - Show text-input menu in menubar
   - Control Center: Add Bluetooth to Control Center to access battery percentages of Bluetooth devices
-  - Dock settings[^dock_settings]
+  - Dock settings[^dock_settings] (including which apps appear persistently in the Dock[^dock_persistent_apps]) and which apps should open their windows in all Spaces[^dock_open_in_all_spaces])
   - Hot corners[^hot_corners]
   -   Bottom-right corner: start screen saver
     - Bottom-left corner: Disable screen saver
@@ -69,7 +69,7 @@ Some of the following need to be performed only once, viz., the first time this 
   - Language & Region: Week starts on Monday
   - Notifications settings: Stops notifications from Tips app.
   - Time Machine: Don’t prompt to use new disk as backup volume
-  - Set default browser to Waterfox
+  - Set default browser to Waterfox[^set_default_browser]
   - Set default apps to open for various document types[^default_apps_for_docs]
   - interactively create additional Mission Control Spaces[^create_mission_control_spaces]
 - Implements settings for Apple’s built-in apps
@@ -97,7 +97,7 @@ Some of the following need to be performed only once, viz., the first time this 
   - PlainTextEditor[^plain_text_editor_settings]
   - Waterfox browser and extensions[^waterfox_browser_and_extensions_settings]
   - Witch[^witch_settings]
-- Set apps that should launch at login[^apps_that_launch_at_login]
+- Set apps that should launch at login via LaunchAgents (in addition to apps that already have their own mechanisms for this)[^apps_that_launch_at_login]
  
 [^waterfox_default_browser]: Waterfox, a derivative of Firefox’s Gecko browser engine, will be set as the default browser.
 
@@ -119,11 +119,17 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^dock_settings]: See `scripts/settings/set_general_dock_settings.sh`. Turn *off* automatic show/hide; turn *on* magnification when hovering; set magnification size; show indicator lights for open apps; icons of hidden apps are translucent; enable two-finger scrolling on Dock icon to reveal thumbnails of all windows; minimize to Dock rather than to app’s Dock icon. The (a) app lineup on the Dock and (b) which apps are supposed to open in all spaces is specified on a one-time bootstrap basis by `scripts/settings/perform_initial_bootstrap_operations.sh`.
 
+[^dock_persistent_apps}: As a bootstrap step, the Dock is deleted and is replaced by a lineup (System Settings, 1Password, {{TextExpander has been DEPRECATED from Project GenoMac: TextExpander,}} Waterfox, Helium, Raindrop.io, Obsidian, Zed, Activity Monitor, and iTerm) that is defined in `scripts/settings/bootstrap_dock.sh`. This is a *bootstrap* step, but not an enforcement/maintenance step: the Dock configuration can be changed by the user and subsequent runs of Hypervisor will *not* overrule those user changes.
+
+[^dock_open_in_all_spaces]: These apps (1Password, Activity Monitor, Calendar, Contacts, Notes, Reminders, Stickies, and System Settings {{TextExpander has been DEPRECATED from Project GenoMac: TextExpander,}}) are specified in `implement_mission_control_assign_to_options_for_selected_apps()` in `scripts/settings/set_mission_control_assign_to_options.sh`. These particular apps were chosen primarily because (a) with the exception of Stickies, they are single-window apps and (b) each could reasonably be desired to appear in multiple Spaces. Thus, if one of these apps was *not* desired in a particular Space, the app could be hidden and re-displayed when needed.
+
 [^hot_corners]: See `scripts/settings/set_general_dock_settings.sh`
 
 [^screen_capture_settings]: See `scripts/settings/set_screen_capture_settings.sh`. (a) Disable drop shadow. (b) Set screenshot destination to `~/Screenshots`. However: TODO: needs to be bifurcated to deal with Dropbox screenshot destinations. Setting the location should be separated from the other screen-capture preferences because this would be user-specific.
 
-[^default_apps_for_docs]: See `scripts/settings/set_default_apps_to_open.sh`. Use (a) BBEdit for many text types (plain text; Markdown; .plist, shell scripts, XML, AppleScript); (b) Elmedia Player for many video formats (MPEG, Quicktime, m4vm and .avi).
+[^set_default_browser]: See `set_default_browser()` in `scripts/settings/set_default_browser.sh`. This causes five different handlers to be set. Mysteriously to me, one of these steps can take a long time. Be patient.
+
+[^default_apps_for_docs]: These assignments are made by `set_default_apps_to_open()` in `scripts/settings/set_default_apps_to_open.sh`. For example, BBEdit is assigned to open plain-text, Markdown, .plist, shell scripts, XML, and AppleScript files. Elmedia Player is assigned to open MPEG, QuickTime, m4v, and .avi files.
 
 [^create_mission_control_spaces]: See `scripts/settings/interactive_create_mission_control_spaces.sh`.
 
@@ -139,7 +145,7 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^terminal_app_settings]: See `scripts/settings/set_terminal_settings.sh`. Sets style for new windowsand stating windows: “Man Page”.
 
-[^1password_setup]: See `scripts/settings/interactive_configure_1password.sh`.
+[^1password_setup]: See `scripts/settings/interactive_configure_1password.sh`. Hypervisor interactively walks you through configuring 1Password both (a) for normal user and (b) to use the 1Password SSH agent to authenticate with GitHub in the CLI.
 
 [^alan_app_settings]: See `scripts/settings/set_alan_app_settings.sh`.
 
@@ -173,7 +179,7 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^witch_settings]: See `scripts/settings/set_witch_settings.sh`. (a) Installs Witch license files, which are assumed to be provided in Dropbox. (b) Sets Witch settings.
 
-[^apps_that_launch_at_login]: See `scripts/settings/set_apps_to_launch_at_login.sh`.
+[^apps_that_launch_at_login]: See `scripts/settings/set_apps_to_launch_at_login.sh`. The apps currently specified to auto-launch on login are (a) [Alan.app](https://tyler.io/2025/11/26/alan/), (b) BetterTouchTool, and (c) Keyboard Maestro Engine. The following apps are *not* added to this list, even though it *is* desired that they auto-launch at login, because empirically these apps have their own mechanism to enforce auto-launch at login without being added to this LaunchAgents list: (a) Dropbox, (b) {{TextExpander has been DEPRECATED from Project GenoMac: TextExpander,}}, and (c) Alfred. When specifying an app to auto-open at login, the app can be referenced by either its (a) bundle ID or (b) its absolute path. The apps to auto-open are specified by adding them to the associative array `GENOMAC_LOGIN_APPS` in `scripts/settings/set_apps_to_launch_at_login.sh`.
 
 ## Dotfiles
 Note, in particular, the following non-exhaustive list of particular settings scattered among the dotfiles:
