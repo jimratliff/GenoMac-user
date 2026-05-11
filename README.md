@@ -16,13 +16,12 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 - [Step-by-step: Set up a new user](#step-by-step-set-up-a-new-user)
 - [Maintaining the user’s user-scoped settings by periodically re-running the Hypervisor](#maintaining-the-users-user-scoped-settings-by-periodically-re-running-the-hypervisor)
 - [Appendices](#appendices)
-  - [What steps and settings the Hypervisor implements](#what-steps-and-settings-the-hypervisor-implements)
   - [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
 - [TODOs](#todos)
 - [Known issues](#known-issues)
 - [Dev issues](#appendix-dev-issues)
 - [Appendix: Compilation of selected settings choices (NOT exhaustive!)](#appendix-compilation-of-selected-settings-choices-not-exhaustive)
-- [Appendix: What to do when you change the BetterTouchTool preset](#appendix-what-to-do-when-you-change-the-bettertouchtool-preset)
+
 
 **Other documentation files**
 - [What Hypervisor does and what settings/configurations it implements](https://github.com/jimratliff/GenoMac-user/blob/main/docs/what_hypervisor_does.md)
