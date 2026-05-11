@@ -204,7 +204,7 @@ There is an additional nuance if the setting a particular experimentally or inad
 
 ## Appendices
 
-### What steps the Hypervisor performs
+### What steps and settings the Hypervisor implements
 - [Programmatic steps](#programmatic-steps)
 - [Dotfiles](#dotfiles)
 #### Programmatic steps
