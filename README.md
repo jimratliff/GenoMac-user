@@ -20,7 +20,6 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 - [Step-by-step: Set up a new user](#step-by-step-set-up-a-new-user)
 - [Maintaining the user’s user-scoped settings by occasionally re-running the Hypervisor](#maintaining-the-users-user-scoped-settings-by-occasionally-re-running-the-hypervisor)
 - [Appendices](#appendices)
-
 - [TODOs](#todos)
 - [Known issues](#known-issues)
 - [Dev issues](#appendix-dev-issues)
