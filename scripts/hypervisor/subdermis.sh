@@ -39,19 +39,19 @@ function subdermis() {
   
   set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
 
-  interactive_ensure_terminal_has_fda
+  interactive_ensure_terminal_has_fda                      # GenoMac-shared/scripts/helpers-misc.sh
   
-  conditionally_interactive_ask_initial_questions
-  conditionally_set_git_config_user
+  conditionally_interactive_ask_initial_questions          # scripts/settings/interactive_ask_initial_questions.sh
+  conditionally_set_git_config_user                        # scripts/settings/interactive_set_git_config_user.sh
   
-  conditionally_stow_dotfiles
-  conditionally_perform_basic_user_level_settings
+  conditionally_stow_dotfiles                              # scripts/settings/perform_stow_dotfiles.sh
+  conditionally_perform_basic_user_level_settings          # scripts/settings/perform_basic_user_level_settings.sh
   conditionally_reverse_disk_display_policy_for_some_users
   
-  conditionally_implement_waterfox_settings_and_install_extensions
-  interactive_set_preferences_for_waterfox_extensions
+  conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
+  interactive_set_preferences_for_waterfox_extensions      # scripts/settings/interactive_set_waterfox_extension_preferences.sh
 
-  conditionally_interactive_configure_helium_and_extensions
+  conditionally_interactive_configure_helium_and_extensions # scripts/settings/interactive_configure_helium.sh
   
   # Execute pre-Dropbox bootstrap steps
   conditionally_perform_initial_bootstrap_operations
