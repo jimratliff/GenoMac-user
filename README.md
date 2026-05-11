@@ -54,7 +54,7 @@ If you’re already familiar with GenoMac-user—perhaps you’ve already config
 ## Step-by-step: Set up a new user
 - [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
 - [Clone this repo](#clone-this-repo)
-- [Repeatedly run the Hypervisor until it completes](#----------)
+- [Repeatedly run the Hypervisor until it completes](#repeatedly-run-the-hypervisor-until-it-completes)
 
 ### Establish real-time connection to communicate text back and forth
 It’s useful to have a live, collaborative document—where changes on one device propagate to all others. When you’re configuring a new Mac, it’s helpful to have another, fully working Mac running to provide backup and research support. For example, you can copy a terminal error message from the new Mac into the Google Doc, and then go to the working Mac to retrieve that text and research it. Further, if you need to make a change to this repo, you can make those changes using a Mac that’s already authenticated at GitHub; for the user being configured, that step comes relatively late in the process.
