@@ -50,7 +50,7 @@ Some of the following need to be performed only once, viz., the first time this 
     - Always show scrollbars
     - Reverse obnoxious default that revealed desktop anytime you clicked on the desktop
     - Restore to all apps the “Save As…” menu item as a first-class visible-without-option choice
-    - Change size and colors of cursor
+    - Change size and fill and outline colors of cursor
     - Do **not** show widgets on the desktop
     - Window should display as tabs according to window’s tabbing mode
     - Double-click on window’s title bar ⇒ Zoom (reinforces default)
@@ -58,13 +58,13 @@ Some of the following need to be performed only once, viz., the first time this 
     - Always show window proxy icon
     - Reduce transparency and increase contrast
     - Expand certain dialog boxes by default
-  - stop intrusive/arrogant “corrections”[^donot_be_arrogant]
+  - All autocorrection (correcting spelling automatically, automatic capitalization, adding period with double-space, and smart quotes/dashes) is turned *off*.[^donot_be_arrogant]
   - keyboard-related settings
     - Holding alpha key down pops up character-accent menu (rather than repeats)[^hold_alpha_key_reinforces_default]
     - Enable Keyboard Navigation (with Tab key)
     - Use F1, F2, etc. keys as standard function keys
     - Press and release globe (🌎) key to bring up emoji picker
-  - Set symbolic hot keys to Apple commands[^symbolic_hot_key_assignments]
+  - Set symbolic hot keys for Apple commands[^symbolic_hot_key_assignments]
   - Implement menubar-related settings
     - Always show Sound in menubar (not only when “active”)
     - Give audible feedback when volume is changed
@@ -101,6 +101,11 @@ Some of the following need to be performed only once, viz., the first time this 
   - [Alan.app](https://github.com/tylerhall/Alan)[^alan_app_settings]
   - Alfred[^alfred_settings]
   - BBEdit[^bbedit_settings]
+    - Soft-wrap text to window width
+    - Show tab stops (as vertical lines) in editing window
+    - Don’t prefer shared window for New and Open
+    - Display full path of files in “Open Recent” Items
+    - When BBEdit becomes active, do nothing (don’t open a new doc)
   - BetterTouchTool[^btt_settings]
   - ChatGPT[^chatgpt_settings]
   - Claude[^claude_settings]
@@ -128,7 +133,7 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^general_ui_settings]: See `scripts/settings/set_general_interface_settings.sh`.
 
-[^donot_be_arrogant]: See `scripts/settings/set_auto_correction_suggestion_settings.sh`. Turn **off** automatically (a) correcting spelling, (b) capitalizing words, (c) adding a period with double-space, and (d) use smart quotes and dashes.
+[^donot_be_arrogant]: See `scripts/settings/set_auto_correction_suggestion_settings.sh`. Inline predictive text is *not* turned off, but this could be chosen by uncommenting one line.
 
 [^hold_alpha_key_reinforces_default]: This doesn’t change the default; it affirms/reinforces it.
 
