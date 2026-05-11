@@ -16,7 +16,7 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 - [Step-by-step: Set up a new user](#step-by-step-set-up-a-new-user)
 - [Maintaining the user’s user-scoped settings by periodically re-running the Hypervisor](#maintaining-the-users-user-scoped-settings-by-periodically-re-running-the-hypervisor)
 - [Appendices](#appendices)
-  - [What steps the Hypervisor performs](#what-steps-the-hypervisor-performs)
+  - [What steps and settings the Hypervisor implements](#what-steps-and-settings-the-hypervisor-implements)
   - [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
 - [TODOs](#todos)
 - [Known issues](#known-issues)
