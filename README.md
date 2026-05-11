@@ -18,7 +18,6 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 - [Appendices](#appendices)
   - [What steps the Hypervisor performs](#what-steps-the-hypervisor-performs)
 - [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
-- [Overview of using this repo to implement the user-scoped settings for a particular user](#overview-of-using-this-repo-to-implement-the-user-scoped-settings-for-a-particular-user)
 - [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user)
 - [TODOs](#todos)
 - [Known issues](#known-issues)
