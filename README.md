@@ -192,6 +192,7 @@ Some of the following need to be performed only once, viz., the first time this 
   - Time Machine: Don’t prompt to use new disk as backup volume
   - Set default browser to Waterfox
   - Set default apps to open for various document types[^default_apps_for_docs]
+  - interactively create additional Mission Control Spaces[^create_mission_control_spaces]
 - Implements settings for Apple’s built-in apps
   - Disk Utility[^disk_utility_settings]
   - Finder[^finder_settings]<sup>,</sup>[^show_disks_on_desktop]
@@ -217,6 +218,7 @@ Some of the following need to be performed only once, viz., the first time this 
   - PlainTextEditor[^plain_text_editor_settings]
   - Waterfox browser and extensions[^waterfox_browser_and_extensions_settings]
   - Witch[^witch_settings]
+- Set apps that should launch at login[^apps_that_launch_at_login]
  
 [^waterfox_default_browser]: Waterfox, a derivative of Firefox’s Gecko browser engine, will be set as the default browser.
 
@@ -243,6 +245,8 @@ Some of the following need to be performed only once, viz., the first time this 
 [^screen_capture_settings]: See `scripts/settings/set_screen_capture_settings.sh`. (a) Disable drop shadow. (b) Set screenshot destination to `~/Screenshots`. However: TODO: needs to be bifurcated to deal with Dropbox screenshot destinations. Setting the location should be separated from the other screen-capture preferences because this would be user-specific.
 
 [^default_apps_for_docs]: See `scripts/settings/set_default_apps_to_open.sh`. Use (a) BBEdit for many text types (plain text; Markdown; .plist, shell scripts, XML, AppleScript); (b) Elmedia Player for many video formats (MPEG, Quicktime, m4vm and .avi).
+
+[^create_mission_control_spaces]: See `scripts/settings/interactive_create_mission_control_spaces.sh`.
 
 [^finder_settings]: See `scripts/settings/set_finder_settings.sh`. The toolbar is specified on a one-time bootstrap basis by `scripts/settings/perform_initial_bootstrap_operations.sh`.
 
@@ -289,6 +293,8 @@ Some of the following need to be performed only once, viz., the first time this 
 [^waterfox_browser_and_extensions_settings]: See `scripts/settings/set_waterfox_settings.sh`.
 
 [^witch_settings]: See `scripts/settings/set_witch_settings.sh`. (a) Installs Witch license files, which are assumed to be provided in Dropbox. (b) Sets Witch settings.
+
+[^apps_that_launch_at_login]: See `scripts/settings/set_apps_to_launch_at_login.sh`.
 
 #### Dotfiles
 
