@@ -144,7 +144,7 @@ Some of the following need to be performed only once, viz., the first time this 
     - If not, will ask whether, nevertheless: Will this user want to make commits on GitHub? (If so, will set name/email for Git config)
   - Will this user want to configure Microsoft Word?
   - What name and email address the user wants to use for their git config[^git_config_name_email]
-- Implements basic user-level settings
+- Implements basic user-level settings[^basic_user_settings]
   - app-state persistence[^app_state_persistence]
   - trackpad settings[^trackpad_settings]
   - other general UI settings[^general_ui_settings]
@@ -160,7 +160,7 @@ Some of the following need to be performed only once, viz., the first time this 
     - Always show window proxy icon
     - Reduce transparency and increase contrast
     - Expand certain dialog boxes by default
-  - stop intrusive/arrogant “corrections”
+  - stop intrusive/arrogant “corrections”[^donot_be_arrogant]
   - keyboard-related settings
     - Holding alpha key down pops up character-accent menu (rather than repeats)[^hold_alpha_key_reinforces_default]
     - Enable Keyboard Navigation (with Tab key)
@@ -175,18 +175,21 @@ Some of the following need to be performed only once, viz., the first time this 
     - Show Fast User Switching in menubar only as Account Name
     - Show text-input menu in menubar
   - Control Center: Add Bluetooth to Control Center to access battery percentages of Bluetooth devices
-  - Dock settings
-  - screen-capture settings
+  - Dock settings[^dock_settings]
+  - Hot corners[^hot_corners]
+  -   Bottom-right corner: start screen saver
+    - Bottom-left corner: Disable screen saver
+  - screen-capture settings[^screen_capture_settings]
   - Mission Control/Spaces settings
     - Don’t rearrange based on most-recent use
     - Spaces span all displays (no separate space for each monitor)
     - Do not jump to a new space when switching applications
     - Do not enter Mission Control when dragging window to top of screen
   - Language & Region: Week starts on Monday
-  - Notifications settings
+  - Notifications settings: Stops notifications from Tips app.
   - Time Machine: Don’t prompt to use new disk as backup volume
   - Set default browser to Waterfox
-  - Set default apps to open for various document types
+  - Set default apps to open for various document types[^default_apps_for_docs]
   - Implements settings for Apple’s built-in apps
     - Finder
     - Preview.app
@@ -209,16 +212,27 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^git_config_name_email]: This is asked when either (a) the user wants to SSH authenticate GitHub using 1Password or (b) otherwise wants to make commit on GitHub. Most of the git config is (a) defined at stow_directory/git/.config/git/config and (b) managed by GNU Stow. However, the \[user\] block, which contains the user’s name and email address, is not expressed in that config file (which is stored in this public repo), in order that the name/email aren’t accidentally propagated to and inadvertently adopted by other users.
 
+[^basic_user_settings]: See `scripts/settings/perform_basic_user_level_settings.sh`.
+
 [^app_state_persistence]: Relaunch apps and windows upon login. Closing a document confirms any pending changes.
 
 [^trackpad_settings]: See `scripts/settings/set_trackpad_settings.sh`.
 
 [^general_ui_settings]: See `scripts/settings/set_general_interface_settings.sh`.
 
+[^donot_be_arrogant]: See `scripts/settings/set_auto_correction_suggestion_settings.sh`. Turn **off** automatically (a) correcting spelling, (b) capitalizing words, (c) adding a period with double-space, and (d) use smart quotes and dashes.
+
 [^hold_alpha_key_reinforces_default]: This doesn’t change the default; it affirms/reinforces it.
 
 [^symbolic_hot_key_assignments]: See `scripts/settings/set_symbolichotkeys.sh`. Disables some default hotkeys and changes the default hotkeys for some actions.
 
+[^dock_settings]: See `scripts/settings/set_general_dock_settings.sh`. Turn *off* automatic show/hide; turn *on* magnification when hovering; set magnification size; show indicator lights for open apps; icons of hidden apps are translucent; enable two-finger scrolling on Dock icon to reveal thumbnails of all windows; minimize to Dock rather than to app’s Dock icon.
+
+[^hot_corners]: See `scripts/settings/set_general_dock_settings.sh`
+
+[^screen_capture_settings]: See `scripts/settings/set_screen_capture_settings.sh`. (a) Disable drop shadow. (b) Set screenshot destination to `~/Screenshots`. However: TODO: needs to be bifurcated to deal with Dropbox screenshot destinations. Setting the location should be separated from the other screen-capture preferences because this would be user-specific.
+
+[^default_apps_for_docs]: See `scripts/settings/set_default_apps_to_open.sh`. Use (a) BBEdit for many text types (plain text; Markdown; .plist, shell scripts, XML, AppleScript); (b) Elmedia Player for many video formats (MPEG, Quicktime, m4vm and .avi).
 
 ## Quick-reference cheat sheet for occasional maintenance
 If you’re beginning the user-scoped configuration of a particular user on this Mac, go directly to this section: [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user).
