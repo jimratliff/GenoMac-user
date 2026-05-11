@@ -221,7 +221,7 @@ Some of the following need to be performed only once, viz., the first time this 
   - NOTE: This is a potentially interactive step.
 - The Hypervisor interactively asks for answers to some questions (only the first time the Hypervisor is run for this user):
   - Does this user want to see, on the desktop, the built-in and external drives?
-  - Does this user want to configure the Enhancer for YouTube browser extension for Waterfox?[^waterfox_default_browser]
+  - Does this user want to configure the [Enhancer for YouTube](https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/) browser extension for Waterfox?[^waterfox_default_browser]
   - Will this user sync preferences via Dropbox?
   - Will this user want to SSH authenticate GitHub using 1Password?
     - If not, will ask whether, nevertheless: Will this user want to make commits on GitHub? (If so, will set name/email for Git config)
