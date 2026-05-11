@@ -233,20 +233,7 @@ There is an additional nuance if the setting a particular experimentally or inad
 
 ## Appendices
 
-### This repo establishes/adjusts numerous user-level settings using a variety of techniques
-This repo supplies scripts that execute various commands to establish various user settings for macOS generally and for certain apps in particular.
 
-For many/most of the macOS settings and for many/most of the GUI apps, these scripts use macOS `defaults write` or `PlistBuddy` commands to set preferences using macOS `defaults` system.[^FIND_DEFAULTS]
-
-[^FIND_DEFAULTS]: For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
-
-Some apps, particularly non-Apple cross-platform apps such as web browsers, don’t rely entirely or at all upon macOS’s `defaults` system but instead use other mechanisms to expose their preferences to scripting. This repo nevertheless often attempts to script those apps’ preferences to the extent possible/feasible/practical. Examples of apps that use other methods for implementing preferences:
-- {{TextExpander has been DEPRECATED from Project GenoMac}} Apps whose preferences are stored remotely associated with the user’s account for that app. E.g., TextExpander. This repo relies upon the user logging into their account with such an app to provide the desired configuration.
-- Apps based on Electron, which store their settings in JSON configuration files.
-- 1Password: 1Password is an Electron-based app and reveals its preferences in a `settings.json` file, which *should* make it straightforward to manipulate those preferences via scripting. However, presumably driven by security concerns, 1Password makes it impossible to effectively script those preferences.[^1Password_HMAC] Thus, the Hypervisor interactively walks you through configuring 1Password’s settings.
-- Microsoft Word: Very few of Word’s preferences are revealed through the macOS `defaults` system. This repo implements settings for Word primarily by a combination of (a) installing a preconfigured Normal.dotm template file and (b) running a VBA script (stored within a Word document) to set some Word preferences.
-
-[^1Password_HMAC]: 1Password’s preferences are stored at `~/Library/Group Containers/2BUA8C4S2C.com.1password/Library/Application Support/1Password/Data/settings/settings.json`. Each substantive key-value pair representing a preference is accompanied as well by a corresponding `authTags` key-value pair, with the same key but where the value is a cryptographic signature of the substantive key-value pair. The hashing is unpredictable to me (e.g.,  the hash of one key-value pair is different on one Mac than on another Mac), so I can’t write a script to provide new key-value preference pairs with `authTags` pairs that survive validation by 1Password.
 
 ### Authorization to use particular apps
 Some apps require additional steps to authorize the user to execute the app. These fall into the following categories:
