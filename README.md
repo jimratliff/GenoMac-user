@@ -145,16 +145,28 @@ Some of the following need to be performed only once, viz., the first time this 
   - Will this user want to configure Microsoft Word?
   - What name and email address the user wants to use for their git config[^git_config_name_email]
 - Implements basic user-level settings
-  - app-state persistence
-  - trackpad settings
-  - other general UI settings
+  - app-state persistence[^app_state_persistence]
+  - trackpad settings[^trackpad_settings]
+  - other general UI settings[^general_ui_settings]
+    - Assign “Uh Oh!” as custom alert sound
+    - Always show scrollbars
+    - Reverse obnoxious default that revealed desktop anytime you clicked on the desktop
+    - Restore to all apps the “Save As…” menu item as a first-class visible-without-option choice
+    - Change size and colors of cursor
+    - Do **not** show widgets on the desktop
+    - Window should display as tabs according to window’s tabbing mode
+    - Double-click on window’s title bar ⇒ Zoom (reinforces default)
+    - By default, save to disk, not to iCloud
+    - Always show window proxy icon
+    - Reduce transparency and increase contrast
+    - Expand certain dialog boxes by default
   - stop intrusive/arrogant “corrections”
   - keyboard-related settings
     - Holding alpha key down pops up character-accent menu (rather than repeats)[^hold_alpha_key_reinforces_default]
     - Enable Keyboard Navigation (with Tab key)
     - Use F1, F2, etc. keys as standard function keys
     - Press and release globe (🌎) key to bring up emoji picker
-  - Set symbolic hot keys to Apple commands
+  - Set symbolic hot keys to Apple commands[^symbolic_hot_key_assignments]
   - Implement menubar-related settings
     - Always show Sound in menubar (not only when “active”)
     - Give audible feedback when volume is changed
@@ -197,7 +209,17 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^git_config_name_email]: This is asked when either (a) the user wants to SSH authenticate GitHub using 1Password or (b) otherwise wants to make commit on GitHub. Most of the git config is (a) defined at stow_directory/git/.config/git/config and (b) managed by GNU Stow. However, the \[user\] block, which contains the user’s name and email address, is not expressed in that config file (which is stored in this public repo), in order that the name/email aren’t accidentally propagated to and inadvertently adopted by other users.
 
+[^app_state_persistence]: Relaunch apps and windows upon login. Closing a document confirms any pending changes.
+
+[^trackpad_settings]: See `scripts/settings/set_trackpad_settings.sh`.
+
+[^general_ui_settings]: See `scripts/settings/set_general_interface_settings.sh`.
+
 [^hold_alpha_key_reinforces_default]: This doesn’t change the default; it affirms/reinforces it.
+
+[^symbolic_hot_key_assignments]: See `scripts/settings/set_symbolichotkeys.sh`. Disables some default hotkeys and changes the default hotkeys for some actions.
+
+
 ## Quick-reference cheat sheet for occasional maintenance
 If you’re beginning the user-scoped configuration of a particular user on this Mac, go directly to this section: [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user).
 
