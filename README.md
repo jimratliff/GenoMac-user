@@ -233,24 +233,6 @@ There is an additional nuance if the setting a particular experimentally or inad
 
 ## Appendices
 
-### What this repo assumes has already been performed by GenoMac-system
-Before you do anything with this repo, GenoMac-user, the following system-level prerequisites need to have been fulfilled (via USER_CONFIGURER using the GenoMac-system repo):
-- Homebrew and, therefore indirectly, Git have been installed
-- The systemwide PATH has been modified to make all Homebrew-installed apps and man pages available to all users, with no additional user-specific modification of the user’s PATH required
-- The following have been installed
-  - iTerm
-  - GNU Stow
-  - certain other utilities required by GenoMac-user (e.g., `jq`, `just`, `mas`)
-  - all of the third-party apps whose user-specific settings will be specified by GenoMac-user
-  - all of the resources (fonts, sounds, screensavers, etc.) that will be referenced by user-specific settings by GenoMac-user
-- iTerm has been granted by USER_CONFIGURER (a) Full Disk Access[^FDA_&_HOMEBREW] and (b) control of System Events (in order to run AppleScripts)
-
-[^FDA_&_HOMEBREW]: One reason Full Disk Access for the terminal program is helpful is that this is sufficient for Homebrew to be able to perform app upgrades “in place” (rather than uninstall/reinstall). Upgrading in place prevents app from losing their position in the Dock as a result of the upgrade. (See “[Why do my cask apps lose their Dock position / Launchpad position / permission settings when I run brew upgrade?](https://docs.brew.sh/FAQ#why-do-my-cask-apps-lose-their-dock-position--launchpad-position--permission-settings-when-i-run-brew-upgrade),” Homebrew Documentation » FAQs.)
-
-
-
-
-
 ### This repo establishes/adjusts numerous user-level settings using a variety of techniques
 This repo supplies scripts that execute various commands to establish various user settings for macOS generally and for certain apps in particular.
 
