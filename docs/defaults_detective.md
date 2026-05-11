@@ -2,11 +2,11 @@
 (This is part of the documentation for the [GenoMac-user repository](https://github.com/jimratliff/GenoMac-user).)
 
 ## Table of contents
-- [Running the “detective script”]
-- [Using the output to construct `defaults write` commands]
-- [Caveats]
+- [Running the “detective script”](#running-the-detective-script)
+- [Using the output to construct `defaults write` commands](#using-the-output-to-construct-defaults-write-commands)
+- [Caveats](#caveats)
 
-The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository (i.e., the ones reached via `make initial_prefs`) that correspond to changes in user-scoped settings.
+The following addresses how to figure out what `defaults write` commands to add to the scripts in this repository that correspond to changes in user-scoped settings.
 
 This repo contains a script that helps you figure out what `defaults write` commands to add to the scripts in this repository to achieve a desired change in user-scoped settings.
 
@@ -17,7 +17,7 @@ Suppose you want to find the `defaults write` command(s) that correspond to part
 - `cd ~/.genomac-user`
 - Launch Application X
 - Open the Settings for Application X, but do not yet make the desired changes
-- In the terminal, type `make defaults-detective`, which will launch the script `defaults_detective.sh`, which will:
+- In the terminal, type `just defaults-detective`, which will launch the script `defaults_detective.sh`, which will:
   - record a snapshot of the *pre-change* state of your user’s entire `defaults` plists
   - tell you to that it is ready for you to make the desired changes to the application’s settings
 - In Application X, make the desired settings to the application’s settings
