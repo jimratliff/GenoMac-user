@@ -21,7 +21,18 @@ Note that USER_CONFIGURER is the *only* user authorized to use Homebrew to insta
 
 [^HOMEBREW_UPDATE_IS_DIFFERENT]: While Homebrew will typically attempt to update all CLI applications, Homebrew will not attempt to update GUI apps that have their own auto-updating mechanisms. Thus, users other than USER_CONFIGURER may be asked to accept an app’s auto-updating prompt. (See (a) “[Many applications update themselves, so their casks are ignored by `brew outdated` and `brew upgrade`. This behaviour can be overridden by adding `--greedy` to either command](https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md#:~:text=Many%20applications%20update%20themselves%2C%20so%20their%20casks%20are%20ignored%20by%20brew%20outdated%20and%20brew%20upgrade%2E%20This%20behaviour%20can%20be%20overridden%20by%20adding%20%2D%2Dgreedy%20to%20either%20command%2E)” and (b) “[Why aren’t some apps included during `brew upgrade`?](https://docs.brew.sh/FAQ#why-arent-some-apps-included-during-brew-upgrade),” Homebrew Documentation » FAQs.)
 
-GenoMac-user assumes that the Mac has already been configured using GenoMac-system, including, among other things, (a) certain systemwide settings, (b) installing all CLI and GUI apps (both on or off the Mac App Store), and (c) the creation of additional users. If you are USER_CONFIGURER, go first to [GenoMac-system](https://github.com/jimratliff/GenoMac-system) to set up the Mac from a system-wide perspective before coming here to set your own user up.
+GenoMac-user assumes that the Mac has already been configured using GenoMac-system, including, among other things, (a) certain systemwide settings, (b) installing all CLI and GUI apps (both on or off the Mac App Store), and (c) the creation of additional users. In particular, it is assumed that:
+- Homebrew and, therefore indirectly, Git have been installed
+- The systemwide PATH has been modified to make all Homebrew-installed apps and man pages available to all users, with no additional user-specific modification of the user’s PATH required
+- The following have been installed
+  - iTerm
+  - GNU Stow
+  - certain other utilities required by GenoMac-user (e.g., `gh`, `jq`, `just`, `mas`)
+  - all of the third-party apps whose user-specific settings will be specified by GenoMac-user
+  - all of the resources (fonts, sounds, screensavers, etc.) that will be referenced by user-specific settings by GenoMac-user
+- iTerm has been granted by USER_CONFIGURER (a) Full Disk Access[^FDA_&_HOMEBREW] and (b) control of System Events (in order to run AppleScripts)
+
+[^FDA_&_HOMEBREW]: One reason Full Disk Access for the terminal program is helpful is that this is sufficient for Homebrew to be able to perform app upgrades “in place” (rather than uninstall/reinstall). Upgrading in place prevents app from losing their position in the Dock as a result of the upgrade. (See “[Why do my cask apps lose their Dock position / Launchpad position / permission settings when I run brew upgrade?](https://docs.brew.sh/FAQ#why-do-my-cask-apps-lose-their-dock-position--launchpad-position--permission-settings-when-i-run-brew-upgrade),” Homebrew Documentation » FAQs.)
 
 ## Table of contents
 - [Overview of configuring a user with GenoMac-user](#overview-of-configuring-a-user-with-genomac-user)
