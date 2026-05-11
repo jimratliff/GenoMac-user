@@ -95,13 +95,13 @@ git clone --recurse-submodules https://github.com/jimratliff/GenoMac-user.git .
 ### Repeatedly run the Hypervisor until it completes
 The Hypervisor is a scripting function that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
 
-The Hypervisor is run by:[^WHAT_IS_JUST_2]
+The Hypervisor is run by:[^WHAT_IS_JUST]
 ```
 cd ~/.genomac-user
 just run-hypervisor
 ```
 
-[^WHAT_IS_JUST_2]: The [just command](https://github.com/casey/just) is a “command runner” or “a handy way to save and run project-specific commands.” It is a modern successor to the [make command](https://man7.org/linux/man-pages/man1/make.1.html). To see a menu of all available `just` *recipes*, just type `just` in the terminal.
+[^WHAT_IS_JUST]: The [just command](https://github.com/casey/just) is a “command runner” or “a handy way to save and run project-specific commands.” It is a modern successor to the [make command](https://man7.org/linux/man-pages/man1/make.1.html). To see a menu of all available `just` *recipes*, just type `just` in the terminal.
 
 At certain points in the process, within a single Hypervisor session, the Hypervisor will force a logout. This is done to increase the reliability of the changes—so that they’ll “stick.” When you log in after the logout, simply start the Hypervisor again with `just run-hypervisor`. The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN,” signaling completion of the full Hypervisor session:
 ```
