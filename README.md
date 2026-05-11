@@ -93,7 +93,7 @@ git clone --recurse-submodules https://github.com/jimratliff/GenoMac-user.git .
 (The `--recurse-submodules` flag exists because this repo has a submodule ([GenoMac-shared](https://github.com/jimratliff/GenoMac-shared)). The `--recurse-submodules` ensures that the submodule’s code is also cloned, not just a pointer to it.)
 
 ### Repeatedly run the Hypervisor until it completes
-The Hypervisor is a scripting function that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
+The Hypervisor is a scripting function that manages the configuration of the user, both (a) for the initial bootstrap and (b) for occasional maintenance.
 
 The Hypervisor is run by:[^WHAT_IS_JUST]
 ```
@@ -154,7 +154,7 @@ Indeed, as explained in [If only the contents of one or more existing dotfiles c
 [^GIT_PULL_INTERPRETATION]: This `just` recipe is just a shorthand for `git pull --recurse-submodules origin main`. The `--recurse-submodules` ensures that the local version of submodule [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared) is updated to the commit specified by the GenoMac-user origin repository.
 
 ### Run the Hypervisor
-The Hypervisor is a scripting system that manages the configuration of the user, both (a) for the initial bootstrap and (b) for periodic maintenance.
+The Hypervisor is a scripting system that manages the configuration of the user, both (a) for the initial bootstrap and (b) for occasional maintenance.
 
 The Hypervisor is run by:
 ```
