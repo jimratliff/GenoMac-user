@@ -224,7 +224,7 @@ Some of the following need to be performed only once, viz., the first time this 
   - Does this user want to configure the [Enhancer for YouTube](https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/) browser extension for Waterfox?[^waterfox_default_browser]
   - Will this user sync preferences via Dropbox?
   - Will this user want to SSH authenticate GitHub using 1Password?
-    - If not, will ask whether, nevertheless: Will this user want to make commits on GitHub? (If so, will set name/email for Git config)
+    - If not, will ask whether, nevertheless: Will this user want to make commits on GitHub?
   - Will this user want to configure Microsoft Word?
   - What name and email address the user wants to use for their git config[^git_config_name_email]
 - Implements basic user-level settings[^basic_user_settings]
