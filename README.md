@@ -191,22 +191,22 @@ Some of the following need to be performed only once, viz., the first time this 
   - Set default browser to Waterfox
   - Set default apps to open for various document types[^default_apps_for_docs]
   - Implements settings for Apple’s built-in apps
-    - Finder
-    - Preview.app
-    - Disk Utility
-    - Terminal
+    - Finder[^finder_settings]
+    - Preview.app[^preview_app_settings]
+    - Disk Utility[^disk_utility_settings]
+    - Safari[^Safari_settings]
+    - Terminal[^terminal_app_settings]
     - Text Edit: Make plain text the default format
-    - Safari
   - Implements settings for some third-party apps
-    - [Alan.app](https://github.com/tylerhall/Alan)
-    - BBEdit
-    - BetterTouchTool
-    - ChatGPT
-    - Claude
-    - iTerm2
-    - OmniOutliner
-    - PlainTextEditor
-    - Witch
+    - [Alan.app](https://github.com/tylerhall/Alan)[^alan_app_settings]
+    - BBEdit[^bbedit_settings]
+    - BetterTouchTool[^btt_settings]
+    - ChatGPT[^chatgpt_settings]
+    - Claude[^claude_settings]
+    - iTerm2[^iTerm2_settings]
+    - OmniOutliner[^omnioutliner_settings]
+    - PlainTextEditor[^plain_text_editor_settings]
+    - Witch[^witch_settings]
  
 [^waterfox_default_browser]: Waterfox, a derivative of Firefox’s Gecko browser engine, will be set as the default browser.
 
@@ -233,6 +233,34 @@ Some of the following need to be performed only once, viz., the first time this 
 [^screen_capture_settings]: See `scripts/settings/set_screen_capture_settings.sh`. (a) Disable drop shadow. (b) Set screenshot destination to `~/Screenshots`. However: TODO: needs to be bifurcated to deal with Dropbox screenshot destinations. Setting the location should be separated from the other screen-capture preferences because this would be user-specific.
 
 [^default_apps_for_docs]: See `scripts/settings/set_default_apps_to_open.sh`. Use (a) BBEdit for many text types (plain text; Markdown; .plist, shell scripts, XML, AppleScript); (b) Elmedia Player for many video formats (MPEG, Quicktime, m4vm and .avi).
+
+[^finder_settings]: See `scripts/settings/set_finder_settings.sh`. 
+
+[^preview_app_settings]: See `scripts/settings/set_preview_settings.sh` and, for implementing the toolbar, `scripts/settings/bootstrap_preview_app.sh`.
+
+[^disk_utility_settings]: See `scripts/settings/set_diskutility_settings.sh`. (a) Show all devices in sidebar; (b) show hidden partitions.
+
+[^Safari_settings]: See `scripts/settings/set_safari_settings.sh`.
+
+[^terminal_app_settings]: See `scripts/settings/set_terminal_settings.sh`. Sets style for new windowsand stating windows: “Man Page”.
+
+[^alan_app_settings]: See `scripts/settings/set_alan_app_settings.sh`.
+
+[^bbedit_settings]: See `scripts/settings/set_bbedit_settings.sh`.
+
+[^btt_settings]: See `scripts/settings/set_bettertouchtool_settings.sh`. This script file works in conjunction with a dotfile that contains the BetterTouchTool configuration: `stow_directory/BetterTouchTool/.config/BetterTouchTool/Default_preset.json`. The script tells BetterTouchTool where to find this file (after it has been deployed by GNU Stow). Also installs the BetterTouchTool license, which is sourced from the user’s Dropbox (and thus this step is performed only after Dropbox is configured).
+
+[^chatgpt_settings]: See `scripts/settings/set_chatgpt_settings.sh`.
+
+[^claude_settings]: See `scripts/settings/set_claude_settings.sh`.
+
+[^iTerm2_settings]: See `scripts/settings/set_iterm_settings.sh`. 
+
+[^omnioutliner_settings]: See `https://github.com/jimratliff/GenoMac-user/blob/main/scripts/settings/set_omnioutliner_settings.sh`. In addition to directly implementing settings, this script installs a template OmniOutliner document provided at `resources/omnioutliner/_JDR_OmniOutliner_Template.oo3template`.
+
+[^plain_text_editor_settings]: See `scripts/settings/set_plain_text_editor_settings.sh`.
+
+[^witch_settings]: See `scripts/settings/set_witch_settings.sh`. (a) Installs Witch license files, which are assumed to be provided in Dropbox. (b) Sets Witch settings.
 
 ## Quick-reference cheat sheet for occasional maintenance
 If you’re beginning the user-scoped configuration of a particular user on this Mac, go directly to this section: [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user).
