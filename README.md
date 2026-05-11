@@ -144,10 +144,60 @@ Some of the following need to be performed only once, viz., the first time this 
     - If not, will ask whether, nevertheless: Will this user want to make commits on GitHub? (If so, will set name/email for Git config)
   - Will this user want to configure Microsoft Word?
   - What name and email address the user wants to use for their git config[^git_config_name_email]
+- Implements basic user-level settings
+  - app-state persistence
+  - trackpad settings
+  - other general UI settings
+  - stop intrusive/arrogant “corrections”
+  - keyboard-related settings
+    - Holding alpha key down pops up character-accent menu (rather than repeats)[^hold_alpha_key_reinforces_default]
+    - Enable Keyboard Navigation (with Tab key)
+    - Use F1, F2, etc. keys as standard function keys
+    - Press and release globe (🌎) key to bring up emoji picker
+  - Set symbolic hot keys to Apple commands
+  - Implement menubar-related settings
+    - Always show Sound in menubar (not only when “active”)
+    - Give audible feedback when volume is changed
+    - Show battery percentage in menubar
+    - Show time with seconds
+    - Show Fast User Switching in menubar only as Account Name
+    - Show text-input menu in menubar
+  - Control Center: Add Bluetooth to Control Center to access battery percentages of Bluetooth devices
+  - Dock settings
+  - screen-capture settings
+  - Mission Control/Spaces settings
+    - Don’t rearrange based on most-recent use
+    - Spaces span all displays (no separate space for each monitor)
+    - Do not jump to a new space when switching applications
+    - Do not enter Mission Control when dragging window to top of screen
+  - Language & Region: Week starts on Monday
+  - Notifications settings
+  - Time Machine: Don’t prompt to use new disk as backup volume
+  - Set default browser to Waterfox
+  - Set default apps to open for various document types
+  - Implements settings for Apple’s built-in apps
+    - Finder
+    - Preview.app
+    - Disk Utility
+    - Terminal
+    - Text Edit: Make plain text the default format
+    - Safari
+  - Implements settings for some third-party apps
+    - [Alan.app](https://github.com/tylerhall/Alan)
+    - BBEdit
+    - BetterTouchTool
+    - ChatGPT
+    - Claude
+    - iTerm2
+    - OmniOutliner
+    - PlainTextEditor
+    - Witch
  
 [^waterfox_default_browser]: Waterfox, a derivative of Firefox’s Gecko browser engine, will be set as the default browser.
 
-[^git_config_name_email]: Most of the git config is (a) defined at stow_directory/git/.config/git/config and (b) managed by GNU Stow. However, the \[user\] block, which contains the user’s name and email address, is not expressed in that config file (which is stored in this public repo), in order that the name/email aren’t accidentally propagated to and inadvertently adopted by other users.
+[^git_config_name_email]: This is asked when either (a) the user wants to SSH authenticate GitHub using 1Password or (b) otherwise wants to make commit on GitHub. Most of the git config is (a) defined at stow_directory/git/.config/git/config and (b) managed by GNU Stow. However, the \[user\] block, which contains the user’s name and email address, is not expressed in that config file (which is stored in this public repo), in order that the name/email aren’t accidentally propagated to and inadvertently adopted by other users.
+
+[^hold_alpha_key_reinforces_default]: This doesn’t change the default; it affirms/reinforces it.
 ## Quick-reference cheat sheet for occasional maintenance
 If you’re beginning the user-scoped configuration of a particular user on this Mac, go directly to this section: [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user).
 
