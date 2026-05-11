@@ -125,6 +125,18 @@ By collecting any warnings and repeating them at the end, you’re relieved of t
 
 Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against silent failures that you wouldn’t notice.
 
+## Maintaining the user’s user-scoped settings by periodically re-running the Hypervisor
+At this point, the user’s user-scoped settings have been configured. There is no need to use this repo again for this until any of the following occurs:
+- there have been changes in the desired settings as expressed in GenoMac-user’s script code
+
+
+In any of the above cases, all you need to do is to rerun the Hypervisor:
+```
+cd ~/.genomac-system
+just run-hypervisor
+```
+
+
 ## Appendices
 
 ### What steps the Hypervisor performs
