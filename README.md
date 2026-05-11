@@ -125,7 +125,29 @@ Also note that the Hypervisor runs under `set -euo pipefail`, which is designed 
 ## Appendices
 
 ### What steps the Hypervisor performs
+(Of course, it’s possible that the below list of steps will become out of sync with the actual state of the Hypervisor’s code. So… trust, but verify!)
 
+Some of the following need to be performed only once, viz., the first time this user runs the Hypervisor. Thus, some of the following will be skipped over on subsequent Hypervisor runs.
+
+- Updates the local clone of this repo if the local clone is behind the remote
+- Configures “split remote” for this repo: Fetch without authentication using HTTPS but push requires SSH
+- Ensure that the currently running terminal emulator has Full Disk Access (FDA)
+  - If not, the Settings » Privacy & Security » Full Disk Access panel is opened (this terminal app
+    should already be pre-populated, but un-enabled, on the list of apps), so the user can simply
+    flip the switch for this app.
+  - NOTE: This is a potentially interactive step.
+- The Hypervisor interactively asks for answers to some questions (only the first time the Hypervisor is run for this user):
+  - Does this user want to see, on the desktop, the built-in and external drives?
+  - Does this user want to configure the Enhancer for YouTube browser extension for Waterfox?[^waterfox_default_browser]
+  - Will this user sync preferences via Dropbox?
+  - Will this user want to SSH authenticate GitHub using 1Password?
+    - If not, will ask whether, nevertheless: Will this user want to make commits on GitHub? (If so, will set name/email for Git config)
+  - Will this user want to configure Microsoft Word?
+  - What name and email address the user wants to use for their git config[git_config_name_email]
+ 
+[^waterfox_default_browser]: Waterfox, a derivative of Firefox’s Gecko browser engine, will be set as the default browser.
+
+[git_config_name_email]: Most of the git config is (a) defined at stow_directory/git/.config/git/config and (b) managed by GNU Stow. However, the \[user\] block, which contains the user’s name and email address, is not expressed in that config file (which is stored in this public repo), in order that the name/email aren’t accidentally propagated to and inadvertently adopted by other users.
 ## Quick-reference cheat sheet for occasional maintenance
 If you’re beginning the user-scoped configuration of a particular user on this Mac, go directly to this section: [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user).
 
