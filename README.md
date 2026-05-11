@@ -126,7 +126,7 @@ The Hypervisor produces a *lot* of output, typically many screenfulls. If an imp
 
 By collecting any warnings and repeating them at the end, you’re relieved of the necessity of wading through all of the output to look for anomalies.
 
-Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against silent failures that you wouldn’t notice.
+Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against failing to notice a silent failure.
 
 ## Maintaining the user’s user-scoped settings by periodically re-running the Hypervisor
 This section assumes you’ve already locally cloned the GenoMac-user repository to `~/.genomac-user` and that you’ve run the Hypervisor once completely through.
