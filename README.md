@@ -293,34 +293,6 @@ Some apps require additional steps to authorize the user to execute the app. The
 [^KM_KEY_IS_SECURE]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
 [^KM_MACRO_IN_RESOURCES]: A redacted version of this Keyboard Maestro macro is provided in this repo at `resources/keyboard_maestro_macros_for_hypervisor/GenoMac Bootstrap Macros.kmmacros`. There are placeholders where the two license credentials need to be. You can replace those placeholders with your own credentials.
 
-### Miscellaneous settings implemented
-
-GenoMac-user modifies too many settings to recount here. The code itself is the ultimate source of truth.
-
-The place to start reviewing to discover the settings implemented is `scripts/hypervisor/subdermis.sh`.
-
-More specifically, the bulk of the settings that are normally thought about in this kind of macOS account customization exercise will be found branching out from `scripts/settings/perform_basic_user_level_settings.sh`.
-
-I’ll mention here just a few areas of settings, mainly to help remind *me* where they take place:
-
-- Set the default browser[^SET_DEFAULT_BROWSER]
-- Set a default Dock configuration[^DEFAULT_DOCK_CONFIG]
-- Specify certain apps to have their window(s) appear in all Mission Control Spaces[^APPS_IN_ALL_SPACES]
-- Specify certain apps to automatically launch at login via LaunchAgents (in addition to apps that already have their own mechanisms for this)[^APPS_AUTO_OPEN_AT_LOGIN]
-- Set the default app to open each of several file types[^DEFAULT_APPS_TO_OPEN_TYPES_OF_FILES]
-- Hypervisor interactively walks you through configuring 1Password both (a) for normal user and (b) to use the 1Password SSH agent to authenticate with GitHub in the CLI.
-- Hypervisor prompts you to create additional Mission Control Spaces
-
-[^SET_DEFAULT_BROWSER]: See `set_default_browser()` in `scripts/settings/set_default_browser.sh`. This causes five different handlers to be set. Mysteriously to me, one of these steps can take a long time. Be patient.
-
-[^DEFAULT_DOCK_CONFIG]: As a bootstrap step, the Dock is deleted and is replaced by a lineup (System Settings, 1Password, {{TextExpander has been DEPRECATED from Project GenoMac: TextExpander,}} Waterfox, Helium, Raindrop.io, Obsidian, Zed, Activity Monitor, and iTerm) that is defined in `scripts/settings/bootstrap_dock.sh`. This is a *bootstrap* step, but not an enforcement/maintenance step: the Dock configuration can be changed by the user and subsequent runs of Hypervisor will *not* overrule those user changes.
-
-[^APPS_IN_ALL_SPACES]: These apps (1Password, Activity Monitor, Calendar, Contacts, Notes, Reminders, Stickies, and System Settings {{TextExpander has been DEPRECATED from Project GenoMac: TextExpander,}}) are specified in `implement_mission_control_assign_to_options_for_selected_apps()` in `scripts/settings/set_mission_control_assign_to_options.sh`. These particular apps were chosen primarily because (a) with the exception of Stickies, they are single-window apps and (b) each could reasonably be desired to appear in multiple Spaces. Thus, if one of these apps was *not* desired in a particular Space, the app could be hidden and re-displayed when needed.
-
-[^APPS_AUTO_OPEN_AT_LOGIN]: The apps currently specified to auto-launch on login are (a) [Alan.app](https://tyler.io/2025/11/26/alan/), (b) BetterTouchTool, and (c) Keyboard Maestro Engine. The following apps are *not* added to this list, even though it *is* desired that they auto-launch at login, because empirically these apps have their own mechanism to enforce auto-launch at login without being added to this LaunchAgents list: (a) Dropbox, (b) {{TextExpander has been DEPRECATED from Project GenoMac: TextExpander,}}, and (c) Alfred. When specifying an app to auto-open at login, the app can be referenced by either its (a) bundle ID or (b) its absolute path. The apps to auto-open are specified by adding them to the associative array `GENOMAC_LOGIN_APPS` in `scripts/settings/set_apps_to_launch_at_login.sh`.
-
-[^DEFAULT_APPS_TO_OPEN_TYPES_OF_FILES]: These assignments are made by `set_default_apps_to_open()` in `scripts/settings/set_default_apps_to_open.sh`. For example, BBEdit is assigned to open plain-text, Markdown, .plist, shell scripts, XML, and AppleScript files. Elmedia Player is assigned to open MPEG, QuickTime, m4v, and .avi files.
-
 ### Settings are distinguished on two dimensions: between (a) purely bootstrap vis-à-vis idempotent and (b) normally performed only once (PERM) vis-à-vis performed every complete run of Hypervisor (SESH)
 
 GenoMac-user’s Hypervisor is intended to run completely through from start to finish a first time to initialize the configuration of a user’s account directory. It can then be rerun completely at later times *only as needed*.
