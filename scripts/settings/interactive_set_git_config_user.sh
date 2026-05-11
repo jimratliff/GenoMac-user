@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# Most of the git config are (a) defined at stow_directory/git/.config/git/config and
+# Most of the git config is (a) defined at stow_directory/git/.config/git/config and
 # (b) managed by GNU Stow.
 #
 # However, the [user] block, which contains the user’s name and email address are
