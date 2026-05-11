@@ -149,6 +149,8 @@ Alternatively, you can do that check-and-update yourself with:[^GIT_PULL_INTERPR
 cd ~/.genomac-user
 just refresh-repo-and-module
 ```
+Indeed, as explained in [If only the contents of one or more existing dotfiles change](#if-only-the-contents-of-one-or-more-existing-dotfiles-change), if the only change is in the *contents* or one or more existing dotfiles, refreshing the repository is all that is needed; no need to re-run the Hypervisor.
+
 [^GIT_PULL_INTERPRETATION]: This `just` recipe is just a shorthand for `git pull --recurse-submodules origin main`. The `--recurse-submodules` ensures that the local version of submodule [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared) is updated to the commit specified by the GenoMac-user origin repository.
 
 ### Run the Hypervisor
