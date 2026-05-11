@@ -2,10 +2,10 @@
 
 (This is part of the documentation for the [GenoMac-user repository](https://github.com/jimratliff/GenoMac-user).)
 
-### What steps and settings the Hypervisor implements
+## Table of contents
 - [Programmatic steps](#programmatic-steps)
 - [Dotfiles](#dotfiles)
-#### Programmatic steps
+## Programmatic steps
 (Of course, it’s possible that the below list of programmatic steps will become out of sync with the actual state of the Hypervisor’s code. So… trust, but verify!)
 
 Some of the following need to be performed only once, viz., the first time this user runs the Hypervisor. Thus, some of the following will be automatically skipped over on subsequent Hypervisor runs.
@@ -175,7 +175,7 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^apps_that_launch_at_login]: See `scripts/settings/set_apps_to_launch_at_login.sh`.
 
-#### Dotfiles
+## Dotfiles
 Note, in particular, the following non-exhaustive list of particular settings scattered among the dotfiles:
 - 1Password
   - `stow_directory/1password/.config/1Password/ssh/agent.toml` specifies that the keys only from the 'Dev' vault are accessible to the 1Password SSH Agent
