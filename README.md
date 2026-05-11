@@ -38,11 +38,15 @@ If you’re already familiar with GenoMac-user—perhaps you’ve already config
 ## Overview of configuring a user with GenoMac-user
 
 - It’s assumed that this Mac has already had its system-scoped settings (including app installations) performed by [GenoMac-system](https://github.com/jimratliff/GenoMac-system).
-- You’ll manually clone this repo to your home directory at `~/.genomac-user`.
+- You’ll manually clone  (using https) this repo to your home directory at `~/.genomac-user`.
 - You’ll run a script, referred to as the Hypervisor,[^two_hypervisors] which will orchestrate the entire process of configuring the user-scoped settings of this user.
 - You will sometimes be commanded/strongly encouraged to log out in order to let a set of changes be reliably incorporated. When you log back in, you’ll re-run the Hypervisor. It will have kept track of how far you had already gotten and will pick up where you left off.
+- In addition to script code that programmatically implements configuration choices, this repo supplied “dotfiles” that help to configure some of the user’s software. The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by package, e.g., Git, SSH, zsh, etc. These dotfiles are deployed to the `~/.config` directory of the user’s home directory using [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.
+- GenoMac-user assumes that certain critical and sensitive resources are available in a shared Dropbox directory. Some apps, such as Alfred and Keyboard Maestro, are assumed to sync their preferences across users and Macs via a common, shared [Dropbox](https://www.dropbox.com/) directory: Dropbox/Preferences_common.[^SHARED_PREFS_ENV_VAR] Similarly, other sensitive resources, like Witch license files, are stored in this Dropbox directory to make them available to GenoMac-user without being committed to a public repository.
 
 [^two_hypervisors]: GenoMac-system has its own Hypervisor, and GenoMac-user has its own Hypervisor. These are different scripts, but each does for its repo the same overall function: Orchestrating the implementation of the relevent configurations.
+
+[^SHARED_PREFS_ENV_VAR]: The location/name of the shared Dropbox directory can be changed. It is governed by the environment variable `GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY`, which is set in `scripts/assign_user_environment_variables.sh`.
 
 ## Step-by-step: Set up a new user
 - [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
@@ -297,6 +301,33 @@ Some of the following need to be performed only once, viz., the first time this 
 [^apps_that_launch_at_login]: See `scripts/settings/set_apps_to_launch_at_login.sh`.
 
 #### Dotfiles
+Note, in particular, the following non-exhaustive list of particular settings scattered among the dotfiles:
+- 1Password
+  - `stow_directory/1password/.config/1Password/ssh/agent.toml` specifies that the keys only from the 'Dev' vault are accessible to the 1Password SSH Agent
+- BetterTouchTool
+  - `stow_directory/BetterTouchTool/.config/BetterTouchTool/Default_preset.json` provides customized settings for [BetterTouchTool](https://folivora.ai/) to all users and Macs.[^POINTING_BTT_TO_DOTFILE]
+- Git
+  - `stow_directory/git/.config/git/git_ignore_global` specifies a default, global .gitignore file
+  - `stow_directory/git/.config/git/config`
+    - Typically, this file is where your name and email for commits *could* be entered, but GenoMac-user does things differently.[^GIT_CONFIG_USER_IS_INCLUDED]
+    - Specifies `rebase = true`, `autostash = true`, and `editor = bbedit`
+- Homebrew
+  - `stow_directory/homebrew/.config/homebrew/brew.env` specifies that Homebrew should install apps so that they will not be quarantined on first use (`HOMEBREW_CASK_OPTS=--no-quarantine`)
+- Starship
+  - `stow_directory/starship/.config/starship.toml` defines a highly opinionated, two-line shell prompt using [Starship](https://starship.rs/). It relies on a Nerd Font being installed, which is satisfied by GenoMac-system
+- Zed
+  - `stow_directory/zed/.config/zed/settings.json` provides the settings for the [Zed editor](https://zed.dev/)
+- zsh
+  - `stow_directory/zsh/.config/zsh/.zshenv` defines `XDG_CONFIG_HOME` to be `~/.config`. Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
+  - `stow_directory/zsh/.config/zsh/.zsh_aliases` defines numerous *aliases*, many of which depend on particular programmed that were installed by GenoMac-system. For example, `alias ls="eza"` and `alias cat="bat"`.
+ 
+[^GIT_CONFIG_USER_IS_INCLUDED]: To avoid hardwiring any particular user name and email address into this repo, `stow_directory/git/.config/git/config` (a) supplies the dummy values “Default User” and “default@example.com”, respectively, and (b) ends with an `[include]` that references the overriding file `~/.config/genomac-user/git/gitconfig-personal`, which exists outside the local clone. That `gitconfig-personal` file is written by the Hypervisor, using a name and email address supplied by the user running the Hypervisor. (This assumes the user either (a) answers 'y' to “Will this user want to SSH authenticate GitHub using 1Password?” or (b) answers 'y' to “Will this user want to make commits on GitHub?,” which is asked if the answer to the 1Password question is 'n'.)
+
+[^POINTING_BTT_TO_DOTFILE]: BetterTouchTool must be instructed, by a `defaults write` command, to refer to that dotfile to obtain its settings. See [Andreas Hegenberg’s answer](https://community.folivora.ai/t/syncing-the-config-in-git/34840) to “Syncing the config in Git.” This instruction is taken care of by the Hypervisor; see `scripts/settings/set_bettertouchtool_settings.sh`.
+
+GNU Stow, guided by the directory structure of `stow_directory`, creates symlinks near the root of the user’s directory to make it appear like the supplied dotfiles are located when various programs expect them to be, e.g., in `~/.config`.[^STOW_DIR_METHOD]
+
+[^STOW_DIR_METHOD]: `stow_directory` is structured such that, for each package, the structure of the directory corresponding to that package mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.) Jake Wiesler’s “[Manage Your Dotfiles Like a Superhero](https://www.jakewiesler.com/blog/managing-dotfiles),” September 20, 2021, has the best explanation of this I’ve ever seen.
 
 ## Quick-reference cheat sheet for occasional maintenance
 If you’re beginning the user-scoped configuration of a particular user on this Mac, go directly to this section: [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user).
@@ -425,63 +456,9 @@ Before you do anything with this repo, GenoMac-user, the following system-level 
 
 [^FDA_&_HOMEBREW]: One reason Full Disk Access for the terminal program is helpful is that this is sufficient for Homebrew to be able to perform app upgrades “in place” (rather than uninstall/reinstall). Upgrading in place prevents app from losing their position in the Dock as a result of the upgrade. (See “[Why do my cask apps lose their Dock position / Launchpad position / permission settings when I run brew upgrade?](https://docs.brew.sh/FAQ#why-do-my-cask-apps-lose-their-dock-position--launchpad-position--permission-settings-when-i-run-brew-upgrade),” Homebrew Documentation » FAQs.)
 
-## Overview of using this repo to implement the user-scoped settings for a particular user
-### This repository will be cloned to `~/.genomac-user` of each particular user
-This public GenoMac-user repo is meant to be cloned locally (using https[^HTTPS]) to each user’s home directory. More specifically, the local directory to which this repo is to be cloned is the hidden directory `~/.genomac-user`.
 
-[^HTTPS]: After having cloned the repository via https, GitHub will not let you edit the repo from the CLI (but will from the browser, when logged into your GitHub account). In order to edit
-the repo from the CLI, you would need to change the repo from https to SSH, which can be done via the command
-`just dev-configure-remote-for-https-fetch-and-ssh-push`.
 
-### Once you clone the GenoMac-user repo, the Hypervisor takes over
-There are many scripts and other resources involved in GenoMac-user. But, from the perspective of the user configuring their account, there is a single overarching entity: the Hypervisor, which oversees all the remaining steps of the process.
 
-The Hypervisor becomes available as soon as GenoMac-user is locally cloned.
-
-Then, the Hypervisor can be run, from `~/.genomac-user`, by the single command `just run-hypervisor`.[^WHAT_IS_JUST]
-
-[^WHAT_IS_JUST]: The [just command](https://github.com/casey/just) is a “command runner” or “a handy way to save and run project-specific commands.” It is a modern successor to the [make command](https://man7.org/linux/man-pages/man1/make.1.html).
-
-At certain points in the process, the Hypervisor will encourage/prompt the user to logout of the user account. When you log in after the logout, simply start the Hypervisor again (type the following into iTerm: `just run-hypervisor`). The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN,” signaling completion of the fully Hypervisor cycle.
-
-### This repo supplies “dotfiles” that help to configure some of the user’s software
-
-This repository is intended to be used with [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.
-
-The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by package, e.g., Git, SSH, zsh, etc.
-
-Note, in particular, the following non-exhaustive list of particular settings scattered among the dotfiles:
-- 1Password
-  - `stow_directory/1password/.config/1Password/ssh/agent.toml` specifies that the keys only from the 'Dev' vault are accessible to the 1Password SSH Agent
-- BetterTouchTool
-  - `stow_directory/BetterTouchTool/.config/BetterTouchTool/Default_preset.json` provides customized settings for [BetterTouchTool](https://folivora.ai/) to all users and Macs.[^POINTING_BTT_TO_DOTFILE]
-- Git
-  - `stow_directory/git/.config/git/git_ignore_global` specifies a default, global .gitignore file
-  - `stow_directory/git/.config/git/config`
-    - Typically, this file is where your name and email for commits *could* be entered, but GenoMac-user does things differently.[^GIT_CONFIG_USER_IS_INCLUDED]
-    - Specifies `rebase = true`, `autostash = true`, and `editor = bbedit`
-- Homebrew
-  - `stow_directory/homebrew/.config/homebrew/brew.env` specifies that Homebrew should install apps so that they will not be quarantined on first use (`HOMEBREW_CASK_OPTS=--no-quarantine`)
-- Starship
-  - `stow_directory/starship/.config/starship.toml` defines a highly opinionated, two-line shell prompt using [Starship](https://starship.rs/). It relies on a Nerd Font being installed, which is satisfied by GenoMac-system
-- Zed
-  - `stow_directory/zed/.config/zed/settings.json` provides the settings for the [Zed editor](https://zed.dev/)
-- zsh
-  - `stow_directory/zsh/.config/zsh/.zshenv` defines `XDG_CONFIG_HOME` to be `~/.config`. Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
-  - `stow_directory/zsh/.config/zsh/.zsh_aliases` defines numerous *aliases*, many of which depend on particular programmed that were installed by GenoMac-system. For example, `alias ls="eza"` and `alias cat="bat"`.
- 
-[^GIT_CONFIG_USER_IS_INCLUDED]: To avoid hardwiring any particular user name and email address into this repo, `stow_directory/git/.config/git/config` (a) supplies the dummy values “Default User” and “default@example.com”, respectively, and (b) ends with an `[include]` that references the overriding file `~/.config/genomac-user/git/gitconfig-personal`, which exists outside the local clone. That `gitconfig-personal` file is written by the Hypervisor, using a name and email address supplied by the user running the Hypervisor. (This assumes the user either (a) answers 'y' to “Will this user want to SSH authenticate GitHub using 1Password?” or (b) answers 'y' to “Will this user want to make commits on GitHub?,” which is asked if the answer to the 1Password question is 'n'.)
-
-[^POINTING_BTT_TO_DOTFILE]: BetterTouchTool must be instructed, by a `defaults write` command, to refer to that dotfile to obtain its settings. See [Andreas Hegenberg’s answer](https://community.folivora.ai/t/syncing-the-config-in-git/34840) to “Syncing the config in Git.” This instruction is taken care of by the Hypervisor; see `scripts/settings/set_bettertouchtool_settings.sh`.
-
-GNU Stow, guided by the directory structure of `stow_directory`, creates symlinks near the root of the user’s directory to make it appear like the supplied dotfiles are located when various programs expect them to be, e.g., in `~/.config`.[^STOW_DIR_METHOD]
-
-[^STOW_DIR_METHOD]: `stow_directory` is structured such that, for each package, the structure of the directory corresponding to that package mimics where the symlinks pointing to these files will reside relative to the user’s $HOME directory. (E.g., `stow_directory/git/.config/git/conf` is the target of a symlink at `~/.config/git/conf`.) Jake Wiesler’s “[Manage Your Dotfiles Like a Superhero](https://www.jakewiesler.com/blog/managing-dotfiles),” September 20, 2021, has the best explanation of this I’ve ever seen.
-
-### GenoMac-user assumes that certain critical and sensitive resources are available in a shared Dropbox directory
-Some apps, such as Alfred and Keyboard Maestro, are assumed to sync their preferences across users and Macs via a common, shared [Dropbox](https://www.dropbox.com/) directory: Dropbox/Preferences_common.[^SHARED_PREFS_ENV_VAR] Similarly, other sensitive resources, like Witch license files, are stored in this Dropbox directory to make them available to GenoMac-user without being committed to a public repository.
-
-[^SHARED_PREFS_ENV_VAR]: The location/name of the shared Dropbox directory can be changed. It is governed by the environment variable `GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY`, which is set in `scripts/assign_user_environment_variables.sh`.
 
 ### This repo establishes/adjusts numerous user-level settings using a variety of techniques
 This repo supplies scripts that execute various commands to establish various user settings for macOS generally and for certain apps in particular.
