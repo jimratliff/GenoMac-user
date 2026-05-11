@@ -142,12 +142,12 @@ Also note that the Hypervisor runs under `set -euo pipefail`, which is designed 
 ## Maintaining the user’s user-scoped settings by occasionally re-running the Hypervisor
 This section assumes you’ve already locally cloned the GenoMac-user repository to `~/.genomac-user` and that you’ve run the Hypervisor once completely through.
 
-Project GenoMac-user does *not* require regular maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor for occasional maintenance](#when-to-run-the-hypervisor) for a discussion of what kinds of changes warrant what kind of action on your part.
+Project GenoMac-user does *not* require regular maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor for occasional maintenance](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#when-to-run-the-hypervisor-for-occasional-maintenance) for a discussion of what kinds of changes warrant what kind of action on your part.
 
 Contents of this section:
 - [Refresh local clone](#refresh-local-clone)
 - [Run the Hypervisor](#run-the-hypervisor)
-- [When to run the Hypervisor for occasional maintenance](#when-to-run-the-hypervisor)
+- [When to run the Hypervisor for occasional maintenance](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#when-to-run-the-hypervisor-for-occasional-maintenance)
   - [If the dotfiles change](#if-the-dotfiles-change)
   - [If there have been changes to the desired user settings](#if-there-have-been-changes-to-the-desired-user-settings)
   - [If a particular user has experimentally or inadvertently modified a setting set by GenoMac-user](#if-a-particular-user-has-experimentally-or-inadvertently-modified-a-setting-governed-by-genomac-user)
@@ -286,7 +286,7 @@ A *maintenance* operation is an idempotent operation that—in addition to a boo
 Most of the operations in GenoMac-user are also bootstrap operations, but not purely so, because they are also maintenance operations. Sucn an operation establishes a setting the first time the script is run for the user (acting as a bootstrap operation) but the same script also enforces that setting on subsequent maintenance runs.
 
 #### Operations (a) normally performed only once (PERM) vis-à-vis (b) performed every complete run of Hypervisor (SESH)
-Project GenoMac-user does *not* require *regular* maintenance but rather only *occasional* maintenance, i.e., in response to a particular occasion that compels maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor for occasional maintenance](#when-to-run-the-hypervisor) for a discussion of what kinds of changes warrant some kind of action on your part.
+Project GenoMac-user does *not* require *regular* maintenance but rather only *occasional* maintenance, i.e., in response to a particular occasion that compels maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor for occasional maintenance](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#when-to-run-the-hypervisor-for-occasional-maintenance) for a discussion of what kinds of changes warrant some kind of action on your part.
 
 Nevertheless, the Hypervisor distinguishes between (a) operations that are performed typically *only once* (unless an exceptional development warrants repetition) vis-à-vis (b) operations that are performed *every time the Hypervisor is run*.
 
