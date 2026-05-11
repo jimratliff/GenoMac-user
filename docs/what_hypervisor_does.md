@@ -13,7 +13,7 @@ This repo supplies scripts that execute various commands to establish various us
 
 For many/most of the macOS settings and for many/most of the GUI apps, these scripts use macOS `defaults write` or `PlistBuddy` commands to set preferences using macOS `defaults` system.[^FIND_DEFAULTS]
 
-[^FIND_DEFAULTS]: For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Appendix: Determining the defaults write commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#appendix-determining-the-defaults-write-commands-that-correspond-to-desired-changes-in-settings).”
+[^FIND_DEFAULTS]: For tips about how to figure out what the `defaults write` commands are that correspond to a desired change in user-scoped settings, see “[Determining the `defaults write` commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/docs/defaults_detective.md).”
 
 Some apps, particularly non-Apple cross-platform apps such as web browsers, don’t rely entirely or at all upon macOS’s `defaults` system but instead use other mechanisms to expose their preferences to scripting. This repo nevertheless often attempts to script those apps’ preferences to the extent possible/feasible/practical. Examples of apps that use other methods for implementing preferences:
 - {{TextExpander has been DEPRECATED from Project GenoMac}} Apps whose preferences are stored remotely associated with the user’s account for that app. E.g., TextExpander. This repo relies upon the user logging into their account with such an app to provide the desired configuration.
