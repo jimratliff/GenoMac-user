@@ -45,6 +45,35 @@ Some of the following need to be performed only once, viz., the first time this 
 - Implements basic user-level settings[^basic_user_settings]
   - app-state persistence[^app_state_persistence]
   - trackpad settings[^trackpad_settings]
+    - Point & Click
+      - Tracking speed: 7 (on a scale from 0 to 9)
+      - Click: Medium
+      - Quiet Click: No
+      - Force Click and haptic feedback: Yes
+      - Look up & data detectors: Force Click with One Finger
+      - Secondary click: Click or Tap with Two Fingers
+      - Tap to click: Yes
+    - Scroll & Zoom
+      - Natural scrolling: Yes
+      - Zoom in or out: Yes
+      - Smart zoom: Yes
+      - Rotate: Yes
+    - More Gestures
+      - Swipe between pages: Scroll Left or Right with Two Fingers
+      - Swipe between full-screen applications: No
+      - Notification Center: No
+      - Mission Control: Swipe Up with Four Fingers
+      - App Exposé: No
+      - Launchpad: No
+      - Show Desktop: Yes
+    - Accessibility » Pointer Control » Trackpad Options » 
+      - Use trackpad for dragging: Yes
+      - Dragging sytle: Three Finger Drag
+    - Remove:
+      - Swipe between full-screen applications
+      - Notification Center
+      - App Exposé (I’m not sure why I removed this)
+      - Launchpad (doesn’t exist on macOS Tahoe anyway)
   - other general UI settings[^general_ui_settings]
     - Assign “Uh Oh!” as custom alert sound
     - Always show scrollbars
@@ -65,6 +94,28 @@ Some of the following need to be performed only once, viz., the first time this 
     - Use F1, F2, etc. keys as standard function keys
     - Press and release globe (🌎) key to bring up emoji picker
   - Set symbolic hot keys for Apple commands[^symbolic_hot_key_assignments]
+    - Many customizations to symbolic hotkeys, both additions and removals, including:
+      - Remove:
+        - minimize a window
+          - I never minimize on purpose, only accidentally; this prevents that
+        - move left/right/down/up a Space
+          - I use a numeric mental mode, not a spatial mental model, for Spaces
+        - window-moving commands halves, quarters, arrange, since they require “Displays have separate Spaces”
+      - Add
+        - using ⌃⌥⌘ combination (modifiers for Mission Control)
+          - ⌃⌥⌘ + 1, …, 9, 0, F1, …, F6 for navigating to Spaces 1, …, 16
+          - ⌃⌥⌘F8: Activate Mission Control
+          - ⌃⌥⌘F9: Notification Center
+          - ⌃⌥⌘F10: Expose: application windows
+          - ⌃⌥⌘F11: Show Desktop
+        - using ⇧⌥⌘ (modifiers for keyboard navigation)
+          - ⇧⌥⌘F2: Move focus to menu bar
+          - ⇧⌥⌘F3: Move focus to the Dock
+          - ⇧⌥⌘F4: Move focus to active or next window
+          - ⇧⌥⌘F5: Move focus to window toolbar
+          - ⇧⌥⌘F6: Move focus to floating window
+          - ⇧⌥⌘F1: Turn keyboard access on or off
+          - ⇧⌥⌘F7: Change the way Tab moves focus
   - Implement menubar-related settings
     - Always show Sound in menubar (not only when “active”)
     - Give audible feedback when volume is changed
@@ -73,7 +124,14 @@ Some of the following need to be performed only once, viz., the first time this 
     - Show Fast User Switching in menubar only as Account Name
     - Show text-input menu in menubar
   - Control Center: Add Bluetooth to Control Center to access battery percentages of Bluetooth devices
-  - Dock settings[^dock_settings] (including which apps appear persistently in the Dock[^dock_persistent_apps]) and which apps should open their windows in all Spaces[^dock_open_in_all_spaces])
+  - Dock settings[^dock_settings] (including which apps appear persistently in the Dock[^dock_persistent_apps]) and which apps should open their windows in all Spaces[^dock_open_in_all_spaces]), for example:
+    - Turn OFF automatic hide/show of Dock
+    - Enable two-finger scrolling on Dock icon to reveal thumbnails of all windows for that app.
+    - Minimize to Dock rather than to app’s dock icon
+      - I choose this because I never minimize on purpose, only by accident
+    - Highlight the element of a grid-view Dock stack over which the cursor hoves
+      - Needs re-testing: this wasn’t working as of 7/2/2025 
+
   - Hot corners[^hot_corners]
   -   Bottom-right corner: start screen saver
     - Bottom-left corner: Disable screen saver
@@ -91,7 +149,16 @@ Some of the following need to be performed only once, viz., the first time this 
   - interactively create additional Mission Control Spaces[^create_mission_control_spaces]
 - Implements settings for Apple’s built-in apps
   - Disk Utility[^disk_utility_settings]
-  - Finder[^finder_settings]<sup>,</sup>[^show_disks_on_desktop]
+  - Finder[^finder_settings]<sup>,</sup>[^show_disks_on_desktop], for example:
+    - Open new windows to $HOME, not Recents
+      - This is meant to be bootstrapped (TODO), not maintenance, so as not to prevent a user from making a different permanent choice.
+    - Show (a) the Library folder, (b) hidden files, and (c) filename extensions
+    - Preferred window view: List view
+      - Calculate all sizes in list views
+    - Column view: Resize columns to fit filenames (This is a new setting in macOS 26 Tahoe.)
+    - Icon views: Snap to Grid
+    - Search from current folder by default (not from “This Mac”) 
+
   - Preview.app[^preview_app_settings]
   - Safari[^Safari_settings]
   - Terminal[^terminal_app_settings]
@@ -137,13 +204,13 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^hold_alpha_key_reinforces_default]: This doesn’t change the default; it affirms/reinforces it.
 
-[^symbolic_hot_key_assignments]: See `scripts/settings/set_symbolichotkeys.sh`. Disables some default hotkeys and changes the default hotkeys for some actions.
+[^symbolic_hot_key_assignments]: See `scripts/settings/set_symbolichotkeys.sh`.
 
-[^dock_settings]: See `scripts/settings/set_general_dock_settings.sh`. Turn *off* automatic show/hide; turn *on* magnification when hovering; set magnification size; show indicator lights for open apps; icons of hidden apps are translucent; enable two-finger scrolling on Dock icon to reveal thumbnails of all windows; minimize to Dock rather than to app’s Dock icon. The (a) app lineup on the Dock and (b) which apps are supposed to open in all spaces is specified on a one-time bootstrap basis by `scripts/settings/perform_initial_bootstrap_operations.sh`.
+[^dock_settings]: See `scripts/settings/set_general_dock_settings.sh`. Also: turn *on* magnification when hovering; set magnification size; show indicator lights for open apps; icons of hidden apps are translucent; . The (a) app lineup on the Dock and (b) which apps are supposed to open in all spaces is specified on a one-time bootstrap basis by `scripts/settings/perform_initial_bootstrap_operations.sh`.
 
-[^dock_persistent_apps]: As a bootstrap step, the Dock is deleted and is replaced by a lineup (System Settings, 1Password, {{TextExpander has been DEPRECATED from Project GenoMac: TextExpander,}} Waterfox, Helium, Raindrop.io, Obsidian, Zed, Activity Monitor, and iTerm) that is defined in `scripts/settings/bootstrap_dock.sh`. This is a *bootstrap* step, but not an enforcement/maintenance step: the Dock configuration can be changed by the user and subsequent runs of Hypervisor will *not* overrule those user changes.
+[^dock_persistent_apps]: As a bootstrap step, the Dock is deleted and is replaced by a lineup (System Settings, 1Password, Waterfox, Helium, Raindrop.io, Obsidian, Zed, Activity Monitor, and iTerm) that is defined in `scripts/settings/bootstrap_dock.sh`. This is a *bootstrap* step, but not an enforcement/maintenance step: the Dock configuration can be changed by the user and subsequent runs of Hypervisor will *not* overrule those user changes.
 
-[^dock_open_in_all_spaces]: These apps (1Password, Activity Monitor, Calendar, Contacts, Notes, Reminders, Stickies, and System Settings {{TextExpander has been DEPRECATED from Project GenoMac: TextExpander,}}) are specified in `implement_mission_control_assign_to_options_for_selected_apps()` in `scripts/settings/set_mission_control_assign_to_options.sh`. These particular apps were chosen primarily because (a) with the exception of Stickies, they are single-window apps and (b) each could reasonably be desired to appear in multiple Spaces. Thus, if one of these apps was *not* desired in a particular Space, the app could be hidden and re-displayed when needed.
+[^dock_open_in_all_spaces]: These apps (1Password, Activity Monitor, Calendar, Contacts, Notes, Reminders, Stickies, and System Settings) are specified in `implement_mission_control_assign_to_options_for_selected_apps()` in `scripts/settings/set_mission_control_assign_to_options.sh`. These particular apps were chosen primarily because (a) with the exception of Stickies, they are single-window apps and (b) each could reasonably be desired to appear in multiple Spaces. Thus, if one of these apps was *not* desired in a particular Space, the app could be hidden and re-displayed when needed.
 
 [^hot_corners]: See `scripts/settings/set_general_dock_settings.sh`
 
