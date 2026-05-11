@@ -14,7 +14,7 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 ## Table of contents
 - [Overview of configuring a user with GenoMac-user](#overview-of-configuring-a-user-with-genomac-user)
 - [Step-by-step: Set up a new user](#step-by-step-set-up-a-new-user)
-- [Maintaining the user’s user-scoped settings by periodically re-running the Hypervisor](#maintaining-the-users-user-scoped-settings-by-periodically-re-running-the-hypervisor)
+- [Maintaining the user’s user-scoped settings by occasionally re-running the Hypervisor](#maintaining-the-users-user-scoped-settings-by-occasionally-re-running-the-hypervisor)
 - [Appendices](#appendices)
   - [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
 - [TODOs](#todos)
@@ -128,7 +128,7 @@ By collecting any warnings and repeating them at the end, you’re relieved of t
 
 Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against failing to notice a silent failure.
 
-## Maintaining the user’s user-scoped settings by periodically re-running the Hypervisor
+## Maintaining the user’s user-scoped settings by occasionally re-running the Hypervisor
 This section assumes you’ve already locally cloned the GenoMac-user repository to `~/.genomac-user` and that you’ve run the Hypervisor once completely through.
 
 Project GenoMac-user does *not* require regular maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor](#when-to-run-the-hypervisor) for a discussion of what kinds of changes warrant what kind of action on your part.
