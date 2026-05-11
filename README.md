@@ -20,7 +20,6 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 - [The role of GenoMac-user within the larger Project GenoMac](#the-role-of-genomac-user-within-the-larger-project-genomac)
 - [Overview of using this repo to implement the user-scoped settings for a particular user](#overview-of-using-this-repo-to-implement-the-user-scoped-settings-for-a-particular-user)
 - [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user)
-- [Remaining configuration steps that have not been (cannot be) automated](#remaining-configuration-steps-that-have-not-been-cannot-be-automated)
 - [TODOs](#todos)
 - [Known issues](#known-issues)
 - [Dev issues](#appendix-dev-issues)
@@ -125,9 +124,10 @@ Also note that the Hypervisor runs under `set -euo pipefail`, which is designed 
 ## Appendices
 
 ### What steps the Hypervisor performs
+#### Programmatic steps
 (Of course, it’s possible that the below list of steps will become out of sync with the actual state of the Hypervisor’s code. So… trust, but verify!)
 
-Some of the following need to be performed only once, viz., the first time this user runs the Hypervisor. Thus, some of the following will be skipped over on subsequent Hypervisor runs.
+Some of the following need to be performed only once, viz., the first time this user runs the Hypervisor. Thus, some of the following will be automatically skipped over on subsequent Hypervisor runs.
 
 - Updates the local clone of this repo if the local clone is behind the remote
 - Configures “split remote” for this repo: Fetch without authentication using HTTPS but push requires SSH
@@ -191,7 +191,7 @@ Some of the following need to be performed only once, viz., the first time this 
   - Set default browser to Waterfox
   - Set default apps to open for various document types[^default_apps_for_docs]
   - Implements settings for Apple’s built-in apps
-    - Finder[^finder_settings]
+    - Finder[^finder_settings]<sup>,</sup>[^show_disks_on_desktop]
     - Preview.app[^preview_app_settings]
     - Disk Utility[^disk_utility_settings]
     - Safari[^Safari_settings]
@@ -234,7 +234,9 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^default_apps_for_docs]: See `scripts/settings/set_default_apps_to_open.sh`. Use (a) BBEdit for many text types (plain text; Markdown; .plist, shell scripts, XML, AppleScript); (b) Elmedia Player for many video formats (MPEG, Quicktime, m4vm and .avi).
 
-[^finder_settings]: See `scripts/settings/set_finder_settings.sh`. 
+[^finder_settings]: See `scripts/settings/set_finder_settings.sh`.
+
+[^show_disks_on_desktop]: If the user answered the introductory question “Does this user want to see, on the desktop, the built-in and external drives?” in the affirmative, the defaults of not showing these will be reversed by the function `conditionally_reverse_disk_display_policy_for_some_users`.
 
 [^preview_app_settings]: See `scripts/settings/set_preview_settings.sh` and, for implementing the toolbar, `scripts/settings/bootstrap_preview_app.sh`.
 
@@ -261,6 +263,8 @@ Some of the following need to be performed only once, viz., the first time this 
 [^plain_text_editor_settings]: See `scripts/settings/set_plain_text_editor_settings.sh`.
 
 [^witch_settings]: See `scripts/settings/set_witch_settings.sh`. (a) Installs Witch license files, which are assumed to be provided in Dropbox. (b) Sets Witch settings.
+
+#### Dotfiles
 
 ## Quick-reference cheat sheet for occasional maintenance
 If you’re beginning the user-scoped configuration of a particular user on this Mac, go directly to this section: [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user).
