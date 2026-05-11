@@ -124,8 +124,10 @@ Also note that the Hypervisor runs under `set -euo pipefail`, which is designed 
 ## Appendices
 
 ### What steps the Hypervisor performs
+- [Programmatic steps](#programmatic-steps)
+- [Dotfiles](#dotfiles)
 #### Programmatic steps
-(Of course, it’s possible that the below list of steps will become out of sync with the actual state of the Hypervisor’s code. So… trust, but verify!)
+(Of course, it’s possible that the below list of programmatic steps will become out of sync with the actual state of the Hypervisor’s code. So… trust, but verify!)
 
 Some of the following need to be performed only once, viz., the first time this user runs the Hypervisor. Thus, some of the following will be automatically skipped over on subsequent Hypervisor runs.
 
@@ -190,23 +192,31 @@ Some of the following need to be performed only once, viz., the first time this 
   - Time Machine: Don’t prompt to use new disk as backup volume
   - Set default browser to Waterfox
   - Set default apps to open for various document types[^default_apps_for_docs]
-  - Implements settings for Apple’s built-in apps
-    - Finder[^finder_settings]<sup>,</sup>[^show_disks_on_desktop]
-    - Preview.app[^preview_app_settings]
-    - Disk Utility[^disk_utility_settings]
-    - Safari[^Safari_settings]
-    - Terminal[^terminal_app_settings]
-    - Text Edit: Make plain text the default format
-  - Implements settings for some third-party apps
-    - [Alan.app](https://github.com/tylerhall/Alan)[^alan_app_settings]
-    - BBEdit[^bbedit_settings]
-    - BetterTouchTool[^btt_settings]
-    - ChatGPT[^chatgpt_settings]
-    - Claude[^claude_settings]
-    - iTerm2[^iTerm2_settings]
-    - OmniOutliner[^omnioutliner_settings]
-    - PlainTextEditor[^plain_text_editor_settings]
-    - Witch[^witch_settings]
+- Implements settings for Apple’s built-in apps
+  - Disk Utility[^disk_utility_settings]
+  - Finder[^finder_settings]<sup>,</sup>[^show_disks_on_desktop]
+  - Preview.app[^preview_app_settings]
+  - Safari[^Safari_settings]
+  - Terminal[^terminal_app_settings]
+  - Text Edit: Make plain text the default format
+- Implements settings for some third-party apps
+  - 1Password[^1password_setup]
+  - [Alan.app](https://github.com/tylerhall/Alan)[^alan_app_settings]
+  - Alfred[^alfred_settings]
+  - BBEdit[^bbedit_settings]
+  - BetterTouchTool[^btt_settings]
+  - ChatGPT[^chatgpt_settings]
+  - Claude[^claude_settings]
+  - Dropbox[^dropbox_configuration]
+  - Helium[^helium_settings]
+  - iTerm2[^iTerm2_settings]
+  - Keyboard Maestro[^keyboard_maestro_settings]
+  - Matrix screensaver[^matrix_screensaver_enabling]
+  - Microsoft Word[^msword_settings]
+  - OmniOutliner[^omnioutliner_settings]
+  - PlainTextEditor[^plain_text_editor_settings]
+  - Waterfox browser and extensions[^waterfox_browser_and_extensions_settings]
+  - Witch[^witch_settings]
  
 [^waterfox_default_browser]: Waterfox, a derivative of Firefox’s Gecko browser engine, will be set as the default browser.
 
@@ -226,7 +236,7 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^symbolic_hot_key_assignments]: See `scripts/settings/set_symbolichotkeys.sh`. Disables some default hotkeys and changes the default hotkeys for some actions.
 
-[^dock_settings]: See `scripts/settings/set_general_dock_settings.sh`. Turn *off* automatic show/hide; turn *on* magnification when hovering; set magnification size; show indicator lights for open apps; icons of hidden apps are translucent; enable two-finger scrolling on Dock icon to reveal thumbnails of all windows; minimize to Dock rather than to app’s Dock icon.
+[^dock_settings]: See `scripts/settings/set_general_dock_settings.sh`. Turn *off* automatic show/hide; turn *on* magnification when hovering; set magnification size; show indicator lights for open apps; icons of hidden apps are translucent; enable two-finger scrolling on Dock icon to reveal thumbnails of all windows; minimize to Dock rather than to app’s Dock icon. The (a) app lineup on the Dock and (b) which apps are supposed to open in all spaces is specified on a one-time bootstrap basis by `scripts/settings/perform_initial_bootstrap_operations.sh`.
 
 [^hot_corners]: See `scripts/settings/set_general_dock_settings.sh`
 
@@ -234,11 +244,11 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^default_apps_for_docs]: See `scripts/settings/set_default_apps_to_open.sh`. Use (a) BBEdit for many text types (plain text; Markdown; .plist, shell scripts, XML, AppleScript); (b) Elmedia Player for many video formats (MPEG, Quicktime, m4vm and .avi).
 
-[^finder_settings]: See `scripts/settings/set_finder_settings.sh`.
+[^finder_settings]: See `scripts/settings/set_finder_settings.sh`. The toolbar is specified on a one-time bootstrap basis by `scripts/settings/perform_initial_bootstrap_operations.sh`.
 
 [^show_disks_on_desktop]: If the user answered the introductory question “Does this user want to see, on the desktop, the built-in and external drives?” in the affirmative, the defaults of not showing these will be reversed by the function `conditionally_reverse_disk_display_policy_for_some_users`.
 
-[^preview_app_settings]: See `scripts/settings/set_preview_settings.sh` and, for implementing the toolbar, `scripts/settings/bootstrap_preview_app.sh`.
+[^preview_app_settings]: See `scripts/settings/set_preview_settings.sh` and, for implementing the toolbar, `scripts/settings/bootstrap_preview_app.sh`. The toolbar is specified on a one-time bootstrap basis by `scripts/settings/perform_initial_bootstrap_operations.sh`.
 
 [^disk_utility_settings]: See `scripts/settings/set_diskutility_settings.sh`. (a) Show all devices in sidebar; (b) show hidden partitions.
 
@@ -246,7 +256,11 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^terminal_app_settings]: See `scripts/settings/set_terminal_settings.sh`. Sets style for new windowsand stating windows: “Man Page”.
 
+[^1password_setup]: See `scripts/settings/interactive_configure_1password.sh`.
+
 [^alan_app_settings]: See `scripts/settings/set_alan_app_settings.sh`.
+
+[^alfred_settings]: See `scripts/settings/interactive_configure_alfred.sh`.
 
 [^bbedit_settings]: See `scripts/settings/set_bbedit_settings.sh`.
 
@@ -256,11 +270,23 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^claude_settings]: See `scripts/settings/set_claude_settings.sh`.
 
-[^iTerm2_settings]: See `scripts/settings/set_iterm_settings.sh`. 
+[^dropbox_configuration]: See `scripts/settings/interactive_configure_dropbox.sh`.
+
+[^helium_settings]: See `scripts/settings/interactive_configure_helium.sh`.
+
+[^iTerm2_settings]: See `scripts/settings/set_iterm_settings.sh`.
+
+[^keyboard_maestro_settings]: See `scripts/settings/interactive_configure_keyboard_maestro.sh`.
+
+[^matrix_screensaver_enabling]: See `scripts/settings/interactive_configure_screensaver.sh`.
+
+[^msword_settings]: See `scripts/settings/set_microsoft_word_settings.sh`.
 
 [^omnioutliner_settings]: See `https://github.com/jimratliff/GenoMac-user/blob/main/scripts/settings/set_omnioutliner_settings.sh`. In addition to directly implementing settings, this script installs a template OmniOutliner document provided at `resources/omnioutliner/_JDR_OmniOutliner_Template.oo3template`.
 
 [^plain_text_editor_settings]: See `scripts/settings/set_plain_text_editor_settings.sh`.
+
+[^waterfox_browser_and_extensions_settings]: See `scripts/settings/set_waterfox_settings.sh`.
 
 [^witch_settings]: See `scripts/settings/set_witch_settings.sh`. (a) Installs Witch license files, which are assumed to be provided in Dropbox. (b) Sets Witch settings.
 
