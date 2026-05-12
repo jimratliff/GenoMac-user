@@ -8,9 +8,9 @@
 
 
 ## Programmatic steps
-- [This repo establishes/adjusts numerous user-level settings using a variety of techniques]
-- [Steps to authorize the user to use some apps]
-- [The programmatically implemented settings]
+- [This repo establishes/adjusts numerous user-level settings using a variety of techniques](#this-repo-establishesadjusts-numerous-user-level-settings-using-a-variety-of-techniques)
+- [Steps to authorize the user to use some apps](#steps-to-authorize-the-user-to-use-some-apps)
+- [The programmatically implemented settings](#the-programmatically-implemented-settings)
 ### This repo establishes/adjusts numerous user-level settings using a variety of techniques
 This repo supplies scripts that execute various commands to establish various user settings for macOS generally and for certain apps in particular.
 
