@@ -302,6 +302,13 @@ Some of the following need to be performed only once, viz., the first time this 
 
 ## Dotfiles
 Note, in particular, the following non-exhaustive list of particular settings scattered among the dotfiles:
+- Linux-y stuff
+  - `XDG_CONFIG_HOME`: `~/.config`
+    - Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
+  - several environment variables that determine where Zsh-related dotfiles live
+    - Zsh configuration files (`ZDOTDIR`): `~/.config/zsh`
+    - Zsh history (`HISTFILE`): `~/.local/.state/history`
+    - Zsh sessions (`XDG_ZSH_SESSIONS_DIR`): `~/.local/.state/sessions`
 - 1Password
   - `stow_directory/1password/.config/1Password/ssh/agent.toml` specifies that the keys only from the 'Dev' vault are accessible to the 1Password SSH Agent
 - BetterTouchTool
