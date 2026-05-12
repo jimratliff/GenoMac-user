@@ -44,13 +44,10 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 - [Dev issues](#appendix-dev-issues)
 - [Appendix: Compilation of selected settings choices (NOT exhaustive!)](#appendix-compilation-of-selected-settings-choices-not-exhaustive)
 
-
 **Other documentation files**
 - [What Hypervisor does and what settings/configurations it implements](https://github.com/jimratliff/GenoMac-user/blob/main/docs/what_hypervisor_does.md)
 - [Determining the `defaults write` commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/docs/defaults_detective.md)
 - [What to do when you change the BetterTouchTool preset](https://github.com/jimratliff/GenoMac-user/blob/main/docs/btt_change.md)
-
-
 
 **First time here?**
 If this is your first time visiting GenoMac-user, please go first to the next major heading, viz., [Overview of configuring a user with GenoMac-user](#overview-of-configuring-a-user-with-genomac-user).
@@ -59,7 +56,6 @@ If this is your first time visiting GenoMac-user, please go first to the next ma
 If you’re already familiar with GenoMac-user—perhaps you’ve already configured one or more user accounts with it—you can go directly to [Step-by-step implementation (for a particular user)](#step-by-step-implementation-for-a-particular-user)
 
 ## Overview of configuring a user with GenoMac-user
-
 - It’s assumed that this Mac has already had its system-scoped settings (including app installations) performed by [GenoMac-system](https://github.com/jimratliff/GenoMac-system).
 - You’ll manually clone  (using https) this repo to your home directory at `~/.genomac-user`.
 - You’ll run a script, referred to as the Hypervisor,[^two_hypervisors] which will orchestrate the entire process of configuring the user-scoped settings of this user.
