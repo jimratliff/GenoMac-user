@@ -151,16 +151,28 @@ Some of the following need to be performed only once, viz., the first time this 
   - Disk Utility[^disk_utility_settings]
   - Finder[^finder_settings]<sup>,</sup>[^show_disks_on_desktop], for example:
     - Open new windows to $HOME, not Recents
-      - This is meant to be bootstrapped (TODO), not maintenance, so as not to prevent a user from making a different permanent choice.
-    - Show (a) the Library folder, (b) hidden files, and (c) filename extensions
+      - TODO: This is meant to be bootstrapped, not maintenance, so as not to prevent a user from making a different permanent choice.
+    - Show the Library folder, path bar, status bar, tab bar, hidden files, and filename extensions
     - Preferred window view: List view
       - Calculate all sizes in list views
     - Column view: Resize columns to fit filenames (This is a new setting in macOS 26 Tahoe.)
     - Icon views: Snap to Grid
-    - Search from current folder by default (not from “This Mac”) 
-
+    - Search from current folder by default (not from “This Mac”)
+    - Show these on Desktop?
+      - Don’t show hard drives, external drives, or external drives on Desktop
+        - This can be reversed by the user by answering “y” to the introductory question “Does this user want to see, on the desktop, the built-in and external drives?”
+      - Show connected server on Desktop
+    - Expand certain panels of GetInfo windows (General, MetaData, Name, Comment, OpenWith, Preview, and Privileges)
+    - Don’t sort folders separately from files
+    - Set icon views to Snap to Grid
   - Preview.app[^preview_app_settings]
   - Safari[^Safari_settings]
+    - Don’t auto-open “safe” downloads
+    - Always show website titles in tabs
+    - Never automatically open a website in a tab rather than a window
+    - Don’t navigate tabs with ⌘1 – ⌘9
+    - Show full website address in Smart Search field
+    - Always show tab bar, favorites bar, and status bar
   - Terminal[^terminal_app_settings]
   - Text Edit: Make plain text the default format
 - Implements settings for some third-party apps
