@@ -3,6 +3,8 @@ Project GenoMac automates setup and maintenance of multiple Macs, each with mult
 
 See GenoMac-system’s README for a [more-extensive overview of Project GenoMac](https://github.com/jimratliff/GenoMac-system/blob/main/README.md#overview-of-the-entire-genomac-process).
 
+For detailed itemization of what settings are implemented by GenoMac-user, see [What Hypervisor does and what settings/configurations it implements](https://github.com/jimratliff/GenoMac-user/blob/main/docs/what_hypervisor_does.md)
+
 [^multiple_users]: The envisioned case is: there is a set of users and each Mac has all (or almost all) of those users. In other words, this is a scenario of a set of users residing on each of several Macs.
 
 [^generic_settings]: *Generic* user-scoped settings are those configuration parameters (a) whose jurisdiction is that of an individual user but (b) whose *desired* values are assumed to be common across all users within the GenoMac project. In other words, these are settings that (a) are set independently for each user account but (b) are assumed to be desired to be the same across users. (This guarantees that a person (viz., me) will enjoy a consistent user experience regardless of which user the person is logged in as.
@@ -231,19 +233,7 @@ There is an additional nuance if the setting a particular experimentally or inad
 
 
 
-### Authorization to use particular apps
-Some apps require additional steps to authorize the user to execute the app. These fall into the following categories:
-- Apps that require signing into an account for that app. These include 1Password and Microsoft Office {{TextExpander has been DEPRECATED from Project GenoMac, and TextExpander.}} The Hypervisor walks the user through this process, launching the relevant app and displaying, via Quick Look, a document detailing the process.[^EXAMPLE_WALK-THROUGH_AUTHORIZATION]
-- Apps that require a license file, such as BetterTouchTool and [Witch](https://manytricks.com/witch/). The Hypervisor programmatically installs these files.[^HYPERVISOR_INSTALLS_LICENSE_FILES]
-- Apps that require entering a key to authorize.
-  - Alfred: Alfred’s basic functionality is free to use, but more-advanced functionality (the Alfred Powerpack) requires entering a Powerpack license. The Hypervisor interactively prompts you to enter a Powerpack license via a Keyboard Maestro status-menu-triggered macro that pastes the Alfred Powerpack textual license code into the appropriate text box in Alfred’s preferences.[^ALFRED_KEY_IS_SECURE]<sup>,</sup>[^KM_MACRO_IN_RESOURCES]
-  - Keyboard Maestro: Because Keyboard Maestro has an initial trial period for every new user account, you can use a Keyboard Maestro macro to register your license to Keyboard Maestro! Specifically, the Hypervisor interactively prompts you to use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item to populate the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.[^KM_KEY_IS_SECURE]<sup>,</sup>[^KM_MACRO_IN_RESOURCES]
 
-[^EXAMPLE_WALK-THROUGH_AUTHORIZATION]: {{Change example: TextExpander has been DEPRECATED from Project GenoMac: TextExpander,}} See, e.g., `scripts/settings/interactive_configure_textexpander.sh`, which launches TextExpander and displays the Markdown document `resources/docs_to_display_to_user/TextExpander_how_to_configure.md`.
-[^HYPERVISOR_INSTALLS_LICENSE_FILES]: (a) The BetterTouchTool license file is installed by the Hypervisor using `install_btt_license_file()` from `scripts/settings/set_bettertouchtool_settings.sh`. The license file is expected to be sourced from the user’s Dropbox: `~/Dropbox/Preferences_common/BetterTouchTool/LICENSE/bettertouchtool.bttlicense`. (b) The Witch license file(s) is/are installed by the Hypervisor using `install_Witch_license_files()` from `scripts/settings/set_witch_settings.sh`. The Witch license files are expected to be found in the shared Dropbox folder: `~/Dropbox/Preferences_common/Witch/LICENSE/Files_to_transfer`.
-[^ALFRED_KEY_IS_SECURE]: Note that the Alfred Powerpack license key is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
-[^KM_KEY_IS_SECURE]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
-[^KM_MACRO_IN_RESOURCES]: A redacted version of this Keyboard Maestro macro is provided in this repo at `resources/keyboard_maestro_macros_for_hypervisor/GenoMac Bootstrap Macros.kmmacros`. There are placeholders where the two license credentials need to be. You can replace those placeholders with your own credentials.
 
 ### Settings are distinguished on two dimensions: between (a) purely bootstrap vis-à-vis idempotent and (b) normally performed only once (PERM) vis-à-vis performed every complete run of Hypervisor (SESH)
 
