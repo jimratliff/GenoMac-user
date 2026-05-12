@@ -187,11 +187,29 @@ Some of the following need to be performed only once, viz., the first time this 
     - When BBEdit becomes active, do nothing (don’t open a new doc)
   - BetterTouchTool[^btt_settings]
   - ChatGPT[^chatgpt_settings]
+    - Never automatically reset conversations
+    - Turn off hotkey for chat bar and never show in menubar
+    - Skip phone verification
   - Claude[^claude_settings]
+    - Turn off (a) quick-entry shortcut and (b) menubar item
   - Dropbox[^dropbox_configuration]
+    - Interactively walks the configuring user through the process of enabling/configuring Dropbox
   - Helium[^helium_settings]
   - iTerm2[^iTerm2_settings]
+    - Restore windows to same Spaces
+    - Use dark theme
+    - For the default profile
+    - Change default font to Fira Code Nerd Font
+    - Set number of scrollback lines to unlimited
   - Keyboard Maestro[^keyboard_maestro_settings]
+    - Don’t show splash screen at launch
+    - Do NOT show application palette
+    - Status menu
+      - Include macro icons when listing macros in status menu
+      - Do NOT list applications in status menu
+    - Do NOT save recent applications between launches
+    - DO save clipboard history between launches
+    - Interactively walks configuring user through registering Keyboard Maestro (and setting the status-menu icon to “Classic,” because the programmatic attempt has never persistently worked)
   - Matrix screensaver[^matrix_screensaver_enabling]
   - Microsoft Word[^msword_settings]
   - OmniOutliner[^omnioutliner_settings]
@@ -238,7 +256,7 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^show_disks_on_desktop]: If the user answered the introductory question “Does this user want to see, on the desktop, the built-in and external drives?” in the affirmative, the defaults of not showing these will be reversed by the function `conditionally_reverse_disk_display_policy_for_some_users`.
 
-[^preview_app_settings]: See `scripts/settings/set_preview_settings.sh` and, for implementing the toolbar, `scripts/settings/bootstrap_preview_app.sh`. The toolbar is specified on a one-time bootstrap basis by `scripts/settings/perform_initial_bootstrap_operations.sh`.
+[^preview_app_settings]: See `scripts/settings/set_preview_settings.sh` and, for implementing the toolbar, `scripts/settings/bootstrap_preview_app.sh`. The toolbar is specified on a one-time bootstrap basis by `scripts/settings/perform_initial_bootstrap_operations.sh`. Remove user’s name from annotations.
 
 [^disk_utility_settings]: See `scripts/settings/set_diskutility_settings.sh`. (a) Show all devices in sidebar; (b) show hidden partitions.
 
@@ -248,7 +266,7 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^1password_setup]: See `scripts/settings/interactive_configure_1password.sh`. Hypervisor interactively walks you through configuring 1Password both (a) for normal user and (b) to use the 1Password SSH agent to authenticate with GitHub in the CLI.
 
-[^alan_app_settings]: See `scripts/settings/set_alan_app_settings.sh`.
+[^alan_app_settings]: See `scripts/settings/set_alan_app_settings.sh`. Interactively walks the configuring user through enabling Powerpack and syncing Alfred preferences with the master copy in a Dropbox folder.
 
 [^alfred_settings]: See `scripts/settings/interactive_configure_alfred.sh`.
 
@@ -262,7 +280,7 @@ Some of the following need to be performed only once, viz., the first time this 
 
 [^dropbox_configuration]: See `scripts/settings/interactive_configure_dropbox.sh`.
 
-[^helium_settings]: See `scripts/settings/interactive_configure_helium.sh`.
+[^helium_settings]: See `scripts/settings/interactive_configure_helium.sh`. Unlike other Mac apps and even, for example, the Waterfox browser, as far as I’ve been able to determine in my abbreviated investigation, Helium doesn’t expose its settings to scripting in a sufficiently easy-to-deduce way. Thus, interactively walks configuring user through (a) configuring Helium and (b) configuring extensions. (The extensions are *installed* programmatically.)
 
 [^iTerm2_settings]: See `scripts/settings/set_iterm_settings.sh`.
 
