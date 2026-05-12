@@ -44,7 +44,6 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 - [TODOs](#todos)
 - [Known issues](#known-issues)
 - [Dev issues](#appendix-dev-issues)
-- [Appendix: Compilation of selected settings choices (NOT exhaustive!)](#appendix-compilation-of-selected-settings-choices-not-exhaustive)
 
 **Other documentation files**
 - [What Hypervisor does and what settings/configurations it implements](https://github.com/jimratliff/GenoMac-user/blob/main/docs/what_hypervisor_does.md)
