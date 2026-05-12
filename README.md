@@ -49,6 +49,8 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 - [What Hypervisor does and what settings/configurations it implements](https://github.com/jimratliff/GenoMac-user/blob/main/docs/what_hypervisor_does.md)
 - [Determining the `defaults write` commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/docs/defaults_detective.md)
 - [What to do when you change the BetterTouchTool preset](https://github.com/jimratliff/GenoMac-user/blob/main/docs/btt_change.md)
+- At GenoMac-shared:
+  - [The two types of operations in Project GenoMac and their corresponding families of states](https://github.com/jimratliff/GenoMac-shared/blob/main/docs/States_migration_operations.md)
 
 **First time here?**
 If this is your first time visiting GenoMac-user, please go first to the next major heading, viz., [Overview of configuring a user with GenoMac-user](#overview-of-configuring-a-user-with-genomac-user).
@@ -335,7 +337,7 @@ Every other operation (i.e., neither interactive nor purely bootstrap) is run ev
       that I install all the other successfully installed extensions. The implemented workaround: Interactively prompt the executing user to manually
       install each extension.
  
-## Appendix: Dev issues
+## Dev issues
 The preceding content of this README focuses on the “user” experience, i.e., the experience from USER_CONFIGURER’s experience, as a consumer of the repository in its contemperaneous state.
 
 In contrast, the present appendix addresses issues about how this repo can be changed and those changes propagated and used by USER_CONFIGURER (even if USER_CONFIGURER is the entity making those changes).
