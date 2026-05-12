@@ -401,33 +401,6 @@ git push origin main
 ```
 which can also be performed by `make dev-update-repo-and-submodule`.
 
-## Appendix: Compilation of selected settings choices (NOT exhaustive!)
-The following is just a few highlights of changed settings, that might seem notable or worth knowing about:
-- Linux-y stuff
-  - `XDG_CONFIG_HOME`: `~/.config`
-    - Many other Linux-y programs will respect that value and place their own configuration files in `~/.config`.
-  - several environment variables that determine where Zsh-related dotfiles live
-    - Zsh configuration files (`ZDOTDIR`): `~/.config/zsh`
-    - Zsh history (`HISTFILE`): `~/.local/.state/history`
-    - Zsh sessions (`XDG_ZSH_SESSIONS_DIR`): `~/.local/.state/sessions`
-
-       
-      - 
-
-
-
-
-
-
-- Safari
-  - Don’t auto-open “safe” downloads
-  - Never automatically open a website in a tab rather than a window
-  - Don’t navigate tabs with ⌘1 – ⌘9
-  - Show full website address in Smart Search field
-- Third-party software
-  - ChatGPT and Claude
-    - Remove hotkey
-    - Do not enable menubar item
 
 
 
