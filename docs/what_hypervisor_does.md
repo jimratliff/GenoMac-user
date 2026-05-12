@@ -8,6 +8,9 @@
 
 
 ## Programmatic steps
+- [This repo establishes/adjusts numerous user-level settings using a variety of techniques]
+- [Steps to authorize the user to use some apps]
+- [The programmatically implemented settings]
 ### This repo establishes/adjusts numerous user-level settings using a variety of techniques
 This repo supplies scripts that execute various commands to establish various user settings for macOS generally and for certain apps in particular.
 
@@ -21,6 +24,20 @@ Some apps, particularly non-Apple cross-platform apps such as web browsers, don�
 - Microsoft Word: Very few of Word’s preferences are revealed through the macOS `defaults` system. This repo implements settings for Word primarily by a combination of (a) installing a preconfigured Normal.dotm template file and (b) running a VBA script (stored within a Word document) to set some Word preferences.
 
 [^1Password_HMAC]: 1Password’s preferences are stored at `~/Library/Group Containers/2BUA8C4S2C.com.1password/Library/Application Support/1Password/Data/settings/settings.json`. Each substantive key-value pair representing a preference is accompanied as well by a corresponding `authTags` key-value pair, with the same key but where the value is a cryptographic signature of the substantive key-value pair. The hashing is unpredictable to me (e.g.,  the hash of one key-value pair is different on one Mac than on another Mac), so I can’t write a script to provide new key-value preference pairs with `authTags` pairs that survive validation by 1Password.
+
+### Steps to authorize the user to use some apps
+Some apps require additional steps to authorize the user to execute the app. These fall into the following categories:
+- Apps that require signing into an account for that app. These include 1Password and Microsoft Office {{TextExpander has been DEPRECATED from Project GenoMac, and TextExpander.}} The Hypervisor walks the user through this process, launching the relevant app and displaying, via Quick Look, a document detailing the process.[^EXAMPLE_WALK-THROUGH_AUTHORIZATION]
+- Apps that require a license file, such as BetterTouchTool and [Witch](https://manytricks.com/witch/). The Hypervisor programmatically installs these files.[^HYPERVISOR_INSTALLS_LICENSE_FILES]
+- Apps that require entering a key to authorize.
+  - Alfred: Alfred’s basic functionality is free to use, but more-advanced functionality (the Alfred Powerpack) requires entering a Powerpack license. The Hypervisor interactively prompts you to enter a Powerpack license via a Keyboard Maestro status-menu-triggered macro that pastes the Alfred Powerpack textual license code into the appropriate text box in Alfred’s preferences.[^ALFRED_KEY_IS_SECURE]<sup>,</sup>[^KM_MACRO_IN_RESOURCES]
+  - Keyboard Maestro: Because Keyboard Maestro has an initial trial period for every new user account, you can use a Keyboard Maestro macro to register your license to Keyboard Maestro! Specifically, the Hypervisor interactively prompts you to use an already-Dropbox-synced Keyboard Maestro status-menu-triggered macro that chooses the “Register Keyboard Macro…” menu item to populate the email-address and serial-number fields with the credentials under which Keyboard Maestro is registered.[^KM_KEY_IS_SECURE]<sup>,</sup>[^KM_MACRO_IN_RESOURCES]
+
+[^EXAMPLE_WALK-THROUGH_AUTHORIZATION]: {{Change example: TextExpander has been DEPRECATED from Project GenoMac: TextExpander,}} See, e.g., `scripts/settings/interactive_configure_textexpander.sh`, which launches TextExpander and displays the Markdown document `resources/docs_to_display_to_user/TextExpander_how_to_configure.md`.
+[^HYPERVISOR_INSTALLS_LICENSE_FILES]: (a) The BetterTouchTool license file is installed by the Hypervisor using `install_btt_license_file()` from `scripts/settings/set_bettertouchtool_settings.sh`. The license file is expected to be sourced from the user’s Dropbox: `~/Dropbox/Preferences_common/BetterTouchTool/LICENSE/bettertouchtool.bttlicense`. (b) The Witch license file(s) is/are installed by the Hypervisor using `install_Witch_license_files()` from `scripts/settings/set_witch_settings.sh`. The Witch license files are expected to be found in the shared Dropbox folder: `~/Dropbox/Preferences_common/Witch/LICENSE/Files_to_transfer`.
+[^ALFRED_KEY_IS_SECURE]: Note that the Alfred Powerpack license key is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
+[^KM_KEY_IS_SECURE]: Like the Alfred Powerpack license key, the Keyboard Maestro serial number is *not* stored in this or any other repository. It is stored within the definition of the Keyboard Maestro macro, which itself is stored in a not-publicly-accessible Dropbox-synced file.
+[^KM_MACRO_IN_RESOURCES]: A redacted version of this Keyboard Maestro macro is provided in this repo at `resources/keyboard_maestro_macros_for_hypervisor/GenoMac Bootstrap Macros.kmmacros`. There are placeholders where the two license credentials need to be. You can replace those placeholders with your own credentials.
 
 ### The programmatically implemented settings
 (Of course, it’s possible that the below list of programmatic steps will become out of sync with the actual state of the Hypervisor’s code. So… trust, but verify! The code itself is the ultimate source of truth. The place to start reviewing to discover the settings implemented is `scripts/hypervisor/subdermis.sh`.)
