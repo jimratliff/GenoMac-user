@@ -25,7 +25,8 @@ Select:
 - ❑ From the application menubar, choose Helium » Settings… (⌘,)
 
 ### Search engine
-- ❑ Click on “Search engine” in the left sidebar of Settings, or go to [helium://settings/search]
+- ❑ Click on the ⚙️ icon in the upper left to display a left sidebar
+- ❑ “Search engine” in the left sidebar of Settings, or go to [helium://settings/search]
   - A new page will be displayed titled “Search engine”, showing the default engine of DuckDuckGo
 - ❑ Click the “Change” button
   - A dialog box will open listing Microsoft Bing, Ecosia, …, Google, DuckDuckGo, etc.
