@@ -9,6 +9,10 @@
 # See also environment_variables_for_state_enums_script.sh
 
 #############################################
+#                  Fallbacks when run before dotfiles have been stowed
+: "${XDG_CONFIG_HOME:=$HOME/.config}"
+
+#############################################
 #                  Aliases to intra-repository hierarchical structures
 #
 ############### Local directory into which the GenoMac-user repo is cloned
