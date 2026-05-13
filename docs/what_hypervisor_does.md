@@ -25,6 +25,19 @@ Some apps, particularly non-Apple cross-platform apps such as web browsers, don�
 
 [^1Password_HMAC]: 1Password’s preferences are stored at `~/Library/Group Containers/2BUA8C4S2C.com.1password/Library/Application Support/1Password/Data/settings/settings.json`. Each substantive key-value pair representing a preference is accompanied as well by a corresponding `authTags` key-value pair, with the same key but where the value is a cryptographic signature of the substantive key-value pair. The hashing is unpredictable to me (e.g.,  the hash of one key-value pair is different on one Mac than on another Mac), so I can’t write a script to provide new key-value preference pairs with `authTags` pairs that survive validation by 1Password.
 
+## The Hypervisor keeps track of *state* across time and within a session
+The Hypervisor maintains of memory of *states* in a hidden directory, `~/.genomac-user-state`, which contains empty files with a `.state` prefix.
+
+The Hypervisor keeps track of state across time, i.e., whether it has *ever* done a particular operation. This way it ensures that, for some operations, it performs that operation exactly once but no more. Examples of such operations are (a) Configuring 1Password’s SSH Agent, (b) signing into Dropbox and configuring it to sync a particular local `Dropbox` directory, and (c) creating additional Mission Control Spaces. The state files corresponding to these across-time states all begin the prefix `PERM_`, which stands for “permanent.”[^coerce_migration]
+
+[^coerce_migration]: If such a one-time-only operation should nevertheless be performed again, this can be achieved by deleting the appropriate state file. Then, the next time Hypervisor runs, it will not remember that it had previously performed this operation and will perform it again.
+
+The Hypervisor also keeps of state within a session, i.e., so that if the session is interrupted (for example, if the Hypervisor tells the user to logout, log back in, and restart the Hypervisor), the Hypervisor will know where to pick back up.[^avoid_infinite_loop] The state files corresponding to these across-time states all begin the prefix `SESH_`, which stands for “session.”[^clear_session_states]
+
+[^avoid_infinite_loop]: Otherwise, the Hypervisor could get caught in an infinite loop of performing an operation, being forced to log out, and rerunning the Hypervisor from the beginning.
+
+[^clear_session_states]: At the end of a session, i.e., when Hypervisor reaches its end, it deletes all of the `SESH_` state files, so that its session memory will start blank the next time Hypervisor is run.
+
 ### Steps to authorize the user to use some apps
 Some apps require additional steps to authorize the user to execute the app. These fall into the following categories:
 - Apps that require signing into an account for that app. These include 1Password and Microsoft Office {{TextExpander has been DEPRECATED from Project GenoMac, and TextExpander.}} The Hypervisor walks the user through this process, launching the relevant app and displaying, via Quick Look, a document detailing the process.[^EXAMPLE_WALK-THROUGH_AUTHORIZATION]
