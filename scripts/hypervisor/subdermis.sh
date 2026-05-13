@@ -49,7 +49,7 @@ function subdermis() {
   conditionally_reverse_disk_display_policy_for_some_users
   
   conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
-  interactive_set_preferences_for_waterfox_extensions      # scripts/settings/interactive_set_waterfox_extension_preferences.sh
+
 
   conditionally_interactive_configure_helium_and_extensions # scripts/settings/interactive_configure_helium.sh
   
@@ -63,11 +63,11 @@ function subdermis() {
   conditionally_configure_1Password
 
   ############### BELOW THIS POINT: 1Password credentials are available
-
-  # conditionally_configure_
   
-  conditionally_configure_Dropbox
+  interactive_set_preferences_for_waterfox_extensions      # scripts/settings/interactive_set_waterfox_extension_preferences.sh
   conditionally_interactive_configure_waterfox_raindropio_extension
+
+  conditionally_configure_Dropbox
 
   ############### PERM: (Further) configure apps that rely upon Dropbox having synced
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
