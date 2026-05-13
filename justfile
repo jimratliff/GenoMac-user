@@ -36,7 +36,7 @@ dev-update-repo-and-submodule:
 dev-configure-remote-for-https-fetch-and-ssh-push:
     git -C "{{genomac_user_dir}}" remote set-url origin https://github.com/jimratliff/GenoMac-system.git
     git -C "{{genomac_user_dir}}" remote set-url --push origin git@github.com:jimratliff/GenoMac-system.git
-	git -C "{{genomac_user_dir}}" config pull.rebase false
+    git -C "{{genomac_user_dir}}" config pull.rebase false
 
 ############### Verify SSH configuration
 
