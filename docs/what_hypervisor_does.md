@@ -4,12 +4,12 @@
 
 ## Table of contents
 - [Programmatic steps](#programmatic-steps)
-- This repo establishes/adjusts numerous user-level settings using a variety of techniques
 - [Dotfiles](#dotfiles)
 
 
 ## Programmatic steps
 - [This repo establishes/adjusts numerous user-level settings using a variety of techniques](#this-repo-establishesadjusts-numerous-user-level-settings-using-a-variety-of-techniques)
+- [The Hypervisor keeps track of *state* across time and within a session](#the-hypervisor-keeps-track-of-state-across-time-and-within-a-session)
 - [Steps to authorize the user to use some apps](#steps-to-authorize-the-user-to-use-some-apps)
 - [The programmatically implemented settings](#the-programmatically-implemented-settings)
 ### This repo establishes/adjusts numerous user-level settings using a variety of techniques
@@ -26,7 +26,7 @@ Some apps, particularly non-Apple cross-platform apps such as web browsers, don�
 
 [^1Password_HMAC]: 1Password’s preferences are stored at `~/Library/Group Containers/2BUA8C4S2C.com.1password/Library/Application Support/1Password/Data/settings/settings.json`. Each substantive key-value pair representing a preference is accompanied as well by a corresponding `authTags` key-value pair, with the same key but where the value is a cryptographic signature of the substantive key-value pair. The hashing is unpredictable to me (e.g.,  the hash of one key-value pair is different on one Mac than on another Mac), so I can’t write a script to provide new key-value preference pairs with `authTags` pairs that survive validation by 1Password.
 
-## The Hypervisor keeps track of *state* across time and within a session
+### The Hypervisor keeps track of *state* across time and within a session
 The Hypervisor maintains of memory of *states* in a hidden directory, `~/.genomac-user-state`, which contains empty files with a `.state` prefix.
 
 The Hypervisor keeps track of state across time, i.e., whether it has *ever* done a particular operation. This way it ensures that, for some operations, it performs that operation exactly once but no more. Examples of such operations are (a) Configuring 1Password’s SSH Agent, (b) signing into Dropbox and configuring it to sync a particular local `Dropbox` directory, and (c) creating additional Mission Control Spaces. The state files corresponding to these across-time states all begin the prefix `PERM_`, which stands for “permanent.”[^coerce_migration]
