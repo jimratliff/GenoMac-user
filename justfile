@@ -12,31 +12,37 @@ default:
 run-hypervisor:
 	zsh scripts/run_hypervisor.sh
 
-############### Repo management
+############### Repo-specific configuration
+genomac_local_dir := env_var('HOME') / '.genomac-user'
+genomac_remote_repo := 'GenoMac-user'
+genomac_github_owner := 'jimratliff'
 
-genomac_user_dir := env_var('HOME') / '.genomac-user'
+genomac_fetch_url := 'https://github.com/' + genomac_github_owner + '/' + genomac_remote_repo + '.git'
+genomac_push_url := 'git@github.com:' + genomac_github_owner + '/' + genomac_remote_repo + '.git'
+
+############### Repo management
 
 # Pull latest changes from origin/main, including any submodule updates. Does not require authenticating with GitHub
 refresh-repo-and-module:
-	git -C "{{genomac_user_dir}}" pull --recurse-submodules origin main
+    git -C "{{genomac_local_dir}}" pull --recurse-submodules origin main
 
-# Updates genomac-user repo, including genomac-shared submodule, and pushes it back to GitHub
+# Updates this repo, including genomac-shared submodule, and pushes it back to GitHub
 # The git diff check detects whether there are staged changes to the submodule and, if so, commits them.
-# Requires authenticating with GitHub (hence the 'dev-' prefix to distinguish from refresh-repo-and-module recipe.
+# Requires authenticating with GitHub (hence the 'dev-' prefix to distinguish from refresh-repo-and-module recipe).
 dev-update-repo-and-submodule:
-    git -C "{{genomac_user_dir}}" pull --recurse-submodules origin main
-    git -C "{{genomac_user_dir}}" submodule update --remote
-    git -C "{{genomac_user_dir}}" add external/genomac-shared
-    git -C "{{genomac_user_dir}}" diff --cached --quiet external/genomac-shared || git -C "{{genomac_user_dir}}" commit -m "Update genomac-shared submodule"
-    git -C "{{genomac_user_dir}}" push origin main
+    git -C "{{genomac_local_dir}}" pull --recurse-submodules origin main
+    git -C "{{genomac_local_dir}}" submodule update --remote
+    git -C "{{genomac_local_dir}}" add external/genomac-shared
+    git -C "{{genomac_local_dir}}" diff --cached --quiet external/genomac-shared || git -C "{{genomac_local_dir}}" commit -m "Update genomac-shared submodule"
+    git -C "{{genomac_local_dir}}" push origin main
 
 # Configure remote for HTTPS fetch and SSH push
-# Sets the fetch URL to HTTPS (no auth needed for public repo)
-# Sets the push URL to SSH (uses 1Password SSH agent)
+# Sets the fetch URL to HTTPS
+# Sets the push URL to SSH, using the 1Password SSH agent
 dev-configure-remote-for-https-fetch-and-ssh-push:
-    git -C "{{genomac_user_dir}}" remote set-url origin https://github.com/jimratliff/GenoMac-user.git
-    git -C "{{genomac_user_dir}}" remote set-url --push origin git@github.com:jimratliff/GenoMac-user.git
-    git -C "{{genomac_user_dir}}" config pull.rebase false
+    git -C "{{genomac_local_dir}}" remote set-url origin "{{genomac_fetch_url}}"
+    git -C "{{genomac_local_dir}}" remote set-url --push origin "{{genomac_push_url}}"
+    git -C "{{genomac_local_dir}}" config pull.rebase false
 
 ############### Verify SSH configuration
 
