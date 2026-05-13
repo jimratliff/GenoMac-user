@@ -34,8 +34,8 @@ dev-update-repo-and-submodule:
 # Sets the fetch URL to HTTPS (no auth needed for public repo)
 # Sets the push URL to SSH (uses 1Password SSH agent)
 dev-configure-remote-for-https-fetch-and-ssh-push:
-    git -C "{{genomac_user_dir}}" remote set-url origin https://github.com/jimratliff/GenoMac-system.git
-    git -C "{{genomac_user_dir}}" remote set-url --push origin git@github.com:jimratliff/GenoMac-system.git
+    git -C "{{genomac_user_dir}}" remote set-url origin https://github.com/jimratliff/GenoMac-user.git
+    git -C "{{genomac_user_dir}}" remote set-url --push origin git@github.com:jimratliff/GenoMac-user.git
     git -C "{{genomac_user_dir}}" config pull.rebase false
 
 ############### Verify SSH configuration
