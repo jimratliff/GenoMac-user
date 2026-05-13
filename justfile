@@ -27,7 +27,7 @@ dev-update-repo-and-submodule:
     git -C "{{genomac_user_dir}}" pull --recurse-submodules origin main
     git -C "{{genomac_user_dir}}" submodule update --remote
     git -C "{{genomac_user_dir}}" add external/genomac-shared
-    git -C "{{genomac_user_dir}}" diff --cached --quiet external/genomac-shared || git -C "{{genomac_system_dir}}" commit -m "Update genomac-shared submodule"
+    git -C "{{genomac_user_dir}}" diff --cached --quiet external/genomac-shared || git -C "{{genomac_user_dir}}" commit -m "Update genomac-shared submodule"
     git -C "{{genomac_user_dir}}" push origin main
 
 # Configure remote for HTTPS fetch and SSH push
