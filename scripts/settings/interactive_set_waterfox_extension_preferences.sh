@@ -45,10 +45,10 @@ function interactive_set_preferences_for_waterfox_extensions() {
     interactive_configure_waterfox_theme \
     "Skipping installing the Activist-balanced Waterfox theme, because it’s already been installed in the past"
 
-  run_if_user_has_not_done \
-    "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
-    interactive_configure_waterfox_raindropio_extension \
-    "Skipping configuring the Raindrop.io extension for Waterfox, because it’s already been configured in the past"
+#  run_if_user_has_not_done \
+#    "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
+#    interactive_configure_waterfox_raindropio_extension \
+#    "Skipping configuring the Raindrop.io extension for Waterfox, because it’s already been configured in the past"
 
   run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSION_SHORTCUTS_HAVE_BEEN_CONFIGURED" \
