@@ -4,6 +4,7 @@
 
 ## Table of contents
 - [Programmatic steps](#programmatic-steps)
+- This repo establishes/adjusts numerous user-level settings using a variety of techniques
 - [Dotfiles](#dotfiles)
 
 
