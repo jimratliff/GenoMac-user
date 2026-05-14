@@ -183,8 +183,8 @@ Some of the following need to be performed only once, viz., the first time this 
 - Implements settings for Apple’s built-in apps
   - Disk Utility[^disk_utility_settings]
   - Finder[^finder_settings]<sup>,</sup>[^show_disks_on_desktop], for example:
-    - Open new windows to $HOME, not Recents
-      - TODO: This is meant to be bootstrapped, not maintenance, so as not to prevent a user from making a different permanent choice.
+    - Bootstrap-only: Open new windows to $HOME, not Recents
+    - Bootstrap-only: Sets baseline Finder toolbar
     - Show the Library folder, path bar, status bar, tab bar, hidden files, and filename extensions
     - Preferred window view: List view
       - Calculate all sizes in list views
