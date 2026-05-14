@@ -49,13 +49,10 @@ function subdermis() {
   conditionally_reverse_disk_display_policy_for_some_users
   
   conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
-
-
   conditionally_interactive_configure_helium_and_extensions # scripts/settings/interactive_configure_helium.sh
   
   # Execute pre-Dropbox bootstrap steps
   conditionally_perform_initial_bootstrap_operations
-
   conditionally_interactive_configure_screensaver
   conditionally_configure_microsoft_word
 
