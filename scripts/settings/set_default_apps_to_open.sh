@@ -1,14 +1,14 @@
 #!/usr/bin/env zsh
 
-function conditionally_set_default_apps_to_open() {
+function conditionally_set_default_apps_to_open_certain_types_of_docs() {
   report_start_phase_standard
   run_if_user_has_not_done "$PERM_DEFAULT_APPS_TO_OPEN_CERTAIN_TYPES_OF_DOCS_HAVE_BEEN_SET" \
-    set_default_apps_to_open \
+    set_default_apps_to_open_certain_types_of_docs \
     "Skipping setting default apps to open certain types of docs, because that was set in the past"
   report_end_phase_standard
 }
 
-function set_default_apps_to_open() {
+function set_default_apps_to_open_certain_types_of_docs() {
   # Sets default app(s) for certain document type(s)
   #
   # Uses Uniform Type Identifiers (UTIs) to refer to document types.
