@@ -8,6 +8,7 @@
 ## Enable Tabs2List
 - Tabs2List
   - ❑ Toggle the switch to ON ✅
+  - ❑ Pin 📌 ? ✅
  
 ## Open the preferences for Tabs2List
 - ❑ Context-click on the “…” button to the right of the switch you just toggled, and select “Preferences”
