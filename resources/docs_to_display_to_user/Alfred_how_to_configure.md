@@ -50,6 +50,7 @@
         - Dialog box: “‘Alfred 5.app’ would like to control this computer using accessibility features.”
           - “Grant access to this application in Privacy & Security settings, located in System Settings.”
           - ❑ Click on “Open System Settings”
+          - ❑ Enable Alfred in the list
     - “Full Disk Access”
       - “Allowing Full Disk Access gives Alfred access to the user-level files on your Disk. This is essential if you’d like Alfred to be able to search for your browser bookmarks and other files in your home Library folder.”
       - ❑ Click on “Open macOS Full Disk Access perferences” and follow instructions.
