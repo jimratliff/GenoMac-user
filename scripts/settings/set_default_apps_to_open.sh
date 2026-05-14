@@ -29,6 +29,7 @@ function set_default_apps_to_open_certain_types_of_docs() {
   
   report_start_phase_standard
   report_action_taken "Assign default app(s) for document type(s)"
+  report_warning "For each assignment, you’ll see a dialog box “Do you want all documents… to open with __?${NEWLINE}Please choose “Use __” (not “Keep __”)."
   
   local uti_plain_text=public.plain-text
   local uti_markdown=net.daringfireball.markdown
