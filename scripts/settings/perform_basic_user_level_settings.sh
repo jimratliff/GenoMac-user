@@ -149,10 +149,10 @@ function perform_basic_user_level_settings() {
   defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true ; success_or_not
   
   # Set default browser
-  set_default_browser
+  conditionally_set_default_browser
   
   # Set default apps to open for document types
-  set_default_apps_to_open
+  conditionally_set_default_apps_to_open_certain_types_of_docs
   
   # Preview.app
   set_preview_settings
