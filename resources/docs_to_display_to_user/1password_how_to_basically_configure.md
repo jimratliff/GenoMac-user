@@ -22,7 +22,7 @@ using a script.)
 - “Lock 1Password”
   - ❑ REMOVE SHORTCUT
 - “Autofill”
-  - ❑ Change to ⌃⌥⌘.
+  - ❑ Change to ⌃⌥⌘.   (To be clear, the last character is a period. That *is* part of the shortcut.)
 ### Appearance
 #### Always Show in Sidebar
 - Categories
