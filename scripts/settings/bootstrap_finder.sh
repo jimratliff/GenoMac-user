@@ -1,6 +1,14 @@
 #!/usr/bin/env zsh
 
-function bootstrap_finder() {
+function bootstrap_finder_open_new_windows_to_home(){
+  report_start_phase_standard
+  local domain="com.apple.finder"
+  report_adjust_setting "By default, new Finder window should open to user’s home directory"
+  defaults write $domain NewWindowTarget -string "PfHm" ; success_or_not
+  report_end_phase_standard
+}
+
+function bootstrap_finder_toolbar() {
 
   # To be run only once per user to configure (a) the initial toolbar and 
   # (b) default path for a Finder window.
@@ -17,8 +25,8 @@ function bootstrap_finder() {
   ensure_plist_path_exists "${plist_path}"
 
   # Open new windows to HOME
-  report_adjust_setting "By default, new Finder window should open to user’s home directory"
-  defaults write $domain NewWindowTarget -string "PfHm" ; success_or_not
+  # report_adjust_setting "By default, new Finder window should open to user’s home directory"
+  # defaults write $domain NewWindowTarget -string "PfHm" ; success_or_not
   
   ############### Reconfigure Toolbar
   report_action_taken "Reconfigure Toolbar"
