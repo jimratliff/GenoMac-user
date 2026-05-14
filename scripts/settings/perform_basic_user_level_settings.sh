@@ -7,8 +7,6 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/set_bbedit_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_bettertouchtool_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_chatgpt_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_claude_settings.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/set_default_apps_to_open.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/set_default_browser.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_diskutility_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_finder_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_general_dock_settings.sh"
@@ -147,12 +145,6 @@ function perform_basic_user_level_settings() {
   # Time Machine
   report_adjust_setting "Time Machine: Don’t prompt to use new disk as backup volume"
   defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true ; success_or_not
-  
-  # Set default browser
-  conditionally_set_default_browser
-  
-  # Set default apps to open for document types
-  conditionally_set_default_apps_to_open_certain_types_of_docs
   
   # Preview.app
   set_preview_settings
