@@ -30,13 +30,16 @@ You can register Keyboard Maestro (which requires an email address and serial nu
   - Note that this Keyboard Maestro macro will be visible under the Keyboard Maestro menubar status icon *only* when either (a) Keyboard Maestro or (b) Alfred Preferences is the active app.
 - ❑ Click on the “Register” button to confirm the assignments and complete the registration process. (You’ll hear: “Thank you!”)
 
-## Change the Status Menu Icon
-NOTE: Although I have tried to do the following programmatically, the newer icon choice never sticks. Hence, we’ll do it interactively.
+## (a) Set “Launch Engine at Login” and (b) change the Status Menu Icon
 
 - ❑ From the Keyboard Mastro status menu icon, choose “Launch Keyboard Maestro Editor”
 - ❑ After the Editor opens, open Settings… (⌘,)
-- In the General panel (which should be opened by default), find the “Status Menu Icon” setting
-- ❑ Change the dropdown menu to “Classic”
+- In the General panel (which should be opened by default)
+  - Turn ON ✅ “Launch at Login”
+  - Find the “Status Menu Icon” setting
+    - ❑ Change the dropdown menu to “Classic”
+    
+NOTE: Although I have tried to change the status menu icon programmatically, the newer icon choice never sticks. Hence, we’ll do it interactively
   
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
