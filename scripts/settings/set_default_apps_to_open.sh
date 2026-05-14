@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 
 function conditionally_set_default_apps_to_open_certain_types_of_docs() {
+  # This operation is bootstrap only because it generates dialog boxes the user must respond
+  # to, and is therefore too costly to perform every time the Hypervisor is run.
+  
   report_start_phase_standard
   run_if_user_has_not_done "$PERM_DEFAULT_APPS_TO_OPEN_CERTAIN_TYPES_OF_DOCS_HAVE_BEEN_SET" \
     set_default_apps_to_open_certain_types_of_docs \
