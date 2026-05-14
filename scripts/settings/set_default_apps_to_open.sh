@@ -6,6 +6,15 @@ function set_default_apps_to_open() {
   # Uses Uniform Type Identifiers (UTIs) to refer to document types.
   # Uses bundle IDs to refer to apps.
   #
+  # Uses Armin Briegel’s (aka Scripting OS X) utiluti CLI utility
+  #
+  # Note: Starting in macOS 26.4, macOS will prompt for every change 
+  #       on a default app for a file/content type or uniform type 
+  #       identifier. The user also get the option to reject the change 
+  #       and the tool will stall until the user makes a choice. This is 
+  #       especially annoying when switching multiple file/content types 
+  #       to a new default app (e.g. a new IDE).
+  #
   # To determine the UTI of…
   #   a particular file:
   #   mdls -name kMDItemContentType -r /path/to/file
