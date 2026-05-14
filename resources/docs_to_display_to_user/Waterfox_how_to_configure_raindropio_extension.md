@@ -16,7 +16,7 @@ can’t successfully install the Raindrop.io extension. So you’ll need to manu
 - ❑ Click the “Sign in” button
   - You’ll be sent to a standard username/password sign-in form
 - ❑ Sign in
-  - You’ll be asked to “Click Raindro.io extension icon to get started.”
+  - You’ll be asked to “Click Raindrop.io extension icon to get started.”
 - ❑ Click the cloud icon in the toolbar that corresponds to the Raindrop.io extension
 
 ## Return to the terminal
