@@ -1,5 +1,13 @@
 #!/usr/bin/env zsh
 
+function conditionally_set_default_browser() {
+  report_start_phase_standard
+  run_if_user_has_not_done "$PERM_DEFAULT_BROWSER_HAS_BEEN_SET" \
+    set_default_browser \
+    "Skipping setting default browser, because this was set in the past"
+  report_end_phase_standard
+}
+
 function set_default_browser() {
   # Sets the user’s chosen browser as the default browser. (See "$chosen_browser_id".)
   # Specify the browser’s Bundle Identifier (CFBundleIdentifier) as the argument.
