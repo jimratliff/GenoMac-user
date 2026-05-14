@@ -4,6 +4,8 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_dock.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_finder.sh" 
 safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_preview_app.sh" 
 safe_source "${GMU_SETTINGS_SCRIPTS}/register_glance_as_quicklook.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_default_apps_to_open.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_default_browser.sh"
 
 function conditionally_perform_initial_bootstrap_operations() {
   report_start_phase_standard
@@ -37,6 +39,18 @@ function conditionally_perform_initial_bootstrap_operations() {
     "$PERM_PREVIEW_BASE_TOOLBAR_HAS_BEEN_SPECIFIED" \
     bootstrap_preview_app \
     "Skipping configuring Preview toolbar, because this was done in the past"
+
+  # Set default browser
+  run_if_user_has_not_done "$PERM_DEFAULT_BROWSER_HAS_BEEN_SET" \
+    set_default_browser \
+    "Skipping setting default browser, because this was set in the past"
+
+  # Set default apps to open certain types of documents
+  # This operation is bootstrap only because it generates dialog boxes the user must respond
+  # to, and is therefore too costly to perform every time the Hypervisor is run.
+  run_if_user_has_not_done "$PERM_DEFAULT_APPS_TO_OPEN_CERTAIN_TYPES_OF_DOCS_HAVE_BEEN_SET" \
+    set_default_apps_to_open_certain_types_of_docs \
+    "Skipping setting default apps to open certain types of docs, because that was set in the past"
   
   report_end_phase_standard
 }
