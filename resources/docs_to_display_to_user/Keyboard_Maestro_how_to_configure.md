@@ -28,7 +28,7 @@ You can register Keyboard Maestro (which requires an email address and serial nu
     email-address and serial-number fields with the credentials under which my Keyboard Maestro is registered.
     - Note that these credentials do *not* exist in this repo, but rather are stored in my securely privately synced macro set.
   - Note that this Keyboard Maestro macro will be visible under the Keyboard Maestro menubar status icon *only* when either (a) Keyboard Maestro or (b) Alfred Preferences is the active app.
-- ❑ Click on the “Register” button to confirm the assignments and complete the registration process.
+- ❑ Click on the “Register” button to confirm the assignments and complete the registration process. (You’ll hear: “Thank you!”)
 
 ## Change the Status Menu Icon
 NOTE: Although I have tried to do the following programmatically, the newer icon choice never sticks. Hence, we’ll do it interactively.
