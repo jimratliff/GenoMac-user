@@ -41,6 +41,8 @@ function conditionally_perform_initial_bootstrap_operations() {
     "Skipping configuring Preview toolbar, because this was done in the past"
 
   # Set default browser
+  # This operation is bootstrap only because mystertiously it takes a long time to exectute,
+  # and is therefore too costly to perform every time the Hypervisor is run.
   run_if_user_has_not_done "$PERM_DEFAULT_BROWSER_HAS_BEEN_SET" \
     set_default_browser \
     "Skipping setting default browser, because this was set in the past"
