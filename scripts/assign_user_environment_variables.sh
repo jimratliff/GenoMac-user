@@ -87,7 +87,7 @@ GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS="$HOME/genomac-detective"
 # These may contain secrets, so this directory is NOT within a repo
 # E.g., this would be within each user’s Dropbox directory.
 # HINT: LOCAL_DROPBOX_DIRECTORY="$HOME/Library/CloudStorage/Dropbox"
-GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Preferences_common"
+# HINT: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Preferences_common"
 
 ############### Destinations within the user’s home directory
 
@@ -138,7 +138,6 @@ export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH
 export_and_report GENOMAC_USER_CONFIG
 export_and_report GENOMAC_USER_GITCONFIG_OVERRIDE
-export_and_report GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY
 export_and_report GMU_DOCS_TO_DISPLAY
 export_and_report GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS
 export_and_report GMU_STOW_DIR
