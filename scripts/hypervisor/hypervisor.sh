@@ -35,6 +35,7 @@ function hypervisor() {
       set_genomac_user_state "$SESH_REPO_HAS_BEEN_TESTED_FOR_CHANGES"
       report_action_taken "Re-execute Hypervisor using updated repo code"
       report_end_phase_standard
+	  # Restart the Hypervisor
       exec "$0"
 	else
 	  set_genomac_user_state "$SESH_REPO_HAS_BEEN_TESTED_FOR_CHANGES"
