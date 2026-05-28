@@ -92,6 +92,8 @@ function subdermis() {
   conditionally_create_additional_mission_control_spaces
 
   conditionally_set_apps_to_launch_at_login
+
+  unmark_current_user_as_in_need_of_initial_config
   
   report_end_phase_standard
 }
