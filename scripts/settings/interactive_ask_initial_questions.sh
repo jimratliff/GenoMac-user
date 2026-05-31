@@ -1,5 +1,44 @@
 #!/usr/bin/env zsh
 
+############### WIP TODO
+# The below questions will largely/entirely be replaced by “user attributes”
+#
+# USER STATES
+# 
+# - Show drives on desktop
+#   - Obsolete
+#     - PERM_Q_ASKED_FINDER_SHOW_DRIVES_ON_DESKTOP
+#   - ATTRIBUTE_TBA ("sysadmin"?)
+# 	 - Set PERM_FINDER_SHOW_DRIVES_ON_DESKTOP
+# 
+# - Configure YouTube Enhancer on Waterfox
+#   - Obsolete
+#     - PERM_Q_ASKED_CONFIGURE_YOUTUBE_ENHANCER_FOR_WATERFOX
+#   - ATTRIBUTE_TBA (youtube_watcher"?)
+#     - Set PERM_WATERFOX_EXTENSION_YOUTUBE_WANTS_TO_CONFIGURE
+#
+# - Configure Dropbox
+#   - Obsolete
+#     - PERM_Q_ASKED_WANT_DROPBOX
+#   - Attribute "dropbox"
+#
+# - Wants Microsoft Word
+#   - Obsolete
+#     - PERM_Q_ASKED_WANT_MICROSOFT_WORD
+#   - Attribute "microsoft_word"
+#     - Set PERM_MICROSOFT_WORD_USER_WANTS_IT
+#
+#
+# - GitHub and 1Password
+#   - Related attributes
+#     - Attribute "commit_on_github"
+#       - Set PERM_USER_WANTS_TO_COMMIT_ON_GITHUB
+#     - Attribute "authenticate_github_via_1password"
+#       - Set PERM_USER_WANTS_TO_COMMIT_ON_GITHUB
+#       - Set PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT
+#   - Obsolete
+#     - PERM_Q_ASKED_WANT_SSH_AUTHENTICATE_GITHUB_USING_1PASSWORD
+
 function conditionally_interactive_ask_initial_questions() {
 
   # Ask questions to the executing user that will guide the remainder of the Hypervisor process.
@@ -41,6 +80,9 @@ function conditionally_interactive_ask_initial_questions() {
     "Will this user want to SSH authenticate GitHub using 1Password?" \
     "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
 
+  # TODO: This logic seems wrong. If NO to PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT",
+  #       it will ALWAYS ask PERM_USER_WANTS_TO_COMMIT_ON_GITHUB"?
+  # Fortunately, this is being replaced
   if test_genomac_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
     set_genomac_user_state "$PERM_USER_WANTS_TO_COMMIT_ON_GITHUB"
   else
