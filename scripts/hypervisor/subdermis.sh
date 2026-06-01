@@ -39,7 +39,12 @@ function subdermis() {
   
   set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
 
+  keep_sudo_alive
   interactive_ensure_terminal_has_fda                      # GenoMac-shared/scripts/helpers-misc.sh
+
+  # TODO: Transfer system-scoped user-attribute states for current user to become user-scoped
+  #       user-attribute states
+  transfer_system_scoped_user_attribute_states_to_user_scoped
   
   conditionally_interactive_ask_initial_questions          # scripts/settings/interactive_ask_initial_questions.sh
   conditionally_set_git_config_user                        # scripts/settings/interactive_set_git_config_user.sh
