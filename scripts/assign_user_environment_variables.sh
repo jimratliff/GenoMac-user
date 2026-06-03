@@ -127,9 +127,6 @@ MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 PERM_DEFAULT_GIT_USER_NAME="PERM_default_git_user_name"
 PERM_DEFAULT_GIT_USER_EMAIL="PERM_default_git_user_email"
 
-############### VERBOSE reporting
-GENOMAC_VERBOSE="true"
-
 # Export environment variables to be available in all subsequent shells
 report_action_taken "Exporting environment variables specific to GenoMac-user."
 
@@ -141,7 +138,6 @@ export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_FILENAME
 export_and_report GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH
 export_and_report GENOMAC_USER_CONFIG
 export_and_report GENOMAC_USER_GITCONFIG_OVERRIDE
-export_and_report GENOMAC_VERBOSE
 export_and_report GMU_DOCS_TO_DISPLAY
 export_and_report GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS
 export_and_report GMU_STOW_DIR
