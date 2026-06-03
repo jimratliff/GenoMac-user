@@ -13,9 +13,9 @@
 set -euo pipefail
 
 # Create log file to capture all output
-typeset -gx GMU_LOGS_DIRECTORY="$HOME/.genomac-user-logs"
+export GMU_LOGS_DIRECTORY="$HOME/.genomac-user-logs"
 mkdir -p -- "$GMU_LOGS_DIRECTORY"
-typeset -gx GMU_LOG_FILE="${GMU_LOGS_DIRECTORY}/genomac-user-$(date '+%Y-%m-%d_%H-%M-%S')-$$.log"
+export GMU_LOG_FILE="${GMU_LOGS_DIRECTORY}/genomac-user-$(date '+%Y-%m-%d_%H-%M-%S')-$$.log"
 
 echo "Inside /scripts/0_initialize_me_first.sh"
 
