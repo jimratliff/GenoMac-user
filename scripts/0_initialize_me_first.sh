@@ -13,9 +13,13 @@
 set -euo pipefail
 
 # Create log file to capture all output
-export GMU_LOGS_DIRECTORY="$HOME/.genomac-user-logs"
-mkdir -p -- "$GMU_LOGS_DIRECTORY"
-export GMU_LOG_FILE="${GMU_LOGS_DIRECTORY}/genomac-user-$(date '+%Y-%m-%d_%H-%M-%S')-$$.log"
+# Note that the names of these environment variables (GM_LOGS_DIRECTORY and GM_LOG_FILE)
+# are the same for both GenoMac-system and GenoMac-system repos. However, the values of
+# these environment variables *are* specific to the repo. (The name uniformity simplifies
+# code in GenoMac-shared.)
+export GM_LOGS_DIRECTORY="$HOME/.genomac-user-logs"
+mkdir -p -- "$GM_LOGS_DIRECTORY"
+export GM_LOG_FILE="${GM_LOGS_DIRECTORY}/genomac-user-$(date '+%Y-%m-%d_%H-%M-%S')-$$.log"
 
 echo "Inside /scripts/0_initialize_me_first.sh"
 
