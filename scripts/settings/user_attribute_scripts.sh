@@ -16,7 +16,7 @@ function transfer_system_scoped_user_attribute_states_to_user_scoped() {
 
   # Collect system-scoped user-attribute state strings for current user
   short_name="$(short_name_of_user_from_HOME)"
-  state_prefix="$(construct_state_string_for_user_attribute --user-only "$short_name")"
+  state_prefix="$(construct_state_string_for_user_and_attribute --user-only "$short_name")"
   
   _state_strings_with_prefix \
     "${state_prefix}" \
