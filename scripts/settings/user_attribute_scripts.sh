@@ -32,7 +32,7 @@ function transfer_system_scoped_user_attribute_states_to_user_scoped() {
   
   delete_all_user_states_matching_prefix "$state_prefix"
 
-  # Save these system-scoped state strings, without transformation, as user-scoped
+  # Save the system-scoped state strings, without transformation, as user-scoped
   # state strings.
 
   for system_scoped_state_string in "${system_scoped_state_strings[@]}"; do
