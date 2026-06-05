@@ -43,8 +43,9 @@ function subdermis() {
   keep_sudo_alive
   interactive_ensure_terminal_has_fda                      # GenoMac-shared/scripts/helpers-misc.sh
 
-  # TODO: Transfer system-scoped user-attribute states for current user to become user-scoped
-  #       user-attribute states
+  # TODO: Replace conditionally_interactive_ask_initial_questions to instead use user-attributes
+  #       to specify what actions are desired.
+  
   transfer_system_scoped_user_attribute_states_to_user_scoped
   
   conditionally_interactive_ask_initial_questions          # scripts/settings/interactive_ask_initial_questions.sh
