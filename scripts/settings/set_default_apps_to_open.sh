@@ -30,18 +30,21 @@ function set_default_apps_to_open_certain_types_of_docs() {
   report_start_phase_standard
   report_action_taken "Assign default app(s) for document type(s)"
   report_warning "For each assignment, you’ll see a dialog box “Do you want all documents… to open with __?${NEWLINE}Please choose “Use __” (not “Keep __”)."
-  
+
+  ############### UTIs
+  # Text
   local uti_plain_text=public.plain-text
+  local uti_log=com.apple.log
   local uti_markdown=net.daringfireball.markdown
   local uti_shell_script=public.shell-script
   local uti_plist=com.apple.property-list
   local uti_xml=public.xml
   local uti_applescript=com.apple.applescript.text
 
+  # Video
   local uti_mpeg=public.mpeg
   local uti_quicktime_movie=com.apple.quicktime-movie
   local uti_m4v=com.apple.m4v-video
-
   local uti_avi=public.avi
   
   report_adjust_setting "Set plain-text files to open with BBEdit"
