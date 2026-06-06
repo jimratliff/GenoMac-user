@@ -41,66 +41,69 @@ function subdermis() {
   set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
 
   keep_sudo_alive
-  interactive_ensure_terminal_has_fda                      # GenoMac-shared/scripts/helpers-misc.sh
+  interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-misc.sh
+  transfer_system_scoped_user_attribute_states_to_user_scoped # scripts/settings/user_attribute_scripts.sh
 
   # TODO: Replace conditionally_interactive_ask_initial_questions to instead use user-attributes
   #       to specify what actions are desired.
-  
-  transfer_system_scoped_user_attribute_states_to_user_scoped
-  
+  # 🚧 WIP 🚧
+  set_user_preferences_from_attributes
   conditionally_interactive_ask_initial_questions          # scripts/settings/interactive_ask_initial_questions.sh
+
+  
   conditionally_set_git_config_user                        # scripts/settings/interactive_set_git_config_user.sh
   
   conditionally_stow_dotfiles                              # scripts/settings/perform_stow_dotfiles.sh
   conditionally_perform_basic_user_level_settings          # scripts/settings/perform_basic_user_level_settings.sh
-  conditionally_reverse_disk_display_policy_for_some_users
+
+  # TODO: Consider refactoring this set-and-conditionally-revert approach to directly
+  #       implementing the right setting for each user
+  conditionally_reverse_disk_display_policy_for_some_users # scripts/settings/set_finder_settings.sh
   
   conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
-  conditionally_interactive_configure_helium_and_extensions # scripts/settings/interactive_configure_helium.sh
+  conditionally_interactive_configure_helium_and_extensions        # scripts/settings/interactive_configure_helium.sh
   
   # Execute pre-Dropbox bootstrap steps
-  conditionally_perform_initial_bootstrap_operations
-  conditionally_interactive_configure_screensaver
-  conditionally_configure_microsoft_word
+  conditionally_perform_initial_bootstrap_operations # scripts/settings/perform_initial_bootstrap_operations.sh
+  conditionally_interactive_configure_screensaver    # scripts/settings/interactive_configure_screensaver.sh
+  conditionally_configure_microsoft_word             # scripts/settings/set_microsoft_word_settings.sh
 
   # Configure 1Password here to make available credentials for later steps
-  conditionally_configure_1Password
+  conditionally_configure_1Password                  # scripts/settings/interactive_configure_1password.sh
 
   ############### BELOW THIS POINT: 1Password credentials are available
   
-  interactive_set_preferences_for_waterfox_extensions      # scripts/settings/interactive_set_waterfox_extension_preferences.sh
-  conditionally_interactive_configure_waterfox_raindropio_extension
+  interactive_set_preferences_for_waterfox_extensions               # scripts/settings/interactive_set_waterfox_extension_preferences.sh
+  conditionally_interactive_configure_waterfox_raindropio_extension # scripts/settings/interactive_set_waterfox_extension_preferences.sh
 
-  conditionally_configure_Dropbox
+  conditionally_configure_Dropbox                    # scripts/settings/interactive_configure_dropbox.sh
 
   ############### PERM: (Further) configure apps that rely upon Dropbox having synced
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
 
     # BetterTouchTool relies on Dropbox because that’s where its license file is stored
-    conditionally_configure_bettertouchtool
+    conditionally_configure_bettertouchtool          # scripts/settings/set_bettertouchtool_settings.sh
 
     # Keyboard Maestro relies on Dropbox because that’s where its synced preferences are stored
-    conditionally_configure_keyboard_maestro
+    conditionally_configure_keyboard_maestro         # scripts/settings/interactive_configure_keyboard_maestro.sh
 
     # Alfred must be configured *after* Keyboard Maestro, because activating the
     # Powerpack uses a custom Keyboard Maestro macro
-    conditionally_configure_alfred
+    conditionally_configure_alfred                   # scripts/settings/interactive_configure_alfred.sh
 
     # Installation of Witch preference pane relies on Dropbox as the source of the binary
     # Installed for each user separately because Witch pref pane won’t launch automatically at login
     # when installed systemwide
-    conditionally_install_witch_prefpane_for_user
+    conditionally_install_witch_prefpane_for_user    # scripts/installations/install_witch_prefpane.sh
 
     # Installation of Witch license files relies on Dropbox because that’s where its license files are stored
-    conditionally_install_Witch_license_files
-    conditionally_interactive_enable_Witch
+    conditionally_install_Witch_license_files        # scripts/settings/set_witch_settings.sh
+    conditionally_interactive_enable_Witch           # scripts/settings/set_witch_settings.sh
   fi
 
-  conditionally_create_additional_mission_control_spaces
-
-  conditionally_set_apps_to_launch_at_login
-
-  unmark_current_user_as_in_need_of_initial_config
+  conditionally_create_additional_mission_control_spaces # scripts/settings/interactive_create_mission_control_spaces.sh
+  conditionally_set_apps_to_launch_at_login              # scripts/settings/set_apps_to_launch_at_login.sh
+  unmark_current_user_as_in_need_of_initial_config       # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
   
   report_end_phase_standard
 }
