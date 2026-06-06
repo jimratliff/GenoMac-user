@@ -7,6 +7,13 @@ function transfer_system_scoped_user_attribute_states_to_user_scoped() {
   # For a given user-name/attribute pair, the (a) system-scoped state string is
   # identical to the (b) user-scoped state string. Therefore we can simply echo
   # the system-scoped string back into the user-scoped state string.
+  #
+  # TODO: Why am I transferring these system-scoped user-attribute state files to
+  #       become user-scoped state files—when I’m not then deleting the
+  #       system-scoped state files (as I had originally intended but changed my
+  #       mind so that user attributes can be updated by GenoMac-system over time)?
+  #       It seems like I could just as easily read the system-scoped state filese
+  #       directly when harvesting a user’s user attributes.
   
   report_start_phase_standard
   local short_name
