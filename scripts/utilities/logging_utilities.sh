@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# Utility script to perform [[maintenance and]] informational actions on the set of user states
+# Utility script to open (a) the latest log file and (b) the directory containing the log files.
 
 set -euo pipefail
 
