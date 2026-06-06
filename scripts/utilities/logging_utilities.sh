@@ -13,10 +13,10 @@ source "${initialization_script}"
 
 function usage() {
   local script_name="${0:t}"
-  cat >&2 <<'EOF'
+  cat >&2 <<EOF
 Usage:
-  ${script_name} show-latest
-  ${script_name} show-directory
+  ${script_name} open-latest
+  ${script_name} open-directory
 EOF
 }
 
@@ -32,18 +32,18 @@ function main() {
   local command="$1"
 
   case "${command}" in
-    show-latest)
+    open-latest)
       report_action_taken "Show latest log file"
       open_latest_log_file ; success_or_not
       ;;
 
-    show-directory)
+    open-directory)
       report_action_taken "Open log-file directory"
       open_logs_directory ; success_or_not
       ;;
 
     *)
-      report_fail "Unknown user-states command: ${command}"
+      report_fail "Unknown logging command: ${command}"
       usage
       return 64
       ;;
