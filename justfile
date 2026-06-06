@@ -9,17 +9,10 @@ set shell := ["zsh", "-c"]
 default:
 	@just --choose
 
-############### Hypervisor
+############### Run the Hypervisor
 
 run-hypervisor:
 	zsh scripts/run_hypervisor.sh
-
-# Open the most-recent log file
-# The most-recently created log file is alphabetically last (because time-stamped)
-open-log:
-	logs=("$GM_LOGS_DIRECTORY"/*(.N))
-  (( ${#logs[@]} )) || { print -u2 -- "No log files found in $GM_LOGS_DIRECTORY"; exit 1; }
-  open "${logs[-1]}"
 
 ############### Repo-specific configuration
 genomac_local_dir := env_var('HOME') / '.genomac-user'
@@ -74,7 +67,6 @@ verify-ssh-agent:
 defaults-detective:
 	zsh scripts/utilities/defaults_detective.sh
 
-
 ############### User state utilities
 
 user-states command:
@@ -88,6 +80,17 @@ user-states-clear-session-states:
 
 user-states-clear-all-states:
     just user-states clear-all
+
+############### Logging utilities
+
+logging command:
+    zsh scripts/utilities/logging_utilities.sh '{{command}}'
+
+logging-show-latest:
+    just logging show-latest
+
+logging-show-directory:
+    just logging show-directory
 
 ############### Tests
 
