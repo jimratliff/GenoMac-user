@@ -13,7 +13,7 @@ source "${initialization_script}"
 
 function usage() {
   local script_name="${0:t}"
-  cat >&2 <<'EOF'
+  cat >&2 <<EOF
 Usage:
   ${script_name} show
   ${script_name} clear-session
