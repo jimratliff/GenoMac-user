@@ -1,5 +1,12 @@
 #!/usr/bin/env zsh
 
+function set_user_preferences_from_attributes() {
+  # WIP TODO
+  # Sets preference flags based on user’s user attributes
+  report_start_phase_standard
+  report_end_phase_standard
+}
+
 function transfer_system_scoped_user_attribute_states_to_user_scoped() {
   # For the current user, transfer system-scoped user-attribute states for this
   # user to become user-scoped user-attribute states.
