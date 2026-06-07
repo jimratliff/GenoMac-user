@@ -3,7 +3,7 @@
 # Most of the git config is (a) defined at stow_directory/git/.config/git/config and
 # (b) managed by GNU Stow.
 #
-# However, the [user] block, which contains the user’s name and email address are
+# However, the [user] block, which contains the user’s name and email address, is
 # not expressed in that config file, in order that the name/email aren’t accidentally
 # propagated to and inadvertently adopted by other users.
 #
