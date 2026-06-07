@@ -8,8 +8,10 @@
 # - developer
 # - dropbox
 # - sync_com
+# - emailer
 # - microsoft_word
 # - youtube_watcher
+# - chessplayer
 #
 # The following are deprecated and implied by `developer`
 # - commit_on_github
