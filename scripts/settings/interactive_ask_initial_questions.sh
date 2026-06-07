@@ -9,6 +9,7 @@
 # - dropbox
 # - sync_com
 # - microsoft_word
+# - youtube_watcher
 #
 # The following are deprecated and implied by `developer`
 # - commit_on_github
@@ -17,7 +18,9 @@
 # DEFAULT USER ATTRIBUTES BASED ON USER CLASS
 # - superintendent
 #   - sysadmin
-#   - developer
+#   - developer ⇒
+#     - github_committer
+#     - authenticate_github_via_1password
 #   - dropbox
 # - personal
 #   - dropbox
