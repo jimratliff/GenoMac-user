@@ -47,6 +47,10 @@ function subdermis() {
   # TODO: Replace conditionally_interactive_ask_initial_questions to instead use user-attributes
   #       to specify what actions are desired.
   # 🚧 WIP 🚧
+  # - Test 'USER_HAS_ATTRIBUTE∞§¶shortname¶§∞' state to see whether this user had at least one attribute set.
+  #   - Use `construct_state_string_for_user_has_attribute`
+  #
+  
   set_user_preferences_from_attributes                     # scripts/settings/user_attribute_scripts.sh
   conditionally_interactive_ask_initial_questions          # scripts/settings/interactive_ask_initial_questions.sh
 
