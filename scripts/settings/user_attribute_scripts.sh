@@ -28,6 +28,11 @@ function transfer_system_scoped_user_attribute_states_to_user_scoped() {
   local system_scoped_state_string
   local -a system_scoped_state_strings
 
+  ############### TODO
+  # I also need to transfer:
+  # - USER_HAS_ATTRIBUTE∞§¶shortname¶§∞
+  # - USER_CLASS∞§¶shortname¶§∞user_class§∞¶
+
   # Collect system-scoped user-attribute state strings for current user
   short_name="$(short_name_of_user_from_HOME)"
   state_prefix="$(construct_state_string_for_user_and_attribute --user-only "$short_name")"
