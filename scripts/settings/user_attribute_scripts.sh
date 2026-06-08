@@ -30,7 +30,6 @@ function transfer_system_scoped_user_attribute_states_to_user_scoped() {
 
   ############### TODO
   # I also need to transfer:
-  # - USER_HAS_ATTRIBUTE∞§¶shortname¶§∞
   # - USER_CLASS∞§¶shortname¶§∞user_class§∞¶
 
   # Collect system-scoped user-attribute state strings for current user
