@@ -44,7 +44,7 @@ function transfer_system_scoped_user_attribute_states_to_user_scoped() {
   # this user ensures that the new set of user-scoped user-attribute state strings
   # will mirror the system-scoped user-attribute state strings for this user.
   
-  delete_all_user_states_matching_prefix "$state_prefix"
+  delete_all_user_states_matching_prefix "$state_prefix"    # GenoMac-shared/scripts/helpers-state.sh
 
   # Save the system-scoped state strings, without transformation, as user-scoped
   # state strings.
