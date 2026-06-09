@@ -19,7 +19,7 @@
 #
 # DEFAULT USER ATTRIBUTES BASED ON USER CLASS
 # - superintendent
-#   - sysadmin
+#   - macadmin
 #   - developer ⇒
 #     - github_committer
 #     - authenticate_github_via_1password
@@ -72,8 +72,6 @@
 
 
 function conditionally_interactive_ask_initial_questions() {
-
-
 
   report_start_phase_standard
 
