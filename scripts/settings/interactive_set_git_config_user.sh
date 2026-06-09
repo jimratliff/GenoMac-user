@@ -23,7 +23,7 @@ function conditionally_set_git_config_user() {
   report_start_phase_standard
 
   if ! test_genomac_user_state "$PERM_USER_WANTS_TO_COMMIT_ON_GITHUB"; then
-    report_action_taken "Skipping creating user’s supplemental git-config, because user doesn’t want to commit on GitHub."
+    report_action_taken_to_log "Skipping creating user’s supplemental git-config, because user doesn’t want to commit on GitHub."
 	report_end_phase_standard
 	return 0
   fi
@@ -41,7 +41,7 @@ function set_git_config_user() {
   # [include]-d by stow_directory/git/.config/git/config
   
   report_start_phase_standard
-  report_action_taken "Get name and email address for this user’s Git config"
+  report_action_taken "Write name and email address for this user’s Git config"
   
   local user_name
   user_name="$(interactive_get_git_user_field_value\
@@ -124,7 +124,7 @@ function get_default_git_user_field_value() {
   local system_state_for_default_value=$1
 
   if ! test_genomac_system_state "${system_state_for_default_value}"; then
-    report "State $1 not present ⇒ No default value found."
+    report_to_log "State $1 not present ⇒ No default value found."
     return 1
   fi
 
@@ -136,7 +136,7 @@ function get_default_git_user_field_value() {
   field_value=$(head -1 "$path_to_state_file" | xargs)
 
   if [[ -z "$field_value" ]]; then
-    report_action_taken "State $1 existed but empty.${NEWLINE}Deleting state"
+    report_action_taken_to_log "State $1 existed but empty.${NEWLINE}Deleting state"
     delete_genomac_system_state "$1"
     return 1
   fi
@@ -167,7 +167,7 @@ function write_gitconfig_personal() {
 
   report_start_phase_standard
 
-  report_action_taken "Write auxiliary git config file with personalized name/email."
+  report_action_taken_to_log "Write auxiliary git config file with personalized name/email."
   
   local name="$1"
   local email="$2"
