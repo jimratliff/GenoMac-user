@@ -32,7 +32,7 @@ function install_witch_prefpane_for_user() {
   
   local zip_source="${GMU_RESOURCES}/witch/witch_prefpane.zip"
 
-  report_action_taken "Installing ${WITCH_PREFPANE_NAME} to ${WITCH_PATH_TO_USER_PREFPANE}"
+  report_action_taken_to_log "Installing ${WITCH_PREFPANE_NAME} to ${WITCH_PATH_TO_USER_PREFPANE}"
   copy_resource_between_local_directories \
     "$zip_source" \
     "$WITCH_PATH_TO_USER_PREFPANE" \
