@@ -57,7 +57,9 @@ function install_Witch_license_files() {
 
   local destination_directory="$HOME/Library/Application Support/Many Tricks/Licenses"
 
-  report_action_taken "Copy Many Tricks license files from Dropbox to user’s Library${NEWLINE}${source_directory} → ${destination_directory}"
+  report_action_taken "Install license files for Witch."
+
+  report_action_taken_to_log "Copy Many Tricks license files from Dropbox to user’s Library${NEWLINE}${source_directory} → ${destination_directory}"
   copy_resource_between_local_directories "$source_directory" "$destination_directory"
 
   report_end_phase_standard
@@ -69,7 +71,7 @@ function set_witch_settings() {
   local witch_plist_path
   witch_plist_path="${HOME}/Library/Application Support/Witch/Settings.plist"
 
-  report_action_taken "Ensuring Witch’s Settings.plist exists"
+  report_action_taken_to_log "Ensuring Witch’s Settings.plist exists"
   mkdir -p "${witch_plist_path:h}"
   if [[ ! -f "$witch_plist_path" ]]; then
     # Creates a no-content template .plist file
@@ -77,13 +79,13 @@ function set_witch_settings() {
   fi
   success_or_not
 
-  report_action_taken "Delete 'Action Configurations' key if it exists"
+  report_action_taken_to_log "Delete 'Action Configurations' key if it exists"
   # Delete only if key already exists (e.g., on a re-run)
   "$PLISTBUDDY_PATH" -c "Print 'Action Configurations'" "$witch_plist_path" &>/dev/null \
       && "$PLISTBUDDY_PATH" -c "Delete 'Action Configurations'" "$witch_plist_path"
   success_or_not
 
-  report_action_taken "Writing new configurations to Witch’s Settings.plist"
+  report_action_taken_to_log "Writing new configurations to Witch’s Settings.plist"
   "$PLISTBUDDY_PATH" -c "Add 'Action Configurations' array" "$witch_plist_path"
 
   # First action dict
