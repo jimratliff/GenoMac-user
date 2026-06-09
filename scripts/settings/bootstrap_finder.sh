@@ -21,7 +21,7 @@ function bootstrap_finder_toolbar() {
   local plist_path=$(legacy_plist_path_from_domain "$domain")
   local toolbar_key="NSToolbar Configuration Browser"
   
-  report_action_taken "Ensuring the plist for ${domain} exists."
+  report_action_taken_to_log "Ensuring the plist for ${domain} exists."
   ensure_plist_path_exists "${plist_path}"
 
   # Open new windows to HOME
@@ -29,7 +29,7 @@ function bootstrap_finder_toolbar() {
   # defaults write $domain NewWindowTarget -string "PfHm" ; success_or_not
   
   ############### Reconfigure Toolbar
-  report_action_taken "Reconfigure Toolbar"
+  report_action_taken_to_log "Reconfigure Toolbar"
   # Ensure the parent dict exists (recreate it fresh so we're deterministic)
   "$PLISTBUDDY_PATH" -c "Delete '$toolbar_key'" "$plist_path" 2>/dev/null || true
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key' dict" "$plist_path"
