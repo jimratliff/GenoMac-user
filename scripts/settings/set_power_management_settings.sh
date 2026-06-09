@@ -6,7 +6,7 @@ function set_power_management_settings() {
 
 	report_start_phase_standard
 	
-	report_action_taken "Implement Alan.app settings"
+	report_action_taken "Set power-management settings."
 	
 	# Detects if this Mac is a laptop or not by checking for a built-in battery.
 	IS_LAPTOP=$(/usr/sbin/ioreg -c AppleSmartBattery -r | awk '/BatteryInstalled/ {print $3}')
