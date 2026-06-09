@@ -18,7 +18,7 @@ function set_omnioutliner_settings() {
   local path_for_OO_custom_templates="${path_for_OO_preferences}/Pro Templates"
   local destination_path="${path_for_OO_custom_templates}/${custom_template_filename}"
 
-  report_action_taken "Copy Jim’s custom OmniOutliner template to OmniOutliner sandboxed preferences area"
+  report_action_taken_to_log "Copy Jim’s custom OmniOutliner template to OmniOutliner sandboxed preferences area"
   copy_resource_between_local_directories "$source_path" "$destination_path" ; success_or_not
 
   report_adjust_setting "Set: General: For new documents: Use Template"
