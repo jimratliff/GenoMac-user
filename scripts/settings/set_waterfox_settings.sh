@@ -42,7 +42,7 @@ function install_waterfox_extensions() {
 
   profile_dir=$(get_unique_active_Waterfox_profile)
   extensions_dir="$profile_dir/extensions"
-  report_action_taken "Ensuring existence of extensions directory at ${extensions_dir}"
+  report_action_taken_to_log "Ensuring existence of extensions directory at ${extensions_dir}"
   mkdir -p "$extensions_dir"
 
   extensions_to_install=("${STANDARD_WEB_BROWSER_EXTENSIONS_GECKO[@]}")
