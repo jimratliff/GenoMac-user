@@ -120,7 +120,7 @@ SESH_WATERFOX_EXTENSIONS_HAVE_BEEN_INSTALLED="SESH_waterfox_extensions_have_been
 SESH_WATERFOX_SETTINGS_HAVE_BEEN_IMPLEMENTED="SESH_waterfox_settings_have_been_implemented"
 
 # Export environment variables to be available in all subsequent shells
-report_action_taken "Exporting environment variables corresponding to states."
+report_action_taken_to_log "Exporting environment variables corresponding to states."
 
 export_and_report PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED
 export_and_report PERM_1PASSWORD_HAS_BEEN_BASICALLY_CONFIGURED
