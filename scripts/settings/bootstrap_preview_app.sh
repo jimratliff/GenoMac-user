@@ -16,11 +16,11 @@ function bootstrap_preview_app() {
   report_action_taken "Launching and quitting Preview to prepare the plist."
   launch_and_quit_app "$BUNDLE_ID_PREVIEW"
 
-  # report_action_taken "Ensuring the plist for ${DEFAULTS_DOMAINS_PREVIEW} exists."
+  # report_action_taken_to_log "Ensuring the plist for ${DEFAULTS_DOMAINS_PREVIEW} exists."
   ensure_plist_path_exists "${plist_path}"
   
   # Preview: Reconfigure Toolbar
-  report_action_taken "Reconfigure Toolbar"
+  report_action_taken_to_log "Reconfigure Toolbar"
   # Ensure the parent dict exists (recreate it fresh so we're deterministic)
   "$PLISTBUDDY_PATH" -c "Delete '$toolbar_key'" "$plist_path" 2>/dev/null || true
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key' dict" "$plist_path"
