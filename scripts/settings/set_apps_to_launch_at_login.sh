@@ -86,6 +86,7 @@ function set_apps_to_launch_at_login() {
   #   - prune_login_agents
 
   report_start_phase_standard
+  report_action_taken "Set apps that should launch at login."
   
   : "${GENOMAC_LOGIN_APPS:?GENOMAC_LOGIN_APPS must be set (assoc array)}"
 
