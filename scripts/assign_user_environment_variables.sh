@@ -128,7 +128,7 @@ PERM_DEFAULT_GIT_USER_NAME="PERM_default_git_user_name"
 PERM_DEFAULT_GIT_USER_EMAIL="PERM_default_git_user_email"
 
 # Export environment variables to be available in all subsequent shells
-report_action_taken "Exporting environment variables specific to GenoMac-user."
+report_action_taken_to_log "Exporting environment variables specific to GenoMac-user."
 
 export_and_report COMMAND_CHAR
 export_and_report CONTROL_CHAR
