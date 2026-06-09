@@ -39,21 +39,16 @@ function subdermis() {
   output_hypervisor_welcome_banner "$GENOMAC_SCOPE_USER"
   
   set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
-
+  conditionally_interactive_ask_initial_questions             # scripts/settings/interactive_ask_initial_questions.sh
   keep_sudo_alive
   interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-misc.sh
   transfer_system_scoped_user_attribute_states_to_user_scoped # scripts/settings/user_attribute_scripts.sh
 
-  # TODO: Replace conditionally_interactive_ask_initial_questions to instead use user-attributes
-  #       to specify what actions are desired.
-  # 🚧 WIP 🚧
-  # - Test 'USER_HAS_ATTRIBUTE∞§¶shortname¶§∞' state to see whether this user had at least one attribute set.
-  #   - Use `construct_state_string_for_user_has_attribute`
-  #
+  # TODO: Write set_user_preferences_from_attributes(), to replace the original
+  #       conditionally_interactive_ask_initial_questions(), to instead use user-attributes to specify 
+  #       what actions are desired.
   
   set_user_preferences_from_attributes                     # scripts/settings/user_attribute_scripts.sh
-  conditionally_interactive_ask_initial_questions          # scripts/settings/interactive_ask_initial_questions.sh
-
   
   conditionally_set_git_config_user                        # scripts/settings/interactive_set_git_config_user.sh
   
