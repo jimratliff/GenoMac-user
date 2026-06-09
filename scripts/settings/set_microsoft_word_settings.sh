@@ -24,7 +24,7 @@ function conditionally_configure_microsoft_word() {
   report_start_phase_standard
 
   if ! test_genomac_user_state "$PERM_MICROSOFT_WORD_USER_WANTS_IT"; then
-    report_action_taken "Skipping Microsoft Word configuration, because this user doesn’t want it"
+    report_action_taken_to_log "Skipping Microsoft Word configuration, because this user doesn’t want it"
     report_end_phase_standard
     return 0
   fi
@@ -63,10 +63,10 @@ function set_microsoft_word_and_suite_settings() {
   report_adjust_setting "Ribbon: Show group titles"
   defaults write "${domain}" OUIRibbonShowGroupTitles -bool true ; success_or_not
   
-  report_action_taken "Install Microsoft Word’s global template file Normal.dotm"
+  report_action_taken_to_log "Install Microsoft Word’s global template file Normal.dotm"
   install_microsoft_word_normal_dotm ; success_or_not
   
-  report_action_taken "Use a VBA script to implement additional Microsoft Word preferences"
+  report_action_taken_to_log "Use a VBA script to implement additional Microsoft Word preferences"
   run_vba_script_to_implement_microsoft_word_preferences
   
   report_end_phase_standard
@@ -89,7 +89,7 @@ function install_microsoft_word_normal_dotm() {
   local source_path="${GENOMAC_USER_LOCAL_MICROSOFT_WORD_RESOURCE_DIRECTORY}/normal_dotm/${global_template_filename}"
   local destination_path="${path_for_Microsoft_Word_templates}/${global_template_filename}"
 
-  report_action_taken "Installing global template Normal.dotm into sandboxed location"
+  report_action_taken_to_log "Installing global template Normal.dotm into sandboxed location"
   copy_resource_between_local_directories "$source_path" "$destination_path" ; success_or_not
 
   report_end_phase_standard
@@ -124,7 +124,7 @@ function run_vba_script_to_implement_microsoft_word_preferences() {
   fi
   report_success "Macro-containing Word document found at ${source_path}"
   
-  report_action_taken "Create, if necessary, temporary directory at ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
+  report_action_taken_to_log "Create, if necessary, temporary directory at ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
   mkdir -p "$TEMP_DIRECTORY_FOR_MICROSOFT_WORD"
   if [[ -d "$TEMP_DIRECTORY_FOR_MICROSOFT_WORD" ]]; then
       report_success "Created ${TEMP_DIRECTORY_FOR_MICROSOFT_WORD}"
@@ -133,7 +133,7 @@ function run_vba_script_to_implement_microsoft_word_preferences() {
       return 1
   fi
   
-  report_action_taken "Remove, if necessary, any stale log file from a previous run"
+  report_action_taken_to_log "Remove, if necessary, any stale log file from a previous run"
   rm -f "$log_file_from_VBA_macro" ; success_or_not
   
   # Open the document in Word (this triggers Document_Open → SetMyPreferences)
