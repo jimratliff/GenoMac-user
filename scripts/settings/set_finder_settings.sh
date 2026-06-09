@@ -133,7 +133,7 @@ function conditionally_reverse_disk_display_policy_for_some_users() {
       reverse_disk_display_policy_for_some_users \
       "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
   else
-    report_action_taken "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
+    report_action_taken_to_log "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
   fi
 
   report_end_phase_standard
