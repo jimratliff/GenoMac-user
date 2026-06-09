@@ -4,7 +4,7 @@ function set_notifications_settings() {
 
   report_start_phase_standard
   
-  report_action_taken "Stops notifications from Tips app"
+  report_action_taken "Stop notifications from Tips app"
   
   local domain="com.apple.Notifications-Settings.extension"
   local plist_path=$(legacy_plist_path_from_domain "$domain")
