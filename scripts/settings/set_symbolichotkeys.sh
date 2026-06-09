@@ -65,6 +65,7 @@ function set_symbolichotkeys() {
   local modifiers_for_keyboard_navigation=$MODIFIERS_KEYBOARD_NAVIGATION
   
   ####### Mission Control
+  report_action_taken "Set new hotkeys"
   
   # Activate Mission Control
   assign_hotkey_to_command_id 32 "F8" $modifiers_for_mission_control
@@ -97,6 +98,7 @@ function set_symbolichotkeys() {
   assign_hotkey_to_command_id 133 "F6" $modifiers_for_mission_control
   
   ####### Keyboard navigation
+  report_action_taken "Set keyboard-navigation hotkeys"
   # Move focus to menu bar 
   assign_hotkey_to_command_id 7 "F2" $modifiers_for_keyboard_navigation
   # Move focus to the Dock
