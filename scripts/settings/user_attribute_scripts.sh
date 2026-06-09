@@ -1,9 +1,74 @@
 #!/usr/bin/env zsh
 
+function set_user_preferences_for_attribute() {
+  # Sets preference flags for the supplied attribute
+  report_start_phase_standard
+  local attribute_name
+  attribute_name="${1:?MISSING/EMPTY attribute_name}"
+
+  case "$attribute_name" in
+    "developer")
+      report "Setting preferences for attribute: developer"
+      # set_user_preference_use_developer_tools
+      # set_user_preference_show_hidden_files
+      # set_user_preference_use_verbose_logging
+      ;;
+    "administrator")
+      report "Setting preferences for attribute: administrator"
+      # set_user_preference_allow_admin_tools
+      # set_user_preference_show_system_utilities
+      ;;
+    "personal")
+      report "Setting preferences for attribute: personal"
+      # set_user_preference_use_personal_defaults
+      # set_user_preference_launch_personal_apps
+      ;;
+    "work")
+      report "Setting preferences for attribute: work"
+      # set_user_preference_use_work_defaults
+      # set_user_preference_launch_work_apps
+      ;;
+    "minimal")
+      report "Setting preferences for attribute: minimal"
+      # set_user_preference_disable_nonessential_login_items
+      # set_user_preference_reduce_visual_noise
+      ;;
+    "experimental")
+      report "Setting preferences for attribute: experimental"
+      # set_user_preference_enable_experimental_features
+      ;;
+    *)
+      report_warning "No user-preference behavior is defined for attribute: $attribute_name"
+      ;;
+  esac
+  
+  report_end_phase_standard
+}
+
 function set_user_preferences_from_attributes() {
-  # WIP TODO
   # Sets preference flags based on user’s user attributes
   report_start_phase_standard
+  local attribute_name
+  local short_name
+  local state_prefix
+  local user_scoped_state_string
+
+  local -a user_scoped_state_strings
+
+  # Collect user-scoped user-attribute state strings for current user
+  short_name="$(short_name_of_user_from_HOME)"
+  state_prefix="$(construct_state_string_for_user_and_attribute --user-only "$short_name")"
+  
+  _state_strings_with_prefix \
+    "${state_prefix}" \
+    "user"
+  user_scoped_state_strings=("${reply[@]}")
+
+  for user_scoped_state_string in "${user_scoped_state_strings[@]}"; do
+    attribute_name="$(get_attribute_name_from_user_attribute_state_string "$user_scoped_state_string")
+    set_user_preferences_for_attribute "$attribute_name"
+  done
+
   report_end_phase_standard
 }
 
@@ -27,10 +92,6 @@ function transfer_system_scoped_user_attribute_states_to_user_scoped() {
   local state_prefix
   local system_scoped_state_string
   local -a system_scoped_state_strings
-
-  ############### TODO
-  # I also need to transfer:
-  # - USER_CLASS∞§¶shortname¶§∞user_class§∞¶
 
   # Collect system-scoped user-attribute state strings for current user
   short_name="$(short_name_of_user_from_HOME)"
