@@ -27,10 +27,16 @@ function hypervisor() {
   
   report_start_phase_standard
 
+  # See GenoMac-shared/scripts/helpers-git.sh
+  # Tests whether repo $GENOMAC_USER_REPO_NAME has already been checked for remote changes
+  # during this session. If not, check the remote. If the local clone is updated, mark the repo
+  # as checked and re-execute the Hypervisor.
+  # The first time through in a session, the state file"$SESH_REPO_HAS_BEEN_TESTED_FOR_CHANGES"
+  # doesn’t exist because all SESH… states are deleted at the end of the previous session.
   refresh_repo_from_remote_and_reexecute_hypervisor_if_updated \
     test_genomac_user_state \
     set_genomac_user_state \
-    "SESH_REPO_HAS_BEEN_TESTED_FOR_CHANGES" \
+    "$SESH_REPO_HAS_BEEN_TESTED_FOR_CHANGES" \
     "$GENOMAC_USER_REPO_NAME" \
     "$GENOMAC_USER_LOCAL_DIRECTORY"
 
