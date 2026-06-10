@@ -44,6 +44,10 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: chessplayer"
       set_genomac_user_state "$PERM_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"
       ;;
+    "raindrop-io")
+      report_action_taken_to_log "Setting preferences for attribute: raindrop-io"
+      set_genomac_user_state "$PERM_RAINDROP_IO_USER_WANTS_IT"
+      ;;
     *)
       report_warning "No user-preference behavior is defined for attribute: $attribute_name"
       ;;
@@ -55,7 +59,6 @@ function set_user_preferences_for_attribute() {
     set_genomac_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
   fi
     
-  
   report_end_phase_standard
 }
 
