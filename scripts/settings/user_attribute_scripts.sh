@@ -16,6 +16,10 @@ function set_user_preferences_for_attribute() {
       set_genomac_user_state "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"
       is_mac_admin=true
       ;;
+    "developer")
+      report_action_taken_to_log "Setting preferences for attribute: developer"
+      is_developer=true
+      ;;
     "dropbox")
       report_action_taken_to_log "Setting preferences for attribute: dropbox"
       set_genomac_user_state "$PERM_DROPBOX_USER_WANTS_IT"
@@ -32,18 +36,13 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: microsoft-word"
       set_genomac_user_state "$PERM_MICROSOFT_WORD_USER_WANTS_IT"
       ;;
-    "developer")
-      report_action_taken_to_log "Setting preferences for attribute: developer"
-      is_developer=true
-      ;;
     "emailer")
-      report_action_taken_to_log "Setting preferences for attribute: work"
-      # set_user_preference_use_work_defaults
-      # set_user_preference_launch_work_apps
+      report_action_taken_to_log "Setting preferences for attribute: emailer"
+      set_genomac_user_state "$PERM_APPLE_MAIL_APP_USER_WANTS_IT"
       ;;
     "chessplayer")
-      report_action_taken_to_log "Setting preferences for attribute: experimental"
-      # set_user_preference_enable_experimental_features
+      report_action_taken_to_log "Setting preferences for attribute: chessplayer"
+      set_genomac_user_state "$PERM_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"
       ;;
     *)
       report_warning "No user-preference behavior is defined for attribute: $attribute_name"
