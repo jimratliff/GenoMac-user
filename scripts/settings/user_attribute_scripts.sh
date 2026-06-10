@@ -6,41 +6,56 @@ function set_user_preferences_for_attribute() {
   local attribute_name
   attribute_name="${1:?MISSING/EMPTY attribute_name}"
 
+  local is_developer=false
+  local is_mac_admin=false
+
   case "$attribute_name" in
+    "mac-admin")
+      report_action_taken_to_log "Setting preferences for attribute: mac-admin"
+      # Finder: Show drives on desktop
+      set_genomac_user_state "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"
+      is_mac_admin=true
+      ;;
+    "dropbox")
+      report_action_taken_to_log "Setting preferences for attribute: dropbox"
+      set_genomac_user_state "$PERM_DROPBOX_USER_WANTS_IT"
+      ;;
+    "sync-com")
+      report_action_taken_to_log "Setting preferences for attribute: sync-com"
+      set_genomac_user_state "$PERM_SYNC_COM_USER_WANTS_IT"
+      ;;
+    "youtube-watcher")
+      report_action_taken_to_log "Setting preferences for attribute: youtube-watcher"
+      set_genomac_user_state "$PERM_WATERFOX_EXTENSION_YOUTUBE_ENHANCER_USER_WANTS_IT"
+      ;;
+    "microsoft-word")
+      report_action_taken_to_log "Setting preferences for attribute: microsoft-word"
+      set_genomac_user_state "$PERM_MICROSOFT_WORD_USER_WANTS_IT"
+      ;;
     "developer")
-      report "Setting preferences for attribute: developer"
-      # set_user_preference_use_developer_tools
-      # set_user_preference_show_hidden_files
-      # set_user_preference_use_verbose_logging
+      report_action_taken_to_log "Setting preferences for attribute: developer"
+      is_developer=true
       ;;
-    "administrator")
-      report "Setting preferences for attribute: administrator"
-      # set_user_preference_allow_admin_tools
-      # set_user_preference_show_system_utilities
-      ;;
-    "personal")
-      report "Setting preferences for attribute: personal"
-      # set_user_preference_use_personal_defaults
-      # set_user_preference_launch_personal_apps
-      ;;
-    "work")
-      report "Setting preferences for attribute: work"
+    "emailer")
+      report_action_taken_to_log "Setting preferences for attribute: work"
       # set_user_preference_use_work_defaults
       # set_user_preference_launch_work_apps
       ;;
-    "minimal")
-      report "Setting preferences for attribute: minimal"
-      # set_user_preference_disable_nonessential_login_items
-      # set_user_preference_reduce_visual_noise
-      ;;
-    "experimental")
-      report "Setting preferences for attribute: experimental"
+    "chessplayer")
+      report_action_taken_to_log "Setting preferences for attribute: experimental"
       # set_user_preference_enable_experimental_features
       ;;
     *)
       report_warning "No user-preference behavior is defined for attribute: $attribute_name"
       ;;
   esac
+
+  if [[ "$is_mac_admin" == "true" || "$is_developer" == "true" ]]; then
+    report_action_taken_to_log "Turn on flags for Git and GitHub configuration."
+    set_genomac_user_state "$PERM_USER_WANTS_TO_COMMIT_ON_GITHUB"
+    set_genomac_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
+  fi
+    
   
   report_end_phase_standard
 }
