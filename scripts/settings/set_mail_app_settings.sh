@@ -14,11 +14,7 @@ conditionally_configure_mail_app() {
     bootstrap_mail_app \
     "Skipping bootstrapping Mail.app because it’s been done in the past"
 
-  if ! test_genomac_user_state "$PERM_APPLE_MAIL_APP_HAS_BEEN_BOOTSTRAPPED"; then
-    report_action_taken_to_log "Skipping configuring Mail.app’s idempotent settings because Mail.app hasn’t been bootstrapped."
-  else
-    configure_mail_app_idempotent_settings
-  fi
+  configure_mail_app_idempotent_settings
     
   report_end_phase_standard
 }
