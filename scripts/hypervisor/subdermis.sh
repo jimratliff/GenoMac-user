@@ -36,11 +36,10 @@ function subdermis() {
   #     and then does the defaults write only if it would change state. Only if it would change
   #     state, then set a dirty flag.
 
-  output_hypervisor_welcome_banner "$GENOMAC_SCOPE_USER"
-  
-  set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
+  output_hypervisor_welcome_banner "$GENOMAC_SCOPE_USER"      # GenoMac-shared/scripts/helpers-hypervisor.sh
+  # set_genomac_user_state "$SESH_SESSION_HAS_STARTED"          # scripts/helpers-state.sh
   conditionally_interactive_ask_initial_questions             # scripts/settings/interactive_ask_initial_questions.sh
-  keep_sudo_alive
+  keep_sudo_alive                                             # GenoMac-shared/scripts/helpers-misc.sh
   interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-misc.sh
   transfer_system_scoped_user_attribute_states_to_user_scoped # scripts/settings/user_attribute_scripts.sh.
   set_user_preferences_from_attributes                        # scripts/settings/user_attribute_scripts.sh
