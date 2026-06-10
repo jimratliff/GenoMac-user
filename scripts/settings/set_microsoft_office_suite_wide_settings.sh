@@ -9,7 +9,7 @@ function set_microsoft_office_suite_wide_settings() {
   # - All of the corresponding Microsoft Word settings (in General) appear to be correctly
   #   set.
   # - Nevertheless:
-  #   - Word still opens a blank document when it launched. Perhaps this is normal/expected.
+  #   - Word still opens a blank document when it launches. Perhaps this is normal/expected.
   #     It, properly, does *not* show the template gallery.
   #   - When I first do a Save, it still seems to default to OneDrive (or at least Recent Folders).
   #     But, after I have saved something, subsequent Saves do default to On My Mac.
