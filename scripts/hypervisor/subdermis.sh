@@ -28,9 +28,9 @@ function subdermis() {
   report_start_phase_standard
 
   # TODO:
-  # - Consider adding environment variable SESH_FORCED_LOGOUT_DIRTY to avoid
-  #   gratuitous logouts. An action requiring --forced-logout would (a) set this
-  #   state rather than immediately triggering a logout.
+  # - Consider adding environment variable SESH_FORCED_LOGOUT_DIRTY to avoid gratuitous logouts.
+  #   An action requiring --forced-logout would (a) set this state rather than immediately
+  #   triggering a logout.
   #   - Requires new function `hypervisor_forced_logout_if_dirty`
   #   - Possibly should also require a `defaults write` helper that first does a `defaults read`
   #     and then does the defaults write only if it would change state. Only if it would change
@@ -47,6 +47,10 @@ function subdermis() {
   conditionally_perform_basic_user_level_settings             # scripts/settings/perform_basic_user_level_settings.sh
   conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
   conditionally_interactive_configure_helium_and_extensions   # scripts/settings/interactive_configure_helium.sh
+
+  # TODOs: conditionally_configure_mail_app and conditionally_configure_hiarcs_ce_pro
+  conditionally_configure_mail_app                            # scripts/settings/set_mail_app_settings.sh
+  conditionally_configure_hiarcs_ce_pro                       # scripts/settings/set_hiarcs_cd_pro_settings.sh
   
   # Execute pre-Dropbox bootstrap steps
   conditionally_perform_initial_bootstrap_operations          # scripts/settings/perform_initial_bootstrap_operations.sh
@@ -56,16 +60,15 @@ function subdermis() {
   # Configure 1Password here to make available credentials for later steps
   conditionally_configure_1Password                           # scripts/settings/interactive_configure_1password.sh
 
-  ############### BELOW THIS POINT: 1Password credentials are available
+  ############### BELOW THIS POINT: 1Password credentials are available ###############
   
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
   conditionally_interactive_configure_waterfox_raindropio_extension # scripts/settings/interactive_set_waterfox_extension_preferences.sh
 
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
 
-  ############### (Further) configure apps that rely upon Dropbox having synced
+  ############### (Further) configure apps that rely upon Dropbox having synced ###############
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
-
     # BetterTouchTool relies on Dropbox because that’s where its license file is stored
     conditionally_configure_bettertouchtool                   # scripts/settings/set_bettertouchtool_settings.sh
 
