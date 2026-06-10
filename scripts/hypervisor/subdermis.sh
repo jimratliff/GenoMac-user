@@ -42,18 +42,11 @@ function subdermis() {
   conditionally_interactive_ask_initial_questions             # scripts/settings/interactive_ask_initial_questions.sh
   keep_sudo_alive
   interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-misc.sh
-  transfer_system_scoped_user_attribute_states_to_user_scoped # scripts/settings/user_attribute_scripts.sh
-
-  # TODO: Write set_user_preferences_from_attributes(), to replace the original
-  #       conditionally_interactive_ask_initial_questions(), to instead use user-attributes to specify 
-  #       what actions are desired.
-  
-  set_user_preferences_from_attributes                     # scripts/settings/user_attribute_scripts.sh
-  
-  conditionally_set_git_config_user                        # scripts/settings/interactive_set_git_config_user.sh
-  
-  conditionally_stow_dotfiles                              # scripts/settings/perform_stow_dotfiles.sh
-  conditionally_perform_basic_user_level_settings          # scripts/settings/perform_basic_user_level_settings.sh
+  transfer_system_scoped_user_attribute_states_to_user_scoped # scripts/settings/user_attribute_scripts.sh.
+  set_user_preferences_from_attributes                        # scripts/settings/user_attribute_scripts.sh
+  conditionally_set_git_config_user                           # scripts/settings/interactive_set_git_config_user.sh
+  conditionally_stow_dotfiles                                 # scripts/settings/perform_stow_dotfiles.sh
+  conditionally_perform_basic_user_level_settings             # scripts/settings/perform_basic_user_level_settings.sh
 
   # TODO: Consider refactoring this set-and-conditionally-revert approach to directly
   #       implementing the right setting for each user
