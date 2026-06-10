@@ -37,7 +37,6 @@ function subdermis() {
   #     state, then set a dirty flag.
 
   output_hypervisor_welcome_banner "$GENOMAC_SCOPE_USER"      # GenoMac-shared/scripts/helpers-hypervisor.sh
-  # set_genomac_user_state "$SESH_SESSION_HAS_STARTED"          # scripts/helpers-state.sh
   conditionally_interactive_ask_initial_questions             # scripts/settings/interactive_ask_initial_questions.sh
   keep_sudo_alive                                             # GenoMac-shared/scripts/helpers-misc.sh
   interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-misc.sh
