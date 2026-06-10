@@ -22,9 +22,8 @@ function conditionally_configure_1Password() {
   # users want to sign into their 1Password account and basically configure the 1Password app.
   #
   # However, each user can choose whether to go to the extra effort to configure 1Password’s SSH agent.
-  # This user decision is determined via
-  # scripts/settings/interactive_ask_initial_questions.sh » interactive_ask_initial_questions
-  # via the state PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT
+  # The decision to configure 1Password’s SSH agent is expressed via either of the user attributes
+  # 'mac-admin' or 'developer'.
   
   report_start_phase_standard
 
