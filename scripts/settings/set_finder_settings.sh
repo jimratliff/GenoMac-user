@@ -35,17 +35,7 @@ function set_finder_settings() {
   report_adjust_setting "Set Finder preferred window view to List View"
   defaults write $finder_domain FXPreferredViewStyle -string "Nlsv" ; success_or_not
 
-  # Do not show hard drives on desktop
-  # This is the intended system for regular user (other than the SysAdmin users USER_VANILLA and USER_CONFIGURER).
-  # To set preferences for these SysAdmin users, a script should run following this scripts that inverts this boolean.
-  report_adjust_setting "Do not show hard drives on desktop"
-  defaults write $finder_domain ShowHardDrivesOnDesktop -bool false ; success_or_not
-
-  # Do not show external drives on desktopdesktop
-  # This is the intended system for regular user (other than the SysAdmin users USER_VANILLA and USER_CONFIGURER).
-  # To set preferences for these SysAdmin users, a script should run following this scripts that inverts this boolean.
-  report_adjust_setting "Do not show external drives on desktop"
-  defaults write $finder_domain ShowExternalHardDrivesOnDesktop -bool false ; success_or_not
+  conditionally_set_internal_external_disk_display_policy
 
   # Show removable media (CDs, DVDs, etc.) on desktop
   # This is the default. Included here to enforce the default if it is ever changed.
@@ -124,41 +114,72 @@ function set_finder_settings() {
 
 }
 
-function conditionally_reverse_disk_display_policy_for_some_users() {
+function conditionally_set_internal_external_disk_display_policy() {
+  # Sets display of internal/external drives on Desktop only for users with
+  # PERM_FINDER_SHOW_DRIVES_ON_DESKTOP state
   report_start_phase_standard
 
+  local drive_show_boolean=false
   if test_genomac_user_state "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"; then
-    run_if_user_has_not_done \
-      "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED" \
-      reverse_disk_display_policy_for_some_users \
-      "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
-  else
-    report_action_taken_to_log "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
+    drive_show_boolean=true
   fi
 
-  report_end_phase_standard
+  report_adjust_setting "Show hard drives on desktop?: ${drive_show_boolean}"
+  defaults write $finder_domain ShowHardDrivesOnDesktop -bool "$drive_show_boolean" ; success_or_not
+
+  report_adjust_setting "Show external drives on desktop?: ${drive_show_boolean}"
+  defaults write $finder_domain ShowExternalHardDrivesOnDesktop -bool "$drive_show_boolean" ; success_or_not
 }
 
-function reverse_disk_display_policy_for_some_users() {
-  # Reverses the standard default, when requested: do show internal/external drives on Desktop
+############################## BELOW IS DEPRECATED ##############################
 
-  report_start_phase_standard
-  report_action_taken "Reverse certain disk-display-on-Desktop defaults for certain users"
+#   # Do not show hard drives on desktop
+#   # This is the intended system for regular user (other than the SysAdmin users USER_VANILLA and USER_CONFIGURER).
+#   # To set preferences for these SysAdmin users, a script should run following this scripts that inverts this boolean.
+#   report_adjust_setting "Do not show hard drives on desktop"
+#   defaults write $finder_domain ShowHardDrivesOnDesktop -bool false ; success_or_not
+# 
+#   # Do not show external drives on desktopdesktop
+#   # This is the intended system for regular user (other than the SysAdmin users USER_VANILLA and USER_CONFIGURER).
+#   # To set preferences for these SysAdmin users, a script should run following this scripts that inverts this boolean.
+#   report_adjust_setting "Do not show external drives on desktop"
+#   defaults write $finder_domain ShowExternalHardDrivesOnDesktop -bool false ; success_or_not
 
-  local finder_domain="com.apple.finder"
-
-  # DO show hard drives on desktop
-  # This reverses the default used in set_finder_settings()
-  report_adjust_setting "DO show hard drives on desktop (reversing, at your request, an earlier action)"
-  defaults write $finder_domain ShowHardDrivesOnDesktop -bool true ; success_or_not
-
-  # Do not show external drives on desktopdesktop
-  # This reverses the default used in set_finder_settings()
-  report_adjust_setting "DO show external drives on desktop (reversing, at your request, an earlier action)"
-  defaults write $finder_domain ShowExternalHardDrivesOnDesktop -bool true ; success_or_not
-
-  report_about_to_kill_app "Finder"
-  killall "Finder" ; success_or_not
-
-  report_end_phase_standard
-}
+# function conditionally_reverse_disk_display_policy_for_some_users() {
+#   report_start_phase_standard
+# 
+#   if test_genomac_user_state "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"; then
+#     run_if_user_has_not_done \
+#       "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP_HAS_BEEN_IMPLEMENTED" \
+#       reverse_disk_display_policy_for_some_users \
+#       "Skipping displaying internal/external drives on Desktop, because I’ve already done so this session"
+#   else
+#     report_action_taken_to_log "Skipping displaying internal/external drives on Desktop, because this user doesn’t want it"
+#   fi
+# 
+#   report_end_phase_standard
+# }
+# 
+# function reverse_disk_display_policy_for_some_users() {
+#   # Reverses the standard default, when requested: do show internal/external drives on Desktop
+# 
+#   report_start_phase_standard
+#   report_action_taken "Reverse certain disk-display-on-Desktop defaults for certain users"
+# 
+#   local finder_domain="com.apple.finder"
+# 
+#   # DO show hard drives on desktop
+#   # This reverses the default used in set_finder_settings()
+#   report_adjust_setting "DO show hard drives on desktop (reversing, at your request, an earlier action)"
+#   defaults write $finder_domain ShowHardDrivesOnDesktop -bool true ; success_or_not
+# 
+#   # Do not show external drives on desktopdesktop
+#   # This reverses the default used in set_finder_settings()
+#   report_adjust_setting "DO show external drives on desktop (reversing, at your request, an earlier action)"
+#   defaults write $finder_domain ShowExternalHardDrivesOnDesktop -bool true ; success_or_not
+# 
+#   report_about_to_kill_app "Finder"
+#   killall "Finder" ; success_or_not
+# 
+#   report_end_phase_standard
+# }
