@@ -110,6 +110,13 @@ function interactive_configure_waterfox_markdownviewerwebext_extension() {
 function conditionally_interactive_configure_waterfox_raindropio_extension() {
   # This is intended to be executed later, within subdermis, after 1Password has been configured
   # because this configuration of Raindrop.io requires that the user signs into their Raindrop.io account
+
+  if ! test_genomac_user_state "$PERM_RAINDROP_IO_USER_WANTS_IT"; then
+    report_action_taken_to_log "Skipping installation and configuration of Raindrop.io extension for Waterfox${NEWLINE}, because this user doesn’t want it."
+    report_end_phase_standard
+    return 0
+  fi
+  
   run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
     interactive_configure_waterfox_raindropio_extension \
@@ -121,7 +128,7 @@ function interactive_configure_waterfox_raindropio_extension() {
   #       until after 1Password is configured.
   #
   # NOTE: The programmatic installation of Raindrop.io isn’t working, so this interactive configuration
-  #       includes the installation step. TODO
+  #       includes the installation step.
 
   report_start_phase_standard
   
