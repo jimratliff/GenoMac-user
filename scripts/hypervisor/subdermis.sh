@@ -59,8 +59,8 @@ function subdermis() {
   conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
   conditionally_configure_microsoft_word                      # scripts/settings/set_microsoft_word_settings.sh
 
-  # TODO: If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system and GenoMac-user
-  #       at ~/Repositories
+  # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user, and
+  # GenoMac-shared at ~/Repositories/Project_GenoMac
   conditionally_clone_GenoMac_repos_for_development
 
   # Configure 1Password here to make available credentials for later steps
@@ -79,8 +79,7 @@ function subdermis() {
     # Keyboard Maestro relies on Dropbox because that’s where its synced preferences are stored
     conditionally_configure_keyboard_maestro                  # scripts/settings/interactive_configure_keyboard_maestro.sh
 
-    # Alfred must be configured *after* Keyboard Maestro, because activating the Powerpack uses
-    # a custom Keyboard Maestro macro
+    # Alfred must be configured *after* Keyboard Maestro, because activating the Powerpack uses a custom Keyboard Maestro macro
     conditionally_configure_alfred                            # scripts/settings/interactive_configure_alfred.sh
 
     # Installation of Witch preference pane relies on Dropbox as the source of the binary.
