@@ -7,14 +7,11 @@ function set_user_preferences_for_attribute() {
   attribute_name="${1:?MISSING/EMPTY attribute_name}"
 
   local is_developer=false
-  local is_mac_admin=false
 
   case "$attribute_name" in
-    "mac-admin")
-      report_action_taken_to_log "Setting preferences for attribute: mac-admin"
-      # Finder: Show drives on desktop
-      set_genomac_user_state "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"
-      is_mac_admin=true
+    "chessplayer")
+      report_action_taken_to_log "Setting preferences for attribute: chessplayer"
+      set_genomac_user_state "$PERM_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"
       ;;
     "developer")
       report_action_taken_to_log "Setting preferences for attribute: developer"
@@ -24,6 +21,27 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: dropbox"
       set_genomac_user_state "$PERM_DROPBOX_USER_WANTS_IT"
       ;;
+    "emailer")
+      report_action_taken_to_log "Setting preferences for attribute: emailer"
+      set_genomac_user_state "$PERM_APPLE_MAIL_APP_USER_WANTS_IT"
+      ;;
+    "genomac-developer")
+      report_action_taken_to_log "Setting preferences for attribute: genomac-developer"
+      set_genomac_user_state "$PERM_USER_IS_A_GENOMAC_DEVELOPER"
+      is_developer=true
+      ;;
+    "mac-admin")
+      report_action_taken_to_log "Setting preferences for attribute: mac-admin"
+      set_genomac_user_state "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"
+      ;;
+    "microsoft-word")
+      report_action_taken_to_log "Setting preferences for attribute: microsoft-word"
+      set_genomac_user_state "$PERM_MICROSOFT_WORD_USER_WANTS_IT"
+      ;;
+    "raindrop-io")
+      report_action_taken_to_log "Setting preferences for attribute: raindrop-io"
+      set_genomac_user_state "$PERM_RAINDROP_IO_USER_WANTS_IT"
+      ;;
     "sync-com")
       report_action_taken_to_log "Setting preferences for attribute: sync-com"
       set_genomac_user_state "$PERM_SYNC_COM_USER_WANTS_IT"
@@ -32,28 +50,12 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: youtube-watcher"
       set_genomac_user_state "$PERM_WATERFOX_EXTENSION_YOUTUBE_ENHANCER_USER_WANTS_IT"
       ;;
-    "microsoft-word")
-      report_action_taken_to_log "Setting preferences for attribute: microsoft-word"
-      set_genomac_user_state "$PERM_MICROSOFT_WORD_USER_WANTS_IT"
-      ;;
-    "emailer")
-      report_action_taken_to_log "Setting preferences for attribute: emailer"
-      set_genomac_user_state "$PERM_APPLE_MAIL_APP_USER_WANTS_IT"
-      ;;
-    "chessplayer")
-      report_action_taken_to_log "Setting preferences for attribute: chessplayer"
-      set_genomac_user_state "$PERM_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"
-      ;;
-    "raindrop-io")
-      report_action_taken_to_log "Setting preferences for attribute: raindrop-io"
-      set_genomac_user_state "$PERM_RAINDROP_IO_USER_WANTS_IT"
-      ;;
     *)
       report_warning "No user-preference behavior is defined for attribute: $attribute_name"
       ;;
   esac
 
-  if [[ "$is_mac_admin" == "true" || "$is_developer" == "true" ]]; then
+  if [[ "$is_developer" == "true" ]]; then
     report_action_taken_to_log "Turn on flags for Git and GitHub configuration."
     set_genomac_user_state "$PERM_USER_WANTS_TO_COMMIT_ON_GITHUB"
     set_genomac_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
