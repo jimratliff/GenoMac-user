@@ -63,8 +63,6 @@ function subdermis() {
   ############### BELOW THIS POINT: 1Password credentials are available ###############
   
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
-  conditionally_interactive_configure_waterfox_raindropio_extension # scripts/settings/interactive_set_waterfox_extension_preferences.sh
-
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
 
   ############### (Further) configure apps that rely upon Dropbox having synced ###############
