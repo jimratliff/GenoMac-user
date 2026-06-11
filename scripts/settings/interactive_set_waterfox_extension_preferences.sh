@@ -38,9 +38,18 @@ function interactive_set_preferences_for_waterfox_extensions() {
       "$PERM_WATERFOX_EXTENSION_YOUTUBE_HAS_BEEN_CONFIGURED" \
       interactive_configure_waterfox_youtube_extension \
       "Skipping configuring Enhanced for YouTube extension for Waterfox,${NEWLINE}because it’s already been specified in the past"
+  else
+    report_action_taken "Skipping configuring Enhanced for YouTube extension for Waterfox,${NEWLINE}because this user doesn’t want it."
   fi
 
-  conditionally_interactive_configure_waterfox_raindropio_extension
+  if test_genomac_user_state "$PERM_RAINDROP_IO_USER_WANTS_IT"; then
+    run_if_user_has_not_done \
+      "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
+      interactive_configure_waterfox_youtube_extension \
+      "Skipping installing and configuring the Raindrop.io extension for Waterfox,${NEWLINE}because it’s already been configured in the past"
+  else
+    report_action_taken "Skipping installation and configuration of Raindrop.io extension for Waterfox${NEWLINE}, because this user doesn’t want it."
+  fi
 
   run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSION_THEME_HAS_BEEN_CONFIGURED" \
@@ -105,22 +114,6 @@ function interactive_configure_waterfox_markdownviewerwebext_extension() {
     "Follow the instructions in the Quick Look window to configure the Markdown Viewer Webext extension for Waterfox"
 
   report_end_phase_standard
-}
-
-function conditionally_interactive_configure_waterfox_raindropio_extension() {
-  # This is intended to be executed later, within subdermis, after 1Password has been configured
-  # because this configuration of Raindrop.io requires that the user signs into their Raindrop.io account
-
-  if ! test_genomac_user_state "$PERM_RAINDROP_IO_USER_WANTS_IT"; then
-    report_action_taken_to_log "Skipping installation and configuration of Raindrop.io extension for Waterfox${NEWLINE}, because this user doesn’t want it."
-    report_end_phase_standard
-    return 0
-  fi
-  
-  run_if_user_has_not_done \
-    "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
-    interactive_configure_waterfox_raindropio_extension \
-    "Skipping installing and configuring the Raindrop.io extension for Waterfox,${NEWLINE}because it’s already been configured in the past"
 }
 
 function interactive_configure_waterfox_raindropio_extension() {
