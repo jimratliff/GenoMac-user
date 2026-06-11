@@ -48,8 +48,10 @@ function subdermis() {
   conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
   conditionally_interactive_configure_helium_and_extensions   # scripts/settings/interactive_configure_helium.sh
 
-  # TODOs: conditionally_configure_mail_app and conditionally_configure_hiarcs_ce_pro
+  # TODOs: conditionally_configure_mail_app
   conditionally_configure_mail_app                            # scripts/settings/set_mail_app_settings.sh
+
+  # TODOs: conditionally_configure_hiarcs_ce_pro
   conditionally_configure_hiarcs_ce_pro                       # scripts/settings/set_hiarcs_cd_pro_settings.sh
   
   # Execute pre-Dropbox bootstrap steps
