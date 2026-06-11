@@ -21,12 +21,12 @@ function interactive_set_preferences_for_waterfox_extensions() {
   run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSION_MANAGEMYTABS_HAS_BEEN_CONFIGURED" \
     interactive_configure_waterfox_managemytabs_extension \
-    "Skipping configuring the Manage My Tabs extension for Waterfox, because it’s already been configured in the past"
+    "Skipping configuring the Manage My Tabs extension for Waterfox,${NEWLINE}because it’s already been configured in the past"
 
   run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSION_MARKDOWNVIEWERWEBEXT_HAS_BEEN_CONFIGURED" \
     interactive_configure_waterfox_markdownviewerwebext_extension \
-    "Skipping configuring the Markdown Viewer Webext extension for Waterfox, because it’s already been configured in the past"
+    "Skipping configuring the Markdown Viewer Webext extension for Waterfox,${NEWLINE}because it’s already been configured in the past"
 
   run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSION_TABS2LIST_HAS_BEEN_CONFIGURED" \
@@ -37,23 +37,20 @@ function interactive_set_preferences_for_waterfox_extensions() {
     run_if_user_has_not_done \
       "$PERM_WATERFOX_EXTENSION_YOUTUBE_HAS_BEEN_CONFIGURED" \
       interactive_configure_waterfox_youtube_extension \
-      "Skipping configuring Enhanced for YouTube extension for Waterfox, because it’s already been specified in the past"
+      "Skipping configuring Enhanced for YouTube extension for Waterfox,${NEWLINE}because it’s already been specified in the past"
   fi
+
+  conditionally_interactive_configure_waterfox_raindropio_extension
 
   run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSION_THEME_HAS_BEEN_CONFIGURED" \
     interactive_configure_waterfox_theme \
-    "Skipping installing the Activist-balanced Waterfox theme, because it’s already been installed in the past"
-
-#  run_if_user_has_not_done \
-#    "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
-#    interactive_configure_waterfox_raindropio_extension \
-#    "Skipping configuring the Raindrop.io extension for Waterfox, because it’s already been configured in the past"
+    "Skipping installing the Activist-balanced Waterfox theme,${NEWLINE}because it’s already been installed in the past"
 
   run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSION_SHORTCUTS_HAVE_BEEN_CONFIGURED" \
     interactive_configure_waterfox_extension_shortcuts \
-    "Skipping configuring keyboard shortcuts for the extensions for Waterfox, because they’ve already been configured in the past"
+    "Skipping configuring keyboard shortcuts for the extensions for Waterfox,${NEWLINE}because they’ve already been configured in the past"
 	
   report_end_phase_standard
 }
@@ -61,7 +58,7 @@ function interactive_set_preferences_for_waterfox_extensions() {
 function interactive_configure_waterfox_basic_extensions() {
   report_start_phase_standard
   
-  report "Time to configure basic browser extensions for Waterfox! I’ll launch Waterfox, and open a window with instructions"
+  report "Time to configure basic browser extensions for Waterfox!${NEWLINE}I’ll launch Waterfox, and open a window with instructions"
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_basic_extensions.md" \
@@ -74,7 +71,7 @@ function interactive_configure_waterfox_basic_extensions() {
 function interactive_configure_waterfox_consentomatic_extension() {
   report_start_phase_standard
   
-  report "Time to configure the Consent-O-Matic extension for Waterfox! I’ll launch Waterfox, and open a window with instructions"
+  report "Time to configure the Consent-O-Matic extension for Waterfox!${NEWLINE}I’ll launch Waterfox, and open a window with instructions"
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_consentomatic_extension.md" \
@@ -87,7 +84,7 @@ function interactive_configure_waterfox_consentomatic_extension() {
 function interactive_configure_waterfox_managemytabs_extension() {
   report_start_phase_standard
   
-  report "Time to configure the Manage My Tabs extension for Waterfox! I’ll launch Waterfox, and open a window with instructions"
+  report "Time to configure the Manage My Tabs extension for Waterfox!${NEWLINE}I’ll launch Waterfox, and open a window with instructions"
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_managemytabs_extension.md" \
@@ -100,7 +97,7 @@ function interactive_configure_waterfox_managemytabs_extension() {
 function interactive_configure_waterfox_markdownviewerwebext_extension() {
   report_start_phase_standard
   
-  report "Time to configure the Markdown Viewer Webext extension for Waterfox! I’ll launch Waterfox, and open a window with instructions"
+  report "Time to configure the Markdown Viewer Webext extension for Waterfox!${NEWLINE}I’ll launch Waterfox, and open a window with instructions"
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_markdownviewerwebext_extension.md" \
@@ -116,7 +113,7 @@ function conditionally_interactive_configure_waterfox_raindropio_extension() {
   run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
     interactive_configure_waterfox_raindropio_extension \
-    "Skipping configuring the Raindrop.io extension for Waterfox, because it’s already been configured in the past"
+    "Skipping installing and configuring the Raindrop.io extension for Waterfox,${NEWLINE}because it’s already been configured in the past"
 }
 
 function interactive_configure_waterfox_raindropio_extension() {
@@ -128,7 +125,7 @@ function interactive_configure_waterfox_raindropio_extension() {
 
   report_start_phase_standard
   
-  report "Time to install and configure the Raindrop.io extension for Waterfox! I’ll launch Waterfox, and open a window with instructions"
+  report "Time to install and configure the Raindrop.io extension for Waterfox!${NEWLINE}I’ll launch Waterfox, and open a window with instructions"
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_raindropio_extension.md" \
