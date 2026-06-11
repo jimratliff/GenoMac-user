@@ -59,6 +59,10 @@ function subdermis() {
   conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
   conditionally_configure_microsoft_word                      # scripts/settings/set_microsoft_word_settings.sh
 
+  # TODO: If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system and GenoMac-user
+  #       at ~/Repositories
+  conditionally_clone_GenoMac_repos_for_development
+
   # Configure 1Password here to make available credentials for later steps
   conditionally_configure_1Password                           # scripts/settings/interactive_configure_1password.sh
 
