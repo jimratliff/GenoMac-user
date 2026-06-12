@@ -63,7 +63,7 @@ function subdermis() {
 
   # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user, and
   # GenoMac-shared at ~/Repositories/Project_GenoMac
-  conditionally_clone_GenoMac_repos_for_development
+  conditionally_clone_GenoMac_repos_for_development           # scripts/installations/make_development_clones.sh
 
   # Configure 1Password here to make available credentials for later steps
   conditionally_configure_1Password                           # scripts/settings/interactive_configure_1password.sh
