@@ -85,7 +85,7 @@ function set_user_preferences_from_attributes() {
   user_scoped_state_strings=("${reply[@]}")
 
   for user_scoped_state_string in "${user_scoped_state_strings[@]}"; do
-    attribute_name="$(get_attribute_name_from_user_attribute_state_string "$user_scoped_state_string")
+    attribute_name="$(get_attribute_name_from_user_attribute_state_string "$user_scoped_state_string")"
     set_user_preferences_for_attribute "$attribute_name"
   done
 
@@ -123,17 +123,15 @@ function transfer_system_scoped_user_attribute_states_to_user_scoped() {
   system_scoped_state_strings=("${reply[@]}")
 
   # Delete current set of user-scoped user-attribute state strings for this user.
-  # This addresses the possibility that (a) a particular attribute was set in the
-  # past but (b) this attribute has been deleted from system-state user-attribute
-  # states. Clearing current set of user-scoped user-attribute state strings for
-  # this user ensures that the new set of user-scoped user-attribute state strings
-  # will mirror the system-scoped user-attribute state strings for this user.
-  
+  #   This addresses the possibility that (a) a particular attribute was set in the
+  #   past but (b) this attribute has been deleted from system-state user-attribute
+  #   states. Clearing current set of user-scoped user-attribute state strings for
+  #   this user ensures that the new set of user-scoped user-attribute state strings
+  #   will mirror the system-scoped user-attribute state strings for this user.
   delete_all_user_states_matching_prefix "$state_prefix"    # GenoMac-shared/scripts/helpers-state.sh
 
   # Save the system-scoped state strings, without transformation, as user-scoped
   # state strings.
-
   for system_scoped_state_string in "${system_scoped_state_strings[@]}"; do
     set_genomac_user_state "$system_scoped_state_string"
   done
