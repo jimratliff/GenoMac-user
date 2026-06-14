@@ -11,7 +11,7 @@ function set_user_preferences_for_attribute() {
   case "$attribute_name" in
     "chessplayer")
       report_action_taken_to_log "Setting preferences for attribute: chessplayer"
-      set_genomac_user_state "$PERM_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"
+      set_genomac_user_state "$SESH_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"
       set_genomac_user_state "$PERM_CHESSVISION_AI_USER_WANTS_IT"
       ;;
     "developer")
