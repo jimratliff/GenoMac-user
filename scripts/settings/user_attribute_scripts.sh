@@ -28,7 +28,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "genomac-developer")
       report_action_taken_to_log "Setting preferences for attribute: genomac-developer"
-      set_genomac_user_state "$PERM_USER_IS_A_GENOMAC_DEVELOPER"
+      set_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"
       is_developer=true
       ;;
     "mac-admin")
