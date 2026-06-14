@@ -41,7 +41,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "raindrop-io")
       report_action_taken_to_log "Setting preferences for attribute: raindrop-io"
-      set_genomac_user_state "$PERM_RAINDROP_IO_USER_WANTS_IT"
+      set_genomac_user_state "$SESH_RAINDROP_IO_USER_WANTS_IT"
       ;;
     "sync-com")
       report_action_taken_to_log "Setting preferences for attribute: sync-com"
