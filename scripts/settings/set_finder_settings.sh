@@ -116,11 +116,11 @@ function set_finder_settings() {
 
 function conditionally_set_internal_external_disk_display_policy() {
   # Sets display of internal/external drives on Desktop only for users with
-  # PERM_FINDER_SHOW_DRIVES_ON_DESKTOP state
+  # SESH_FINDER_SHOW_DRIVES_ON_DESKTOP state
   report_start_phase_standard
 
   local drive_show_boolean=false
-  if test_genomac_user_state "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"; then
+  if test_genomac_user_state "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP"; then
     drive_show_boolean=true
   fi
 
