@@ -45,7 +45,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "sync-com")
       report_action_taken_to_log "Setting preferences for attribute: sync-com"
-      set_genomac_user_state "$PERM_SYNC_COM_USER_WANTS_IT"
+      set_genomac_user_state "$SESH_SYNC_COM_USER_WANTS_IT"
       ;;
     "youtube-watcher")
       report_action_taken_to_log "Setting preferences for attribute: youtube-watcher"
