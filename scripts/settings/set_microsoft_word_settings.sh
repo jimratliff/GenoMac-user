@@ -23,7 +23,7 @@ function conditionally_configure_microsoft_word() {
   
   report_start_phase_standard
 
-  if ! test_genomac_user_state "$PERM_MICROSOFT_WORD_USER_WANTS_IT"; then
+  if ! test_genomac_user_state "$SESH_MICROSOFT_WORD_USER_WANTS_IT"; then
     report_action_taken_to_log "Skipping Microsoft Word configuration, because this user doesn’t want it"
     report_end_phase_standard
     return 0
