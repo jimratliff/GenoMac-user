@@ -5,7 +5,7 @@ function conditionally_clone_GenoMac_repos_for_development() {
   # and GenoMac-user for development.
   report_start_phase_standard
 
-  if test_genomac_user_state "$PERM_USER_IS_A_GENOMAC_DEVELOPER"; then
+  if test_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"; then/
     run_if_user_has_not_done "$PERM_GENOMAC_DEV_CLONES_HAVE_BEEN_CREATED" \
       make_additional_dev_clones_of_genomac_repos \
       "Skipping making development clones of GenoMac repos,${NEWLINE}because they’ve already been created in the past."
