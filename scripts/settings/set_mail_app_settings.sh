@@ -3,7 +3,7 @@
 conditionally_configure_mail_app() {
   report_start_phase_standard
 
-  if ! test_genomac_user_state "$PERM_APPLE_MAIL_APP_USER_WANTS_IT"; then
+  if ! test_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"; then
     report_action_taken_to_log "Skipping Mail.app configuration, because this user doesn’t want it"
     report_end_phase_standard
     return 0
