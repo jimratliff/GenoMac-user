@@ -49,7 +49,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "youtube-watcher")
       report_action_taken_to_log "Setting preferences for attribute: youtube-watcher"
-      set_genomac_user_state "$PERM_WATERFOX_EXTENSION_YOUTUBE_ENHANCER_USER_WANTS_IT"
+      set_genomac_user_state "$SESH_WATERFOX_EXTENSION_YOUTUBE_ENHANCER_USER_WANTS_IT"
       ;;
     *)
       report_warning "No user-preference behavior is defined for attribute: $attribute_name"
