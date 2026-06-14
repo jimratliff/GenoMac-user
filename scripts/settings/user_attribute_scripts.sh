@@ -37,7 +37,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "microsoft-word")
       report_action_taken_to_log "Setting preferences for attribute: microsoft-word"
-      set_genomac_user_state "$PERM_MICROSOFT_WORD_USER_WANTS_IT"
+      set_genomac_user_state "$SESH_MICROSOFT_WORD_USER_WANTS_IT"
       ;;
     "raindrop-io")
       report_action_taken_to_log "Setting preferences for attribute: raindrop-io"
