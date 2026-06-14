@@ -3,7 +3,7 @@
 conditionally_configure_hiarcs_ce_pro() {
   report_start_phase_standard
 
-  if ! test_genomac_user_state "$PERM_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"; then
+  if ! test_genomac_user_state "$SESH_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"; then
     report_action_taken_to_log "Skipping HIARCS Chess Explorer Pro configuration, because this user doesn’t want it"
     report_end_phase_standard
     return 0
