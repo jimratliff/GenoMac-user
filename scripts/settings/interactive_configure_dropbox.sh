@@ -3,7 +3,7 @@
 function conditionally_configure_Dropbox() {
   report_start_phase_standard
   
-  if test_genomac_user_state "$PERM_DROPBOX_USER_WANTS_IT"; then
+  if test_genomac_user_state "$SESH_DROPBOX_USER_WANTS_IT"; then
     run_if_user_has_not_done "$PERM_DROPBOX_HAS_BEEN_CONFIGURED" \
       interactive_configure_Dropbox \
       "Skipping basic bootstrap operations, because they’ve already been performed"
