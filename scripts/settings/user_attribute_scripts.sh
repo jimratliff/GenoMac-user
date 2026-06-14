@@ -20,7 +20,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "dropbox")
       report_action_taken_to_log "Setting preferences for attribute: dropbox"
-      set_genomac_user_state "$PERM_DROPBOX_USER_WANTS_IT"
+      set_genomac_user_state "$SESH_DROPBOX_USER_WANTS_IT"
       ;;
     "emailer")
       report_action_taken_to_log "Setting preferences for attribute: emailer"
