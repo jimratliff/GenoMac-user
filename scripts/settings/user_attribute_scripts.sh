@@ -33,7 +33,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "mac-admin")
       report_action_taken_to_log "Setting preferences for attribute: mac-admin"
-      set_genomac_user_state "$PERM_FINDER_SHOW_DRIVES_ON_DESKTOP"
+      set_genomac_user_state "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP"
       ;;
     "microsoft-word")
       report_action_taken_to_log "Setting preferences for attribute: microsoft-word"
