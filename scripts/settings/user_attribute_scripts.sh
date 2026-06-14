@@ -24,7 +24,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "emailer")
       report_action_taken_to_log "Setting preferences for attribute: emailer"
-      set_genomac_user_state "$PERM_APPLE_MAIL_APP_USER_WANTS_IT"
+      set_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"
       ;;
     "genomac-developer")
       report_action_taken_to_log "Setting preferences for attribute: genomac-developer"
