@@ -2,6 +2,8 @@
 
 # Source required files
 safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
+safe_source "${GMU_INSTALLATION_SCRIPTS}/make_development_clones.sh"
+safe_source "${GMU_INSTALLATION_SCRIPTS}/make_repositories_directory_for_developers.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_ask_initial_questions.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_1password.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_alfred.sh"
@@ -61,6 +63,9 @@ function subdermis() {
   conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
   conditionally_configure_microsoft_word                      # scripts/settings/set_microsoft_word_settings.sh
 
+  # If user has 'developer' attribute, create ~/Repositories directory to hold clones
+  conditionally_create_repositories_directory_for_developers
+  
   # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user, and
   # GenoMac-shared at ~/Repositories/Project_GenoMac
   conditionally_clone_GenoMac_repos_for_development           # scripts/installations/make_development_clones.sh
