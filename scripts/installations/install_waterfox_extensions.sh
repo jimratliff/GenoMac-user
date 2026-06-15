@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+safe_source "${GMU_SETTINGS_SCRIPTS}/web_extension_data_gecko.sh"
+
 function install_waterfox_extensions() {
   # Install each browser extension named in environment variable STANDARD_WEB_BROWSER_EXTENSIONS_GECKO
   # into Waterfox, in disabled state.
