@@ -51,17 +51,10 @@ function subdermis() {
   conditionally_perform_basic_user_level_settings             # scripts/settings/perform_basic_user_level_settings.sh
   conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
   conditionally_interactive_configure_helium_and_extensions   # scripts/settings/interactive_configure_helium.sh
-
-  # TODOs: conditionally_configure_mail_app
-  conditionally_configure_mail_app                            # scripts/settings/set_mail_app_settings.sh
-
-  # TODOs: conditionally_configure_hiarcs_ce_pro
-  conditionally_configure_hiarcs_ce_pro                       # scripts/settings/set_hiarcs_cd_pro_settings.sh
   
   # Execute pre-Dropbox bootstrap steps
   conditionally_perform_initial_bootstrap_operations          # scripts/settings/perform_initial_bootstrap_operations.sh
   conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
-  conditionally_configure_microsoft_word                      # scripts/settings/set_microsoft_word_settings.sh
 
   # If user has 'developer' attribute, create ~/Repositories directory to hold clones
   conditionally_create_repositories_directory_for_developers
@@ -77,6 +70,17 @@ function subdermis() {
   
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
+
+  # TODOs: conditionally_configure_Obsidian
+  conditionally_configure_Obsidian                            # scripts/settings/interactive_configure_obsidian.sh
+
+  # TODOs: conditionally_configure_mail_app
+  conditionally_configure_mail_app                            # scripts/settings/set_mail_app_settings.sh
+  
+  conditionally_configure_microsoft_word                      # scripts/settings/set_microsoft_word_settings.sh
+
+  # TODOs: conditionally_configure_hiarcs_ce_pro
+  conditionally_configure_hiarcs_ce_pro                       # scripts/settings/set_hiarcs_cd_pro_settings.sh
   
 
   ############### (Further) configure apps that rely upon Dropbox having synced ###############
