@@ -58,8 +58,10 @@ function make_additional_dev_clones_of_genomac_repos() {
     local_repo_dir_name="${repo_spec#*:}"
     local_repo_dir="${GENOMAC_DEVELOPMENT_DIRECTORY}/${local_repo_dir_name}"
 
+    # See GenoMac-shared/scripts/helpers-git.sh for clone_public_genomac_repo_using_HTTPS
     clone_public_genomac_repo_using_HTTPS "$github_repo_name" "$local_repo_dir"
 
+    # See GenoMac-shared/scripts/helpers-git.sh for configure_split_remote_URLs_for_public_GitHub_repo_if_cloned
     configure_split_remote_URLs_for_public_GitHub_repo_if_cloned \
       "$local_repo_dir" \
       "$github_repo_name"
