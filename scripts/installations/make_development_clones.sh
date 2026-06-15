@@ -17,8 +17,11 @@ function conditionally_clone_GenoMac_repos_for_development() {
 }
 
 function make_additional_dev_clones_of_genomac_repos() {
-  # Makes separate development clones of GenoMac-system, GenoMac-user, and GenoMac-shared
-  # in $GENOMAC_DEVELOPMENT_DIRECTORY.
+  # Makes separate development clones of GenoMac-system, GenoMac-user, GenoMac-shared,
+  # and GenoMac-private in $GENOMAC_DEVELOPMENT_DIRECTORY.
+  #
+  # TODO: Add a --no-private flag to skip cloning GenoMac-private (in case it’s no longer
+  #       used/needed).
   #
   # These development clones are separate from the execution clones at:
   #   ~/.genomac-system
