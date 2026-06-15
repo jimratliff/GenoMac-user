@@ -58,10 +58,6 @@ function subdermis() {
 
   # If user has 'developer' attribute, create ~/Repositories directory to hold clones
   conditionally_create_repositories_directory_for_developers
-  
-  # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user, and
-  # GenoMac-shared at ~/Repositories/Project_GenoMac
-  conditionally_clone_GenoMac_repos_for_development           # scripts/installations/make_development_clones.sh
 
   # Configure 1Password here to make available credentials for later steps
   conditionally_configure_1Password                           # scripts/settings/interactive_configure_1password.sh
@@ -70,6 +66,10 @@ function subdermis() {
   
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
+  
+  # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user,
+  # GenoMac-shared, and GenoMac-private at ~/Repositories/Project_GenoMac
+  conditionally_clone_GenoMac_repos_for_development           # scripts/installations/make_development_clones.sh
 
   # TODOs: conditionally_configure_Obsidian
   conditionally_configure_Obsidian                            # scripts/settings/interactive_configure_obsidian.sh
