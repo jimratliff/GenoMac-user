@@ -74,8 +74,6 @@ GENOMAC_USER_GITCONFIG_OVERRIDE="${GENOMAC_USER_CONFIG}/git/gitconfig-personal"
 GENOMAC_USER_AUXILIARY_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}-auxiliary"
 
 # ~/.genomac-user-auxiliary/gitconfig
-# The GenoMac-user auxiliary directory lives outside the cloned repo to provide a home
-# for files that should not show up as uncommitted changes to GenoMac-user itself
 #GENOMAC_USER_AUXILIARY_DIRECTORY="${GENOMAC_USER_AUXILIARY_DIRECTORY}/gitconfig"
 
 # ~/.genomac-detective
@@ -102,6 +100,8 @@ GENOMAC_USER_BTT_AUTOLOAD_PRESET_PATH="${GENOMAC_USER_BTT_AUTOLOAD_PRESET_DIRECT
 USER_PREFPANE_DIRECTORY="$HOME/Library/PreferencePanes"
 WITCH_PREFPANE_NAME="Witch.prefPane"
 WITCH_PATH_TO_USER_PREFPANE="${USER_PREFPANE_DIRECTORY}/${WITCH_PREFPANE_NAME}"
+
+OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
 
 ############### Environment variables to support the Hypervisor
 #
@@ -152,6 +152,7 @@ export_and_report GMU_SETTINGS_SCRIPTS
 export_and_report GMU_UTILITY_SCRIPTS
 export_and_report META_MODIFIER_CHARS
 export_and_report MODIFIERS_KEYBOARD_NAVIGATION
+export_and_report OBSIDIAN_VAULTS_DIRECTORY
 export_and_report OPTION_CHAR
 export_and_report PERM_DEFAULT_GIT_USER_EMAIL
 export_and_report PERM_DEFAULT_GIT_USER_NAME
