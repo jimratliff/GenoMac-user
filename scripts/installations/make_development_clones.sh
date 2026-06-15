@@ -38,11 +38,7 @@ function make_additional_dev_clones_of_genomac_repos() {
   local local_repo_dir_name
   local local_repo_dir
 
-  report_action_taken "Create local repositories directory, if necessary: ${USER_LOCAL_REPOSITORY_DIRECTORY}"
-  mkdir -p "$USER_LOCAL_REPOSITORY_DIRECTORY" ; success_or_not
-  
-  report_adjust_setting "Set permissions on local repositories directory"
-  chmod 700 "$USER_LOCAL_REPOSITORY_DIRECTORY" ; success_or_not
+  create_repositories_directory_for_developers
   
   report_action_taken "Create GenoMac development directory, if necessary: ${GENOMAC_DEVELOPMENT_DIRECTORY}"
   mkdir -p "$GENOMAC_DEVELOPMENT_DIRECTORY" ; success_or_not
