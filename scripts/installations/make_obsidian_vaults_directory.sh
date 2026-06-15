@@ -1,23 +1,5 @@
 #!/usr/bin/env zsh
 
-function conditionally_create_directory_for_obsidian_vaults() {
-  # Creates directory for Obsidian vaults, if user uses Obsidian.
-  #
-  # Hint: USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
-  #
-  # Doesn’t track (e.g., with a PERM state) whether this directory has been created before because
-  # it’s just as easy to do a `mkdir -p`
-  report_start_phase_standard
-  
-  if test_genomac_user_state "$SESH_OBSIDIAN_USER_WANTS_IT"; then
-    create_directory_for_obsidian_vaults
-  else
-    report "Skipping creation of Obsidian-vaults directory, because this user doesn’t want Obsidian."
-  fi
-  
-  report_end_phase_standard
-}
-
 function create_directory_for_obsidian_vaults() {
   # Creates directory for Obsidian vaults
   #
@@ -32,3 +14,23 @@ function create_directory_for_obsidian_vaults() {
   
   report_end_phase_standard
 }
+
+############### BELOW IS DEPRECATED ###############
+
+# function conditionally_create_directory_for_obsidian_vaults() {
+#   # Creates directory for Obsidian vaults, if user uses Obsidian.
+#   #
+#   # Hint: USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
+#   #
+#   # Doesn’t track (e.g., with a PERM state) whether this directory has been created before because
+#   # it’s just as easy to do a `mkdir -p`
+#   report_start_phase_standard
+#   
+#   if test_genomac_user_state "$SESH_OBSIDIAN_USER_WANTS_IT"; then
+#     create_directory_for_obsidian_vaults
+#   else
+#     report "Skipping creation of Obsidian-vaults directory, because this user doesn’t want Obsidian."
+#   fi
+#   
+#   report_end_phase_standard
+# }
