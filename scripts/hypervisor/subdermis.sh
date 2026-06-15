@@ -12,6 +12,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_helium.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_obsidian.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_screensaver.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_sync_com.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_create_mission_control_spaces.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_git_config_user.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_waterfox_extension_preferences.sh"
@@ -66,6 +67,9 @@ function subdermis() {
   
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
+
+  # TODOs: conditionally_configure_Sync_com
+  conditionally_configure_Sync_com                            # scripts/settings/interactive_configure_sync_com.sh
   
   # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user,
   # GenoMac-shared, and GenoMac-private at ~/Repositories/Project_GenoMac
@@ -84,6 +88,7 @@ function subdermis() {
   
 
   ############### (Further) configure apps that rely upon Dropbox having synced ###############
+  
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
     # BetterTouchTool relies on Dropbox because that’s where its license file is stored
     conditionally_configure_bettertouchtool                   # scripts/settings/set_bettertouchtool_settings.sh
