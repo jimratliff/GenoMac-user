@@ -21,7 +21,7 @@ function interactive_configure_Obsidian() {
   report_warning "The configuration of Obsidian hasn’t been implemented yet!"
   return 0
 
-  create_directory_for_obsidian_vaults   # scripts/installations/make_obsidian_vaults_directory.sh
+  create_directory_for_obsidian_vaults 
 
   report "Time to configure Obsidan! I’ll launch it, and open a window with instructions for next steps"
 
@@ -32,6 +32,21 @@ function interactive_configure_Obsidian() {
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Obsidian_how_to_configure.md" \
     "$BUNDLE_ID_OBSIDIAN" \
     "Follow the instructions in the Quick Look window to log into and configure Obsidian"
+  
+  report_end_phase_standard
+}
+
+function create_directory_for_obsidian_vaults() {
+  # Creates directory for Obsidian vaults
+  #
+  # Hint: USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
+  report_start_phase_standard
+  
+  report_action_taken "Create local directory for Obsidian vaults, if necessary: ${USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY}"
+  mkdir -p "$USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY" ; success_or_not
+  
+  report_adjust_setting "Set permissions on local Obsidian-vaults directory"
+  chmod 755 "$USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY" ; success_or_not
   
   report_end_phase_standard
 }
