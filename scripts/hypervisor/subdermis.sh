@@ -4,6 +4,7 @@
 safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_development_clones.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_repositories_directory_for_developers.sh"
+safe_source "${GMU_INSTALLATION_SCRIPTS}/make_obsidian_vaults_directory.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_ask_initial_questions.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_1password.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_alfred.sh"
@@ -11,7 +12,6 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_dropbox.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_helium.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_screensaver.sh"
-# safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_textexpander.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_create_mission_control_spaces.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_git_config_user.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_waterfox_extension_preferences.sh"
@@ -77,6 +77,7 @@ function subdermis() {
   
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
+  
 
   ############### (Further) configure apps that rely upon Dropbox having synced ###############
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
