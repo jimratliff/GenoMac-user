@@ -42,7 +42,7 @@ function interactive_set_preferences_for_waterfox_extensions() {
     report_action_taken "Skipping configuring Enhanced for YouTube extension for Waterfox,${NEWLINE}because this user doesn’t want it."
   fi
 
-  if test_genomac_user_state "$PERM_RAINDROP_IO_USER_WANTS_IT"; then
+  if test_genomac_user_state "$SESH_RAINDROP_IO_USER_WANTS_IT"; then
     run_if_user_has_not_done \
       "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
       interactive_configure_waterfox_youtube_extension \
