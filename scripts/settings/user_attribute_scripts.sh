@@ -58,8 +58,8 @@ function set_user_preferences_for_attribute() {
 
   if [[ "$is_developer" == "true" ]]; then
     report_action_taken_to_log "Turn on flags for Git and GitHub configuration."
-    set_genomac_user_state "$PERM_USER_WANTS_TO_COMMIT_ON_GITHUB"
-    set_genomac_user_state "$PERM_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
+    set_genomac_user_state "$SESH_USER_WANTS_TO_COMMIT_ON_GITHUB"
+    set_genomac_user_state "$SESH_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
     set_genomac_user_state "$SESH_REPOSITORIES_DIRECTORY_USER_WANTS_IT"
   fi
     
