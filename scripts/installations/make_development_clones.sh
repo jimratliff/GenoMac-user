@@ -50,6 +50,7 @@ function make_additional_dev_clones_of_genomac_repos() {
     "${GENOMAC_SYSTEM_REPO_NAME}:genomac-system"
     "${GENOMAC_USER_REPO_NAME}:genomac-user"
     "${GENOMAC_SHARED_REPO_NAME}:genomac-shared"
+    "${GENOMAC_PRIVATE_REPO_NAME}:genomac-private"
   )
 
   for repo_spec in "${repo_specs[@]}"; do
