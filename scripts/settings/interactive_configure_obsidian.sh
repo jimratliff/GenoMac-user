@@ -17,6 +17,12 @@ function conditionally_configure_Obsidian() {
 
 function interactive_configure_Obsidian() {
   report_start_phase_standard
+  
+  # TODO: I need to go through the configuration process:
+  #       - see what needs to be done,
+  #       - fill in Obsidian_how_to_configure.md
+  #       - Are there any defaults write commands, or other configuration I can do
+  #         programmatically?
 
   report_warning "The configuration of Obsidian hasn’t been implemented yet!"
   return 0
@@ -24,12 +30,10 @@ function interactive_configure_Obsidian() {
   create_directory_for_obsidian_vaults 
 
   report "Time to configure Obsidan! I’ll launch it, and open a window with instructions for next steps"
-
-  ############### TODO: I’ll probably also want to open $USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY
-  #                     by adding --open "$USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY"
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Obsidian_how_to_configure.md" \
+	--open "$USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY" \ 
     "$BUNDLE_ID_OBSIDIAN" \
     "Follow the instructions in the Quick Look window to log into and configure Obsidian"
   
