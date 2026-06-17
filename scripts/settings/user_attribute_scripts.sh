@@ -12,6 +12,10 @@ function set_user_preferences_for_attribute() {
     "chessplayer")
       report_action_taken_to_log "Setting preferences for attribute: chessplayer"
       set_genomac_user_state "$SESH_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"
+
+      # NOTE: SESH_CHESSVISION_AI_USER_WANTS_IT and PERM_CHESSVISION_AI_HAS_BEEN_CONFIGURED are
+      #       not currently used. Configuring Chessvision currently is so light weight that it’s
+      #       not worth carving it out in order to conditionally skip it.
       set_genomac_user_state "$SESH_CHESSVISION_AI_USER_WANTS_IT"
       ;;
     "developer")
