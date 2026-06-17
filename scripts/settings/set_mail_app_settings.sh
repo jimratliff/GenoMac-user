@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 conditionally_configure_mail_app() {
+  # TODO conditionally_configure_mail_app
   report_start_phase_standard
 
   if ! test_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"; then
@@ -23,6 +24,7 @@ function bootstrap_mail_app() {
   # Bootstrap Mail.app
   report_start_phase_standard
 
+  # TODO configure_mail_app_idempotent_settings
   report_warning "NOT YET IMPLEMENTED: bootstrap_mail_app()"
   
   report_end_phase_standard
@@ -32,6 +34,7 @@ function configure_mail_app_idempotent_settings() {
   # Configure Mail.app idempotent settings
   report_start_phase_standard
 
+  # TODO configure_mail_app_idempotent_settings
   report_warning "NOT YET IMPLEMENTED: configure_mail_app_idempotent_settings()"
   
   report_end_phase_standard
