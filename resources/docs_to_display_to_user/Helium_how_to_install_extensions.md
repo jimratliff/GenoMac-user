@@ -22,6 +22,7 @@ additional extensions.
 
 ## Install Chessvision.ai Chess Position Scanner
 - ❑ Go to the [Chessvision.ai Chess Position Scanner Chrome web store page](https://chromewebstore.google.com/detail/chessvisionai-chess-posit/johejpedmdkeiffkdaodgoipdjodhlld)
+- ❑ Click on “Add to Helium”
 
 ## Install Enhancer for YouTube
 - ❑ Go to the [Enhancer for YouTube™ Chrome web store page](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle)
