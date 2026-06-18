@@ -12,7 +12,7 @@ function set_user_preferences_for_attribute() {
     "${USER_ATTRIBUTE_TOUCH_ID_PREFIX}"*)
       # touchid attributes are encoded with a suffix signalling which finger that user
       # is assigned. Thus, we match the attribute name only against its common prefix.
-      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_TOUCH_ID_PREFIX}"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_TOUCH_ID_PREFIX}*"
       set_genomac_user_state "$SESH_TOUCH_ID_USER_WANTS_IT"
       set_SESH_state_for_user_touch_id_choice_from_attribute_name "$attribute_name"
       ;;
