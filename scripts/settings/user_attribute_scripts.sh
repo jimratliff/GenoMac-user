@@ -9,60 +9,60 @@ function set_user_preferences_for_attribute() {
   local is_developer=false
 
   case "$attribute_name" in
-    touchid_*)
+    "${USER_ATTRIBUTE_TOUCH_ID_PREFIX}"*)
       # touchid attributes are encoded with a suffix signalling which finger that user
       # is assigned. Thus, we match the attribute name only against its common prefix.
-      report_action_taken_to_log "Setting preferences for attribute: touchid_"
+      report_action_taken_to_log "Setting preferences for attribute: touchid¶∞§"
       set_genomac_user_state "$SESH_TOUCH_ID_USER_WANTS_IT"
       set_SESH_state_for_user_touch_id_choice_from_attribute_name "$attribute_name"
       ;;
-    "chessplayer")
+    "${USER_ATTRIBUTE_CHESSPLAYER}")
       report_action_taken_to_log "Setting preferences for attribute: chessplayer"
       set_genomac_user_state "$SESH_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"
 
       # NOTE: SESH_CHESSVISION_AI_USER_WANTS_IT and PERM_CHESSVISION_AI_HAS_BEEN_CONFIGURED are
-      #       not currently used. Configuring Chessvision currently is so light weight that it’s
+      #       not currently used. Configuring Chessvision currently is so lightweight that it’s
       #       not worth carving it out in order to conditionally skip it.
       set_genomac_user_state "$SESH_CHESSVISION_AI_USER_WANTS_IT"
       ;;
-    "developer")
+    "${USER_ATTRIBUTE_DEVELOPER}")
       report_action_taken_to_log "Setting preferences for attribute: developer"
       is_developer=true
       ;;
-    "dropbox")
+    "${USER_ATTRIBUTE_DROPBOX}")
       report_action_taken_to_log "Setting preferences for attribute: dropbox"
       set_genomac_user_state "$SESH_DROPBOX_USER_WANTS_IT"
       ;;
-    "emailer")
+    "${USER_ATTRIBUTE_EMAILER}")
       report_action_taken_to_log "Setting preferences for attribute: emailer"
       set_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"
       ;;
-    "genomac-developer")
+    "${USER_ATTRIBUTE_GENOMAC_DEVELOPER}")
       report_action_taken_to_log "Setting preferences for attribute: genomac-developer"
       set_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"
       is_developer=true
       ;;
-    "mac-admin")
+    "${USER_ATTRIBUTE_MAC_ADMIN}")
       report_action_taken_to_log "Setting preferences for attribute: mac-admin"
       set_genomac_user_state "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP"
       ;;
-    "microsoft-word")
+    "${USER_ATTRIBUTE_MICROSOFT_WORD}")
       report_action_taken_to_log "Setting preferences for attribute: microsoft-word"
       set_genomac_user_state "$SESH_MICROSOFT_WORD_USER_WANTS_IT"
       ;;
-    "obsidian-user")
+    "${USER_ATTRIBUTE_OBSIDIAN_USER}")
       report_action_taken_to_log "Setting preferences for attribute: obsidian-user"
       set_genomac_user_state "$SESH_OBSIDIAN_USER_WANTS_IT"
       ;;
-    "raindrop-io")
+    "${USER_ATTRIBUTE_RAINDROP_IO}")
       report_action_taken_to_log "Setting preferences for attribute: raindrop-io"
       set_genomac_user_state "$SESH_RAINDROP_IO_USER_WANTS_IT"
       ;;
-    "sync-com")
+    "${USER_ATTRIBUTE_SYNC_COM}")
       report_action_taken_to_log "Setting preferences for attribute: sync-com"
       set_genomac_user_state "$SESH_SYNC_COM_USER_WANTS_IT"
       ;;
-    "youtube-watcher")
+    "${USER_ATTRIBUTE_YOUTUBE_WATCHER}")
       report_action_taken_to_log "Setting preferences for attribute: youtube-watcher"
       set_genomac_user_state "$SESH_WATERFOX_EXTENSION_YOUTUBE_ENHANCER_USER_WANTS_IT"
       ;;
