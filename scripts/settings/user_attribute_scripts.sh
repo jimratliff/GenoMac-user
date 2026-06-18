@@ -9,9 +9,9 @@ function set_user_preferences_for_attribute() {
   local is_developer=false
 
   case "$attribute_name" in
-    "touchid_*")
+    touchid_*)
       report_action_taken_to_log "Setting preferences for attribute: touchid_"
-      set_SESH_state_for_user_touch_id_choice_from_attribute_name("$attribute_name")
+      set_SESH_state_for_user_touch_id_choice_from_attribute_name "$attribute_name"
       ;;
     "chessplayer")
       report_action_taken_to_log "Setting preferences for attribute: chessplayer"
