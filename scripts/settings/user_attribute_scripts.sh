@@ -12,12 +12,12 @@ function set_user_preferences_for_attribute() {
     "${USER_ATTRIBUTE_TOUCH_ID_PREFIX}"*)
       # touchid attributes are encoded with a suffix signalling which finger that user
       # is assigned. Thus, we match the attribute name only against its common prefix.
-      report_action_taken_to_log "Setting preferences for attribute: touchid¶∞§"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_TOUCH_ID_PREFIX}"
       set_genomac_user_state "$SESH_TOUCH_ID_USER_WANTS_IT"
       set_SESH_state_for_user_touch_id_choice_from_attribute_name "$attribute_name"
       ;;
     "${USER_ATTRIBUTE_CHESSPLAYER}")
-      report_action_taken_to_log "Setting preferences for attribute: chessplayer"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_CHESSPLAYER}"
       set_genomac_user_state "$SESH_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"
 
       # NOTE: SESH_CHESSVISION_AI_USER_WANTS_IT and PERM_CHESSVISION_AI_HAS_BEEN_CONFIGURED are
@@ -26,44 +26,44 @@ function set_user_preferences_for_attribute() {
       set_genomac_user_state "$SESH_CHESSVISION_AI_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_DEVELOPER}")
-      report_action_taken_to_log "Setting preferences for attribute: developer"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_DEVELOPER}"
       is_developer=true
       ;;
     "${USER_ATTRIBUTE_DROPBOX}")
-      report_action_taken_to_log "Setting preferences for attribute: dropbox"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_DROPBOX}"
       set_genomac_user_state "$SESH_DROPBOX_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_EMAILER}")
-      report_action_taken_to_log "Setting preferences for attribute: emailer"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_EMAILER}"
       set_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_GENOMAC_DEVELOPER}")
-      report_action_taken_to_log "Setting preferences for attribute: genomac-developer"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_GENOMAC_DEVELOPER}"
       set_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"
       is_developer=true
       ;;
     "${USER_ATTRIBUTE_MAC_ADMIN}")
-      report_action_taken_to_log "Setting preferences for attribute: mac-admin"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_MAC_ADMIN}"
       set_genomac_user_state "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP"
       ;;
     "${USER_ATTRIBUTE_MICROSOFT_WORD}")
-      report_action_taken_to_log "Setting preferences for attribute: microsoft-word"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_MICROSOFT_WORD}"
       set_genomac_user_state "$SESH_MICROSOFT_WORD_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_OBSIDIAN_USER}")
-      report_action_taken_to_log "Setting preferences for attribute: obsidian-user"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_OBSIDIAN_USER}"
       set_genomac_user_state "$SESH_OBSIDIAN_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_RAINDROP_IO}")
-      report_action_taken_to_log "Setting preferences for attribute: raindrop-io"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_RAINDROP_IO}"
       set_genomac_user_state "$SESH_RAINDROP_IO_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_SYNC_COM}")
-      report_action_taken_to_log "Setting preferences for attribute: sync-com"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_SYNC_COM}"
       set_genomac_user_state "$SESH_SYNC_COM_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_YOUTUBE_WATCHER}")
-      report_action_taken_to_log "Setting preferences for attribute: youtube-watcher"
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_YOUTUBE_WATCHER}"
       set_genomac_user_state "$SESH_WATERFOX_EXTENSION_YOUTUBE_ENHANCER_USER_WANTS_IT"
       ;;
     *)
