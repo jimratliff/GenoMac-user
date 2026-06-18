@@ -41,14 +41,18 @@ function set_git_config_user() {
   # [include]-d by stow_directory/git/.config/git/config
   
   report_start_phase_standard
-  report_action_taken "Write name and email address for this user’s Git config"
-  
+  local email_address
   local user_name
+  
+  report_action_taken "Write name and email address for this user’s Git config"
+
+  
+  report "I’m about to ask you your name and email address to associate with your Git commits."
   user_name="$(interactive_get_git_user_field_value\
                "name"\
 			   "${PERM_DEFAULT_GIT_USER_NAME}")"
 
-  local email_address
+  
   email_address="$(interactive_get_git_user_field_value\
                    "email address"\
 				   "${PERM_DEFAULT_GIT_USER_EMAIL}")"
