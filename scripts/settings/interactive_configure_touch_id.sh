@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 function conditionally_interactive_configure_touch_ID() {
-  # Template for a Zsh function in Project GenoMac
+  # Configure Touch ID if user wants it and if it hasn’t already been configured.
   report_start_phase_standard
 
   if ! test_genomac_user_state "$SESH_TOUCH_ID_USER_WANTS_IT"; then
@@ -67,6 +67,7 @@ function get_touch_id_choice_from_SESH_state_for_touch_id_choice() {
   touch_id_choice="$(nonempty_content_between_delimiters "$state_string" "${GENOMAC_STATE_STRING_DELIMITER_X}" "${GENOMAC_STATE_STRING_DELIMITER_C}" )"
   
   print -- "$touch_id_choice"
+  report_to_log "touch_id_choice: $touch_id_choice"
   
   report_end_phase_standard
 }
