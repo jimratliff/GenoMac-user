@@ -17,20 +17,55 @@ function conditionally_interactive_configure_touch_ID() {
 }
 
 function interactive_configure_touch_ID() {
-  ############### TODO WIP
-  # Template for a Zsh function in Project GenoMac
+  # Interactive configuration of Touch ID, with finger choice as specified in user attribute.
   report_start_phase_standard
+
+  local touch_id_choice
+  touch_id_choice="$(get_touch_id_choice_from_SESH_state_for_touch_id_choice)"
+
+  report "Time to configure Touch ID! You should use the finger designated by “"$touch_id_choice"”.${NEWLINE}I’ll open System Preferences and a window with instructions for next steps."
+
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/Touch_ID_how_to_configure.md" \
+    --no-app \
+    --open "$SYSTEM_SETTINGS_TOUCH_ID_AND_PASSWORD_URL" \
+    "Follow the instructions in the Quick Look window to configure Touch ID for finger “${touch_id_choice}”."
+
   report_end_phase_standard
 }
 
 function get_touch_id_choice_from_SESH_state_for_touch_id_choice() {
-  # Template for a Zsh function in Project GenoMac
-  report_start_phase_standard
-  local sesh_state
-  local touch_id_choice
+  # Returns user’s Touch ID choice from SESH state that encodes that choice.
   
-  sesh_state="${1:?MISSING SESH state}"
-  touch_id_choice="$(nonempty_content_between_delimiters "$sesh_state" "${GENOMAC_STATE_STRING_DELIMITER_X}" "${GENOMAC_STATE_STRING_DELIMITER_C}")"
+  report_start_phase_standard
+  local prefix
+  local state_string
+  local touch_id_choice
+
+  local -i number_of_matching_strings
+
+  local -a matching_state_strings
+  
+  prefix="$SESH_TOUCH_ID_CHOICE_PREFIX"
+  
+  _state_strings_with_prefix "$prefix" "user"
+  matching_state_strings=("${reply[@]}")
+  
+  number_of_matching_strings="${#matching_state_strings[@]}"
+
+  if (( $number_of_matching_strings == 0 )); then
+    report_fail "PROGRAMMER_ERROR: No state file found with prefix: “${prefix}”, even though I expected one."
+    return 1
+  fi
+
+  if (( number_of_matching_strings > 1 )); then
+    report_fail "Multiple Touch ID choices for a single user."
+    return 1
+  fi
+
+  state_string="${matching_state_strings[1]}"
+  touch_id_choice="$(nonempty_content_between_delimiters "$state_string" "${GENOMAC_STATE_STRING_DELIMITER_X}" "${GENOMAC_STATE_STRING_DELIMITER_C}" )"
+  
   print -- "$touch_id_choice"
   
   report_end_phase_standard
