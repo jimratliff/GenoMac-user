@@ -13,6 +13,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_obsidian.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_screensaver.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_sync_com.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_touch_id.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_create_mission_control_spaces.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_git_config_user.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_waterfox_extension_preferences.sh"
@@ -45,11 +46,17 @@ function subdermis() {
   conditionally_interactive_ask_initial_questions             # scripts/settings/interactive_ask_initial_questions.sh
   keep_sudo_alive                                             # GenoMac-shared/scripts/helpers-misc.sh
   interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-misc.sh
+  
   transfer_system_scoped_user_attribute_states_to_user_scoped # scripts/settings/user_attribute_scripts.sh.
   set_user_preferences_from_attributes                        # scripts/settings/user_attribute_scripts.sh
+  
   conditionally_set_git_config_user                           # scripts/settings/interactive_set_git_config_user.sh
   conditionally_stow_dotfiles                                 # scripts/settings/perform_stow_dotfiles.sh
+
+  conditionally_interactive_configure_touch_ID                # scripts/settings/interactive_configure_touch_id.sh
+  
   conditionally_perform_basic_user_level_settings             # scripts/settings/perform_basic_user_level_settings.sh
+  
   conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
   conditionally_interactive_configure_helium_and_extensions   # scripts/settings/interactive_configure_helium.sh
   
@@ -60,7 +67,7 @@ function subdermis() {
   # If user has 'developer' attribute, create ~/Repositories directory to hold clones
   conditionally_create_repositories_directory_for_developers
 
-  # Configure 1Password here to make available credentials for later steps
+  # Configure 1Password here to make credentials available for later steps
   conditionally_configure_1Password                           # scripts/settings/interactive_configure_1password.sh
 
   ############### BELOW THIS POINT: 1Password credentials are available ###############
