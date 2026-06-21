@@ -11,7 +11,7 @@ function conditionally_interactive_configure_touch_ID() {
     
   run_if_user_has_not_done "$PERM_TOUCH_ID_HAS_BEEN_CONFIGURED" \
     interactive_configure_touch_ID \
-    "Skipping configuring Touch ID because this has already been done."
+    "Skipping configuring Touch ID because this has been done in the past."
   
   report_end_phase_standard
 }
@@ -102,14 +102,14 @@ function get_touch_id_choice_from_touchid_user_attribute_name() {
   # Returns (prints to stdout) the user’s choice of Touch ID finger encoded in the
   # 'touchid_R2' (for example) supplied user-attribute name.
   #
-  # HINT: USER_ATTRIBUTE_TOUCH_ID_PREFIX="touchid${GENOMAC_STATE_STRING_DELIMITER_X}"
+  # HINT: USER_ATTRIBUTE_TOUCH_ID_ROOT="touchid${GENOMAC_STATE_STRING_DELIMITER_X}"
   # HINT: GENOMAC_STATE_STRING_DELIMITER_X="¶∞§"
   
   report_start_phase_standard
   local attribute_name="${1:?MISSING attribute_name}"
 
   local touch_id_choice
-  touch_id_choice="${attribute_name#"${USER_ATTRIBUTE_TOUCH_ID_PREFIX}"}"
+  touch_id_choice="${attribute_name#"${USER_ATTRIBUTE_TOUCH_ID_ROOT}"}"
   print -- "$touch_id_choice"
   
   report_end_phase_standard
