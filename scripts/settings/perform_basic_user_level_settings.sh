@@ -1,13 +1,11 @@
 #!/usr/bin/env zsh
 
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_bbedit_settings.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/set_bettertouchtool_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_chatgpt_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_claude_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_iterm_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_omnioutliner_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_plain_text_editor_settings.sh
-safe_source "${GMU_SETTINGS_SCRIPTS}/set_witch_settings.sh"
 
 ############################## BEGIN SCRIPT PROPER ##############################
 
