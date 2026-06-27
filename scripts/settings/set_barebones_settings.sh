@@ -136,5 +136,12 @@ function perform_barebones_user_level_settings() {
   
   # Safari
   set_safari_settings
+
+  ############### VERY SELECTIVE THIRD-PARTY APPLICATION(S)
+  report_action_taken "Begin settings for third-party applications"
+  
+  # Alan.app
+  set_alan_app_settings
+
   report_end_phase_standard
 }
