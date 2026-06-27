@@ -19,6 +19,10 @@ function set_user_preferences_for_attribute() {
       set_genomac_user_state "$SESH_TOUCH_ID_USER_WANTS_IT"
       set_SESH_state_for_user_touch_id_choice_from_attribute_name "$attribute_name"
       ;;
+    "${USER_ATTRIBUTE_BAREBONES}")
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_BAREBONES}"
+      set_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"
+      ;;
     "${USER_ATTRIBUTE_CHESSPLAYER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_CHESSPLAYER}"
       set_genomac_user_state "$SESH_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"
