@@ -22,11 +22,8 @@ function conditionally_perform_basic_third_party_app_settings() {
 }
 
 function perform_basic_third_party_app_settings() {
-
   report_start_phase_standard
-  
   report_action_taken "Begin settings for certain third-party applications"
-  
   
   # BBEdit
   set_bbedit_settings
