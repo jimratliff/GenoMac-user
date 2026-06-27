@@ -8,9 +8,9 @@ function conditionally_implement_waterfox_settings_and_install_extensions() {
 
   report_start_phase_standard
 
+  # See scripts/installations/install_waterfox_extensions.sh for install_waterfox_extensions
   run_if_user_has_not_done \
     "$SESH_WATERFOX_EXTENSIONS_HAVE_BEEN_INSTALLED" \
-	# See scripts/installations/install_waterfox_extensions.sh for install_waterfox_extensions
     install_waterfox_extensions \
     "Skipping installation of Waterfox extensions, because they’ve already been installed this session"
 
