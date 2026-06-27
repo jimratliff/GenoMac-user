@@ -128,9 +128,6 @@ function subdermis() {
 
   conditionally_create_additional_mission_control_spaces      # scripts/settings/interactive_create_mission_control_spaces.sh
   conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
-  
-  unmark_current_user_as_in_need_of_initial_config            # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
-  display_users_to_be_initially_configured                    # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
 
   end_of_subdermis_cleanup
   
