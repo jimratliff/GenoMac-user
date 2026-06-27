@@ -4,6 +4,12 @@ conditionally_configure_mail_app() {
   # TODO conditionally_configure_mail_app
   report_start_phase_standard
 
+  ############### BEGIN: TO BE REMOVED ###############
+  report_warning "The configuration of Mail.app hasn’t been implemented yet!"
+  report_end_phase_standard
+  return 0
+  ############### END: TO BE REMOVED ###############
+
   if ! test_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"; then
     report_action_taken_to_log "Skipping Mail.app configuration, because this user doesn’t want it"
     report_end_phase_standard
