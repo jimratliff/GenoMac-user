@@ -8,6 +8,9 @@
 #
 # See also environment_variables_for_state_enums_script.sh
 
+############### Set verbosity of reporting
+GENOMAC_VERBOSE="true"
+
 #############################################
 #                  Fallbacks when run before dotfiles have been stowed
 : "${XDG_CONFIG_HOME:=$HOME/.config}"
