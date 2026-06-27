@@ -8,7 +8,7 @@ function conditionally_configure_Sync_com() {
       interactive_configure_Sync_com \
       "Skipping configuring Sync.com, because it’s already been configured."
   else
-    "Skipping configuring Sync.com, because this user doesn’t want it."
+    report_to_log "Skipping configuring Sync.com, because this user doesn’t want it."
   fi
   
   report_end_phase_standard
