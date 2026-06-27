@@ -73,7 +73,7 @@ function subdermis() {
   conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
 
   # If user has 'developer' attribute, create ~/Repositories directory to hold clones
-  conditionally_create_repositories_directory_for_developers
+  conditionally_create_repositories_directory_for_developers  # scripts/installations/make_repositories_directory_for_developers.sh
 
   # Configure 1Password here to make credentials available for later steps
   conditionally_configure_1Password                           # scripts/settings/interactive_configure_1password.sh
