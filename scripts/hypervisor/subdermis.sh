@@ -50,13 +50,20 @@ function subdermis() {
   
   transfer_system_scoped_user_attribute_states_to_user_scoped # scripts/settings/user_attribute_scripts.sh.
   set_user_preferences_from_attributes                        # scripts/settings/user_attribute_scripts.sh
+
+  conditionally_perform_barebones_user_level_settings         # scripts/settings/set_barebones_settings.sh
+
+  conditionally_interactive_configure_touch_ID                # scripts/settings/interactive_configure_touch_id.sh
+
+  if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
+    report "User wants only barebones configuration, so I’m aborting here."
+    end_of_subdermis_cleanup
+    report_end_phase_standard
+    return 0
+  fi
   
   conditionally_set_git_config_user                           # scripts/settings/interactive_set_git_config_user.sh
   conditionally_stow_dotfiles                                 # scripts/settings/perform_stow_dotfiles.sh
-
-  conditionally_interactive_configure_touch_ID                # scripts/settings/interactive_configure_touch_id.sh
-  
-  conditionally_perform_basic_user_level_settings             # scripts/settings/perform_basic_user_level_settings.sh
   
   conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
   conditionally_interactive_configure_helium_and_extensions   # scripts/settings/interactive_configure_helium.sh
@@ -94,7 +101,6 @@ function subdermis() {
   # TODOs: conditionally_configure_hiarcs_ce_pro
   conditionally_configure_hiarcs_ce_pro                       # scripts/settings/set_hiarcs_cd_pro_settings.sh
   
-
   ############### (Further) configure apps that rely upon Dropbox having synced ###############
   
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
@@ -119,6 +125,18 @@ function subdermis() {
 
   conditionally_create_additional_mission_control_spaces      # scripts/settings/interactive_create_mission_control_spaces.sh
   conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
+  
+  unmark_current_user_as_in_need_of_initial_config            # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
+  display_users_to_be_initially_configured                    # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
+
+  end_of_subdermis_cleanup
+  
+  report_end_phase_standard
+}
+
+function end_of_subdermis_cleanup() {
+  report_start_phase_standard
+  
   unmark_current_user_as_in_need_of_initial_config            # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
   display_users_to_be_initially_configured                    # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
   
