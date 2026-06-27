@@ -1,5 +1,20 @@
 #!/usr/bin/env zsh
 
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_alan_app_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_app_state_persistence.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_auto_correction_suggestion_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_diskutility_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_finder_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_general_dock_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_general_interface_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_notifications_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_preview_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_safari_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_screen_capture_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_symbolichotkeys.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_terminal_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_trackpad_settings.sh"
+
 ############################## BEGIN SCRIPT PROPER ##############################
 
 function conditionally_perform_barebones_user_level_settings() {
@@ -9,7 +24,7 @@ function conditionally_perform_barebones_user_level_settings() {
     --force-logout \
     "$SESH_BAREBONES_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
     perform_barebones_user_level_settings \
-    "Skipping basic user-level settings, because they’ve already been set this session"
+    "Skipping barebones user-level settings, because they’ve already been set this session"
   
   report_end_phase_standard
 }
