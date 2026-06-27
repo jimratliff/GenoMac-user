@@ -20,9 +20,6 @@ function make_additional_dev_clones_of_genomac_repos() {
   # Makes separate development clones of GenoMac-system, GenoMac-user, GenoMac-shared,
   # and GenoMac-private in $GENOMAC_DEVELOPMENT_DIRECTORY.
   #
-  # TODO: Add a --no-private flag to skip cloning GenoMac-private (in case it’s no longer
-  #       used/needed).
-  #
   # These development clones are separate from the execution clones at:
   #   ~/.genomac-system
   #   ~/.genomac-user
@@ -49,25 +46,33 @@ function make_additional_dev_clones_of_genomac_repos() {
   report_adjust_setting "Set permissions on GenoMac development directory"
   chmod 700 "$GENOMAC_DEVELOPMENT_DIRECTORY" ; success_or_not
 
+  # Uses `:` as delimiter between adjacent elements
   repo_specs=(
-    "${GENOMAC_SYSTEM_REPO_NAME}:genomac-system"
-    "${GENOMAC_USER_REPO_NAME}:genomac-user"
-    "${GENOMAC_SHARED_REPO_NAME}:genomac-shared"
-    "${GENOMAC_PRIVATE_REPO_NAME}:genomac-private"
+    "--public:${GENOMAC_SYSTEM_REPO_NAME}:genomac-system"
+    "--public:${GENOMAC_USER_REPO_NAME}:genomac-user"
+    "--public:${GENOMAC_SHARED_REPO_NAME}:genomac-shared"
+    "--private:${GENOMAC_PRIVATE_REPO_NAME}:genomac-private"
   )
 
   for repo_spec in "${repo_specs[@]}"; do
-    github_repo_name="${repo_spec%%:*}"
-    local_repo_dir_name="${repo_spec#*:}"
+    local -a repo_fields
+    repo_fields=("${(@s/:/)repo_spec}")
+  
+    repo_visibility="${repo_fields[1]}"
+    github_repo_name="${repo_fields[2]}"
+    local_repo_dir_name="${repo_fields[3]}"
     local_repo_dir="${GENOMAC_DEVELOPMENT_DIRECTORY}/${local_repo_dir_name}"
-
-    # See GenoMac-shared/scripts/helpers-git.sh for clone_public_genomac_repo_using_HTTPS
-    clone_public_genomac_repo_using_HTTPS "$github_repo_name" "$local_repo_dir"
-
-    # See GenoMac-shared/scripts/helpers-git.sh for configure_split_remote_URLs_for_public_GitHub_repo_if_cloned
-    configure_split_remote_URLs_for_public_GitHub_repo_if_cloned \
-      "$local_repo_dir" \
-      "$github_repo_name"
+  
+    clone_genomac_repo \
+      "$repo_visibility" \
+      "$github_repo_name" \
+      "$local_repo_dir"
+  
+    if [[ "$repo_visibility" == "--public" ]]; then
+      configure_split_remote_URLs_for_public_GitHub_repo_if_cloned \
+        "$local_repo_dir" \
+        "$github_repo_name"
+    fi
   done
 
   report_end_phase_standard
