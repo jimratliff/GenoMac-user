@@ -106,12 +106,10 @@ function configure_and_verify_1Password_for_SSH_with_GitHub() {
   # Programmatically verify valid SSH configuration
   if ! verify_ssh_agent_configuration_for_GitHub; then
     report_fail "The attempt to configure 1Password to SSH authenticate with GitHub has failed ☹️"
-    report_end_phase_standard
     return 1
   fi
   
   report success "✅ 1Password successfully configured to SSH authenticate with GitHub"
-  
   report_end_phase_standard
 }
 
