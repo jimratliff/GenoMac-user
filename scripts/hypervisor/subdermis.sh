@@ -64,6 +64,8 @@ function subdermis() {
     report_end_phase_standard
     return 0
   fi
+
+  conditionally_perform_basic_third_party_app_settings        # scripts/settings/perform_basic_third_party_app_settings.sh
   
   conditionally_set_git_config_user                           # scripts/settings/interactive_set_git_config_user.sh
   conditionally_stow_dotfiles                                 # scripts/settings/perform_stow_dotfiles.sh
