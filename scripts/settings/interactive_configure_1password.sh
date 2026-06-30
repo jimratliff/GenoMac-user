@@ -144,6 +144,7 @@ function verify_ssh_agent_configuration_for_GitHub() {
   report_action_taken "Testing SSH auth with: ssh -T git@github.com"
   
   ssh_output=$(ssh -T git@github.com 2>&1) || true  # Don't let failure abort script
+  report "Output from SSH auth test: ${ssh_output}"
   
   if [[ "$ssh_output" == *"successfully authenticated"* ]]; then
     print -r -- "${SYMBOL_SUCCESS}SSH authentication with GitHub succeeded"
