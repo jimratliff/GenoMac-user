@@ -1,7 +1,9 @@
 # How to configure 1Password for authentication with GitHub
 
-Make 1Password active.
-
+## Make 1Password active and open its Settings
+- ❑ Make 1Password active. (GenoMac-user will have already launched 1Password).
+- ❑ Open 1Password’s Settings… (⌘,)
+  
 ## Make 1Password persistent (probably already the default)
 (Note: The two checkboxes below may indeed be turned on by default, as desired.)
 - In the 1Password app, turn on two checkboxes to ensure that 1Password’s SSH Agent will be live even if the 1Password app itself is closed.
