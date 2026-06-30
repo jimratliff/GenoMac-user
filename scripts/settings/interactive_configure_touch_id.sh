@@ -6,6 +6,7 @@ function conditionally_interactive_configure_touch_ID() {
 
   if ! test_genomac_user_state "$SESH_TOUCH_ID_USER_WANTS_IT"; then
     report_to_log "Skipping configuring Touch ID because the user doesn’t want it."
+    report_end_phase_standard
     return 0
   fi
     
