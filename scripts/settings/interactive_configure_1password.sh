@@ -48,10 +48,14 @@ function conditionally_configure_1Password() {
   if ! test_genomac_user_state "$SESH_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
     report_action_taken_to_log "Skipping configuring 1Password for SSH with GitHub, because it’s not desired"
   else
-    run_if_user_has_not_done \
-      "$PERM_1PASSWORD_HAS_BEEN_CONFIGURED_FOR_SSH" \
-      configure_and_verify_1Password_for_SSH_with_GitHub \
-      "Skipping SSH configuration of 1Password, because you've done that in the past."
+    if user_home_directory_is_on_startup_volume; then
+      run_if_user_has_not_done \
+        "$PERM_1PASSWORD_HAS_BEEN_CONFIGURED_FOR_SSH" \
+        configure_and_verify_1Password_for_SSH_with_GitHub \
+        "Skipping SSH configuration of 1Password, because you've done that in the past."
+	  else
+	    report_warning "Skipping configuring 1Password for SSH with GitHub, because 1Password isn’t compatible with users on a non-startup volume."
+    fi
   fi
   
   report_end_phase_standard
