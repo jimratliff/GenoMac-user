@@ -41,7 +41,7 @@
 - Several new windows pop up:
   - Frontmost: “Dropbox.app” would like to start syncing.”
     - ❑ Click “OK” (other choice is “Don’t allow”)
-      - (This makes all the other Dropbox dialog box—but not the Finder window—disappear)
+      - (This makes all the other Dropbox dialog boxes—but not the Finder window—disappear)
     - “Set Up Drobox”
       - “Allow Dropbox to sync”
         - “That way, when you add or edit files, those changes will sync across everywhere you access Dropbox.”
