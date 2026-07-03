@@ -45,7 +45,7 @@ function interactive_set_preferences_for_waterfox_extensions() {
   if test_genomac_user_state "$SESH_RAINDROP_IO_USER_WANTS_IT"; then
     run_if_user_has_not_done \
       "$PERM_WATERFOX_EXTENSION_RAINDROPIO_HAS_BEEN_CONFIGURED" \
-      interactive_configure_waterfox_youtube_extension \
+      interactive_configure_waterfox_raindropio_extension \
       "Skipping installing and configuring the Raindrop.io extension for Waterfox,${NEWLINE}because it’s already been configured in the past"
   else
     report_action_taken "Skipping installation and configuration of Raindrop.io extension for Waterfox${NEWLINE}, because this user doesn’t want it."
