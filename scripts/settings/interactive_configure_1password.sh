@@ -13,6 +13,34 @@
 # - 1Password_how_to_configure_for_ssh.md
 # - 1Password_how_to_log_in.md
 
+function onepassword_ssh_agent_unavailable_for_this_user() {
+  # Returns 0 if BOTH:
+  #   (a) 1Password's SSH Agent is still incompatible with relocated home directories, and
+  #   (b) this user's home directory is on a non-startup volume.
+  #
+  # Returns 1 otherwise.
+
+  report_start_phase_standard
+
+  # If the bug has been fixed, the SSH agent is available regardless of
+  # home directory location.
+  if [[ "${ONEPASSWORD_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES}" != "true" ]]; then
+    report_end_phase_standard
+    return 1
+  fi
+
+  # If the user's home directory is on the startup volume, they are not
+  # affected by the bug.
+  if user_home_directory_is_on_startup_volume; then
+    report_end_phase_standard
+    return 1
+  fi
+
+  # Bug still exists and this user's home directory is relocated.
+  report_end_phase_standard
+  return 0
+}
+
 function conditionally_configure_1Password() {
   # At this point, (a) GenoMac-system has installed both 1Password.app and the 1Password-CLI app and 
   # (b) GenoMac-user has deployed dotfiles necessary for the integration of 1Password with GitHub
