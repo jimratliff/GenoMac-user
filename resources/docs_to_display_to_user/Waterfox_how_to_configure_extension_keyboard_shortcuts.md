@@ -33,6 +33,10 @@ Although there are 38 entries, they all default to ❌. No change necessary.
   - NO CHANGE: Remains at ⌃X (at least for now, since this isn’t a familiar workflow)
 - All the remaining items default to ❌, which is fine. No change necessary
 ### Tabs2List (replace one shortcut)
+> [!WARNING]
+> You’ll need to delay changing “Toggle the sidebar” to F2 until after the later step for Tree Style Tab, where the F2 shortcut is removed.
+
+
 - “Toggle the sidebar”
   - ❑ Replace ⌥1 → F2
 - “Activate toolbar button”
