@@ -6,6 +6,15 @@ function conditionally_clone_GenoMac_repos_for_development() {
   report_start_phase_standard
 
   if test_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"; then
+
+    ############### BEGIN: REMOVE AFTER 1PASSWORD SSH AGENT IS FIXED TO WORK WITH USERS ON A NON-STARTUP VOLUME ###############
+    if user_home_directory_is_on_startup_volume; then
+      report_warning "Skipping making dev clones of GenoMac repos, because 1Password isn’t compatible with users on a non-startup volume."
+      report_end_phase_standard
+      return 0
+    fi
+    ############### END: REMOVE AFTER 1PASSWORD SSH AGENT IS FIXED TO WORK WITH USERS ON A NON-STARTUP VOLUME ###############
+
     run_if_user_has_not_done "$PERM_GENOMAC_DEV_CLONES_HAVE_BEEN_CREATED" \
       make_additional_dev_clones_of_genomac_repos \
       "Skipping making development clones of GenoMac repos, because they’ve already been created in the past."
