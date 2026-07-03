@@ -44,10 +44,12 @@ function set_default_browser() {
   # local chosen_browser_id="$BUNDLE_ID_SAFARI"
   local chosen_browser_id="$BUNDLE_ID_WATERFOX"
 
+  ############### BEGIN: REMOVE AFTER 1PASSWORD SSH AGENT IS FIXED TO WORK WITH USERS ON A NON-STARTUP VOLUME ###############
   if ! user_home_directory_is_on_startup_volume; then
     report_fail "default-browser isn’t compatible with user directories that aren’t on the startup volume"
     return 1
   fi
+  ############### END: REMOVE AFTER 1PASSWORD SSH AGENT IS FIXED TO WORK WITH USERS ON A NON-STARTUP VOLUME ###############
   
   report_action_taken "Set default browser to $chosen_browser_id"
   "$path_to_installed_default_browser_utility" --identifier "$chosen_browser_id" ; success_or_not
