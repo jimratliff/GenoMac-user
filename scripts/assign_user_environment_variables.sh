@@ -130,6 +130,9 @@ MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 PERM_DEFAULT_GIT_USER_NAME="PERM_default_git_user_name"
 PERM_DEFAULT_GIT_USER_EMAIL="PERM_default_git_user_email"
 
+############### Flag whether 1Password SSH Agent is still incompatible with users that reside on a non-startup volume
+ONEPASSWORD_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES="true"
+
 # Export environment variables to be available in all subsequent shells
 report_action_taken_to_log "Exporting environment variables specific to GenoMac-user."
 
