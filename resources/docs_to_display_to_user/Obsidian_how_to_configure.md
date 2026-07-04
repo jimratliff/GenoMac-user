@@ -1,10 +1,10 @@
 # How to configure Obsidian
 
+> [!WARNING]
+> This is a TODO! It’s WIP
+
 > [!NOTE]
 > This configuration assumes that you already have a vault that actively uses Obsidian Sync to sync.
-
-> [!WARNING]
-> This is TODO!
 
 > [!NOTE]
 > **Resources**
