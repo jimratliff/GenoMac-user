@@ -151,6 +151,8 @@ function verify_ssh_agent_configuration_for_GitHub() {
     report_error "SSH_AUTH_SOCK is not set. Failed: SSH agent not configured"
     report_end_phase_standard
     return 1
+  else
+    report_to_log "SSH_AUTH_SOCK is set: ${SSH_AUTH_SOCK}"
   fi
   
   # Try to authenticate to GitHub via SSH
@@ -166,12 +168,12 @@ function verify_ssh_agent_configuration_for_GitHub() {
     return 0
   else
     local lines=(
-          "SSH authentication failed. Output:"
-          "${ssh_output}"
-          "${SYMBOL_FAILURE}SSH authentication with GitHub failed"
-        )
+      "SSH authentication failed. Output:"
+      "${ssh_output}"
+      "${SYMBOL_FAILURE}SSH authentication with GitHub failed"
+      )
     local warning_msg="${(F)lines}"  # (F) joins with newlines
-	report_warning "$warning_msg"
+	  report_warning "$warning_msg"
     report_end_phase_standard
     return 1
   fi
