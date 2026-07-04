@@ -11,7 +11,11 @@ function set_default_browser() {
   #          for relocated macOS home directories #23”
   #          https://github.com/macadmins/default-browser/issues/23
   #
-  #          I have forked this repo and applied a conjected fix.
+  #          I have forked this repo and applied a conjectured fix. This has evolved to
+  #          a PR: Use actual home directory for LaunchServices plist#24
+  #          https://github.com/macadmins/default-browser/pull/24
+  #
+  #          As of 7/3/2026, the developer is actively involved in the PR.
   #
   # Relies on the `default-browser` CLI tool by macadmins, available on GitHub but not
   # (as of 1/4/2026) from Homebrew. It is installed by GenoMac-system.
