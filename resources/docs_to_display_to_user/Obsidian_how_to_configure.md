@@ -44,7 +44,7 @@
   - Location
     - Your new vault with be placed in “~/Documents”
     - Use “Browse” button to select `~/Documents/Obsidian_vaults`
-      - The 🚨 has already created this folder for you
+      - The Hypervisor has already created this folder for you
       - The Hypervisor has also already *opened* this folder for you. You can drag this folder’s folder alias icon into the Open/Save dialog box in order to set the correct location.
     - ❑ Click the “Create” button
    
