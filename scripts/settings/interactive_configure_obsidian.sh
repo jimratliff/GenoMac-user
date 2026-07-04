@@ -4,9 +4,9 @@ function conditionally_configure_Obsidian() {
   report_start_phase_standard
 
   ############### BEGIN: TO BE REMOVED ###############
-  report_warning "The configuration of Obsidian hasn’t been implemented yet!"
-  report_end_phase_standard
-  return 0
+  # report_warning "The configuration of Obsidian hasn’t been implemented yet!"
+  # report_end_phase_standard
+  # return 0
   ############### END: TO BE REMOVED ###############
   
   if test_genomac_user_state "$SESH_OBSIDIAN_USER_WANTS_IT"; then
