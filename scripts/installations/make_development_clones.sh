@@ -5,21 +5,20 @@ function conditionally_clone_GenoMac_repos_for_development() {
   # and GenoMac-user for development.
   report_start_phase_standard
 
-  if test_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"; then
-
-    if is_onepassword_ssh_agent_unavailable_for_this_user; then
-      report_warning "Skipping making dev clones of GenoMac repos, because 1Password SSH Agent isn’t compatible with users on a non-startup volume."
-      report_end_phase_standard
-      return 0
-    fi
-
-    run_if_user_has_not_done "$PERM_GENOMAC_DEV_CLONES_HAVE_BEEN_CREATED" \
-      make_additional_dev_clones_of_genomac_repos \
-      "Skipping making development clones of GenoMac repos, because they’ve already been created in the past."
-  else
+  if ! test_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"; then
     report_to_log "Skipping making additional development clones of GenoMac repos,${NEWLINE}because user doesn’t want to develop Project GenoMac."
   fi
-  
+
+  if is_onepassword_ssh_agent_unavailable_for_this_user; then
+    report_warning "Skipping making dev clones of GenoMac repos, because 1Password SSH Agent isn’t compatible with users on a non-startup volume."
+    report_end_phase_standard
+    return 0
+  fi
+
+  run_if_user_has_not_done "$PERM_GENOMAC_DEV_CLONES_HAVE_BEEN_CREATED" \
+    make_additional_dev_clones_of_genomac_repos \
+    "Skipping making development clones of GenoMac repos, because they’ve already been created in the past."
+    
   report_end_phase_standard
 }
 
@@ -82,8 +81,8 @@ function make_additional_dev_clones_of_genomac_repos() {
   
     if [[ "$repo_visibility" == "--public" ]]; then
       configure_split_remote_URLs_for_public_GitHub_repo_if_cloned \
-        "$local_repo_dir" \
-        "$github_repo_name"
+      "$local_repo_dir" \
+      "$github_repo_name"
     fi
   done
 
