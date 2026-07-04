@@ -3,6 +3,11 @@
 > [!WARNING]
 > This is a TODO! It’s WIP
 
+> [!WARNING]
+> Do **NOT** plunge ahead with the offered configuration Wizard!
+> 
+> It tells you to sync before adjusting Selective Sync settings, and that’s wrong!
+
 > [!NOTE]
 > This configuration assumes that you already have a vault that actively uses Obsidian Sync to sync.
 
@@ -39,21 +44,48 @@
   - Location
     - Your new vault with be placed in “~/Documents”
     - Use “Browse” button to select `~/Documents/Obsidian_vaults`
-      - The Hypervisor has already created this folder for you
+      - The 🚨 has already created this folder for you
       - The Hypervisor has also already *opened* this folder for you. You can drag this folder’s folder alias icon into the Open/Save dialog box in order to set the correct location.
     - ❑ Click the “Create” button
    
-## Unlock your remote vault
+## Unlock your remote vault but… do NOT start syncing
 - If your remote vault is encrypted, you’ll see a dialog box: “The remote vault ‘my vault’ is currently encrypted. Enter your password to unlock.
 - ❑ Enter the encryption password in the “Encryption password” text field
   - This password is stored in the “Obsidian Sync encryption passwords” 1Password item
 - ❑ Click the “Unlock vault” button
-- New dialog box: “Setup connection”
+- You’ll see a new dialog box: “Setup connection”
   - “You’re now connected to ‘my vault’
   - There are two buttons
     - “Manage excluded folders”
     - “Start syncing”
-  - ❑ Click the “Start syncing” button
+- **🚨🚧🛑 Whoa! Stop! Do not click “Start syncing” yet! 🛑🚧🚨**
+- **Close (or dismiss) the “Setup connection” dialog**
+
+## Adjust Obsidian Sync settings before actually starting the sync
+- ❑ Obsidian » Settings » Sync
+  - **Device name**
+    - ❑ Add a device name
+      - Use both the name of the Mac *and* the user’s name
+  - **Selective sync**
+    - ❑ Say ✅ to each of
+      - ❑ Sync images
+      - ❑ Sync audio
+      - ❑ Sync videos
+      - ❑ Sync PDFs
+      - ❑ Sync all other types
+    - **Vault configuration sync**
+      - ❑ Say ✅ to each of
+        - ❑ Main settings
+        - ❑ Appearance settings
+        - ❑ Themes and snippets
+        - ❑ Hotkeys
+        - ❑ Active core plugin list
+        - ❑ Core plugin settings
+        - ❑ Active community plugin list
+        - ❑ Installed community plugins
+- ❑ If you made any settings, restart Obsidian completely.
+- ❑ Once Obsidian has restarted, return to Settings » Sync.
+  - ❑ **TODO DOCUMENT: How to turn on sync?**
  
 ## Turn on community plugins and install desired community plugins
 - ❑ Settings » Community plugins
