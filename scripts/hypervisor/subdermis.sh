@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
 # Source required files
-safe_source "${GMU_HYPERVISOR_SCRIPTS}/helpers.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_development_clones.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_repositories_directory_for_developers.sh"
