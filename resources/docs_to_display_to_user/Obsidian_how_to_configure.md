@@ -6,7 +6,8 @@
 > [!WARNING]
 > This is TODO!
 
-> [!NOTE] Resources
+> [!NOTE]
+> **Resources**
 > - [Obsidian.md/account](https://obsidian.md/account/)
 > - “[Set up Obsidian Sync](https://obsidian.md/help/sync/setup),” Obsidian Help.
 
