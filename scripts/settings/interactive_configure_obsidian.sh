@@ -24,13 +24,11 @@ function interactive_configure_Obsidian() {
   # TODO: I need to go through the configuration process:
   #       - see what needs to be done,
   #       - fill in Obsidian_how_to_configure.md
-  #       - Are there any defaults write commands, or other configuration I can do
-  #         programmatically?
 
   ############### BEGIN: TO BE REMOVED ###############
-  report_warning "The configuration of Obsidian hasn’t been implemented yet!"
-  report_end_phase_standard
-  return 0
+  # report_warning "The configuration of Obsidian hasn’t been implemented yet!"
+  # report_end_phase_standard
+  # return 0
   ############### END: TO BE REMOVED ###############
 
   create_directory_for_obsidian_vaults 
@@ -52,10 +50,10 @@ function create_directory_for_obsidian_vaults() {
   # Hint: USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
   report_start_phase_standard
   
-  report_action_taken "Create local directory for Obsidian vaults, if necessary: ${USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY}"
+  report_action_taken_to_log "Create local directory for Obsidian vaults, if necessary: ${USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY}"
   mkdir -p "$USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY" ; success_or_not
   
-  report_adjust_setting "Set permissions on local Obsidian-vaults directory"
+  report_action_taken_to_log "Set permissions on local Obsidian-vaults directory"
   chmod 755 "$USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY" ; success_or_not
   
   report_end_phase_standard
