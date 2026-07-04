@@ -22,8 +22,6 @@ function conditionally_configure_1Password() {
   # users want to sign into their 1Password account and basically configure the 1Password app.
   #
   # However, each user can choose whether to go to the extra effort to configure 1Password’s SSH agent.
-  # The decision to configure 1Password’s SSH agent is expressed via either of the user attributes
-  # 'mac-admin' or 'developer'.
   
   report_start_phase_standard
 
@@ -40,6 +38,12 @@ function conditionally_configure_1Password() {
     "Skipping basic configuration of 1Password, because you've done that in the past."
 
   # Conditionally prompt user to add nonstandard browsers for 1Password
+  run_if_user_has_not_done \
+    "$PERM_1PASSWORD_NONSTANDARD_BROWSERS_HAVE_BEEN_CONFIGURED" \
+    interactive_permit_1password_use_nonstandard_browsers \
+    "Skipping adding nonstandard browsers for 1Password, because you've done that in the past."
+
+  # Conditionally prompt user to configure SSH settings for use with GitHub
   conditionally_prompt_user_to_configure_SSH_settings_for_GitHub
   
   report_end_phase_standard
