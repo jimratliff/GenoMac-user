@@ -15,6 +15,34 @@
 - ❑ Make Obsidian the active app. (The Hypervisor should have launched Obsidian for you already.)
 
 ## Log in to your Obsidian account
+- Assuming this is your first launch of Obsidian for this user, you’ll see four choices:
+  - “Create new vault”
+    - “Create a new Obsidian vault under a folder”
+    - Button: “Create”
+  - “Open folder as vault”
+    - “Choose an existing folder of Markdown files”
+    - Button: “Open”
+  - “Open vault from Obsidian Sync”
+    - “Set up a synced vault with existing remote vault”
+    - Button: “Sign in”
+- ❑ Click the “Sign in” button
+  - ❑ Log in with email/password from your “Obsidian Sync” 1Password item (*not* Obsidian *Forum*)
+- You’ll see a new dialog box that presents a list of (possibly more than one) synced vaults
+  - ❑ Click the “Connect” button to the right of the vault you want to open
+- You’ll see a new dialog box that says “Create synced local vault for ‘«name of vault»’”
+  - Vault name
+    - This is prepopulated with the original name of the vault
+    - “Pick a name for your awesome vault”
+    - ❑ Leave the prepopulated name alone!
+  - Location
+    - Your new vault with be placed in “~/Documents”
+    - Use “Browse” button to select `~/Documents/Obsidian_vaults`
+      - The Hypervisor has already created this folder for you
+      - The Hypervisor has also already *opened* this folder for you. You can drag this folder’s folder alias icon into the Open/Save dialog box in order to set the correct location.
+     
+## ############### TEMPORARY HOLDING PLACE FOR OLD, POSSIBLY OBSOLETE INSTRUCTIONS
+
+## Log in to your Obsidian account
 - In Obsidian, open **Settings**
   - In the left sidebar, select “Settings ⚙️” or
   - Use the Command palette, by typing ⌘P (and then what❓❓❓)
