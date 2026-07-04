@@ -27,6 +27,8 @@
     - Button: “Sign in”
 - ❑ Click the “Sign in” button
   - ❑ Log in with email/password from your “Obsidian Sync” 1Password item (*not* Obsidian *Forum*)
+ 
+## Sync your remote vault to its desired local location
 - You’ll see a new dialog box that presents a list of (possibly more than one) synced vaults
   - ❑ Click the “Connect” button to the right of the vault you want to open
 - You’ll see a new dialog box that says “Create synced local vault for ‘«name of vault»’”
@@ -39,6 +41,26 @@
     - Use “Browse” button to select `~/Documents/Obsidian_vaults`
       - The Hypervisor has already created this folder for you
       - The Hypervisor has also already *opened* this folder for you. You can drag this folder’s folder alias icon into the Open/Save dialog box in order to set the correct location.
+    - ❑ Click the “Create” button
+   
+## Unlock your remote vault
+- If your remote vault is encrypted, you’ll see a dialog box: “The remote vault ‘my vault’ is currently encrypted. Enter your password to unlock.
+- ❑ Enter the encryption password in the “Encryption password” text field
+  - This password is stored in the “Obsidian Sync encryption passwords” 1Password item
+- ❑ Click the “Unlock vault” button
+- New dialog box: “Setup connection”
+  - “You’re now connected to ‘my vault’
+  - There are two buttons
+    - “Manage excluded folders”
+    - “Start syncing”
+  - ❑ Click the “Start syncing” button
+ 
+## Turn on community plugins and install desired community plugins
+- ❑ Settings » Community plugins
+- ❑ Click the “Turn on community plugins”
+
+############### TODO: Need to add installing community plugins
+
      
 ## ############### TEMPORARY HOLDING PLACE FOR OLD, POSSIBLY OBSOLETE INSTRUCTIONS
 
