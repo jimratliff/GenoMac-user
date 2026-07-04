@@ -13,34 +13,6 @@
 # - 1Password_how_to_configure_for_ssh.md
 # - 1Password_how_to_log_in.md
 
-function onepassword_ssh_agent_unavailable_for_this_user() {
-  # Returns 0 if BOTH:
-  #   (a) 1Password's SSH Agent is still incompatible with relocated home directories, and
-  #   (b) this user's home directory is on a non-startup volume.
-  #
-  # Returns 1 otherwise.
-
-  report_start_phase_standard
-
-  # If the bug has been fixed, the SSH agent is available regardless of
-  # home directory location.
-  if [[ "${ONEPASSWORD_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES}" != "true" ]]; then
-    report_end_phase_standard
-    return 1
-  fi
-
-  # If the user's home directory is on the startup volume, they are not
-  # affected by the bug.
-  if user_home_directory_is_on_startup_volume; then
-    report_end_phase_standard
-    return 1
-  fi
-
-  # Bug still exists and this user's home directory is relocated.
-  report_end_phase_standard
-  return 0
-}
-
 function conditionally_configure_1Password() {
   # At this point, (a) GenoMac-system has installed both 1Password.app and the 1Password-CLI app and 
   # (b) GenoMac-user has deployed dotfiles necessary for the integration of 1Password with GitHub
@@ -56,7 +28,8 @@ function conditionally_configure_1Password() {
   report_start_phase_standard
 
   # Conditionally prompt user to authenticate their 1Password account in the 1Password app on the Mac
-  run_if_user_has_not_done "$PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
+  run_if_user_has_not_done \
+    "$PERM_1PASSWORD_HAS_BEEN_AUTHENTICATED" \
     interactive_authenticate_1Password \
     "Skipping signing into 1Password, because you’ve signed into it in the past"
 
@@ -67,27 +40,31 @@ function conditionally_configure_1Password() {
     "Skipping basic configuration of 1Password, because you've done that in the past."
 
   # Conditionally prompt user to add nonstandard browsers for 1Password
-  run_if_user_has_not_done \
-    "$PERM_1PASSWORD_NONSTANDARD_BROWSERS_HAVE_BEEN_CONFIGURED" \
-    interactive_permit_1password_use_nonstandard_browsers \
-    "Skipping adding nonstandard browsers for 1Password, because you've done that in the past."
+  conditionally_prompt_user_to_configure_SSH_settings_for_GitHub
+  
+  report_end_phase_standard
+}
 
-  # Conditionally prompt user to configure SSH settings for use with GitHub
+function conditionally_prompt_user_to_configure_SSH_settings_for_GitHub() {
+  report_start_phase_standard
+
   if ! test_genomac_user_state "$SESH_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
     report_action_taken_to_log "Skipping configuring 1Password for SSH with GitHub, because it’s not desired"
-  else
-    ############### BEGIN: REFACTOR AFTER 1PASSWORD SSH AGENT IS FIXED TO WORK WITH USERS ON A NON-STARTUP VOLUME ###############
-    if user_home_directory_is_on_startup_volume; then
-      run_if_user_has_not_done \
-        "$PERM_1PASSWORD_HAS_BEEN_CONFIGURED_FOR_SSH" \
-        configure_and_verify_1Password_for_SSH_with_GitHub \
-        "Skipping SSH configuration of 1Password, because you've done that in the past."
-	  else
-	    report_warning "Skipping configuring 1Password for SSH with GitHub, because 1Password isn’t compatible with users on a non-startup volume."
-    fi
-	############### END: REFACTOR AFTER 1PASSWORD SSH AGENT IS FIXED TO WORK WITH USERS ON A NON-STARTUP VOLUME ###############
+    report_end_phase_standard
+	  return 0
+  fi
+
+  if is_onepassword_ssh_agent_unavailable_for_this_user; then
+    report_warning "Skipping configuring 1Password for SSH with GitHub, because 1Password isn’t compatible with users on a non-startup volume."
+    report_end_phase_standard
+    return 0
   fi
   
+  run_if_user_has_not_done \
+    "$PERM_1PASSWORD_HAS_BEEN_CONFIGURED_FOR_SSH" \
+    configure_and_verify_1Password_for_SSH_with_GitHub \
+    "Skipping SSH configuration of 1Password, because you've done that in the past."
+    
   report_end_phase_standard
 }
 
