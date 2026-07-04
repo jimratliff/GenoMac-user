@@ -37,7 +37,7 @@ function interactive_configure_Obsidian() {
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Obsidian_how_to_configure.md" \
-	--open "$USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY" \ 
+	--open "$USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY" \
     "$BUNDLE_ID_OBSIDIAN" \
     "Follow the instructions in the Quick Look window to log into and configure Obsidian"
   
