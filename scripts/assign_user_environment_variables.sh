@@ -135,7 +135,7 @@ ONEPASSWORD_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES="true"
 DEFAULT_BROWSER_UTILITY_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES="true"
 
 # Export environment variables to be available in all subsequent shells
-report_action_taken_to_log "Exporting environment variables specific to GenoMac-user."
+# report_action_taken_to_log "Exporting environment variables specific to GenoMac-user."
 
 # export_and_report COMMAND_CHAR
 # export_and_report CONTROL_CHAR
