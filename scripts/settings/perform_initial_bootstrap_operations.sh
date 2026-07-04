@@ -49,12 +49,12 @@ function conditionally_perform_initial_bootstrap_operations() {
   # Set default browser
   # This operation is bootstrap only because mystertiously it takes a long time to exectute,
   # and is therefore too costly to perform every time the Hypervisor is run.
-  if user_home_directory_is_on_startup_volume; then
+  if ! is_default_browser_utility_unavailable_for_this_user; then
     run_if_user_has_not_done "$PERM_DEFAULT_BROWSER_HAS_BEEN_SET" \
       set_default_browser \
       "Skipping setting default browser, because this was set in the past"
   else
-    report_warning "Skipping setting default-browser because not compatible with users whose home directories aren’t on startup volume."
+    report_warning "Skipping setting default-browser because this method isn’t compatible with users whose home directories aren’t on startup volume."
   fi
 
   # Set default apps to open certain types of documents
