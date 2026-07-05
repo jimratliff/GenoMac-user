@@ -85,9 +85,8 @@
         - ❑ Installed community plugins (This was OFF by default)
 - ❑ If you made any settings, restart Obsidian completely.
 - ❑ Once Obsidian has restarted, return to Settings » Sync.
-  - ❑ **TODO DOCUMENT: How to turn on sync?**
-  - Still UP IN THE AIR. Trying again.
-
+  - Next to “Sync status” (“Obsidian Sync is currently paused”), you’ll see a “Resume” button
+    - ❑ Click the “Resume” button.
 
      
 ## ############### TEMPORARY HOLDING PLACE FOR OLD, POSSIBLY OBSOLETE INSTRUCTIONS
