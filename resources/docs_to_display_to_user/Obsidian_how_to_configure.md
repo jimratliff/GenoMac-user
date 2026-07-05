@@ -72,7 +72,7 @@
       - ❑ Sync audio
       - ❑ Sync videos
       - ❑ Sync PDFs
-      - ❑ Sync all other types
+      - ❑ Sync all other types (only this one was OFF by default)
     - **Vault configuration sync**
       - ❑ Say ✅ to each of
         - ❑ Main settings
@@ -81,17 +81,13 @@
         - ❑ Hotkeys
         - ❑ Active core plugin list
         - ❑ Core plugin settings
-        - ❑ Active community plugin list
-        - ❑ Installed community plugins
+        - ❑ Active community plugin list (This was OFF by default)
+        - ❑ Installed community plugins (This was OFF by default)
 - ❑ If you made any settings, restart Obsidian completely.
 - ❑ Once Obsidian has restarted, return to Settings » Sync.
   - ❑ **TODO DOCUMENT: How to turn on sync?**
- 
-## Turn on community plugins and install desired community plugins
-- ❑ Settings » Community plugins
-- ❑ Click the “Turn on community plugins”
+  - Still UP IN THE AIR. Trying again.
 
-############### TODO: Need to add installing community plugins
 
      
 ## ############### TEMPORARY HOLDING PLACE FOR OLD, POSSIBLY OBSOLETE INSTRUCTIONS
