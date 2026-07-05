@@ -38,6 +38,8 @@
 
 ## Log in to your Obsidian account
 - Assuming this is your first launch of Obsidian for this user, you’ll see four choices:
+  - “Quick start”
+    - **Don’t do this!**”
   - “Create new vault”
     - “Create a new Obsidian vault under a folder”
     - Button: “Create”
