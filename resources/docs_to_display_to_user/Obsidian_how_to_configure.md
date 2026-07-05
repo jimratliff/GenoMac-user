@@ -1,14 +1,14 @@
 # How to configure Obsidian
 
 ## Table of contents
-- [Launch Obsidian]()
-- [Log in to your Obsidian account]()
-- [Specify (a) the remote vault you want to sync locally and (b) its desired local location]()
-- [Unlock your remote vault but… do NOT start syncing]()
-- [Adjust Obsidian Sync settings]()
-- [Restart Obsidian, and return to Obsidian » Settings]()
-  - [Resume sync]()
-  - [Enable community plugs]()
+- [Launch Obsidian](launch-obsidian)
+- [Log in to your Obsidian account](log-in-to-your-obsidian-account)
+- [specify-the-remote-vault-you-want-to-sync-locally-and-its-desired-local-location]()
+- [Unlock your remote vault but do NOT start syncing](unlock-your-remote-vault-but-do-not-start-syncing)
+- [Adjust Obsidian Sync settings](adjust-obsidian-sync-settings)
+- [Restart Obsidian, and return to Obsidian » Settings](restart-obsidian,-and-return-to-obsidian-settings)
+  - [Resume sync](resume-sync)
+  - [Enable community plugs](enable-community-plugs)
 
 > [!WARNING]
 > This is a TODO! It’s WIP
@@ -45,7 +45,7 @@
 - ❑ Click the “Sign in” button
   - ❑ Log in with email/password from your “Obsidian Sync” 1Password item (*not* Obsidian *Forum*)
  
-## Specify (a) the remote vault you want to sync locally and (b) its desired local location
+## Specify the remote vault you want to sync locally and its desired local location
 - You’ll see a new dialog box that presents a list of (possibly more than one) your synced vaults
   - ❑ Click the “Connect” button to the right of the vault you want to open
 - You’ll see a new dialog box that says “Create synced local vault for ‘«name of vault»’”
@@ -60,7 +60,7 @@
       - The Hypervisor has also already *opened* this folder for you. You can drag this folder’s folder alias icon into the Open/Save dialog box in order to set the correct location.
     - ❑ Click the “Create” button
    
-## Unlock your remote vault but… do NOT start syncing
+## Unlock your remote vault but do NOT start syncing
 - If your remote vault is encrypted, you’ll see a dialog box: “The remote vault ‘my vault’ is currently encrypted. Enter your password to unlock.”
 - ❑ Enter the encryption password in the “Encryption password” text field
   - (You can find this password stored in the “Obsidian Sync encryption passwords” 1Password item.)
