@@ -33,8 +33,8 @@
 - ❑ Click the “Sign in” button
   - ❑ Log in with email/password from your “Obsidian Sync” 1Password item (*not* Obsidian *Forum*)
  
-## Sync your remote vault to its desired local location
-- You’ll see a new dialog box that presents a list of (possibly more than one) synced vaults
+## Specify (a) the remote vault you want to sync locally and (b) its desired local location
+- You’ll see a new dialog box that presents a list of (possibly more than one) your synced vaults
   - ❑ Click the “Connect” button to the right of the vault you want to open
 - You’ll see a new dialog box that says “Create synced local vault for ‘«name of vault»’”
   - Vault name
@@ -42,16 +42,16 @@
     - “Pick a name for your awesome vault”
     - ❑ Leave the prepopulated name alone!
   - Location
-    - Your new vault with be placed in “~/Documents”
-    - Use “Browse” button to select `~/Documents/Obsidian_vaults`
+    - “Your new vault with be placed in ‘~/Documents’”
+    - ❑ Use “Browse” button to select `~/Documents/Obsidian_vaults`
       - The Hypervisor has already created this folder for you
       - The Hypervisor has also already *opened* this folder for you. You can drag this folder’s folder alias icon into the Open/Save dialog box in order to set the correct location.
     - ❑ Click the “Create” button
    
 ## Unlock your remote vault but… do NOT start syncing
-- If your remote vault is encrypted, you’ll see a dialog box: “The remote vault ‘my vault’ is currently encrypted. Enter your password to unlock.
+- If your remote vault is encrypted, you’ll see a dialog box: “The remote vault ‘my vault’ is currently encrypted. Enter your password to unlock.”
 - ❑ Enter the encryption password in the “Encryption password” text field
-  - This password is stored in the “Obsidian Sync encryption passwords” 1Password item
+  - (You can find this password stored in the “Obsidian Sync encryption passwords” 1Password item.)
 - ❑ Click the “Unlock vault” button
 - You’ll see a new dialog box: “Setup connection”
   - “You’re now connected to ‘my vault’
@@ -61,10 +61,10 @@
 - **🚨🚧🛑 Whoa! Stop! Do not click “Start syncing” yet! 🛑🚧🚨**
 - **Close (or dismiss) the “Setup connection” dialog**
 
-## Adjust Obsidian Sync settings before actually starting the sync
-- ❑ Obsidian » Settings » Sync
+## Adjust Obsidian Sync settings
+- ❑ Obsidian » Settings » Core plugins » Sync
   - **Device name**
-    - ❑ Add a device name
+    - ❑ Add a device name to distinguish this local clone from others
       - Use both the name of the Mac *and* the user’s name
   - **Selective sync**
     - ❑ Say ✅ to each of
@@ -73,20 +73,54 @@
       - ❑ Sync videos
       - ❑ Sync PDFs
       - ❑ Sync all other types (only this one was OFF by default)
-    - **Vault configuration sync**
-      - ❑ Say ✅ to each of
-        - ❑ Main settings
-        - ❑ Appearance settings
-        - ❑ Themes and snippets
-        - ❑ Hotkeys
-        - ❑ Active core plugin list
-        - ❑ Core plugin settings
-        - ❑ Active community plugin list (This was OFF by default)
-        - ❑ Installed community plugins (This was OFF by default)
+  - **Vault configuration sync**
+    - ❑ Say ✅ to each of
+      - ❑ Main settings
+      - ❑ Appearance settings
+      - ❑ Themes and snippets
+      - ❑ Hotkeys
+      - ❑ Active core plugin list
+      - ❑ Core plugin settings
+      - ❑ Active community plugin list (This was OFF by default)
+      - ❑ Installed community plugins (This was OFF by default)
+     
+## Restart Obsidian, and return to Obsidian » Settings
 - ❑ If you made any settings, restart Obsidian completely.
-- ❑ Once Obsidian has restarted, return to Settings » Sync.
+- ❑ Once Obsidian has restarted, return to Settings
+- ❑ Go to Settings » Core plugins » Sync
   - Next to “Sync status” (“Obsidian Sync is currently paused”), you’ll see a “Resume” button
+  - ############### TODO: Confirm that “Resume” is the phrase that appears in straight-from-pristine case ###############
     - ❑ Click the “Resume” button.
+- ❑ Go to Settings » Options » Community plugins
+  - ❑ Enable community plugins ############### TODO: Get the exact phraseology ###############
+    - It will appear like there aren’t any to show
+  - ❑ Hit the reload icon “↺”
+    - This will cause the list of your set of community plugins to be displayed, each in disabled state
+- ❑ Iterate through the list of selected community plugins, and enable each one
+  - ❑ Auto Template Trigger
+    - (Numeroflip) Automatically apply or prompt for a template when creating a note. Supports assigning templates to folders.
+  - ❑ Code Styler
+    - (Mayuran Visakan) Style and customize codeblocks and inline code in both editing mode and reading mode.
+  - ❑ Dataview
+    - (Michael Brenan) Complex data views for the data-obsessed.
+  - ❑ Footnote Shortcut
+    - (Alexis Rondeau, Micha Brugger, Jason Qin) Insert and write footnotes faster.
+  - ❑ Home tab
+    - (Renso) A browser-like search tab for your local files.
+  - ❑ Importer
+    - Import data from Notion, Apple Notes, HTML files, and more.
+  - ❑ Paste URL into selection
+    - Paste URL “into” selected text.
+  - ❑ Recent Files
+    - (Tony Grosinger) List files by most recently opened.
+  - ❑ Regex Find/Replace
+    - (Martin Eder) Find and replace text using regular expressions
+  - ❑ Tag Wrangler
+    - (PJ Eby) Rename, merge, toggle, and search tags from the tags view.
+  - ❑ TagFolder
+    - (vorotamoroz) Show tags as folders.
+  - ❑ Workspaces Plug
+    - (NothingIsLost and Johnny) Quickly switch and manage workspaces.
 
      
 ## ############### TEMPORARY HOLDING PLACE FOR OLD, POSSIBLY OBSOLETE INSTRUCTIONS
