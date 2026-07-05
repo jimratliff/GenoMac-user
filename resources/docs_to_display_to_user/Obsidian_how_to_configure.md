@@ -108,6 +108,68 @@
     - ❑ Click the “Resume” button.
    
 ### Enable selected core plugins
+- ❑ Go to Settings » Options » Core plugins
+- ❑ Iterate through the list of core plugins, and enable selected ones
+  - ❑ Audio recorder
+    - Record audio notes and save them as attachments.
+  - ❑ Backlinks
+    - Show links from other files to the current file. Backlinks can be shown in a separate view or at the bottom.
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
+  - ❑ Name
+    - Description
    
 ### Enable selected community plugins
 - ❑ Go to Settings » Options » Community plugins
