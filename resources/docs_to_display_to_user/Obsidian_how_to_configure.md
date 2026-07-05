@@ -29,6 +29,10 @@
 > - [Obsidian.md/account](https://obsidian.md/account/)
 > - “[Set up Obsidian Sync](https://obsidian.md/help/sync/setup),” Obsidian Help.
 
+## Context
+- Assumes your vault is already synced with Obsidian Sync, and that remote vault will be the source for your local, synced copy.
+- This guarantees
+
 ## Launch Obsidian
 - ❑ Make Obsidian the active app. (The Hypervisor should have launched Obsidian for you already.)
 
@@ -110,66 +114,74 @@
 ### Enable selected core plugins
 - ❑ Go to Settings » Options » Core plugins
 - ❑ Iterate through the list of core plugins, and enable selected ones
-  - ❑ Audio recorder
+  - ❌ Audio recorder
     - Record audio notes and save them as attachments.
-  - ❑ Backlinks
+  - ✅ Backlinks
     - Show links from other files to the current file. Backlinks can be shown in a separate view or at the bottom.
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
-  - ❑ Name
-    - Description
+    - Options
+      - ✅ Show backlinks at the bottom of the note
+        - Make backlinks visible in new tabs by default.
+  - ✅ Bases
+    - Create custom views that let you edit, sort, and filter files using their properties.
+  - ✅ Bookmarks
+    - Save shortcuts to files, searches, headings and graphs
+  - ❌ Canvas
+    - Arrange and collect notes on an infinite canvas.
+  - ✅ Command palette
+    - Use ⌘P and begin typing to invoke a command.
+    - Hotkey
+      - Command palette: Open command palette: ⌘P
+    - Options
+      - ✅ Pinned commands
+        - ✅ Toggle blockquote
+  - ❌ Daily notes
+    - Create or open today’s daily note.
+  - ✅ File recovery
+    - Restore recent snapshots to recover from accidental data loss. Snaps are only saved for Markdown files.
+  - ✅ Files
+    - Browse the files and folders in your vault.
+  - ✅ Footnotes view
+    - Show a list of footnotes from the current note.
+  - ❌ Format converter
+    - Convert Markdown from other apps to Obsidian format.
+  - ❌ Graph view
+    - Visualize the relationship between your notes.
+  - ❌ Note composer
+    - Merge two notes or split one into two.
+  - ✅ Outgoing links
+    - Show outgoing links and detect unlinked mentions of other notes in the current note.
+  - ✅ Outline
+    - Show the table of contents for the current note.
+  - ✅ Page preview
+    - Hover an internal link to preview its content. In editor mode, press ⌘ while hovering.
+  - ✅ Properties view
+    - Show the metadata for your files in the sidebar.
+  - ❌ Publish
+    - Host your notes online as a website, wiki, or documentation.
+  - ✅ Quick switcher
+    - Jump to other files with your keyboard.
+  - ❌ Random note
+    - Open a random note to rediscover or review.
+  - ✅ Search
+    - Search for a keyword in all the notes.
+  - ❌ Slash commands
+    - Trigger commands in the editor by using the forward slash key.
+  - ❌ Slides
+    - Create a presentation by using “---” to separate slides.
+  - ✅ Sync
+    - Syncronize your files through Obsidian Sync.
+  - ✅ Tags view
+    - Show a list of all tags and their number of occurrences.
+  - ✅ Templates
+    - Insert template content from a folder of template files.
+  - ❌ Unique note creator
+    - Create notes with unique timestamp prefixes, for workflows like zettelkasten or slip box.
+  - ❌ Web viewer
+    - Open external links to web pages inside Obsidian.
+  - ❌ Word count
+    - Show word count in the status bar.
+  - ✅ Workspaces
+    - Save and load workspace layouts.
    
 ### Enable selected community plugins
 - ❑ Go to Settings » Options » Community plugins
