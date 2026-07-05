@@ -8,7 +8,7 @@
 - [Adjust Obsidian Sync settings](#adjust-obsidian-sync-settings)
 - [Restart Obsidian and return to Settings](restart-obsidian-and-return-to-settings)
   - [Resume sync](#resume-sync)
-  - [Enable community plugs](#enable-community-plugs)
+  - [Enable community plugins](#enable-community-plugins)
 
 > [!WARNING]
 > This is a TODO! It’s WIP
@@ -106,7 +106,7 @@
   - ############### TODO: Confirm that “Resume” is the phrase that appears in straight-from-pristine case ###############
     - ❑ Click the “Resume” button.
    
-### Enable community plugs
+### Enable community plugins
 - ❑ Go to Settings » Options » Community plugins
   - ❑ Enable community plugins ############### TODO: Get the exact phraseology ###############
     - It will appear like there aren’t any to show
