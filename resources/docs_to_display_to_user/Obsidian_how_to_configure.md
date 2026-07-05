@@ -6,7 +6,7 @@
 - [Specify the remote vault you want to sync locally and its desired local location](#specify-the-remote-vault-you-want-to-sync-locally-and-its-desired-local-location)
 - [Unlock your remote vault but do NOT start syncing](#unlock-your-remote-vault-but-do-not-start-syncing)
 - [Adjust Obsidian Sync settings](#adjust-obsidian-sync-settings)
-- [Restart Obsidian and return to Settings](restart-obsidian-and-return-to-settings)
+- [Restart Obsidian and return to Settings](#restart-obsidian-and-return-to-settings)
   - [Resume sync](#resume-sync)
   - [Enable community plugins](#enable-community-plugins)
 
