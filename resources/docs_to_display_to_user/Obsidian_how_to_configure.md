@@ -1,5 +1,15 @@
 # How to configure Obsidian
 
+## Table of contents
+- [Launch Obsidian]()
+- [Log in to your Obsidian account]()
+- [Specify (a) the remote vault you want to sync locally and (b) its desired local location]()
+- [Unlock your remote vault but… do NOT start syncing]()
+- [Adjust Obsidian Sync settings]()
+- [Restart Obsidian, and return to Obsidian » Settings]()
+  - [Resume sync]()
+  - [Enable community plugs]()
+
 > [!WARNING]
 > This is a TODO! It’s WIP
 
@@ -89,10 +99,14 @@
 ## Restart Obsidian, and return to Obsidian » Settings
 - ❑ If you made any settings, restart Obsidian completely.
 - ❑ Once Obsidian has restarted, return to Settings
+
+### Resume sync
 - ❑ Go to Settings » Core plugins » Sync
   - Next to “Sync status” (“Obsidian Sync is currently paused”), you’ll see a “Resume” button
   - ############### TODO: Confirm that “Resume” is the phrase that appears in straight-from-pristine case ###############
     - ❑ Click the “Resume” button.
+   
+### Enable community plugs
 - ❑ Go to Settings » Options » Community plugins
   - ❑ Enable community plugins ############### TODO: Get the exact phraseology ###############
     - It will appear like there aren’t any to show
