@@ -1,14 +1,14 @@
 # How to configure Obsidian
 
 ## Table of contents
-- [Launch Obsidian](launch-obsidian)
-- [Log in to your Obsidian account](log-in-to-your-obsidian-account)
-- [specify-the-remote-vault-you-want-to-sync-locally-and-its-desired-local-location]()
-- [Unlock your remote vault but do NOT start syncing](unlock-your-remote-vault-but-do-not-start-syncing)
-- [Adjust Obsidian Sync settings](adjust-obsidian-sync-settings)
-- [Restart Obsidian, and return to Obsidian » Settings](restart-obsidian,-and-return-to-obsidian-settings)
-  - [Resume sync](resume-sync)
-  - [Enable community plugs](enable-community-plugs)
+- [Launch Obsidian](#launch-obsidian)
+- [Log in to your Obsidian account](#log-in-to-your-obsidian-account)
+- [Specify the remote vault you want to sync locally and its desired local location](#specify-the-remote-vault-you-want-to-sync-locally-and-its-desired-local-location)
+- [Unlock your remote vault but do NOT start syncing](#unlock-your-remote-vault-but-do-not-start-syncing)
+- [Adjust Obsidian Sync settings](#adjust-obsidian-sync-settings)
+- [Restart Obsidian and return to Obsidian » Settings](#restart-obsidian-and-return-to-obsidian-settings)
+  - [Resume sync](#resume-sync)
+  - [Enable community plugs](#enable-community-plugs)
 
 > [!WARNING]
 > This is a TODO! It’s WIP
