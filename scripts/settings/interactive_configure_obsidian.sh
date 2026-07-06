@@ -2,12 +2,6 @@
 
 function conditionally_configure_Obsidian() {
   report_start_phase_standard
-
-  ############### BEGIN: TO BE REMOVED ###############
-  # report_warning "The configuration of Obsidian hasn’t been implemented yet!"
-  # report_end_phase_standard
-  # return 0
-  ############### END: TO BE REMOVED ###############
   
   if test_genomac_user_state "$SESH_OBSIDIAN_USER_WANTS_IT"; then
     run_if_user_has_not_done "$PERM_OBSIDIAN_HAS_BEEN_CONFIGURED" \
@@ -20,16 +14,6 @@ function conditionally_configure_Obsidian() {
 
 function interactive_configure_Obsidian() {
   report_start_phase_standard
-  
-  # TODO: I need to go through the configuration process:
-  #       - see what needs to be done,
-  #       - fill in Obsidian_how_to_configure.md
-
-  ############### BEGIN: TO BE REMOVED ###############
-  # report_warning "The configuration of Obsidian hasn’t been implemented yet!"
-  # report_end_phase_standard
-  # return 0
-  ############### END: TO BE REMOVED ###############
 
   create_directory_for_obsidian_vaults 
 
