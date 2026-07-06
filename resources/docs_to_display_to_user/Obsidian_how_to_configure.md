@@ -192,29 +192,29 @@
   - ❑ Hit the reload icon “↺”
     - This will cause the list of your set of community plugins to be displayed, each in disabled state
 - ❑ Iterate through the list of selected community plugins, and enable each one
-  - ❑ Auto Template Trigger
+  - ✅ Auto Template Trigger
     - (Numeroflip) Automatically apply or prompt for a template when creating a note. Supports assigning templates to folders.
-  - ❑ Code Styler
+  - ✅ Code Styler
     - (Mayuran Visakan) Style and customize codeblocks and inline code in both editing mode and reading mode.
-  - ❑ Dataview
+  - ✅ Dataview
     - (Michael Brenan) Complex data views for the data-obsessed.
-  - ❑ Footnote Shortcut
+  - ❌ Footnote Shortcut
     - (Alexis Rondeau, Micha Brugger, Jason Qin) Insert and write footnotes faster.
-  - ❑ Home tab
+  - ❌ Home tab
     - (Renso) A browser-like search tab for your local files.
-  - ❑ Importer
+  - ✅ Importer
     - Import data from Notion, Apple Notes, HTML files, and more.
-  - ❑ Paste URL into selection
+  - ✅ Paste URL into selection
     - Paste URL “into” selected text.
-  - ❑ Recent Files
+  - ❌ Recent Files
     - (Tony Grosinger) List files by most recently opened.
-  - ❑ Regex Find/Replace
+  - ✅ Regex Find/Replace
     - (Martin Eder) Find and replace text using regular expressions
-  - ❑ Tag Wrangler
+  - ✅ Tag Wrangler
     - (PJ Eby) Rename, merge, toggle, and search tags from the tags view.
-  - ❑ TagFolder
+  - ✅ TagFolder
     - (vorotamoroz) Show tags as folders.
-  - ❑ Workspaces Plug
+  - ✅ Workspaces Plug
     - (NothingIsLost and Johnny) Quickly switch and manage workspaces.
 
      
