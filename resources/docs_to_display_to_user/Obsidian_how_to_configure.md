@@ -14,8 +14,6 @@
 > [!WARNING]
 > This is a TODO! It’s WIP
 
-[Jump to Zebra](#zebra)
-
 > [!WARNING]
 > Do **NOT** plunge ahead with the offered configuration Wizard!
 > 
@@ -251,5 +249,3 @@
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
-
-## Zebra
