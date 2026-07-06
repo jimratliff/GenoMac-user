@@ -33,7 +33,7 @@ function interactive_configure_Obsidian() {
 
   create_directory_for_obsidian_vaults 
 
-  report "Time to configure Obsidan! I’ll launch it, and open a window with instructions for next steps"
+  report "Time to configure Obsidian! I’ll launch it, and open a window with instructions for next steps"
 	
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Obsidian_how_to_configure.md" \
