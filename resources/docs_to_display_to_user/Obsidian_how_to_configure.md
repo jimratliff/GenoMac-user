@@ -1,6 +1,7 @@
 # How to configure Obsidian
 
 ## Table of contents
+- [Context](#context)
 - [Launch Obsidian](#launch-obsidian)
 - [Log in to your Obsidian account](#log-in-to-your-obsidian-account)
 - [Specify the remote vault you want to sync locally and its desired local location](#specify-the-remote-vault-you-want-to-sync-locally-and-its-desired-local-location)
@@ -14,7 +15,7 @@
   
 ## Context
 - Assumes your vault is already synced with Obsidian Sync, and that remote vault will be the source for your local, synced copy.
-- This guarantees
+- The remote vault contains within it all of the settings for Obsidian. Thus, syncing this vault locally will make available to the current user all of your customizations to Obsidian.
 
 ## Launch Obsidian
 - ❑ Make Obsidian the active app. (The Hypervisor should have launched Obsidian for you already.)
