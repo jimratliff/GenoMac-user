@@ -81,7 +81,11 @@
     - “Start syncing”
   - Click the “Start syncing” button
 
-## Adjust Obsidian Sync settings
+## Adjust Obsidian settings
+### Enable community plugins
+- Obsidian » Settings » Options » Community plugins
+  - ✅ Enable community plugins
+### Adjust Obsidian Sync settings
 - ❑ Obsidian » Settings » Core plugins » Sync
   - **Device name**
     - ❑ Add a device name to distinguish this local clone from others
@@ -104,8 +108,14 @@
       - ❑ Active community plugin list (This was OFF by default)
       - ❑ Installed community plugins (This was OFF by default)
 
-  ## Refresh the installed community plugins
-  By default, no community plugins
+## Refresh the installed community plugins
+By default, no community plugins are installed. Now that you’ve switched on “Active community plugin list” and “Installed community plugins,” the community plugins are ready to loaded.
+- ❑ Click on the reload icon (bidirectional circular arrows)
+
+## Restart Obsidian
+- ❑ ⌘Q to quit Obsidian and then relaunch
+ 
+
 
 &&&&&&&&&&&&&& REBOOT ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ July 6, 2026 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
