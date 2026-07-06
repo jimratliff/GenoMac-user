@@ -47,7 +47,7 @@
     - “Pick a name for your awesome vault”
     - ❑ Leave the prepopulated name alone!
   - Location
-    - “Your new vault with be placed in ‘~/Documents’”
+    - “Your new vault will be placed in ‘~/Documents’”
     - ❑ Use “Browse” button to select `~/Documents/Obsidian_vaults`
       - The Hypervisor has already created this folder for you
       - The Hypervisor has also already *opened* this folder for you. You can drag this folder’s folder alias icon into the Open/Save dialog box in order to set the correct location.
@@ -98,7 +98,7 @@
   NOTE: Turning on “Active community plugin list” and “Installed community plugins” will import from the remote vault (a) the list of active community plugins you want to be enabled and (b) all of the community plugins that were installed on the remote vault. However, this will *not* by itself make Obsidian aware of those community plugins. See the next step.
 
 ### Refresh the installed community plugins
-By default, no community plugins are installed. Now that you’ve switched on “Active community plugin list” and “Installed community plugins,” the community plugins are ready to loaded.
+By default, no community plugins are installed. Now that you’ve switched on “Active community plugin list” and “Installed community plugins,” the community plugins have been downloaded, but Obsidian is not yet aware of them.
 - Obsidian » Settings » Options » Community plugins
   - ✅ Click on the reload icon (bidirectional circular arrows)
   - Now you will see, under “Current plugins,” “You currently have 12 (or whatever) plugins installed.”
@@ -107,7 +107,7 @@ By default, no community plugins are installed. Now that you’ve switched on �
 
 ### Restart Obsidian
 - ❑ ⌘Q to quit Obsidian and then relaunch the application
-- This will cause the desired community plugins (according to the remote vault) to be enabled.
+- This will cause the desired community plugins (according to the synced active community plugin list) to be enabled.
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
