@@ -214,7 +214,7 @@
     - (PJ Eby) Rename, merge, toggle, and search tags from the tags view.
   - ✅ TagFolder
     - (vorotamoroz) Show tags as folders.
-  - ✅ Workspaces Plug
+  - ✅ Workspaces Plus
     - (NothingIsLost and Johnny) Quickly switch and manage workspaces.
 
      
