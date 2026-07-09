@@ -66,11 +66,12 @@ function conditionally_prompt_user_to_configure_SSH_settings_for_GitHub() {
     return 1
   fi
 
-  if is_onepassword_ssh_agent_unavailable_for_this_user; then
-    report_warning "Skipping configuring 1Password for SSH with GitHub, because 1Password SSH Agent isn’t compatible with users on a non-startup volume."
-    report_end_phase_standard
-    return 0
-  fi
+# The following is DEPRECATED
+#   if is_onepassword_ssh_agent_unavailable_for_this_user; then
+#     report_warning "Skipping configuring 1Password for SSH with GitHub, because 1Password SSH Agent isn’t compatible with users on a non-startup volume."
+#     report_end_phase_standard
+#     return 0
+#   fi
   
   run_if_user_has_not_done \
     "$PERM_1PASSWORD_HAS_BEEN_CONFIGURED_FOR_SSH" \
