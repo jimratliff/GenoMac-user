@@ -134,6 +134,11 @@ SESH_WATERFOX_EXTENSION_YOUTUBE_ENHANCER_USER_WANTS_IT="SESH_waterfox_extension_
 SESH_WATERFOX_EXTENSIONS_HAVE_BEEN_INSTALLED="SESH_waterfox_extensions_have_been_installed"
 SESH_WATERFOX_SETTINGS_HAVE_BEEN_IMPLEMENTED="SESH_waterfox_settings_have_been_implemented"
 
+############### System-domain states that must be accessible to users (and aren’t used by GenoMac-system)
+# Each of these PERM states is extraordinary in that its file’s *content* is significant.
+PERM_DEFAULT_GIT_USER_NAME="PERM_default_git_user_name"
+PERM_DEFAULT_GIT_USER_EMAIL="PERM_default_git_user_email"
+
 # Export environment variables to be available in all subsequent shells
 # report_action_taken_to_log "Exporting environment variables corresponding to states."
 
