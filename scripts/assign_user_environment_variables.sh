@@ -134,10 +134,11 @@ PERM_DEFAULT_GIT_USER_EMAIL="PERM_default_git_user_email"
 
 DEFAULT_BROWSER_UTILITY_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES="true"
 
+# The following is DEPRECATED
 # To be tested… 1Password Support says the problem isn’t a relocated home directory, but rather total length
 # of the home directory.
 # ONEPASSWORD_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES="true"
-ONEPASSWORD_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES="false"
+# ONEPASSWORD_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES="false"
 
 # Export environment variables to be available in all subsequent shells
 # report_action_taken_to_log "Exporting environment variables specific to GenoMac-user."
