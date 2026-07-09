@@ -1,14 +1,38 @@
 #!/usr/bin/env zsh
 
 function conditionally_set_wallpapers_for_all_spaces() {
-  # Template for a Zsh function in Project GenoMac
+  # Set wallpapers for all Mission Control Spaces if they (a) are wanted by this user
+  # and (b) they haven’t already been set.
   report_start_phase_standard
+  
+  if test_genomac_user_state "$SESH_WALLPAPERS_USER_WANTS_THEM"; then
+    run_if_user_has_not_done "$PERM_WALLPAPERS_HAVE_BEEN_SET" \
+      set_wallpapers_for_all_spaces \
+      "Skipping deploying wallpapers, because they’ve already been deployed."
+  fi
+  
   report_end_phase_standard
 }
 
 function set_wallpapers_for_all_spaces() {
-  # Template for a Zsh function in Project GenoMac
+  # For each Mission Control Space, sets a wallpaper on each display of that Space.
+  # Each display of a particular Space receives the same wallpaper.
+  # Different Spaces can receive different wallpapers.
   report_start_phase_standard
+  local wallpaper_path
+  local -i number_of_current_space
+
+  for (( number_of_current_space=1; number_of_current_space <= MAXIMUM_NUMBER_OF_MISSION_CONTROL_SPACES; ++number_of_current_space )); do
+    move_to_mission_control_space_n $number_of_current_space
+    sleep 1
+    wallpaper_path="(( $get_path_to_wallpaper_for_mission_control_space_n $number_of_current_space ))"
+    sleep 1
+    set_all_displays_of_current_space_to_image_at_path "$wallpaper_path"
+  done
+
+  # Return to Space #1
+  move_to_mission_control_space_n 1
+  
   report_end_phase_standard
 }
 
@@ -19,6 +43,12 @@ function set_all_displays_of_current_space_to_image_at_path() {
 }
 
 function move_to_mission_control_space_n() {
+  # Template for a Zsh function in Project GenoMac
+  report_start_phase_standard
+  report_end_phase_standard
+}
+
+function get_path_to_wallpaper_for_mission_control_space_n() {
   # Template for a Zsh function in Project GenoMac
   report_start_phase_standard
   report_end_phase_standard
