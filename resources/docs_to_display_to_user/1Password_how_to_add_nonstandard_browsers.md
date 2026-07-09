@@ -7,7 +7,6 @@ But I need 1Password to treat other browsers (e.g., Waterfox, Helium) as first-c
 
 ## Make 1Password active
 - ❑ Make 1Password active. (GenoMac-user will have already launched 1Password).).
-- ❑ Open 1Password’s Settings… (⌘,)
 
 ## Make the following changes to the out-of-the-box default settings
 
