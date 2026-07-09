@@ -124,10 +124,8 @@ COMMAND_CHAR=$'\u2318'   # ⌘
 META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 
-############### System-domain states that must be accessible to users (and aren’t used by GenoMac-system)
-# Each of these PERM states is extraordinary in that its file’s *content* is significant.
-PERM_DEFAULT_GIT_USER_NAME="PERM_default_git_user_name"
-PERM_DEFAULT_GIT_USER_EMAIL="PERM_default_git_user_email"
+############### States related to features of macOS
+MAXIMUM_NUMBER
 
 ############### Flags about third-party incompatibilites with users that reside on a non-startup volume
 
