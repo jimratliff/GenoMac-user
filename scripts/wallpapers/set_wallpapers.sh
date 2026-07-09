@@ -27,7 +27,7 @@ function set_wallpapers_for_all_spaces() {
     sleep 1
     wallpaper_path="(( $get_path_to_wallpaper_for_mission_control_space_n $number_of_current_space ))"
     sleep 1
-    set_all_displays_of_current_space_to_image_at_path "$wallpaper_path"
+    set_all_displays_of_current_mission_control_space_to_image_at_path "$wallpaper_path"
   done
 
   # Return to Space #1
@@ -36,15 +36,30 @@ function set_wallpapers_for_all_spaces() {
   report_end_phase_standard
 }
 
-function set_all_displays_of_current_space_to_image_at_path() {
-  # Template for a Zsh function in Project GenoMac
+function set_all_displays_of_current_mission_control_space_to_image_at_path() {
+  # Sets wallpaper of all displays of current Mission Control Space to image at supplied path.
   report_start_phase_standard
+  local wallpaper_path="${1:?MISSING wallpaper_path}"
+
+  osascript "$wallpaper_path" <<'APPLESCRIPT'
+  on run argv
+    set wallpaper_path to item 1 of argv
+    tell application "System Events"
+      tell every desktop to set picture to wallpaper_path
+    end tell
+  end run
+  APPLESCRIPT
+
   report_end_phase_standard
 }
 
 function move_to_mission_control_space_n() {
   # Template for a Zsh function in Project GenoMac
   report_start_phase_standard
+  local -i number_of_space_to_which_to_move=${1:MISSING number of space to move to}
+  
+  ############### TODO WIP
+  
   report_end_phase_standard
 }
 
