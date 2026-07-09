@@ -63,7 +63,7 @@ function conditionally_prompt_user_to_configure_SSH_settings_for_GitHub() {
     error_message="Home directory path is too long for 1Password SSH Agent configuration."
     error_message+="${NEWLINE}Aborting because this user shouldn’t have SSH Agent as part of its specification."
     report_fail "$error_message"
-    return 0
+    return 1
   fi
 
   if is_onepassword_ssh_agent_unavailable_for_this_user; then
