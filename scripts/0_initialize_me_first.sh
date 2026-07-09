@@ -78,6 +78,9 @@ repo_specific_environment_variables="${GENOMAC_USER_SCRIPTS}/assign_user_environ
 echo "Source ${repo_specific_environment_variables}"
 source "${repo_specific_environment_variables}"
 
+# Source environment variables corresponding to enums for states
+safe_source "${GENOMAC_USER_SCRIPTS}/assign_enum_env_vars_for_states.sh"
+
 # Source repo-specific helpers
 safe_source "${GENOMAC_USER_SCRIPTS}/helpers.sh"
 
