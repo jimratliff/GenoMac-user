@@ -104,6 +104,8 @@ USER_PREFPANE_DIRECTORY="$HOME/Library/PreferencePanes"
 WITCH_PREFPANE_NAME="Witch.prefPane"
 WITCH_PATH_TO_USER_PREFPANE="${USER_PREFPANE_DIRECTORY}/${WITCH_PREFPANE_NAME}"
 
+USER_WALLPAPER_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Users/${USER}/Prefs/Mission_Control_wallpapers"
+
 USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
 
 ############### Environment variables to support the Hypervisor
