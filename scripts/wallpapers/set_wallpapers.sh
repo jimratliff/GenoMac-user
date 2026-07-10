@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-
-
 function conditionally_set_wallpapers_for_all_spaces() {
   # Set wallpapers for all Mission Control Spaces if they (a) are wanted by this user
   # and (b) they haven’t already been set.
@@ -108,6 +106,7 @@ function get_path_to_wallpaper_for_mission_control_space_n() {
   # directly within that directory that has a valid wallpaper-image extension.
   #
   # Returns nonzero if no suitable wallpaper can be found.
+  
   report_start_phase_standard
 
   local -i number_of_mission_control_space
@@ -121,7 +120,8 @@ function get_path_to_wallpaper_for_mission_control_space_n() {
   local -a matching_items
   local -a directory_entries
 
-  user_wallpaper_directory="${LOCAL_DROPBOX_DIRECTORY}/Users/${USER}/Prefs/Mission_Control_wallpapers"
+  # HINT: USER_WALLPAPER_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Users/${USER}/Prefs/Mission_Control_wallpapers"
+  user_wallpaper_directory="$USER_WALLPAPER_DIRECTORY"
 
   if (( number_of_mission_control_space < 1 ||
         number_of_mission_control_space > MAXIMUM_NUMBER_OF_MISSION_CONTROL_SPACES )); then
@@ -131,18 +131,14 @@ function get_path_to_wallpaper_for_mission_control_space_n() {
   fi
 
   if [[ ! -d "$user_wallpaper_directory" ]]; then
-    report_fail \
-      "Wallpaper directory does not exist: ${user_wallpaper_directory}"
+    report_fail "Wallpaper directory does not exist: ${user_wallpaper_directory}"
     return 1
   fi
 
-  matching_items=(
-    "${user_wallpaper_directory}/${number_of_mission_control_space}_"*(N.on)
-  )
+  matching_items=("${user_wallpaper_directory}/${number_of_mission_control_space}_"*(N.on))
 
   if (( ${#matching_items} == 0 )); then
-    report_fail \
-      "No wallpaper file or directory was found for Mission Control Space ${number_of_mission_control_space} in: ${user_wallpaper_directory}"
+    report_fail "No wallpaper file or directory was found for Mission Control Space ${number_of_mission_control_space} in: ${user_wallpaper_directory}"
     return 1
   fi
 
@@ -150,17 +146,14 @@ function get_path_to_wallpaper_for_mission_control_space_n() {
 
   if [[ -f "$path_of_matching_item" ]]; then
     if ! extension_is_valid_wallpaper_image_type "$path_of_matching_item"; then
-      report_fail \
-        "The item assigned to Mission Control Space ${number_of_mission_control_space} is not a valid wallpaper image: ${path_of_matching_item}"
+      report_fail "The item assigned to Mission Control Space ${number_of_mission_control_space} is not a valid wallpaper image: ${path_of_matching_item}"
       return 1
     fi
 
     path_of_wallpaper="$path_of_matching_item"
 
   elif [[ -d "$path_of_matching_item" ]]; then
-    directory_entries=(
-      "${path_of_matching_item}"/*(N.on)
-    )
+    directory_entries=("${path_of_matching_item}"/*(N.on))
 
     for candidate_path in "${directory_entries[@]}"; do
       if [[ -f "$candidate_path" ]] &&
@@ -171,14 +164,12 @@ function get_path_to_wallpaper_for_mission_control_space_n() {
     done
 
     if [[ -z "$path_of_wallpaper" ]]; then
-      report_fail \
-        "No valid wallpaper image was found in the directory assigned to Mission Control Space ${number_of_mission_control_space}: ${path_of_matching_item}"
+      report_fail "No valid wallpaper image was found in the directory assigned to Mission Control Space ${number_of_mission_control_space}: ${path_of_matching_item}"
       return 1
     fi
 
   else
-    report_fail \
-      "The item assigned to Mission Control Space ${number_of_mission_control_space} is neither a regular file nor a directory: ${path_of_matching_item}"
+    report_fail "The item assigned to Mission Control Space ${number_of_mission_control_space} is neither a regular file nor a directory: ${path_of_matching_item}"
     return 1
   fi
 
@@ -189,6 +180,7 @@ function get_path_to_wallpaper_for_mission_control_space_n() {
 function extension_is_valid_wallpaper_image_type() {
   # Returns 0 if the supplied path has a filename extension valid for use as
   # a wallpaper image. Returns 1 otherwise.
+  report_start_phase_standard
   local path="${1:?MISSING path}"
   local extension="${${path:e}:l}"
 
@@ -200,4 +192,5 @@ function extension_is_valid_wallpaper_image_type() {
       return 1
       ;;
   esac
+  report_end_phase_standard
 }
