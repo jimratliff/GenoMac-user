@@ -185,7 +185,7 @@ function extension_is_valid_wallpaper_image_type() {
   local extension="${${path:e}:l}"
 
   case "$extension" in
-    jpeg|jpg|heic|png|tiff)
+    jpeg|jpg|heic|png|tiff|webp)
       return 0
       ;;
     *)
