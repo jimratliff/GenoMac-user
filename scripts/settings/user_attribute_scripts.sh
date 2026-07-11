@@ -83,7 +83,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "${USER_ATTRIBUTE_IS_USER_CONFIGURER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_IS_USER_CONFIGURER}"
-      report_to_log "Currently, user attribute ${USER_ATTRIBUTE_IS_USER_CONFIGURER} has no point to its life."
+      set_genomac_user_state "$SESH_CONFIGURER_WALLPAPER_USER_WANTS_IT"
       ;;
     *)
       report_warning "No user-preference behavior is defined for attribute: $attribute_name"
