@@ -59,6 +59,8 @@ function subdermis() {
 
   conditionally_interactive_configure_touch_ID                # scripts/settings/interactive_configure_touch_id.sh
 
+  conditionally_set_single_space_wallpaper                    # scripts/settings/set_single_space_wallpaper.sh
+
   if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
     report "User wants only barebones configuration, so I’m aborting here."
     end_of_subdermis_cleanup
