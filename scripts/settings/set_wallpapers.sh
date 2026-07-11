@@ -11,6 +11,7 @@ function conditionally_set_wallpapers_for_all_spaces() {
       report_end_phase_standard
       return 0
     fi
+    
     run_if_user_has_not_done "$PERM_WALLPAPERS_HAVE_BEEN_SET" \
       set_wallpapers_for_all_spaces \
       "Skipping deploying wallpapers, because they’ve already been deployed."
