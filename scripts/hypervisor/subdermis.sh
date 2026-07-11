@@ -77,6 +77,7 @@ function subdermis() {
   # Execute pre-Dropbox bootstrap steps
   conditionally_perform_initial_bootstrap_operations          # scripts/settings/perform_initial_bootstrap_operations.sh
   conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
+  conditionally_create_additional_mission_control_spaces      # scripts/settings/interactive_create_mission_control_spaces.sh
 
   # If user has 'developer' attribute, create ~/Repositories directory to hold clones
   conditionally_create_repositories_directory_for_developers  # scripts/installations/make_repositories_directory_for_developers.sh
@@ -129,7 +130,6 @@ function subdermis() {
     conditionally_interactive_enable_Witch                    # scripts/settings/set_witch_settings.sh
   fi
 
-  conditionally_create_additional_mission_control_spaces      # scripts/settings/interactive_create_mission_control_spaces.sh
   conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
 
   end_of_subdermis_cleanup
