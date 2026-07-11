@@ -6,6 +6,11 @@ function conditionally_set_wallpapers_for_all_spaces() {
   report_start_phase_standard
   
   if test_genomac_user_state "$SESH_WALLPAPERS_USER_WANTS_THEM"; then
+    if ! test_genomac_user_state "$PERM_MISSION_CONTROL_SPACES_CREATED"; then
+      report_warning "User wants multiple wallpapers, but multiple Mission Control Spaces haven’t been created.${NEWLINE}Skipping wallpaper assignments."
+      report_end_phase_standard
+      return 0
+    fi
     run_if_user_has_not_done "$PERM_WALLPAPERS_HAVE_BEEN_SET" \
       set_wallpapers_for_all_spaces \
       "Skipping deploying wallpapers, because they’ve already been deployed."
