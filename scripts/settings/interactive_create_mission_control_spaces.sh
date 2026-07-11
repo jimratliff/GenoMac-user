@@ -3,6 +3,12 @@
 function conditionally_create_additional_mission_control_spaces() {
   report_start_phase_standard
 
+  if ! test_genomac_user_state "$SESH_MISSION_CONTROL_USER_WANTS_IT_ALL"; then
+    report_to_log "Skipping creating Mission Control spaces, because this user doesn’t want them."
+    report_end_phase_standard
+    return 0
+  fi
+
   run_if_user_has_not_done \
     "$PERM_MISSION_CONTROL_SPACES_CREATED" \
     interactive_create_mission_control_spaces \
