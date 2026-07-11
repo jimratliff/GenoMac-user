@@ -45,6 +45,7 @@ function make_additional_dev_clones_of_genomac_repos() {
   local local_repo_dir_name
   local local_repo_dir
 
+  # USER_LOCAL_REPOSITORY_DIRECTORY should already have been created, but just in case…
   create_repositories_directory_for_developers
   
   report_action_taken "Create GenoMac development directory, if necessary: ${GENOMAC_DEVELOPMENT_DIRECTORY}"
