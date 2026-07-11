@@ -128,6 +128,10 @@ function subdermis() {
     # Installation of Witch license files relies on Dropbox because that’s where its license files are stored
     conditionally_install_Witch_license_files                 # scripts/settings/set_witch_settings.sh
     conditionally_interactive_enable_Witch                    # scripts/settings/set_witch_settings.sh
+
+    # Deploy wallpapers to each Space
+    # Located here because these wallpapers are typically stored in Dropbox
+    conditionally_set_wallpapers_for_all_spaces
   fi
 
   conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
