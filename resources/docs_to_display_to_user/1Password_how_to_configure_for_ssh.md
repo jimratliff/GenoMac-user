@@ -19,7 +19,7 @@
       - SSH Agent
         - ✅ Use the SSH Agent
           - You will see a dialog box “Allow 1Password to save SSH key names to disk?”
-          - Click the default “Use Key Names” button
+          - ❑ Click the default “Use Key Names” button
       - Advanced
         - Remember key approval: **until 1Password quits**
         - Do **not** check “Generate SSH config file with bookmarked hosts”
