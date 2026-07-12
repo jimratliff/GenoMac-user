@@ -16,7 +16,7 @@
 - This launches the Dropbox app
   - Dialog box: “Welcome to Dropbox”
     - “Dropbox can’t sync over 500,000 files to this computer”
-      - (Question: Was this shown to me only because I have enough files that they can’t all be synced and therefore I *must* use Selective Sync?”
+      - (Question: Was this shown to me only because I have enough files that they can’t all be synced and therefore I *must* use Selective Sync?”)
       - “Very impressive! But because of this, choose specific folders you want to sync to this computer. The rest of your files are available on dropbox.com.”
     - ❑ Click on “Choose folders”
   - New window: “Selective Sync”
