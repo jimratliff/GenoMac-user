@@ -5,8 +5,6 @@ function conditionally_set_single_space_wallpaper() {
   # and (b) it hasn’t already been set.
   report_start_phase_standard
 
-  local wallpaper_path
-
   if test_genomac_user_state "$SESH_WALLPAPER_CONFIGURER_USER_WANTS_IT"; then
     conditionally_set_wallpaper_for_user_configurer
   elif test_genomac_user_state "$SESH_WALLPAPER_SWITCHER_USER_WANTS_IT"; then
