@@ -111,13 +111,13 @@ function set_all_displays_of_current_mission_control_space_to_image_at_path() {
   report_start_phase_standard
   local wallpaper_path="${1:?MISSING wallpaper_path}"
 
-  osascript "$wallpaper_path" <<'APPLESCRIPT'
-  on run argv
-    set wallpaper_path to item 1 of argv
-    tell application "System Events"
-      tell every desktop to set picture to wallpaper_path
-    end tell
-  end run
+  osascript - "$wallpaper_path" <<'APPLESCRIPT'
+on run argv
+  set wallpaper_path to item 1 of argv
+  tell application "System Events"
+    tell every desktop to set picture to wallpaper_path
+  end tell
+end run
 APPLESCRIPT
 
   report_end_phase_standard
