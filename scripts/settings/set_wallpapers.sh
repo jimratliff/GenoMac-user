@@ -43,10 +43,9 @@ function conditionally_set_wallpaper_for_user_switcher() {
 function set_wallpaper_for_user_configurer() {
   # Set wallpaper for USER_CONFIGURER
   report_start_phase_standard
-
-  ############### TODO: Insert path to wallpaper
   
   local wallpaper_path
+  wallpaper_path="$GMU_WALLPAPER_CONFIGURER"
   set_all_displays_of_current_mission_control_space_to_image_at_path "$wallpaper_path"
   
   report_end_phase_standard
@@ -55,10 +54,9 @@ function set_wallpaper_for_user_configurer() {
 function set_wallpaper_for_user_switcher() {
   # Set wallpaper for “switcher” user
   report_start_phase_standard
-
-  ############### TODO: Insert path to wallpaper
   
   local wallpaper_path
+  wallpaper_path="$GMU_WALLPAPER_SWITCHER"
   set_all_displays_of_current_mission_control_space_to_image_at_path "$wallpaper_path"
   
   report_end_phase_standard
