@@ -43,15 +43,26 @@ function conditionally_set_wallpaper_for_user_switcher() {
 function set_wallpaper_for_user_configurer() {
   # Set wallpaper for USER_CONFIGURER
   report_start_phase_standard
+
+  ############### TODO: Insert path to wallpaper
   
   local wallpaper_path
   set_all_displays_of_current_mission_control_space_to_image_at_path "$wallpaper_path"
   
   report_end_phase_standard
 }
-    
-  
 
+function set_wallpaper_for_user_switcher() {
+  # Set wallpaper for “switcher” user
+  report_start_phase_standard
+
+  ############### TODO: Insert path to wallpaper
+  
+  local wallpaper_path
+  set_all_displays_of_current_mission_control_space_to_image_at_path "$wallpaper_path"
+  
+  report_end_phase_standard
+}
 
 function conditionally_set_wallpapers_for_all_spaces() {
   # Set wallpapers for all Mission Control Spaces if they (a) are wanted by this user
