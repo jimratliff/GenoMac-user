@@ -77,8 +77,8 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_SYNC_COM}"
       set_genomac_user_state "$SESH_SYNC_COM_USER_WANTS_IT"
       ;;
-    "${USER_ATTRIBUTE_WALLPAPER}")
-      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_WALLPAPER}"
+    "${USER_ATTRIBUTE_WALLPAPERS}")
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_WALLPAPERS}"
       set_genomac_user_state "$SESH_WALLPAPERS_USER_WANTS_THEM"
       ;;
     "${USER_ATTRIBUTE_YOUTUBE_WATCHER}")
