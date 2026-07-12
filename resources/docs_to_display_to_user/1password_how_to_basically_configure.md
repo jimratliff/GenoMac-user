@@ -34,8 +34,8 @@ using a script.)
 *NOTE: The following applies only to accounts that will use Touch ID to authenticate in macOS*
 - “Unlock using Touch ID”
   - ❑ Change from ❌ → ✅
-- “Require password after”
-  - ❑ Set at **14 days**
+- “Require account password after”
+  - ❑ Set at **30 days
 #### Auto-lock
 - “Lock after the device is idle for”
   - ❑ Change from 1 hour → **8 hours**
