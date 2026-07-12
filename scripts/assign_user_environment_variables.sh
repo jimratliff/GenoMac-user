@@ -33,6 +33,20 @@ GMU_RESOURCES="${GENOMAC_USER_LOCAL_DIRECTORY}/resources"
 # ~/.genomac-user/resources/docs_to_display_to_user
 GMU_DOCS_TO_DISPLAY="${GMU_RESOURCES}/docs_to_display_to_user"
 
+# Specify the local directory that holds image-file resources
+# ~/.genomac-user/resources/images
+GMU_IMAGES="${GMU_RESOURCES}/images"
+
+# Specify the local directory that holds avatar image-file resources
+# ~/.genomac-user/resources/images/avatars
+GMU_AVATARS="${GMU_IMAGES}/avatars"
+
+# Specify the local directory that holds wallpaper image-file resources
+# ~/.genomac-user/resources/images/wallpapers
+GMU_WALLPAPERS="${GMU_IMAGES}/wallpapers"
+GMU_WALLPAPER_CONFIGURER="${GMU_WALLPAPERS}/user_configurer_wallpaper.jpg"
+GMU_WALLPAPER_SWITCHER="${GMU_WALLPAPERS}/switcher_wallpaper.jpg"
+
 ############### ~/.genomac-user/scripts
 # - Local directory that holds scripts: ~/.genomac-user/scripts
 GMU_SCRIPTS="${GENOMAC_USER_LOCAL_DIRECTORY}/scripts"
