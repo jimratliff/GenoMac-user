@@ -1,5 +1,58 @@
 #!/usr/bin/env zsh
 
+function conditionally_set_single_space_wallpaper() {
+  # Set a wallpaper for a single-Space user if (a) it is wanted by this user
+  # and (b) it hasn’t already been set.
+  report_start_phase_standard
+
+  local wallpaper_path
+
+  if test_genomac_user_state "$SESH_WALLPAPER_CONFIGURER_USER_WANTS_IT"; then
+    conditionally_set_wallpaper_for_user_configurer
+  elif test_genomac_user_state "$SESH_WALLPAPER_SWITCHER_USER_WANTS_IT"; then
+    conditionally_set_wallpaper_for_user_switcher
+  else
+    report_to_log "Skipping setting any single-space wallpaper, because this user doesn’t want it."
+    report_end_phase_standard
+    return 0
+  fi
+}
+
+function conditionally_set_wallpaper_for_user_configurer() {
+  # Set wallpaper for USER_CONFIGURER if it hasn’t been done already
+  report_start_phase_standard
+  
+  run_if_user_has_not_done "$PERM_WALLPAPER_CONFIGURER_USER_HAS_BEEN_SET" \
+    set_wallpaper_for_user_configurer \
+    "Skipping setting wallpaper for USER_CONFIGURER, because it’s already been deployed."
+    
+  report_end_phase_standard
+}
+
+function conditionally_set_wallpaper_for_user_switcher() {
+  # Set wallpaper for the “switcher” user if it hasn’t been done already
+  report_start_phase_standard
+  
+  run_if_user_has_not_done "$PERM_WALLPAPER_SWITCHER_USER_HAS_BEEN_SET" \
+    set_wallpaper_for_user_switcher \
+    "Skipping setting wallpaper for “switcher” user, because it’s already been deployed."
+    
+  report_end_phase_standard
+}
+
+function set_wallpaper_for_user_configurer() {
+  # Set wallpaper for USER_CONFIGURER
+  report_start_phase_standard
+  
+  local wallpaper_path
+  set_all_displays_of_current_mission_control_space_to_image_at_path "$wallpaper_path"
+  
+  report_end_phase_standard
+}
+    
+  
+
+
 function conditionally_set_wallpapers_for_all_spaces() {
   # Set wallpapers for all Mission Control Spaces if they (a) are wanted by this user
   # and (b) they haven’t already been set.
