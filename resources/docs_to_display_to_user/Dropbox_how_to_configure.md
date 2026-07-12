@@ -24,7 +24,9 @@
       - “Only selected folders will take up hard drive space on this device. You can still access unselected folders anytime at dropbox.com”
       - Choose only the “Preferences_common” folder
         - ❑ First, deselect all
-        - ❑ Then, select “Preferences_common”
+        - Now select **two*** folders
+          - ❑ Select “Preferences_common”
+          - ❑ Select “Users/*your-user-name*”
         - ❑ Then, click “Save”
         - Then a new dialog: “Confirm selection”
           - Only selected folders will live on this computer. Unselected folders can be accessed on dropbox.com
