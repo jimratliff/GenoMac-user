@@ -18,7 +18,7 @@ You will be asked for the following perissions:
 - Information about tab URLs
 - Storage
 
-Grant the requested permissions in order to use this extension.
+❑ Grant the requested permissions in order to use this extension.
 
 ## Selectively turn on some of the tracking switches
 For each of the following, toggle the switch ON ✅
