@@ -69,6 +69,10 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_RAINDROP_IO}"
       set_genomac_user_state "$SESH_RAINDROP_IO_USER_WANTS_IT"
       ;;
+    "${USER_ATTRIBUTE_SWITCHER}")
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_SWITCHER}"
+      set_genomac_user_state "$SESH_WALLPAPER_SWITCHER_USER_WANTS_IT"
+      ;;
     "${USER_ATTRIBUTE_SYNC_COM}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_SYNC_COM}"
       set_genomac_user_state "$SESH_SYNC_COM_USER_WANTS_IT"
