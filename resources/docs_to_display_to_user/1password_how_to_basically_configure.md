@@ -34,6 +34,8 @@ using a script.)
 *NOTE: The following applies only to accounts that will use Touch ID to authenticate in macOS*
 - “Unlock using Touch ID”
   - ❑ Change from ❌ → ✅
+- - “Unlock app with Mac password”
+  - ❑ Change from ✅ → ❌
 - “Require account password after”
   - ❑ Set at **30 days
 #### Auto-lock
