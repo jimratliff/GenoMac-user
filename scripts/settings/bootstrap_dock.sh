@@ -51,13 +51,14 @@ function define_apps_for_dock() {
   local actual_path_to_app_System_Settings="/System/Applications/System Settings.app"
   local actual_path_to_app_Terminal="/System/Applications/Utilities/Terminal.app"
   
-  local actual_path_to_app_Waterfox="/Applications/Waterfox.app"
-  local actual_path_to_app_Helium="/Applications/Helium.app"
-  local actual_path_to_app_Raindrop_io="/Applications/Raindrop.io.app"
-  local actual_path_to_app_Obsidian="/Applications/Obsidian.app"
-  local actual_path_to_app_Zed="/Applications/Zed.app"
-  local actual_path_to_app_iTerm="/Applications/iTerm.app"
+  # Define actual paths to apps: non-Apple
   local actual_path_to_app_1Password="/Applications/1Password.app"
+  local actual_path_to_app_Helium="/Applications/Helium.app"
+  local actual_path_to_app_iTerm="/Applications/iTerm.app"
+  local actual_path_to_app_Obsidian="/Applications/Obsidian.app"
+  local actual_path_to_app_Raindrop_io="/Applications/Raindrop.io.app"
+  local actual_path_to_app_Waterfox="/Applications/Waterfox.app"
+  local actual_path_to_app_Zed="/Applications/Zed.app"
   
   local -a apps_for_dock=(
     "/System/Applications/System Settings.app"
