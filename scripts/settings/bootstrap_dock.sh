@@ -41,13 +41,53 @@ APPS_FOR_DOCK=(
   "/Applications/iTerm.app"
 )
 
+function define_apps_for_dock() {
+
+  # Define actual paths to apps: Apple
+  local actual_path_to_app_Activity_Monitor="/System/Applications/Utilities/Activity Monitor.app"
+  local actual_path_to_app_Disk_Utility="/System/Applications/Utilities/Disk Utility.app"
+  local actual_path_to_app_Mail_app="/System/Applications/Mail.app"
+  local actual_path_to_app_Safari="/System/Cryptexes/App/System/Applications/Safari.app"
+  local actual_path_to_app_System_Settings="/System/Applications/System Settings.app"
+  local actual_path_to_app_Terminal="/System/Applications/Utilities/Terminal.app"
+  
+  local actual_path_to_app_Waterfox="/Applications/Waterfox.app"
+  local actual_path_to_app_Helium="/Applications/Helium.app"
+  local actual_path_to_app_Raindrop_io="/Applications/Raindrop.io.app"
+  local actual_path_to_app_Obsidian="/Applications/Obsidian.app"
+  local actual_path_to_app_Zed="/Applications/Zed.app"
+  local actual_path_to_app_iTerm="/Applications/iTerm.app"
+  local actual_path_to_app_1Password="/Applications/1Password.app"
+  
+  local -a apps_for_dock=(
+    "/System/Applications/System Settings.app"
+    "/Applications/1Password.app"
+  )
+
+  # Append dynamically as needed.
+  apps_for_dock+=(
+    "/Applications/Waterfox.app"
+  )
+
+  # Print one array element per line.
+  print -r -l -- "${apps_for_dock[@]}"
+}
+
+function bootstrap_dock() {
+  local -a apps_for_dock
+
+  apps_for_dock=( "${(@f)$(define_apps_for_dock)}" )
+
+  bootstrap_dock_given_apps_for_dock "${apps_for_dock[@]}"
+}
+
 function dock_app_entry() {
   # Function takes single argument of the full path of the app to add to the Dock.
   # Outputs the dictionary entry for this app’s tile, inserting the supplied argument into `_CFURLString`.
   printf '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>%s</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>', "$1"
 }
 
-function bootstrap_dock() {
+function bootstrap_dock_given_apps_for_dock() {
   # To be run only once per user to initially populate the persistent apps of the Dock.
   # It removes all persistent apps prior to repopulating the persistent apps.
   
