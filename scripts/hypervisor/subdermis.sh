@@ -55,20 +55,23 @@ function subdermis() {
   transfer_system_scoped_user_attribute_states_to_user_scoped # scripts/settings/user_attribute_scripts.sh.
   set_user_preferences_from_attributes                        # scripts/settings/user_attribute_scripts.sh
 
+  ############### BEGIN BAREBONES CONFIGURATION ###############
   conditionally_perform_barebones_user_level_settings         # scripts/settings/set_barebones_settings.sh
-
   conditionally_interactive_configure_touch_ID                # scripts/settings/interactive_configure_touch_id.sh
-
   conditionally_set_single_space_wallpaper                    # scripts/settings/set_wallpapers.sh
+  
+  # Execute barebones bootstrap steps
+  conditionally_perform_initial_bootstrap_operations          # scripts/settings/perform_initial_bootstrap_operations.sh
+  conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
 
   if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
-    report "User wants only barebones configuration, so I’m aborting here."
+    report "User wants only barebones configuration, so I’m ending here."
     end_of_subdermis_cleanup
     report_end_phase_standard
     return 0
   fi
 
-  ############### END OF BAREBONES CONFIGURATION ###############
+  ############### END BAREBONES CONFIGURATION ###############
 
   conditionally_perform_basic_third_party_app_settings        # scripts/settings/perform_basic_third_party_app_settings.sh
   
@@ -78,15 +81,16 @@ function subdermis() {
   conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
   conditionally_interactive_configure_helium_and_extensions   # scripts/settings/interactive_configure_helium.sh
   
-  # Execute pre-Dropbox bootstrap steps
-  conditionally_perform_initial_bootstrap_operations          # scripts/settings/perform_initial_bootstrap_operations.sh
-  conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
+  # Bootstrap: Create additional Mission Control Spaces
   conditionally_create_additional_mission_control_spaces      # scripts/settings/interactive_create_mission_control_spaces.sh
+
+  # Bootstrap: Configure screensaver
+  conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
 
   # If user has 'developer' attribute, create ~/Repositories directory to hold clones
   conditionally_create_repositories_directory_for_developers  # scripts/installations/make_repositories_directory_for_developers.sh
 
-  # Configure 1Password here to make credentials available for later steps
+  # Bootstrap: Configure 1Password here to make credentials available for later steps
   conditionally_configure_1Password                           # scripts/settings/interactive_configure_1password.sh
 
   ############### BELOW THIS POINT: 1Password credentials are available ###############
