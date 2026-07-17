@@ -3,10 +3,14 @@
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_alan_app_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_app_state_persistence.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_auto_correction_suggestion_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_basic_mission_control_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_control_center_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_diskutility_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_finder_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_general_dock_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_general_interface_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_keyboard_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_menubar_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_notifications_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_preview_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_safari_settings.sh"
@@ -14,8 +18,6 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/set_screen_capture_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_symbolichotkeys.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_terminal_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_trackpad_settings.sh"
-
-############################## BEGIN SCRIPT PROPER ##############################
 
 function conditionally_perform_barebones_user_level_settings() {
   report_start_phase_standard
@@ -32,131 +34,44 @@ function conditionally_perform_barebones_user_level_settings() {
 function perform_barebones_user_level_settings() {
   report_start_phase_standard
 
-  # Enable app-state persistence
-  set_app_state_persistence
-  
-  # Trackpad
-  set_trackpad_settings
-  
-  # Other general interface
-  set_general_interface_settings
-  
-  # Stop intrusive/arrogant “corrections”
-  set_auto_correction_suggestion_settings
-  
-  ############### Keyboard-related defaults
-  report_action_taken "Implement keyboard-related defaults"
-  
-  report_adjust_setting "Holding alpha key down pops up character-accent menu (rather than repeats). Reinforces default"
-  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool true ; success_or_not
-  
-  report_adjust_setting "Enable Keyboard Navigation (with Tab key)"
-  defaults write NSGlobalDomain AppleKeyboardUIMode -int 2 ; success_or_not
-  
-  report_adjust_setting "Use F1, F2, etc. keys as standard function keys"
-  defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true ; success_or_not
-  
-  report_adjust_setting "Press and release globe (🌎) key to bring up emoji picker"
-  defaults write com.apple.HIToolbox AppleFnUsageType -int 2 ; success_or_not
-  
-  # report_adjust_setting "Set symbolic hot keys to Apple commands"
-  set_symbolichotkeys ; success_or_not
-  
-  ############### Menubar 
-  report_action_taken "Implement menubar-related settings"
-  
-  # Always show Sound in menubar
-  report_adjust_setting "Always show Sound in menubar (not only when “active”)"
-  defaults -currentHost write com.apple.controlcenter Sound -int 18 ; success_or_not
-  
-  # Give audible feedback when volume is changed
-  report_adjust_setting "Give audible feedback when volume is changed"
-  defaults write NSGlobalDomain com.apple.sound.beep.feedback -int 1 ; success_or_not
-  report_warning $'Nevertheless, the setting Sound » Play feedback… may need to be manually toggled afterward anyway.'
-  
-  # Show battery percentage in menubar
-  report_adjust_setting "Show battery percentage in menubar"
-  defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true ; success_or_not
-  
-  report_adjust_setting "Show time with seconds"
-  defaults write com.apple.menuextra.clock ShowSeconds -bool true ; success_or_not
-  
-  # Show Fast User Switching in menubar as Account Name
-  report_action_taken "Show Fast User Switching in menubar only as Account Name"
-  report_adjust_setting "1 of 2: userMenuExtraStyle = 1 (Account Name)"
-  defaults write NSGlobalDomain userMenuExtraStyle -int 1;success_or_not
-  report_adjust_setting "2 of 2: UserSwitcher = 2 (menubar only)"
-  defaults -currentHost write com.apple.controlcenter UserSwitcher -int 2 ; success_or_not
-
-  # Show text-input menu in menubar
-  report_adjust_setting "Show Input menu in menubar"
-  defaults write com.apple.TextInputMenu visible -bool true ; success_or_not
-
-  ###############
-  
-  # Control Center
-  # Add Bluetooth to Control Center to access battery percentages of Bluetooth devices
-  # This needs to be tested on laptop
-  report_adjust_setting "Add Bluetooth to Control Center to access battery percentages of Bluetooth devices"
-  defaults write com.apple.controlcenter "NSStatusItem Visible Bluetooth" -bool true ; success_or_not
-  
-  # Dock
-  set_general_dock_settings
-  
-  # Screen Capture
-  set_screen_capture_settings
-  
-  # Mission Control/Spaces
-  report_action_taken "Implement settings related to Spaces (Mission Control)"
-  
-  report_adjust_setting "Spaces: Don’t rearrange based on most-recent use"
-  defaults write com.apple.dock mru-spaces -bool false ; success_or_not
-  
-  report_adjust_setting "Spaces span all displays (no separate space for each monitor)"
-  defaults write com.apple.spaces "spans-displays" -bool "true" ; success_or_not
-  
-  report_adjust_setting "Do not jump to a new space when switching applications"
-  defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -bool false ; success_or_not
-  
-  report_adjust_setting "Do not enter Mission Control when dragging window to top of screen"
-  defaults write com.apple.dock enterMissionControlByTopWindowDrag -bool false ; success_or_not
-  
-  # Finder
-  set_finder_settings
+  set_app_state_persistence                     # scripts/settings/set_app_state_persistence.sh
+  set_trackpad_settings                         # scripts/settings/set_trackpad_settings.sh
+  set_general_interface_settings                # scripts/settings/set_general_interface_settings.sh
+  set_auto_correction_suggestion_settings       # scripts/settings/set_auto_correction_suggestion_settings.sh
+  set_keyboard_related_defaults                 # scripts/settings/set_keyboard_settings.sh
+  set_symbolichotkeys                           # scripts/settings/set_symbolichotkeys.sh
+  set_menubar_settings                          # scripts/settings/set_menubar_settings.sh
+  set_control_center_settings                   # scripts/settings/set_control_center_settings.sh
+  set_general_dock_settings                     # scripts/settings/set_general_dock_settings.sh
+  set_screen_capture_settings                   # scripts/settings/set_screen_capture_settings.sh
+  set_basic_mission_control_settings            # scripts/settings/set_basic_mission_control_settings.sh
+  set_notifications_settings                    # scripts/settings/set_notifications_settings.sh
   
   # Language & Region
   # Week starts on Monday
   report_adjust_setting "Language & Region: Week starts on Monday"
   defaults write -g AppleFirstWeekday -dict gregorian -int 2
   
-  # Notifications
-  set_notifications_settings
-  
   # Time Machine
   report_adjust_setting "Time Machine: Don’t prompt to use new disk as backup volume"
   defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true ; success_or_not
-  
-  # Preview.app
-  set_preview_settings
-  
-  # DiskUtility
-  set_diskutility_settings
-  
-  # Terminal
-  set_terminal_settings
+
+  # Apple-app settings
+  set_finder_settings                           # scripts/settings/set_finder_settings.sh
+  set_preview_settings                          # scripts/settings/set_preview_settings.sh
+  set_diskutility_settings                      # scripts/settings/set_diskutility_settings.sh
+  set_terminal_settings                         # scripts/settings/set_terminal_settings.sh
+  set_safari_settings                            # scripts/settings/set_safari_settings.sh
   
   # Text Edit
   report_adjust_setting "Text Edit: Make plain text the default format"
   defaults write com.apple.TextEdit RichText -bool false ; success_or_not
   
-  # Safari
-  set_safari_settings
-
   ############### VERY SELECTIVE THIRD-PARTY APPLICATION(S)
   report_action_taken "Begin settings for third-party applications"
   
   # Alan.app
   set_alan_app_settings
 
-  report_end_phase_standard
+  report_end_phase_standard                      # scripts/settings/set_alan_app_settings.sh
 }
