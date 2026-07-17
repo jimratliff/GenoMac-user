@@ -56,7 +56,7 @@ function perform_barebones_user_level_settings() {
   report_adjust_setting "Time Machine: Don’t prompt to use new disk as backup volume"
   defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true ; success_or_not
 
-  # Apple-app settings
+  ############### Apple-app settings
   set_finder_settings                           # scripts/settings/set_finder_settings.sh
   set_preview_settings                          # scripts/settings/set_preview_settings.sh
   set_diskutility_settings                      # scripts/settings/set_diskutility_settings.sh
