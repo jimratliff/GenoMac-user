@@ -13,18 +13,32 @@
 #   - Presumably that is the path that must be specified to add Safari to the Dock, though I haven’t tested it (but
 #     have seen evidence to support this).
 
+# Original, before refactoring
+# APPS_FOR_DOCK=(
+#   "/System/Applications/System Settings.app"
+#   "Applications/1Password.app"
+#   # "Applications/TextExpander.app"
+#   "Applications/Waterfox.app"
+#   "Applications/Helium.app"
+#   "Applications/Raindrop.io.app"
+#   "Applications/Obsidian.app"
+#   "Applications/Zed.app"
+#   "/System/Applications/Utilities/Activity Monitor.app"
+#   # "/System/Applications/Utilities/Terminal.app"
+#   "Applications/iTerm.app"
+# )
+
 APPS_FOR_DOCK=(
   "/System/Applications/System Settings.app"
-  "Applications/1Password.app"
-  # "Applications/TextExpander.app"
-  "Applications/Waterfox.app"
-  "Applications/Helium.app"
-  "Applications/Raindrop.io.app"
-  "Applications/Obsidian.app"
-  "Applications/Zed.app"
+  "/Applications/1Password.app"
+  "/Applications/Waterfox.app"
+  "/Applications/Helium.app"
+  "/Applications/Raindrop.io.app"
+  "/Applications/Obsidian.app"
+  "/Applications/Zed.app"
   "/System/Applications/Utilities/Activity Monitor.app"
   # "/System/Applications/Utilities/Terminal.app"
-  "Applications/iTerm.app"
+  "/Applications/iTerm.app"
 )
 
 function dock_app_entry() {
