@@ -93,6 +93,7 @@ function define_apps_for_dock() {
   local actual_path_to_app_Microsoft_Word="/Applications/Microsoft Word.app"
   local actual_path_to_app_Obsidian="/Applications/Obsidian.app"
   local actual_path_to_app_Raindrop_io="/Applications/Raindrop.io.app"
+  local actual_path_to_app_Tower="/Applications/Tower.app"
   local actual_path_to_app_Waterfox="/Applications/Waterfox.app"
   local actual_path_to_app_Zed="/Applications/Zed.app"
 
@@ -172,11 +173,12 @@ function define_apps_for_dock() {
     apps_for_dock+=( "$actual_path_to_app_HIARCS_Chess_Explorer_Pro" )
   fi
 
-  # iTerm and Zed
+  # iTerm, Zed, and Tower
   if (( is_developer )); then
     apps_for_dock+=( 
       "$actual_path_to_app_iTerm" 
       "$actual_path_to_app_Zed"
+      "$actual_path_to_app_Tower"
     )
   fi
 
