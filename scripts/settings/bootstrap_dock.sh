@@ -4,6 +4,64 @@
 #   Does not alter anything for non-persistent apps.
 #   Does not alter the defaults for the Downloads folder and the Trash Can on the furthest right-hand side of the Dock.
 
+function bootstrap_dock() {
+  # To be run only once per user to initially populate the persistent apps of the Dock.
+  # It removes all persistent apps prior to repopulating the persistent apps.
+  
+  report_start_phase_standard
+  local -a apps_for_dock
+
+  apps_for_dock=( "${(@f)$(define_apps_for_dock)}" )
+  bootstrap_dock_given_apps_for_dock "${apps_for_dock[@]}"
+  
+  report_end_phase_standard
+}
+
+function bootstrap_dock_given_apps_for_dock() {
+  # Constructs Dock arrangement from supplied array apps_for_dock
+  
+  report_start_phase_standard
+
+  local -a apps_for_dock=("$@")
+  
+  report_action_taken "Bootstrap-only initial population of the Dock."
+
+  local dock_item
+  local domain="com.apple.dock"
+  
+  local plist_path
+  plist_path="$(legacy_plist_path_from_domain "$domain")"
+  
+  report_action_taken_to_log "Ensure plist for Dock exists at $plist_path"
+  ensure_plist_path_exists "${plist_path}" ; success_or_not
+  
+  local dock_persistent_apps_key="persistent-apps"
+  
+  report_action_taken_to_log "Remove all persistent apps from Dock in preparation for repopulation" 
+  defaults delete "$domain" "$dock_persistent_apps_key" ; success_or_not
+  kill_the_dock_metaphorically
+  
+  # In this implementation, the 'persistent-others' key is not used.
+  # local dock_ephemeral_files_folders_key="persistent-others"
+  # Policy: Leave the non-persistent part of the Dock alone.
+  # report_adjust_setting "Delete file and folder entries from existing Dock"
+  # defaults delete $domain $dock_ephemeral_files_folders_key ; success_or_not
+  
+  # Initialize the array
+  report_action_taken_to_log "Initialize persistent-apps array" 
+  defaults write "$domain" "$dock_persistent_apps_key" -array ; success_or_not
+  
+  for app in "${apps_for_dock[@]}"; do
+    report_adjust_setting "App $app added to Dock"
+    dock_item="$(dock_app_entry $app)"
+    defaults write "$domain" "$dock_persistent_apps_key" -array-add "$dock_item" ; success_or_not
+  done
+  
+  kill_the_dock_metaphorically
+  
+  report_end_phase_standard
+}
+
 function define_apps_for_dock() {
   # Compile and order apps to populate the Dock depending on user’s attributes.
   #
@@ -141,62 +199,10 @@ function define_apps_for_dock() {
   report_end_phase_standard
 }
 
-function bootstrap_dock() {
-  # To be run only once per user to initially populate the persistent apps of the Dock.
-  # It removes all persistent apps prior to repopulating the persistent apps.
-  
-  report_start_phase_standard
-  local -a apps_for_dock
-
-  apps_for_dock=( "${(@f)$(define_apps_for_dock)}" )
-  bootstrap_dock_given_apps_for_dock "${apps_for_dock[@]}"
-  
-  report_end_phase_standard
-}
-
-function bootstrap_dock_given_apps_for_dock() {
-  # Constructs Dock arrangement from supplied array apps_for_dock
-  
-  report_start_phase_standard
-
-  local -a apps_for_dock=("$@")
-  
-  report_action_taken "Bootstrap-only initial population of the Dock."
-
-  local dock_item
-  local domain="com.apple.dock"
-  
-  local plist_path
-  plist_path="$(legacy_plist_path_from_domain "$domain")"
-  
-  report_action_taken_to_log "Ensure plist for Dock exists at $plist_path"
-  ensure_plist_path_exists "${plist_path}" ; success_or_not
-  
-  local dock_persistent_apps_key="persistent-apps"
-  
-  report_action_taken_to_log "Remove all persistent apps from Dock in preparation for repopulation" 
-  defaults delete "$domain" "$dock_persistent_apps_key" ; success_or_not
-  kill_the_dock_metaphorically
-  
-  # In this implementation, the 'persistent-others' key is not used.
-  # local dock_ephemeral_files_folders_key="persistent-others"
-  # Policy: Leave the non-persistent part of the Dock alone.
-  # report_adjust_setting "Delete file and folder entries from existing Dock"
-  # defaults delete $domain $dock_ephemeral_files_folders_key ; success_or_not
-  
-  # Initialize the array
-  report_action_taken_to_log "Initialize persistent-apps array" 
-  defaults write "$domain" "$dock_persistent_apps_key" -array ; success_or_not
-  
-  for app in "${apps_for_dock[@]}"; do
-    report_adjust_setting "App $app added to Dock"
-    dock_item="$(dock_app_entry $app)"
-    defaults write "$domain" "$dock_persistent_apps_key" -array-add "$dock_item" ; success_or_not
-  done
-  
-  kill_the_dock_metaphorically
-  
-  report_end_phase_standard
+function dock_app_entry() {
+  # Function takes single argument of the full path of the app to add to the Dock.
+  # Outputs the dictionary entry for this app’s tile, inserting the supplied argument into `_CFURLString`.
+  printf '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>%s</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>' "$1"
 }
 
 function kill_the_dock_metaphorically() {
@@ -206,10 +212,4 @@ function kill_the_dock_metaphorically() {
   killall Dock 2>/dev/null || true ; success_or_not
   
   report_end_phase_standard
-}
-
-function dock_app_entry() {
-  # Function takes single argument of the full path of the app to add to the Dock.
-  # Outputs the dictionary entry for this app’s tile, inserting the supplied argument into `_CFURLString`.
-  printf '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>%s</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>' "$1"
 }
