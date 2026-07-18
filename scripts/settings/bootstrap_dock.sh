@@ -77,7 +77,7 @@ function define_apps_for_dock() {
     is_switcher=1
   fi
 
-  # Implement Dock arrangement
+  # Construct apps_for_dock
 
   # Mail.app
   if (( is_emailer )); then
@@ -142,28 +142,32 @@ function define_apps_for_dock() {
 }
 
 function bootstrap_dock() {
-  local -a apps_for_dock
-
-  apps_for_dock=( "${(@f)$(define_apps_for_dock)}" )
-
-  bootstrap_dock_given_apps_for_dock "${apps_for_dock[@]}"
-}
-
-function dock_app_entry() {
-  # Function takes single argument of the full path of the app to add to the Dock.
-  # Outputs the dictionary entry for this app’s tile, inserting the supplied argument into `_CFURLString`.
-  printf '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>%s</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>', "$1"
-}
-
-function bootstrap_dock_given_apps_for_dock() {
   # To be run only once per user to initially populate the persistent apps of the Dock.
   # It removes all persistent apps prior to repopulating the persistent apps.
   
   report_start_phase_standard
-  report_action_taken "Bootstrap-only initial population of the Dock."
+  local -a apps_for_dock
+
+  apps_for_dock=( "${(@f)$(define_apps_for_dock)}" )
+  bootstrap_dock_given_apps_for_dock "${apps_for_dock[@]}"
   
+  report_end_phase_standard
+}
+
+function bootstrap_dock_given_apps_for_dock() {
+  # Constructs Dock arrangement from supplied array apps_for_dock
+  
+  report_start_phase_standard
+
+  local -a apps_for_dock=("$@")
+  
+  report_action_taken "Bootstrap-only initial population of the Dock."
+
+  local dock_item
   local domain="com.apple.dock"
-  plist_path=$(legacy_plist_path_from_domain "$domain")
+  
+  local plist_path
+  plist_path="$(legacy_plist_path_from_domain "$domain")"
   
   report_action_taken_to_log "Ensure plist for Dock exists at $plist_path"
   ensure_plist_path_exists "${plist_path}" ; success_or_not
@@ -171,7 +175,7 @@ function bootstrap_dock_given_apps_for_dock() {
   local dock_persistent_apps_key="persistent-apps"
   
   report_action_taken_to_log "Remove all persistent apps from Dock in preparation for repopulation" 
-  defaults delete $domain $dock_persistent_apps_key ; success_or_not
+  defaults delete "$domain" "$dock_persistent_apps_key" ; success_or_not
   kill_the_dock_metaphorically
   
   # In this implementation, the 'persistent-others' key is not used.
@@ -184,11 +188,10 @@ function bootstrap_dock_given_apps_for_dock() {
   report_action_taken_to_log "Initialize persistent-apps array" 
   defaults write "$domain" "$dock_persistent_apps_key" -array ; success_or_not
   
-  for app in "${APPS_FOR_DOCK[@]}"; do
+  for app in "${apps_for_dock[@]}"; do
     report_adjust_setting "App $app added to Dock"
-    app_path="${app}"
-    dock_item="$(dock_app_entry $app_path)"
-    defaults write $domain $dock_persistent_apps_key -array-add $dock_item  ; success_or_not
+    dock_item="$(dock_app_entry $app)"
+    defaults write "$domain" "$dock_persistent_apps_key" -array-add "$dock_item" ; success_or_not
   done
   
   kill_the_dock_metaphorically
@@ -203,4 +206,10 @@ function kill_the_dock_metaphorically() {
   killall Dock 2>/dev/null || true ; success_or_not
   
   report_end_phase_standard
+}
+
+function dock_app_entry() {
+  # Function takes single argument of the full path of the app to add to the Dock.
+  # Outputs the dictionary entry for this app’s tile, inserting the supplied argument into `_CFURLString`.
+  printf '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>%s</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>' "$1"
 }
