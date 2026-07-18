@@ -139,7 +139,7 @@ function subdermis() {
 
     # Deploy wallpapers to each Space
     # Located here because these wallpapers are typically stored in Dropbox
-    conditionally_set_wallpapers_for_all_spaces
+    conditionally_set_wallpapers_for_all_spaces               # scripts/settings/set_wallpapers.sh
   fi
 
   conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
