@@ -10,7 +10,8 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_alfred.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_dropbox.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_helium.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_obsidian.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_obsidian.sh""
+safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_proton_drive.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_screensaver.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_sync_com.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_touch_id.sh"
@@ -100,6 +101,9 @@ function subdermis() {
 
   # TODOs: conditionally_configure_Sync_com
   conditionally_configure_Sync_com                            # scripts/settings/interactive_configure_sync_com.sh
+
+  # TODOs: conditionally_configure_Proton_Drive
+  conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
   
   # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user,
   # GenoMac-shared, and GenoMac-private at ~/Repositories/Project_GenoMac
