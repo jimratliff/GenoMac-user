@@ -3,18 +3,25 @@
 safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_dock.sh" 
 safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_finder.sh" 
 safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_preview_app.sh" 
-safe_source "${GMU_SETTINGS_SCRIPTS}/register_glance_as_quicklook.sh"
+# safe_source "${GMU_SETTINGS_SCRIPTS}/register_glance_as_quicklook.sh"
+# safe_source "${GMU_SETTINGS_SCRIPTS}/register_flux_markdown_as_quicklook.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_default_apps_to_open.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_default_browser.sh"
 
 function conditionally_perform_initial_bootstrap_operations() {
   report_start_phase_standard
 
-  # Glance: Register as a QuickLook plug
+#   # Glance: Register as a QuickLook plug
+#   run_if_user_has_not_done \
+#     "$PERM_GLANCE_HAS_BEEN_REGISTERED_AS_QUICKLOOK" \
+#     register_glance_as_quicklook \
+#     "Skipping registering Glance as QuickLook plugin, because this was done in the past"
+
+  # Flux-markdown: Register as a QuickLook plugin
   run_if_user_has_not_done \
-    "$PERM_GLANCE_HAS_BEEN_REGISTERED_AS_QUICKLOOK" \
-    register_glance_as_quicklook \
-    "Skipping registering Glance as QuickLook plugin, because this was done in the past"
+    "$PERM_FLUX_MARKDOWN_HAS_BEEN_REGISTERED_AS_QUICKLOOK" \
+    register_flux_markdown_as_quicklook \
+    "Skipping registering flux-markdown as QuickLook plugin, because this was done in the past"
 
   # Dock: Define initial configuration of persistent apps
   run_if_user_has_not_done \
