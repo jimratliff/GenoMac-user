@@ -65,6 +65,10 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_OBSIDIAN_USER}"
       set_genomac_user_state "$SESH_OBSIDIAN_USER_WANTS_IT"
       ;;
+    "${USER_ATTRIBUTE_PROTON_DRIVE_USER}")
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_PROTON_DRIVE_USER}"
+      set_genomac_user_state "$SESH_PROTON_DRIVE_USER_WANTS_IT"
+      ;;
     "${USER_ATTRIBUTE_RAINDROP_IO}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_RAINDROP_IO}"
       set_genomac_user_state "$SESH_RAINDROP_IO_USER_WANTS_IT"
