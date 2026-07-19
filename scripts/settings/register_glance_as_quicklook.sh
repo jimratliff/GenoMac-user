@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+############### Glance is DEPRECATED ###############
+
 function register_glance_as_quicklook() {
 
   # Glance needs to be launched once per user to register itself as a QuickLook plugin.
