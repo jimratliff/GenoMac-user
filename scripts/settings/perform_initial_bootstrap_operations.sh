@@ -4,7 +4,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_dock.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_finder.sh" 
 safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_preview_app.sh" 
 # safe_source "${GMU_SETTINGS_SCRIPTS}/register_glance_as_quicklook.sh"
-# safe_source "${GMU_SETTINGS_SCRIPTS}/register_flux_markdown_as_quicklook.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/register_flux_markdown_as_quicklook.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_default_apps_to_open.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_default_browser.sh"
 
