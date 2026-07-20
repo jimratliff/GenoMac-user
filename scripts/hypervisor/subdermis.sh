@@ -60,6 +60,7 @@ function subdermis() {
   conditionally_perform_barebones_user_level_settings         # scripts/settings/set_barebones_settings.sh
   conditionally_interactive_configure_touch_ID                # scripts/settings/interactive_configure_touch_id.sh
   conditionally_set_single_space_wallpaper                    # scripts/settings/set_wallpapers.sh
+  conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
   
   # Execute barebones bootstrap steps
   conditionally_perform_initial_bootstrap_operations          # scripts/settings/perform_initial_bootstrap_operations.sh
@@ -85,10 +86,7 @@ function subdermis() {
   # Bootstrap: Create additional Mission Control Spaces
   conditionally_create_additional_mission_control_spaces      # scripts/settings/interactive_create_mission_control_spaces.sh
 
-  # Bootstrap: Configure screensaver
-  conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
-
-  # If user has 'developer' attribute, create ~/Repositories directory to hold clones
+  # Bootstrap: If user has 'developer' attribute, create ~/Repositories directory to hold clones
   conditionally_create_repositories_directory_for_developers  # scripts/installations/make_repositories_directory_for_developers.sh
 
   # Bootstrap: Configure 1Password here to make credentials available for later steps
@@ -145,8 +143,6 @@ function subdermis() {
     # Located here because these wallpapers are typically stored in Dropbox
     conditionally_set_wallpapers_for_all_spaces               # scripts/settings/set_wallpapers.sh
   fi
-
-  conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
 
   end_of_subdermis_cleanup
   
