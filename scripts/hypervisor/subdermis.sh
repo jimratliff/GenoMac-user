@@ -67,7 +67,10 @@ function subdermis() {
 
   if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
     report "User wants only barebones configuration, so I’m ending here."
+
+    set_screen_capture_destination_for_barebones_user
     end_of_subdermis_cleanup
+    
     report_end_phase_standard
     return 0
   fi
