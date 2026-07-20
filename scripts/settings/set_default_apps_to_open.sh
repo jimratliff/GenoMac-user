@@ -51,9 +51,9 @@ function set_default_apps_to_open_certain_types_of_docs() {
   printf "\n"
   utiluti type set $uti_plain_text       $BUNDLE_ID_BBEDIT ; success_or_not
   
-  report_adjust_setting "Set Markdown files to open with BBEdit"
+  report_adjust_setting "Set Markdown files to open with FluxMarkdown"
   printf "\n"
-  utiluti type set $uti_markdown         $BUNDLE_ID_BBEDIT ; success_or_not
+  utiluti type set $uti_markdown         $BUNDLE_ID_FLUXMARKDOWN ; success_or_not
   
   report_adjust_setting "Set .plist files to open with BBEdit"
   printf "\n"
