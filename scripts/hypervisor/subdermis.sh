@@ -60,7 +60,6 @@ function subdermis() {
   conditionally_perform_barebones_user_level_settings         # scripts/settings/set_barebones_settings.sh
   conditionally_interactive_configure_touch_ID                # scripts/settings/interactive_configure_touch_id.sh
   conditionally_set_single_space_wallpaper                    # scripts/settings/set_wallpapers.sh
-  conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
   
   # Execute barebones bootstrap steps
   conditionally_perform_initial_bootstrap_operations          # scripts/settings/perform_initial_bootstrap_operations.sh
@@ -143,6 +142,8 @@ function subdermis() {
     # Located here because these wallpapers are typically stored in Dropbox
     conditionally_set_wallpapers_for_all_spaces               # scripts/settings/set_wallpapers.sh
   fi
+
+  conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
 
   end_of_subdermis_cleanup
   
