@@ -125,7 +125,7 @@ function subdermis() {
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
 
     # Set screenshot destination folder to location within user’s subdirectory in Dropbox
-
+    set_screen_capture_destination_for_Dropbox_user
   
     # BetterTouchTool relies on Dropbox because that’s where its license file is stored
     conditionally_configure_bettertouchtool                   # scripts/settings/set_bettertouchtool_settings.sh
@@ -148,6 +148,10 @@ function subdermis() {
     # Deploy wallpapers to each Space
     # Located here because these wallpapers are typically stored in Dropbox
     conditionally_set_wallpapers_for_all_spaces               # scripts/settings/set_wallpapers.sh
+  else
+    # If here, then both (a) user is not barebones but (b) user doesn’t use Dropbox. Therefore, make same
+    # assignment of screen-capture destination as for a barebones user.
+    set_screen_capture_destination_for_barebones_user
   fi
 
   conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
