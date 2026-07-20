@@ -1,14 +1,17 @@
 #!/usr/bin/env zsh
 
 function set_screen_capture_settings() {
-
+  # Implement user’s settings for screen captures.
   report_start_phase_standard
+  
   report_action_taken "Implement settings related to Screen Capture"
 
-  # For barebones settings, Screenshots is created at root of user’s home directory
+  # For barebones settings, The screenshot-destination directory is created at root of user’s home directory.
   # This will be later overruled for users who want their Screenshot directory within their Dropbox.
-  local path_for_screen_capture_result="$HOME/Screenshots"
+  # HINT: USER_SCREENSHOT_DESTINATION_DIRECTORY_BAREBONES="$HOME/Screenshots"
+  local path_for_screen_capture_result="$USER_SCREENSHOT_DESTINATION_DIRECTORY_BAREBONES"
   local permissions_for_screenshot_directory="700"
+  report_adjust_setting "Screenshot: Set default screenshot-destination directory: ${path_for_screen_capture_result}"
   set_screen_capture_destination "$path_for_screen_capture_result" "$permissions_for_screenshot_directory"
   
   report_adjust_setting "Screenshot: Specify that target is a file"
@@ -26,11 +29,15 @@ function set_screen_capture_settings() {
 }
 
 function set_screen_capture_destination_for_Dropbox_user() {
-
-############### TODO WIP
-
-  # Template for a Zsh function in Project GenoMac
+  # Sets screen-capture destination directory to a standard subdirectory of the user’s Dropbox directory.
+  # HINT: USER_SCREENSHOT_DESTINATION_DIRECTORY_DROPBOX_USER="$LOCAL_DROPBOX_DIRECTORY/Users/${USER}/Screenshots"
   report_start_phase_standard
+
+  local path_for_screen_capture_result="$USER_SCREENSHOT_DESTINATION_DIRECTORY_DROPBOX_USER"
+  local permissions_for_screenshot_directory="755"
+  
+  set_screen_capture_destination "$path_for_screen_capture_result" "$permissions_for_screenshot_directory"
+  
   report_end_phase_standard
 }
 
