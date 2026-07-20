@@ -2,17 +2,12 @@
 
 function set_screen_capture_settings() {
   # Implement user’s settings for screen captures.
+  #
+  # This function does NOT set the screen-capture destination directory. That is handled separately
+  # elsewhere depending on whether the user is (a) barebones only or (b) a Dropbox user.
   report_start_phase_standard
   
-  report_action_taken "Implement settings related to Screen Capture"
-
-  # For barebones settings, The screenshot-destination directory is created at root of user’s home directory.
-  # This will be later overruled for users who want their Screenshot directory within their Dropbox.
-  # HINT: USER_SCREENSHOT_DESTINATION_DIRECTORY_BAREBONES="$HOME/Screenshots"
-  local path_for_screen_capture_result="$USER_SCREENSHOT_DESTINATION_DIRECTORY_BAREBONES"
-  local permissions_for_screenshot_directory="700"
-  report_adjust_setting "Screenshot: Set default screenshot-destination directory: ${path_for_screen_capture_result}"
-  set_screen_capture_destination "$path_for_screen_capture_result" "$permissions_for_screenshot_directory"
+  report_action_taken "Implement settings related to screen capture"
   
   report_adjust_setting "Screenshot: Specify that target is a file"
   # Needed only when overriding an assignment to clipboard or an app (e.g., Mail, Preview)
@@ -26,6 +21,19 @@ function set_screen_capture_settings() {
   
   report_end_phase_standard
 
+}
+
+function set_screen_capture_destination_for_barebones_user() {
+  # Sets screen-capture destination directory for a barebones user.
+  # HINT: USER_SCREENSHOT_DESTINATION_DIRECTORY_BAREBONES="$HOME/Screenshots"
+  report_start_phase_standard
+
+  local path_for_screen_capture_result="$USER_SCREENSHOT_DESTINATION_DIRECTORY_BAREBONES"
+  local permissions_for_screenshot_directory="700"
+  
+  set_screen_capture_destination "$path_for_screen_capture_result" "$permissions_for_screenshot_directory"
+  
+  report_end_phase_standard
 }
 
 function set_screen_capture_destination_for_Dropbox_user() {
