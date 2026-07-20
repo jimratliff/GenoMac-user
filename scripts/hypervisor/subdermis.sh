@@ -120,6 +120,10 @@ function subdermis() {
   ############### (Further) configure apps that rely upon Dropbox having synced ###############
   
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
+
+    # Set screenshot destination folder to location within user’s subdirectory in Dropbox
+
+  
     # BetterTouchTool relies on Dropbox because that’s where its license file is stored
     conditionally_configure_bettertouchtool                   # scripts/settings/set_bettertouchtool_settings.sh
 
