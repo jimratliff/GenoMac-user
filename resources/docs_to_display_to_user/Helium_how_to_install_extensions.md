@@ -16,6 +16,9 @@ additional extensions.
 - ❑ Go to the [Sea Foam theme Chrome web store page](https://chromewebstore.google.com/detail/sea-foam/lahipjfggmgneaopcckkaipmoandaboo)
 - ❑ Click on “Add to Helium”
 
+> [!NOTE]
+> Some of the following extensions may not be relevant to you. Feel free *not* to install/configure any extension that you feel doesn’t make sense for this user.
+
 ## Install 1Password
 - ❑ Go to the [1Password Chrome web store page](https://chromewebstore.google.com/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
 - ❑ Click on “Add to Helium”
