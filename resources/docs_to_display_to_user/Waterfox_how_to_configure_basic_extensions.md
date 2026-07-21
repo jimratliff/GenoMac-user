@@ -21,5 +21,4 @@
   - ❑ Pin 📌 ? ✅
 
 ## Return to the terminal
-Now return to the terminal and acknowledge you have completed the configuration of the Enhancer for YouTube
-extension for Waterfox.
+Now return to the terminal and acknowledge you have completed these extension configurations for Waterfox.
