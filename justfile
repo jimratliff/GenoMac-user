@@ -33,7 +33,7 @@ genomac_push_url := 'git@github.com:' + genomac_github_owner + '/' + genomac_rem
 
 # Run the Hypervisor-User
 [group('Hypervisor')]
-A1-run-hypervisor:
+A1-hypervisor-run:
 	zsh scripts/run_hypervisor.sh
 
 ############### Repo management WITHOUT GitHub authentication
