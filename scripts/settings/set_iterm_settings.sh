@@ -26,7 +26,7 @@ function set_iterm_settings() {
   # iTerm’s plist is not sufficiently populated to support setting the default font unless iTerm has been launched once.
   # We check whether there is a sufficiently populated plist. If not, launch iTerm to create that plist.
   if ! "${PLISTBUDDY_PATH}" -c 'Print :"New Bookmarks":0:"Normal Font"' "${plist_path}" >/dev/null 2>&1; then
-      report_warning $'\niTerm2 preferences not properly initialized, launching iTerm2 to properly populate plist file.'
+      report_warning $'iTerm2 preferences not properly initialized, launching iTerm2 to properly populate plist file.'
       launch_and_quit_app "${BUNDLE_ID_ITERM2}"
       sleep 2
   fi
