@@ -66,10 +66,11 @@ function set_default_apps_to_open_certain_types_of_docs() {
   report_adjust_setting "Set XML files to open with BBEdit"
   printf "\n"
   utiluti type set $uti_xml              $BUNDLE_ID_BBEDIT ; success_or_not
-  
-  report_adjust_setting "Set AppleScript files to open with BBEdit"
-  printf "\n"
-  utiluti type set $uti_applescript      $BUNDLE_ID_BBEDIT ; success_or_not
+
+  # NEW: Let Script Editor open AppleScript files, as is the default
+  # report_adjust_setting "Set AppleScript files to open with BBEdit"
+  # printf "\n"
+  # utiluti type set $uti_applescript      $BUNDLE_ID_BBEDIT ; success_or_not
 
   report_adjust_setting "Set MPEG files to open with Elmedia Player"
   printf "\n"
