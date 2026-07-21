@@ -28,7 +28,7 @@ function set_iterm_settings() {
   if ! "${PLISTBUDDY_PATH}" -c 'Print :"New Bookmarks":0:"Normal Font"' "${plist_path}" >/dev/null 2>&1; then
       report_warning $'iTerm2 preferences not properly initialized, launching iTerm2 to properly populate plist file.'
       launch_and_quit_app "${BUNDLE_ID_ITERM2}"
-      sleep 2
+      sleep 5
   fi
   
   "${PLISTBUDDY_PATH}" -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' "${plist_path}" ; success_or_not
