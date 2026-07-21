@@ -99,13 +99,13 @@ defaults-detective:
 user-states command:
     zsh scripts/utilities/user_state_utilities.sh '{{command}}'
 
-[group('State utilities')]
 # Show directory containing state files
+[group('State utilities')]
 user-states-show:
     just user-states show
 
-[group('State utilities')]
 # Clear SESH state files
+[group('State utilities')]
 user-states-clear-session-states:
     just user-states clear-session
 
