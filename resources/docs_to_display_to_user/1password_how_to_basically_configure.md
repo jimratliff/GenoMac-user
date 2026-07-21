@@ -37,7 +37,7 @@ using a script.)
 - - “Unlock app with Mac password”
   - ❑ Change from ✅ → ❌
 - “Require account password after”
-  - ❑ Set at **30 days
+  - ❑ Set at **30** days
 #### Auto-lock
 - “Lock after the device is idle for”
   - ❑ Change from 1 hour → **8 hours**
