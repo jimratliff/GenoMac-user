@@ -5,7 +5,7 @@ Either:
 - ⌃⌥⌘F8, OR
 - Swipe Up with Four Fingers
 
-## Crewate 15 new Spaces
+## Create 15 new Spaces
 - For each new Space, click “⊕” (“+”) in the far right-hand side of what would be the menubar.
 - Iteratively create new Spaces until you reach a total of 16.
 
