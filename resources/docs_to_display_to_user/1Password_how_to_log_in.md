@@ -8,7 +8,7 @@ Log into your 1Password account. The best way to do this is:
   - This will display a sign-in dialog box, including a QR code you can use to make the sign-in process
     quicker.
 - ❑ Get your iPhone.
-  - ❑ Launch 1Password on iPhone
+  - ❑ Launch **the 1Password app** on iPhone (don’t open the Camera)
   - ❑ From the 1Password logo in the upper-left corner of the 1Password app on iPhone, select “Scan QR Code…”
   - ❑ Follow the instructions
 
