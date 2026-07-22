@@ -34,6 +34,7 @@ using a script.)
 *NOTE: The following applies only to accounts that will use Touch ID to authenticate in macOS*
 - “Unlock using Touch ID”
   - ❑ Change from ❌ → ✅
+  - (This may have already been ✅-ed, if you were presented with an earlier dialog box about this option.)
 - - “Unlock app with Mac password”
   - ❑ Change from ✅ → ❌
 - “Require account password after”
