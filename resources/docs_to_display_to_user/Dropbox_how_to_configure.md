@@ -9,6 +9,7 @@
   - The URL of the new browser window is www.dropbox.com/oath2/…
   - “Log in or sign up to Dropbox to link with Dropbox”
   - This could require (a) an email address, (b) a password, and (c) a 2FA using an authenticator device
+  - ❑ Log into Dropbox
   - ❑ In a popup dialog box, agree to “Allow this site to open the dropbox-client link with Dropbox?”
       - Also ✅ for “Always allow https://www.dropbox.com to open dropbox-client links”
       - ❑ Click on “Open Link”
@@ -24,7 +25,7 @@
       - “Only selected folders will take up hard drive space on this device. You can still access unselected folders anytime at dropbox.com”
       - Choose only the “Preferences_common” folder
         - ❑ First, deselect all
-        - Now select **two*** folders
+        - Now select **two** folders
           - ❑ Select “Preferences_common”
           - ❑ Select “Users/*your-user-name*”
         - ❑ Then, click “Save”
