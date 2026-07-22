@@ -132,11 +132,3 @@ ssh-agent-verify:
 [group('Defaults Detective')]
 defaults-detective:
 	zsh scripts/utilities/defaults_detective.sh
-
-
-
-
-
-
-
-
