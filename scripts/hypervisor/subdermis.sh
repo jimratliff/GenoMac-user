@@ -132,7 +132,7 @@ function subdermis() {
     conditionally_configure_keyboard_maestro                  # scripts/settings/interactive_configure_keyboard_maestro.sh
 
     # Alfred must be configured *after* Keyboard Maestro, because activating the Powerpack uses a custom Keyboard Maestro macro
-    conditionally_configure_alfred                            # scripts/settings/interactive_configure_alfred.sh
+    conditionally_interactive_configure_alfred                # scripts/settings/interactive_configure_alfred.sh
 
     # Installation of Witch preference pane relies on Dropbox as the source of the binary.
     # Installed for each user separately because Witch pref pane won’t launch automatically at login
