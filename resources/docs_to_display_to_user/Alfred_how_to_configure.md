@@ -62,6 +62,9 @@
         - I’m electing **not** to take this step, until/unless I have a need for it
         - **NOTE:** I still had to click on “Request macOS Contacts acess” (in order to get the “Next Step…” option, but I declined to turn that permission on.
 - ❑ Click on “Next Step…”
+- You will see a window: “Alfred Setup Complete”
+- ❑ Click the “Start Alfred” button.
+- This opens Alfred’s preferences
        
 ## Configure syncing
 ### Context for configuring perference syncing
