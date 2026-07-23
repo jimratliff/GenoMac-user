@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function conditionally_configure_Obsidian() {
+function conditionally_interactive_configure_Obsidian() {
   report_start_phase_standard
   
   if test_genomac_user_state "$SESH_OBSIDIAN_USER_WANTS_IT"; then
