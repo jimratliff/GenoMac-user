@@ -202,7 +202,7 @@ function get_path_to_wallpaper_for_mission_control_space_n() {
     return 1
   fi
 
-  matching_items=("${user_wallpaper_directory}/${number_of_mission_control_space}_"*(N.on))
+  matching_items=("${user_wallpaper_directory}/${number_of_mission_control_space}_"*(Non))
 
   if (( ${#matching_items} == 0 )); then
     report_fail "No wallpaper file or directory was found for Mission Control Space ${number_of_mission_control_space} in: ${user_wallpaper_directory}"
@@ -220,11 +220,10 @@ function get_path_to_wallpaper_for_mission_control_space_n() {
     path_of_wallpaper="$path_of_matching_item"
 
   elif [[ -d "$path_of_matching_item" ]]; then
-    directory_entries=("${path_of_matching_item}"/*(N.on))
+    directory_entries=("${path_of_matching_item}"/*(Non))
 
     for candidate_path in "${directory_entries[@]}"; do
-      if [[ -f "$candidate_path" ]] &&
-         extension_is_valid_wallpaper_image_type "$candidate_path"; then
+      if [[ -f "$candidate_path" ]] && extension_is_valid_wallpaper_image_type "$candidate_path"; then
         path_of_wallpaper="$candidate_path"
         break
       fi
