@@ -100,7 +100,9 @@
 ### Refresh the installed community plugins
 By default, no community plugins are installed. Now that you’ve switched on “Active community plugin list” and “Installed community plugins,” the community plugins have been downloaded, but Obsidian is not yet aware of them.
 - Obsidian » Settings » Options » Community plugins
+  - Look for the **Installed plugins** section with a toggle to its right.
   - ✅ Click on the reload icon (bidirectional circular arrows)
+  - This is **not** the same as “Turn on and reload” in the “Restricted mode” section above.
   - Now you will see, under “Current plugins,” “You currently have 12 (or whatever) plugins installed.”
   - You will also see under “Installed plugins,” a list of community plugins, with a toggle switch for each.
   - Note that, currently, they are all turned OFF. **Do not touch these!**
