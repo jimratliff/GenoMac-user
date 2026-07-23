@@ -9,6 +9,7 @@
 
 ## Enable Witch
 - ❑ Toggle ON the switch to “Enable Witch” in the upper-left corner of the right-hand pane of System Settings.
+  - (In my experience, this has been ON by default, making this entire exercise pointless.)
 
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed enabling the Witch preference pane.
