@@ -141,14 +141,13 @@ function move_to_mission_control_space_n() {
   number_of_space_to_which_to_move="${1:?MISSING number of space to move to}"
 
   local key_code_for_requested_mission_control_space
-  local -i key_code_from_mission_control_space_number
   local -a key_code_from_mission_control_space_number=(18 19 20 21 13 22 26 28 25 29 122 120 99 118 96 97)
   
   key_code_for_requested_mission_control_space=${key_code_from_mission_control_space_number[$number_of_space_to_which_to_move]}
 
-  osascript "$key_code_for_requested_mission_control_space" <<'APPLESCRIPT'
+  osascript - "$key_code_for_requested_mission_control_space" <<'APPLESCRIPT'
   on run argv
-    set key_code_for_requested_mission_control_space to item 1 of argv
+    set key_code_for_requested_mission_control_space to (item 1 of argv) as integer
     tell application "System Events"
       key code key_code_for_requested_mission_control_space using {control down, option down, command down}
     end tell
