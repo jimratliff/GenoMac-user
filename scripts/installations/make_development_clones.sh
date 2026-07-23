@@ -7,12 +7,11 @@ function conditionally_clone_GenoMac_repos_for_development() {
 
   if ! test_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"; then
     report_to_log "Skipping making additional development clones of GenoMac repos,${NEWLINE}because user doesn’t want to develop Project GenoMac."
+  else
+    run_if_user_has_not_done "$PERM_GENOMAC_DEV_CLONES_HAVE_BEEN_CREATED" \
+      make_additional_dev_clones_of_genomac_repos \
+      "Skipping making development clones of GenoMac repos, because they’ve already been created in the past."
   fi
-
-  run_if_user_has_not_done "$PERM_GENOMAC_DEV_CLONES_HAVE_BEEN_CREATED" \
-    make_additional_dev_clones_of_genomac_repos \
-    "Skipping making development clones of GenoMac repos, because they’ve already been created in the past."
-    
   report_end_phase_standard
 }
 
