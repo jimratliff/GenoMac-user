@@ -107,8 +107,7 @@ function subdermis() {
   # GenoMac-shared, and GenoMac-private at ~/Repositories/Project_GenoMac
   conditionally_clone_GenoMac_repos_for_development           # scripts/installations/make_development_clones.sh
 
-  # TODOs: conditionally_configure_Obsidian
-  conditionally_configure_Obsidian                            # scripts/settings/interactive_configure_obsidian.sh
+  conditionally_interactive_configure_Obsidian                # scripts/settings/interactive_configure_obsidian.sh
 
   # TODOs: conditionally_configure_mail_app
   conditionally_configure_mail_app                            # scripts/settings/set_mail_app_settings.sh
