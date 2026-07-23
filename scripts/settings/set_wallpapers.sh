@@ -95,7 +95,7 @@ function set_wallpapers_for_all_spaces() {
   for (( number_of_current_space=1; number_of_current_space <= MAXIMUM_NUMBER_OF_MISSION_CONTROL_SPACES; ++number_of_current_space )); do
     move_to_mission_control_space_n "$number_of_current_space"
     sleep 1
-    wallpaper_path="$($get_path_to_wallpaper_for_mission_control_space_n "$number_of_current_space")"
+    wallpaper_path="$(get_path_to_wallpaper_for_mission_control_space_n "$number_of_current_space")"
     sleep 1
     set_all_displays_of_current_mission_control_space_to_image_at_path "$wallpaper_path"
   done
