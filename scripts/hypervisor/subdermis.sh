@@ -98,8 +98,6 @@ function subdermis() {
   
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
-
-  # TODOs: conditionally_configure_Sync_com
   conditionally_configure_Sync_com                            # scripts/settings/interactive_configure_sync_com.sh
 
   # TODOs: conditionally_configure_Proton_Drive
