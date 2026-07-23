@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function conditionally_configure_alfred() {
+function conditionally_interactive_configure_alfred() {
   report_start_phase_standard
   
   run_if_user_has_not_done "$PERM_ALFRED_HAS_BEEN_CONFIGURED" \
