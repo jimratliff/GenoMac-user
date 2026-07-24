@@ -113,6 +113,9 @@ By default, no community plugins are installed. Now that you’ve switched on �
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
+
+## Be tidy: Close this document
+- ❑ Close this document
  
 > [!NOTE]
 > **Resources**
