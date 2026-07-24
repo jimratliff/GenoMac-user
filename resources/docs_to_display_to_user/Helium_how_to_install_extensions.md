@@ -33,3 +33,6 @@ additional extensions.
 
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the installation of your desired extensions for Helium.
+
+## Be tidy: Close this document
+- ❑ Close this document
