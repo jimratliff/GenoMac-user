@@ -29,3 +29,6 @@ For each of the following, toggle the switch ON ✅
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the configuration of the Enhancer for YouTube
 extension for Waterfox.
+
+## Be tidy: Close this document
+- ❑ Close this document
