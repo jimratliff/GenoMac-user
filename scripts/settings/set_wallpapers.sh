@@ -94,6 +94,10 @@ function set_wallpapers_for_all_spaces() {
 
   report_action_taken "Assign specified wallpaper to each Mission Control Space."
 
+  # Current terminal must have Accessibility permissions in order for AppleScript to emit keystrokes to navigate from
+  # Space to Space
+  conditional_interactive_ensure_terminal_has_accessibility_permissions # scripts/settings/interactive_set_permissions.sh
+
   for (( number_of_current_space=1; number_of_current_space <= MAXIMUM_NUMBER_OF_MISSION_CONTROL_SPACES; ++number_of_current_space )); do
     move_to_mission_control_space_n "$number_of_current_space"
     wallpaper_path="$(get_path_to_wallpaper_for_mission_control_space_n "$number_of_current_space")"
