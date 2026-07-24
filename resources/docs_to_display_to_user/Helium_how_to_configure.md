@@ -39,3 +39,6 @@ Select:
 
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the configuration of Helium.
+
+## Be tidy: Close this document
+- ❑ Close this document
