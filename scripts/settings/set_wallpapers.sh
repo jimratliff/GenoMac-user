@@ -118,6 +118,8 @@ function set_all_displays_of_current_mission_control_space_to_image_at_path() {
   report_start_phase_standard
   local wallpaper_path="${1:?MISSING wallpaper_path}"
 
+  local sleeptime_to_allow_deployment_of_wallpapers_to_all_desktop_in_given_space=4
+
   report_to_log "Current wallpaper path:${NEWLINE}${wallpaper_path}"
 
   osascript - "$wallpaper_path" <<'APPLESCRIPT'
@@ -129,7 +131,7 @@ on run argv
 end run
 APPLESCRIPT
 
-  sleep 2
+  sleep "$sleeptime_to_allow_deployment_of_wallpapers_to_all_desktop_in_given_space"
   report_end_phase_standard
 }
 
@@ -147,6 +149,8 @@ function move_to_mission_control_space_n() {
   # 16: ⌃⌥⌘F6
   
   report_start_phase "Entering move_to_mission_control_space_n : $*"
+  
+  local sleeptime_to_allow_for_navigation_to_new_space=4
   local -i number_of_space_to_which_to_move
   number_of_space_to_which_to_move="${1:?MISSING number of space to move to}"
 
@@ -164,7 +168,7 @@ function move_to_mission_control_space_n() {
   end run
 APPLESCRIPT
 
-  sleep 2
+  sleep "$sleeptime_to_allow_for_navigation_to_new_space"
   report_end_phase "Leaving move_to_mission_control_space_n : $*"
 }
 
