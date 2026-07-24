@@ -1,7 +1,4 @@
-# How to configure Sync.com
-
-> [!WARNING]
-> This is TODO!
+# How to configure the Sync.com desktop app
 
 > [!NOTE]
 > This assumes the Sync app is version-2.x, which allows arbritrary sync-folder location (as opposed to version-5.x beta, which is compliant with Apple’s File Provider API).
@@ -36,7 +33,8 @@
 >
 > It can take a few minutes before syncing actually begins. Be patient!
 
-
-
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
+
+## Be tidy: Close this document
+- ❑ Close this document
