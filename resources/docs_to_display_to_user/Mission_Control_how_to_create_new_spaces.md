@@ -11,3 +11,6 @@ Either:
 
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed enabling the Witch preference pane.
+
+## Be tidy: Close this document
+- ❑ Close this document
