@@ -103,8 +103,7 @@ function set_wallpapers_for_all_spaces() {
     wallpaper_path="$(get_path_to_wallpaper_for_mission_control_space_n "$number_of_current_space")"
 
     report_to_log "Space ${number_of_current_space} path: ${wallpaper_path}"
-    
-    sleep 2
+  
     set_all_displays_of_current_mission_control_space_to_image_at_path "$wallpaper_path"
   done
 
