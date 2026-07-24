@@ -77,3 +77,6 @@ Although there are 38 entries, they all default to ❌. No change necessary.
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the installation of the “Activist - Balanced”
 theme for Waterfox.
+
+## Be tidy: Close this document
+- ❑ Close this document
