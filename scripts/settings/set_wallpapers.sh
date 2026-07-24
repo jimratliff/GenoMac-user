@@ -136,7 +136,7 @@ function move_to_mission_control_space_n() {
   # …
   # 16: ⌃⌥⌘F6
   
-  report_start_phase_standard
+  report_start_phase_standard "Entering move_to_mission_control_space_n : $*"
   local -i number_of_space_to_which_to_move
   number_of_space_to_which_to_move="${1:?MISSING number of space to move to}"
 
@@ -153,8 +153,8 @@ function move_to_mission_control_space_n() {
     end tell
   end run
 APPLESCRIPT
-  
-  report_end_phase_standard
+
+  report_end_phase_standard "Entering move_to_mission_control_space_n : $*"
 }
 
 function get_path_to_wallpaper_for_mission_control_space_n() {
