@@ -32,3 +32,6 @@ extension for Waterfox.
 
 ## Be tidy: Close this document
 - ❑ Close this document
+
+## Be tidy: Close this document
+- ❑ Close this document
