@@ -130,6 +130,7 @@ on run argv
 end run
 APPLESCRIPT
 
+  sleep 2
   report_end_phase_standard
 }
 
@@ -164,6 +165,7 @@ function move_to_mission_control_space_n() {
   end run
 APPLESCRIPT
 
+  sleep 2
   report_end_phase "Leaving move_to_mission_control_space_n : $*"
 }
 
