@@ -11,36 +11,42 @@ function conditionally_perform_initial_bootstrap_operations() {
   report_start_phase_standard
 
   # Flux-markdown: Register as a QuickLook plugin
+  # scripts/settings/register_flux_markdown_as_quicklook.sh
   run_if_user_has_not_done \
     "$PERM_FLUX_MARKDOWN_HAS_BEEN_REGISTERED_AS_QUICKLOOK" \
     register_flux_markdown_as_quicklook \
     "Skipping registering flux-markdown as QuickLook plugin, because this was done in the past"
 
   # Dock: Define initial configuration of persistent apps
+  # scripts/settings/bootstrap_dock.sh
   run_if_user_has_not_done \
     "$PERM_DOCK_BASE_PERSISTENT_APPS_HAVE_BEEN_SPECIFIED" \
     bootstrap_dock \
     "Skipping initial configuration of Dock, because this was done in the past"
 
   # Dock/Spaces: Assign apps to open in AllSpaces
+  # scripts/settings/set_mission_control_assign_to_options.sh
   run_if_user_has_not_done \
     "$PERM_MISSION_CONTROL_ASSIGN_TO_OPTIONS_HAVE_BEEN_CONFIGURED" \
     implement_mission_control_assign_to_options_for_selected_apps \
     "Skipping assigning apps a Mission Control assign-to option, because it’s already been done"
 
   # Finder: Open new windows to HOME
+  # scripts/settings/bootstrap_finder.sh
   run_if_user_has_not_done \
     "$PERM_FINDER_OPEN_NEW_WINDOWS_TO_HOME_HAS_BEEN_BOOTSTRAPPED" \
     bootstrap_finder_open_new_windows_to_home \
     "Skipping configuring Finder to open new windows to HOME, because this was done in the past"
 
   # Finder: Bootstrap toolbar
+  # scripts/settings/bootstrap_finder.sh
   run_if_user_has_not_done \
     "$PERM_FINDER_TOOLBAR_HAS_BEEN_BOOTSTRAPPED" \
     bootstrap_finder_toolbar \
     "Skipping setting Finder toolbar, because this was done in the past"
 
   # Preview.app: Define initial toolbar
+  # scripts/settings/bootstrap_preview_app.sh
   run_if_user_has_not_done \
     "$PERM_PREVIEW_BASE_TOOLBAR_HAS_BEEN_SPECIFIED" \
     bootstrap_preview_app \
@@ -49,7 +55,9 @@ function conditionally_perform_initial_bootstrap_operations() {
   # Set default browser
   # This operation is bootstrap only because mystertiously it takes a long time to exectute,
   # and is therefore too costly to perform every time the Hypervisor is run.
-  if ! is_default_browser_utility_unavailable_for_this_user; then
+
+  if ! is_default_browser_utility_unavailable_for_this_user; then    # scripts/helpers.sh
+    # scripts/settings/set_default_browser.sh
     run_if_user_has_not_done "$PERM_DEFAULT_BROWSER_HAS_BEEN_SET" \
       set_default_browser \
       "Skipping setting default browser, because this was set in the past"
@@ -60,6 +68,7 @@ function conditionally_perform_initial_bootstrap_operations() {
   # Set default apps to open certain types of documents
   # This operation is bootstrap only because it generates dialog boxes the user must respond
   # to, and is therefore too costly to perform every time the Hypervisor is run.
+  # scripts/settings/set_default_apps_to_open.sh
   run_if_user_has_not_done "$PERM_DEFAULT_APPS_TO_OPEN_CERTAIN_TYPES_OF_DOCS_HAVE_BEEN_SET" \
     set_default_apps_to_open_certain_types_of_docs \
     "Skipping setting default apps to open certain types of docs, because that was set in the past"
