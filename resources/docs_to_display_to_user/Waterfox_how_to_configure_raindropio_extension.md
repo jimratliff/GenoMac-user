@@ -22,3 +22,6 @@ can’t successfully install the Raindrop.io extension. So you’ll need to manu
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the configuration of the Manage My Tabs
 extension for Waterfox.
+
+## Be tidy: Close this document
+- ❑ Close this document
