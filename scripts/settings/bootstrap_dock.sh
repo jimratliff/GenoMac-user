@@ -173,10 +173,14 @@ function define_apps_for_dock() {
     apps_for_dock+=( "$actual_path_to_app_HIARCS_Chess_Explorer_Pro" )
   fi
 
-  # iTerm, Zed, and Tower
+  # iTerm is unconditional:
+  # Needed by every GenoMac-configured user, even non-developers in order to run GenoMac-user
+  apps_for_dock+=( "$actual_path_to_app_iTerm" )
+
+  # Zed, and Tower
   if (( is_developer )); then
     apps_for_dock+=( 
-      "$actual_path_to_app_iTerm" 
+      # "$actual_path_to_app_iTerm" 
       "$actual_path_to_app_Zed"
       "$actual_path_to_app_Tower"
     )
