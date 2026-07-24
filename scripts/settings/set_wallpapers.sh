@@ -94,9 +94,8 @@ function set_wallpapers_for_all_spaces() {
 
   for (( number_of_current_space=1; number_of_current_space <= MAXIMUM_NUMBER_OF_MISSION_CONTROL_SPACES; ++number_of_current_space )); do
     move_to_mission_control_space_n "$number_of_current_space"
-    sleep 1
     wallpaper_path="$(get_path_to_wallpaper_for_mission_control_space_n "$number_of_current_space")"
-    sleep 1
+    sleep 2
     set_all_displays_of_current_mission_control_space_to_image_at_path "$wallpaper_path"
   done
 
@@ -110,6 +109,8 @@ function set_all_displays_of_current_mission_control_space_to_image_at_path() {
   # Sets wallpaper of all displays of current Mission Control Space to image at supplied path.
   report_start_phase_standard
   local wallpaper_path="${1:?MISSING wallpaper_path}"
+
+  report_to_log "Current wallpaper path:${NEWLINE}${wallpaper_path}"
 
   osascript - "$wallpaper_path" <<'APPLESCRIPT'
 on run argv
@@ -154,7 +155,7 @@ function move_to_mission_control_space_n() {
   end run
 APPLESCRIPT
 
-  report_end_phase_standard "Entering move_to_mission_control_space_n : $*"
+  report_end_phase_standard "Leaving move_to_mission_control_space_n : $*"
 }
 
 function get_path_to_wallpaper_for_mission_control_space_n() {
