@@ -21,3 +21,6 @@ can’t successfully install the “Blue Sharepoint” extension. So, if it’s 
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the installation of the “Blue Sharepoint”
 theme for Waterfox.
+
+## Be tidy: Close this document
+- ❑ Close this document
