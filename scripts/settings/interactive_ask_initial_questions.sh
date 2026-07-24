@@ -1,17 +1,19 @@
 #!/usr/bin/env zsh
 
+function conditionally_ask_and_set_verbosity_preference() {
+  # Asks and sets user’s verbose-output preference, if not already asked this session.
+  report_start_phase_standard
+  run_if_user_has_not_done \
+    "$SESH_Q_ASKED_VERBOSITY" \
+	  ask_and_set_verbosity_preference \
+    "Skipping asking about verbosity, because this has already been answered this session."
+  report_end_phase_standard
+}
+
 
 function conditionally_interactive_ask_initial_questions() {
 
   report_start_phase_standard
-
-	############### Set verbosity of output
-
-  conditionally_ask_question_and_assign_user_state_if_yes \
-    "$SESH_Q_ASKED_VERBOSITY" \
-    "Skipping asking about verbosity, because this has already been answered this session." \
-    "Do you want verbose terminal output?" \
-    "$SESH_VERBOSITY_USER_WANTS_IT"
 
 #   # ############### DEPRECATED QUESTIONS
 #   # Ask questions to the executing user that will guide the remainder of the Hypervisor process.
