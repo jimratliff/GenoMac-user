@@ -48,3 +48,6 @@ using a script.)
 
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the basic configuration of 1Password.
+
+## Be tidy: Close this document
+- ❑ Close this document
