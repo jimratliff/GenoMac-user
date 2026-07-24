@@ -118,7 +118,7 @@ function set_all_displays_of_current_mission_control_space_to_image_at_path() {
   report_start_phase_standard
   local wallpaper_path="${1:?MISSING wallpaper_path}"
 
-  local sleeptime_to_allow_deployment_of_wallpapers_to_all_desktop_in_given_space=4
+  local sleeptime_to_allow_deployment_of_wallpapers_to_all_desktop_in_given_space=2
 
   report_to_log "Current wallpaper path:${NEWLINE}${wallpaper_path}"
 
@@ -150,12 +150,12 @@ function move_to_mission_control_space_n() {
   
   report_start_phase "Entering move_to_mission_control_space_n : $*"
   
-  local sleeptime_to_allow_for_navigation_to_new_space=4
+  local sleeptime_to_allow_for_navigation_to_new_space=2
   local -i number_of_space_to_which_to_move
   number_of_space_to_which_to_move="${1:?MISSING number of space to move to}"
 
   local key_code_for_requested_mission_control_space
-  local -a key_code_from_mission_control_space_number=(18 19 20 21 13 22 26 28 25 29 122 120 99 118 96 97)
+  local -a key_code_from_mission_control_space_number=(18 19 20 21 23 22 26 28 25 29 122 120 99 118 96 97)
   
   key_code_for_requested_mission_control_space=${key_code_from_mission_control_space_number[$number_of_space_to_which_to_move]}
 
