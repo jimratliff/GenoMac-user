@@ -42,3 +42,6 @@ each icon by a position and text that you’d see if you hover over the icon.
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the configuration of the Enhancer for YouTube
 extension for Waterfox.
+
+## Be tidy: Close this document
+- ❑ Close this document
