@@ -9,3 +9,6 @@
 
 ## Return to terminal and acknowledge
 - [ ] Type `done` to acknowledge that you’ve completed these manual steps.
+
+## Be tidy: Close this document
+- ❑ Close this document
