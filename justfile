@@ -70,7 +70,9 @@ a-VVVVVVVVVV-KEY-RECIPES-VVVVVVVVVV-z:
 
 above-LESS-FREQUENTLY-USED-RECIPES-----:
 
-
+[group('Occasional maintenance utilities')]
+wallpapers-re-deploy:
+	zsh scripts/utilities/re_deploy_wallpapers_setup.sh
 
 ############### Logging utilities
 
