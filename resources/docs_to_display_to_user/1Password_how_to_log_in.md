@@ -14,3 +14,6 @@ Log into your 1Password account. The best way to do this is:
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed signing into 1Password.
+
+## Be tidy: Close this document
+- ❑ Close this document
