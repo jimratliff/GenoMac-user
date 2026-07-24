@@ -262,11 +262,14 @@ function extension_is_valid_wallpaper_image_type() {
 
   case "$extension" in
     jpeg|jpg|heic|png|tiff|webp)
+      report_to_log "Extension $extension is a valid wallpaper image type."
+      report_end_phase_standard
       return 0
       ;;
     *)
+      report_fail "Extension $extension is NOT a valid wallpaper image type."
+      report_end_phase_standard
       return 1
       ;;
   esac
-  report_end_phase_standard
 }
