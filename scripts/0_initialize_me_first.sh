@@ -72,6 +72,8 @@ master_helper_script="${HELPERS_FROM_GENOMAC_SHARED}/helpers.sh"
 echo "Source ${master_helper_script}"
 source "${master_helper_script}"
 
+turn_off_verbose_genomac_output
+
 # Source repo-specific environment-variables script
 repo_specific_environment_variables="${GENOMAC_USER_SCRIPTS}/assign_user_environment_variables.sh"
 
