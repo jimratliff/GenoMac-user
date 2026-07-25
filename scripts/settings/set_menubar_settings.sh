@@ -13,7 +13,6 @@ function set_menubar_settings() {
   # Give audible feedback when volume is changed
   report_adjust_setting "Give audible feedback when volume is changed"
   defaults write NSGlobalDomain com.apple.sound.beep.feedback -int 1 ; success_or_not
-  report_warning 'Nevertheless, the setting Sound » Play feedback… may need to be manually toggled afterward anyway.'
   
   # Show battery percentage in menubar
   report_adjust_setting "Show battery percentage in menubar"
