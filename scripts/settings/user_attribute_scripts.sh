@@ -12,6 +12,7 @@ function set_user_preferences_for_attribute() {
     "${USER_ATTRIBUTE_TOUCH_ID_ROOT}"*)
       # touchid attributes are encoded with a suffix signalling which finger that user
       # is assigned. Thus, we match the attribute name only against its common prefix.
+      # E.g., `USER_ATTRIBUTE∞§¶jim¶§∞touchid¶∞§R2§∞¶.state`
       #
       # HINT: USER_ATTRIBUTE_TOUCH_ID_ROOT="touchid${GENOMAC_STATE_STRING_DELIMITER_X}"
       # HINT: GENOMAC_STATE_STRING_DELIMITER_X="¶∞§"
