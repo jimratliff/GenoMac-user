@@ -110,7 +110,7 @@ function get_touch_id_choice_from_touchid_user_attribute_name() {
   local attribute_name="${1:?MISSING attribute_name}"
 
   local touch_id_choice
-  touch_id_choice="${attribute_name#"${USER_ATTRIBUTE_TOUCH_ID_ROOT}"}"
+  touch_id_choice="${attribute_name#"${USER_ATTRIBUTE_TOUCH_ID_ROOT}${GENOMAC_STATE_STRING_DELIMITER_X}"}"
   print -- "$touch_id_choice"
   
   report_end_phase_standard
