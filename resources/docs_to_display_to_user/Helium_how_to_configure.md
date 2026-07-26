@@ -18,7 +18,7 @@ I’ll use when I need to use a Chromium browser.)
 
 ## Make selections from the View menu of the menubar
 Select:
-- ❑ View » Always Show Bookmarks Bar
+- ❑ View » Always Show Bookmarks Bar (⇧⌘B)
 - ❑ View » Always Show Full URLs
 
 ## Adjust some Settings
