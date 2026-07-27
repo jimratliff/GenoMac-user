@@ -77,6 +77,8 @@
   - **Device name**
     - ✅ Add a device name to distinguish this local clone from others
       - Use a name that combines (a) the Mac, (b) the startup volume, and (c) the user’s name.
+      - You can find the local hostname at System Settings » Sharing » Advanced » Local hostname.
+        - Just search in System Settings for 'hostname'
   - **Selective sync**
     - ❑ Say ✅ to each of
       - ❑ Sync images
