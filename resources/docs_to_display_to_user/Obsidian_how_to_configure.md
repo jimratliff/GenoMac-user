@@ -39,7 +39,7 @@
   - ✅ Log in with email/password from your “Obsidian Sync” 1Password item (*not* Obsidian *Forum*)
  
 ## Specify the remote vault you want to sync locally and its desired local location
-- You’ll see a new dialog box that presents a list of (possibly more than one) your synced vaults
+- You’ll see a new dialog box that presents a list of your (possibly more than one) synced vaults
   - ❑ Click the “Connect” button to the right of the vault you want to open
 - You’ll see a new dialog box that says “Create synced local vault for ‘«name of vault»’”
   - Vault name
