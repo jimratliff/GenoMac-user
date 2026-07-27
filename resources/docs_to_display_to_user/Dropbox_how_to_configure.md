@@ -58,7 +58,10 @@
 ### Make Preferences_common available offline
 - The Finder window pointing to the Dropbox folder shows all of its contents as online-only.
 - The Preferences_common directory should be available-offline
-  - ❑ Right-click on the Preferences_common directory and choose “Make available offline”
+  - ❑ Right-click on
+    - ❑ the Preferences_common directory and choose “Make available offline”
+    - ❑ the Users/jim directory
+    - ❑ choose “Make available offline”
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
