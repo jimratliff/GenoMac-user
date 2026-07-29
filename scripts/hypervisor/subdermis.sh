@@ -4,7 +4,6 @@
 safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_development_clones.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_repositories_directory_for_developers.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/helpers.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/helpers-toolbars.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_ask_initial_questions.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_1password.sh"
