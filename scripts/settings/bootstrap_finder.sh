@@ -29,7 +29,7 @@ function bootstrap_finder_toolbar() {
   # defaults write $domain NewWindowTarget -string "PfHm" ; success_or_not
   
   ############### Reconfigure Toolbar
-  report_action_taken_to_log "Reconfigure Toolbar"
+  report_action_taken "Reconfigure Toolbar"
   # Ensure the parent dict exists (recreate it fresh so we're deterministic)
   "$PLISTBUDDY_PATH" -c "Delete '$toolbar_key'" "$plist_path" 2>/dev/null || true
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key' dict" "$plist_path"
