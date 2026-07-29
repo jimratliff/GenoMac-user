@@ -10,8 +10,7 @@ function bootstrap_finder_open_new_windows_to_home(){
 
 function bootstrap_finder_toolbar() {
 
-  # To be run only once per user to configure (a) the initial toolbar and 
-  # (b) default path for a Finder window.
+  # To be run only once per user to configure the initial toolbar
   # See the related, and corresponding, maintenance script: set_finder_settings.sh
   
   report_start_phase_standard
@@ -23,12 +22,7 @@ function bootstrap_finder_toolbar() {
   
   report_action_taken_to_log "Ensuring the plist for ${domain} exists."
   ensure_plist_path_exists "${plist_path}"
-
-  # Open new windows to HOME
-  # report_adjust_setting "By default, new Finder window should open to user’s home directory"
-  # defaults write $domain NewWindowTarget -string "PfHm" ; success_or_not
   
-  ############### Reconfigure Toolbar
   report_action_taken "Reconfigure Toolbar"
   # Ensure the parent dict exists (recreate it fresh so we're deterministic)
   "$PLISTBUDDY_PATH" -c "Delete '$toolbar_key'" "$plist_path" 2>/dev/null || true
