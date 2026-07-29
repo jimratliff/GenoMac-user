@@ -16,8 +16,6 @@ function bootstrap_preview_app() {
   report_action_taken "Launching and quitting Preview to prepare its preferences"
   launch_and_quit_app "${BUNDLE_ID_PREVIEW}"
 
-  bomb_if_toolbar_configuration_does_not_exist "${plist_path}" "${toolbar_name}"
-
   report_adjust_setting "Show both icons and text in Preview’s toolbar"
   set_toolbar_to_show_both_icons_and_text "${plist_path}" "${toolbar_name}"
 
