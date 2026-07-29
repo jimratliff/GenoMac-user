@@ -33,7 +33,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/set_mission_control_assign_to_options.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_wallpapers.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_waterfox_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_witch_settings.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/user_attribute_scripts.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/user_attribute_functions.sh"
 
 function subdermis() {
 
