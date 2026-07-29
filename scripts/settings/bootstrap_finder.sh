@@ -29,10 +29,11 @@ function bootstrap_finder_toolbar() {
   # Basic toolbar settings
   report_adjust_setting "Show Icon and text in toolbar"
   "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Display Mode' integer 1" "$plist_path"
-  report_adjust_setting "Small toolbar icons"
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Icon Size Mode' integer 1" "$plist_path"
-  report_adjust_setting "Show toolbar"
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Is Shown' bool true" "$plist_path"
+  
+  # report_adjust_setting "Small toolbar icons"
+  # "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Icon Size Mode' integer 1" "$plist_path"
+  # report_adjust_setting "Show toolbar"
+  # "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Is Shown' bool true" "$plist_path"
   # report_adjust_setting "Small/compact toolbar size" (This is probably deprecated)
   # "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Size Mode' integer 1" "$plist_path"
   
