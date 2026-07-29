@@ -8,6 +8,8 @@ function set_user_preferences_for_attribute() {
 
   local is_developer=false
 
+  report_action_taken_to_log "Setting user preferences for attribute: ${attribute_name}"
+
   case "$attribute_name" in
     "${USER_ATTRIBUTE_TOUCH_ID_ROOT}"*)
       # touchid attributes are encoded with a suffix signalling which finger that user
