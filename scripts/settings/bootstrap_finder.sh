@@ -2,9 +2,8 @@
 
 function bootstrap_finder_open_new_windows_to_home(){
   report_start_phase_standard
-  local domain="com.apple.finder"
   report_adjust_setting "By default, new Finder window should open to user’s home directory"
-  defaults write $domain NewWindowTarget -string "PfHm" ; success_or_not
+  defaults write $DEFAULTS_DOMAINS_FINDER NewWindowTarget -string "PfHm" ; success_or_not
   report_end_phase_standard
 }
 
@@ -16,11 +15,10 @@ function bootstrap_finder_toolbar() {
   report_start_phase_standard
   report_action_taken "Bootstrap-only configuration of Finder’s (a) toolbar and (b) default new-window path"
   
-  local domain="com.apple.finder"
-  local plist_path=$(legacy_plist_path_from_domain "$domain")
+  local plist_path=$(legacy_plist_path_from_domain "$DEFAULTS_DOMAINS_FINDER")
   local toolbar_key="NSToolbar Configuration Browser"
   
-  report_action_taken_to_log "Ensuring the plist for ${domain} exists."
+  report_action_taken_to_log "Ensuring the plist for ${DEFAULTS_DOMAINS_FINDER} exists."
   ensure_plist_path_exists "${plist_path}"
   
   report_action_taken "Reconfigure Toolbar"
