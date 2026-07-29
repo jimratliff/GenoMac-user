@@ -1,50 +1,34 @@
 #!/usr/bin/env zsh
 
 function bootstrap_preview_app() {
-
   # To be run only once per user to configure the initial toolbar for Preview.app.
-  # See the related, and corresponding, maintenance script: set_preview_settings.sh
-  
+  # See the related maintenance script: set_preview_settings.sh.
+
   report_start_phase_standard
+  
   report_action_taken "Bootstrap-only configuration of Preview.app’s toolbar"
 
   local plist_path
-  
-  plist_path=$(sandboxed_plist_path_from_domain "$DEFAULTS_DOMAINS_PREVIEW")
-  local toolbar_key="NSToolbar Configuration CommonToolbar_v5.1"
-  
-  report_action_taken "Launching and quitting Preview to prepare the plist."
-  launch_and_quit_app "$BUNDLE_ID_PREVIEW"
+  local toolbar_name="NSToolbar Configuration CommonToolbar_v5.1"
 
-  # report_action_taken_to_log "Ensuring the plist for ${DEFAULTS_DOMAINS_PREVIEW} exists."
-  ensure_plist_path_exists "${plist_path}"
-  
-  # Preview: Reconfigure Toolbar
-  report_action_taken_to_log "Reconfigure Toolbar"
-  # Ensure the parent dict exists (recreate it fresh so we're deterministic)
-  "$PLISTBUDDY_PATH" -c "Delete '$toolbar_key'" "$plist_path" 2>/dev/null || true
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key' dict" "$plist_path"
-  
-  # Basic toolbar settings
-  report_adjust_setting "Show Icon and text in toolbar${NEWLINE}"
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Display Mode' integer 1" "$plist_path"
-  report_adjust_setting "Small toolbar icons${NEWLINE}"
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Icon Size Mode' integer 1" "$plist_path"
-  report_adjust_setting "Show toolbar${NEWLINE}"
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Is Shown' bool true" "$plist_path"
-  report_adjust_setting "Small/compact toolbar size${NEWLINE}"
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Size Mode' integer 1" "$plist_path"
-  
-  # The toolbar items, in order
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers' array" "$plist_path"
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:0' string goto_page" "$plist_path"
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:1' string form_filling" "$plist_path"
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:2' string scale" "$plist_path"
-  "$PLISTBUDDY_PATH" -c "Add '$toolbar_key:TB Item Identifiers:3' string search" "$plist_path"
+  plist_path="$(sandboxed_plist_path_from_domain "${DEFAULTS_DOMAINS_PREVIEW}")"
 
-  # Quit Preview to lock-in the changes
-  quit_app_by_bundle_id_if_running "$BUNDLE_ID_PREVIEW"
-  
+  report_action_taken "Launching and quitting Preview to prepare its preferences"
+  launch_and_quit_app "${BUNDLE_ID_PREVIEW}"
+
+  bomb_if_toolbar_configuration_does_not_exist "${plist_path}" "${toolbar_name}"
+
+  report_adjust_setting "Show both icons and text in Preview’s toolbar"
+  set_toolbar_to_show_both_icons_and_text "${plist_path}" "${toolbar_name}"
+
+  report_adjust_setting "Set Preview’s toolbar items"
+  set_toolbar_items \
+    "${plist_path}" \
+    "${toolbar_name}" \
+    "goto_page" \
+    "form_filling" \
+    "scale" \
+    "search"
+
   report_end_phase_standard
-
 }
