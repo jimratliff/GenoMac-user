@@ -40,8 +40,18 @@ function configure_mail_app_idempotent_settings() {
   # Configure Mail.app idempotent settings
   report_start_phase_standard
 
+  local mail_domain="com.apple.mail"
+
   # TODO configure_mail_app_idempotent_settings
-  report_warning "NOT YET IMPLEMENTED: configure_mail_app_idempotent_settings()"
+  # report_warning "NOT YET IMPLEMENTED: configure_mail_app_idempotent_settings()"
+
+  # Settings » General » New messages notifications
+  report_adjust_setting "Provide new-message notification for new messages in *all* mailboxes, not just Inbox"
+  defaults write "$mail_domain" MailUserNotificationScope -int 5 ; success_or_not
+
+  # Settings » Viewing » List preview
+  report_adjust_setting "Provide 3 lines of message summary"
+  defaults write "$mail_domain" NumberOfSnippetLines -int 3
   
   report_end_phase_standard
 }
