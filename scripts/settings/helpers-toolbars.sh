@@ -2,7 +2,7 @@
 
 ############### Helpers for configuring toolbars
 
-function set_toolbar_to_show_icons_and_text() {
+function set_toolbar_to_show_both_icons_and_text() {
   local plist="$1"
   local toolbar_name="$2"
 
@@ -12,24 +12,6 @@ function set_toolbar_to_show_icons_and_text() {
     "TB Display Mode" \
     integer \
     1
-}
-
-function set_toolbar_items_showing_icons_and_text() {
-  local plist="$1"
-  local toolbar_name="$2"
-  shift 2
-
-  set_toolbar_property \
-    "${plist}" \
-    "${toolbar_name}" \
-    "TB Display Mode" \
-    integer \
-    1
-
-  set_toolbar_items \
-    "${plist}" \
-    "${toolbar_name}" \
-    "$@"
 }
 
 function set_toolbar_property() {
