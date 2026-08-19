@@ -10,30 +10,23 @@ ZSHALIASES="$ZDOTDIR/.zsh_aliases"
 # ZSHFUNCS="$ZDOTDIR/.zsh_functions"   # if you split functions into a file
 
 # Show aliases
-alias show_aliases='bat "$ZSHALIASES"'
+alias show-aliases='bat "$ZSHALIASES"'
 
 # Edit aliases
-alias edit_aliases='$EDITOR "$ZSHALIASES"'
+alias edit-aliases='$EDITOR "$ZSHALIASES"'
 
 # Show .zshrc
-alias show_zshrc='bat "$ZSHRC"'
+alias show-zshrc='bat "$ZSHRC"'
 
 # Edit .zshrc
-alias edit_zshrc='$EDITOR "$ZSHRC"'
+alias edit-zshrc='$EDITOR "$ZSHRC"'
 
 ############### Reload shell
 # `zsh -l`: starts a login shell (“pretend this shell was started as a login shell”)
-alias reload_shell='exec zsh -l'
+alias reload-shell='exec zsh -l'
 
 ############### System info
 alias sysinfo='fastfetch'
-
-############### Update dotfiles
-# This is OBSOLETE because the .genomac-dotfiles repo is deprecated
-# TODO: Consider a similar alias for current structure
-#
-# alias update_dotfiles='echo "📦 Pulling latest dotfiles…" && \
-#  git -C "$HOME/.genomac-dotfiles" pull --ff-only origin main'
 
 ############### Replace ls with eza
 alias ls="eza"
@@ -83,5 +76,9 @@ function mkcd() {
 
 ############### Git shortcuts
 alias gitpull="git pull origin main"
+
+############### Project GenoMac
+alias genomac-system='cd ~/.genomac-system'
+alias genomac-user='cd ~/.genomac-user'
 
 
