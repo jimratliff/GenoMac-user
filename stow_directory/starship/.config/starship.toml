@@ -77,6 +77,14 @@
 # - This prompt is optimized for dark mode. It will work in light mode, but in particular the time-related section on the right-hand
 #   side of the first line will not look pleasing.
 
+# Define timeouts to prevent annoying warning messages
+# These times are in milliseconds
+# Starship defaults are:
+# - scan_timeout = 30
+# - command_timeout = 500
+scan_timeout = 100
+command_timeout = 2000
+
 ############### `format` of the two-line prompt
 format = """
 $username\
