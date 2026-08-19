@@ -94,4 +94,4 @@ command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
 # ======================================================================
 # Friendly toast
 # ======================================================================
-echo "Zsh ready. Try 'show_aliases' or 'update_dotfiles' then 'reload_shell'."
+echo "Zsh ready. Try 'show-aliases' or 'sysinfo'."
