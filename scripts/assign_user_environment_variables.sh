@@ -136,7 +136,7 @@ GMU_HYPERVISOR_MAKE_COMMAND_STRING="just run-hypervisor"
 GMU_HYPERVISOR_HOW_TO_RESTART_STRING="To get back into the groove at any time, just re-execute ${GMU_HYPERVISOR_MAKE_COMMAND_STRING}${NEWLINE}and we’ll pick up where we left off."
 
 # Environment variable specifies the packages for which dotfiles will be stowed.
-GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES=("1password" "BetterTouchTool" "git" "homebrew" "ssh" "starship" "stow" "zed" "zsh")
+GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES=("1password" "BetterTouchTool" "git" "ssh" "starship" "stow" "zed" "zsh")
 
 # Establish symbolic names for modifier keys
 SHIFT_CHAR=$'\u21e7'     # ⇧
