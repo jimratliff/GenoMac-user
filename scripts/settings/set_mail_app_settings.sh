@@ -4,8 +4,7 @@ function conditionally_configure_mail_app() {
   report_start_phase_standard
 
   if ! test_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"; then
-    report_action_taken_to_log \
-      "Skipping Mail.app configuration, because this user doesn’t want it"
+    report_action_taken_to_log "Skipping Mail.app configuration, because this user doesn’t want it"
     report_end_phase_standard
     return 0
   fi
@@ -25,6 +24,8 @@ function configure_mail_app_idempotent_settings() {
   report_start_phase_standard
 
   bomb_if_mail_app_plist_does_not_exist
+
+  report_action_taken "Configure Mail.app"
 
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_MAIL_APP"
 
