@@ -1,5 +1,18 @@
 #!/usr/bin/env zsh
 
+
+function conditionally_transfer_system_scoped_user_attribute_states_to_user_scoped() {
+  # Transfer system-scoped user-attribute states to user scoped,
+  # if this hasn’t been done already this session.
+  report_start_phase_standard
+  
+  run_if_user_has_not_done "$SESH_SYSTEM_SCOPED_USER_ATTRIBUTE_STATES_HAVE_BEEN_TRANSFERRED" \
+    transfer_system_scoped_user_attribute_states_to_user_scoped \
+    "Skipping transferring system-scoped user-attribute states, because it’s already been done this session."
+    
+  report_end_phase_standard
+}
+
 function set_user_preferences_for_attribute() {
   # Sets preference flags for the supplied attribute
   report_start_phase_standard
