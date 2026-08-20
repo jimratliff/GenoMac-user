@@ -47,11 +47,6 @@ function set_default_browser() {
   # local chosen_browser_id="$BUNDLE_ID_HELIUM"
   # local chosen_browser_id="$BUNDLE_ID_SAFARI"
   local chosen_browser_id="$BUNDLE_ID_WATERFOX"
-
-  if is_default_browser_utility_unavailable_for_this_user; then
-    report_fail "PROGRAMMER ERROR: default-browser CLI utility isn’t compatible with user directories that aren’t on the startup volume${NEWLINE}This point shouldn’t be reached."
-    return 1
-  fi
   
   report_action_taken "Set default browser to $chosen_browser_id"
   "$path_to_installed_default_browser_utility" --identifier "$chosen_browser_id" ; success_or_not
