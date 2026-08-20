@@ -12,7 +12,7 @@
 # Fail early on unset variables or command failure
 set -euo pipefail
 
-echo "Inside /scripts/0_initialize_me_first.sh"
+echo "Inside /scripts/0_initialize_me_first.sh" >> "$GM_LOG_FILE"
 
 # NOTE: REPO_SHORT_NAME is defined here only to be used in the following
 #       “Logging output to GM_LOG_FILE” code, in order that that code block can be
@@ -86,4 +86,4 @@ safe_source "${GENOMAC_USER_SCRIPTS}/assign_enum_env_vars_for_states.sh"
 # Source repo-specific helpers
 # safe_source "${GENOMAC_USER_SCRIPTS}/helpers.sh"
 
-echo "Leaving /scripts/0_initialize_me_first.sh"
+echo "Leaving /scripts/0_initialize_me_first.sh" >> "$GM_LOG_FILE"
