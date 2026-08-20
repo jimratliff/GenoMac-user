@@ -51,12 +51,11 @@ function subdermis() {
   output_hypervisor_welcome_banner "$GENOMAC_SCOPE_USER"      # GenoMac-shared/scripts/helpers-hypervisor.sh
   set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
   
-  conditionally_ask_and_set_verbosity_preference             # scripts/settings/interactive_ask_initial_questions.sh
+  conditionally_ask_and_set_verbosity_preference              # scripts/settings/interactive_ask_initial_questions.sh
   keep_sudo_alive                                             # GenoMac-shared/scripts/helpers-misc.sh
   interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-misc.sh
 
-  conditionally_transfer_user_attribute_states                # scripts/settings/user_attribute_scripts.sh.
-  set_user_preferences_from_attributes                        # scripts/settings/user_attribute_scripts.sh
+  conditionally_process_user_attribute_states                 # scripts/settings/user_attribute_scripts.sh.
 
   ############### BEGIN BAREBONES CONFIGURATION ###############
   conditionally_perform_barebones_user_level_settings         # scripts/settings/set_barebones_settings.sh
