@@ -97,37 +97,18 @@ function define_apps_for_dock() {
   local actual_path_to_app_Waterfox="/Applications/Waterfox.app"
   local actual_path_to_app_Zed="/Applications/Zed.app"
 
-  # For all users, by default, 1Password appears as the first item on each user’s Dock.
+  ############### Construct apps_for_dock
+  
+  # 1Password is unconditional
   local -a apps_for_dock=(
     "$actual_path_to_app_1Password"
   )
 
-  # Compiles attributes that will guide Dock arrangement
-
-  local -i is_developer=0 # false
-  if test_genomac_user_state "$SESH_USER_IS_A_DEVELOPER" || 
-     test_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"
-  then
-    is_developer=1
-  fi
-
-  local -i is_emailer=0 # false
-  if test_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"; then
-    is_emailer=1
-  fi
-
-  # Construct apps_for_dock
-
   # Mail.app
-  if (( is_emailer )); then
-    report_warning "DEBUG: Adding Mail.app to apps_for_dock ${actual_path_to_app_Mail_app}:"
+  if test_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"; then
     apps_for_dock+=( "$actual_path_to_app_Mail_app" )
-    # Remove the following after DEBUG"
-    printf '%s\n' "${apps_for_dock[@]}"
-  else
-    report_warning "DEBUG: NOT adding Mail.app to apps_for_dock. is_emailer=${is_emailer}"
   fi
-
+  
   # Safari is only browser in Dock for barebones; otherwise Waterfox and Helium
   # (which empirically rise and fall together, adjacent in the Dock)
   if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
