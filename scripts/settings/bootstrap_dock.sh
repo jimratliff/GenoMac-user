@@ -122,6 +122,7 @@ function define_apps_for_dock() {
   fi
 
   local -i is_emailer=0 # false
+  report_warning "DEBUG: About to test_genomac_user_state: ${USER_ATTRIBUTE_EMAILER}"
   if test_genomac_user_state "$USER_ATTRIBUTE_EMAILER"; then
     is_emailer=1
     report_warning "DEBUG: is_emailer is set to 1: ${is_emailer}"
