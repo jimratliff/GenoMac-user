@@ -88,6 +88,7 @@ function bootstrap_toolbars_for_mail_app() {
     "${mail_preferences_plist}" \
     "NSToolbar Configuration SingleMessageViewer" \
     "NSToolbarFlexibleSpaceItem" \
+    "FlaggedStatus" \
     "moveMessagesFromToolbar:" \
     "toggleAllHeaders:"
 
