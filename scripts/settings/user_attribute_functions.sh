@@ -33,6 +33,7 @@ function set_user_preferences_for_attribute() {
       #       not currently used. Configuring Chessvision currently is so lightweight that it’s
       #       not worth carving it out in order to conditionally skip it.
       set_genomac_user_state "$SESH_CHESSVISION_AI_USER_WANTS_IT"
+      
       ;;
     "${USER_ATTRIBUTE_DEVELOPER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_DEVELOPER}"
