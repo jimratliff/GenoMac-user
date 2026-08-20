@@ -97,46 +97,32 @@ function define_apps_for_dock() {
   local actual_path_to_app_Waterfox="/Applications/Waterfox.app"
   local actual_path_to_app_Zed="/Applications/Zed.app"
 
-  # By default, 1Password appears as the first item on each user’s Dock.
+  # For all users, by default, 1Password appears as the first item on each user’s Dock.
   local -a apps_for_dock=(
     "$actual_path_to_app_1Password"
   )
 
   # Compiles attributes that will guide Dock arrangement
 
-  local -i is_bare_bones=0 # false
-  if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
-    is_bare_bones=1
-  fi
-
-  local -i is_chessplayer=0 # false
-  if test_genomac_user_state "$USER_ATTRIBUTE_CHESSPLAYER"; then
-    is_chessplayer=1
-  fi
-
   local -i is_developer=0 # false
-  if test_genomac_user_state "$USER_ATTRIBUTE_DEVELOPER" || 
-     test_genomac_user_state "$USER_ATTRIBUTE_GENOMAC_DEVELOPER"
+  if test_genomac_user_state "$SESH_USER_IS_A_DEVELOPER" || 
+     test_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"
   then
     is_developer=1
   fi
 
   local -i is_emailer=0 # false
-  report_warning "DEBUG: About to test_genomac_user_state: ${USER_ATTRIBUTE_EMAILER}"
-  if test_genomac_user_state "$USER_ATTRIBUTE_EMAILER"; then
+  if test_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"; then
     is_emailer=1
-    report_warning "DEBUG: is_emailer is set to 1: ${is_emailer}"
-  else
-    report_warning "DEBUG: is_email is NOT set to 1: ${is_emailer}"
   fi
 
   local -i is_mac_admin=0 # false
-  if test_genomac_user_state "$USER_ATTRIBUTE_MAC_ADMIN"; then
+  if test_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN"; then
     is_mac_admin=1
   fi
 
   local -i is_switcher=0 # false
-  if test_genomac_user_state "$USER_ATTRIBUTE_SWITCHER"; then
+  if test_genomac_user_state "$SESH_USER_IS_AN_ACCOUNT_SWITCHER"; then
     is_switcher=1
   fi
 
@@ -152,33 +138,34 @@ function define_apps_for_dock() {
     report_warning "DEBUG: NOT adding Mail.app to apps_for_dock. is_emailer=${is_emailer}"
   fi
 
-  # Waterfox and Helium (which empirically rise and fall together, adjacent in the Dock)
-  if (( ! is_bare_bones )); then
+  # Safari is only browser in Dock for barebones; otherwise Waterfox and Helium
+  # (which empirically rise and fall together, adjacent in the Dock)
+  if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
+    apps_for_dock+=( "$actual_path_to_app_Safari" )
+  else
     apps_for_dock+=( 
       "$actual_path_to_app_Waterfox" 
       "$actual_path_to_app_Helium"
     )
-  else
-    apps_for_dock+=( "$actual_path_to_app_Safari" )
   fi
 
   # Raindrop.io
-  if test_genomac_user_state "$USER_ATTRIBUTE_RAINDROP_IO"; then
+  if test_genomac_user_state "$SESH_RAINDROP_IO_USER_WANTS_IT"; then
     apps_for_dock+=( "$actual_path_to_app_Raindrop_io" )
   fi
 
   # Obsidian
-  if test_genomac_user_state "$USER_ATTRIBUTE_OBSIDIAN_USER"; then
+  if test_genomac_user_state "$SESH_OBSIDIAN_USER_WANTS_IT"; then
     apps_for_dock+=( "$actual_path_to_app_Obsidian" )
   fi
 
   # Microsoft Word
-  if test_genomac_user_state "$USER_ATTRIBUTE_MICROSOFT_WORD"; then
+  if test_genomac_user_state "$SESH_MICROSOFT_WORD_USER_WANTS_IT"; then
     apps_for_dock+=( "$actual_path_to_app_Microsoft_Word" )
   fi
 
   # HIARCS Chess Explorer Pro
-  if (( is_chessplayer )); then
+  if test_genomac_user_state "$SESH_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"; then
     apps_for_dock+=( "$actual_path_to_app_HIARCS_Chess_Explorer_Pro" )
   fi
 
@@ -186,10 +173,11 @@ function define_apps_for_dock() {
   # Needed by every GenoMac-configured user, even non-developers in order to run GenoMac-user
   apps_for_dock+=( "$actual_path_to_app_iTerm" )
 
-  # Zed, and Tower
-  if (( is_developer )); then
+  # Zed and Tower
+
+
+  if test_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"; then
     apps_for_dock+=( 
-      # "$actual_path_to_app_iTerm" 
       "$actual_path_to_app_Zed"
       "$actual_path_to_app_Tower"
     )
@@ -199,7 +187,9 @@ function define_apps_for_dock() {
   apps_for_dock+=( "$actual_path_to_app_System_Settings" )
 
   # Activity Monitor
-  if (( is_developer || is_mac_admin )); then
+  if test_genomac_user_state "$SESH_USER_IS_A_DEVELOPER" || 
+     test_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN"
+  then
     apps_for_dock+=( "$actual_path_to_app_Activity_Monitor" )
   fi
   
