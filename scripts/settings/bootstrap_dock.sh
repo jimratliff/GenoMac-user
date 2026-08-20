@@ -116,16 +116,6 @@ function define_apps_for_dock() {
     is_emailer=1
   fi
 
-  local -i is_mac_admin=0 # false
-  if test_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN"; then
-    is_mac_admin=1
-  fi
-
-  local -i is_switcher=0 # false
-  if test_genomac_user_state "$SESH_USER_IS_AN_ACCOUNT_SWITCHER"; then
-    is_switcher=1
-  fi
-
   # Construct apps_for_dock
 
   # Mail.app
@@ -174,8 +164,6 @@ function define_apps_for_dock() {
   apps_for_dock+=( "$actual_path_to_app_iTerm" )
 
   # Zed and Tower
-
-
   if test_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"; then
     apps_for_dock+=( 
       "$actual_path_to_app_Zed"
@@ -194,7 +182,9 @@ function define_apps_for_dock() {
   fi
   
   # Disk Utility
-  if (( is_mac_admin || is_switcher )); then
+  if test_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN" || 
+     test_genomac_user_state "$SESH_USER_IS_AN_ACCOUNT_SWITCHER"
+  then
     apps_for_dock+=( "$actual_path_to_app_Disk_Utility" )
   fi
 
