@@ -1,9 +1,8 @@
 #!/usr/bin/env zsh
 
 
-function conditionally_transfer_system_scoped_user_attribute_states_to_user_scoped() {
-  # Transfer system-scoped user-attribute states to user scoped,
-  # if this hasn’t been done already this session.
+function conditionally_transfer_user_attribute_states() {
+  # Transfer system-scoped user-attribute states to user scoped, if not already done this session.
   report_start_phase_standard
   
   run_if_user_has_not_done "$SESH_SYSTEM_SCOPED_USER_ATTRIBUTE_STATES_HAVE_BEEN_TRANSFERRED" \
