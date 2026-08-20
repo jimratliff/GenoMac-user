@@ -54,8 +54,8 @@ function set_user_preferences_for_attribute() {
       ;;
     "${USER_ATTRIBUTE_MAC_ADMIN}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_MAC_ADMIN}"
-      set_genomac_user_state "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP"
       set_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN"
+      set_genomac_user_state "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP"
       ;;
     "${USER_ATTRIBUTE_MICROSOFT_WORD}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_MICROSOFT_WORD}"
