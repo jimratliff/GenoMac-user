@@ -29,16 +29,7 @@ function is_functionality_incompatible_with_user_because_not_on_startup_volume()
   return 0
 }
 
-function is_default_browser_utility_unavailable_for_this_user() {
-  # Returns 0 if BOTH:
-  #   (a) the default-browser CLI utility is still incompatible with relocated home directories, and
-  #   (b) this user's home directory is on a non-startup volume.
-  #
-  # Returns 1 otherwise.
 
-  is_functionality_incompatible_with_user_because_not_on_startup_volume \
-    "$DEFAULT_BROWSER_UTILITY_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES" || return $?
-}
 
 ############### BELOW THIS POINT IS DEPRECATED ###############
 
@@ -51,4 +42,15 @@ function is_default_browser_utility_unavailable_for_this_user() {
 # 
 #   is_functionality_incompatible_with_user_because_not_on_startup_volume \
 #     "$ONEPASSWORD_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES" || return $?
+# }
+
+# function is_default_browser_utility_unavailable_for_this_user() {
+#   # Returns 0 if BOTH:
+#   #   (a) the default-browser CLI utility is still incompatible with relocated home directories, and
+#   #   (b) this user's home directory is on a non-startup volume.
+#   #
+#   # Returns 1 otherwise.
+# 
+#   is_functionality_incompatible_with_user_because_not_on_startup_volume \
+#     "$DEFAULT_BROWSER_UTILITY_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES" || return $?
 # }
