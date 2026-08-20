@@ -59,17 +59,17 @@ GENOMAC_USER_ROOT="${GENOMAC_USER_SCRIPTS:h}"   # ~/.genomac-user
 GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER="${GENOMAC_USER_ROOT}/external/genomac-shared" # ~/.genomac-user/external/genomac-shared
 HELPERS_FROM_GENOMAC_SHARED="${GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER}/scripts"  # external/genomac-shared/scripts
 
-echo "Paths determined in 0_initialize_me_first.sh:"
-echo "• this_script_path: ${this_script_path}"
-echo "• GENOMAC_USER_SCRIPTS: ${GENOMAC_USER_SCRIPTS}"
-echo "• GENOMAC_USER_ROOT: ${GENOMAC_USER_ROOT}"
-echo "• GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER: ${GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER}"
+echo "Paths determined in 0_initialize_me_first.sh:"    >> "$GM_LOG_FILE"
+echo "• this_script_path: ${this_script_path}"          >> "$GM_LOG_FILE"
+echo "• GENOMAC_USER_SCRIPTS: ${GENOMAC_USER_SCRIPTS}"  >> "$GM_LOG_FILE"
+echo "• GENOMAC_USER_ROOT: ${GENOMAC_USER_ROOT}"        >> "$GM_LOG_FILE"
+echo "• GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER: ${GENOMAC_SHARED_ROOT_RELATIVE_TO_GENOMAC_USER}"  >> "$GM_LOG_FILE"
 
 # Source the master-helper script from GenoMac-shared submodule, which sources helpers
 # and environment variables from GenoMac-shared
 master_helper_script="${HELPERS_FROM_GENOMAC_SHARED}/helpers.sh"
 
-echo "Source ${master_helper_script}"
+echo "Source ${master_helper_script}" >> "$GM_LOG_FILE"
 source "${master_helper_script}"
 
 turn_off_verbose_genomac_output
@@ -77,7 +77,7 @@ turn_off_verbose_genomac_output
 # Source repo-specific environment-variables script
 repo_specific_environment_variables="${GENOMAC_USER_SCRIPTS}/assign_user_environment_variables.sh"
 
-echo "Source ${repo_specific_environment_variables}"
+echo "Source ${repo_specific_environment_variables}" >> "$GM_LOG_FILE"
 source "${repo_specific_environment_variables}"
 
 # Source environment variables corresponding to enums for states
