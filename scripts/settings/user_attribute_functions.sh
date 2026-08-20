@@ -6,8 +6,6 @@ function set_user_preferences_for_attribute() {
   local attribute_name
   attribute_name="${1:?MISSING/EMPTY attribute_name}"
 
-  local is_developer=false
-
   report_action_taken_to_log "Setting user preferences for attribute: ${attribute_name}"
 
   case "$attribute_name" in
@@ -28,6 +26,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "${USER_ATTRIBUTE_CHESSPLAYER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_CHESSPLAYER}"
+      set_genomac_user_state "$SESH_USER_IS_A_CHESSPLAYER"
       set_genomac_user_state "$SESH_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"
 
       # NOTE: SESH_CHESSVISION_AI_USER_WANTS_IT and PERM_CHESSVISION_AI_HAS_BEEN_CONFIGURED are
@@ -37,7 +36,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "${USER_ATTRIBUTE_DEVELOPER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_DEVELOPER}"
-      is_developer=true
+      set_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"
       ;;
     "${USER_ATTRIBUTE_DROPBOX}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_DROPBOX}"
@@ -50,11 +49,12 @@ function set_user_preferences_for_attribute() {
     "${USER_ATTRIBUTE_GENOMAC_DEVELOPER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_GENOMAC_DEVELOPER}"
       set_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"
-      is_developer=true
+      set_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"
       ;;
     "${USER_ATTRIBUTE_MAC_ADMIN}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_MAC_ADMIN}"
       set_genomac_user_state "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP"
+      set_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN"
       ;;
     "${USER_ATTRIBUTE_MICROSOFT_WORD}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_MICROSOFT_WORD}"
@@ -78,6 +78,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "${USER_ATTRIBUTE_SWITCHER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_SWITCHER}"
+      set_genomac_user_state "$SESH_USER_IS_AN_ACCOUNT_SWITCHER"
       set_genomac_user_state "$SESH_WALLPAPER_SWITCHER_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_SYNC_COM}")
@@ -90,10 +91,12 @@ function set_user_preferences_for_attribute() {
       ;;
     "${USER_ATTRIBUTE_YOUTUBE_WATCHER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_YOUTUBE_WATCHER}"
+      set_genomac_user_state "$SESH_USER_WATCHES_YOUTUBE"
       set_genomac_user_state "$SESH_WATERFOX_EXTENSION_YOUTUBE_ENHANCER_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_IS_USER_CONFIGURER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_IS_USER_CONFIGURER}"
+      set_genomac_user_state "$SESH_USER_IS_USER_CONFIGURER"
       set_genomac_user_state "$SESH_WALLPAPER_CONFIGURER_USER_WANTS_IT"
       ;;
     *)
@@ -101,7 +104,8 @@ function set_user_preferences_for_attribute() {
       ;;
   esac
 
-  if [[ "$is_developer" == "true" ]]; then
+  
+  if test_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"; then
     report_action_taken_to_log "Turn on flags for Git and GitHub configuration."
     set_genomac_user_state "$SESH_USER_WANTS_TO_COMMIT_ON_GITHUB"
     set_genomac_user_state "$SESH_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
