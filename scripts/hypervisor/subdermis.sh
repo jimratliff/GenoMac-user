@@ -54,8 +54,8 @@ function subdermis() {
   conditionally_ask_and_set_verbosity_preference             # scripts/settings/interactive_ask_initial_questions.sh
   keep_sudo_alive                                             # GenoMac-shared/scripts/helpers-misc.sh
   interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-misc.sh
-  
-  transfer_system_scoped_user_attribute_states_to_user_scoped # scripts/settings/user_attribute_scripts.sh.
+
+  conditionally_transfer_user_attribute_states                # scripts/settings/user_attribute_scripts.sh.
   set_user_preferences_from_attributes                        # scripts/settings/user_attribute_scripts.sh
 
   ############### BEGIN BAREBONES CONFIGURATION ###############
