@@ -84,6 +84,6 @@ source "${repo_specific_environment_variables}"
 safe_source "${GENOMAC_USER_SCRIPTS}/assign_enum_env_vars_for_states.sh"
 
 # Source repo-specific helpers
-safe_source "${GENOMAC_USER_SCRIPTS}/helpers.sh"
+# safe_source "${GENOMAC_USER_SCRIPTS}/helpers.sh"
 
 echo "Leaving /scripts/0_initialize_me_first.sh"
