@@ -140,7 +140,12 @@ function define_apps_for_dock() {
 
   # Mail.app
   if (( is_emailer )); then
+    report_warning "DEBUG: Adding Mail.app to apps_for_dock ${actual_path_to_app_Mail_app}:"
     apps_for_dock+=( "$actual_path_to_app_Mail_app" )
+    # Remove the following after DEBUG"
+    printf '%s\n' "${apps_for_dock[@]}"
+  else
+    report_warning "DEBUG: NOT adding Mail.app to apps_for_dock. is_emailer=${is_emailer}"
   fi
 
   # Waterfox and Helium (which empirically rise and fall together, adjacent in the Dock)
