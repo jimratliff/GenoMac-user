@@ -1,7 +1,7 @@
 # How to configure the Notion desktop app
 
-[!WARNING]
-Revisit the following to conform to actual operation of Notion.
+> [!WARNING]
+> Revisit the following to conform to actual operation of Notion.
 
 ## Launch Notion
 - ❑ Make Notion the active app. (The Hypervisor should have launched Notion for you already.)
