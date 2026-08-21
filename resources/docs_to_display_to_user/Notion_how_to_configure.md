@@ -10,8 +10,6 @@
 - ❑ Press the “Continue” button
 - ❑ Enter the password for your account
 - ❑ Press the “Continue with password” button
-- The default browser will open a “Sign in” page (URL is https://cp.sync.com/login-webauth…)
-- ❑ Enter the email address for your Sync.com account into the text box.
 - ❑ Click “Sign in”
 
 
