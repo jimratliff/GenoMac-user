@@ -87,6 +87,10 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_MISSION_CONTROL_ALL_SPACES}"
       set_genomac_user_state "$SESH_MISSION_CONTROL_USER_WANTS_IT_ALL"
       ;;
+    "${USER_ATTRIBUTE_NOTION_USER}")
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_NOTION_USER}"
+      set_genomac_user_state "$SESH_NOTION_USER_WANTS_IT"
+      ;;
     "${USER_ATTRIBUTE_OBSIDIAN_USER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_OBSIDIAN_USER}"
       set_genomac_user_state "$SESH_OBSIDIAN_USER_WANTS_IT"
