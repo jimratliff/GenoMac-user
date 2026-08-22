@@ -3,6 +3,10 @@
 > [!WARNING]
 > Revisit the following to conform to actual operation of Notion.
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Launch Notion
 - ❑ Make Notion the active app. (The Hypervisor should have launched Notion for you already.)
 - You’ll see a window saying “Think it. Make it. Log in to your Notion account”
