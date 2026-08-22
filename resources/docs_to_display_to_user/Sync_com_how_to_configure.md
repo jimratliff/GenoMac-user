@@ -1,6 +1,10 @@
 # How to configure the Sync.com desktop app
 
 > [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
+> [!NOTE]
 > This assumes the Sync app is version-2.x, which allows arbritrary sync-folder location (as opposed to version-5.x beta, which is compliant with Apple’s File Provider API).
 
 ## Launch Sync.com
