@@ -1,5 +1,9 @@
 # How to configure your Proton Drive app
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Make Proton Drive active and open its Settings
 - ❑ Make Proton Drive active. (GenoMac-user will have already launched Proton Drive).
 - ❑ Open Proton Drive’s Settings… (⌘,)
