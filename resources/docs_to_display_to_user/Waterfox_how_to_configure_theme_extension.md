@@ -1,5 +1,9 @@
 # How to install and configure the “Blue Sharepoint” theme for the Waterfox web browser
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Context: If GenoMac-user didn’t install the “Blue Sharepoint” theme extension for you, you’ll need to
 Although, GenoMac-user *can* install many other extensions it’s tried to install, for some reason it might be the case that GenoMac-user
 can’t successfully install the “Blue Sharepoint” extension. So, if it’s not already installed, you’ll need to manually install it.
