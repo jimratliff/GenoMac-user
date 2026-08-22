@@ -1,5 +1,9 @@
 # How to configure 1Password for authentication with GitHub
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Make 1Password active and open its Settings
 - ❑ Make 1Password active. (GenoMac-user will have already launched 1Password).
 - ❑ Open 1Password’s Settings… (⌘,)
