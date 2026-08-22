@@ -1,4 +1,10 @@
 # How to log in to 1Password.app
+
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
+# Make 1Password active
 Launch 1Password and/or make it active.
 
 ## Log into 1Password
