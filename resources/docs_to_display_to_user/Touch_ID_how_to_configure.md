@@ -1,5 +1,9 @@
 # How to configure Touch ID
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Find the already-opened Touch ID & Password panel of System Settings
 - Locate the Touch ID & Password panel from System Settings that has already been opened for you.
 ## Follow the instructions, using your designated finger
