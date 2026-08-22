@@ -1,6 +1,10 @@
 # How to basically configure your 1Password app
 “Basic configuration” covers everything except for the Developer section of 1Password’s settings.
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Why do I have to do this myself?
 In its obsession with security, the 1Password app erects obstacles to the programmatic setting of
 preferences. (Every setting I’ve tested has a companion `authTag` key-value pair, where the value is
