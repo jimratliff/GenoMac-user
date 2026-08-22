@@ -1,5 +1,9 @@
 # How to enable the Witch preference pane
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Make the Witch preference pane active
 - ❑ Make the Witch preference pane active
   - The script will already have opened the Witch preference pane for you.
