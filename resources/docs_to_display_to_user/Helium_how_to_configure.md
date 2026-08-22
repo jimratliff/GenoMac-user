@@ -1,5 +1,9 @@
 # How to configure the Helium web browser
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Why am I doing this interactively?
 Unlike other Mac apps and even, for example, the Waterfox browser, as far as I’ve been able
 to determine in my abbreviated investigation, Helium doesn’t expose its settings to scripting
