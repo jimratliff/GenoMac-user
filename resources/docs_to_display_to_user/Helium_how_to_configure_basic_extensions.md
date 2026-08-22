@@ -1,5 +1,9 @@
 # How to configure the most-basic (easiest to configure) extensions for the Helium web browser
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Make Helium active and open the list of installed extensions
 - ❑ Make Helium active
   - The script will already have opened the Helium application for you.
