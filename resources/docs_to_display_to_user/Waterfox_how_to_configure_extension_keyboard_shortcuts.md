@@ -1,5 +1,9 @@
 # How to configure keyboard shortcuts for extensions for the Waterfox web browser
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Make Waterfox active and navigate to the Manage Extension Shortcuts page
 - ❑ Make Waterfox active
   - The script will already have opened the Waterfox application for you.
