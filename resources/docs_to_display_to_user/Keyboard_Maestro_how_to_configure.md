@@ -1,5 +1,9 @@
 # How to configure Keyboard Maestro
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Context
 - Keyboard Maestro doesn’t demand that a new user immediately register the app. There is an initial trial period.
 - The following will already have been done by the time you read this:
