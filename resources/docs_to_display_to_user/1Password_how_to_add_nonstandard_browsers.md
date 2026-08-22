@@ -1,4 +1,10 @@
 # How to permit 1Password to interoperate with nonstandard browsers, e.g., Waterfox, Helium
+
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
+
 ## Context
 Out of the box, 1Password supports only the following the browsers: Chrome, Edge, Firefox,
 Safari, Brave, and Arc.
