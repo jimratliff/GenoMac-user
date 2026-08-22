@@ -1,5 +1,9 @@
 # How to configure Alfred
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Launch Alfred
 - Make Alfred the active app. (The Hypervisor should have launched Alfred for you already.)
 - You will see a “Welcome to Alfred 5” dialog box
