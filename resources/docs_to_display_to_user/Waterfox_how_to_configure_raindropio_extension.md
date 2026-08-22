@@ -1,5 +1,9 @@
 # How to install and configure the Raindrop.io extension for the Waterfox web browser
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Context: GenoMac-user can’t currently install the Raindrop.io extension for you
 Although, GenoMac-user *can* install many other extensions it’s tried to install, for some reason GenoMac-user
 can’t successfully install the Raindrop.io extension. So you’ll need to manually install it.
