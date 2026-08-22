@@ -1,5 +1,9 @@
 # How to configure Dropbox
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Launch Dropbox
 - ❑ Make Dropbox the active app. (The Hypervisor should have launched Dropbox for you already.)
 - Dialog box: Welcome to Dropbox!
