@@ -1,5 +1,9 @@
 # How to select the Matrix Screensaver as your screensaver
 
+> [!NOTE]
+> Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
+> This task will be re-presented to you next time you run the Hypervisor.
+
 ## Find the already-opened Wallpaper panel of System Settings
 - Locate the Wallpaper panel from System Settings that has already been opened for you.
 - In the right-hand side, in the topmost subpanel, you’ll see:
