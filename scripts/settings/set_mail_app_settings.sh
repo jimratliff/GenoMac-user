@@ -14,8 +14,14 @@ function conditionally_configure_mail_app() {
     interactively_configure_accounts_for_Mail_app \
     "Skipping interactively configuring accounts for Mail.app because it’s been done in the past"
 
+  if ! test_genomac_user_state "$PERM_APPLE_MAIL_APP_ACCOUNTS_HAVE_BEEN_CONFIGURED" ; then
+    report_warning "Skipping remainder of configuring Mail.app because user “punted” on configuring accounts."
+    report_end_phase_standard
+    return 0
+  fi
+
   run_if_user_has_not_done \
-    "$PERM_APPLE_MAIL_APP_HAS_BEEN_BOOTSTRAPPED" \
+    "$PERM_APPLE_MAIL_APP_TOOLBAR_HAS_BEEN_BOOTSTRAPPED" \
     bootstrap_toolbars_for_mail_app \
     "Skipping bootstrapping Mail.app because it’s been done in the past"
 
@@ -26,6 +32,9 @@ function conditionally_configure_mail_app() {
 
 function interactively_configure_accounts_for_Mail_app() {
   # Interactively configure at least one account for Mail.app
+  #
+  # Looks for an optional user-specific Markdown file in GenoMac-private that lists specific accounts
+  # for the user to implement in Mail.app and display it.
   
   report_start_phase_standard
 
@@ -37,6 +46,10 @@ function interactively_configure_accounts_for_Mail_app() {
     --show-doc
     "${GMU_DOCS_TO_DISPLAY}/Mail_app_how_to_configure_accounts.md"
     )
+
+  # Looks for optional user-specific Markdown file in GenoMac-private. If present, renders it as HTML
+  # and displays to user (in addition to the display of the Markdown document "Mail_app_how_to_configure_accounts.md"
+  # from GenoMac-user).
 
   local rendered_markdown_page_status
   local URL_for_rendered_user_specific_email_accounts_markdown_page
@@ -51,7 +64,7 @@ function interactively_configure_accounts_for_Mail_app() {
     rendered_markdown_page_status=$?
     case "${rendered_markdown_page_status}" in
       3)
-        report_to_log "No user-specific email-account instructions exist for user ${USER}"
+        report "No user-specific email-account instructions exist for user ${USER}."
         ;;
       *)
         report_fail "Couldn’t prepare the user-specific email-account instructions for user ${USER}"
