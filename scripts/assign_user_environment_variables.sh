@@ -104,6 +104,18 @@ GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS="$HOME/genomac-detective"
 # HINT: LOCAL_DROPBOX_DIRECTORY="$HOME/Library/CloudStorage/Dropbox"
 # HINT: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Preferences_common"
 
+############### URLs pointing to GenoMac-private
+
+# Example URL of user-specific email-accounts markdown page
+# https://github.com/jimratliff/GenoMac-private/blob/main/users/jim/Email_accounts_to_configure_on_devices.md
+
+GENOMAC_PRIVATE_DEFAULT_BRANCH="main"
+
+USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE_FILENAME="Email_accounts_to_configure_on_devices.md"
+USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_REPO_PATH="users/${USER}/${USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE_FILENAME}"
+URL_FOR_USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE="${GENOMAC_COMMON_GITHUB_HTTPS_URL_ROOT}/${GENOMAC_PRIVATE_REPO_NAME}/blob/${GENOMAC_PRIVATE_DEFAULT_BRANCH}/${USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_REPO_PATH}"
+
+
 ############### Destinations within the user’s home directory
 
 # Specify the file name of the BetterTouchTool (BTT) preset to be auto-loaded at BTT startup
