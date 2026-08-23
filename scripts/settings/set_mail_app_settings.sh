@@ -10,12 +10,34 @@ function conditionally_configure_mail_app() {
   fi
 
   run_if_user_has_not_done \
+    "$PERM_APPLE_MAIL_APP_ACCOUNTS_HAVE_BEEN_CONFIGURED" \
+    interactively_configure_accounts_for_Mail_app \
+    "Skipping interactively configuring accounts for Mail.app because it’s been done in the past"
+
+  run_if_user_has_not_done \
     "$PERM_APPLE_MAIL_APP_HAS_BEEN_BOOTSTRAPPED" \
     bootstrap_toolbars_for_mail_app \
     "Skipping bootstrapping Mail.app because it’s been done in the past"
 
   configure_mail_app_idempotent_settings
 
+  report_end_phase_standard
+}
+
+function interactively_configure_accounts_for_Mail_app() {
+  # Interactively configure at least one account for Mail.app
+
+  ############### TODO! WIP!
+  
+  report_start_phase_standard
+
+  report "Time to configure at least email account in Mail.app!${NEWLINE}I’ll launch it, and open a window with instructions for next steps"
+	
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/Mail_app_how_to_configure_accounts.md" \
+    "$BUNDLE_ID_MAIL_APP" \
+    "Follow the instructions in the Quick Look window to log into and configure at least one account in Mail.app"
+  
   report_end_phase_standard
 }
 
@@ -96,21 +118,16 @@ function bootstrap_toolbars_for_mail_app() {
 }
 
 function mail_app_plist_path() {
-  sandboxed_plist_path_from_domain \
-    "${DEFAULTS_DOMAINS_MAIL_APP}"
+  sandboxed_plist_path_from_domain "${DEFAULTS_DOMAINS_MAIL_APP}"
 }
 
 function bomb_if_mail_app_plist_does_not_exist() {
   local plist_path
 
-  plist_path="$(
-    sandboxed_plist_path_from_domain \
-      "${DEFAULTS_DOMAINS_MAIL_APP}"
-  )"
+  plist_path="$(sandboxed_plist_path_from_domain "${DEFAULTS_DOMAINS_MAIL_APP}")"
 
   if [[ ! -f "${plist_path}" ]]; then
-    report_fail \
-      "Mail.app’s preferences plist does not exist.${NEWLINE}Open Mail.app so that it can initialize its preferences, then run GenoMac again.${NEWLINE}Expected plist: ${plist_path}"
+    report_fail "Mail.app’s preferences plist does not exist.${NEWLINE}Open Mail.app so that it can initialize its preferences, then run GenoMac again.${NEWLINE}Expected plist: ${plist_path}"
   fi
 }
 
