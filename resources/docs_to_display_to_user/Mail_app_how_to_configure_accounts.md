@@ -4,7 +4,7 @@
 > Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
 > This task will be re-presented to you next time you run the Hypervisor.
 
-> [!NOTE]
+> [!TIP]
 > “[Add and manage email accounts in Mail on Mac](https://support.apple.com/en-kg/guide/mail/mail35803/mac),” Mail User Guide, Apple.
 
 # Make Mail.app active
