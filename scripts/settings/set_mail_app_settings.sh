@@ -26,17 +26,48 @@ function conditionally_configure_mail_app() {
 
 function interactively_configure_accounts_for_Mail_app() {
   # Interactively configure at least one account for Mail.app
-
-  ############### TODO! WIP!
   
   report_start_phase_standard
 
-  report "Time to configure at least one email account in Mail.app!${NEWLINE}I’ll launch it, and open a window with instructions for next steps"
-	
-  launch_app_and_prompt_user_to_act \
-    --show-doc "${GMU_DOCS_TO_DISPLAY}/Mail_app_how_to_configure_accounts.md" \
-    "$BUNDLE_ID_MAIL_APP" \
+  local github_pat
+  github_pat="$(get_GitHub_PAT_for_GenoMac_private_from_1Password_vault)"
+
+  local -a arguments_for_launch_app_and_prompt_user_to_act
+  arguments_for_launch_app_and_prompt_user_to_act=(
+    --show-doc
+    "${GMU_DOCS_TO_DISPLAY}/Mail_app_how_to_configure_accounts.md"
+    )
+
+  local rendered_markdown_page_status
+  local URL_for_rendered_user_specific_email_accounts_markdown_page
+  
+  if URL_for_rendered_user_specific_email_accounts_markdown_page="$(get_URL_for_rendered_user_specific_email_accounts_markdown_page "$github_pat")"; then
+    arguments_for_launch_app_and_prompt_user_to_act+=(
+      --open
+      "${URL_for_rendered_user_specific_email_accounts_markdown_page}"
+      )
+    report "The default browser has opened a window which tells you which email account should be added for this user."
+  else
+    rendered_markdown_page_status=$?
+    case "${rendered_markdown_page_status}" in
+      3)
+        report_to_log "No user-specific email-account instructions exist for user ${USER}"
+        ;;
+      *)
+        report_fail "Couldn’t prepare the user-specific email-account instructions for user ${USER}"
+        return 1
+        ;;
+    esac
+  fi
+
+  # Incorporate positional arguments
+  arguments_for_launch_app_and_prompt_user_to_act+=(
+    "${BUNDLE_ID_MAIL_APP}"
     "Follow the instructions in the Quick Look window to log into and configure at least one account in Mail.app"
+    )
+
+  report "Time to configure at least one email account in Mail.app!${NEWLINE}I’ll launch it, and open a window with instructions for next steps"
+  launch_app_and_prompt_user_to_act "${arguments_for_launch_app_and_prompt_user_to_act[@]}"
   
   report_end_phase_standard
 }
