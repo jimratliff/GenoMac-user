@@ -23,7 +23,7 @@
 - ❑ Click the link that says “Open this configuration file.”
   - This will download the configuration file to set everything up on your Mac automatically.
 - ❑ In the Finder, go to where the file was downloaded (⌘⌥L, Downloads)
-- ❑ Click on the downloaded file to install it
+- ❑ Double-click on the downloaded file to install it
   - You’ll see a notification telling you to review the file in your System Settings (“⚙️ Profile installation: Review the profile in System Settings if you want to install it.”)
 - ❑ Go to System Settings » General » Device Management.
 - ❑ Double-click the newly downloaded profile.
