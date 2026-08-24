@@ -7,6 +7,11 @@
 > [!TIP]
 > “[Add and manage email accounts in Mail on Mac](https://support.apple.com/en-kg/guide/mail/mail35803/mac),” Mail User Guide, Apple.
 
+# Introduction
+Running Mail.app for the first time (for a particular user on a particular startup volume) requires either:
+- At least one email account has already been defined via System Settings » Internet Accounts
+- You immediately define one or more email accounts from within Mail.app
+
 # Make Mail.app active
 ❑ Make Mail.app the active app. (The Hypervisor should have launched Mail.app for you already.)
 
