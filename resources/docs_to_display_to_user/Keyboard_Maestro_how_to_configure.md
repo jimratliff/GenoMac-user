@@ -39,7 +39,7 @@ You can register Keyboard Maestro (which requires an email address and serial nu
 - ❑ From the Keyboard Mastro status menu icon, choose “Launch Keyboard Maestro Editor”
 - ❑ After the Editor opens, open Settings… (⌘,)
 - In the General panel (which should be opened by default)
-  - Turn ON ✅ “Launch at Login”
+  - Turn ON ✅ “Launch Engine at Login”
   - Find the “Status Menu Icon” setting
     - ❑ Change the dropdown menu to “Classic”
     
