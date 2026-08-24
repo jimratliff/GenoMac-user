@@ -11,7 +11,7 @@
 
 # Log in to the Fastmail web interface
 - ❑ [Log in to the Fastmail web interface](https://app.fastmail.com/login/)
-- ❑ Go to Mail » Settings » Account » Privacy & Security
+- ❑ In the Fastmail browser window, go to Mail » Settings » Account » Privacy & Security
 - ❑ Under “Connected apps & API tokens,” click the “Manage app passwords and access” button.
 - ❑ Click “New app password” button
   - A “Verify it’s you” box may appear.
