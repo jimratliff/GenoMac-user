@@ -16,7 +16,7 @@
 - ❑ Click “New app password” button
   - A “Verify it’s you” box may appear.
   - ❑ Enter your password and click “Continue”.
-- ❑ Give your app password a name to indicate the combination of (a) machine, (b) startup volume, and (c) user
+- ❑ Give your app password a name to indicate the combination of (a) machine, (b) startup volume, (c) user, and (d) application (viz., Mail.app)
 - ❑ For the QR code setup, choose “Mail (IMAP/POP/SMTP)” access. (I don’t use Fastmail’s Contacts & Calendars.)
 - ❑ Click “Generate password”
   - The following screen will show information about the app password that has been created.
