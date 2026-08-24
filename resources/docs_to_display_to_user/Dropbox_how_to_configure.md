@@ -63,7 +63,7 @@
 - The Preferences_common directory should be available-offline
   - ❑ Right-click on
     - ❑ the Preferences_common directory and choose “Make available offline”
-    - ❑ the Users/jim directory
+    - ❑ the Users/*your-user-name*” directory
     - ❑ choose “Make available offline”
 
 ## Return to terminal and acknowledge
