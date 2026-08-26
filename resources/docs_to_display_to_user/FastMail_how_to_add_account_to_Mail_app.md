@@ -1,10 +1,10 @@
-# How to add a FastMail email account to Mail.app
+# How to add a Fastmail email account to Mail.app
 
 > [!NOTE]
 > Sources:
 > - “[App passwords](https://www.fastmail.help/hc/en-us/articles/360058752854-App-passwords),” Fastmail Help.
-> - “[Manual setup of Mail and Notes on Mac](https://www.fastmail.help/hc/en-us/articles/360058752974-Manual-setup-of-Mail-and-Notes-on-Mac),” FastMail Help.
-> - “[Automatic setup on Mac](https://www.fastmail.help/hc/en-us/articles/1500000277682-Automatic-setup-on-Mac),” FastMail Help.
+> - “[Manual setup of Mail and Notes on Mac](https://www.fastmail.help/hc/en-us/articles/360058752974-Manual-setup-of-Mail-and-Notes-on-Mac),” Fastmail Help.
+> - “[Automatic setup on Mac](https://www.fastmail.help/hc/en-us/articles/1500000277682-Automatic-setup-on-Mac),” Fastmail Help.
 
 > [!IMPORTANT]
 > I have chosen to use “[automatic setup](https://www.fastmail.help/hc/en-us/articles/1500000277682-Automatic-setup-on-Mac)” (rather than “manual setup”)
