@@ -104,14 +104,18 @@ GMU_LOCAL_DEFAULTS_DETECTIVE_RESULTS="$HOME/genomac-detective"
 # HINT: LOCAL_DROPBOX_DIRECTORY="$HOME/Library/CloudStorage/Dropbox"
 # HINT: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Preferences_common"
 
-############### URLs pointing to GenoMac-private
+############### URLs pointing to GenoMac-private 
 
 # Example URL of user-specific email-accounts markdown page
+#
+# WARNING: This approach is DEPRECATED. I have decided to store this email-address information in Dropbox/Users/$USER/Prefs/Meta
+#          instead of GenoMac-private because Dropbox is more secure than a private GitHub repo.
+#
 # https://github.com/jimratliff/GenoMac-private/blob/main/users/jim/Email_accounts_to_configure_on_devices.md
 
 GENOMAC_PRIVATE_DEFAULT_BRANCH="main"
 
-USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE_FILENAME="Email_accounts_to_configure_on_devices.md"
+# USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE_FILENAME="Email_accounts_to_configure_on_devices.md"
 USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_REPO_PATH="users/${USER}/${USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE_FILENAME}"
 URL_FOR_USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE="${GENOMAC_COMMON_GITHUB_HTTPS_URL_ROOT}/${GENOMAC_PRIVATE_REPO_NAME}/blob/${GENOMAC_PRIVATE_DEFAULT_BRANCH}/${USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_REPO_PATH}"
 
@@ -132,15 +136,31 @@ USER_PREFPANE_DIRECTORY="$HOME/Library/PreferencePanes"
 WITCH_PREFPANE_NAME="Witch.prefPane"
 WITCH_PATH_TO_USER_PREFPANE="${USER_PREFPANE_DIRECTORY}/${WITCH_PREFPANE_NAME}"
 
+### Destionations within the user’s Dropbox directory
+
 USER_SUBDIRECTORY_OF_DROPBOX="${LOCAL_DROPBOX_DIRECTORY}/Users/${USER}"
 
-USER_WALLPAPER_DIRECTORY="${USER_SUBDIRECTORY_OF_DROPBOX}/Prefs/Mission_Control_wallpapers"
+# Dropbox/Prefs
+USER_SPECIFIC_PREFS_DIRECTORY="${USER_SUBDIRECTORY_OF_DROPBOX}/Prefs"
 
+# Dropbox/Prefs/Meta
+USER_SPECIFIC_META_DIRECTORY="${USER_SPECIFIC_PREFS_DIRECTORY}/Meta"
+
+USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE_FILENAME="Email_accounts_to_configure_on_devices.md"
+USER_SPECIFIC_EMAIL_ACCOUNTS_FOR_MAIL_APP_SPECIFICATIONS_FILE="${USER_SPECIFIC_META_DIRECTORY}/${USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE_FILENAME}"
+
+# Dropbox/Prefs/Mission_Control_wallpapers
+USER_WALLPAPER_DIRECTORY="${USER_SPECIFIC_PREFS_DIRECTORY}/Mission_Control_wallpapers"
+
+# Screenshots directories
+USER_SCREENSHOT_DESTINATION_DIRECTORY_BAREBONES="$HOME/Screenshots"
 USER_SCREENSHOT_DESTINATION_DIRECTORY_DROPBOX_USER="${USER_SUBDIRECTORY_OF_DROPBOX}/Screenshots"
 
-USER_SCREENSHOT_DESTINATION_DIRECTORY_BAREBONES="$HOME/Screenshots"
-
+### Locations within $HOME/Documents
 USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
+
+### Repositories directory
+# HINT: USER_LOCAL_REPOSITORY_DIRECTORY="$HOME/Repositories"
 
 ############### Environment variables to support the Hypervisor
 #
