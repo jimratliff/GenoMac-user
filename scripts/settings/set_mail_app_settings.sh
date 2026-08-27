@@ -33,13 +33,13 @@ function conditionally_configure_mail_app() {
 function interactively_configure_accounts_for_Mail_app() {
   # Interactively configure at least one account for Mail.app
   #
-  # Looks for an optional user-specific Markdown file in GenoMac-private that lists specific accounts
-  # for the user to implement in Mail.app and display it.
+  # Looks for an optional user-specific Markdown file in $USER_SPECIFIC_META_DIRECTORY
+  # that lists specific accounts for the user to implement in Mail.app and display it.
   
   report_start_phase_standard
 
-  local github_pat
-  github_pat="$(get_GitHub_PAT_for_GenoMac_private_from_1Password_vault)"
+  # local github_pat
+  # github_pat="$(get_GitHub_PAT_for_GenoMac_private_from_1Password_vault)"
 
   local -a arguments_for_launch_app_and_prompt_user_to_act
   arguments_for_launch_app_and_prompt_user_to_act=(
@@ -47,30 +47,37 @@ function interactively_configure_accounts_for_Mail_app() {
     "${GMU_DOCS_TO_DISPLAY}/Mail_app_how_to_configure_accounts.md"
     )
 
-  # Looks for optional user-specific Markdown file in GenoMac-private. If present, renders it as HTML
-  # and displays to user (in addition to the display of the Markdown document "Mail_app_how_to_configure_accounts.md"
+  # Looks for optional user-specific Markdown file in $USER_SPECIFIC_META_DIRECTORY.
+  # HINT: USER_SPECIFIC_META_DIRECTORY="~ /path/to Dropbox/Prefs/Meta"
+  # If present, displays to user (in addition to the display of the Markdown document "Mail_app_how_to_configure_accounts.md"
   # from GenoMac-user).
 
-  local rendered_markdown_page_status
-  local URL_for_rendered_user_specific_email_accounts_markdown_page
+  # local rendered_markdown_page_status
+  # local URL_for_rendered_user_specific_email_accounts_markdown_page
   
-  if URL_for_rendered_user_specific_email_accounts_markdown_page="$(get_URL_for_rendered_user_specific_email_accounts_markdown_page "$github_pat")"; then
+  # if URL_for_rendered_user_specific_email_accounts_markdown_page="$(get_URL_for_rendered_user_specific_email_accounts_markdown_page "$github_pat")"; then
+
+  # Look for an optional user-specific Markdown file in
+  # ${USER_SPECIFIC_META_DIRECTORY}. If present, display it in addition
+  # to Mail_app_how_to_configure_accounts.md from GenoMac-user.
+
+  if [[ ! -e "${USER_SPECIFIC_EMAIL_ACCOUNTS_FOR_MAIL_APP_SPECIFICATIONS_FILE}" ]]; then
+    report_to_log "No user-specific email-account instructions exist for user ${USER}."
+
+  elif [[
+    ! -f "${USER_SPECIFIC_EMAIL_ACCOUNTS_FOR_MAIL_APP_SPECIFICATIONS_FILE}" ||
+    ! -r "${USER_SPECIFIC_EMAIL_ACCOUNTS_FOR_MAIL_APP_SPECIFICATIONS_FILE}"
+  ]]; then
+    report_fail "The user-specific email-account instructions exist but aren’t a readable regular file.${NEWLINE}See ${USER_SPECIFIC_EMAIL_ACCOUNTS_FOR_MAIL_APP_SPECIFICATIONS_FILE}"
+    return 1
+
+  else
     arguments_for_launch_app_and_prompt_user_to_act+=(
       --open
-      "${URL_for_rendered_user_specific_email_accounts_markdown_page}"
-      )
-    report "The default browser has opened a window which tells you which email account should be added for this user."
-  else
-    rendered_markdown_page_status=$?
-    case "${rendered_markdown_page_status}" in
-      3)
-        report "No user-specific email-account instructions exist for user ${USER}."
-        ;;
-      *)
-        report_fail "Couldn’t prepare the user-specific email-account instructions for user ${USER}"
-        return 1
-        ;;
-    esac
+      "${USER_SPECIFIC_EMAIL_ACCOUNTS_FOR_MAIL_APP_SPECIFICATIONS_FILE}"
+    )
+
+    report "I’ve also opened the user-specific instructions describing which email accounts should be added."
   fi
 
   # Incorporate positional arguments
