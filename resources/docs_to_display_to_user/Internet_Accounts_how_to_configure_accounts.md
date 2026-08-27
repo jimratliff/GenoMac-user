@@ -1,4 +1,4 @@
-# How to specify email account(s) for Mail.app
+# How to specify Internet Accounts
 
 > [!NOTE]
 > Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
@@ -13,12 +13,14 @@ Running Mail.app for the first time (for a particular user on a particular start
 - You immediately define one or more email accounts from within Mail.app
 
 > [!IMPORTANT]
-> **We choose to specify the email accounts in System Settings » Internet Accounts, not directly in Mail.app.**
+> **Project GenoMac chooses to specify these accounts in System Settings » Internet Accounts, not directly in Mail.app.**
 
+# Make the Internet Accounts pane of System Settings active
+The Hypervisor will have opened this panel for you.
 
-
-# Add at least one email account to Mail.app
-- First thing you’ll see is a request to add an email account. The offered options are:
+# Add at least one email account to Internet Accounts
+- ❑ Click the “Add Account…” button
+- You’ll see a list of offered options:
   - iCloud
   - Microsoft Exchange
   - Google
@@ -37,3 +39,7 @@ See “[How to add a Fastmail email account to Mail.app](https://github.com/jimr
 
 ## Be tidy: Close this document
 - ❑ Close this document
+
+[!NOTE]
+This is the default document to display to guide the user through the interactive configuration of Internet Accounts. It is located
+at 
