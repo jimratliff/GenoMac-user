@@ -39,58 +39,37 @@ function interactively_configure_internet_accounts() {
   # Interactively configure at least one internet account.
   #
   # - Looks for an optional user-specific Markdown file in $USER_SPECIFIC_META_DIRECTORY
-  #   that lists specific accounts for the user to implement in Mail.app and display it.
-  # - If this file is present, it is displayed to guide the user through this interactive
-  #   process.
+  #   to be displayed via QuickLook to guide the user through interactively configuring
+  #   internet accounts.
+  # - If this file is not present, an alternative, default document is displayed instead.
   
   report_start_phase_standard
 
-  local -a arguments_for_launch_app_and_prompt_user_to_act
-  arguments_for_launch_app_and_prompt_user_to_act=(
-    --show-doc
-    "${GMU_DOCS_TO_DISPLAY}/Mail_app_how_to_configure_accounts.md"
-    )
+  local markdown_file_to_display="${GMU_DOCS_TO_DISPLAY}/Internet_Accounts_how_to_configure_accounts.md"
 
-  # Looks for optional user-specific Markdown file in $USER_SPECIFIC_META_DIRECTORY.
-  # HINT: USER_SPECIFIC_META_DIRECTORY="~ /path/to Dropbox/Prefs/Meta"
-  # If present, displays to user (in addition to the display of the Markdown document "Mail_app_how_to_configure_accounts.md"
-  # from GenoMac-user).
+  # Looks for optional user-specific Markdown file $USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE
+  # in $USER_SPECIFIC_META_DIRECTORY (Dropbox/Prefs/Meta).
+  # If present, displays to user. Otherwise, displays the alternative, default Markdown document
+  # "Internet_Accounts_how_to_configure_accounts.md" from GenoMac-user.
 
-  # local rendered_markdown_page_status
-  # local URL_for_rendered_user_specific_email_accounts_markdown_page
-  # if URL_for_rendered_user_specific_email_accounts_markdown_page="$(get_URL_for_rendered_user_specific_email_accounts_markdown_page "$github_pat")"; then
-
-  # Look for an optional user-specific Markdown file in
-  # ${USER_SPECIFIC_META_DIRECTORY}. If present, display it in addition
-  # to Mail_app_how_to_configure_accounts.md from GenoMac-user.
-
-  if [[ ! -e "${USER_SPECIFIC_EMAIL_ACCOUNTS_FOR_MAIL_APP_SPECIFICATIONS_FILE}" ]]; then
-    report_to_log "No user-specific email-account instructions exist for user ${USER}."
-
+  if [[ ! -e "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}" ]]; then
+    report_to_log "No user-specific internet-accounts instructions exist for user ${USER}."
   elif [[
-    ! -f "${USER_SPECIFIC_EMAIL_ACCOUNTS_FOR_MAIL_APP_SPECIFICATIONS_FILE}" ||
-    ! -r "${USER_SPECIFIC_EMAIL_ACCOUNTS_FOR_MAIL_APP_SPECIFICATIONS_FILE}"
+    ! -f "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}" ||
+    ! -r "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
   ]]; then
-    report_fail "The user-specific email-account instructions exist but aren’t a readable regular file.${NEWLINE}See ${USER_SPECIFIC_EMAIL_ACCOUNTS_FOR_MAIL_APP_SPECIFICATIONS_FILE}"
+    report_fail "The user-specific internet-accounts instructions exist but aren’t a readable regular file.${NEWLINE}See ${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
     return 1
-
   else
-    arguments_for_launch_app_and_prompt_user_to_act+=(
-      --open
-      "${USER_SPECIFIC_EMAIL_ACCOUNTS_FOR_MAIL_APP_SPECIFICATIONS_FILE}"
-    )
-
-    report "I’ve also opened the user-specific instructions describing which email accounts should be added."
+    markdown_file_to_display="${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
   fi
 
-  # Incorporate positional arguments
-  arguments_for_launch_app_and_prompt_user_to_act+=(
-    "${BUNDLE_ID_MAIL_APP}"
-    "Follow the instructions in the Quick Look window to log into and configure at least one account in Mail.app"
-    )
-
-  report "Time to configure at least one email account in Mail.app!${NEWLINE}I’ll launch it, and open a window with instructions for next steps"
-  launch_app_and_prompt_user_to_act "${arguments_for_launch_app_and_prompt_user_to_act[@]}"
+  report "Time to configure at least one internet account!${NEWLINE}I’ll launch System Settings » Internet Accounts with instructions for next steps"
+  launch_app_and_prompt_user_to_act \
+    --no-app \
+    --show-doc "$markdown_file_to_display" \
+    --open "$SYSTEM_SETTINGS_INTERNET_ACCOUNTS_URL" \
+    "Follow the instructions in the Quick Look window to configure Internet Accounts"
   
   report_end_phase_standard
 }
