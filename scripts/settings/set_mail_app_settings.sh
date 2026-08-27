@@ -185,123 +185,129 @@ function bomb_if_mail_app_plist_does_not_exist() {
   fi
 }
 
-function get_URL_for_rendered_user_specific_email_accounts_markdown_page() {
-  # Renders the user-specific Markdown file in GenoMac-private, if it exists, that supplies
-  # non-public detail about the email user accounts to be implemented in Mail.app.
-  
-  report_start_phase_standard
-  
-  local github_pat="$1"
+#######################################################################################################################################
+#         DEPRECATION ZONE
+#
+#         ALL CODE BELOW IS HENCEFORTH DEPRECATED
+#
 
-  local repository_api_url
-  local contents_api_url
-  local temporary_directory
-  local rendered_fragment_path
-  local rendered_page_path
-  local http_status
-  local curl_status
-
-  repository_api_url="${GENOMAC_COMMON_GITHUB_API_REPOS_URL_ROOT}/${GENOMAC_PRIVATE_REPO_NAME}"
-  contents_api_url="${repository_api_url}/contents/${USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_REPO_PATH}"
-
-  temporary_directory="$(mktemp -d "${TMPDIR%/}/genomac-email-account-instructions.XXXXXX")" || {
-    report_fail "Couldn’t create a temporary directory for the email-account instructions."
-    return 1
-  }
-
-  rendered_fragment_path="${temporary_directory}/rendered-fragment.html"
-  rendered_page_path="${temporary_directory}/email-account-instructions.html"
-
-  chmod 700 "${temporary_directory}" || {
-    report_fail "Couldn’t secure the temporary email-account instructions directory."
-    return 1
-  }
-
-  # Establish that the PAT can access GenoMac-private. This is necessary
-  # because GitHub can return 404 both for a nonexistent file and for an
-  # inaccessible private repository.
-  http_status="$(
-    curl \
-      --silent \
-      --show-error \
-      --output /dev/null \
-      --write-out '%{http_code}' \
-      --header "Accept: application/vnd.github+json" \
-      --header "Authorization: Bearer ${github_pat}" \
-      --header "X-GitHub-Api-Version: 2022-11-28" \
-      "${repository_api_url}"
-  )"
-  curl_status=$?
-
-  if (( curl_status != 0 )) || [[ "${http_status}" != "200" ]]; then
-    rm -rf "${temporary_directory}"
-
-    report_fail "Couldn’t access the private GenoMac GitHub repository."
-    return 1
-  fi
-
-  # Ask GitHub to return the Markdown rendered as HTML.
-  http_status="$(
-    curl \
-      --silent \
-      --show-error \
-      --output "${rendered_fragment_path}" \
-      --write-out '%{http_code}' \
-      --header "Accept: application/vnd.github.html+json" \
-      --header "Authorization: Bearer ${github_pat}" \
-      --header "X-GitHub-Api-Version: 2022-11-28" \
-      --get \
-      --data-urlencode "ref=${GENOMAC_PRIVATE_DEFAULT_BRANCH}" \
-      "${contents_api_url}"
-  )"
-  curl_status=$?
-
-  if (( curl_status != 0 )); then
-    rm -rf "${temporary_directory}"
-
-    report_fail "An error occurred while retrieving the email-account instructions."
-    return 1
-  fi
-
-  case "${http_status}" in
-    200)
-      ;;
-
-    404)
-      rm -rf "${temporary_directory}"
-      report_to_log "The user-specific Markdown file doesn’t exist. This isn’t fatal."
-      report_end_phase_standard
-      return 3
-      ;;
-
-    *)
-      rm -rf "${temporary_directory}"
-
-      report_fail "GitHub returned HTTP status ${http_status} while retrieving the email-account instructions."
-      return 1
-      ;;
-  esac
-
-  if ! write_rendered_markdown_html_document \
-    "${rendered_fragment_path}" \
-    "${rendered_page_path}" \
-    "$TITLE_OF_USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE"; then
-    command rm -rf "${temporary_directory}"
-
-    report_fail "Couldn’t prepare the email-account instructions for display."
-    return 1
-  fi
-
-  command rm -f "${rendered_fragment_path}"
-
-  if ! printf 'file://%s\n' "${rendered_page_path}"; then
-    command rm -rf "${temporary_directory}"
-
-    report_fail "Couldn’t return the URL for the email-account instructions."
-    return 1
-  fi
-  
-  report_end_phase_standard
-}
+# function get_URL_for_rendered_user_specific_email_accounts_markdown_page() {
+#   # Renders the user-specific Markdown file in GenoMac-private, if it exists, that supplies
+#   # non-public detail about the email user accounts to be implemented in Mail.app.
+#   
+#   report_start_phase_standard
+#   
+#   local github_pat="$1"
+# 
+#   local repository_api_url
+#   local contents_api_url
+#   local temporary_directory
+#   local rendered_fragment_path
+#   local rendered_page_path
+#   local http_status
+#   local curl_status
+# 
+#   repository_api_url="${GENOMAC_COMMON_GITHUB_API_REPOS_URL_ROOT}/${GENOMAC_PRIVATE_REPO_NAME}"
+#   contents_api_url="${repository_api_url}/contents/${USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_REPO_PATH}"
+# 
+#   temporary_directory="$(mktemp -d "${TMPDIR%/}/genomac-email-account-instructions.XXXXXX")" || {
+#     report_fail "Couldn’t create a temporary directory for the email-account instructions."
+#     return 1
+#   }
+# 
+#   rendered_fragment_path="${temporary_directory}/rendered-fragment.html"
+#   rendered_page_path="${temporary_directory}/email-account-instructions.html"
+# 
+#   chmod 700 "${temporary_directory}" || {
+#     report_fail "Couldn’t secure the temporary email-account instructions directory."
+#     return 1
+#   }
+# 
+#   # Establish that the PAT can access GenoMac-private. This is necessary
+#   # because GitHub can return 404 both for a nonexistent file and for an
+#   # inaccessible private repository.
+#   http_status="$(
+#     curl \
+#       --silent \
+#       --show-error \
+#       --output /dev/null \
+#       --write-out '%{http_code}' \
+#       --header "Accept: application/vnd.github+json" \
+#       --header "Authorization: Bearer ${github_pat}" \
+#       --header "X-GitHub-Api-Version: 2022-11-28" \
+#       "${repository_api_url}"
+#   )"
+#   curl_status=$?
+# 
+#   if (( curl_status != 0 )) || [[ "${http_status}" != "200" ]]; then
+#     rm -rf "${temporary_directory}"
+# 
+#     report_fail "Couldn’t access the private GenoMac GitHub repository."
+#     return 1
+#   fi
+# 
+#   # Ask GitHub to return the Markdown rendered as HTML.
+#   http_status="$(
+#     curl \
+#       --silent \
+#       --show-error \
+#       --output "${rendered_fragment_path}" \
+#       --write-out '%{http_code}' \
+#       --header "Accept: application/vnd.github.html+json" \
+#       --header "Authorization: Bearer ${github_pat}" \
+#       --header "X-GitHub-Api-Version: 2022-11-28" \
+#       --get \
+#       --data-urlencode "ref=${GENOMAC_PRIVATE_DEFAULT_BRANCH}" \
+#       "${contents_api_url}"
+#   )"
+#   curl_status=$?
+# 
+#   if (( curl_status != 0 )); then
+#     rm -rf "${temporary_directory}"
+# 
+#     report_fail "An error occurred while retrieving the email-account instructions."
+#     return 1
+#   fi
+# 
+#   case "${http_status}" in
+#     200)
+#       ;;
+# 
+#     404)
+#       rm -rf "${temporary_directory}"
+#       report_to_log "The user-specific Markdown file doesn’t exist. This isn’t fatal."
+#       report_end_phase_standard
+#       return 3
+#       ;;
+# 
+#     *)
+#       rm -rf "${temporary_directory}"
+# 
+#       report_fail "GitHub returned HTTP status ${http_status} while retrieving the email-account instructions."
+#       return 1
+#       ;;
+#   esac
+# 
+#   if ! write_rendered_markdown_html_document \
+#     "${rendered_fragment_path}" \
+#     "${rendered_page_path}" \
+#     "$TITLE_OF_USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE"; then
+#     command rm -rf "${temporary_directory}"
+# 
+#     report_fail "Couldn’t prepare the email-account instructions for display."
+#     return 1
+#   fi
+# 
+#   command rm -f "${rendered_fragment_path}"
+# 
+#   if ! printf 'file://%s\n' "${rendered_page_path}"; then
+#     command rm -rf "${temporary_directory}"
+# 
+#     report_fail "Couldn’t return the URL for the email-account instructions."
+#     return 1
+#   fi
+#   
+#   report_end_phase_standard
+# }
 
 
