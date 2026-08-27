@@ -41,6 +41,6 @@ See “[How to add a Fastmail email account to Mail.app](https://github.com/jimr
 - ❑ Close this document
 
 > [!NOTE]
-> This is the default document to display to guide the user through the interactive configuration of Internet Accounts. It is located at `GenoMac-user/resources/docs_to_display_to_user/Internet_Accounts_how_to_configure_accounts.md`.
+> This is the default document that is displayed to guide the user through the interactive configuration of Internet Accounts. It is located at `GenoMac-user/resources/docs_to_display_to_user/Internet_Accounts_how_to_configure_accounts.md`.
 > 
 > This default document is displayed when, and only when, no user-specific document is provided. Alternatively, a user-specific document can be provided in that user’s Dropbox directory, specifically in the user’s `$USER_SPECIFIC_META_DIRECTORY` directory and, more specifically, the file `$USER_SPECIFIC_EMAIL_ACCOUNTS_MARKDOWN_PAGE_FILENAME`.
