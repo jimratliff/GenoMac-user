@@ -13,10 +13,9 @@ Running Mail.app for the first time (for a particular user on a particular start
 - You immediately define one or more email accounts from within Mail.app
 
 > [!IMPORTANT]
-> **We choose to specify the email accounts in Settings » Internet Accounts, not directly in Mail.app**
+> **We choose to specify the email accounts in System Settings » Internet Accounts, not directly in Mail.app.**
 
-# Make Mail.app active
-❑ Make Mail.app the active app. (The Hypervisor should have launched Mail.app for you already.)
+
 
 # Add at least one email account to Mail.app
 - First thing you’ll see is a request to add an email account. The offered options are:
