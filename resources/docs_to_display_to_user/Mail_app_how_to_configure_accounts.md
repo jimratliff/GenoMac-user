@@ -25,6 +25,10 @@ Running Mail.app for the first time (for a particular user on a particular start
   - Other Mail Account…
 - Look for a browser window that Project GenoMac may have opened that tells you what particular email accounts should be added for the particular user.
   - (This browser window will be displayed if is has been configured in the GenoMac-private repo.)
+ 
+# Procedure to add a Fastmail email address to Mail.app
+See “[How to add a Fastmail email account to Mail.app](https://github.com/jimratliff/GenoMac-user/blob/main/resources/docs_to_display_to_user/FastMail_how_to_add_account_to_Mail_app.md).”
+
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
