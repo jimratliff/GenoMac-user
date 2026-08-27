@@ -1,21 +1,26 @@
 #!/usr/bin/env zsh
 
+# NOTE: The email accounts for Mail.app are established throught the System Settings » Internet Account interface,
+#       NOT through the Mail.app Settings » Accounts interface.
+#
+#       Currently, it is assumed that Internet Accounts are desired only for users of Mail.app.
+
 function conditionally_configure_mail_app() {
   report_start_phase_standard
 
   if ! test_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"; then
-    report_action_taken_to_log "Skipping Mail.app configuration, because this user doesn’t want it"
+    report_action_taken_to_log "Skipping configuring Internet Accounts and Mail.app, because this user doesn’t want these"
     report_end_phase_standard
     return 0
   fi
 
   run_if_user_has_not_done \
-    "$PERM_APPLE_MAIL_APP_ACCOUNTS_HAVE_BEEN_CONFIGURED" \
-    interactively_configure_accounts_for_Mail_app \
-    "Skipping interactively configuring accounts for Mail.app because it’s been done in the past"
+    "$PERM_INTERNET_ACCOUNTS_HAVE_BEEN_CONFIGURED" \
+    interactively_configure_internet_accounts \
+    "Skipping interactively configuring internet accounts because it’s been done in the past"
 
-  if ! test_genomac_user_state "$PERM_APPLE_MAIL_APP_ACCOUNTS_HAVE_BEEN_CONFIGURED" ; then
-    report_warning "Skipping remainder of configuring Mail.app because user “punted” on configuring accounts."
+  if ! test_genomac_user_state "$PERM_INTERNET_ACCOUNTS_HAVE_BEEN_CONFIGURED" ; then
+    report_warning "Skipping remainder of configuring Mail.app because no evidence that any internet accounts have been configured."
     report_end_phase_standard
     return 0
   fi
@@ -23,23 +28,22 @@ function conditionally_configure_mail_app() {
   run_if_user_has_not_done \
     "$PERM_APPLE_MAIL_APP_TOOLBAR_HAS_BEEN_BOOTSTRAPPED" \
     bootstrap_toolbars_for_mail_app \
-    "Skipping bootstrapping Mail.app because it’s been done in the past"
+    "Skipping bootstrapping Mail.app’s toolbar because it’s been done in the past"
 
   configure_mail_app_idempotent_settings
 
   report_end_phase_standard
 }
 
-function interactively_configure_accounts_for_Mail_app() {
-  # Interactively configure at least one account for Mail.app
+function interactively_configure_internet_accounts() {
+  # Interactively configure at least one internet account.
   #
-  # Looks for an optional user-specific Markdown file in $USER_SPECIFIC_META_DIRECTORY
-  # that lists specific accounts for the user to implement in Mail.app and display it.
+  # - Looks for an optional user-specific Markdown file in $USER_SPECIFIC_META_DIRECTORY
+  #   that lists specific accounts for the user to implement in Mail.app and display it.
+  # - If this file is present, it is displayed to guide the user through this interactive
+  #   process.
   
   report_start_phase_standard
-
-  # local github_pat
-  # github_pat="$(get_GitHub_PAT_for_GenoMac_private_from_1Password_vault)"
 
   local -a arguments_for_launch_app_and_prompt_user_to_act
   arguments_for_launch_app_and_prompt_user_to_act=(
@@ -54,7 +58,6 @@ function interactively_configure_accounts_for_Mail_app() {
 
   # local rendered_markdown_page_status
   # local URL_for_rendered_user_specific_email_accounts_markdown_page
-  
   # if URL_for_rendered_user_specific_email_accounts_markdown_page="$(get_URL_for_rendered_user_specific_email_accounts_markdown_page "$github_pat")"; then
 
   # Look for an optional user-specific Markdown file in
