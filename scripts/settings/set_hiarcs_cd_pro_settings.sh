@@ -53,7 +53,44 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   # Configure HIARCS Chess Explorer Pro’s idempotent settings
   report_start_phase_standard
 
-  report_warning "NOT YET IMPLEMENTED: configure_hiarcs_ce_pro_idempotent_settings()"
+  # report_warning "NOT YET IMPLEMENTED: configure_hiarcs_ce_pro_idempotent_settings()"
+
+  report_action_taken "Implement HIARCS Chess Explorer Pro settings"
+
+  local domain="$DEFAULTS_DOMAINS_HIARCS_CHESS_EXPLORER_PRO"
+
+  report_adjust_setting "Hide toolbar"
+  defaults write "$domain" "Geometry.toolbarEnabled" -bool false ; success_or_not
+  
+  report_adjust_setting "Always show tab bar"
+  defaults write "$domain" "Geometry.showTabBar" -bool true ; success_or_not
+  
+  report_adjust_setting "Board: visual mode: outline"
+  defaults write "$domain" "Board.pieceEffect" -int 1 ; success_or_notsuccess_or_not
+  
+  report_adjust_setting "Board: Show frame"
+  defaults write "$domain" "Board.showFrame" -bool true ; success_or_not
+  
+  report_adjust_setting "Board style: plain colors"
+  defaults write "$domain" "Board.pieceEffect" -string "@Invalid()" ; success_or_not
+  
+  report_adjust_setting "Board: Do NOT show “best move”"
+  defaults write "$domain" "Board.showBestMove" -bool false ; success_or_not
+  
+  report_adjust_setting "Board: DO show last move"
+  defaults write "$domain" "Board.showLastMove" -bool true ; success_or_not
+  
+  report_adjust_setting "Board: NEVER autocomplete move"
+  defaults write "$domain" "Board.guessMove" -int 0 ; success_or_not
+  
+  report_adjust_setting "Board: NEVER show “move quality” while dragging"
+  defaults write "$domain" "Board.showMoveQuality" -int 0 ; success_or_not
+  
+  report_adjust_setting "Board: Show variation popup on right arrow (not on ⌘→)"
+  defaults write "$domain" "Board.showVariations" -int 1 ; success_or_not
+  
+  report_adjust_setting "Game view: Use columns for main line"
+  defaults write "$domain" "GameView.columnView" -bool true ; success_or_not
   
   report_end_phase_standard
 }
