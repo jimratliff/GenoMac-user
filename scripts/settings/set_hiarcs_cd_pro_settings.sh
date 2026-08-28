@@ -66,7 +66,7 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   defaults write "$domain" "Geometry.showTabBar" -bool true ; success_or_not
   
   report_adjust_setting "Board: visual mode: outline"
-  defaults write "$domain" "Board.pieceEffect" -int 1 ; success_or_notsuccess_or_not
+  defaults write "$domain" "Board.pieceEffect" -int 1 ; success_or_not
   
   report_adjust_setting "Board: Show frame"
   defaults write "$domain" "Board.showFrame" -bool true ; success_or_not
