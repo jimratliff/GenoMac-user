@@ -80,10 +80,10 @@ function find_diff_from_setting_change(){
 	
 	# Show diffs
 	report "Here is your diff (not specific to a host):"
-	git --no-pager diff --no-index --color=alway "${results_dir}/old.plist" "${results_dir}/new.plist" || true
+	git --no-pager diff --no-index --color=always "${results_dir}/old.plist" "${results_dir}/new.plist" || true
 	
 	report $"\n\n\nHere is your diff with '--currentHost':"
-	git --no-pager diff --no-index --color=alway "${results_dir}/host-old.plist" "${results_dir}/host-new.plist" || true
+	git --no-pager diff --no-index --color=always "${results_dir}/host-old.plist" "${results_dir}/host-new.plist" || true
 	
 	report "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 	report "💡 Tip: To investigate any changed keys, try:"
