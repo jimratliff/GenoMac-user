@@ -16,7 +16,7 @@ function conditionally_configure_mail_app() {
 
   run_if_user_has_not_done \
     "$PERM_INTERNET_ACCOUNTS_HAVE_BEEN_CONFIGURED" \
-    interactively_configure_internet_accounts \
+    interactive_configure_internet_accounts \
     "Skipping interactively configuring internet accounts because it’s been done in the past"
 
   if ! test_genomac_user_state "$PERM_INTERNET_ACCOUNTS_HAVE_BEEN_CONFIGURED" ; then
@@ -35,7 +35,7 @@ function conditionally_configure_mail_app() {
   report_end_phase_standard
 }
 
-function interactively_configure_internet_accounts() {
+function interactive_configure_internet_accounts() {
   # Interactively configure at least one internet account.
   #
   # - Looks for an optional user-specific Markdown file in $USER_SPECIFIC_META_DIRECTORY
