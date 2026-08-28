@@ -16,23 +16,38 @@ conditionally_configure_hiarcs_ce_pro() {
   fi
   
   run_if_user_has_not_done \
-    "$PERM_HIARCS_CHESS_EXPLORER_PRO_HAS_BEEN_BOOTSTRAPPED" \
-    bootstrap_hiarcs_ce_pro \
-    "Skipping bootstrapping HIARCS Chess Explorer Pro because it’s been done in the past"
+    "$PERM_HIARCS_CHESS_EXPLORER_PRO_HAS_ACTIVATED_LICENSE" \
+    interactive_activate_license_hiarcs_ce_pro \
+    "Skipping activating license for HIARCS Chess Explorer Pro because it’s been done in the past"
+  
+#   run_if_user_has_not_done \
+#     "$PERM_HIARCS_CHESS_EXPLORER_PRO_HAS_BEEN_BOOTSTRAPPED" \
+#     bootstrap_hiarcs_ce_pro \
+#     "Skipping bootstrapping HIARCS Chess Explorer Pro because it’s been done in the past"
 
   configure_hiarcs_ce_pro_idempotent_settings
     
   report_end_phase_standard
 }
 
-function bootstrap_hiarcs_ce_pro() {
-  # Bootstrap HIARCS Chess Explorer Pro
+function interactive_activate_license_hiarcs_ce_pro() {
+  # Interactively guide user to activate license for HIARCS Chess Explorer Pro
   report_start_phase_standard
-
-  report_warning "NOT YET IMPLEMENTED: bootstrap_hiarcs_ce_pro()"
-  
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/HIARCS_how_to_activate_license.md" \
+    "$BUNDLE_ID_HIARCS_CE_PRO" \
+    "Follow the instructions to activate the license for HIARCS Chess Explorer Pro"
   report_end_phase_standard
 }
+
+# function bootstrap_hiarcs_ce_pro() {
+#   # Bootstrap HIARCS Chess Explorer Pro
+#   report_start_phase_standard
+# 
+#   report_warning "NOT YET IMPLEMENTED: bootstrap_hiarcs_ce_pro()"
+#   
+#   report_end_phase_standard
+# }
 
 function configure_hiarcs_ce_pro_idempotent_settings() {
   # Configure HIARCS Chess Explorer Pro’s idempotent settings
