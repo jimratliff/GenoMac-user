@@ -4,9 +4,9 @@ conditionally_configure_hiarcs_ce_pro() {
   report_start_phase_standard
 
   ############### BEGIN: TO BE REMOVED ###############
-  report_warning "The configuration of HIARCS Chess Explorer Pro hasn’t been implemented yet!"
-  report_end_phase_standard
-  return 0
+  # report_warning "The configuration of HIARCS Chess Explorer Pro hasn’t been implemented yet!"
+  # report_end_phase_standard
+  # return 0
   ############### END: TO BE REMOVED ###############
 
   if ! test_genomac_user_state "$SESH_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"; then
@@ -74,6 +74,12 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   report_adjust_setting "Board style: plain colors"
   defaults write "$domain" "Board.pieceEffect" -string "@Invalid()" ; success_or_not
   
+  report_adjust_setting "Board: Set color for light squares"
+  defaults write "$domain" Board.lightColor -data "4056617269616e74280000004301c3bfc3bfc3a2c2a9c3a35fc38ac38a000029"
+  
+  report_adjust_setting "Board: Set color for dark squares"
+  defaults write "$domain" Board.darkColor -data "4056617269616e74280000004301c3bfc3bf7542c28e775656000029"
+  
   report_adjust_setting "Board: Do NOT show “best move”"
   defaults write "$domain" "Board.showBestMove" -bool false ; success_or_not
   
@@ -91,6 +97,8 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   
   report_adjust_setting "Game view: Use columns for main line"
   defaults write "$domain" "GameView.columnView" -bool true ; success_or_not
+
+  invalidate_preferences_cache
   
   report_end_phase_standard
 }
