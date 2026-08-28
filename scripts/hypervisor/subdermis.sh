@@ -117,9 +117,6 @@ function subdermis() {
   conditionally_configure_mail_app                            # scripts/settings/set_mail_app_settings.sh
   
   conditionally_configure_microsoft_word                      # scripts/settings/set_microsoft_word_settings.sh
-
-  # TODOs: conditionally_configure_hiarcs_ce_pro
-  conditionally_configure_hiarcs_ce_pro                       # scripts/settings/set_hiarcs_cd_pro_settings.sh
   
   ############### (Further) configure apps that rely upon Dropbox having synced ###############
   
@@ -145,6 +142,10 @@ function subdermis() {
     # Installation of Witch license files relies on Dropbox because that’s where its license files are stored
     conditionally_install_Witch_license_files                 # scripts/settings/set_witch_settings.sh
     conditionally_interactive_enable_Witch                    # scripts/settings/set_witch_settings.sh
+
+    # TODOs: conditionally_configure_hiarcs_ce_pro
+    # HIARCS Chess Explorer Pro must be configured *after* Keyboard Maestro, because activating HIARCS’s license uses a custom Keyboard Maestro macro
+    conditionally_configure_hiarcs_ce_pro                       # scripts/settings/set_hiarcs_cd_pro_settings.sh
 
     # Deploy wallpapers to each Space
     # Located here because these wallpapers are typically stored in Dropbox
