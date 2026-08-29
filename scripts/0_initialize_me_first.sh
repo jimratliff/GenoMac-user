@@ -13,7 +13,7 @@
 set -euo pipefail
 
 ############### BEGIN DEBUG
-print -u2 -- "after set: ERR_EXIT=${options[errexit]}"
+print -u2 -- "DEBUG after set: ERR_EXIT=${options[errexit]}"
 ############### END DEBUG
 
 # NOTE: REPO_SHORT_NAME is defined here only to be used in the following
