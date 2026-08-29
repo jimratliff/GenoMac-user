@@ -134,3 +134,9 @@ ssh-agent-verify:
 [group('Defaults Detective')]
 defaults-detective:
 	zsh scripts/utilities/defaults_detective.sh
+
+############### HIARCS_Chess_Explorer_pro
+
+[group('HIARCS Chess Explorer Pro')]
+HIARCS_report_colors:
+	zsh scripts/utilities/hiarcs_report_square_colors.sh
