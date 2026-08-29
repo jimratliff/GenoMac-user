@@ -51,7 +51,7 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   local domain="$DEFAULTS_DOMAINS_HIARCS_CHESS_EXPLORER_PRO"
   local plist_path
 
-  plist_path=$(legacy_plist_path_from_domain $domain")
+  plist_path="$(legacy_plist_path_from_domain $domain)"
   ensure_plist_path_exists "${plist_path}"
 
   report_adjust_setting "Hide toolbar"
