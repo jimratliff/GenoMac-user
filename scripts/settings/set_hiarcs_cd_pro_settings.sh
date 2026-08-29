@@ -65,7 +65,6 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   report_adjust_setting "Always show tab bar"
   defaults write "$domain" "Geometry.showTabBar" -bool true ; success_or_not
 
-  # ❌ WARNING: NOT WORKING
   report_adjust_setting "Board: visual mode: outline"
   defaults write "$domain" "Board.pieceEffect" -int 1 ; success_or_not
   
@@ -98,6 +97,12 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   
   report_adjust_setting "Game view: Use columns for main line"
   defaults write "$domain" "GameView.columnView" -bool true ; success_or_not
+  
+  report_adjust_setting "Engine: Autostart analysis: NEVER"
+  defaults write "$domain" "Analysis.autostart" -int 0 ; success_or_not
+  
+  report_adjust_setting "Advanced: Clipboard includes coordinates"
+  defaults write "$domain" "Copy.imageCoordinates" -bool true ; success_or_not
 
   invalidate_preferences_cache
   
