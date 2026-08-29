@@ -40,15 +40,6 @@ function interactive_activate_license_hiarcs_ce_pro() {
   report_end_phase_standard
 }
 
-# function bootstrap_hiarcs_ce_pro() {
-#   # Bootstrap HIARCS Chess Explorer Pro
-#   report_start_phase_standard
-# 
-#   report_warning "NOT YET IMPLEMENTED: bootstrap_hiarcs_ce_pro()"
-#   
-#   report_end_phase_standard
-# }
-
 function configure_hiarcs_ce_pro_idempotent_settings() {
   # Configure HIARCS Chess Explorer Pro’s idempotent settings
   report_start_phase_standard
@@ -107,4 +98,56 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   invalidate_preferences_cache
   
   report_end_phase_standard
+}
+
+function hiarcs_chess_explorer_pro_utility_report_current_square_colors_for_defaults_write_commands() {
+  # Utility for HIARCS Chess Explorer Pro, to be run OUTSIDE OF HYPERVISOR, that reports the
+  # serialized colors of the light and dark squares of the board as currently configured in HIARCS Chess
+  # Explorer Pro for use in `defaults write` commands to implement those choices programmatically
+  # using function configure_hiarcs_ce_pro_idempotent_settings()
+  # 
+  # Usage:
+  #   - Launch HIARCS Chess Explorer Pro
+  #     - Preferences (⌘,) » Board » Colors (assuming “Board style” is “[plain colors]”
+  #       - Light squares: set to desired color
+  #       - Dark squares: set to desired color
+  #     - Quit HIARCS Chess Explorer Pro
+  #   - In a terminal
+  #     - `cd ~/.genomac-user`
+  #     - `just HIARCS_report_colors`
+  #     - This `just` command runs this function.
+  #     - Two hex strings will be output, for the light-squares color and the dark-squares color, respectively.
+  #     - These hex strings should replace those in:
+  #         report_adjust_setting "Board: Set color for light squares"
+  #         defaults write "$domain" Board.lightColor -data "4056617269616e74280000004301c3bfc3bfc3a2c2a9c3a35fc38ac38a000029"
+  #         report_adjust_setting "Board: Set color for dark squares"
+  #         defaults write "$domain" Board.darkColor -data "4056617269616e74280000004301c3bfc3bf7542c28e775656000029"
+  #     
+  report_start_phase_standard
+  local light_hex
+  local dark_hex
+  
+  defaults export com.hiarcs.ChessExplorerPro - |
+    python3 -c '
+import plistlib
+import sys
+
+preferences = plistlib.loads(sys.stdin.buffer.read())
+
+for label, key in (
+    ("Light squares", "Board.lightColor"),
+    ("Dark squares", "Board.darkColor"),
+):
+    value = preferences.get(key)
+
+    if not isinstance(value, bytes):
+        raise SystemExit(
+            f"{key!r} is missing or is not stored as binary data"
+        )
+
+    print(f"{label}: -data \"{value.hex()}\"")
+'
+
+  report_end_phase_standard
+  
 }
