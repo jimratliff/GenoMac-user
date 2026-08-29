@@ -53,9 +53,9 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   # Configure HIARCS Chess Explorer Pro’s idempotent settings
   report_start_phase_standard
 
-  # report_warning "NOT YET IMPLEMENTED: configure_hiarcs_ce_pro_idempotent_settings()"
-
   report_action_taken "Implement HIARCS Chess Explorer Pro settings"
+
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_HIARCS_CE_PRO"
 
   local domain="$DEFAULTS_DOMAINS_HIARCS_CHESS_EXPLORER_PRO"
 
@@ -64,7 +64,8 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   
   report_adjust_setting "Always show tab bar"
   defaults write "$domain" "Geometry.showTabBar" -bool true ; success_or_not
-  
+
+  # ❌ WARNING: NOT WORKING
   report_adjust_setting "Board: visual mode: outline"
   defaults write "$domain" "Board.pieceEffect" -int 1 ; success_or_not
   
@@ -72,7 +73,7 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   defaults write "$domain" "Board.showFrame" -bool true ; success_or_not
   
   report_adjust_setting "Board style: plain colors"
-  defaults write "$domain" "Board.pieceEffect" -string "@Invalid()" ; success_or_not
+  defaults write "$domain" "Board.boardTheme" -string "@Invalid()" ; success_or_not
   
   report_adjust_setting "Board: Set color for light squares"
   defaults write "$domain" Board.lightColor -data "4056617269616e74280000004301c3bfc3bfc3a2c2a9c3a35fc38ac38a000029"
