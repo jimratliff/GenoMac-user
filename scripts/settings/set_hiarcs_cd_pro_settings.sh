@@ -51,7 +51,7 @@ function bootstrap_engines_hiarcs_ce_pro() {
   
   report_adjust_setting "Add Lc0"
   defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.Command" -string "$CHESS_ENGINE_LC0_BINARY_PATH"
-  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.Name" -string "Lc0 v0.32.1+git.dirty"
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.Name" -string "Lc0 v0.32.1"
   defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.OriginalName" -string "Lc0 v0.32.1+git.dirty"
   
   
