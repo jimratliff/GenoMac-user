@@ -1,13 +1,12 @@
 #!/usr/bin/env zsh
 
+CHESS_ENGINE_STOCKFISH_BINARY_PATH="/opt/homebrew/Cellar/stockfish/18/bin/stockfish"
+CHESS_ENGINE_LC0_BINARY_PATH="/opt/homebrew/Cellar/lc0/0.32.1/bin/lc0"
+CHESS_ENGINE_NUMBER_STOCKFISH="4"
+CHESS_ENGINE_NUMBER_LC0="5"
+
 conditionally_configure_hiarcs_ce_pro() {
   report_start_phase_standard
-
-  ############### BEGIN: TO BE REMOVED ###############
-  # report_warning "The configuration of HIARCS Chess Explorer Pro hasn’t been implemented yet!"
-  # report_end_phase_standard
-  # return 0
-  ############### END: TO BE REMOVED ###############
 
   if ! test_genomac_user_state "$SESH_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"; then
     report_action_taken_to_log "Skipping HIARCS Chess Explorer Pro configuration, because this user doesn’t want it"
@@ -20,13 +19,48 @@ conditionally_configure_hiarcs_ce_pro() {
     interactive_activate_license_hiarcs_ce_pro \
     "Skipping activating license for HIARCS Chess Explorer Pro because it’s been done in the past"
   
-#   run_if_user_has_not_done \
-#     "$PERM_HIARCS_CHESS_EXPLORER_PRO_HAS_BEEN_BOOTSTRAPPED" \
-#     bootstrap_hiarcs_ce_pro \
-#     "Skipping bootstrapping HIARCS Chess Explorer Pro because it’s been done in the past"
+  run_if_user_has_not_done \
+    "$PERM_HIARCS_CHESS_EXPLORER_PRO_ENGINES_HAVE_BEEN_BOOTSTRAPPED" \
+    bootstrap_engines_hiarcs_ce_pro \
+    "Skipping bootstrapping additional chess engines for HIARCS Chess Explorer Pro because it’s been done in the past"
 
   configure_hiarcs_ce_pro_idempotent_settings
     
+  report_end_phase_standard
+}
+
+function bootstrap_engines_hiarcs_ce_pro() {
+  # Add additional chess engines to HIARCS Chess Explorer Pro as a bootstrap step.
+  report_start_phase_standard
+
+  report_action_taken "Boostrap additional chess engines into HIARCS Chess Explorer Pro"
+
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_HIARCS_CE_PRO"
+
+  local domain="$DEFAULTS_DOMAINS_HIARCS_CHESS_EXPLORER_PRO"
+  local plist_path
+
+  plist_path="$(legacy_plist_path_from_domain $domain)"
+  ensure_plist_path_exists "${plist_path}"
+
+  report_adjust_setting "Add Stockfish"
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.Command" -string "$CHESS_ENGINE_STOCKFISH_BINARY_PATH"
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.EloLimit" -string "1320-3190"
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.Name" -string "Stockfish 18"
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.OriginalName" -string "Stockfish 18"
+  
+  report_adjust_setting "Add Lc0"
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.Command" -string "$CHESS_ENGINE_LC0_BINARY_PATH"
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.Name" -string "Lc0 v0.32.1+git.dirty"
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.OriginalName" -string "Lc0 v0.32.1+git.dirty"
+  
+  
+  report_end_phase_standard
+}
+
+function HIARCS_engine_helper() {
+  # Template for a Zsh function in Project GenoMac
+  report_start_phase_standard
   report_end_phase_standard
 }
 
