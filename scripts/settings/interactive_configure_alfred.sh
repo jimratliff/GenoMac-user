@@ -36,7 +36,8 @@ function interactive_configure_alfred() {
   # Specify folder that contains the `Alfred_5_preferences` directory that contains the Alfred preferences file
   # By opening this container folder, the executing user can drag the `Alfred_5_preferences` folder icon
   # into the Open-file dialog presented under Advanced » Syncing » Set preferences folder…
-  local container_directory="$GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY/Alfred_preferences"
+  # HINT: ALFRED_PREFERENCES_DIRECTORY="$GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY/Alfred_preferences"
+  local container_directory="$ALFRED_PREFERENCES_DIRECTORY"
   launch_app_and_prompt_user_to_act \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Alfred_how_to_configure.md" \
 	--open "$container_directory" \
