@@ -86,6 +86,7 @@ function set_user_preferences_for_attribute() {
     "${USER_ATTRIBUTE_MISSION_CONTROL_ALL_SPACES}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_MISSION_CONTROL_ALL_SPACES}"
       set_genomac_user_state "$SESH_MISSION_CONTROL_USER_WANTS_IT_ALL"
+      set_genomac_user_state "$SESH_SPACEJUMP_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_NOTION_USER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_NOTION_USER}"
