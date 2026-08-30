@@ -118,8 +118,16 @@ USER_PREFPANE_DIRECTORY="$HOME/Library/PreferencePanes"
 WITCH_PREFPANE_NAME="Witch.prefPane"
 WITCH_PATH_TO_USER_PREFPANE="${USER_PREFPANE_DIRECTORY}/${WITCH_PREFPANE_NAME}"
 
-### Destionations within the user’s Dropbox directory
+########## Destinations within the Dropbox directory
 
+##### Destinations within the cross-user common-preferences subdirectory of the Dropbox directory
+# HINT: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Preferences_common"
+
+ALFRED_PREFERENCES_DIRECTORY="$GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY/Alfred_preferences"
+
+SPACEJUMP_LICENSE_KEY_FILE="$GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY/SpaceJump/License_key/SpaceJump_license_key"
+
+##### Destinations within the user’s user-specific subdirectory of the user’s Dropbox directory
 USER_SUBDIRECTORY_OF_DROPBOX="${LOCAL_DROPBOX_DIRECTORY}/Users/${USER}"
 
 # Dropbox/Prefs
