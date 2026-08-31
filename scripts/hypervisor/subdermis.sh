@@ -145,15 +145,22 @@ function subdermis() {
 
     # TODOs: conditionally_configure_hiarcs_ce_pro
     # HIARCS Chess Explorer Pro must be configured *after* Keyboard Maestro, because activating HIARCS’s license uses a custom Keyboard Maestro macro
-    conditionally_configure_hiarcs_ce_pro                       # scripts/settings/set_hiarcs_cd_pro_settings.sh
+    conditionally_configure_hiarcs_ce_pro                     # scripts/settings/set_hiarcs_cd_pro_settings.sh
 
     # Deploy wallpapers to each Space
     # Located here because these wallpapers are typically stored in Dropbox
     conditionally_set_wallpapers_for_all_spaces               # scripts/settings/set_wallpapers.sh
+
+    # Configure SpaceJump
+    # Located here because wallpaper collection stored in Dropbox is the source of Space names.
+    conditionally_configure_spacejump
+    
   else
+  
     # If here, then both (a) user is not barebones but (b) user doesn’t use Dropbox. Therefore, make same
     # assignment of screen-capture destination as for a barebones user.
     set_screen_capture_destination_for_barebones_user
+    
   fi
 
   conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
