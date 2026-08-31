@@ -44,15 +44,15 @@ function bootstrap_engines_hiarcs_ce_pro() {
   ensure_plist_path_exists "${plist_path}"
 
   report_adjust_setting "Add Stockfish"
-  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.Command" -string "$CHESS_ENGINE_STOCKFISH_BINARY_PATH"
-  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.EloLimit" -string "1320-3190"
-  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.Name" -string "Stockfish 18"
-  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.OriginalName" -string "Stockfish 18"
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.Command" -string "$CHESS_ENGINE_STOCKFISH_BINARY_PATH" ; success_or_not
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.EloLimit" -string "1320-3190" ; success_or_not
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.Name" -string "Stockfish 18" ; success_or_not
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.OriginalName" -string "Stockfish 18" ; success_or_not
   
   report_adjust_setting "Add Lc0"
-  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.Command" -string "$CHESS_ENGINE_LC0_BINARY_PATH"
-  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.Name" -string "Lc0 v0.32.1"
-  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.OriginalName" -string "Lc0 v0.32.1+git.dirty"
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.Command" -string "$CHESS_ENGINE_LC0_BINARY_PATH" ; success_or_not
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.Name" -string "Lc0 v0.32.1" ; success_or_not
+  defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_LC0.OriginalName" -string "Lc0 v0.32.1+git.dirty" ; success_or_not
   
   
   report_end_phase_standard
@@ -104,10 +104,10 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   defaults write "$domain" "Board.boardTheme" -string "@Invalid()" ; success_or_not
   
   report_adjust_setting "Board: Set color for light squares"
-  defaults write "$domain" Board.lightColor -data "4056617269616e74280000004301c3bfc3bfc3a2c2a9c3a35fc38ac38a000029"
+  defaults write "$domain" Board.lightColor -data "4056617269616e74280000004301c3bfc3bfc3a2c2a9c3a35fc38ac38a000029" ; success_or_not
   
   report_adjust_setting "Board: Set color for dark squares"
-  defaults write "$domain" Board.darkColor -data "4056617269616e74280000004301c3bfc3bf7542c28e775656000029"
+  defaults write "$domain" Board.darkColor -data "4056617269616e74280000004301c3bfc3bf7542c28e775656000029" ; success_or_not
   
   report_adjust_setting "Board: Do NOT show “best move”"
   defaults write "$domain" "Board.showBestMove" -bool false ; success_or_not
@@ -132,6 +132,8 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   
   report_adjust_setting "Advanced: Clipboard includes coordinates"
   defaults write "$domain" "Copy.imageCoordinates" -bool true ; success_or_not
+
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_HIARCS_CE_PRO"
 
   invalidate_preferences_cache
   
