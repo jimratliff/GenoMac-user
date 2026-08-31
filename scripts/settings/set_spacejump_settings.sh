@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function conditionally_interactive_configure_spacejump() {
+function conditionally_configure_spacejump() {
   report_start_phase_standard
 
   if test_genomac_user_state "$SESH_SPACEJUMP_USER_WANTS_IT"; then
@@ -43,6 +43,7 @@ function get_space_names_as_data() {
   # Template for a Zsh function in Project GenoMac
   report_start_phase_standard
 
+  ############### TODO WIP!!!!!!
   report_fail "specify_Space_names_in_SpaceJump() not implemented yet!"
   return 1
   
