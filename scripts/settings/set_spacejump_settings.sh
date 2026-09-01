@@ -67,8 +67,8 @@ function get_spaceid_name_mapping() {
   
     spacejump_spaceid="$(get_spacejump_spaceid_for_space_number "$space_number")"
     
-    wallpaper_item_string="$(get_wallpaper_item_string_for_space_number "$space_number")"
-    space_name="$(get_space_name_from_wallpaper_item_string "$wallpaper_item_string")"
+    wallpaper_container_path="$(get_wallpaper_container_path_for_space_number "$space_number")"
+    space_name="$(get_space_name_from_wallpaper_container_path "$wallpaper_container_path")"
 
     # Add (spacejump_spaceid, space_name) pair to mapping
     spaceid_name_mapping_json="$(
@@ -104,18 +104,28 @@ function get_spacejump_spaceid_for_space_number() {
   report_end_phase_standard
 }
 
-function get_wallpaper_item_string_for_space_number() {
-  # Template for a Zsh function in Project GenoMac
+function get_wallpaper_container_path_for_space_number() {
+  # Gets path to item (file or directory) in wallpaper directory that is associated
+  # with given Space number.
+
+  ############### NOTE: Look at get_path_to_wallpaper_for_mission_control_space_n() in settings/set_wallpapers.sh
+  #                     Is this exactly what I need?
+  #
+  #                     NO! This goes a step further than I need: This returns the path to the wallpaper itself,
+  #                     even when it’s within the directory whose path I want.
 
   ############### TODO WIP!!!!!!
-  report_fail "get_wallpaper_item_string_for_space_number() not implemented yet!"
+  report_fail "get_wallpaper_container_path_for_space_number() not implemented yet!"
   return 1
-  
+
   report_start_phase_standard
+  
+  local -i space_number
+  
   report_end_phase_standard
 }
 
-function get_space_name_from_wallpaper_item_string() {
+function get_space_name_from_wallpaper_container_path() {
   # Returns the name of a Space encoded in the path of a file or subdirectory.
   # The name of the file or subdirectory is assumed to be in the form:
   #   '12_Project_X', where the prefix is `1_`, …, `16_`.
