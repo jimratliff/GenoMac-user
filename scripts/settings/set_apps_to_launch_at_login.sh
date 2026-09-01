@@ -34,6 +34,7 @@ set -euo pipefail
 # 	have their own login helper:
 # 	- Dropbox: 			"bundle:com.getdropbox.dropbox"
 # 	- TextExpander	"bundle:com.smileonmymac.textexpander"
+#   - SpaceJump     "bundle:com.ideabridge.spacejump"
 #
 ###############################################################################
 
