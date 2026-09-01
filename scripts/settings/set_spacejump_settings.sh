@@ -31,10 +31,20 @@ function specify_Space_names_in_SpaceJump() {
   local domain="$DEFAULTS_DOMAINS_SPACEJUMP"
   local space_names_as_data
 
+  report_action_taken "Specify Space names in SpaceJump."
+
   space_names_as_data="$(get_space_names_as_data)"
 
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
+
+  plist_path="$(legacy_plist_path_from_domain $domain)"
+  ensure_plist_path_exists "${plist_path}"
 
   defaults write $domain "spaceNamesByID" -data "$space_names_as_data" ; success_or_not
+
+  invalidate_preferences_cache
+
+  launch_app_by_bundle_id_in_background_hidden "$BUNDLE_ID_SPACEJUMP"
 
   report_end_phase_standard
 }
