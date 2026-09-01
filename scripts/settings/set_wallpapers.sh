@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
 function conditionally_set_single_space_wallpaper() {
-  # Set a wallpaper for a single-Space user if (a) it is wanted by this user
-  # and (b) it hasn’t already been set.
+  # Set a wallpaper for a single-Space user (i.e., either USER_CONFIGURER or USER_SWITCHER)
+  # if (a) it is wanted by this user and (b) it hasn’t already been set.
   report_start_phase_standard
 
   if test_genomac_user_state "$SESH_WALLPAPER_CONFIGURER_USER_WANTS_IT"; then
