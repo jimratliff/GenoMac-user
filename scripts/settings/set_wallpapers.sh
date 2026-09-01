@@ -221,14 +221,15 @@ function get_wallpaper_container_path_for_space_number() {
   fi
 
   # Find the unique matching file or directory that has the prefix "${space_number}_"
+  local -a matching_items
   matching_items=("${user_wallpaper_directory}/${space_number}_"*(Non))
   if (( ${#matching_items} == 0 )); then
     report_fail "No wallpaper file or directory was found for Mission Control Space ${space_number} in: ${user_wallpaper_directory}"
     return 1
   fi
 
+  local path_of_matching_item
   path_of_matching_item="${matching_items[1]}"
-
   print -r -- "$path_of_matching_item"
   
   report_end_phase_standard
