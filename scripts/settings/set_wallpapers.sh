@@ -187,8 +187,15 @@ function validate_number_of_mission_control_space() {
 }
 
 function get_wallpaper_container_path_for_space_number() {
-  # Gets path to item (file or directory) in wallpaper directory that is associated
-  # with given Space number.
+  # Returns path to item (file or directory) in wallpaper directory that is or immediately
+  # contains the wallpaper for the given Space number.
+  #
+  # The “container” for a wallpaper is either:
+  # - the wallpaper file itself, if it is at the root of USER_WALLPAPER_DIRECTORY
+  # - the immediate subdirectory of USER_WALLPAPER_DIRECTORY that immediately contains the wallpaper
+  # 
+  # The name of the container is encoded with a prefix of the form '1_' or '12_', followed by a string
+  # that is converted to the name of the associated Space (by replacing any embedded underscores with spaces).
 
   ############### NOTE: Look at get_path_to_wallpaper_for_mission_control_space_n() in settings/set_wallpapers.sh
   #                     Is this exactly what I need?
@@ -213,8 +220,8 @@ function get_wallpaper_container_path_for_space_number() {
     return 1
   fi
 
+  # Find the unique matching file or directory that has the prefix "${space_number}_"
   matching_items=("${user_wallpaper_directory}/${space_number}_"*(Non))
-
   if (( ${#matching_items} == 0 )); then
     report_fail "No wallpaper file or directory was found for Mission Control Space ${space_number} in: ${user_wallpaper_directory}"
     return 1
@@ -222,7 +229,7 @@ function get_wallpaper_container_path_for_space_number() {
 
   path_of_matching_item="${matching_items[1]}"
 
-
+  print -r -- "$path_of_matching_item"
   
   report_end_phase_standard
 }
