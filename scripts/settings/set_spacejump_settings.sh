@@ -33,9 +33,8 @@ function specify_Space_names_in_SpaceJump() {
   
   report_action_taken "Specify Space names in SpaceJump."
 
-  # TODO: Check type of this declaration
-  local -a spaceid_name_mapping
-  spaceid_name_mapping="$(get_spaceid_name_mapping)"
+  local spaceid_name_mapping_data
+  spaceid_name_mapping_data="$(get_spaceid_name_mapping)"
 
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
 
@@ -43,7 +42,7 @@ function specify_Space_names_in_SpaceJump() {
   plist_path="$(legacy_plist_path_from_domain $domain)"
   ensure_plist_path_exists "${plist_path}"
 
-  defaults write $domain "spaceNamesByID" -data "$spaceid_name_mapping" ; success_or_not
+  defaults write $domain "spaceNamesByID" -data "$spaceid_name_mapping_data" ; success_or_not
 
   invalidate_preferences_cache
   launch_app_by_bundle_id_in_background_hidden "$BUNDLE_ID_SPACEJUMP"
@@ -91,6 +90,17 @@ function get_spaceid_name_mapping() {
 
   print -r -- "$spaceid_name_mapping_data"
   
+  report_end_phase_standard
+}
+
+function get_spacejump_spaceid_for_space_number() {
+  # Template for a Zsh function in Project GenoMac
+
+  ############### TODO WIP!!!!!!
+  report_fail "get_spacejump_spaceid_for_space_number() not implemented yet!"
+  return 1
+  
+  report_start_phase_standard
   report_end_phase_standard
 }
 
