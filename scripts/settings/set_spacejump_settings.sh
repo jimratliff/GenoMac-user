@@ -34,8 +34,8 @@ function specify_Space_names_in_SpaceJump() {
   report_action_taken "Specify Space names in SpaceJump."
 
   # TODO: Check type of this declaration
-  local -a space_uuid_name_mapping
-  space_uuid_name_mapping="$(get_space_uuid_name_mapping)"
+  local -a spaceid_name_mapping
+  spaceid_name_mapping="$(get_spaceid_name_mapping)"
 
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
 
@@ -43,7 +43,7 @@ function specify_Space_names_in_SpaceJump() {
   plist_path="$(legacy_plist_path_from_domain $domain)"
   ensure_plist_path_exists "${plist_path}"
 
-  defaults write $domain "spaceNamesByID" -data "$space_uuid_name_mapping" ; success_or_not
+  defaults write $domain "spaceNamesByID" -data "$spaceid_name_mapping" ; success_or_not
 
   invalidate_preferences_cache
   launch_app_by_bundle_id_in_background_hidden "$BUNDLE_ID_SPACEJUMP"
@@ -51,7 +51,7 @@ function specify_Space_names_in_SpaceJump() {
   report_end_phase_standard
 }
 
-function get_space_uuid_name_mapping() {
+function get_spaceid_name_mapping() {
   # Creates the type -data mapping between Space UUIDs and space names
   # to be passed to defaults write
 
@@ -61,19 +61,36 @@ function get_space_uuid_name_mapping() {
   
   report_start_phase_standard
 
+  local spaceid_name_mapping_data
+  
+  local spaceid_name_mapping_json
+  spaceid_name_mapping_json='{}'
+  
   local -i space_number
 
-  # 
-
-
   for (( space_number=1; space_number <= MAXIMUM_NUMBER_OF_MISSION_CONTROL_SPACES; ++space_number )); do
-    space_uuid="$(get_space_uuid_for_space_number "$space_number")"
+  
+    spacejump_spaceid="$(get_spacejump_spaceid_for_space_number "$space_number")"
+    
     wallpaper_item_string="$(get_wallpaper_item_string_for_space_number "$space_number")"
-    space_name="$(get_space_name_from_wallpaper_file_or_subdirectory_path "$wallpaper_item_string")"
+    space_name="$(get_space_name_from_wallpaper_item_string "$wallpaper_item_string")"
+
+    spaceid_name_mapping_json="$(
+      jq \
+        --compact-output \
+        --arg identity "$spacejump_spaceid" \
+        --arg name "$space_name" \
+        '.[$identity] = $name' \
+        <<< "$spaceid_name_mapping_json"
+    )"
+    
   done
 
-
-  print --r "$space_names_as_data"
+  # Encode JSON as hexadecimal
+  spaceid_name_mapping_data="$(
+    print -rn -- "$spaceid_name_mapping_json" |
+      xxd -p -c 0
+    )"
   
   report_end_phase_standard
 }
@@ -89,7 +106,7 @@ function get_wallpaper_item_string_for_space_number() {
   report_end_phase_standard
 }
 
-function get_space_name_from_wallpaper_file_or_subdirectory_path() {
+function get_space_name_from_wallpaper_item_string() {
   # Returns the name of a Space encoded in the path of a file or subdirectory.
   # The name of the file or subdirectory is assumed to be in the form:
   #   '12_Project_X', where the prefix is `1_`, …, `16_`.
