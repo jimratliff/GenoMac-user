@@ -197,7 +197,7 @@ function get_wallpaper_container_path_for_space_number() {
   # The name of the container is encoded with a prefix of the form '1_' or '12_', followed by a string
   # that is converted to the name of the associated Space (by replacing any embedded underscores with spaces).
 
-  report_start_phase_standard"
+  report_start_phase_standard
 
   local -i space_number="${1:?missing space number}"
   validate_number_of_mission_control_space
@@ -218,9 +218,9 @@ function get_wallpaper_container_path_for_space_number() {
     return 1
   fi
 
-  local path_of_matching_item
-  path_of_matching_item="${matching_items[1]}"
-  print -r -- "$path_of_matching_item"
+  local path_of_wallpaper_container
+  path_of_wallpaper_container="${matching_items[1]}"
+  print -r -- "$path_of_wallpaper_container"
   
   report_end_phase_standard
 }
@@ -244,52 +244,30 @@ function get_path_to_wallpaper_for_mission_control_space_n() {
   
   report_start_phase_standard
 
-  local -i number_of_mission_control_space
-  number_of_mission_control_space="${1:?MISSING number_of_mission_control_space}"
+  local -i space_number="${1:?missing space number}"
+  validate_number_of_mission_control_space
 
-  local user_wallpaper_directory
-  local path_of_matching_item
   local path_of_wallpaper
   local candidate_path
 
-  local -a matching_items
   local -a directory_entries
 
-  # HINT: USER_WALLPAPER_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Users/${USER}/Prefs/Mission_Control_wallpapers"
-  user_wallpaper_directory="$USER_WALLPAPER_DIRECTORY"
+  local path_of_wallpaper_container
+  path_of_wallpaper_container="$(get_wallpaper_container_path_for_space_number "$space_number")"
 
-  if (( number_of_mission_control_space < 1 ||
-        number_of_mission_control_space > MAXIMUM_NUMBER_OF_MISSION_CONTROL_SPACES )); then
-    report_fail \
-      "Invalid Mission Control Space number: ${number_of_mission_control_space}"
-    return 1
-  fi
-
-  if [[ ! -d "$user_wallpaper_directory" ]]; then
-    report_fail "Wallpaper directory does not exist: ${user_wallpaper_directory}"
-    return 1
-  fi
-
-  matching_items=("${user_wallpaper_directory}/${number_of_mission_control_space}_"*(Non))
-
-  if (( ${#matching_items} == 0 )); then
-    report_fail "No wallpaper file or directory was found for Mission Control Space ${number_of_mission_control_space} in: ${user_wallpaper_directory}"
-    return 1
-  fi
-
-  path_of_matching_item="${matching_items[1]}"
-
-  if [[ -f "$path_of_matching_item" ]]; then
-    if ! extension_is_valid_wallpaper_image_type "$path_of_matching_item"; then
-      report_fail "The item assigned to Mission Control Space ${number_of_mission_control_space} is not a valid wallpaper image: ${path_of_matching_item}"
+  if [[ -f "$path_of_wallpaper_container" ]]; then
+  
+    if ! extension_is_valid_wallpaper_image_type "$path_of_wallpaper_container"; then
+      report_fail "The file assigned to Mission Control Space ${space_number} is not a valid wallpaper image: ${path_of_wallpaper_container}"
       return 1
     fi
 
-    path_of_wallpaper="$path_of_matching_item"
+    path_of_wallpaper="$path_of_wallpaper_container"
 
-  elif [[ -d "$path_of_matching_item" ]]; then
-    directory_entries=("${path_of_matching_item}"/*(Non))
-
+  elif [[ -d "$path_of_wallpaper_container" ]]; then
+  
+    directory_entries=("${path_of_wallpaper_container}"/*(Non))
+    
     for candidate_path in "${directory_entries[@]}"; do
       if [[ -f "$candidate_path" ]] && extension_is_valid_wallpaper_image_type "$candidate_path"; then
         path_of_wallpaper="$candidate_path"
@@ -298,12 +276,12 @@ function get_path_to_wallpaper_for_mission_control_space_n() {
     done
 
     if [[ -z "$path_of_wallpaper" ]]; then
-      report_fail "No valid wallpaper image was found in the directory assigned to Mission Control Space ${number_of_mission_control_space}: ${path_of_matching_item}"
+      report_fail "No valid wallpaper image was found in the directory “${path_of_wallpaper_container}” assigned to Mission Control Space ${space_number}."
       return 1
     fi
 
   else
-    report_fail "The item assigned to Mission Control Space ${number_of_mission_control_space} is neither a regular file nor a directory: ${path_of_matching_item}"
+    report_fail "The item assigned to Mission Control Space ${space_number} is neither a regular file nor a directory: ${path_of_wallpaper_container}"
     return 1
   fi
 
