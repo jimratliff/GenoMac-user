@@ -52,12 +52,8 @@ function specify_Space_names_in_SpaceJump() {
 }
 
 function get_spaceid_name_mapping() {
-  # Creates the type -data mapping between Space UUIDs and space names
+  # Creates the type -data mapping between (a) SpaceJump Space identifiers and (b) Space names
   # to be passed to defaults write
-
-  ############### TODO WIP!!!!!!
-  report_fail "get_space_names_as_data() not implemented yet!"
-  return 1
   
   report_start_phase_standard
 
@@ -75,6 +71,7 @@ function get_spaceid_name_mapping() {
     wallpaper_item_string="$(get_wallpaper_item_string_for_space_number "$space_number")"
     space_name="$(get_space_name_from_wallpaper_item_string "$wallpaper_item_string")"
 
+    # Add (spacejump_spaceid, space_name) pair to mapping
     spaceid_name_mapping_json="$(
       jq \
         --compact-output \
@@ -91,6 +88,8 @@ function get_spaceid_name_mapping() {
     print -rn -- "$spaceid_name_mapping_json" |
       xxd -p -c 0
     )"
+
+  print -r -- "$spaceid_name_mapping_data"
   
   report_end_phase_standard
 }
