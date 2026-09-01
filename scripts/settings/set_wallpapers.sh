@@ -197,16 +197,6 @@ function get_wallpaper_container_path_for_space_number() {
   # The name of the container is encoded with a prefix of the form '1_' or '12_', followed by a string
   # that is converted to the name of the associated Space (by replacing any embedded underscores with spaces).
 
-  ############### NOTE: Look at get_path_to_wallpaper_for_mission_control_space_n() in settings/set_wallpapers.sh
-  #                     Is this exactly what I need?
-  #
-  #                     NO! This goes a step further than I need: This returns the path to the wallpaper itself,
-  #                     even when it’s within the directory whose path I want.
-
-  ############### TODO WIP!!!!!!
-  report_fail "get_wallpaper_container_path_for_space_number() not implemented yet!"
-  return 1
-
   report_start_phase_standard"
 
   local -i space_number="${1:?missing space number}"
