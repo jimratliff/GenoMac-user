@@ -172,6 +172,61 @@ APPLESCRIPT
   report_end_phase "Leaving move_to_mission_control_space_n : $*"
 }
 
+function validate_number_of_mission_control_space() {
+  # Fatally errors if supplied number is not a valid number for a Mission Control Space.
+  report_start_phase_standard
+  local space_number="${1:?missing number of Mission Control Space}"
+
+  if (( space_number < 1 ||
+        space_number > MAXIMUM_NUMBER_OF_MISSION_CONTROL_SPACES )); then
+    report_fail "Invalid Mission Control Space number: ${space_number}"
+    return 1
+  fi
+  
+  report_end_phase_standard
+}
+
+function get_wallpaper_container_path_for_space_number() {
+  # Gets path to item (file or directory) in wallpaper directory that is associated
+  # with given Space number.
+
+  ############### NOTE: Look at get_path_to_wallpaper_for_mission_control_space_n() in settings/set_wallpapers.sh
+  #                     Is this exactly what I need?
+  #
+  #                     NO! This goes a step further than I need: This returns the path to the wallpaper itself,
+  #                     even when it’s within the directory whose path I want.
+
+  ############### TODO WIP!!!!!!
+  report_fail "get_wallpaper_container_path_for_space_number() not implemented yet!"
+  return 1
+
+  report_start_phase_standard"
+
+  local -i space_number="${1:?missing space number}"
+  validate_number_of_mission_control_space
+
+  # HINT: USER_WALLPAPER_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Users/${USER}/Prefs/Mission_Control_wallpapers"
+  local user_wallpaper_directory
+  user_wallpaper_directory="$USER_WALLPAPER_DIRECTORY
+  if [[ ! -d "$user_wallpaper_directory" ]]; then
+    report_fail "Wallpaper directory does not exist: ${user_wallpaper_directory}"
+    return 1
+  fi
+
+  matching_items=("${user_wallpaper_directory}/${space_number}_"*(Non))
+
+  if (( ${#matching_items} == 0 )); then
+    report_fail "No wallpaper file or directory was found for Mission Control Space ${space_number} in: ${user_wallpaper_directory}"
+    return 1
+  fi
+
+  path_of_matching_item="${matching_items[1]}"
+
+
+  
+  report_end_phase_standard
+}
+
 function get_path_to_wallpaper_for_mission_control_space_n() {
   # Prints to stdout the path of the wallpaper assigned to the supplied Mission
   # Control Space, referenced by number 1–16.
