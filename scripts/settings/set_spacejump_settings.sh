@@ -36,11 +36,11 @@ function specify_Space_names_in_SpaceJump() {
   local spaceid_name_mapping_data
   spaceid_name_mapping_data="$(get_spaceid_name_mapping)"
 
-  quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
-
   local plist_path
   plist_path="$(legacy_plist_path_from_domain $domain)"
   ensure_plist_path_exists "${plist_path}"
+
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
 
   defaults write $domain "spaceNamesByID" -data "$spaceid_name_mapping_data" ; success_or_not
 
@@ -94,14 +94,50 @@ function get_spaceid_name_mapping() {
 }
 
 function get_spacejump_spaceid_for_space_number() {
-  # Template for a Zsh function in Project GenoMac
+  # Looks up in com.apples.spaces, and returns, the UUID (or 'pos:Main:1' for Space 1) for given Space number.
+  #
+  # Space 1 has no UUID and is identified as:
+  #   pos:Main:1
+  #
+  # Other Spaces are identified as:
+  #   uuid:SOME-UUID
 
-  ############### TODO WIP!!!!!!
-  report_fail "get_spacejump_spaceid_for_space_number() not implemented yet!"
-  return 1
-  
   report_start_phase_standard
+
+  local -i space_number="${1:?missing space number}"
+  validate_number_of_mission_control_space "$space_number"
+
+  local space_uuid
+  local spaceid
+  
+  local -i spaces_array_index
+  spaces_array_index=$(( space_number - 1 ))
+
+  if (( space_number == 1 )); then
+    spaceid='pos:Main:1'
+  else
+    if ! space_uuid="$(
+      defaults export com.apple.spaces - |
+        plutil \
+          -extract \
+          "SpacesDisplayConfiguration.Management Data.Monitors.0.Spaces.${spaces_array_index}.uuid" \
+          raw \
+          -
+    )"; then
+      report_fail "Could not obtain the UUID for Mission Control Space ${space_number}."
+      return 1
+    fi
+
+    if [[ -z "$space_uuid" ]]; then
+      report_fail "Mission Control Space ${space_number} has no UUID."
+      return 1
+    fi
+
+    spaceid="uuid:${space_uuid}"
+  fi
+
   report_end_phase_standard
+  print -r -- "$spaceid"
 }
 
 function get_space_name_from_wallpaper_container_path() {
