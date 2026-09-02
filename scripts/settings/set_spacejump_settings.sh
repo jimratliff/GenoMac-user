@@ -242,9 +242,9 @@ function activate_spacejump_license() {
     return 1
   fi
 
-  defaults_write $domain "license_is_licensed" -bool true ; success_or_not
-  defaults_write $domain "license_key" -string "$license_key" ; success_or_not
-  defaults_write $domain "license_last_validation" -date "$now_utc_as_type_date" ; success_or_not
+  defaults write $domain "license_is_licensed" -bool true ; success_or_not
+  defaults write $domain "license_key" -string "$license_key" ; success_or_not
+  defaults write $domain "license_last_validation" -date "$now_utc_as_type_date" ; success_or_not
 
   invalidate_preferences_cache
   
