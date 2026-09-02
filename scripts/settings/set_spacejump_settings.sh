@@ -57,9 +57,10 @@ function get_spaceid_name_mapping() {
   report_start_phase_standard
 
   local spaceid_name_mapping_data
-  
-  local spaceid_name_mapping_json
-  spaceid_name_mapping_json='{}'
+  local spaceid_name_mapping_json='{}'
+  local spacejump_spaceid
+  local space_name
+  local wallpaper_container_path
   
   local -i space_number
 
@@ -88,13 +89,14 @@ function get_spaceid_name_mapping() {
       xxd -p -c 0
     )"
 
+  report_to_log "Mapping data:${spaceid_name_mapping_data}"
   print -r -- "$spaceid_name_mapping_data"
   
   report_end_phase_standard
 }
 
 function get_spacejump_spaceid_for_space_number() {
-  # Looks up in com.apples.spaces, and returns, the UUID (or 'pos:Main:1' for Space 1) for given Space number.
+  # Looks up in com.apple.spaces, and returns, the UUID (or 'pos:Main:1' for Space 1) for given Space number.
   #
   # Space 1 has no UUID and is identified as:
   #   pos:Main:1
@@ -135,9 +137,10 @@ function get_spacejump_spaceid_for_space_number() {
 
     spaceid="uuid:${space_uuid}"
   fi
+  
+  print -r -- "$spaceid"
 
   report_end_phase_standard
-  print -r -- "$spaceid"
 }
 
 function get_space_name_from_wallpaper_container_path() {
