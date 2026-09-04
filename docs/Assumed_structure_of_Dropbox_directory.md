@@ -21,7 +21,7 @@ The below tree diagram indicates only those elements that are recognized by Geno
       - LICENSE
         - bettertouchtool.bttlicense[^BTT_LICENSE_COPIED_AUTOMAGICALLY]
     - Keyboard_Maestro
-      - Keyboard Maestro Macros.kmsync[^KM_PREF_SYNCING_ENABLED_AUTOMATICALLY
+      - Keyboard Maestro Macros.kmsync[^KM_PREF_SYNCING_ENABLED_AUTOMATICALLY]
     - Sidebar_dividers[^SIDEBAR_DIVIDERS_NOT_USED_BY_GENOMAC_USER]
       - ----------1
       - ----------2
