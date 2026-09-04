@@ -54,8 +54,8 @@ function subdermis() {
   set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
   
   conditionally_ask_and_set_verbosity_preference              # scripts/settings/interactive_ask_initial_questions.sh
-  keep_sudo_alive                                             # GenoMac-shared/scripts/helpers-misc.sh
-  interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-misc.sh
+  keep_sudo_alive                                             # GenoMac-shared/scripts/helpers-mac-and-terminal-environment.sh
+  interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-mac-and-terminal-environment.sh
 
   conditionally_process_user_attribute_states                 # scripts/settings/user_attribute_scripts.sh.
 
