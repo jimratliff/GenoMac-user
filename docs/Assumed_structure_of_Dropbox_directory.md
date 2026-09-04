@@ -6,6 +6,8 @@ In at least many cases, Dropbox is used to store items that (a) are not secret i
 
 The below tree diagram indicates only those elements that must exist. The tree is not meant to exclude the existence of other elements.
 
+Note that the actual `Dropbox/Preferences_common` directory contains (though it isn’t shown below) the immediate subdirectory `OmniOutliner_Jim's_default_document`, which contains a copy of `_JDR_OmniOutliner_Template`. This is *not* the copy that is installed by the function `set_omnioutliner_settings`. That function installs the copy at `GenoMac-user/resources/omnioutliner/_JDR_OmniOutliner_Template.oo3template`, i.e., that is found in the GenoMac-user repo itself, not in the user’s Dropbox. This OmniOutliner template isn’t deemed sensitive enough to require installing from Dropbox.
+
 - Dropbox
   - Preferences_common
     - Alfred_preferences
