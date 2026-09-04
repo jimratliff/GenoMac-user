@@ -32,7 +32,7 @@ set -euo pipefail
 #
 # - The following apps *do* launch at user login, but aren’t handled here because they
 # 	have their own login helper:
-# 	- Dropbox: 			"bundle:com.getdropbox.dropbox"
+# 	- Dropbox:      "bundle:com.getdropbox.dropbox"
 # 	- TextExpander	"bundle:com.smileonmymac.textexpander"
 #   - SpaceJump     "bundle:com.ideabridge.spacejump"
 #
