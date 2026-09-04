@@ -4,6 +4,10 @@ Some components of GenoMac-user assume that user has a Dropbox directory that sa
 
 In at least many cases, Dropbox is used to store items that (a) are not secret in the sense of a password but (b) are too sensitive to be stored in a public repository.
 
+At a high level, note that, for any particular user, there are two key directories:
+- `Dropbox/Preferences_common`, containing files and information not specific to any user
+- `Dropbox/Users/*my_user_short_name*`
+
 The below tree diagram indicates only those elements that must exist. The tree is not meant to exclude the existence of other elements.[^OMNIOUTLINER_IN_DROPBOX_NOT_USED]
 
 [^OMNIOUTLINER_IN_DROPBOX_NOT_USED]: Note that the actual `Dropbox/Preferences_common` directory contains (though it isn’t shown below) the immediate subdirectory `OmniOutliner_Jim's_default_document`, which contains a copy of `_JDR_OmniOutliner_Template`. This is *not* the copy that is installed by the function `set_omnioutliner_settings`. That function installs the copy at `GenoMac-user/resources/omnioutliner/_JDR_OmniOutliner_Template.oo3template`, i.e., that is found in the GenoMac-user repo itself, not in the user’s Dropbox. This OmniOutliner template isn’t deemed sensitive enough to require installing from Dropbox.
