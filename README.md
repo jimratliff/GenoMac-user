@@ -3,6 +3,9 @@
 > [!NOTE]
 > You can skip directly to [Step-by-step: Set up a new user](#step-by-step-set-up-a-new-user).
 
+> [!NOTE]
+> Project GenoMac (both GenoMac-system and GenoMac-user) have been tested on macOS 26 Tahoe, but not yet on the not-yet-publicly released macOS 27 Golden Gate.
+
 Project GenoMac automates setup and maintenance of multiple Macs, each with multiple users.[^multiple_users] The current repository (GenoMac-user) is one of four repositories in Project GenoMac. It addresses *generic* user-level configuration of each user.[^generic_settings]<sup>,</sup>[^common_across_users] The other three repositories are: (a) [GenoMac-system](https://github.com/jimratliff/GenoMac-system), which addresses system-level configuration of each Mac, (b) [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared), which provides shared code used by both GenoMac-system and GenoMac-user,[^genomac_shared_purpose] and (c) a private repo, [GenoMac-private](https://github.com/jimratliff/GenoMac-private), for the specification of certain configuration data that is desirably not exposed in a public repo.[^slightly_sensitive_data]
 
 See GenoMac-system’s README for a [more-extensive overview of Project GenoMac](https://github.com/jimratliff/GenoMac-system/blob/main/README.md#overview-of-the-entire-genomac-process).
@@ -232,32 +235,28 @@ A user might have—either experimentally or inadvertently—changed a value ass
 
 Be aware, however, that rerunning the Hypervisor will reset the values of at most only those settings that GenoMac-user addresses. If the user changed a setting on which GenoMac-user takes no action, rerunning Hypervisor will not reverse the user’s experimentation/mistake.
 
-There is an additional nuance if the setting a particular experimentally or inadvertently modified falls into the PERM category rather than the SESH category. A PERM-category setting is typically implemented by GenoMac-user *only the first time* that user account runs the Hypervisor. (SESH-category settings are implemented *every* time the Hypervisor is run.) In order to coerce the Hypervisor to reimplement a PERM-category setting, this user would need to manually delete the corresponding PERM-state file.[^DELETE_PERM_STATE_FILE_FOR_SETTING] (**TODO** Reference forthcoming discussion below.)
+There is an additional nuance if the setting a particular experimentally or inadvertently modified falls into the PERM category rather than the SESH category. A PERM-category setting is typically implemented by GenoMac-user *only the first time* that user account runs the Hypervisor. (SESH-category settings are implemented *every* time the Hypervisor is run.) In order to coerce the Hypervisor to reimplement a PERM-category setting, this user would need to manually delete the corresponding PERM-state file.[^DELETE_PERM_STATE_FILE_FOR_SETTING] (See the [later discussion](#settings-are-distinguished-on-two-dimensions-between-a-purely-bootstrap-vis-%C3%A0-vis-idempotent-and-b-normally-performed-only-once-perm-vis-%C3%A0-vis-performed-every-complete-run-of-hypervisor-sesh) of this distinction.)
 
 [^DELETE_PERM_STATE_FILE_FOR_SETTING]: A user’s state files for GenoMac-user are stored in the user’s home directory at `~/.genomac-user-state`. Deleting a PERM state file in effect gives Hypervisor amnesia that it had ever implemented this setting for this user. Hence, the next time this user runs Hypervisor, it will implement this setting anew.
 
 
 ## Appendices
 
-
-
-
-
 ### Settings are distinguished on two dimensions: between (a) purely bootstrap vis-à-vis idempotent and (b) normally performed only once (PERM) vis-à-vis performed every complete run of Hypervisor (SESH)
 
 GenoMac-user’s Hypervisor is intended to run completely through from start to finish a first time to initialize the configuration of a user’s account directory. It can then be rerun completely at later times *only as needed*.
 
 #### Purely bootstrap vis-à-vis idempotent, maintenance settings
-A *purely bootstrap* operation is one that makes sense only being performed exactly once, as a startup configuration setup. Examples:
+A *purely bootstrap* operation is one that typically makes sense being performed exactly once, as a startup configuration setup. Examples:
 - cloning this repo to the user’s local home directory
 - creating a full set of 15 additional Mission Control Spaces[^MISSION_CONTROL_ADDITIONAL_SPACES_INTERACTIVE]
 - implementing settings that provide a starting point from which the user is free to modify without fear that those subsequent changes would be overridden by a later maintenance step, such as the initial configuration of the Dock or a toolbar of an app.
 
 [^MISSION_CONTROL_ADDITIONAL_SPACES_INTERACTIVE]: The Hypervisor interactively guides the user to create 15 additional Mission Control Spaces (to achieve the maximum allowed of 16) using `interactive_create_mission_control_spaces()` in `scripts/settings/interactive_create_mission_control_spaces.sh`. You can, of course, adjust that guidance to your preferences.
 
-A *maintenance* operation is an idempotent operation that—in addition to a bootstrapping role to establish an initial configuration—is intended to *enforce* a setting over time.
+In contrast, a *maintenance* operation is an idempotent operation that—in addition to a bootstrapping role to establish an initial configuration—is intended to *enforce* a setting over time.
 
-Most of the operations in GenoMac-user are also bootstrap operations, but not purely so, because they are also maintenance operations. Sucn an operation establishes a setting the first time the script is run for the user (acting as a bootstrap operation) but the same script also enforces that setting on subsequent maintenance runs.
+Most of the operations in GenoMac-user are bootstrap operations, but not purely so, because they are also maintenance operations. Sucn an operation establishes a setting the first time the script is run for the user (acting as a bootstrap operation) but the same script also enforces that setting on subsequent maintenance runs.
 
 #### Operations (a) normally performed only once (PERM) vis-à-vis (b) performed every complete run of Hypervisor (SESH)
 Project GenoMac-user does *not* require *regular* maintenance but rather only *occasional* maintenance, i.e., in response to a particular occasion that compels maintenance. Once you’ve configured a particular user account the first time, that should do it—*unless something changes*. See [When to run the Hypervisor for occasional maintenance](https://github.com/jimratliff/GenoMac-user/blob/main/README.md#when-to-run-the-hypervisor-for-occasional-maintenance) for a discussion of what kinds of changes warrant some kind of action on your part.
@@ -267,50 +266,16 @@ Nevertheless, the Hypervisor distinguishes between (a) operations that are perf
 ##### Operations that do *not* run every time Hypervisor is run
 There are two buckets of operations that do *not* run every time Hypervisor is run:[^PERM_STATES_NOT_EVERY_TIME]
 - Purely bootstrap operations. These don’t even make sense being run more than once (unless there has been an extraordinary development).
-- Operations that are costly because they require user interaction. The settings that these interaction-requiring operations implement are in principle no different from non-interactive idempotent settings (such as those implemented via `defaults write`). There would be no harm (in the sense of not damaging the configuration) to run them repeatedly. But, because they’re costly to run, the costs of repeating every time Hypervisor is run outweighs the benefits.
+- Operations that are costly because they require user interaction. The settings that these interaction-requiring operations implement are in principle no different from non-interactive idempotent settings (such as those implemented via `defaults write`). There would be no harm (in the sense of not damaging the configuration) to run them repeatedly. But, because they’re costly—viz., to the configuring user—to run, the costs of repeating them every time Hypervisor is run outweighs the benefits.
 
-[^PERM_STATES_NOT_EVERY_TIME]: Implementation detail: These typically one-time-only operations (whether because bootstrap, interactive, or both) are associated with PERM states: Each time Hypervisor is run, it checks whether the relevant PERM state has been set. If not, Hypervisor implements the setting and sets the PERM state, so that the setting won’t (typically) be implemented again. **TODO** (a) Add discussion in the Developer section about states. (b) Add reference here to that discussion.
+[^PERM_STATES_NOT_EVERY_TIME]: Implementation detail: These typically one-time-only operations (whether because bootstrap, interactive, or both) are associated with PERM states: Each time Hypervisor is run, it checks whether the relevant PERM state has been set. If not, Hypervisor implements the setting and sets the corresponding PERM state, so that the setting won’t (typically) be implemented again. **TODO** (a) Add discussion in the Developer section about states. (b) Add reference here to that discussion.
 
 ##### Operations that run every time Hypervisor is run
 Every other operation (i.e., neither interactive nor purely bootstrap) is run every time Hypervisor is run from start to finish.[^NUANCE_EVERY_TIME]<sup>,</sup>[^SESH_STATES_EVERY_TIME]
 
-[^NUANCE_EVERY_TIME]: I’m emphaszing “run completely” or “run from start to finish” to acknowledge that, even during a complete run of Hypervisor, the user might be logged out and log back in and then reenter the same run of Hypervisor by issuing `just run-hypervisor`.
+[^NUANCE_EVERY_TIME]: I’m emphasizing “run completely” or “run from start to finish” to acknowledge that, even during a complete run of Hypervisor, the user might be logged out and log back in and then reenter the same run of Hypervisor by issuing `just run-hypervisor`.
 
-[^SESH_STATES_EVERY_TIME]: Implementation detail: These operations are associated with SESH states. Every time Hypervisor finishes a complete run successfully, all SESH states are deleted. As a result, the next time Hypervisor is run, all of these steps will be performed. **TODO** (a) Add discussion in the Developer section about states. (b) Add reference here to that discussion.
-
-
-
-############### WIP, RETURN HERE. TODO ###############
- 
-## TODOs
-- Keyboard-navigation hotkeys ⇧⌥⌘F2 – ⇧⌥⌘F7 need to be tested
-- Laptop-specific settings
-  - To date, my development of Project GenoMac has been performed on a Mac mini. Thus,  I have not been able to experiment with settings that are relevant only on a laptop, such as battery settings.
-  - In particular, I should explore the Control Center’s Battery module’s setting.
-    - In particular, I believe the legacy mentions of `defaults write com.apple.menuextra.battery ShowPercent -string "NO"` no longer apply.
-  - Incorporate new helper function: this_mac_is_a_laptop()
-  - Change menubar clock configuration for laptop
-  - Change pmset settings for laptop, so that they vary based on battery/charging
-- set_power_management_settings.sh
-  - Finish, and move to a bootstrapping step
-- Setting apps “Assign to: All Desktops” requires that there already be multiple Spaces
-  - Thus, I need either (a) create at least a second Space early or (b) defer making these assignments until after there are multiple Spaces.
-- Assiging wallpapers to Spaces
-  - Keyboard Maestro has a “Set Desktop Image” command that, I believe, is limited to the current Space. You could then iterate over Spaces and set the wallpaper.
-    - This may not be preferable to AppleScript-ing the entire process.
-- set_screen_capture_settings.sh
-  - Consider making setting the destination for screenshots be user-specific (or occur after Dropbox sync, in order to save to a Dropbox directory)
-- Scripting
-  - Main entry-point script: Should check whether there are un-pulled changes to the repo. If so, warn the executing user to refresh the repo.
-  - `defaults write`
-    - To the extent that all `defaults write` command aren’t in one place (e.g., reversal of defaults re display-disks-on-desktop settings), dynamically build a list of apps to quit. Or is this now moot since I just force a logout?
-  - Makefile
-    - Add `dev-convert-repo-to-ssh-for-push`
-  - keyboard_maestro_enable_macro_syncing.sh is experimental (untested, as of 1/4/2026)
-- GenoMac-system
-  - clone_genomac_user_repo.sh needs to be rewritten for submodules
-- Integration with Mac environment
-  - To replace Antnotes, which can’t be programmatically configured, I now have a Keyboard Maestro macro (“Show Spaces assignments”) that, when trigged from the KM status menu, pops up and displays a `space_descriptions.pgn` that is assumed to be the typical screenshot of ~/Dropbox/Users/$USER/Prefs/Mission_Control_wallpapers. 
+[^SESH_STATES_EVERY_TIME]: Implementation detail: These operations are associated with SESH states. Every time Hypervisor finishes a complete run successfully, all SESH states are deleted. As a result, the next time Hypervisor is run from the beginning, all of these steps will be performed. **TODO** (a) Add discussion in the Developer section about states. (b) Add reference here to that discussion.
  
 ## Known issues
 - The test for existence of Homebrew assumes an Apple Silicon Mac rather than an Intel Mac.
