@@ -2,7 +2,7 @@
 
 function set_finder_settings() {
   # Set Finder settings that are enforced every time Hypervisor runs.
-  # See bootstrap_finder.sh for bootstrap Finder settings.
+  # See bootstrap_finder_toolbar_and_target_window.sh for bootstrap Finder settings.
 
   report_start_phase_standard
   report_action_taken "Adjust settings for Finder"
