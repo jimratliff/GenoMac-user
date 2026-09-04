@@ -27,4 +27,9 @@ The below tree diagram indicates only those elements that must exist. The tree i
     - Witch
       - LICENSE
         - Files_to_transfer
-          - *This directory must contain the one or more Many Tricks license files*
+          - *This directory must contain the one or more Many Tricks license files*[^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]
+          - Jim Ratliff 1.witchlicense
+          - Jim Ratliff.witchlicense
+          - Jim Ratliff.witchupgradelicense
+         
+[^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]: You can find your Many Tricks license files at: «~/Library/Application Support/Many Tricks/Licenses». See also “[FAQ: How do I copy my licenses to another computer?](https://manytricks.com/osticket/kb/faq.php?id=2)”
