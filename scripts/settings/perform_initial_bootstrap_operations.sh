@@ -32,14 +32,14 @@ function conditionally_perform_initial_bootstrap_operations() {
     "Skipping assigning apps a Mission Control assign-to option, because it’s already been done"
 
   # Finder: Open new windows to HOME
-  # scripts/settings/bootstrap_finder.sh
+  # scripts/settings/bootstrap_finder_toolbar_and_target_window.sh
   run_if_user_has_not_done \
     "$PERM_FINDER_OPEN_NEW_WINDOWS_TO_HOME_HAS_BEEN_BOOTSTRAPPED" \
     bootstrap_finder_open_new_windows_to_home \
     "Skipping configuring Finder to open new windows to HOME, because this was done in the past"
 
   # Finder: Bootstrap toolbar
-  # scripts/settings/bootstrap_finder.sh
+  # scripts/settings/bootstrap_finder_toolbar_and_target_window.sh
   run_if_user_has_not_done \
     "$PERM_FINDER_TOOLBAR_HAS_BEEN_BOOTSTRAPPED" \
     bootstrap_finder_toolbar \
