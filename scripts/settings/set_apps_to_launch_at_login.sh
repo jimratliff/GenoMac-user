@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh 
+#!/usr/bin/env zsh
 
 
 # set_apps_to_launch_at_login(): Declaratively ensure selected apps launch at user login via LaunchAgents.
