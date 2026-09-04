@@ -2,18 +2,20 @@
 
 Some components of GenoMac-user assume that user has a Dropbox directory that satisfies certain requirements.
 
+In at least many cases, Dropbox is used to store items that (a) are not secret in the sense of a password but (b) are too sensitive to be stored in a public repository.
+
 The below tree diagram indicates only those elements that must exist. The tree is not meant to exclude the existence of other elements.
 
 - Dropbox
   - Preferences_common
     - Alfred_preferences
-      - Alfred_5_preferences
+      - Alfred_5_preferences[^ALFRED_PREFS]
         - Alfred.alfredpreferences
     - BetterTouchTool
       - LICENSE
-        - bettertouchtool.bttlicense
+        - bettertouchtool.bttlicense[^BTT_LICENSE_COPIED_AUTOMAGICALLY]
     - Keyboard_Maestro
-      - Keyboard Maestro Macros.kmsync
+      - Keyboard Maestro Macros.kmsync[^KM_PREF_SYNCING_ENABLED_AUTOMATICALLY]
     - OmniOutliner_Jim's_default_document
       - _JDR_OmniOutliner_Template
     - Sidebar_dividers
@@ -31,5 +33,12 @@ The below tree diagram indicates only those elements that must exist. The tree i
           - Jim Ratliff 1.witchlicense
           - Jim Ratliff.witchlicense
           - Jim Ratliff.witchupgradelicense
-         
+
+
+[^ALFRED_PREFS]: During the interactive configuration of Alfred, in the later portion devoted to configuring syncing of preferences, the Hypervisor reveals the `…Dropbox/Preferences_common/Alfred_preferences` directory. You will then drag the `Alfred_5_preferences` folder icon into the Open File dialog box in the Alfred preferences window.
+
+[^BTT_LICENSE_COPIED_AUTOMAGICALLY]: The BetterTouchTool license file is copied from its Dropbox location to `$HOME/Library/Application Support/BetterTouchTool` by the function `install_btt_license_file`.
+
+[^KM_PREF_SYNCING_ENABLED_AUTOMATICALLY]: The syncing of this Keyboard Maestro macro file is enabled automatically by the function `enable_keyboard_maestro_macro_syncing`.
+
 [^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]: You can find your Many Tricks license files at: «~/Library/Application Support/Many Tricks/Licenses». See also “[FAQ: How do I copy my licenses to another computer?](https://manytricks.com/osticket/kb/faq.php?id=2)”
