@@ -25,7 +25,7 @@ The below tree diagram indicates only those elements that must exist. The tree i
       - …
     - SpaceJump
       - License_key
-        - SpaceJump_license_key.txt
+        - SpaceJump_license_key.txt[^SPACEJUMP_LICENSE_ACTIVATION]
     - Witch
       - LICENSE
         - Files_to_transfer
@@ -42,5 +42,7 @@ The below tree diagram indicates only those elements that must exist. The tree i
 [^KM_PREF_SYNCING_ENABLED_AUTOMATICALLY]: The syncing of this Keyboard Maestro macro file is enabled automatically by the function `enable_keyboard_maestro_macro_syncing`.
 
 [^SIDEBAR_DIVIDERS_NOT_USED_BY_GENOMAC_USER]: Although these Finder sidebar divider files are listed here, nothing about GenoMac-user actually requires that they exist. Their presence is more of a useful convention. The directory Sidebar_dividers contains multiple instances or nearly identical files whose filenames are intended to serve as occupants of the Finder sidebar that serve merely as separators between groups of other sidebar occupants. Each file’s name is of the form: ten hyphens followed by one or two digit number. The number is unique within the set, allowing all instances to coexist within a single directory. The unique number also allow them to be distinguishable, so it is clear what the next divider should be when an additional new one is needed.
+
+[^SPACEJUMP_LICENSE_ACTIVATION]: During the activation of the license for SpaceJump, the function `get_license_key_for_spacejump` reads `SpaceJump_license_key.txt` to find the license key on the first line that is neither (a) a comment (begins with '#') nor (b) blank. The function `activate_spacejump_license` then writes the license key to SpaceJump’s .plist.
 
 [^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]: You can find your Many Tricks license files at: «~/Library/Application Support/Many Tricks/Licenses». See also “[FAQ: How do I copy my licenses to another computer?](https://manytricks.com/osticket/kb/faq.php?id=2)”
