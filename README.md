@@ -29,16 +29,16 @@ Note that **USER_CONFIGURER is the *only* user authorized to use Homebrew** to i
 
 [^HOMEBREW_UPDATE_IS_DIFFERENT]: While Homebrew will typically attempt to update all CLI applications, Homebrew will not attempt to update GUI apps that have their own auto-updating mechanisms. Thus, users other than USER_CONFIGURER may be asked to accept an app’s auto-updating prompt. (See (a) “[Many applications update themselves, so their casks are ignored by `brew outdated` and `brew upgrade`. This behaviour can be overridden by adding `--greedy` to either command](https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md#:~:text=Many%20applications%20update%20themselves%2C%20so%20their%20casks%20are%20ignored%20by%20brew%20outdated%20and%20brew%20upgrade%2E%20This%20behaviour%20can%20be%20overridden%20by%20adding%20%2D%2Dgreedy%20to%20either%20command%2E)” and (b) “[Why aren’t some apps included during `brew upgrade`?](https://docs.brew.sh/FAQ#why-arent-some-apps-included-during-brew-upgrade),” Homebrew Documentation » FAQs.)
 
-GenoMac-user assumes that the Mac has already been configured using GenoMac-system, including, among other things, (a) certain systemwide settings, (b) installing all CLI and GUI apps (both on or off the Mac App Store), and (c) the creation of additional users. In particular, it is assumed that:
-- Homebrew and, therefore indirectly, Git have been installed
-- The systemwide PATH has been modified to make all Homebrew-installed apps and man pages available to all users, with no additional user-specific modification of the user’s PATH required
+GenoMac-user assumes that the Mac has already been configured using GenoMac-system, including, among other things, (a) certain systemwide settings, (b) installing all CLI and GUI apps (both on or off the Mac App Store), and (c) the creation of additional users. In particular, it is assumed that, via GenoMac-system:
+- Homebrew and, therefore indirectly, Git have been installed.
+- The systemwide PATH has been modified to make all Homebrew-installed apps available to all users, with no additional user-specific modification of the user’s PATH required.
 - The following have been installed
   - iTerm
   - GNU Stow
   - certain other utilities required by GenoMac-user (e.g., `gh`, `jq`, `just`, `mas`)
   - all of the third-party apps whose user-specific settings will be specified by GenoMac-user
-  - all of the resources (fonts, sounds, screensavers, etc.) that will be referenced by user-specific settings by GenoMac-user
-- iTerm has been granted by USER_CONFIGURER (a) Full Disk Access[^FDA_&_HOMEBREW] and (b) control of System Events (in order to run AppleScripts)
+  - all of the resources (fonts, sounds, screensavers, etc.) that will be referenced by user-specific settings by GenoMac-user.
+- iTerm has been granted by USER_CONFIGURER (a) Full Disk Access[^FDA_&_HOMEBREW] and (b) control of System Events (in order to run AppleScripts).
 
 [^FDA_&_HOMEBREW]: One reason Full Disk Access for the terminal program is helpful is that this is sufficient for Homebrew to be able to perform app upgrades “in place” (rather than uninstall/reinstall). Upgrading in place prevents app from losing their position in the Dock as a result of the upgrade. (See “[Why do my cask apps lose their Dock position / Launchpad position / permission settings when I run brew upgrade?](https://docs.brew.sh/FAQ#why-do-my-cask-apps-lose-their-dock-position--launchpad-position--permission-settings-when-i-run-brew-upgrade),” Homebrew Documentation » FAQs.)
 
@@ -71,14 +71,16 @@ If you’re already familiar with GenoMac-user—perhaps you’ve already config
 - You’ll manually clone  (using https) this repo to your home directory at `~/.genomac-user`.
 - You’ll run a script, referred to as the Hypervisor,[^two_hypervisors] which will orchestrate the entire process of configuring the user-scoped settings of this user.
 - You will sometimes be commanded/strongly encouraged to log out in order to let a set of changes be reliably incorporated. When you log back in, you’ll re-run the Hypervisor. It will have kept track of how far you had already gotten and will pick up where you left off.
-- In addition to script code that programmatically implements configuration choices, this repo supplies “dotfiles” that help to configure some of the user’s software. The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by package, e.g., Git, SSH, zsh, etc. These dotfiles are deployed to the `~/.config` directory of the user’s home directory using [GNU Stow](https://www.gnu.org/software/stow/), which is installed by the GenoMac-system repo.[^about_gnu_stow]
-- GenoMac-user assumes that certain critical and sensitive resources are available in a shared [Dropbox](https://www.dropbox.com/) directory. Some apps, such as Alfred and Keyboard Maestro, are assumed to sync their preferences across users and Macs via a common, shared Dropbox directory: `Dropbox/Preferences_common`.[^SHARED_PREFS_ENV_VAR] Similarly, other sensitive resources, like Witch license files, are stored in this Dropbox directory to make them available to GenoMac-user without being committed to a public repository.
+- In addition to script code that programmatically implements configuration choices, this repo supplies “dotfiles” that help to configure some of the user’s software. The `stow_directory` of the current repo contains a set of *dotfiles* for the user that are compartmentalized by package, e.g., Git, SSH, zsh, etc. These dotfiles are deployed, to the user’s home directory (and typically to the particular `~/.config` subdirectory), using [GNU Stow](https://www.gnu.org/software/stow/),[^about_gnu_stow] which is installed by the GenoMac-system repo.
+- GenoMac-user assumes that certain critical and sensitive resources are available in a shared [Dropbox](https://www.dropbox.com/) directory. Some apps, such as Alfred and Keyboard Maestro, are assumed to sync their preferences across users and Macs via a common, shared Dropbox directory: `Dropbox/Preferences_common`.[^SHARED_PREFS_ENV_VAR] Similarly, other sensitive resources, like Witch license files, are stored in this Dropbox directory to make them available to GenoMac-user without being committed to a public repository.[^TODO_expand_about_assumed_Dropbox_structure]
 
-[^two_hypervisors]: GenoMac-system has its own Hypervisor, and GenoMac-user has its own Hypervisor. These are different scripts, but each does for its repo the same overall function: Orchestrating the implementation of the relevent configurations.
+[^two_hypervisors]: GenoMac-system has its own Hypervisor, and GenoMac-user has its own Hypervisor. These are different scripts, but each does for its repo the same overall function: orchestrating the implementation of the relevant configurations.
 
 [^about_gnu_stow]: Jake Wiesler has a great explanation of how to structure the files in the stow directory in order to map correctly to `~/.config`: “Manage Your Dotfiles Like a Superhero,” 2021, [blog post](https://www.jakewiesler.com/blog/managing-dotfiles), [YouTube](https://www.youtube.com/watch?v=FHuwzbpTTo0).
 
 [^SHARED_PREFS_ENV_VAR]: The location/name of the shared Dropbox directory can be changed. It is governed by the environment variable `GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY`, which is set in `scripts/assign_user_environment_variables.sh`.
+
+[^TODO_expand_about_assumed_Dropbox_structure]: TODO: Update, expand, itemize/enumerate all the requirements asssumed about the Dropbox structure, including the user-specific /Dropbox/Users/some-user directories.
 
 ## Step-by-step: Set up a new user
 - [Establish real-time connection to communicate text back and forth](#establish-real-time-connection-to-communicate-text-back-and-forth)
@@ -86,13 +88,15 @@ If you’re already familiar with GenoMac-user—perhaps you’ve already config
 - [Repeatedly run the Hypervisor until it completes](#repeatedly-run-the-hypervisor-until-it-completes)
 
 ### Establish real-time connection to communicate text back and forth
-It’s useful to have a live, collaborative document—where changes on one device propagate to all others. When you’re configuring a new Mac, it’s helpful to have another, fully working Mac running to provide backup and research support. For example, you can copy a terminal error message from the new Mac into the Google Doc, and then go to the working Mac to retrieve that text and research it. Further, if you need to make a change to this repo, you can make those changes using a Mac that’s already authenticated at GitHub; for the user being configured, that step comes relatively late in the process.
+It’s useful to have a live, collaborative text document—where changes on one device propagate to all others. When you’re configuring a new Mac, it’s helpful to have another, fully working Mac running to provide backup and research support. For example, you can copy a terminal error message from the new Mac into the Google Doc, and then go to the working Mac to retrieve that text and research it. Further, if you need to make a change to this repo, you can make those changes using a Mac that’s already authenticated at GitHub.[^GitHub_authenticatability_too_late]
+
+[^GitHub_authenticatability_too_late]: For the particular user being configured, the ability to authenticate at Gitub comes relatively late in the process and thus too late to fix errors that arise earlier.
 
 I use a Google Doc for this purpose. The main requirement is that it have very low setup requirements on the new Mac.[^TEXT_EXCHANGE_DOC_EXAMPLE]
 
 [^TEXT_EXCHANGE_DOC_EXAMPLE]: For example, you wouldn’t want to use Dropbox to exchange notes, because one of GenoMac-user’s tasks is setting up Dropbox, but that doesn’t happen until pretty far in the process.
 
-(NOTE: USER_CONFIGURER will have already performed this step. Other users will need to do that at this time.)
+(NOTE: USER_CONFIGURER will have already performed this step of connecting to a collaborative document. Other users will need to do that at this time.)
 
 Open a Google Docs document to be used as/if needed for real-time exchange of text, error messages, etc., between the target Mac and other devices.
 - In Safari
@@ -130,7 +134,7 @@ cd ~/.genomac-user
 just run-hypervisor
 ```
 
-[^WHAT_IS_JUST]: The [just command](https://github.com/casey/just) is a “command runner” or “a handy way to save and run project-specific commands.” It is a modern successor to the [make command](https://man7.org/linux/man-pages/man1/make.1.html). To see a menu of all available `just` *recipes*, just type `just` in the terminal.
+[^WHAT_IS_JUST]: The [just command](https://github.com/casey/just) is a “command runner” or “a handy way to save and run project-specific commands.” It is a modern successor to the [make command](https://man7.org/linux/man-pages/man1/make.1.html). To see a menu of all available `just` *recipes*, just type `just` in the terminal (assuming your current working directory is `~/.genomac-user`).
 
 At certain points in the process, within a single Hypervisor session, the Hypervisor will force a logout. This is done to increase the reliability of the changes—so that they’ll “stick.” When you log in after the logout, simply start the Hypervisor again with `just run-hypervisor`. The Hypervisor keeps track of its state, and it will restart where you last left off. Keep logging back in, after each logout, and running `just run-hypervisor` until you see “TTFN,” signaling completion of the full Hypervisor session:
 ```
