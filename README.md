@@ -146,8 +146,6 @@ At certain points in the process, within a single Hypervisor session, the Hyperv
 
 
 ℹ️  You will be logged out semi-automatically to fully internalize all the work we’ve done.
-   Please log back in.
-   To restart, re-execute just run-hypervisor and we’ll pick up where we left off.
 
 ✅ No GenoMac warnings or failures detected in this run.
 ```
@@ -159,7 +157,7 @@ The Hypervisor produces a *lot* of output, typically many screenfulls. If an imp
 
 By collecting any warnings and repeating them at the end, you’re relieved of the necessity of wading through all of the output to look for anomalies.
 
-Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against failing to notice a silent failure.
+Also note that the Hypervisor runs under `set -euo pipefail`, which is designed to make everything come to a crashing halt if there is any error. Thus, it tries to protect you against failing to notice errors.
 
 ## Maintaining the user’s user-scoped settings by occasionally re-running the Hypervisor
 This section assumes you’ve already locally cloned the GenoMac-user repository to `~/.genomac-user` and that you’ve run the Hypervisor once completely through.
@@ -182,7 +180,7 @@ Alternatively, you can do that check-and-update yourself with:[^GIT_PULL_INTERPR
 cd ~/.genomac-user
 just refresh-repo-and-module
 ```
-Indeed, as explained in [If only the contents of one or more existing dotfiles change](#if-only-the-contents-of-one-or-more-existing-dotfiles-change), if the only changes are in the *contents* or one or more existing dotfiles, refreshing the repository is all that is needed; no need to re-run the Hypervisor.
+Indeed, as explained in [If only the contents of one or more existing dotfiles change](#if-only-the-contents-of-one-or-more-existing-dotfiles-change), if the only changes are in the *contents* or one or more existing dotfiles, refreshing the repository is all that is needed to update the dotfiles on disk; no need to re-run the Hypervisor. To make sure that any affected applications take advantage of the updated dotfiles, it might be necessary for the user to log out and log back in.
 
 [^GIT_PULL_INTERPRETATION]: This `just` recipe is just a shorthand for `git pull --recurse-submodules origin main`. The `--recurse-submodules` ensures that the local version of submodule [GenoMac-shared](https://github.com/jimratliff/GenoMac-shared) is updated to the commit specified by the GenoMac-user origin repository.
 
@@ -220,10 +218,7 @@ If the only changes to GenoMac-user’s dotfiles are the *contents* of one or mo
 ##### If the *structure* of the dotfiles changes
 In contrast, if the *structure* of the dotfiles changes, each user should rerun the Hypervisor. (See [Run the Hypervisor](#run-the-hypervisor).)
 
-A change in the structure of the dotfiles would be any combination of (a) adding a new package, (b) removing a package, (c) adding a file to a package, or (d) removing a file from a package. The following are examples of what would constitute a change in *structure* of the dotfiles and therefore requires rerunning Hypervisor:
-- add a new terminal app, such as Kitty or Ghostty, and add its dotfiles to stow_directory),
-- add a new file or directory to an existing package’s dotfiles, or
-- in any other way modify the file structure of stow_directory.
+A change in the structure of the dotfiles would be any combination of (a) adding a new package, (b) removing a package, (c) adding a file to a package, or (d) removing a file from a package.
 
 Running Hypervisor will run `stow`, which will properly remap symlinks to reflect the changes in structure. (In other words, `stow` doesn’t care what’s *in* each *file* in `stow_directory`, but it does care about the file and directory structure of `stow_directory`.)
 
