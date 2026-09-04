@@ -45,24 +45,30 @@ function interactive_configure_internet_accounts() {
   
   report_start_phase_standard
 
-  local markdown_file_to_display="${GMU_DOCS_TO_DISPLAY}/Internet_Accounts_how_to_configure_accounts.md"
 
   # Looks for optional user-specific Markdown file $USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE
   # in $USER_SPECIFIC_META_DIRECTORY (Dropbox/Prefs/Meta).
   # If present, displays to user. Otherwise, displays the alternative, default Markdown document
   # "Internet_Accounts_how_to_configure_accounts.md" from GenoMac-user.
 
-  if [[ ! -e "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}" ]]; then
-    report_to_log "No user-specific internet-accounts instructions exist for user ${USER}."
-  elif [[
-    ! -f "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}" ||
-    ! -r "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
-  ]]; then
-    report_fail "The user-specific internet-accounts instructions exist but aren’t a readable regular file.${NEWLINE}See ${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
-    return 1
-  else
+  # Initialize markdown_file_to_display to default not-user-specific file
+  local markdown_file_to_display="${GMU_DOCS_TO_DISPLAY}/Internet_Accounts_how_to_configure_accounts.md"
+
+  if file_exists_and_is_readable "$USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE"; then
     markdown_file_to_display="${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
   fi
+
+#   if [[ ! -e "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}" ]]; then
+#     report_to_log "No user-specific internet-accounts instructions exist for user ${USER}."
+#   elif [[
+#     ! -f "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}" ||
+#     ! -r "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
+#   ]]; then
+#     report_fail "The user-specific internet-accounts instructions exist but aren’t a readable regular file.${NEWLINE}See ${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
+#     return 1
+#   else
+#     markdown_file_to_display="${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
+#   fi
 
   report "Time to configure at least one internet account!${NEWLINE}I’ll launch System Settings » Internet Accounts with instructions for next steps"
   launch_app_and_prompt_user_to_act \
