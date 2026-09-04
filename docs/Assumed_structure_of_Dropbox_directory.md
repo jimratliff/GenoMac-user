@@ -47,8 +47,8 @@ The below tree diagram indicates only those elements that are recognized by Geno
             - some_wallpaper_image_file.heic
           - 2_Project_2
             - some_other_wallpaper_image_file.jpg
-          - 3_Project_3
-            - some_other_wallpaper_image_file.png
+            - this_wallpaper_image_file_is_ignored_because_it's_not_alphabetically_first_within_its_directory.jpg
+          - 3_Project_3.png
           - …
           - 16_Project_16
             - some_other_wallpaper_image_file.webp
