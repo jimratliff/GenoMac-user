@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 ############### WORK IN PROGRESS
+# Incorporate this_mac_is_a_laptop() from GenoMac-shared
 # Needs to be tested on a laptop
 
 function set_power_management_settings() {
