@@ -52,7 +52,7 @@ The below tree diagram indicates only those elements that are recognized by Geno
           - …
           - 16_Project_16
             - some_other_wallpaper_image_file.webp
-      - Screenshots
+      - Screenshots[^SCREENSHOT_DESTINATION_FOR_DROPBOX_USERS]
 
 
 [^ALFRED_PREFS]: During the interactive configuration of Alfred, in the later portion devoted to configuring syncing of preferences, the Hypervisor reveals the `…Dropbox/Preferences_common/Alfred_preferences` directory. You will then drag the `Alfred_5_preferences` folder icon into the Open File dialog box in the Alfred preferences window.
@@ -70,3 +70,5 @@ The below tree diagram indicates only those elements that are recognized by Geno
 [^INTERNET_ACCOUNTS_FILE_IS_OPTIONAL]: The Markdown file `Internet_Accounts_how_to_configure_accounts.md` is optional. If present (with precisely this name and location), the function `interactive_configure_internet_accounts` will display this file to the user. If absent, this function will instead display a generic Markdown file not specific to any user: `GenoMac-user/resources/docs_to_display_to_user/Internet_Accounts_how_to_configure_accounts.md`
 
 [^ABOUT_WALLPAPERS]: The `Mission_Control_wallpapers` directory is expected for every user that has (or inherits from its user class) the user attribute 'wallpapers'. (This typically excludes USER_CONFIGURER and USER_SWITCHER and other Superintendent user-class users.) The function `set_wallpapers_for_all_spaces` expects to find, for every number 1, …, 16, *either* (a) a wallpaper-image file or (b) a directory whose name begins with either 'n_' or 'mn_' followed by one or more characters (not including the file extension, when an image file). The leading number identifies the Space number. The non-extension text after the initial underscore is used for name of the Space, as displayed by SpaceJump, via the function `specify_Space_names_in_SpaceJump`. (Any embedded underscores in the name text string are replaced by spaces.) When a directory, rather than a wallpaper-image file is found, `set_wallpapers_for_all_spaces` then looks inside the directory and picks the alphabetically first wallpaper-image file. (A valid extension for a wallpaper is either `jpeg`, `jpg`, `heic`, `tiff`, or `webp`. See the function `extension_is_valid_wallpaper_image_type`.)
+
+[^SCREENSHOT_DESTINATION_FOR_DROPBOX_USERS]: This is the destination for screenshots for Dropbox users, as set by the function `set_screen_capture_destination_for_Dropbox_user`.
