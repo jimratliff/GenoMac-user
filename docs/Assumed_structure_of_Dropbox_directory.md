@@ -42,11 +42,16 @@ The below tree diagram indicates only those elements that are recognized by Geno
       - Prefs
         - Meta
           - Internet_Accounts_how_to_configure_accounts.md[^INTERNET_ACCOUNTS_FILE_IS_OPTIONAL]
-        - Mission_Control_wallpapers
+        - Mission_Control_wallpapers[^ABOUT_WALLPAPERS]
           - 1_Project_1
+            - some_wallpaper_image_file.heic
           - 2_Project_2
+            - some_other_wallpaper_image_file.jpg
+          - 3_Project_3
+            - some_other_wallpaper_image_file.png
           - …
           - 16_Project_16
+            - some_other_wallpaper_image_file.webp
       - Screenshots
 
 
@@ -62,4 +67,6 @@ The below tree diagram indicates only those elements that are recognized by Geno
 
 [^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]: You can find your Many Tricks license files at: «~/Library/Application Support/Many Tricks/Licenses». See also “[FAQ: How do I copy my licenses to another computer?](https://manytricks.com/osticket/kb/faq.php?id=2)”
 
-[^INTERNET_ACCOUNTS_FILE_IS_OPTIONAL]: The Markdown file `Internet_Accounts_how_to_configure_accounts.md` is optional. If present (with precisely this name and location), the function `interactive_configure_internet_accounts` will display this file to the user. If absent, this function will instead a generic Markdown file not specific to any user: `GenoMac-user/resources/docs_to_display_to_user/Internet_Accounts_how_to_configure_accounts.md`
+[^INTERNET_ACCOUNTS_FILE_IS_OPTIONAL]: The Markdown file `Internet_Accounts_how_to_configure_accounts.md` is optional. If present (with precisely this name and location), the function `interactive_configure_internet_accounts` will display this file to the user. If absent, this function will instead display a generic Markdown file not specific to any user: `GenoMac-user/resources/docs_to_display_to_user/Internet_Accounts_how_to_configure_accounts.md`
+
+[^ABOUT_WALLPAPERS]: The `Mission_Control_wallpapers` directory is expected for every user that has (or inherits from its user class) the user attribute 'wallpapers'. (This typically excludes USER_CONFIGURER and USER_SWITCHER and other Superintendent user-class users.) The function `set_wallpapers_for_all_spaces` expects to find, for every number 1, …, 16, *either* (a) a wallpaper-image file or (b) a directory whose name begins with either 'n_' or 'mn_' followed by one or more characters (not including the file extension, when an image file). The leading number identifies the Space number. The non-extension text after the initial underscore is used for name of the Space, as displayed by SpaceJump, via the function `specify_Space_names_in_SpaceJump`. (Any embedded underscores in the name text string are replaced by spaces.)
