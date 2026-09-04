@@ -56,6 +56,7 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 
 **Other documentation files**
 - [What Hypervisor does and what settings/configurations it implements](https://github.com/jimratliff/GenoMac-user/blob/main/docs/what_hypervisor_does.md)
+- [Assumed structure of Dropbox directory](https://github.com/jimratliff/GenoMac-user/blob/main/docs/Assumed_structure_of_Dropbox_directory.md)
 - [Determining the `defaults write` commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/docs/defaults_detective.md)
 - [What to do when you change the BetterTouchTool preset](https://github.com/jimratliff/GenoMac-user/blob/main/docs/btt_change.md)
 - At GenoMac-shared:
