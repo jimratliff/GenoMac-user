@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 ############### WORK IN PROGRESS
+# Needs to be tested on a laptop
 
 function set_power_management_settings() {
 
