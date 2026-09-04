@@ -24,6 +24,74 @@ function conditionally_configure_spacejump() {
   report_end_phase_standard
 }
 
+function set_spacejump_basic_settings() {
+  # Set basic settings for SpaceJump
+  # These “basic settings” do not include (a) license key or (b) names
+  # for each Space
+  report_start_phase_standard
+  
+  local domain="$DEFAULTS_DOMAINS_SPACEJUMP"
+  local plist_path
+
+  plist_path="$(legacy_plist_path_from_domain $domain)"
+  ensure_plist_path_exists "${plist_path}"
+
+  report_action_taken "Implement basic settings for SpaceJump."
+
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
+
+  report_adjust_setting "Time tracking per Space: Turn OFF"
+  defaults write $domain "usage_timeTrackingEnabled" -bool false ; success_or_not
+
+  report_adjust_setting "Move window to Space via dragging: Turn OFF"
+  defaults write $domain "dragToSwitchEnabled" -bool false ; success_or_not
+
+  report_adjust_setting "Show Space bar at top of screen when in Quick Switcher: ON"
+  # (When you open the Quick Switcher, a Mission Control-style bar appears at the
+  #  top of the screen showing all your spaces as miniature rectangles. Navigate
+  #  with arrow keys or click directly)
+  defaults write $domain "showSpaceBar" -bool true ; success_or_not
+
+  invalidate_preferences_cache
+
+  report_end_phase_standard
+}
+
+function activate_spacejump_license() {
+  # Activate license for SpaceJump
+  report_start_phase_standard
+  
+  local domain="$DEFAULTS_DOMAINS_SPACEJUMP"
+  local plist_path
+  local license_key
+
+  report_action_taken "Activate license for SpaceJump."
+
+  quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
+
+  plist_path="$(legacy_plist_path_from_domain $domain)"
+  ensure_plist_path_exists "${plist_path}"
+
+  local now_utc_as_type_date
+  now_utc_as_type_date="$(date -u '+%Y-%m-%d %H:%M:%S +0000')"
+  
+  license_key="$(get_license_key_for_spacejump)"
+  report_to_log "License key for SpaceJump: $license_key"
+
+  if [[ -z "$license_key" ]]; then
+    report_fail "The SpaceJump license key is empty."
+    return 1
+  fi
+
+  defaults write $domain "license_is_licensed" -bool true ; success_or_not
+  defaults write $domain "license_key" -string "$license_key" ; success_or_not
+  defaults write $domain "license_last_validation" -date "$now_utc_as_type_date" ; success_or_not
+
+  invalidate_preferences_cache
+  
+  report_end_phase_standard
+}
+
 function specify_Space_names_in_SpaceJump() {
   # Gather list of Space names and write them to SpaceJump preferences
   # Quits SpaceJump if running. Launches/relaunches SpaceJump at end.
@@ -179,74 +247,6 @@ function get_space_name_from_wallpaper_container_path() {
   name_of_space="${name_of_space//_/ }"
 
   print -r -- "$name_of_space"
-  
-  report_end_phase_standard
-}
-
-function set_spacejump_basic_settings() {
-  # Set basic settings for SpaceJump
-  # These “basic settings” do not include (a) license key or (b) names
-  # for each Space
-  report_start_phase_standard
-  
-  local domain="$DEFAULTS_DOMAINS_SPACEJUMP"
-  local plist_path
-
-  plist_path="$(legacy_plist_path_from_domain $domain)"
-  ensure_plist_path_exists "${plist_path}"
-
-  report_action_taken "Implement basic settings for SpaceJump."
-
-  quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
-
-  report_adjust_setting "Time tracking per Space: Turn OFF"
-  defaults write $domain "usage_timeTrackingEnabled" -bool false ; success_or_not
-
-  report_adjust_setting "Move window to Space via dragging: Turn OFF"
-  defaults write $domain "dragToSwitchEnabled" -bool false ; success_or_not
-
-  report_adjust_setting "Show Space bar at top of screen when in Quick Switcher: ON"
-  # (When you open the Quick Switcher, a Mission Control-style bar appears at the
-  #  top of the screen showing all your spaces as miniature rectangles. Navigate
-  #  with arrow keys or click directly)
-  defaults write $domain "showSpaceBar" -bool true ; success_or_not
-
-  invalidate_preferences_cache
-
-  report_end_phase_standard
-}
-
-function activate_spacejump_license() {
-  # Activate license for SpaceJump
-  report_start_phase_standard
-  
-  local domain="$DEFAULTS_DOMAINS_SPACEJUMP"
-  local plist_path
-  local license_key
-
-  report_action_taken "Activate license for SpaceJump."
-
-  quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
-
-  plist_path="$(legacy_plist_path_from_domain $domain)"
-  ensure_plist_path_exists "${plist_path}"
-
-  local now_utc_as_type_date
-  now_utc_as_type_date="$(date -u '+%Y-%m-%d %H:%M:%S +0000')"
-  
-  license_key="$(get_license_key_for_spacejump)"
-  report_to_log "License key for SpaceJump: $license_key"
-
-  if [[ -z "$license_key" ]]; then
-    report_fail "The SpaceJump license key is empty."
-    return 1
-  fi
-
-  defaults write $domain "license_is_licensed" -bool true ; success_or_not
-  defaults write $domain "license_key" -string "$license_key" ; success_or_not
-  defaults write $domain "license_last_validation" -date "$now_utc_as_type_date" ; success_or_not
-
-  invalidate_preferences_cache
   
   report_end_phase_standard
 }
