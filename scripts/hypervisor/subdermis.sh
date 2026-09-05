@@ -158,7 +158,7 @@ function subdermis() {
     conditionally_configure_spacejump
 
     # Implement user’s chosen Finder sidebar Favorites entries
-    conditional_set_user_finder_sidebar_favorites             # scripts/settings/set_finder_sidebar_favorites.sh
+    conditionally_set_user_finder_sidebar_favorites             # scripts/settings/set_finder_sidebar_favorites.sh
     
   else
   
