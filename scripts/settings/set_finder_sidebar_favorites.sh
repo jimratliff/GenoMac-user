@@ -16,14 +16,14 @@ function conditionally_set_user_finder_sidebar_favorites() {
 
   run_if_user_has_not_done \
     "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED" \
-    set_user_finder_sidebar_favorites_if_specified \
+    set_user_finder_sidebar_favorites \
     "Skipping setting Finder sidebar Favorites items, because this was done in the past."
   
   report_end_phase_standard
 }
 
 function bootstrap_user_finder_sidebar_favorites_for_barebones_user() {
-  # Bootstraps Finder sidebar favorties for barebones user
+  # Bootstraps Finder sidebar favorites for barebones user
   report_start_phase_standard
 
   set_user_finder_sidebar_favorites_from_array_of_2_tuples "${FINDER_SIDEBAR_FAVORITES_BAREBONES[@]}"
@@ -33,7 +33,7 @@ function bootstrap_user_finder_sidebar_favorites_for_barebones_user() {
 
 function set_user_finder_sidebar_favorites() {
   # Implements Finder sidebar Favorites, looking first for a user-specific specification.
-  # If not present,vfalls back to the default set of Favorites for a barebones user.
+  # If not present, falls back to the default set of Favorites for a barebones user.
   #
   # HINT: USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILENAME="finder_sidebar_favorites_name_path_pairs.json"
   # HINT: USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE="${USER_SPECIFIC_META_DIRECTORY}/${USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILENAME}"
@@ -44,7 +44,7 @@ function set_user_finder_sidebar_favorites() {
   local -a tuples
 
   if ! file_exists_and_is_readable "$file_to_read"; then
-    report_to_log "Setting default Finder sidebar Favorites, because no user-specific specification file was found at “${file_to_read}”.}
+    report_to_log "Setting default Finder sidebar Favorites, because no user-specific specification file was found at “${file_to_read}”."
     set_user_finder_sidebar_favorites_from_array_of_2_tuples "${FINDER_SIDEBAR_FAVORITES_BAREBONES[@]}"
     report_end_phase_standard
     return 0
