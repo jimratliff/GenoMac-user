@@ -35,7 +35,7 @@ function set_user_finder_sidebar_favorites() {
   # Implements Finder sidebar Favorites, looking first for a user-specific specification.
   # If not present, falls back to the default set of Favorites for a barebones user.
   #
-  # HINT: USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILENAME="finder_sidebar_favorites_name_path_pairs.json"
+  # HINT: USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILENAME="finder_sidebar_favorites_name_path_pairs.jsonl"
   # HINT: USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE="${USER_SPECIFIC_META_DIRECTORY}/${USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILENAME}"
   report_start_phase_standard
 
@@ -48,10 +48,10 @@ function set_user_finder_sidebar_favorites() {
     report_to_log "Setting default Finder sidebar Favorites, because no user-specific specification file was found at “${file_to_read}”."
     bootstrap_user_finder_sidebar_favorites_for_barebones_user
     report_end_phase_standard
-    return 0
+    return 0/
   fi
 
-  get_array_of_2_tuples_from_json_file "$file_to_read"
+  get_array_from_json_lines_file "$file_to_read"
   tuples=("${reply[@]}")
   set_user_finder_sidebar_favorites_from_array_of_2_tuples "${tuples[@]}"
   
