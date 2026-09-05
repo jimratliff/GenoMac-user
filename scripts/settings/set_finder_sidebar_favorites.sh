@@ -31,42 +31,103 @@ function bootstrap_user_finder_sidebar_favorites_for_barebones_user() {
   report_end_phase_standard
 }
 
-function set_user_finder_sidebar_favorites_if_specified() {
-  # Looks for user-specific JSON list of (name, path) pairs of items to add to Finder’s sidebar Favorites.
+function set_user_finder_sidebar_favorites() {
+  # Implements Finder sidebar Favorites, looking first for a user-specific specification.
+  # If not present,vfalls back to the default set of Favorites for a barebones user.
   #
   # HINT: USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILENAME="finder_sidebar_favorites_name_path_pairs.json"
   # HINT: USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE="${USER_SPECIFIC_META_DIRECTORY}/${USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILENAME}"
-  
   report_start_phase_standard
 
   local file_to_read="$USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE"
 
+  local -a tuples
+
   if ! file_exists_and_is_readable "$file_to_read"; then
-    report_to_log "Skipping setting Finder sidebar Favorites, because no specification file was found at “${file_to_read}”.}
+    report_to_log "Setting default Finder sidebar Favorites, because no user-specific specification file was found at “${file_to_read}”.}
+    set_user_finder_sidebar_favorites_from_array_of_2_tuples "${FINDER_SIDEBAR_FAVORITES_BAREBONES[@]}"
     report_end_phase_standard
     return 0
   fi
 
-  set_user_finder_sidebar_favorites
-  
-  report_about_to_kill_app "Finder"
-  killall "Finder" ; success_or_not
+  get_array_of_2_tuples_from_json_file "$file_to_read"
+  tuples=("${reply[@]}")
+  set_user_finder_sidebar_favorites_from_array_of_2_tuples "${tuples[@]}"
   
   report_end_phase_standard
 }
 
-function set_user_finder_sidebar_favorites() {
-  # Implements Finder sidebar Favorites from specification file.
+function set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
+  # Replaces Finder sidebar Favorites using supplied JSON-encoded
+  # [display-name, filesystem-path] tuples.
+  #
+  # Usage:
+  #   set_user_finder_sidebar_favorites_from_array_of_2_tuples \
+  #     "${favorites[@]}"
+
   report_start_phase_standard
 
-  local file_to_read="$USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE"
+  local -a supplied_tuples=("$@")
+  local -a prepared_tuples=()
 
-  # PLEASE FILL IN
-  
-  # report_about_to_kill_app "Finder"
-  # killall "Finder" ; success_or_not
-  
+  local tuple
+  local name
+  local filesystem_path
+  local file_url
+  local prepared_tuple
+
+  # An empty supplied array leaves the existing Favorites unchanged.
+  if (( ${#supplied_tuples[@]} == 0 )); then
+    report_to_log "Favorites array is empty. Leaving Favorites in Finder sidebar unchanged."
+    report_end_phase_standard
+    return 0
+  fi
+
+  # Validate and prepare all entries before clearing the sidebar.
+  for tuple in "${supplied_tuples[@]}"; do
+    if ! jq -e '
+      type == "array"
+      and length == 2
+      and all(.[];
+        type == "string" and length > 0
+      )
+    ' <<<"$tuple" >/dev/null
+    then
+      report_fail "Invalid Finder sidebar Favorite tuple: $tuple"
+      return 1
+    fi
+
+    name="$(jq -r '.[0]' <<<"$tuple")"
+
+    filesystem_path="$(jq -r '.[1]' <<<"$tuple")"
+
+    file_url="$(convert_filesystem_path_to_file_url "$filesystem_path")"
+
+    prepared_tuple="$(
+      jq -cn \
+        --arg name "$name" \
+        --arg url "$file_url" \
+        '[$name, $url]'
+    )"
+
+    prepared_tuples+=("$prepared_tuple")
+  done
+
+  # Remove all existing Favorites
+  if ! mysides remove all; then
+    report_fail "Unable to clear Finder sidebar Favorites; no items were added."
+    return 1
+  fi
+
+  # Replace Favorites with new set
+  for tuple in "${prepared_tuples[@]}"; do
+    name="$(jq -r '.[0]' <<<"$tuple")"
+    file_url="$(jq -r '.[1]' <<<"$tuple")"
+
+    if ! mysides add "$name" "$file_url"; then
+      report_warning "Unable to add Finder sidebar Favorite: $name"
+    fi
+  done
+
   report_end_phase_standard
 }
-
-
