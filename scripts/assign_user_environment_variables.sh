@@ -172,9 +172,9 @@ META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 
 FINDER_SIDEBAR_FAVORITES_BAREBONES=(
-  "[\"🪚 Applications\", \"/Applications\"]"
-  "[\"🛠️ Utilities\", \"/Applications/Utilities\"]"
-  "[\"🏠 $USER\", \"~\"]"
+  "[\"Applications\", \"/Applications\"]"
+  "[\"Utilities\", \"/Applications/Utilities\"]"
+  "[\"$USER\", \"~\"]"
   "[\"Library\", \"~/Library\"]"
 )
 
