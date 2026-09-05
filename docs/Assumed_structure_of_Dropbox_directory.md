@@ -41,7 +41,7 @@ The below tree diagram indicates only those elements that are recognized by Geno
     - my_user_short_name
       - Prefs
         - Meta
-          - Finder_sidebar_layout.md
+          - finder_toolbar_favorites_name_path_pairs.json[^FINDER_SIDEBAR_FAVORITES]
           - Internet_Accounts_how_to_configure_accounts.md[^INTERNET_ACCOUNTS_FILE_IS_OPTIONAL]
         - Mission_Control_wallpapers[^ABOUT_WALLPAPERS]
           - 1_Project_1
