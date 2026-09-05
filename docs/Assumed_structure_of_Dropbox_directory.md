@@ -41,7 +41,7 @@ The below tree diagram indicates only those elements that are recognized by Geno
     - my_user_short_name
       - Prefs
         - Meta
-          - finder_sidebar_favorites_name_path_pairs.json[^FINDER_SIDEBAR_FAVORITES]
+          - finder_sidebar_favorites_name_path_pairs.jsonl[^FINDER_SIDEBAR_FAVORITES]
           - Internet_Accounts_how_to_configure_accounts.md[^INTERNET_ACCOUNTS_FILE_IS_OPTIONAL]
         - Mission_Control_wallpapers[^ABOUT_WALLPAPERS]
           - 1_Project_1
@@ -68,7 +68,7 @@ The below tree diagram indicates only those elements that are recognized by Geno
 
 [^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]: You can find your Many Tricks license files at: «~/Library/Application Support/Many Tricks/Licenses». See also “[FAQ: How do I copy my licenses to another computer?](https://manytricks.com/osticket/kb/faq.php?id=2)”
 
-[^FINDER_SIDEBAR_FAVORITES]: This JSON file is optional. When it exists, it contains (name, path) pairs of items to install in the user’s Finder’s sidebar Favorites. When at least one pair exists, all existing Favorites are removed and replaced with the items specified in this file.
+[^FINDER_SIDEBAR_FAVORITES]: This JSON lines file is optional. When it exists, it contains (name, path) pairs of items to install in the user’s Finder’s sidebar Favorites. When at least one pair exists, all existing Favorites are removed and replaced with the items specified in this file.
 
 [^INTERNET_ACCOUNTS_FILE_IS_OPTIONAL]: The Markdown file `Internet_Accounts_how_to_configure_accounts.md` is optional. If present (with precisely this name and location), the function `interactive_configure_internet_accounts` will display this file to the user. If absent, this function will instead display a generic Markdown file not specific to any user: `GenoMac-user/resources/docs_to_display_to_user/Internet_Accounts_how_to_configure_accounts.md`
 
