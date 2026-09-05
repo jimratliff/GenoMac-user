@@ -153,9 +153,12 @@ function subdermis() {
     # Located here because these wallpapers are typically stored in Dropbox
     conditionally_set_wallpapers_for_all_spaces               # scripts/settings/set_wallpapers.sh
 
-    # Configure SpaceJump
+    # Configure SpaceJump to show name of each Mission Control Space
     # Located here because wallpaper collection stored in Dropbox is the source of Space names.
     conditionally_configure_spacejump
+
+    # Implement user’s chosen Finder sidebar Favorites entries
+    conditional_set_user_finder_sidebar_favorites             # scripts/settings/set_finder_sidebar_favorites.sh
     
   else
   
