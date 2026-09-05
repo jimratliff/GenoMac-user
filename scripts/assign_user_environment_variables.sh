@@ -177,9 +177,9 @@ MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 MAXIMUM_NUMBER_OF_MISSION_CONTROL_SPACES=16
 
 ############### Flags about third-party incompatibilites with users that reside on a non-startup volume
-
-DEFAULT_BROWSER_UTILITY_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES="false"
-
+#
+# DEFAULT_BROWSER_UTILITY_STILL_INCOMPATIBLE_WITH_RELOCATED_HOME_DIRECTORIES="false"
+#
 # The following is DEPRECATED
 # To be tested… 1Password Support says the problem isn’t a relocated home directory, but rather total length
 # of the home directory.
