@@ -1,5 +1,16 @@
 #!/usr/bin/env zsh
 
+function conditionally_bootstrap_finder_sidebar_favorites_for_barebones_user() {
+  report_start_phase_standard
+
+  run_if_user_has_not_done \
+    "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED_FOR_BOOTSTRAP_USER" \
+    bootstrap_user_finder_sidebar_favorites_for_barebones_user \
+    "Skipping setting Finder sidebar Favorites items for barebones user, because this was done in the past."
+  
+  report_end_phase_standard
+}
+
 function conditionally_set_user_finder_sidebar_favorites() {
   report_start_phase_standard
 
@@ -7,6 +18,15 @@ function conditionally_set_user_finder_sidebar_favorites() {
     "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED" \
     set_user_finder_sidebar_favorites_if_specified \
     "Skipping setting Finder sidebar Favorites items, because this was done in the past."
+  
+  report_end_phase_standard
+}
+
+function bootstrap_user_finder_sidebar_favorites_for_barebones_user() {
+  # Bootstraps Finder sidebar favorties for barebones user
+  report_start_phase_standard
+
+  set_user_finder_sidebar_favorites_from_array_of_2_tuples "${FINDER_SIDEBAR_FAVORITES_BAREBONES[@]}"
   
   report_end_phase_standard
 }
@@ -36,13 +56,17 @@ function set_user_finder_sidebar_favorites_if_specified() {
 }
 
 function set_user_finder_sidebar_favorites() {
-  # Template for a Zsh function in Project GenoMac
+  # Implements Finder sidebar Favorites from specification file.
   report_start_phase_standard
 
   local file_to_read="$USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE"
+
+  # PLEASE FILL IN
   
-  report_about_to_kill_app "Finder"
-  killall "Finder" ; success_or_not
+  # report_about_to_kill_app "Finder"
+  # killall "Finder" ; success_or_not
   
   report_end_phase_standard
 }
+
+
