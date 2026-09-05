@@ -156,9 +156,7 @@ USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
 # HINT: USER_LOCAL_REPOSITORY_DIRECTORY="$HOME/Repositories"
 
 ############### Environment variables to support the Hypervisor
-#
-# TODO: This needs to be revisited, because (a) name of GMU_HYPERVISOR_MAKE_COMMAND_STRING includes "make",
-#       (b) GenoMac-system can’t use `just` until after Homebrew does initial installations
+
 GMU_HYPERVISOR_MAKE_COMMAND_STRING="just run-hypervisor"
 GMU_HYPERVISOR_HOW_TO_RESTART_STRING="To get back into the groove at any time, just re-execute ${GMU_HYPERVISOR_MAKE_COMMAND_STRING}${NEWLINE}and we’ll pick up where we left off."
 
@@ -172,6 +170,13 @@ OPTION_CHAR=$'\u2325'    # ⌥
 COMMAND_CHAR=$'\u2318'   # ⌘
 META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
 MODIFIERS_KEYBOARD_NAVIGATION="${SHIFT_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"
+
+FINDER_SIDEBAR_FAVORITES_BAREBONES=(
+  "[\"🪚 Applications\", \"/Applications\"]"
+  "[\"🛠️ Utilities\", \"/Applications/Utilities\"]"
+  "[\"🏠 $USER\", \"~\"]"
+  "[\"Library\", \"~/Library\"]"
+)
 
 ############### States related to features of macOS
 MAXIMUM_NUMBER_OF_MISSION_CONTROL_SPACES=16
