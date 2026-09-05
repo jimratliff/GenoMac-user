@@ -70,12 +70,12 @@ function subdermis() {
   conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
 
   if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
-    report "User wants only barebones configuration, so I’m ending here."
 
     set_screen_capture_destination_for_barebones_user         # scripts/settings/set_screen_capture_settings.sh
     conditionally_bootstrap_finder_sidebar_favorites_for_barebones_user # scripts/settings/set_finder_sidebar_favorites.sh
-    end_of_subdermis_cleanup
     
+    report "User wants only barebones configuration, so I’m ending here."
+    end_of_subdermis_cleanup
     report_end_phase_standard
     return 0
   fi
