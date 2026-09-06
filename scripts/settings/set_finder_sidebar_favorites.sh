@@ -48,7 +48,7 @@ function set_user_finder_sidebar_favorites() {
     report_to_log "Setting default Finder sidebar Favorites, because no user-specific specification file was found at “${file_to_read}”."
     bootstrap_user_finder_sidebar_favorites_for_barebones_user
     report_end_phase_standard
-    return 0/
+    return 0
   fi
 
   get_array_from_json_lines_file "$file_to_read"
