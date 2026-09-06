@@ -115,20 +115,37 @@ function set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
   done
 
   # Remove all existing Favorites
-  if ! mysides remove all; then
-    report_fail "Unable to clear Finder sidebar Favorites; no items were added."
-    return 1
-  fi
+  report_action_taken "Removing all existing Finder sidebar Favorites."
+  finder_sidebar_favorites_remove_all ; success_or_not
 
   # Replace Favorites with new set
   for tuple in "${prepared_tuples[@]}"; do
     name="$(jq -r '.[0]' <<<"$tuple")"
     file_url="$(jq -r '.[1]' <<<"$tuple")"
 
-    if ! mysides add "$name" "$file_url"; then
-      report_warning "Unable to add Finder sidebar Favorite: $name"
-    fi
+    finder_sidebar_favorites_add_name_and_file_url "$name" "$file_url"
   done
 
+  report_end_phase_standard
+}
+
+function finder_sidebar_favorites_remove_all() {
+  # Remove all Finder sidebar Favorites.
+  report_start_phase_standard
+  report_to_log "Clearing all existing Finder sidebar Favorites."
+  mysides remove all
+  report_end_phase_standard
+}
+
+function finder_sidebar_favorites_add_name_and_file_url() {
+  # Append Finder sidebar favorite defined by name and file_url.
+  report_start_phase_standard
+  
+  local name_of_favorite="${1:?MISSING name}"
+  local file_url="${2:?MISSING fileurl}"
+  
+  report_to_log "Appending Finder sidebar Favorite: $name_of_favorite : “${file_url}”"
+  mysides add "$name_of_favorite" "$file_url"
+  
   report_end_phase_standard
 }
