@@ -176,6 +176,7 @@ FINDER_SIDEBAR_FAVORITES_BAREBONES=(
   "[\"Utilities\", \"/Applications/Utilities\"]"
   "[\"$USER\", \"~\"]"
   "[\"Library\", \"~/Library\"]"
+  "[\"Nonexistent file\", \"~/Library/nope\"]"
 )
 
 ############### States related to features of macOS
