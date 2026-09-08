@@ -139,6 +139,12 @@ function finder_sidebar_favorites_remove_all() {
 
 function finder_sidebar_favorites_add_name_and_file_url() {
   # Append Finder sidebar favorite defined by name and file_url.
+  # Assumes mysides command is provided by https://github.com/jeremy4971/mysides-swift
+  # NOTE: Although myside takes both a name and file-URL pair, macOS appears to ignore
+  #       the supplied name, instead always showing on the sidebar the item’s actual name
+  #       A workaround is to create an alias of the desired item, rename the alias to the
+  #       desired item name, and add the alias to the sidebar (rather than adding the
+  #       ultimate item to the sidebar).
   report_start_phase_standard
   
   local name_of_favorite="${1:?MISSING name}"
