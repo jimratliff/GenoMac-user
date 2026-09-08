@@ -63,7 +63,7 @@ GMU_INSTALLATION_SCRIPTS="${GMU_SCRIPTS}/installations"
 GMU_SETTINGS_SCRIPTS="${GMU_SCRIPTS}/settings"
 
 # ~/.genomac-user/scripts/utilities
-# Holds narrowly focused scripts to be individually accessed by make recipes
+# Holds narrowly focused scripts to be individually accessed by `just` recipes
 GMU_UTILITY_SCRIPTS="${GMU_SCRIPTS}/utilities"
 
 ############### ~/.genomac-user/stow_directory
