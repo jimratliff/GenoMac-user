@@ -69,7 +69,6 @@ function subdermis() {
   # Execute barebones bootstrap steps
   conditionally_perform_initial_bootstrap_operations          # scripts/settings/perform_initial_bootstrap_operations.sh
   conditionally_interactive_configure_screensaver             # scripts/settings/interactive_configure_screensaver.sh
-  create_directory_for_aliases_for_Dock                       # scripts/installations/make_directory_for_Dock_aliases.sh
 
   if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
 
