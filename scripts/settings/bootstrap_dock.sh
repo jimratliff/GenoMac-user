@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-# define_apps_for_dock is where user attributes are used to decide, for each user, which apps go in that user’s Dock.
+# define_apps_for_dock is where states derived from user attributes are used to decide,
+# for each user, which apps go in that user’s Dock.
 
 function bootstrap_dock() {
   # To be run only once per user to initially populate the persistent apps of,
@@ -69,11 +70,11 @@ function add_designated_directory_of_Finder_alias_files_to_Dock() {
   local already_present dock_item
   local domain="com.apple.dock"
   local file_url
-  
+
+  # convert_filesystem_path_to_file_url is from GenoMac-shared/scripts/helpers-files.sh
   file_url="$(convert_filesystem_path_to_file_url "$DIRECTORY_OF_ALIASES_FOR_DOCK")"
   file_url="${file_url%/}/"
 
-  # dock_persistent_others_contains_file_url is from GenoMac-shared/scripts/helpers-files.sh
   already_present="$(dock_persistent_others_contains_file_url "$file_url")"
 
   if [[ "$already_present" == "true" ]]; then
