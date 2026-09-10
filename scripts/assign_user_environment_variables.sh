@@ -118,6 +118,17 @@ USER_PREFPANE_DIRECTORY="$HOME/Library/PreferencePanes"
 WITCH_PREFPANE_NAME="Witch.prefPane"
 WITCH_PATH_TO_USER_PREFPANE="${USER_PREFPANE_DIRECTORY}/${WITCH_PREFPANE_NAME}"
 
+### Locations within $HOME/Documents
+
+# Obsidian-vault(s) directory
+USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
+
+# Directory for aliases to be referenced from the Dock
+DIRECTORY_OF_ALIASES_FOR_DOCK="$HOME/Documents/Aliases_for_Dock"
+
+# Repositories directory
+# HINT: USER_LOCAL_REPOSITORY_DIRECTORY="$HOME/Repositories"
+
 ########## Destinations within the Dropbox directory
 
 ##### Destinations within the cross-user common-preferences subdirectory of the Dropbox directory
@@ -149,11 +160,6 @@ USER_WALLPAPER_DIRECTORY="${USER_SPECIFIC_PREFS_DIRECTORY}/Mission_Control_wallp
 USER_SCREENSHOT_DESTINATION_DIRECTORY_BAREBONES="$HOME/Screenshots"
 USER_SCREENSHOT_DESTINATION_DIRECTORY_DROPBOX_USER="${USER_SUBDIRECTORY_OF_DROPBOX}/Screenshots"
 
-### Locations within $HOME/Documents
-USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
-
-### Repositories directory
-# HINT: USER_LOCAL_REPOSITORY_DIRECTORY="$HOME/Repositories"
 
 ############### Environment variables to support the Hypervisor
 
