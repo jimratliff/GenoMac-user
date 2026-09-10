@@ -17,6 +17,18 @@ function bootstrap_dock() {
   report_end_phase_standard
 }
 
+function bootstrap_Finder_aliases_folder_onto_Dock() {
+  # Adds a directory of Finder alias files persistently to the Dock
+  report_start_phase_standard
+
+  create_directory_for_aliases_for_Dock
+  
+  local domain="com.apple.dock"
+
+  
+  report_end_phase_standard
+}
+
 function bootstrap_dock_given_apps_for_dock() {
   # Constructs Dock arrangement from supplied array apps_for_dock
   
