@@ -1,16 +1,23 @@
 #!/usr/bin/env zsh
 
-function create_directory_for_aliases_for_Dock() {{
+function create_directory_for_aliases_for_Dock() {
   # Creates directory of aliases, which directory will reside in the Dock.
+  # Adds a README explaining purpose of this directory.
   #
-  # Doesn’t track (e.g., with a PERM or even a SESH state) whether this directory has been created before because
-  # it’s just as easy to do a `mkdir -p`
-  # But note then that this runs every time the Hypervisor is re-run, *even within the same session*.
+  # Executes unconditionally, i.e., even if this directory has been created previously.
+
   report_start_phase_standard
-  report_action_taken "Create local aliases directory that resides in the Dock, if necessary: ${DIRECTORY_OF_ALIASES_FOR_DOCK}"
+
+  local readme_file_path="${GMU_FILES_TO_COPY_ELSEWHERE}/0_README_aliases_for_Dock.md"
+
+  report_action_taken "Create directory for Finder alias files to be referenced from the Dock: “${DIRECTORY_OF_ALIASES_FOR_DOCK}”"
   mkdir -p "$DIRECTORY_OF_ALIASES_FOR_DOCK" ; success_or_not
   
   report_adjust_setting "Set permissions on local aliases-for-Dock directory"
   chmod 700 "$DIRECTORY_OF_ALIASES_FOR_DOCK" ; success_or_not
+
+  report_action_taken "Copy README to aliases-for-Dock directory, replacing any existing version"
+  cp -f "$readme_file_path" "$DIRECTORY_OF_ALIASES_FOR_DOCK/" ; success_or_not
+  
   report_end_phase_standard
 }
