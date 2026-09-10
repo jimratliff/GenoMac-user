@@ -147,7 +147,6 @@ function subdermis() {
     conditionally_install_Witch_license_files                 # scripts/settings/set_witch_settings.sh
     conditionally_interactive_enable_Witch                    # scripts/settings/set_witch_settings.sh
 
-    # TODOs: conditionally_configure_hiarcs_ce_pro
     # HIARCS Chess Explorer Pro must be configured *after* Keyboard Maestro, because activating HIARCS’s license uses a custom Keyboard Maestro macro
     conditionally_configure_hiarcs_ce_pro                     # scripts/settings/set_hiarcs_cd_pro_settings.sh
 
@@ -160,7 +159,7 @@ function subdermis() {
     conditionally_configure_spacejump
 
     # Implement user’s chosen Finder sidebar Favorites entries
-    conditionally_set_user_finder_sidebar_favorites             # scripts/settings/set_finder_sidebar_favorites.sh
+    conditionally_set_user_finder_sidebar_favorites           # scripts/settings/set_finder_sidebar_favorites.sh
     
   else
   
