@@ -1,6 +1,6 @@
 # Aliases for Dock
 
-This directory, `"~/Documents/Aliases_for_Dock"` is intended to house Finder alias files, which reference files/directories that the user can quickly open from the Dock.
+This directory, `"~/Documents/Aliases_for_Dock"` is intended to house Finder alias files which reference files/directories that the user can quickly open from the Dock.
 
 This directory is then intended to reside permanently in the Dock.
 
