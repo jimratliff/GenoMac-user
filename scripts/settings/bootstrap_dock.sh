@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
 
-# Define Dock persistent-app items
-#   Does not alter anything for non-persistent apps.
-#   Does not alter the defaults for the Downloads folder and the Trash Can on the furthest right-hand side of the Dock.
+# define_apps_for_dock is where user attributes are used to decide, for each user, which apps go in that user’s Dock.
 
 function bootstrap_dock() {
-  # To be run only once per user to initially populate the persistent apps of the Dock.
-  # It removes all persistent apps prior to repopulating the persistent apps.
+  # To be run only once per user to initially populate the persistent apps of,
+  # and add a directory of Finder alias files to, the Dock.
+  # Removes all persistent apps prior to repopulating the persistent apps but
+  # leaves existing persistent-others (the document side of the Dock) items alone.
   
   report_start_phase_standard
   local -a apps_for_dock
@@ -16,7 +16,7 @@ function bootstrap_dock() {
   bootstrap_dock_given_apps_for_dock "${apps_for_dock[@]}"
 
   # Add designated directory of Finder alias files to Dock
-  create_directory_for_aliases_for_Dock
+  create_directory_for_aliases_for_Dock                    # scripts/installations/make_directory_for_Dock_aliases.sh
   add_designated_directory_of_Finder_alias_files_to_Dock
   
   report_end_phase_standard
@@ -73,6 +73,7 @@ function add_designated_directory_of_Finder_alias_files_to_Dock() {
   file_url="$(convert_filesystem_path_to_file_url "$DIRECTORY_OF_ALIASES_FOR_DOCK")"
   file_url="${file_url%/}/"
 
+  # dock_persistent_others_contains_file_url is from GenoMac-shared/scripts/helpers-files.sh
   already_present="$(dock_persistent_others_contains_file_url "$file_url")"
 
   if [[ "$already_present" == "true" ]]; then
