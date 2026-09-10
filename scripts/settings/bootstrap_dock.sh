@@ -11,26 +11,20 @@ function bootstrap_dock() {
   report_start_phase_standard
   local -a apps_for_dock
 
+  # Add desired apps to Dock
   apps_for_dock=( "${(@f)$(define_apps_for_dock)}" )
   bootstrap_dock_given_apps_for_dock "${apps_for_dock[@]}"
-  
-  report_end_phase_standard
-}
 
-function bootstrap_Finder_aliases_folder_onto_Dock() {
-  # Adds a directory of Finder alias files persistently to the Dock
-  report_start_phase_standard
-
+  # Add designated directory of Finder alias files to Dock
   create_directory_for_aliases_for_Dock
-  
-  local domain="com.apple.dock"
-
+  add_designated_directory_of_Finder_alias_files_to_Dock
   
   report_end_phase_standard
 }
 
 function bootstrap_dock_given_apps_for_dock() {
-  # Constructs Dock arrangement from supplied array apps_for_dock
+  # Constructs Dock arrangement from supplied array apps_for_dock.
+  # Empties app side of Dock. Leaves document side (persistent-others) of Dock alone.
   
   report_start_phase_standard
 
@@ -53,12 +47,6 @@ function bootstrap_dock_given_apps_for_dock() {
   defaults delete "$domain" "$dock_persistent_apps_key" ; success_or_not
   kill_the_dock_metaphorically
   
-  # In this implementation, the 'persistent-others' key is not used.
-  # local dock_ephemeral_files_folders_key="persistent-others"
-  # Policy: Leave the non-persistent part of the Dock alone.
-  # report_adjust_setting "Delete file and folder entries from existing Dock"
-  # defaults delete $domain $dock_ephemeral_files_folders_key ; success_or_not
-  
   # Initialize the array
   report_action_taken_to_log "Initialize persistent-apps array" 
   defaults write "$domain" "$dock_persistent_apps_key" -array ; success_or_not
@@ -70,6 +58,33 @@ function bootstrap_dock_given_apps_for_dock() {
   done
   
   kill_the_dock_metaphorically
+  
+  report_end_phase_standard
+}
+
+function add_designated_directory_of_Finder_alias_files_to_Dock() {
+  # Adds the designated directory ($DIRECTORY_OF_ALIASES_FOR_DOCK) of Finder alias files to Dock.
+  
+  report_start_phase_standard
+  local already_present dock_item
+  local domain="com.apple.dock"
+  local file_url
+  
+  file_url="$(convert_filesystem_path_to_file_url "$DIRECTORY_OF_ALIASES_FOR_DOCK")"
+  file_url="${file_url%/}/"
+
+  already_present="$(dock_persistent_others_contains_file_url "$file_url")"
+
+  if [[ "$already_present" == "true" ]]; then
+    report_to_log "Skipping adding designated directory of Finder alias files to Dock, because that directory is already in the Dock."
+    report_end_phase_standard
+    return 0
+  fi
+
+  dock_item="$(dock_directory_entry "$file_url")"
+
+  report_action_taken "Add aliases-for-Dock directory to the Dock"
+  defaults write $domain persistent-others -array-add "$dock_item" ; success_or_not
   
   report_end_phase_standard
 }
@@ -201,3 +216,45 @@ function kill_the_dock_metaphorically() {
   
   report_end_phase_standard
 }
+
+function dock_persistent_others_contains_file_url() {
+  # Outputs 'true' or 'false' if supplied file URL already exists in the Dock.
+  report_start_phase_standard
+  local file_url="$1"
+
+  defaults export com.apple.dock - |
+    plutil -convert json -o - - |
+    jq -r --arg url "$file_url" '
+      any(
+        .["persistent-others"][]?;
+        .["tile-data"]["file-data"]["_CFURLString"] == $url
+      )
+    '
+  report_end_phase_standard
+}
+
+function dock_directory_entry() {
+  # Takes an encoded file URL for the directory to add to the Dock.
+  # Outputs the XML dictionary for the directory’s tile.
+  
+  report_start_phase_standard
+
+  local file_url="${1:?Expected an encoded directory file URL}"
+  
+  local escaped_url
+  
+  escaped_url="$(jq -nr --arg url "$file_url" '$url | @html')"
+
+  printf '<dict>
+    <key>tile-data</key><dict>
+      <key>file-data</key><dict>
+        <key>_CFURLString</key><string>%s</string>
+        <key>_CFURLStringType</key><integer>15</integer>
+      </dict>
+    </dict>
+    <key>tile-type</key><string>directory-tile</string>
+  </dict>\n' "$escaped_url"
+  
+  report_end_phase_standard
+}
+
