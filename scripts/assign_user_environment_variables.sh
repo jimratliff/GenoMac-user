@@ -33,6 +33,10 @@ GMU_RESOURCES="${GENOMAC_USER_LOCAL_DIRECTORY}/resources"
 # ~/.genomac-user/resources/docs_to_display_to_user
 GMU_DOCS_TO_DISPLAY="${GMU_RESOURCES}/docs_to_display_to_user"
 
+# Specify the local directory that holds files intended to be copied elsewhere
+# ~/.genomac-user/resources/files_to_be_copied_elsewhere
+GMU_FILES_TO_COPY_ELSEWHERE="${GMU_RESOURCES}/files_to_be_copied_elsewhere"
+
 # Specify the local directory that holds image-file resources
 # ~/.genomac-user/resources/images
 GMU_IMAGES="${GMU_RESOURCES}/images"
