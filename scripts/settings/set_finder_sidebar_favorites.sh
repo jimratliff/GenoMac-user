@@ -101,7 +101,7 @@ function set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
   # Preparation:
   # - The first element is interpreted as `name`
   # - The second element is interpreted as a filesystem path.
-  # - That filesystem path is converted to a `file:` URL.
+  # - That filesystem path is converted to a `file:` URL, expanding any `~`
   # - `prepared_tuple` reflects the same `name` and uses the `file:` URL rather than the original filesystem paty.
   
   for tuple in "${supplied_tuples[@]}"; do
