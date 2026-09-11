@@ -4,7 +4,7 @@ function conditionally_bootstrap_finder_sidebar_favorites_for_barebones_user() {
   report_start_phase_standard
 
   run_if_user_has_not_done \
-    "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED_FOR_BOOTSTRAP_USER" \
+    "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED_FOR_BAREBONES_USER" \
     bootstrap_user_finder_sidebar_favorites_for_barebones_user \
     "Skipping setting Finder sidebar Favorites items for barebones user, because this was done in the past."
   
@@ -15,7 +15,7 @@ function conditionally_set_user_finder_sidebar_favorites() {
   report_start_phase_standard
 
   run_if_user_has_not_done \
-    "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED" \
+    "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED_FOR_NONBAREBONES_USER" \
     set_user_finder_sidebar_favorites \
     "Skipping setting Finder sidebar Favorites items, because this was done in the past."
   
@@ -105,21 +105,10 @@ function set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
   # - `prepared_tuple` reflects the same `name` and uses the `file:` URL rather than the original filesystem paty.
   
   for tuple in "${supplied_tuples[@]}"; do
-    if ! jq -e '
-      type == "array"
-      and length == 2
-      and all(.[];
-        type == "string" and length > 0
-      )
-    ' <<<"$tuple" >/dev/null
-    then
-      report_fail "Invalid Finder sidebar Favorite tuple: $tuple"
-      return 1
-    fi
 
-    name="$(jq -r '.[0]' <<<"$tuple")"
-
-    filesystem_path="$(jq -r '.[1]' <<<"$tuple")"
+    parse_and_validate_json_2_tuple_of_nonempty_strings "$tuple"
+    name="${reply[1]}"
+    filesystem_path="${reply[2]}"
 
     file_url="$(convert_filesystem_path_to_file_url "$filesystem_path")"
 
