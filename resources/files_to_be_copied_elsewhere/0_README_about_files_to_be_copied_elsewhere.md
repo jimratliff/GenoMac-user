@@ -1,5 +1,8 @@
 # About the directory `files_to_be_copied_elsewhere`
 
+> [!NOTE]
+> This is the one file in this directory that is *not* intended to be copied elsewhere!
+
 This directory holds files that are meant to be copied elsewhere by either (a) a script or (b) a human acting manually.
 
 ## Guide to the files in this directory
