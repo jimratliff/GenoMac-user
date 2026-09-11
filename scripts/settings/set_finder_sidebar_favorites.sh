@@ -85,6 +85,17 @@ function set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
   fi
 
   # Validate and prepare all entries before clearing the sidebar.
+  # Validation:
+  # - Each tuple must be a valid JSON value. (Otherwise `jq` fails)
+  # - The JSON value is an array.
+  # - The array contains exactly two elements.
+  # - Each of these two elements is a non-empty string
+  # Preparation:
+  # - The first element is interpreted as `name`
+  # - The second element is interpreted as a filesystem path.
+  # - That filesystem path is converted to a `file:` URL.
+  # - `prepared_tuple` reflects the same `name` and uses the `file:` URL rather than the original filesystem paty.
+  
   for tuple in "${supplied_tuples[@]}"; do
     if ! jq -e '
       type == "array"
