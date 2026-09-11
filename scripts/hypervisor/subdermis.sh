@@ -160,6 +160,10 @@ function subdermis() {
 
     # Implement user’s chosen Finder sidebar Favorites entries
     conditionally_set_user_finder_sidebar_favorites           # scripts/settings/set_finder_sidebar_favorites.sh
+
+    # TODO WIP!
+    # Create aliases to the user’s chosen directories/files stored in designated directory in the Dock
+    # conditionally_alias_user_specific_objects_to_the_Dock
     
   else
   
