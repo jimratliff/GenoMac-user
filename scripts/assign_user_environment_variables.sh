@@ -189,7 +189,6 @@ FINDER_SIDEBAR_FAVORITES_BAREBONES=(
   "[\"Utilities\", \"/Applications/Utilities\"]"
   "[\"$USER\", \"~\"]"
   "[\"Library\", \"~/Library\"]"
-  "[\"♟️ Chess\", \"~/Documents/HIARCS Chess\"]"
 )
 
 ############### States related to features of macOS
