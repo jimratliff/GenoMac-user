@@ -12,4 +12,4 @@ This directory holds files that are meant to be copied elsewhere by either (a) a
   - This is a *template* for a particular user (a) to adapt/modify to their particular needs and (b) manually copy to `${USER_SPECIFIC_META_DIRECTORY}` (HINT: `USER_SPECIFIC_META_DIRECTORY=${LOCAL_DROPBOX_DIRECTORY}/Users/${USER}/Meta`).[^ALSO_IN_GENERIC]
  
 
-[^ALSO_IN_GENERIC]: Alternatively, this file is also in all users’ Dropbox at `~/…/Dropbox/Users/0_generic_skeleton/Prefs/Meta`. So the presence of this file here the repo at `resources/files_to_be_copied_elsewhere` can also be seen as a version-controlled version for copying to `~/…/Dropbox/Users/0_generic_skeleton/Prefs/Meta`.
+[^ALSO_IN_GENERIC]: Alternatively, this file is also in all users’ Dropbox at `~/…/Dropbox/Users/0_generic_skeleton/Prefs/Meta`. So the presence of this file here in the repo at `resources/files_to_be_copied_elsewhere` can also be seen as a version-controlled version for copying to `~/…/Dropbox/Users/0_generic_skeleton/Prefs/Meta`.
