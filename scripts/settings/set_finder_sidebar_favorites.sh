@@ -63,8 +63,16 @@ function set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
   # [display-name, filesystem-path] tuples.
   #
   # Usage:
-  #   set_user_finder_sidebar_favorites_from_array_of_2_tuples \
-  #     "${favorites[@]}"
+  #   set_user_finder_sidebar_favorites_from_array_of_2_tuples "${favorites[@]}"
+  #
+  # Example of JSON-encoded tuples:
+  #   FINDER_SIDEBAR_FAVORITES=(
+  #     "[\"Applications\", \"/Applications\"]"
+  #     "[\"Utilities\", \"/Applications/Utilities\"]"
+  #     "[\"$USER\", \"~\"]"
+  #     "[\"Library\", \"~/Library\"]"
+  #     "[\"♟️ Chess\", \"~/Documents/HIARCS Chess\"]"
+  #   )
 
   report_start_phase_standard
 
