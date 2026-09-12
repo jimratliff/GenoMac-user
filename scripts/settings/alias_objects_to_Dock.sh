@@ -13,7 +13,7 @@ function conditionally_create_user_specified_Finder_alias_files_in_Dock_folder()
 
 function create_user_specified_Finder_alias_files_in_Dock_folder_if_specified() {
   # Alias specified objects to the Dock’s aliases folder (DIRECTORY_OF_ALIASES_FOR_DOCK).
-  # Looks for a user-specific specification (in USER_SPECIFIC_OBJECT_TO_ALIAS_TO_THE_DOCK_FILE).
+  # Looks for a user-specific specification in a .jsonl file (USER_SPECIFIC_OBJECTS_TO_ALIAS_TO_THE_DOCK_FILE).
   # If not present, does nothing.
   #
   # HINT: DIRECTORY_OF_ALIASES_FOR_DOCK="$HOME/Documents/Aliases_for_Dock"
@@ -22,7 +22,7 @@ function create_user_specified_Finder_alias_files_in_Dock_folder_if_specified() 
 
   report_start_phase_standard
 
-  local file_to_read="$USER_SPECIFIC_OBJECT_TO_ALIAS_TO_THE_DOCK_FILE"
+  local file_to_read="$USER_SPECIFIC_OBJECTS_TO_ALIAS_TO_THE_DOCK_FILE"
 
   local -a tuples
 
@@ -64,7 +64,6 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
   local path_for_Finder_alias_file
   local tuple
   
-  local -a file_urls_for_Finder_alias_file=()
   local -a nicknames=()
   local -a original_filesystem_paths=()
   
@@ -77,7 +76,7 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
     return 0
   fi
 
-  # Validate all (nickname, original_filesystem_path) pairs before clearing existing aliases
+  # Validate all (nickname, original_filesystem_path) pairs before creating aliases
   for tuple in "${supplied_tuples[@]}"; do
 
     parse_and_validate_json_2_tuple_of_nonempty_strings "$tuple"
