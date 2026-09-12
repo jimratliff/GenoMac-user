@@ -1,17 +1,17 @@
 #!/usr/bin/env zsh
 
-function conditionally_alias_user_specific_objects_to_the_Dock() {
+function conditionally_create_user_specified_Finder_alias_files_in_Dock_folder() {
   report_start_phase_standard
 
   run_if_user_has_not_done \
     "$PERM_OBJECTS_HAVE_BEEN_ALIASED_TO_DOCK" \
-    alias_user_specific_objects_to_the_Dock \
+    create_user_specified_Finder_alias_files_in_Dock_folder_if_specified \
     "Skipping setting Finder sidebar Favorites items for barebones user, because this was done in the past."
   
   report_end_phase_standard
 }
 
-function alias_user_specific_objects_to_the_Dock_if_specified() {
+function create_user_specified_Finder_alias_files_in_Dock_folder_if_specified() {
   # Alias specified objects to the Dock’s aliases folder (DIRECTORY_OF_ALIASES_FOR_DOCK).
   # Looks for a user-specific specification (in USER_SPECIFIC_OBJECT_TO_ALIAS_TO_THE_DOCK_FILE).
   # If not present, does nothing.
