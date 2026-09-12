@@ -6,7 +6,7 @@ function conditionally_create_user_specified_Finder_alias_files_in_Dock_folder()
   run_if_user_has_not_done \
     "$PERM_OBJECTS_HAVE_BEEN_ALIASED_TO_DOCK" \
     create_user_specified_Finder_alias_files_in_Dock_folder_if_specified \
-    "Skipping setting Finder sidebar Favorites items for barebones user, because this was done in the past."
+    "Skipping creating Finder alias files in the Dock’s aliases folder, because this was done in the past."
   
   report_end_phase_standard
 }
@@ -28,7 +28,7 @@ function create_user_specified_Finder_alias_files_in_Dock_folder_if_specified() 
 
   # Looks for user-specific alias-to-Dock specifications
   if ! file_exists_and_is_readable "$file_to_read"; then
-    report_action_taken "Skipping aliasing objects to the Dock’s folder, because no user-specific specification file was found at “${file_to_read}”."
+    report_to_log "Skipping aliasing objects to the Dock’s folder, because no user-specific specification file was found at “${file_to_read}”."
     report_end_phase_standard
     return 0
   fi
@@ -66,6 +66,7 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
   
   local -a nicknames=()
   local -a original_filesystem_paths=()
+  local -a paths_for_Finder_alias_file=()
   
   local -A nicknames_previously_seen=()
 
@@ -75,6 +76,8 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
     report_end_phase_standard
     return 0
   fi
+
+  directory_of_aliases="$DIRECTORY_OF_ALIASES_FOR_DOCK"
 
   # Validate all (nickname, original_filesystem_path) pairs before creating aliases
   for tuple in "${supplied_tuples[@]}"; do
@@ -97,22 +100,27 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
       return 1
     fi
     original_filesystem_paths+=("$original_filesystem_path")
+
+    path_for_Finder_alias_file="${directory_of_aliases}/${nickname}"
+    if [[ -e "$path_for_Finder_alias_file" || -L "$path_for_Finder_alias_file" ]]; then
+      report_fail "I won’t create Finder alias file because an item already exists at: ${path_for_Finder_alias_file}"
+      return 1
+    fi
+    paths_for_Finder_alias_file+=("$path_for_Finder_alias_file")
 	
   done
 
-	# Create Finder alias files in DIRECTORY_OF_ALIASES_FOR_DOCK (a) pointing to original_filesystem_path
-	# and (b) named with desired nickname
-
-  directory_of_aliases="$DIRECTORY_OF_ALIASES_FOR_DOCK"
+  # Create Finder alias files in DIRECTORY_OF_ALIASES_FOR_DOCK (a) pointing to original_filesystem_path
+  # and (b) named with desired nickname
 	
-	mkdir -p "$directory_of_aliases"
+  mkdir -p -- "$directory_of_aliases"
   
   for (( index = 1; index <= ${#nicknames[@]}; ++index )); do
   
-    nickname="${nicknames[$index]}"
+    # nickname="${nicknames[$index]}"
+	
     original_filesystem_path="${original_filesystem_paths[$index]}"
-    
-    path_for_Finder_alias_file="${directory_of_aliases}/${nickname}"
+    path_for_Finder_alias_file="${paths_for_Finder_alias_file[$index]}"
     
     create_Finder_alias_file \
       --path_of_original "$original_filesystem_path" \
