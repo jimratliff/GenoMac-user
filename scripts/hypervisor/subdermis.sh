@@ -5,6 +5,7 @@ safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_development_clones.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_directory_for_Dock_aliases.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_repositories_directory_for_developers.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/alias_objects_to_Dock.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/helpers-toolbars.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_ask_initial_questions.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_1password.sh"
@@ -163,7 +164,7 @@ function subdermis() {
 
     # TODO WIP!
     # Create aliases to the user’s chosen directories/files stored in designated directory in the Dock
-    # conditionally_create_user_specified_Finder_alias_files_in_Dock_folder # scripts/settings/alias_objects_to_Dock.sh
+    # conditionally_create_user_specified_Finder_alias_files_in_Dock_folder       # scripts/settings/alias_objects_to_Dock.sh
     
   else
   
