@@ -26,7 +26,8 @@ function bootstrap_user_finder_sidebar_favorites_for_barebones_user() {
   # Bootstraps Finder sidebar favorites for barebones user
   report_start_phase_standard
 
-  set_user_finder_sidebar_favorites_from_array_of_2_tuples "${FINDER_SIDEBAR_FAVORITES_BAREBONES[@]}"
+  report_action_taken "Setting default Finder sidebar Favorites for barebones user."
+  indirectly_set_user_finder_sidebar_favorites_from_array_of_2_tuples "${FINDER_SIDEBAR_FAVORITES_BAREBONES[@]}"
   
   report_end_phase_standard
 }
@@ -45,27 +46,28 @@ function set_user_finder_sidebar_favorites() {
 
   # Looks for user-specific sidebar specifications; otherwise, fall back to defaults for barebones users.
   if ! file_exists_and_is_readable "$file_to_read"; then
-    report_to_log "Setting default Finder sidebar Favorites, because no user-specific specification file was found at “${file_to_read}”."
+    report_action_taken "Setting default Finder sidebar Favorites, because no user-specific specification file was found at “${file_to_read}”."
     bootstrap_user_finder_sidebar_favorites_for_barebones_user
     report_end_phase_standard
     return 0
   fi
 
-  get_array_from_json_lines_file "$file_to_read"
+  get_array_from_json_lines_file "$file_to_read" 								# GenoMac-shared/scripts/helpers-json.sh
   tuples=("${reply[@]}")
+  
   indirectly_set_user_finder_sidebar_favorites_from_array_of_2_tuples "${tuples[@]}"
   
   report_end_phase_standard
 }
 
 function indirectly_set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
-  # Replaces Finder sidebar Favorites using supplied JSON-encoded [nickname, filesystem-path] tuples.
+  # Replaces Finder sidebar Favorites using supplied JSON-encoded (nickname, filesystem-path) tuples.
   #
-  # macOS appears to ignore (e.g., when using mysides) a separately specified nickname for
-  # a Finder sidebar Favorite, using instead the filename part of the file’s path.
+  # macOS ignores (e.g., when using mysides) a separately specified nickname for a Finder sidebar
+  # Favorite, using instead the filename part of the file’s path as the name displayed on the sidebar.
   #
-  # Thus, we first create a Finder alias file (in FINDER_SIDEBAR_ALIASES_FOLDER) pointing
-  # at the desired filesystem-path but whose filename is the specified nickname.
+  # To work around this, we first create a Finder alias file (in FINDER_SIDEBAR_ALIASES_FOLDER) pointing
+  # to the desired filesystem-path but whose filename is the specified nickname.
   # Then we add that alias as the Finder’s sidebar Favorite, achieving indirectly (i.e., 
   # via an intermediate alias) the desired nickname to be displayed in Finder’s sidebar.
   #
@@ -100,7 +102,7 @@ function indirectly_set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
 
   # An empty supplied array leaves the existing Favorites unchanged.
   if (( ${#supplied_tuples[@]} == 0 )); then
-    report_to_log "Favorites array is empty. Leaving Favorites in Finder sidebar unchanged."
+    report_warning "Favorites array is empty. Leaving Favorites in Finder sidebar unchanged."
     report_end_phase_standard
     return 0
   fi
@@ -126,16 +128,16 @@ function indirectly_set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
       return 1
     fi
     original_filesystem_paths+=("$original_filesystem_path")
+	
   done
-  
-  # Prepare to create Finder alias files for each (nickname, original_filesystem_path) pair
 
 	# Create Finder alias files in FINDER_SIDEBAR_ALIASES_FOLDER (a) pointing to original_filesystem_path
 	# and (b) named with desired nickname
 	
 	mkdir -p "$FINDER_SIDEBAR_ALIASES_FOLDER"
-  report_action_taken "Removing existing files from Finder sidebar Favorites alias directory."
-  rm -rf -- "$FINDER_SIDEBAR_ALIASES_FOLDER"/*(DN) ; success_or_not
+  
+  report_action_taken_to_log "Removing existing Finder alias files from Finder sidebar Favorites alias directory."
+  remove_Finder_alias_files_from_directory "$FINDER_SIDEBAR_ALIASES_FOLDER"
   
   for (( index = 1; index <= ${#nicknames[@]}; ++index )); do
   
@@ -154,13 +156,15 @@ function indirectly_set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
     
   done
 
-  report_action_taken "Removing all existing Finder sidebar Favorites."
-  finder_sidebar_favorites_remove_all ; success_or_not
+  report_action_taken_to_log "Removing all existing Finder sidebar Favorites."
+  finder_sidebar_favorites_remove_all
   
   # Add Favorites to Finder’s sidebar
   for (( index = 1; index <= ${#nicknames[@]}; ++index )); do
+    nickname="${nicknames[$index]}"
+    report_to_log "Add “${nickname}” to Finder sidebar Favorites"
     finder_sidebar_favorites_add_name_and_file_url \
-      "${nicknames[$index]}" \
+      "$nickname" \
       "${file_urls_for_Finder_alias_file[$index]}"
   done
 
