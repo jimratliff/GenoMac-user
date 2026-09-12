@@ -163,7 +163,7 @@ function subdermis() {
 
     # TODO WIP!
     # Create aliases to the user’s chosen directories/files stored in designated directory in the Dock
-    # conditionally_alias_user_specific_objects_to_the_Dock
+    # conditionally_create_user_specified_Finder_alias_files_in_Dock_folder # scripts/settings/alias_objects_to_Dock.sh
     
   else
   
