@@ -64,7 +64,6 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
   local path_for_Finder_alias_file
   local tuple
   
-  local -a nicknames=()
   local -a original_filesystem_paths=()
   local -a paths_for_Finder_alias_files=()
   
@@ -72,7 +71,7 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
 
   # An empty supplied array causes normal exit.
   if (( ${#supplied_tuples[@]} == 0 )); then
-    report_warning "Array of objects to alias to Dock is empty. Moving on…."
+    report_warning "Array of objects to alias to Dock is empty. Moving on…"
     report_end_phase_standard
     return 0
   fi
@@ -91,7 +90,6 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
       return 1
     fi
     nicknames_previously_seen[$nickname]=1
-    nicknames+=("$nickname")
     
     original_filesystem_path="${reply[2]}"
     original_filesystem_path="$(expand_user_home_in_filesystem_path "$original_filesystem_path")"
@@ -115,9 +113,7 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
 	
   mkdir -p -- "$directory_of_aliases"
   
-  for (( index = 1; index <= ${#nicknames[@]}; ++index )); do
-  
-    # nickname="${nicknames[$index]}"
+  for (( index = 1; index <= ${#original_filesystem_paths[@]}; ++index )); do
 	
     original_filesystem_path="${original_filesystem_paths[$index]}"
     path_for_Finder_alias_file="${paths_for_Finder_alias_files[$index]}"
