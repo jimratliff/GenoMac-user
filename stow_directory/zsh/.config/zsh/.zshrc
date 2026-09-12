@@ -33,6 +33,9 @@ sock="$HOME/.1password/agent.sock"
 # Default editor (respect existing value if set upstream)
 : "${EDITOR:=bbedit}"
 
+# Ring the terminal bell when sudo asks for a password.
+export SUDO_PROMPT=$'\aPassword: '
+
 # ======================================================================
 # Aliases (located adjacent to this .zshrc file)
 # ======================================================================
