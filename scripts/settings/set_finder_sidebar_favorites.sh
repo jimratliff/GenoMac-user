@@ -93,23 +93,13 @@ function set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
   fi
 
   # Validate and prepare all entries before clearing the sidebar.
-  # Validation:
-  # - Each tuple must be a valid JSON value. (Otherwise `jq` fails)
-  # - The JSON value is an array.
-  # - The array contains exactly two elements.
-  # - Each of these two elements is a non-empty string
-  # Preparation:
-  # - The first element is interpreted as `name`
-  # - The second element is interpreted as a filesystem path.
-  # - That filesystem path is converted to a `file:` URL, expanding any `~`
-  # - `prepared_tuple` reflects the same `name` and uses the `file:` URL rather than the original filesystem paty.
-  
   for tuple in "${supplied_tuples[@]}"; do
 
     parse_and_validate_json_2_tuple_of_nonempty_strings "$tuple"
     name="${reply[1]}"
     filesystem_path="${reply[2]}"
 
+    # Convert path to `file:` URL, while expanding any `~`s.
     file_url="$(convert_filesystem_path_to_file_url "$filesystem_path")"
 
     prepared_tuple="$(
@@ -130,7 +120,7 @@ function set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
   for tuple in "${prepared_tuples[@]}"; do
     name="$(jq -r '.[0]' <<<"$tuple")"
     file_url="$(jq -r '.[1]' <<<"$tuple")"
-
+    
     finder_sidebar_favorites_add_name_and_file_url "$name" "$file_url"
   done
 
