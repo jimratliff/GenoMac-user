@@ -66,7 +66,7 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
   
   local -a nicknames=()
   local -a original_filesystem_paths=()
-  local -a paths_for_Finder_alias_file=()
+  local -a paths_for_Finder_alias_files=()
   
   local -A nicknames_previously_seen=()
 
@@ -106,7 +106,7 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
       report_fail "I won’t create Finder alias file because an item already exists at: ${path_for_Finder_alias_file}"
       return 1
     fi
-    paths_for_Finder_alias_file+=("$path_for_Finder_alias_file")
+    paths_for_Finder_alias_files+=("$path_for_Finder_alias_file")
 	
   done
 
@@ -120,7 +120,7 @@ function alias_user_specific_objects_to_the_Dock_from_array_of_2_tuples() {
     # nickname="${nicknames[$index]}"
 	
     original_filesystem_path="${original_filesystem_paths[$index]}"
-    path_for_Finder_alias_file="${paths_for_Finder_alias_file[$index]}"
+    path_for_Finder_alias_file="${paths_for_Finder_alias_files[$index]}"
     
     create_Finder_alias_file \
       --path_of_original "$original_filesystem_path" \
