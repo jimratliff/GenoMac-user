@@ -89,13 +89,18 @@ GENOMAC_USER_CONFIG="${XDG_CONFIG_HOME}/genomac-user"
 # stow_directory/git/.config/git/config
 GENOMAC_USER_GITCONFIG_OVERRIDE="${GENOMAC_USER_CONFIG}/git/gitconfig-personal"
 
+# TODO: GENOMAC_USER_AUXILIARY_DIRECTORY appears never to be used 
 # ~/.genomac-user-auxiliary
 # The GenoMac-user auxiliary directory lives outside the cloned repo to provide a home
 # for files that should not show up as uncommitted changes to GenoMac-user itself
 GENOMAC_USER_AUXILIARY_DIRECTORY="${GENOMAC_USER_LOCAL_DIRECTORY}-auxiliary"
 
 # ~/.genomac-user-auxiliary/gitconfig
+# WARNING: I commented out the following because it’s mistaken. The lhs should be a different name!
 #GENOMAC_USER_AUXILIARY_DIRECTORY="${GENOMAC_USER_AUXILIARY_DIRECTORY}/gitconfig"
+
+# HINT: GENOMAC_USER_LOCAL_DIRECTORY="$HOME/.genomac-user"
+FINDER_SIDEBAR_ALIASES_FOLDER="${GENOMAC_USER_LOCAL_DIRECTORY}-finder-sidebar-aliases"
 
 # ~/.genomac-detective
 # Specify the local directory into which the diff results of defaults_detective
