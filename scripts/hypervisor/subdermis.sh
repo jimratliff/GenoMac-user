@@ -17,7 +17,6 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_notion.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_obsidian.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_proton_drive.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_screensaver.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_sync_com.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_touch_id.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_create_mission_control_spaces.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_git_config_user.sh"
@@ -39,6 +38,9 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/set_wallpapers.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_waterfox_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_witch_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/user_attribute_functions.sh"
+
+# DEPRECATED: TO BE REMOVED
+safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_sync_com.sh"
 
 function subdermis() {
 
@@ -105,7 +107,9 @@ function subdermis() {
   
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
-  conditionally_configure_Sync_com                            # scripts/settings/interactive_configure_sync_com.sh
+
+  # DEPRECATED: TO BE REMOVED
+  # conditionally_configure_Sync_com                            # scripts/settings/interactive_configure_sync_com.sh
 
   # TODOs: conditionally_configure_Proton_Drive
   conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
