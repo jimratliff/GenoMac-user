@@ -1,4 +1,31 @@
-"🪚 Applications", "/Applications"]
+# This file is a template to be copied to a particular user’s ~/…/Dropbox/Users/$USER/Prefs/Meta
+# directory.
+#
+# This template is designed to have a variety of (name, path) pairs that might be useful
+# to a particular user, so that the unhelpful lines can be deleted and other lines added.
+#
+# This file may have (a) leading comment lines (beginning with a '#') and (b) blank lines
+# throughout.
+
+["⬇️⬇️ -- 🌐 -- ⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["⬇️⬇️ -- 🖥️ -- ⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["🪚 Applications", "/Applications"]
 ["🛠️ Utilities", "/Applications/Utilities"]
+["⬇️⬇️ -- 🏠 -- ⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
 ["🏠 some-user", "~"]
-["Library", "~/Library"]
+["⬇️⬇️--PROTON--⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["⬇️⬇️--DROPBOX--⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["Dropbox", "~/Library/CloudStorage/Dropbox"]
+["⬇️--DB/Users--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["⬇️--DB/Users/Me--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["⬇️--DB/Users/🤷🏻--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["⬇️--DB/etc--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["⬇️⬇️---SYNC----⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
