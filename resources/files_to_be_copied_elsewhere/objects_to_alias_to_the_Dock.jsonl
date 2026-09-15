@@ -1,2 +1,27 @@
+# This file (i.e., at `~/…/Dropbox/Users/jim/Prefs/Meta/objects_to_alias_to_the_Dock.jsonl`)
+# is a template to be copied to a particular user’s ``~/…/Dropbox/Users/$USER/Prefs/Meta`
+# directory, from which location it would be customized to the particular user’s
+# desires.
+#
+# The ultimate file for a particular user includes an ordered list of JSON ["nickname", "path"]
+# pairs of objects (files or directories) that will be aliased (as Finder alias files)
+# and moved into "$HOME/Documents/Aliases_for_Dock"
+#
+# Typically:
+# - one pair per line
+# - no comma at the end of any pair
+# - blank lines are OK.
+#
+# The path can start with '~' or '~/', in which case the '~' will be expanded to be "$HOME".
+# The nickname can either be (a) the filename-only part of the path or (b) a different
+# string that should appear as the Finder sidebar Favorite. In this case, the nickname
+# nevertheless must be a valid filename. 
+#
+# This template is designed to have a variety of (name, path) pairs that might be useful
+# to a particular user, so that the unhelpful lines can be deleted and other lines added.
+#
+# This file may have (a) leading comment lines (beginning with a '#') and (b) blank lines
+# throughout.
+
 ["Assets_&_liabilities Spreadsheet", "~/Documents/Personal_Finance/Key_spreadsheets/Assets_&_liabilities.xlsx"]
 ["Acme Bank checks spreadsheet", "~/Documents/Personal_Finance/Key_spreadsheets/Acme_Bank_checks_spreadsheet.xlsx"]
