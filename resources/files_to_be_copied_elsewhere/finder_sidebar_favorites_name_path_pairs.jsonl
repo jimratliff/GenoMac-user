@@ -1,31 +1,70 @@
-# This file is a template to be copied to a particular user’s ~/…/Dropbox/Users/$USER/Prefs/Meta
-# directory.
+# This file (i.e., at `~/…/Dropbox/Users/jim/Prefs/Meta/finder_sidebar_favorites_name_path_pairs.jsonl`)
+# is a template to be copied to a particular user’s ``~/…/Dropbox/Users/$USER/Prefs/Meta`
+# directory, from which location it would be customized to the particular user’s
+# desires.
+#
+# The ultimate file for a particular user includes an ordered list of JSON ["nickname", "path"]
+# pairs of objects (files or directories) to be added to the Finder’s sidebar as Favorites.
+#
+# Typically:
+# - one pair per line
+# - no comma at the end of any pair
+# - blank lines are OK.
+#
+# The path can start with '~' or '~/', in which case the '~' will be expanded to be "$HOME".
+# The nickname can either be (a) the filename-only part of the path or (b) a different
+# string that should appear as the Finder sidebar Favorite. In this case, the nickname
+# nevertheless must be a valid filename. 
 #
 # This template is designed to have a variety of (name, path) pairs that might be useful
 # to a particular user, so that the unhelpful lines can be deleted and other lines added.
 #
 # This file may have (a) leading comment lines (beginning with a '#') and (b) blank lines
 # throughout.
+#
+# A guide to some of the below separators:
+#   ⬇️⬇️ -- 🌐 -- ⬇️⬇️				Items directly below are in the network scope, e.g., AirDrop,
+#                             connected servers, etc.
+#   ⬇️⬇️ -- 🖥️ -- ⬇️⬇️				Items directly below are at the computer level (but above
+#                              the user level), e.g., `/Applications`
+#   ⬇️⬇️ -- 🏠 -- ⬇️⬇️       Items directly below are at the active-user level
+#   ⬇️⬇️--PROTON--⬇️⬇️       Items directly below are in the Proton Drive cloud service.
+#   ⬇️⬇️--DROPBOX--⬇️⬇️      Items directly below are in the Dropbox cloud service
+#   ⬇️--DB/Users--⬇️         Items directly below are in the 'Users' subdirectory of Dropbox
+#   ⬇️--DB/Users/Me--⬇️      Items directly below are in the particular active user’s 
+#                             subdirectory of the Dropbox/Users directory. ('Me' could be 
+#                             changed to the user’s actual shortname.)
+#   ⬇️--DB/Users/🤷🏻--⬇️      Items directly below are in some other user’s subdirectory
+#                             of the Dropbox/Users directory.
+#   ⬇️--DB/etc--⬇️            Items directly below are (a) in Dropbox but (b) outside
+#                             Dropbox/Users
+#   --------------------n     Used as miscellaneous visual separators to deploy where
+#                             helpful in the Finder’s sidebar Favorites area. (The digit(s)
+#                             is/are there to make each separator uniquely named.)
 
-["⬇️⬇️ -- 🌐 -- ⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["⬇️⬇️ -- 🖥️ -- ⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["⬇️⬇️ -- 🌐 -- ⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/⬇️⬇️ -- 🌐 -- ⬇️⬇️"]
+["⬇️⬇️ -- 🖥️ -- ⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/⬇️⬇️ -- 🖥️ -- ⬇️⬇️"]
 ["🪚 Applications", "/Applications"]
 ["🛠️ Utilities", "/Applications/Utilities"]
-["⬇️⬇️ -- 🏠 -- ⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["🏠 some-user", "~"]
-["⬇️⬇️--PROTON--⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["⬇️⬇️--DROPBOX--⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["⬇️⬇️ -- 🏠 -- ⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/⬇️⬇️ -- 🏠 -- ⬇️⬇️"]
+["🏠 this-user", "~"]
+["Documents", "~/Documents"]
+["Music", "~/Music"]
+["Pictures", "~/Pictures"]
+["⬇️⬇️--PROTON--⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/⬇️⬇️--PROTON--⬇️⬇️"]
+["⬇️⬇️--DROPBOX--⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/⬇️⬇️--DROPBOX--⬇️⬇️"]
 ["Dropbox", "~/Library/CloudStorage/Dropbox"]
-["⬇️--DB/Users--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["⬇️--DB/Users/Me--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["⬇️--DB/Users/🤷🏻--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["⬇️--DB/etc--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["Library", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
-["⬇️⬇️---SYNC----⬇️⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/"]
+["⬇️--DB/Users--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/⬇️--DB/Users--⬇️"]
+["⬇️--DB/Users/Me--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/⬇️--DB/Users/Me--⬇️"]
+["⬇️--DB/Users/🤷🏻--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/⬇️--DB/Users/🤷🏻--⬇️"]
+["⬇️--DB/etc--⬇️", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/⬇️--DB/etc--⬇️"]
+["--------------------1", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/--------------------1"]
+["--------------------2", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/--------------------2"]
+["--------------------3", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/--------------------3"]
+["--------------------4", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/--------------------4"]
+["--------------------5", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/--------------------5"]
+["--------------------6", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/--------------------6"]
+["--------------------7", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/--------------------7"]
+["--------------------8", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/--------------------8"]
+["--------------------9", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/--------------------9"]
+["--------------------10", "~/Library/CloudStorage/Dropbox/Preferences_common/Sidebar_dividers/--------------------10"]
