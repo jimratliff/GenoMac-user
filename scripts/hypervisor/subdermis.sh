@@ -39,9 +39,6 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/set_waterfox_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_witch_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/user_attribute_functions.sh"
 
-# DEPRECATED: TO BE REMOVED
-safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_sync_com.sh"
-
 function subdermis() {
 
   report_start_phase_standard
