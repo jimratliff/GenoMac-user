@@ -194,6 +194,7 @@ FINDER_SIDEBAR_FAVORITES_BAREBONES=(
   "[\"🛠️ Utilities\", \"/Applications/Utilities\"]"
   "[\"🏠 $USER\", \"~\"]"
   "[\"Library\", \"~/Library\"]"
+  "[\"🔻 Downloads\", \"~/Downloads\"]"
 )
 
 ############### States related to features of macOS
