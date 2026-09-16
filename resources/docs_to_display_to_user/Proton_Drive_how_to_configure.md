@@ -6,6 +6,11 @@
 
 ## Make Proton Drive active and open its Settings
 - ❑ Make Proton Drive active. (GenoMac-user will have already launched Proton Drive).
+- Because you are not currently logged into a Proton Drive account, a sign-in dialog box will appear.
+- ❑ Enter your (a) Email/username and (b) Password into their respective text fields in the sign-in dialog box.
+
+
+
 - ❑ Open Proton Drive’s Settings… (⌘,)
 
 ## EVERYTHING BELOW HERE NEEDS TO BE REVISITED
