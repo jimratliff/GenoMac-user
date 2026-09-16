@@ -220,20 +220,51 @@ function kill_the_dock_metaphorically() {
 }
 
 function dock_persistent_others_contains_file_url() {
-  # Outputs 'true' or 'false' if supplied file URL already exists in the Dock.
-  report_start_phase_standard
-  local file_url="$1"
+  # Outputs true or false; errors terminate execution.
+  report_start_phase_standard >&2
 
-  defaults export com.apple.dock - |
-    plutil -convert json -o - - |
-    jq -r --arg url "$file_url" '
-      any(
-        .["persistent-others"][]?;
-        .["tile-data"]["file-data"]["_CFURLString"] == $url
-      )
-    '
-  report_end_phase_standard
+  local file_url="$1"
+  local result
+
+  result="$(
+    defaults export com.apple.dock - |
+      python3 -c '
+import plistlib
+import sys
+
+dock = plistlib.load(sys.stdin.buffer)
+url = sys.argv[1]
+
+found = any(
+    tile.get("tile-data", {})
+        .get("file-data", {})
+        .get("_CFURLString") == url
+    for tile in dock.get("persistent-others", [])
+)
+
+print("true" if found else "false")
+' "$file_url"
+  )"
+
+  report_end_phase_standard >&2
+  print -r -- "$result"
 }
+
+#  function dock_persistent_others_contains_file_url() {
+#    # Outputs 'true' or 'false' if supplied file URL already exists in the Dock.
+#    report_start_phase_standard
+#    local file_url="$1"
+#  
+#    defaults export com.apple.dock - |
+#      plutil -convert json -o - - |
+#      jq -r --arg url "$file_url" '
+#        any(
+#          .["persistent-others"][]?;
+#          .["tile-data"]["file-data"]["_CFURLString"] == $url
+#        )
+#      '
+#    report_end_phase_standard
+#  }
 
 function dock_directory_entry() {
   # Takes an encoded file URL for the directory to add to the Dock.
