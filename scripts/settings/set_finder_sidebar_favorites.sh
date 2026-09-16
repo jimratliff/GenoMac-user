@@ -36,6 +36,9 @@ function set_user_finder_sidebar_favorites() {
   # Implements Finder sidebar Favorites, looking first for a user-specific specification.
   # If not present, falls back to the default set of Favorites for a barebones user.
   #
+  # The user-specific specification is expected to be at USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE.
+  # The file/folder at the file path of each [nickname, file-path] pair must exist.
+  #
   # HINT: USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILENAME="finder_sidebar_favorites_name_path_pairs.jsonl"
   # HINT: USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE="${USER_SPECIFIC_META_DIRECTORY}/${USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILENAME}"
   report_start_phase_standard
@@ -62,6 +65,8 @@ function set_user_finder_sidebar_favorites() {
 
 function indirectly_set_user_finder_sidebar_favorites_from_array_of_2_tuples() {
   # Replaces Finder sidebar Favorites using supplied JSON-encoded (nickname, filesystem-path) tuples.
+  #
+  # The file/folder at filesystem-path must exist at the time this function is executed.
   #
   # macOS ignores (e.g., when using mysides) a separately specified nickname for a Finder sidebar
   # Favorite, using instead the filename part of the file’s path as the name displayed on the sidebar.
