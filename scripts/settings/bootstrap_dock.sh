@@ -232,7 +232,7 @@ function dock_persistent_others_contains_file_url() {
 import plistlib
 import sys
 
-dock = plistlib.load(sys.stdin.buffer)
+dock = plistlib.loads(sys.stdin.buffer.read())
 url = sys.argv[1]
 
 found = any(
