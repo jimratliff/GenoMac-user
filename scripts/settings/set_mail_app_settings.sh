@@ -38,37 +38,30 @@ function conditionally_configure_mail_app() {
 function interactive_configure_internet_accounts() {
   # Interactively configure at least one internet account.
   #
-  # - Looks for an optional user-specific Markdown file in $USER_SPECIFIC_META_DIRECTORY
+  # - Looks for an optional user-specific Markdown file in $USER_SPECIFIC_META_DIRECTORY (e.g., ~/Dropbox/Prefs/Meta)
   #   to be displayed via QuickLook to guide the user through interactively configuring
   #   internet accounts.
   # - If this file is not present, an alternative, default document is displayed instead.
-  
-  report_start_phase_standard
-
-
+  #
   # Looks for optional user-specific Markdown file $USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE
   # in $USER_SPECIFIC_META_DIRECTORY (Dropbox/Prefs/Meta).
   # If present, displays to user. Otherwise, displays the alternative, default Markdown document
   # "Internet_Accounts_how_to_configure_accounts.md" from GenoMac-user.
+  
+  report_start_phase_standard
 
-  # Initialize markdown_file_to_display to default not-user-specific file
-  local markdown_file_to_display="${GMU_DOCS_TO_DISPLAY}/Internet_Accounts_how_to_configure_accounts.md"
+  local default_markdown_page_file
+  local markdown_file_to_display
+  local user_specific_markdown_page_file
 
-  if file_exists_and_is_readable "$USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE"; then
-    markdown_file_to_display="${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
+  default_markdown_page_file="${GMU_DOCS_TO_DISPLAY}/${INTERNET_ACCOUNTS_MARKDOWN_PAGE_FILENAME}"
+  user_specific_markdown_page_file="${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
+
+  if file_exists_and_if_so_is_readable "$user_specific_markdown_page_file"; then
+    markdown_file_to_display="$user_specific_markdown_page_file"
+  else
+    markdown_file_to_display="$default_markdown_page_file"
   fi
-
-#   if [[ ! -e "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}" ]]; then
-#     report_to_log "No user-specific internet-accounts instructions exist for user ${USER}."
-#   elif [[
-#     ! -f "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}" ||
-#     ! -r "${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
-#   ]]; then
-#     report_fail "The user-specific internet-accounts instructions exist but aren’t a readable regular file.${NEWLINE}See ${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
-#     return 1
-#   else
-#     markdown_file_to_display="${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
-#   fi
 
   report "Time to configure at least one internet account!${NEWLINE}I’ll launch System Settings » Internet Accounts with instructions for next steps"
   launch_app_and_prompt_user_to_act \
