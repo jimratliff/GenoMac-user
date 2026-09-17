@@ -107,9 +107,6 @@ function subdermis() {
 
   # DEPRECATED: TO BE REMOVED
   # conditionally_configure_Sync_com                            # scripts/settings/interactive_configure_sync_com.sh
-
-  # TODOs: conditionally_configure_Proton_Drive
-  conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
   
   # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user,
   # GenoMac-shared, and GenoMac-private at ~/Repositories/Project_GenoMac
@@ -118,9 +115,6 @@ function subdermis() {
   conditionally_interactive_configure_Notion                  # scripts/settings/interactive_configure_notion.sh
 
   conditionally_interactive_configure_Obsidian                # scripts/settings/interactive_configure_obsidian.sh
-
-  # TODOs: conditionally_configure_mail_app
-  conditionally_configure_mail_app                            # scripts/settings/set_mail_app_settings.sh
   
   conditionally_configure_microsoft_word                      # scripts/settings/set_microsoft_word_settings.sh
   
@@ -149,7 +143,12 @@ function subdermis() {
     conditionally_install_Witch_license_files                 # scripts/settings/set_witch_settings.sh
     conditionally_interactive_enable_Witch                    # scripts/settings/set_witch_settings.sh
 
-    # HIARCS Chess Explorer Pro must be configured *after* Keyboard Maestro, because activating HIARCS’s license uses a custom Keyboard Maestro macro
+    # Configuration of Mail.app relies on Dropbox only because there *may* be user-specific instructions stored in the
+    # user’s Dropbox
+    conditionally_configure_mail_app                            # scripts/settings/set_mail_app_settings.sh
+
+    # HIARCS Chess Explorer Pro must be configured *after* Keyboard Maestro, because activating HIARCS’s license uses a
+    # custom Keyboard Maestro macro
     conditionally_configure_hiarcs_ce_pro                     # scripts/settings/set_hiarcs_cd_pro_settings.sh
 
     # Deploy wallpapers to each Space
@@ -159,6 +158,11 @@ function subdermis() {
     # Configure SpaceJump to show name of each Mission Control Space
     # Located here because wallpaper collection stored in Dropbox is the source of Space names.
     conditionally_configure_spacejump
+
+    # Configuration of Proton Drive relies on Dropbox only because there *may* be user-specific instructions stored in the
+    # user’s Dropbox
+    # TODOs: conditionally_configure_Proton_Drive
+    conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
 
     # Implement user’s chosen Finder sidebar Favorites entries
     conditionally_set_user_finder_sidebar_favorites           # scripts/settings/set_finder_sidebar_favorites.sh
