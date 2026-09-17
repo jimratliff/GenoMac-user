@@ -48,7 +48,7 @@ function set_user_finder_sidebar_favorites() {
   local -a tuples
 
   # Looks for user-specific sidebar specifications; otherwise, fall back to defaults for barebones users.
-  if ! file_exists_and_is_readable "$file_to_read"; then
+  if ! file_exists_and_if_so_is_readable "$file_to_read"; then
     report_action_taken "Setting default Finder sidebar Favorites, because no user-specific specification file was found at “${file_to_read}”."
     bootstrap_user_finder_sidebar_favorites_for_barebones_user
     report_end_phase_standard
