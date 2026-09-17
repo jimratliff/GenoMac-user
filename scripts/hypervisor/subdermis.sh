@@ -188,8 +188,14 @@ function subdermis() {
 
 function end_of_subdermis_cleanup() {
   report_start_phase_standard
+
+  if ! test_genomac_user_state "$SESH_A_TASK_HAS_BEEN_DEFERRED"; then
+    unmark_current_user_as_in_need_of_initial_config            # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
+    report "User “${USER}” has been marked as configured"
+  else
+    report_warning "User “${USER}” has NOT been marked as configured because at least one task has been deferred."
+  fi
   
-  unmark_current_user_as_in_need_of_initial_config            # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
   display_users_to_be_initially_configured                    # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
   
   report_end_phase_standard
