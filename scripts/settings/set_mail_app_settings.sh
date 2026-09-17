@@ -43,10 +43,6 @@ function interactive_configure_internet_accounts() {
   #   internet accounts.
   # - If this file is not present, an alternative, default document is displayed instead.
   #
-  # Looks for optional user-specific Markdown file $USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE
-  # in $USER_SPECIFIC_META_DIRECTORY (Dropbox/Prefs/Meta).
-  # If present, displays to user. Otherwise, displays the alternative, default Markdown document
-  # "Internet_Accounts_how_to_configure_accounts.md" from GenoMac-user.
   
   report_start_phase_standard
 
