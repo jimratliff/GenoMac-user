@@ -27,7 +27,7 @@ function create_user_specified_Finder_alias_files_in_Dock_folder_if_specified() 
   local -a tuples
 
   # Looks for user-specific alias-to-Dock specifications
-  if ! file_exists_and_is_readable "$file_to_read"; then
+  if ! file_exists_and_if_so_is_readable "$file_to_read"; then
     report_to_log "Skipping aliasing objects to the Dock’s folder, because no user-specific specification file was found at “${file_to_read}”."
     report_end_phase_standard
     return 0
