@@ -54,6 +54,8 @@
         - Button: “Allow”
           - But this button seems moot, because the other dialog box dismisses this dialog box.
     - A Finder window pointing to the local Dropbox directory (with no obvious path information)
+      - Near the top of this Finder window is stated: “‘Dropbox’ is not enabled. To access ‘Dropbox’ click Enable.
+      - ❑ Click the “Enable” button.
 - New window: “More reasons to love Dropbox”
   - “Your Dropbox now lives in a secure location”
   - “Dropbox can be accessed from the shortcut under Locations in Finder.”
