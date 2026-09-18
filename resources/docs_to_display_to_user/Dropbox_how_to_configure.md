@@ -12,7 +12,7 @@
 - This launches your default browser
   - The URL of the new browser window is www.dropbox.com/oath2/…
   - “Log in or sign up to Dropbox to link with Dropbox”
-  - This could require (a) an email address, (b) a password, and (c) a 2FA using an authenticator device
+  - This could require (a) an email address, (b) a password, (c) a 2FA using an authenticator device, or (d) a passkey.
   - ❑ Log into Dropbox
   - ❑ In a popup dialog box, agree to “Allow this site to open the dropbox-client link with Dropbox?”
       - Also ✅ for “Always allow https://www.dropbox.com to open dropbox-client links”
