@@ -32,6 +32,11 @@ You can register Keyboard Maestro (which requires an email address and serial nu
     email-address and serial-number fields with the credentials under which my Keyboard Maestro is registered.
     - Note that these credentials do *not* exist in this repo, but rather are stored in my securely privately synced macro set.
   - Note that this Keyboard Maestro macro will be visible under the Keyboard Maestro menubar status icon *only* when either (a) Keyboard Maestro or (b) Alfred Preferences is the active app.
+
+> [!NOTE]
+> If the “Register Keyboard Maestro…” item doesn’t appear in the Keyboard Maestro status menu, quit Keyboard Maestro (and the Editor) and relaunch.
+> (I had this problem on 9/18/2026. I haven’t yet revised the code because this doesn’t seem like it *should* happen. If it happens again, though, I should probably throw in an additional launch cycle.
+
 - ❑ Click on the “Register” button to confirm the assignments and complete the registration process. (You’ll hear: “Thank you!”)
 
 ## (a) Set “Launch Engine at Login” and (b) change the Status Menu Icon
