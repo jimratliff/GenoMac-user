@@ -62,18 +62,21 @@
   - “Take our tour to check out flexible options for file storage on this Mac.”
 
 > [!NOTE]
-> Starting up can take a long time!
-> However, this may be connected to the following warning from 9/18/2026, rather than actual slowness in starting.
-
-> [!WARNING]
-> On 9/18/2026, it appears that only one file shows up in my Dropbox (viz., `ALIAS 0_generic_skeleton`).
+> ** Problems on 9/18/2026**
+>
+> At first it seemed like:
+> - Starting up can take a long time!
+>   - The Dropbox window (that falls down from the Dropbox menubar icon) showed “Starting…” for a *long* time
+>   - The Finder window pointing at `~/…/Dropbox` showed only one file (viz., `ALIAS 0_generic_skeleton`).
+> 
 > I needed to make folders available offline through a new mechanism:
 > - ❑ Dropbox icon » “Me” icon (i.e., my initials) » Sync & storage
 > - ❑ Under “Online-only,” click “Make available offline” and then select these folders
 >
-> Possibly, though, this happened because I grew tired waiting for files to show up, and I quit/restarted the Dropbox app.
-
-> [!NOTE]
+> Possibly, though, this happened because I had earlier grown tired waiting for files to show up, and I had quit/restarted the Dropbox app.
+>
+> Ultimately, the key might be: The Finder window (pointing to `~/…/Dropbox`) might need to be refreshed (by closing and reopening) after the folders are changed to “Available offline”.
+>
 > **New step?**
 > In the “Sync and storage” dialog box, at the bottom, change the choice for the setting:
 > - Default sync state for new files added to Dropbox folder:
