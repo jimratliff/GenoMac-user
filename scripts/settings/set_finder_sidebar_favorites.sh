@@ -43,7 +43,7 @@ function conditionally_set_user_finder_sidebar_favorites() {
     
   if [[ "$keep_going_or_punt" == "punt" ]]; then
     report_warning "Deferring setting Finder sidebar Favorites until a later session."
-	set_state_to_record_that_a_task_has_been_deferred
+	  set_user_state_to_record_that_a_task_has_been_deferred
   elif [[ "$keep_going_or_punt" == "continue" ]]; then
     set_user_finder_sidebar_favorites
     set_genomac_user_state "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED_FOR_NONBAREBONES_USER" 
