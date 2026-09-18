@@ -87,6 +87,7 @@
     - ~/Library/CloudStorage/Dropbox/Preferences_common/Alfred_preferences
     - This folder contains within it: Alfred_5_preferences
     - Drag the folder icon for Alfred_5_preferences into the Open File dialog box in the Alfred preferences window.
+    - ❑ Click the “Next…” button
   - Confirmation dialog box
     - “Alfred will use the Alfred.alfredprefeences in the specified folder.”
       - “Don’t forget, Time Machine backups are your friend!”
