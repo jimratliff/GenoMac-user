@@ -60,6 +60,10 @@
   - “Your Dropbox now lives in a secure location”
   - “Dropbox can be accessed from the shortcut under Locations in Finder.”
   - “Take our tour to check out flexible options for file storage on this Mac.”
+
+> [!NOTE]
+> Starting up can take a long time!
+
 ### Make Preferences_common available offline
 - The Finder window pointing to the Dropbox folder shows all of its contents as online-only.
 - The Preferences_common directory should be available-offline
