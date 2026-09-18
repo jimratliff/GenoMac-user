@@ -63,6 +63,15 @@
 
 > [!NOTE]
 > Starting up can take a long time!
+> However, this may be connected to the following warning from 9/18/2026, rather than actual slowness in starting.
+
+> [!WARNING]
+> On 9/18/2026, it appears that only one file shows up in my Dropbox (viz., `ALIAS 0_generic_skeleton`).
+> I needed to make folders available offline through a new mechanism:
+> - ❑ Dropbox icon » “Me” icon (i.e., my initials) » Sync & storage
+> - ❑ Under “Online-only,” click “Make available offline” and then select these folders
+>
+> Possibly, though, this happened because I grew tired waiting for files to show up, and I quit/restarted the Dropbox app.
 
 ### Make Preferences_common available offline
 - The Finder window pointing to the Dropbox folder shows all of its contents as online-only.
