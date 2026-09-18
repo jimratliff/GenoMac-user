@@ -14,10 +14,39 @@ function conditionally_bootstrap_finder_sidebar_favorites_for_barebones_user() {
 function conditionally_set_user_finder_sidebar_favorites() {
   report_start_phase_standard
 
-  run_if_user_has_not_done \
-    "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED_FOR_NONBAREBONES_USER" \
-    set_user_finder_sidebar_favorites \
-    "Skipping setting Finder sidebar Favorites items, because this was done in the past."
+  if test_genomac_user_state "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED_FOR_NONBAREBONES_USER"; then
+    report_to_log "Skipping setting Finder sidebar Favorites items, because this was done in the past."
+	report_end_phase_standard
+	return 0
+  fi
+
+  local file_to_read="$USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE"
+
+  # Looks for user-specific sidebar specifications; otherwise, fall back to defaults for barebones users.
+  if ! file_exists_and_if_so_is_readable "$file_to_read"; then
+    report_action_taken "Setting default Finder sidebar Favorites, because no user-specific specification file was found at “${file_to_read}”."
+    bootstrap_user_finder_sidebar_favorites_for_barebones_user
+    report_end_phase_standard
+    return 0
+  fi
+  
+  report "The next step is to set your custom Finder sidebar Favorites,${NEWLINE}which may require that certain cloud-storage folders have finished syncing."
+  report "You have the choice to (a) go ahead now with setting Finder sidebar Favorites (if that syncing is complete)${NEWLINE} or (b) defer until later."
+
+  local keep_going_or_punt
+
+  keep_going_or_punt="$(get_value_from_numbered_choices \
+    "Choose whether to (a) go ahead now with setting Finder sidebar Favorites or (b) defer until later:" \
+    "go ahead now" "continue" \
+    "defer until later" "punt" 
+    )"
+    
+  if [[ "$keep_going_or_punt" == "punt" ]]; then
+    report_warning "Deferring setting Finder sidebar Favorites until a later session."
+  elif [[ "$keep_going_or_punt" == "continue" ]]; then
+    set_user_finder_sidebar_favorites
+    set_genomac_user_state "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED_FOR_NONBAREBONES_USER" 
+  fi
   
   report_end_phase_standard
 }
