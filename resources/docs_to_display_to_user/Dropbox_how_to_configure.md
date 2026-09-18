@@ -73,6 +73,12 @@
 >
 > Possibly, though, this happened because I grew tired waiting for files to show up, and I quit/restarted the Dropbox app.
 
+> [!NOTE]
+> **New step?**
+> In the “Sync and storage” dialog box, at the bottom, change the choice for the setting:
+> - Default sync state for new files added to Dropbox folder:
+>   - ❑ Change from “Online-only” to “Available offline”
+
 ### Make Preferences_common available offline
 - The Finder window pointing to the Dropbox folder shows all of its contents as online-only.
 - The Preferences_common directory should be available-offline
