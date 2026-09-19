@@ -8,6 +8,13 @@
 - ❑ Make Proton Drive active. (GenoMac-user will have already launched Proton Drive).
 - Because you are not currently logged into a Proton Drive account, a sign-in dialog box will appear.
 - ❑ Enter your (a) Email/username and (b) Password into their respective text fields in the sign-in dialog box.
+- You’ll see a dialog box: “**Proton Drive. You’re nearly there!** Open your folder and click Enable to finish setting up Proton Drive on your Mac.”
+  - ❑ Click the “Open your Proton Drive folder” button
+- A Finder window opens to Proton Drive
+  - Note: The path bar shows simply Proton Drive, with no preceding directories in the path
+  - Near the top of the Finder window is stated: “**‘Proton Drive’ is not enabled. To access ‘Proton Drive’ click Enable.**”
+    - ❑ Click the “Enable” button.
+  - The Proton Drive Finder window populates immediately with root-level directories.
 
 
 
