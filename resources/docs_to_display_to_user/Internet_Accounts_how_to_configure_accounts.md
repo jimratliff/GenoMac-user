@@ -29,6 +29,11 @@ The Hypervisor will have opened this panel for you.
   - Aol
   - Other Mail Account…
  
+### Procedure to add an iCloud account to Internet Accounts
+> [!TIP]
+> - “[Use two-factor authentication for your Apple Account on iPhone](https://support.apple.com/guide/iphone/use-two-factor-authentication-iphd709a3c46/ios),” Apple Support.
+iCloud
+ 
 ### Procedure to add a Fastmail email address to Mail.app
 See “[How to add a Fastmail email account to Mail.app](https://github.com/jimratliff/GenoMac-user/blob/main/resources/docs_to_display_to_user/FastMail_how_to_add_account_to_Mail_app.md).”
 
