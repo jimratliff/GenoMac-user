@@ -125,6 +125,15 @@ function subdermis() {
 
     # Set screenshot destination folder to location within user’s subdirectory in Dropbox
     set_screen_capture_destination_for_Dropbox_user
+
+    # Create directory to act as an inbox for ScanSnap
+    # Located here because the designated location is within the user’s Dropbox.
+    # Must be performed before Finder sidebar Favorites are created, because the Favorites reference this
+    # directory.
+    create_directory_for_ScanSnap_inbox
+
+    # TODO: This and other directory-creation functions should run only once per session, not every time the
+    #       Hypervisor is restarted!
   
     # BetterTouchTool relies on Dropbox because that’s where its license file is stored
     conditionally_configure_bettertouchtool                   # scripts/settings/set_bettertouchtool_settings.sh
