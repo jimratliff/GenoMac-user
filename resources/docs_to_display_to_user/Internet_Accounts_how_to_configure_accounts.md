@@ -1,4 +1,4 @@
-# How to specify Internet Accounts
+# How to specify Internet Accounts 
 
 > [!NOTE]
 > Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
