@@ -140,6 +140,9 @@ DIRECTORY_OF_ALIASES_FOR_DOCK="$HOME/Documents/Aliases_for_Dock"
 
 ########## Destinations within the Dropbox directory
 
+# ScanSnap_inbox
+SCANSNAP_INBOX_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/ScanSnap_inbox"
+
 ##### Destinations within the cross-user common-preferences subdirectory of the Dropbox directory
 # HINT: GENOMAC_USER_SHARED_PREFERENCES_DIRECTORY="${LOCAL_DROPBOX_DIRECTORY}/Preferences_common"
 
