@@ -37,7 +37,7 @@ function interactive_configure_Proton_Drive() {
   default_markdown_page_file="${GMU_DOCS_TO_DISPLAY}/${PROTON_DRIVE_SPECIFICATION_MARKDOWN_PAGE_FILENAME}"
   user_specific_markdown_page_file="${USER_SPECIFIC_PROTON_DRIVE_SPECIFICATIONS_FILE}"
 
-  if file_exists_and_is_readable "$user_specific_markdown_page_file"; then
+  if file_exists_and_if_so_is_readable "$user_specific_markdown_page_file"; then
     markdown_file_to_display="$user_specific_markdown_page_file"
   else
     markdown_file_to_display="$default_markdown_page_file"
