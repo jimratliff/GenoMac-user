@@ -4,6 +4,7 @@
 safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_development_clones.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_directory_for_Dock_aliases.sh"
+safe_source "${GMU_INSTALLATION_SCRIPTS}/make_directory_for_ScanSnap_inbox.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_repositories_directory_for_developers.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/alias_objects_to_Dock.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/helpers-toolbars.sh"
