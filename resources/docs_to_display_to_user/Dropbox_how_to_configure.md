@@ -28,9 +28,10 @@
     - “Choose which folders you see on this device”
       - “Only selected folders will take up hard drive space on this device. You can still access unselected folders anytime at dropbox.com”
       - ❑ First, deselect all
-      - Now select **two** folders
-        - ❑ Select “Preferences_common”
-        - ❑ Select “Users/*your-user-name*”
+      - Now select **three** folders
+        - ❑ “Preferences_common”
+        - ❑ "ScanSnap_inbox"
+        - ❑ “Users/*your-user-name*”
       - ❑ Then, click “Save”
       - Then a new dialog: “Confirm selection”
         - Only selected folders will live on this computer. Unselected folders can be accessed on dropbox.com
