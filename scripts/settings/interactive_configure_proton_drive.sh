@@ -8,14 +8,11 @@ function conditionally_configure_Proton_Drive() {
     report_end_phase_standard
     return 0
   fi
-  
-  if test_genomac_user_state "$PERM_PROTON_DRIVE_HAS_BEEN_CONFIGURED"; then
-    report to log "Skipping configuring Proton Drive, because it’s already been configured."
-    report_end_phase_standard
-    return 0
-  fi
 
-  interactive_configure_Proton_Drive
+  run_if_user_has_not_done \
+    "$PERM_PROTON_DRIVE_HAS_BEEN_CONFIGURED" \
+    interactive_configure_Proton_Drive \
+    "Skipping configuring Proton Drive, because it’s already been configured."
   
   report_end_phase_standard
 }
