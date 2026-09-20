@@ -53,7 +53,9 @@ function interactive_configure_internet_accounts() {
   default_markdown_page_file="${GMU_DOCS_TO_DISPLAY}/${INTERNET_ACCOUNTS_MARKDOWN_PAGE_FILENAME}"
   user_specific_markdown_page_file="${USER_SPECIFIC_INTERNET_ACCOUNTS_SPECIFICATIONS_FILE}"
 
-  if file_exists_and_if_so_is_readable "$user_specific_markdown_page_file"; then
+  local REPLY
+  check_file_exists_and_is_readable "$user_specific_markdown_page_file"
+  if (( REPLY )); then
     markdown_file_to_display="$user_specific_markdown_page_file"
   else
     markdown_file_to_display="$default_markdown_page_file"
