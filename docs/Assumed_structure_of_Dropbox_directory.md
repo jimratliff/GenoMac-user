@@ -13,6 +13,7 @@ The below tree diagram indicates only those elements that are recognized by Geno
 [^OMNIOUTLINER_IN_DROPBOX_NOT_USED]: Note that the actual `Dropbox/Preferences_common` directory contains (though it isn’t shown below) the immediate subdirectory `OmniOutliner_Jim's_default_document`, which contains a copy of `_JDR_OmniOutliner_Template`. This is *not* the copy that is installed by the function `set_omnioutliner_settings`. That function installs the copy at `GenoMac-user/resources/omnioutliner/_JDR_OmniOutliner_Template.oo3template`, i.e., that is found in the GenoMac-user repo itself, not in the user’s Dropbox. This OmniOutliner template isn’t deemed sensitive enough to require installing from Dropbox.
 
 - Dropbox
+  - ScanSnap_inbox[^SCANSNAP]
   - Preferences_common
     - Alfred_preferences
       - Alfred_5_preferences[^ALFRED_PREFS]
@@ -55,6 +56,7 @@ The below tree diagram indicates only those elements that are recognized by Geno
             - some_other_wallpaper_image_file.webp
       - Screenshots[^SCREENSHOT_DESTINATION_FOR_DROPBOX_USERS]
 
+[^SCANSNAP]: This directory receives OCR-ed scans from a ScanSnap scanner. Its existence is assumed by GenoMac-user only in the sense that GenoMac-user creates a Finder sidebar Favorite for this directory and that process requires that the directory exists (because a Finder alias file is made that points at the directory).
 
 [^ALFRED_PREFS]: During the interactive configuration of Alfred, in the later portion devoted to configuring syncing of preferences, the Hypervisor reveals the `…Dropbox/Preferences_common/Alfred_preferences` directory. You will then drag the `Alfred_5_preferences` folder icon into the Open File dialog box in the Alfred preferences window.
 
