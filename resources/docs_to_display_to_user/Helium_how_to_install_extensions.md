@@ -19,6 +19,7 @@ additional extensions.
 ## Install theme
 - ❑ Go to the [Sea Foam theme Chrome web store page](https://chromewebstore.google.com/detail/sea-foam/lahipjfggmgneaopcckkaipmoandaboo)
 - ❑ Click on “Add to Helium”
+  - **NOTE: The “Add to Helium” button may be off the screen to the right. In that case, you’ll have to horizontally scroll to the right side of the window’s content.**
 
 > [!NOTE]
 > Some of the following extensions may not be relevant to you. Feel free *not* to install/configure any extension that you feel doesn’t make sense for this user.
