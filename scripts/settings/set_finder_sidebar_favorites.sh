@@ -221,7 +221,7 @@ function finder_sidebar_favorites_add_name_and_file_url() {
   local file_url="${2:?MISSING fileurl}"
   
   report_to_log "Appending Finder sidebar Favorite: $name_of_favorite : “${file_url}”"
-  mysides add "$name_of_favorite" "$file_url"
+  mysides add -- "$name_of_favorite" "$file_url"
   
   report_end_phase_standard
 }
