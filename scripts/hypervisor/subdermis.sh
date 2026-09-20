@@ -104,9 +104,6 @@ function subdermis() {
   
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
-
-  # DEPRECATED: TO BE REMOVED
-  # conditionally_configure_Sync_com                            # scripts/settings/interactive_configure_sync_com.sh
   
   # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user,
   # GenoMac-shared, and GenoMac-private at ~/Repositories/Project_GenoMac
@@ -148,7 +145,7 @@ function subdermis() {
 
     # Configuration of Mail.app relies on Dropbox only because there *may* be user-specific instructions stored in the
     # user’s Dropbox
-    conditionally_configure_mail_app                            # scripts/settings/set_mail_app_settings.sh
+    conditionally_configure_mail_app                          # scripts/settings/set_mail_app_settings.sh
 
     # HIARCS Chess Explorer Pro must be configured *after* Keyboard Maestro, because activating HIARCS’s license uses a
     # custom Keyboard Maestro macro
@@ -165,14 +162,13 @@ function subdermis() {
     # Configuration of Proton Drive relies on Dropbox only because there *may* be user-specific instructions stored in the
     # user’s Dropbox
     # TODOs: conditionally_configure_Proton_Drive
-    conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
+    conditionally_configure_Proton_Drive                       # scripts/settings/interactive_configure_proton_drive.sh
 
     # Implement user’s chosen Finder sidebar Favorites entries
-    conditionally_set_user_finder_sidebar_favorites           # scripts/settings/set_finder_sidebar_favorites.sh
-
-    # TODO WIP!
+    conditionally_set_user_finder_sidebar_favorites            # scripts/settings/set_finder_sidebar_favorites.sh
+    
     # Create aliases to the user’s chosen directories/files stored in designated directory in the Dock
-    # conditionally_create_user_specified_Finder_alias_files_in_Dock_folder       # scripts/settings/alias_objects_to_Dock.sh
+    conditionally_create_user_specified_Finder_alias_files_in_Dock_folder       # scripts/settings/alias_objects_to_Dock.sh
     
   else
   
@@ -182,7 +178,7 @@ function subdermis() {
     
   fi
 
-  conditionally_set_apps_to_launch_at_login                   # scripts/settings/set_apps_to_launch_at_login.sh
+  conditionally_set_apps_to_launch_at_login                     # scripts/settings/set_apps_to_launch_at_login.sh
 
   end_of_subdermis_cleanup
   
@@ -199,7 +195,7 @@ function end_of_subdermis_cleanup() {
     report_warning "User “${USER}” has NOT been marked as configured because at least one task has been deferred."
   fi
   
-  display_users_to_be_initially_configured                    # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
+  display_users_to_be_initially_configured                      # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
   
   report_end_phase_standard
 }
