@@ -21,9 +21,11 @@ function conditionally_set_user_finder_sidebar_favorites() {
   fi
 
   local file_to_read="$USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE"
-
+  
   # Looks for user-specific sidebar specifications; otherwise, fall back to defaults for barebones users.
-  if ! file_exists_and_if_so_is_readable "$file_to_read"; then
+  local REPLY
+  check_file_exists_and_is_readable "$file_to_read"
+  if (( REPLY == 0 )); then
     report_action_taken "Setting default Finder sidebar Favorites, because no user-specific specification file was found at “${file_to_read}”."
     bootstrap_user_finder_sidebar_favorites_for_barebones_user
     report_end_phase_standard
@@ -63,8 +65,7 @@ function bootstrap_user_finder_sidebar_favorites_for_barebones_user() {
 }
 
 function set_user_finder_sidebar_favorites() {
-  # Implements Finder sidebar Favorites, looking first for a user-specific specification.
-  # If not present, falls back to the default set of Favorites for a barebones user.
+  # Implements Finder sidebar Favorites from a user-specific specification file.
   #
   # The user-specific specification is expected to be at USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE.
   # The file/folder at the file path of each [nickname, file-path] pair must exist.
@@ -76,14 +77,6 @@ function set_user_finder_sidebar_favorites() {
   local file_to_read="$USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE"
 
   local -a tuples
-
-  # Looks for user-specific sidebar specifications; otherwise, fall back to defaults for barebones users.
-  if ! file_exists_and_if_so_is_readable "$file_to_read"; then
-    report_action_taken "Setting default Finder sidebar Favorites, because no user-specific specification file was found at “${file_to_read}”."
-    bootstrap_user_finder_sidebar_favorites_for_barebones_user
-    report_end_phase_standard
-    return 0
-  fi
 
   get_array_from_json_lines_file "$file_to_read" 								# GenoMac-shared/scripts/helpers-json.sh
   tuples=("${reply[@]}")
