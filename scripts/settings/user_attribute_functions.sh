@@ -61,6 +61,10 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_DEVELOPER}"
       set_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"
       ;;
+    "${USER_ATTRIBUTE_DOWNIE}")
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_DOWNIE}"
+      set_genomac_user_state "$SESH_DOWNIE_USER_WANTS_IT"
+      ;;
     "${USER_ATTRIBUTE_DROPBOX}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_DROPBOX}"
       set_genomac_user_state "$SESH_DROPBOX_USER_WANTS_IT"
