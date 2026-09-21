@@ -59,7 +59,7 @@ function subdermis() {
   keep_sudo_alive                                             # GenoMac-shared/scripts/helpers-mac-and-terminal-environment.sh
   interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-mac-and-terminal-environment.sh
 
-  conditionally_process_user_attribute_states                 # scripts/settings/user_attribute_scripts.sh.
+  conditionally_process_user_attribute_states                 # scripts/settings/user_attribute_functions.sh.
 
   ############### BEGIN BAREBONES CONFIGURATION ###############
   conditionally_perform_barebones_user_level_settings         # scripts/settings/set_barebones_settings.sh
