@@ -15,15 +15,8 @@
   - Near the top of the Finder window is stated: “**‘Proton Drive’ is not enabled. To access ‘Proton Drive’ click Enable.**”
     - ❑ Click the “Enable” button.
   - The Proton Drive Finder window populates immediately with root-level directories.
-
-
-
-- ❑ Open Proton Drive’s Settings… (⌘,)
-
-## EVERYTHING BELOW HERE NEEDS TO BE REVISITED
-
-## Make the following changes to the out-of-the-box default settings
-
+- By default, all files/directories are online-only.
+  - ❑ Selectively choose which folders to “Make Available Offline.” 
 
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the configuration of Proton Drive.
