@@ -119,8 +119,8 @@ function specify_Space_names_in_SpaceJump() {
 }
 
 function get_spaceid_name_mapping() {
-  # Creates the type -data mapping between (a) SpaceJump Space identifiers and (b) Space names
-  # to be passed to defaults write
+  # Creates the type -data mapping between (a) SpaceJump Space identifiers and
+  # (b) Space names to be passed to defaults write
   
   report_start_phase_standard
 
@@ -128,7 +128,6 @@ function get_spaceid_name_mapping() {
   local spaceid_name_mapping_json='{}'
   local spacejump_spaceid
   local space_name
-  local wallpaper_container_path
   
   local -i space_number
 
@@ -136,8 +135,7 @@ function get_spaceid_name_mapping() {
   
     spacejump_spaceid="$(get_spacejump_spaceid_for_space_number "$space_number")"
     
-    wallpaper_container_path="$(get_wallpaper_container_path_for_space_number "$space_number")"
-    space_name="$(get_space_name_from_wallpaper_container_path "$wallpaper_container_path")"
+    space_name="$(get_space_name_for_space_number "$space_number")"
 
     # Add (spacejump_spaceid, space_name) pair to mapping
     spaceid_name_mapping_json="$(
@@ -160,6 +158,30 @@ function get_spaceid_name_mapping() {
   report_to_log "Mapping data:${spaceid_name_mapping_data}"
   print -r -- "$spaceid_name_mapping_data"
   
+  report_end_phase_standard
+}
+
+function get_space_name_for_space_number() {
+  # Get the name for a Space given its number
+  # - If user has USER_ATTRIBUTE_WALLPAPERS, we get the Space name from the wallpaper container for
+  #   given Space number.
+  # - Otherwise, give Space a generic name based on the given Space number
+  
+  report_start_phase_standard
+  local space_number="${1:?MISSING space_number}"
+
+  local space_name
+  local wallpaper_container_path
+
+  if _test_state_for_user_attribute "$USER" "$USER_ATTRIBUTE_WALLPAPERS" 'user'; then
+    wallpaper_container_path="$(get_wallpaper_container_path_for_space_number "$space_number")"
+    space_name="$(get_space_name_from_wallpaper_container_path "$wallpaper_container_path")"
+  else
+    space_name="Space ${space_number}"
+  fi
+
+  print -r -- "$space_name"
+    
   report_end_phase_standard
 }
 
