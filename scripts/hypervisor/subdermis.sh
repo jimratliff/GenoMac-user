@@ -157,7 +157,7 @@ function subdermis() {
 
     # Configure SpaceJump to show name of each Mission Control Space
     # Located here because wallpaper collection stored in Dropbox is the source of Space names.
-    conditionally_configure_spacejump
+    conditionally_configure_spacejump                         # scripts/settings/set_spacejump_settings.sh
 
     # Configuration of Proton Drive relies on Dropbox only because there *may* be user-specific instructions stored in the
     # user’s Dropbox
