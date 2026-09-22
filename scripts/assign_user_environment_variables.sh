@@ -129,11 +129,14 @@ WITCH_PATH_TO_USER_PREFPANE="${USER_PREFPANE_DIRECTORY}/${WITCH_PREFPANE_NAME}"
 
 ### Locations within $HOME/Documents
 
-# Obsidian-vault(s) directory
-USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
-
 # Directory for aliases to be referenced from the Dock
 DIRECTORY_OF_ALIASES_FOR_DOCK="$HOME/Documents/Aliases_for_Dock"
+
+# Directory to be destination for Downie downloads
+DIRECTORY_FOR_DOWNIE_DOWNLOADS="$HOME/Documents/Downie_downloads"
+
+# Obsidian-vault(s) directory
+USER_LOCAL_OBSIDIAN_VAULTS_DIRECTORY="$HOME/Documents/Obsidian_vaults"
 
 # Repositories directory
 # HINT: USER_LOCAL_REPOSITORY_DIRECTORY="$HOME/Repositories"
