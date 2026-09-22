@@ -27,6 +27,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_stow_dotfiles.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_apps_to_launch_at_login.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_barebones_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_downie_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_finder_sidebar_favorites.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_hiarcs_cd_pro_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_bettertouchtool_settings.sh"
@@ -96,6 +97,8 @@ function subdermis() {
 
   # Bootstrap: If user has 'developer' attribute, create ~/Repositories directory to hold clones
   conditionally_create_repositories_directory_for_developers  # scripts/installations/make_repositories_directory_for_developers.sh
+
+  conditionally_set_downie_settings
 
   # Bootstrap: Configure 1Password here to make credentials available for later steps
   conditionally_configure_1Password                           # scripts/settings/interactive_configure_1password.sh
