@@ -1,8 +1,9 @@
 # How to configure Downie
-“Basic configuration” covers everything except for the Developer section of 1Password’s settings.
 
 ## Why do I have to do this myself?
-Configuring Downie requires some
+Configuring Downie requires some actions that cannot be performed through scripting.[^WHAT_CAN'T_BE_SCRIPTED]
+
+[^WHAT_CAN'T_BE_SCRIPTED]: Neither of the following can be scripted: (a) activating the license and (b) setting the destination directory for downloads (for two reasons: (1) although setting `XUDownloadFolderURLPath` can be scripted, setting `XUDownloadFolderURL` cannot be scripted and (2) Downie needs to ask the user for permission to access the destination folder and this, too, cannot be scripted).
 
 ## Make 1Password active and open its Settings
 - ❑ Make 1Password active. (GenoMac-user will have already launched 1Password).
