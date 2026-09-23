@@ -31,6 +31,7 @@ Configuring Downie requires some actions that cannot be performed through script
   - Choose from the pull-down menu: “Choose folder…”
   - ❑ Choose the following path: `~/Documents/Downie_downloads`
     - The Hypervisor will have already created this directory.
+    - The Hypervisor will already have opened the parent of this directory (viz., `~/Documents`) so that you can simply drag the subfolder `Downie_downloads` into the Open File Dialog box in order to select the desired path.
   - ❑ Approve the request for Downie to access this folder.
 - Click the “Next” button.
   - You’ll see a new screen for “Browser Extensions”
@@ -49,6 +50,7 @@ Configuring Downie requires some actions that cannot be performed through script
 - Choose from the pull-down menu: “Choose folder…”
   - ❑ Choose the following path: `~/Documents/Downie_downloads`
     - The Hypervisor will have already created this directory.
+    - The Hypervisor will already have opened the parent of this directory (viz., `~/Documents`) so that you can simply drag the subfolder `Downie_downloads` into the Open File Dialog box in order to select the desired path.
 - ❑ Approve the request for Downie to access this folder.
 
 # Activate the license
