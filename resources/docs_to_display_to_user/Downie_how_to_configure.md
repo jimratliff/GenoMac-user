@@ -16,6 +16,12 @@ Configuring Downie requires some actions that cannot be performed through script
 
 ## Set the destination directory
 
+> [!NOTE]
+> The Hypervisor has opened the following folder in the Finder: `~/Documents`.
+> You may need to look behind some other windows for it.
+> This folder itself contains a subfolder: `Downie_downloads`, which you can drag into an Open File Dialog in order to select `~/Documents/Downie_downloads` as the destination for Downie downloads.
+
+
 ### If you see the onboarding wizard (that says “Welcome to Downie!”)
 - If you see the onboarding wizard, you’ll see a window with “Welcome to Downie!”
 - The first screen of the onboarding-wizard window is a copyright-infringement disclaimer.
@@ -54,7 +60,7 @@ You can activate your Downie license (which requires an email address and a lice
   - Even if you don’t see this “Thank you for trying out Downie 4!” window, your Downie license may still not be activated. (This can happen if you dismiss the “Thank you for trying out Downie 4!” window by pressing the “Continue Trial” button.
 - Make Downie the active app (if it’s not already)
 - Now we use a Keyboard Maestro macro to enter the name and license code necessary to activate the license.
-- ❑ Click on the Keyboard Maestro menubar status icon, and choose “GenoMac Bootstrap » Register Downie”
+- ❑ Click on the Keyboard Maestro menubar status icon, and choose “GenoMac Bootstrap » **Register Downie 4**”
   - This will choose the menu item: “Downie 4” » “Enter License Code…”, and then populate the
     email-address and license-code fields with the credentials under which Downie is registered.
     - Note that these credentials do *not* exist in this repo, but rather are stored in my securely privately synced macro set.
