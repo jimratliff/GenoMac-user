@@ -71,7 +71,7 @@
 - This opens Alfred’s preferences
        
 ## Configure syncing
-### Context for configuring perference syncing
+### Context for configuring preference syncing
 - **NOTE:** The Hypervisor has opened the following folder in the Finder. You may need to look behind some other windows for it.
   - ~/Library/CloudStorage/Dropbox/Preferences_common/Alfred_preferences
   - This `Alfred_preferences` folder itself contains a subfolder: `Alfred_5_preferences`, which Alfred will use to find the `Alfred.alfredpreferences` file.
