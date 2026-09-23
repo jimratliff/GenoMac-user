@@ -8,19 +8,18 @@
 Although, GenoMac-user *can* install many other extensions it’s tried to install, for some reason it might be the case that GenoMac-user
 can’t successfully install the “Blue Sharepoint” extension. So, if it’s not already installed, you’ll need to manually install it.
 
-## Make Waterfox active and install from the “Blue Sharepoint” theme extension web page
+## Make Waterfox active and, if necessary, install from the “Blue Sharepoint” theme extension web page
 - ❑ Make Waterfox active
   - The script will already have opened the Waterfox application for you.
-- ❑ Visit [“Blue Sharepoint” theme page](https://addons.mozilla.org/en-US/firefox/addon/blue-sharepoint/).
-- ❑ Click on “Install Theme”
-
-## Enable the theme
-- ❑ Make Waterfox active
 - ❑ From the application menu, choose Tools » Extensions and Themes (⇧⌘A)
-- ❑ Click on Themes.
-  - A new page will be displayed
-- Find “Blue Sharepoint”
-- ❑ Click on “Enable”
+- ❑ Click on the Paintbrush icon in the left sidebar (just below the jigsaw-puzzle piece icon) to access Themes
+- ❑ Is “Blue Sharepoint” listed among the Themes?
+  - ❑ Yes: Enable it
+  - ❑ No:
+    - ❑ Visit [“Blue Sharepoint” theme page](https://addons.mozilla.org/en-US/firefox/addon/blue-sharepoint/).
+    - ❑ Click on “Install Theme”
+    - Find “Blue Sharepoint”
+    - ❑ Click on “Enable”
 
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed the installation of the “Blue Sharepoint”
