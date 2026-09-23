@@ -1,46 +1,52 @@
 #!/usr/bin/env zsh
 
-function conditionally_bootstrap_and_maintain_Downie() {
-  # Bootstraps and maintains Downie by (a) creating directory to serve as destination for downloads
-  # and (b) using defaults write to initialize preferences and inhibit the startup wizard.
+function conditionally_interactive_configure_Downie() {
+  # Conditionally interactively configures Downie.
 
   report_start_phase_standard
 
   if ! test_genomac_user_state "$SESH_DOWNIE_USER_WANTS_IT"; then
-    report_to_log "Skipping bootstrapping/maintaining Downie, because user doesn’t use Downie."
+    report_to_log "Skipping configuring Downie, because user doesn’t use Downie."
     report_end_phase_standard
     return 0
   fi
 
+  run_if_user_has_not_done "$PERM_DOWNIE_HAS_BEEN_BOOTSTRAPPED" \
+    interactive_configure_Downie \
+    "Skipping configuring Downie, because it’s been configured in the past"
   
-
-  if test_genomac_user_state "$PERM_DOWNIE_HAS_BEEN_BOOTSTRAPPED"; then
-    report_to_log "Skipping bootstrapping Downie, because this has been performed in the past."
-  else
-    bootstrap_Downie
-    report_end_phase_standard
-    return 0
-  fi
-
-  set_Downie_non_bootstrap_settings
-
   report_end_phase_standard
   
 }
 
-function bootstrap_Downie() {
-  # Bootstraps Downie
+function interactive_configure_Downie() {
+  # Interactively configures Downie settings.
   report_start_phase_standard
+  
+  report "Time to configure Downie! I’ll launch it, and open a window with instructions for next steps"
 
   create_directory_for_Downie_downloads
-  set_bootstrap_settings_for_Downie
-  set_genomac_user_state "$PERM_DOWNIE_HAS_BEEN_BOOTSTRAPPED"
+  set_scriptable_settings_for_Downie
+
+  # HINT: DIRECTORY_FOR_DOWNIE_DOWNLOADS="$HOME/Documents/Downie_downloads"
+  local parent_directory_for_downie_downloads
+  parent_directory_for_downie_downloads=${DIRECTORY_FOR_DOWNIE_DOWNLOADS:h}
+
+  # Open the *parent* of DIRECTORY_FOR_DOWNIE_DOWNLOADS. By opening this container folder,
+  # the executing user can drag the `Downie_download` folder icon
+  # into the Open-file dialog presented.
+
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/Downie_how_to_configure.md" \
+    --open "$parent_directory_for_downie_downloads" \
+    "$BUNDLE_ID_DOWNIE" \
+    "Follow the instructions in the Quick Look window to configure Downie"
   
   report_end_phase_standard
 }
 
-function set_bootstrap_settings_for_Downie() {
-  # Sets bootstrap settings for Downie app.
+function set_scriptable_settings_for_Downie() {
+  # Sets scriptable settings for Downie app.
   #
   # HINT: DEFAULTS_DOMAINS_DOWNIE_4="com.charliemonroe.Downie-4"
 
@@ -53,31 +59,11 @@ function set_bootstrap_settings_for_Downie() {
 
   domain="$DEFAULTS_DOMAINS_DOWNIE_4"
   plist_path=$(sandboxed_plist_path_from_domain $domain")
-
+  
   ensure_plist_path_exists "$plist_path"
-
-  # Inhibit initial wizard
-  defaults write "$domain" XUDownie4FirstLaunch -boolean true
-
-  set_Downie_non_bootstrap_settings
-  
-  
-  report_end_phase_standard
-}
-
-function set_Downie_non_bootstrap_settings() {
-  # Sets basic settings for Downie
-  #
-  # HINT: DEFAULTS_DOMAINS_DOWNIE_4="com.charliemonroe.Downie-4"
-  
-  report_start_phase_standard
-  
-  local domain
-  domain="$DEFAULTS_DOMAINS_DOWNIE_4"
 
   # Sort downloads into subfolders by host
   defaults write "$domain" XUSortFilesByHost -boolean true
-
   
   report_end_phase_standard
 }
