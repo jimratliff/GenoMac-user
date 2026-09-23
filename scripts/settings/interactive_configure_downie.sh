@@ -30,7 +30,7 @@ function interactive_configure_Downie() {
 
   # HINT: DIRECTORY_FOR_DOWNIE_DOWNLOADS="$HOME/Documents/Downie_downloads"
   local parent_directory_for_downie_downloads
-  parent_directory_for_downie_downloads=${DIRECTORY_FOR_DOWNIE_DOWNLOADS:h}
+  parent_directory_for_downie_downloads="${DIRECTORY_FOR_DOWNIE_DOWNLOADS:h}"
 
   # Open the *parent* of DIRECTORY_FOR_DOWNIE_DOWNLOADS. By opening this container folder,
   # the executing user can drag the `Downie_download` folder icon
@@ -58,7 +58,7 @@ function set_scriptable_settings_for_Downie() {
   local time_now
 
   domain="$DEFAULTS_DOMAINS_DOWNIE_4"
-  plist_path=$(sandboxed_plist_path_from_domain $domain")
+  plist_path="$(sandboxed_plist_path_from_domain "$domain")"
   
   ensure_plist_path_exists "$plist_path"
 
