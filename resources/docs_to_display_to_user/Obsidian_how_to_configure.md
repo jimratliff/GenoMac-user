@@ -116,6 +116,7 @@ By default, no community plugins are installed. Now that you’ve switched on �
 ### Restart Obsidian
 - ❑ ⌘Q to quit Obsidian and then relaunch the application
 - This will cause the desired community plugins (according to the synced active community plugin list) to be enabled.
+- However, as of 9/23/2026, three of the community plugins (Footnote Shortcut v0.1.3, Home tab v1.2.2, and Recent Files v.1.7.4) were still toggled off.
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
