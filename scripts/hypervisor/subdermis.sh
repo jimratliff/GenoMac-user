@@ -98,8 +98,6 @@ function subdermis() {
   # Bootstrap: If user has 'developer' attribute, create ~/Repositories directory to hold clones
   conditionally_create_repositories_directory_for_developers  # scripts/installations/make_repositories_directory_for_developers.sh
 
-  conditionally_set_downie_settings
-
   # Bootstrap: Configure 1Password here to make credentials available for later steps
   conditionally_configure_1Password                           # scripts/settings/interactive_configure_1password.sh
 
@@ -136,6 +134,9 @@ function subdermis() {
 
     # Alfred must be configured *after* Keyboard Maestro, because activating the Powerpack uses a custom Keyboard Maestro macro
     conditionally_interactive_configure_alfred                # scripts/settings/interactive_configure_alfred.sh
+
+    # Downie must be configured *after* Keyboard Maestro, because activating the license uses a custom Keyboard Maestro macro
+    conditionally_interactive_configure_Downie                # scripts/settings/interactive_configure_downie.sh
 
     # Installation of Witch preference pane relies on Dropbox as the source of the binary.
     # Installed for each user separately because Witch pref pane won’t launch automatically at login
