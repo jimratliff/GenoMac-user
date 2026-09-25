@@ -42,7 +42,8 @@ Configuring Downie requires some actions that cannot be performed through script
   - You’ll see a new screen for “How to download a video?,” etc.
 - Click the “Done” button.
  
-### If you see the onboarding wizard (that says “Welcome to Downie!”)
+### If you do NOT see the onboarding wizard (that says “Welcome to Downie!”)
+- If you don’t see the onboarding wizard, you’ll have to manually open Downie’s settings, via `⌘,`.
 - If you manually open Downie’s Settings (⌘,), you’ll see a Downie Settings window.
 - ❑ Select “Destination” in the left-hand sidebar of the Downie Settings window.
   - This will transform the right-hand side of the window.
