@@ -42,8 +42,10 @@
 - ❑ Click the button: “Skip Migration…”
 
 ## Configure macOS permissions
-- (Because this is the configuration of a new user, there are no existing preferences to either backup or migrate. Thus the flow switches directly to macOS permissions.)
-- **NOTE** Some of the below permissions may already be set if you’ve previously configured another user on the same Mac to use Alfred. Some/all of these permissions appear to be at the system level.
+
+> [!NOTE]
+> Setting the below permissions really pertains only to the first user being configured on this Mac (actually, this startup volume) who is using Alfred. (These permissions on set on the system level.) Thus, for all later-configured users, you can skip this.
+
 - The window changes to “Configure macOS Permissions: Alfred needs some simple permissions to serve you efficiently.”
   - “macOS may ask to quit or restart Alfred when granting access, select ‘Later’.”
   - “Alfred will restart at the end of the setup process.”
