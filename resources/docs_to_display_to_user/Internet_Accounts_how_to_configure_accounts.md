@@ -33,6 +33,8 @@ The Hypervisor will have opened this panel for you.
 > [!TIP]
 > - “[Use two-factor authentication for your Apple Account on iPhone](https://support.apple.com/guide/iphone/use-two-factor-authentication-iphd709a3c46/ios),” Apple Support.
 
+#### Signing in
+
 It is assumed you already have at least one trusted device, at least [typically an iPhone](https://support.apple.com/guide/iphone/use-two-factor-authentication-iphd709a3c46/ios).
 
 When you sign into an iCloud account on a device that is a non-trusted device,[^WHAT'S_A_DEVICE_IN_TRUSTED_CONTEXT] the following two things will occur simultaneously:
@@ -50,6 +52,12 @@ Then:
 [^WHAT'S_A_DEVICE_IN_TRUSTED_CONTEXT]: I have an open question: In the context of iCloud two-factor authentication, and further in the context of a Mac, is a “device” (a) the Mac itself (or more narrowly a particular startup volume?)? or (b) each particular user account that signs into that iCloud account?
 
 [^IMPROVEMENT_PERHAPS]: This is how it appeared in macOS 26 Tahoe, and is an improvement over what I recall on earlier versions of macOS, where it merely asked for the “password you use to unlock this Mac,” without specifying a user name. In some scenarios I found that confusingly ambiguous.
+
+#### Selecting which iCloud services to adopt
+- ✅ iCloud Mail
+- ❑ Contacts
+- ❑ iCloud Calendar
+- ❑ Reminders
  
 ### Procedure to add a Fastmail email address to Mail.app
 See “[How to add a Fastmail email account to Mail.app](https://github.com/jimratliff/GenoMac-user/blob/main/resources/docs_to_display_to_user/FastMail_how_to_add_account_to_Mail_app.md).”
