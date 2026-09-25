@@ -35,7 +35,7 @@ The Hypervisor will have opened this panel for you.
 
 It is assumed you already have at least one trusted device, at least [typically an iPhone](https://support.apple.com/guide/iphone/use-two-factor-authentication-iphd709a3c46/ios).
 
-When you sign into an iCloud account on a device a non-trusted device,[^WHAT'S_A_DEVICE_IN_TRUSTED_CONTEXT] the following two things will occur simultaneously:
+When you sign into an iCloud account on a device that is a non-trusted device,[^WHAT'S_A_DEVICE_IN_TRUSTED_CONTEXT] the following two things will occur simultaneously:
 - a dialog box will appear asking you to enter a six-digit verification code
 - iCloud will send a six-digit verification code to each of your trusted devices.
 
