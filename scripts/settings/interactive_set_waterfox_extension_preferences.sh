@@ -23,10 +23,11 @@ function interactive_set_preferences_for_waterfox_extensions() {
     interactive_configure_waterfox_managemytabs_extension \
     "Skipping configuring the Manage My Tabs extension for Waterfox,${NEWLINE}because it’s already been configured in the past"
 
-  run_if_user_has_not_done \
-    "$PERM_WATERFOX_EXTENSION_MARKDOWNVIEWERWEBEXT_HAS_BEEN_CONFIGURED" \
-    interactive_configure_waterfox_markdownviewerwebext_extension \
-    "Skipping configuring the Markdown Viewer Webext extension for Waterfox,${NEWLINE}because it’s already been configured in the past"
+  # Installation of the Markdown Viewer Webext extension is DEPRECATED
+  #   run_if_user_has_not_done \
+  #     "$PERM_WATERFOX_EXTENSION_MARKDOWNVIEWERWEBEXT_HAS_BEEN_CONFIGURED" \
+  #     interactive_configure_waterfox_markdownviewerwebext_extension \
+  #     "Skipping configuring the Markdown Viewer Webext extension for Waterfox,${NEWLINE}because it’s already been configured in the past"
 
   run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSION_TABS2LIST_HAS_BEEN_CONFIGURED" \
