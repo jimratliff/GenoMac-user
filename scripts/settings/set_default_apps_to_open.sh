@@ -26,6 +26,9 @@ function set_default_apps_to_open_certain_types_of_docs() {
   #   mdls -name kMDItemCFBundleIdentifier -r /Applications/AppName.app
   #     or
   #   osascript -e 'id of app "App Name"'
+  #
+  # You can set the default application for a file extension directly, e.g.,
+  #  utiluti type set --extension jsonl "$BUNDLE_ID_BBEDIT"
   
   report_start_phase_standard
   report_action_taken "Assign default app(s) for document type(s)"
@@ -49,23 +52,27 @@ function set_default_apps_to_open_certain_types_of_docs() {
   
   report_adjust_setting "Set plain-text files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_plain_text       $BUNDLE_ID_BBEDIT ; success_or_not
+  utiluti type set $uti_plain_text                         $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set Markdown files to open with FluxMarkdown"
   printf "\n"
-  utiluti type set $uti_markdown         $BUNDLE_ID_FLUXMARKDOWN ; success_or_not
+  utiluti type set $uti_markdown                           $BUNDLE_ID_FLUXMARKDOWN ; success_or_not
+  
+  report_adjust_setting "Set .jsonl files to open with BBEdit"
+  printf "\n"
+  utiluti type set --extension jsonl "$BUNDLE_ID_BBEDIT"   $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set .plist files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_plist            $BUNDLE_ID_BBEDIT ; success_or_not
+  utiluti type set $uti_plist                              $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set shell scripts to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_shell_script     $BUNDLE_ID_BBEDIT ; success_or_not
+  utiluti type set $uti_shell_script                       $BUNDLE_ID_BBEDIT ; success_or_not
   
   report_adjust_setting "Set XML files to open with BBEdit"
   printf "\n"
-  utiluti type set $uti_xml              $BUNDLE_ID_BBEDIT ; success_or_not
+  utiluti type set $uti_xml                                $BUNDLE_ID_BBEDIT ; success_or_not
 
   # NEW: Let Script Editor open AppleScript files, as is the default
   # report_adjust_setting "Set AppleScript files to open with BBEdit"
@@ -74,19 +81,19 @@ function set_default_apps_to_open_certain_types_of_docs() {
 
   report_adjust_setting "Set MPEG files to open with Elmedia Player"
   printf "\n"
-  utiluti type set $uti_mpeg             $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
+  utiluti type set $uti_mpeg                               $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
 
   report_adjust_setting "Set QuickTime movie files to open with Elmedia Player"
   printf "\n"
-  utiluti type set $uti_quicktime_movie  $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
+  utiluti type set $uti_quicktime_movie                    $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
 
   report_adjust_setting "Set m4v files to open with Elmedia Player"
   printf "\n"
-  utiluti type set $uti_m4v               $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
+  utiluti type set $uti_m4v                                $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
 
   report_adjust_setting "Set .avi files to open with Elmedia Player"
   printf "\n"
-  utiluti type set $uti_avi               $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
+  utiluti type set $uti_avi                                $BUNDLE_ID_ELMEDIA_PLAYER_MAS ; success_or_not
   
   report_end_phase_standard
 
