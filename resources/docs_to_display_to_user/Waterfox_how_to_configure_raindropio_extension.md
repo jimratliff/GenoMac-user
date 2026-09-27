@@ -8,14 +8,22 @@
 Although, GenoMac-user *can* install many other extensions it’s tried to install, for some reason GenoMac-user
 can’t always successfully install the Raindrop.io extension. So, if it’s not installed, you’ll need to manually install it.
 
-## Make Waterfox active and install from the Raindrop.io extension web page
+## Make Waterfox active and open the list of installed extensions
 - ❑ Make Waterfox active
   - The script will already have opened the Waterfox application for you.
-- ❑ Visit [Raindrop.io’s extension page](https://addons.mozilla.org/en-US/firefox/addon/raindropio/).
-- ❑ Click on “Add to Firefox” (even though you’re adding to *Waterfox* 🤪)
+- ❑ From the application menu, choose Tools » Extensions and Themes (⇧⌘A)
+ 
+## Maybe install from the Raindrop.io extension web page
+- ❑ Look at the list of installed extensions to see whether the Raindrop.io extension is already installed
+- ❑ If yes, go to the next step
+- ❑ If no:
+  - ❑ Visit [Raindrop.io’s extension page](https://addons.mozilla.org/en-US/firefox/addon/raindropio/).
+  - ❑ Click on “Add to Firefox” (even though you’re adding to *Waterfox* 🤪)
     - ❑ Pin 📌 ? ✅
  
 ## Sign in to your Raindrop.io account
+- ❑ Enable Raindrop.io
+    - ❑ Pin 📌 ? ✅
 - ❑ Click the cloud icon in the toolbar that corresponds to the Raindrop.io extension
 - ❑ Click the “Sign in” button
   - You’ll be sent to a standard username/password sign-in form
