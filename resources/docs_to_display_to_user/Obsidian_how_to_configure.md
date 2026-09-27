@@ -55,7 +55,8 @@
     - ❑ Use “Browse” button to select `~/Documents/Obsidian_vaults`
       - The Hypervisor has already created this folder for you
       - The Hypervisor has also already *opened* this folder for you. You can drag this folder’s folder alias icon into the Open/Save dialog box in order to set the correct location.
-    - ✅ Click the “Create” button
+      - ❑ Click the “Open” button in the Open/Save dialog box.
+    - ✅ In the open Obsidian window (“Create synced local vault for ‘«name of vault»’”), click the “Create” button.
    
 ## Unlock your remote vault
 - If your remote vault is encrypted, you’ll see a dialog box: “The remote vault ‘my vault’ is currently encrypted. Enter your password to unlock.”
