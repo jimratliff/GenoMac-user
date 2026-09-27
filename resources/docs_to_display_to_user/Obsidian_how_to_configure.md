@@ -39,8 +39,8 @@
   - “Open vault from Obsidian Sync”
     - “Set up a synced vault with existing remote vault”
     - Button: “Sign in”
-- ✅ Click the “Sign in” button
-  - ✅ Log in with email/password from your “Obsidian Sync” 1Password item (*not* Obsidian *Forum*)
+- ❑ Click the “Sign in” button
+  - ❑ Log in with email/password from your “Obsidian Sync” 1Password item (*not* Obsidian *Forum*)
  
 ## Specify the remote vault you want to sync locally and its desired local location
 - You’ll see a new dialog box that presents a list of your (possibly more than one) synced vaults
@@ -56,13 +56,13 @@
       - The Hypervisor has already created this folder for you
       - The Hypervisor has also already *opened* this folder for you. You can drag this folder’s folder alias icon into the Open/Save dialog box in order to set the correct location.
       - ❑ Click the “Open” button in the Open/Save dialog box.
-    - ✅ In the open Obsidian window (“Create synced local vault for ‘«name of vault»’”), click the “Create” button.
+    - ❑ In the open Obsidian window (“Create synced local vault for ‘«name of vault»’”), click the “Create” button.
    
 ## Unlock your remote vault
 - If your remote vault is encrypted, you’ll see a dialog box: “The remote vault ‘my vault’ is currently encrypted. Enter your password to unlock.”
 - ❑ Enter the encryption password in the “Encryption password” text field
   - (You can find this password stored in the “Obsidian Sync encryption passwords” 1Password item.)
-- ✅ Click the “Unlock vault” button
+- ❑ Click the “Unlock vault” button
 
 ## Begin syncing
 - You’ll see a new dialog box: “Setup connection”
@@ -70,17 +70,17 @@
   - There are two buttons
     - “Manage excluded folders”
     - “Start syncing”
-  - ✅ Click the “Start syncing” button
+  - ❑ Click the “Start syncing” button
 
 ## Adjust Obsidian settings
 ### Enable community plugins
 - Obsidian » Settings » Options » Community plugins
-  - ✅ Click the “Turn on community plugins” button (or, now, “Exit Restricted Mode”)
+  - ❑ Click the “Turn on community plugins” button (or, now, “Exit Restricted Mode”)
   - You’ll see, under “Current plugins,” that Obsidian thinks that “You currently have 0 plugins installed.” Don’t worry, we’ll fix that soon.
 ### Adjust Obsidian Sync settings
 - Obsidian » Settings » Core plugins » Sync
   - **Device name**
-    - ✅ Add a device name to distinguish this local clone from others
+    - ❑ Add a device name to distinguish this local clone from others
       - Use a name that combines (a) the Mac, (b) the startup volume, and (c) the user’s name.
       - You can find the local hostname at System Settings » Sharing » Advanced » Local hostname.
         - Just search in System Settings for 'hostname'
@@ -108,7 +108,7 @@
 By default, no community plugins are installed. Now that you’ve switched on “Active community plugin list” and “Installed community plugins,” the community plugins have been downloaded, but Obsidian is not yet aware of them.
 - Obsidian » Settings » Options » Community plugins
   - Look for the **Installed plugins** section at the bottom, with two icons to the far right: (a) reload (bidirectional circular arrows) and (b) a folder icon.
-  - ✅ Click on the reload icon (bidirectional circular arrows)
+  - ❑ Click on the reload icon (bidirectional circular arrows)
     - This is **not** the same as “Turn on and reload” in the “Restricted mode” section above.
   - Now you will see, under “Current plugins,” “You currently have 12 (or whatever) plugins installed.”
   - You will also see under “Installed plugins,” a list of community plugins, with a toggle switch for each.
