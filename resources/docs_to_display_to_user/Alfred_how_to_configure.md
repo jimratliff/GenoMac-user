@@ -44,7 +44,7 @@
 ## Configure macOS permissions
 
 > [!NOTE]
-> Setting the below permissions really pertains only to the first user being configured on this Mac (actually, this startup volume) who is using Alfred. (These permissions on set on the system level.) Thus, for all later-configured users, you can skip this.
+> Setting the below permissions really pertains only to the first user being configured on this Mac (actually, this startup volume) who is using Alfred. (These permissions on set on the system level.) Thus, for all later-configured users, you can skip this (by clicking the “Skip this step” button and then clicking “Start Alfred”).
 
 - The window changes to “Configure macOS Permissions: Alfred needs some simple permissions to serve you efficiently.”
   - “macOS may ask to quit or restart Alfred when granting access, select ‘Later’.”
@@ -79,9 +79,9 @@
   - This `Alfred_preferences` folder itself contains a subfolder: `Alfred_5_preferences`, which Alfred will use to find the `Alfred.alfredpreferences` file.
 ### Procedure to configure preference syncing
 - Make Alfred’s Preferences window active
-- Click “Advanced” in the left column
+- ❑ Click “Advanced” in the left column
 - In the lower right-hand side of that window, is the “Syncing” area
-- Click the “Set preferences folder…” button
+- ❑ Click the “Set preferences folder…” button
 - This opens an Open File dialog, which is looking for a particular **folder** (not a file)
 - You will want to select a particular path:
   - ~/Library/CloudStorage/Dropbox/Preferences_common/Alfred_preferences/Alfred_5_preferences
