@@ -4,6 +4,9 @@
 > Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
 > This task will be re-presented to you next time you run the Hypervisor.
 
+> [!NOTE]
+> For mysterious reasons, when this page is presented by `qlmanage`, after the first copy-link, you can’t copy the subsequent links. So those links are now also available as text for copy and paste.
+
 ## Make Helium active
 - ❑ Make Helium active
   - The script will already have opened the Helium application for you.
@@ -12,12 +15,14 @@
 Although I will provide a link for each app to be installed, it’s good to know where to go to find
 additional extensions.
 
-- ❑ In Helium visit the [Chrome Web Store](https://chromewebstore.google.com/)
+- ❑ In Helium visit the [Chrome Web Store](https://chromewebstore.google.com/):
+  - `https://chromewebstore.google.com/`
 - ❑ Bookmark this site so that you can easily return to it
 - Menubar » Bookmarks » Bookmark This Tab… (⌘D)
 
 ## Install theme
-- ❑ Go to the [Sea Foam theme Chrome web store page](https://chromewebstore.google.com/detail/sea-foam/lahipjfggmgneaopcckkaipmoandaboo)
+- ❑ Go to the [Sea Foam theme Chrome web store page](https://chromewebstore.google.com/detail/sea-foam/lahipjfggmgneaopcckkaipmoandaboo):
+  - `https://chromewebstore.google.com/detail/sea-foam/lahipjfggmgneaopcckkaipmoandaboo`
 - ❑ Click on “Add to Helium”
   - **NOTE: The “Add to Helium” button may be off the screen to the right. In that case, you’ll have to horizontally scroll to the right side of the window’s content.**
 
@@ -25,15 +30,18 @@ additional extensions.
 > Some of the following extensions may not be relevant to you. Feel free *not* to install/configure any extension that you feel doesn’t make sense for this user.
 
 ## Install 1Password
-- ❑ Go to the [1Password Chrome web store page](https://chromewebstore.google.com/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
+- ❑ Go to the [1Password Chrome web store page](https://chromewebstore.google.com/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa):
+  - `https://chromewebstore.google.com/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa`
 - ❑ Click on “Add to Helium”
 
 ## Install Chessvision.ai Chess Position Scanner
 - ❑ Go to the [Chessvision.ai Chess Position Scanner Chrome web store page](https://chromewebstore.google.com/detail/chessvisionai-chess-posit/johejpedmdkeiffkdaodgoipdjodhlld)
+  - `https://chromewebstore.google.com/detail/chessvisionai-chess-posit/johejpedmdkeiffkdaodgoipdjodhlld`
 - ❑ Click on “Add to Helium”
 
 ## Install Enhancer for YouTube
-- ❑ Go to the [Enhancer for YouTube™ Chrome web store page](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle)
+- ❑ Go to the [Enhancer for YouTube™ Chrome web store page](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle):
+  - `https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle`
 - ❑ Click on “Add to Helium”
 
 ## Return to the terminal
