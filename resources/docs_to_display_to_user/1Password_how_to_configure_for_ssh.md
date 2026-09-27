@@ -19,7 +19,7 @@
   - Otherwise, you will not be able to access the Developer settings below
 - Again in the 1Password app:
   - 1Password » Settings » Developer:
-    - Click on "Setup SSH Agent"
+    - ❑ Click on "Setup SSH Agent"
       - SSH Agent
         - ✅ Use the SSH Agent
           - You will see a dialog box “Allow 1Password to save SSH key names to disk?”
@@ -27,12 +27,12 @@
       - Advanced
         - Remember key approval: **until 1Password quits**
         - Do **not** check “Generate SSH config file with bookmarked hosts”
-      - Command-Line Interface (CLI)
+      - Developer integrations
         - ✅ Integrate with 1Password CLI
           - I don’t know much about this, but it seems like a good idea.
           - (“Use the desktop app to sign in to 1Password in the terminal.”)
            
-## Return to the terminal
+## Return to the terminal, but you’re NOT DONE YET
 Now return to the terminal and acknowledge you have completed the configuration of 1Password.
 ## The test to confirm the configuration of the SSH agent
 ### Authorize the test to confirm the configuration
