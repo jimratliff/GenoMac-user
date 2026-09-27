@@ -13,7 +13,7 @@
 - In the 1Password app, turn on two checkboxes to ensure that 1Password’s SSH Agent will be live even if the 1Password app itself is closed.
   - 1Password » Settings » General
     - ✅ Keep 1Password in the menu bar
-    - ✅ Start 1Password at login
+    - ✅ Start at login
 ## Enable 1Password SSH Agent
 - **ENTER YOUR PASSCODE** to unlock the 1Password vault</span>
   - Otherwise, you will not be able to access the Developer settings below
