@@ -85,13 +85,12 @@
 > - Default sync state for new files added to Dropbox folder:
 >   - ❑ Change from “Online-only” to “Available offline”
 
-### Make Preferences_common available offline
+### Make certain directories available offline
 - The Finder window pointing to the Dropbox folder shows all of its contents as online-only.
-- The Preferences_common directory should be available-offline
-  - ❑ Right-click on
-    - ❑ the Preferences_common directory and choose “Make available offline”
+- At least the following directories should be available-offline
+  - ❑ Right-click on each of the following and choose “Make available offline”
+    - ❑ the Preferences_common directory 
     - ❑ the Users/*your-user-name*” directory
-    - ❑ choose “Make available offline”
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
