@@ -30,13 +30,14 @@ Select:
 
 ### Search engine
 - ❑ Click on the ☰ icon in the upper left to display a left sidebar
-- ❑ “Search engine” in the left sidebar of Settings, or go to [helium://settings/search]
+- ❑ Click “Search engine” in the left sidebar of Settings, or go to [helium://settings/search]
   - A new page will be displayed titled “Search engine”, showing the default engine of DuckDuckGo
 - ❑ Click the “Change” button
   - A dialog box will open listing Microsoft Bing, Ecosia, …, Google, DuckDuckGo, etc.
 - ❑ Select “Google” and click “Set as Default”
 
 ### On startup
+- ❑ Click on the ☰ icon in the upper left to display a left sidebar
 - ❑ Click on “On startup” in the left sidebar of Settings, or go to [helium://settings/onStartup]
   - A new page will be displayed titled “On startup”, showing the default setting of “Open the New Tab page”
 - ❑ Select “Continue where you left off”
