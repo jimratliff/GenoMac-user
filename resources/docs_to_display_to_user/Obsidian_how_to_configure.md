@@ -101,6 +101,8 @@
       - ❑ Core plugin settings
       - ✅ **Active community plugin list** (This was OFF by default)
       - ✅ **Installed community plugins** (This was OFF by default)
+        - Turning this on triggers a new dialog box: “Allow synced plugins to run on this devices? Obsidian Sync cannot verify the contents of plugins synced to this device, and they may differ from plugins published in the community directory. Only enable this if the vault and connected devices are trusted.
+        - ❑ Click “Yes, turn on plugin sync”
      
   NOTE: Turning on “Active community plugin list” and “Installed community plugins” will import from the remote vault (a) the list of active community plugins you want to be enabled and (b) all of the community plugins that were installed on the remote vault. However, this will *not* by itself make Obsidian aware of those community plugins. See the next step.
 
