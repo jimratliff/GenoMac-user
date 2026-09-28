@@ -36,6 +36,10 @@
 
 - If you’ve already configured Alfred for another user on this Mac,[^STARTUP_VOLUME] the following permissions are already set.
   - ❑ Click the “Skip This Step…” button.
+  - You will see a window: “Alfred Setup Complete”
+  - ❑ Click the “Start Alfred” button.
+  - This opens Alfred’s preferences
+  - ❑ Go to section “Configure syncing” below.
 
 [^STARTUP_VOLUME]: Actually, more specifically for another user on this startup volume.
 
