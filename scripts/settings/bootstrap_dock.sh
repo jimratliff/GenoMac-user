@@ -121,6 +121,7 @@ function define_apps_for_dock() {
   local actual_path_to_app_iTerm="/Applications/iTerm.app"
   local actual_path_to_app_Microsoft_Word="/Applications/Microsoft Word.app"
   local actual_path_to_app_Obsidian="/Applications/Obsidian.app"
+  local actual_path_to_app_OfficeTime="/Applications/OfficeTime.app"
   local actual_path_to_app_Raindrop_io="/Applications/Raindrop.io.app"
   local actual_path_to_app_Tower="/Applications/Tower.app"
   local actual_path_to_app_Waterfox="/Applications/Waterfox.app"
@@ -132,6 +133,11 @@ function define_apps_for_dock() {
   local -a apps_for_dock=(
     "$actual_path_to_app_1Password"
   )
+
+  # OfficeTime.app
+  if test_genomac_user_state "$SESH_OFFICETIME_USER_WANTS_IT"; then
+    apps_for_dock+=( "$actual_path_to_app_OfficeTime" )
+  fi
 
   # Mail.app
   if test_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"; then
