@@ -22,6 +22,33 @@ function process_user_attribute_states() {
   report_end_phase_standard
 }
 
+function set_user_preferences_from_attributes() {
+  # Sets preference flags based on user’s user attributes
+  report_start_phase_standard
+  local attribute_name
+  local short_name
+  local state_prefix
+  local user_scoped_state_string
+
+  local -a user_scoped_state_strings
+
+  # Collect user-scoped user-attribute state strings for current user
+  short_name="$(short_name_of_user_from_HOME)"
+  state_prefix="$(construct_state_string_for_user_and_attribute --user-only "$short_name")"
+  
+  _state_strings_with_prefix \
+    "${state_prefix}" \
+    "user"
+  user_scoped_state_strings=("${reply[@]}")
+
+  for user_scoped_state_string in "${user_scoped_state_strings[@]}"; do
+    attribute_name="$(get_attribute_name_from_user_attribute_state_string "$user_scoped_state_string")"
+    set_user_preferences_for_attribute "$attribute_name"
+  done
+
+  report_end_phase_standard
+}
+
 function set_user_preferences_for_attribute() {
   # Sets preference flags for the supplied attribute
   report_start_phase_standard
@@ -144,33 +171,6 @@ function set_user_preferences_for_attribute() {
     set_genomac_user_state "$SESH_REPOSITORIES_DIRECTORY_USER_WANTS_IT"
   fi
     
-  report_end_phase_standard
-}
-
-function set_user_preferences_from_attributes() {
-  # Sets preference flags based on user’s user attributes
-  report_start_phase_standard
-  local attribute_name
-  local short_name
-  local state_prefix
-  local user_scoped_state_string
-
-  local -a user_scoped_state_strings
-
-  # Collect user-scoped user-attribute state strings for current user
-  short_name="$(short_name_of_user_from_HOME)"
-  state_prefix="$(construct_state_string_for_user_and_attribute --user-only "$short_name")"
-  
-  _state_strings_with_prefix \
-    "${state_prefix}" \
-    "user"
-  user_scoped_state_strings=("${reply[@]}")
-
-  for user_scoped_state_string in "${user_scoped_state_strings[@]}"; do
-    attribute_name="$(get_attribute_name_from_user_attribute_state_string "$user_scoped_state_string")"
-    set_user_preferences_for_attribute "$attribute_name"
-  done
-
   report_end_phase_standard
 }
 
