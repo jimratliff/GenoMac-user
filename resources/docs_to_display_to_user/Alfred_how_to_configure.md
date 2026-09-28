@@ -32,19 +32,12 @@
   - ❑ You’ll see, *inter alia*, “Thank you, you’re amazing ;)”
 - ❑ Click on the button: “Next Step…”
 
-## Migrate Preferences to Alfred 5 (possibly, likely not)
-(Suprisingly, and I don’t totally understand it… I once encountered this. But on other new users, this section about migration was skipped.)
-- The window changes to “Migrate Preferences to Alfred 5”
-  - “An older version of Alfred’s preferences has been found”
-  - Preferences: ~/Library/CloudStorage/Dropbox/Preferences_common/Alfred_preferences/ (this may simply be truncated here, because it should have the Alfred_5_preferences subfolder
-  - Local Data: ~/Library/Application Support/Alfred 2
-    - I have no idea where this comes from! Maybe it’s related to setting the sync folder programmatically.
-- ❑ Click the button: “Skip Migration…”
-
 ## Configure macOS permissions
 
-> [!NOTE]
-> Setting the below permissions really pertains only to the first user being configured on this Mac (actually, this startup volume) who is using Alfred. (These permissions on set on the system level.) Thus, for all later-configured users, you can skip this (by clicking the “Skip this step” button and then clicking “Start Alfred”).
+- If you’ve already configured Alfred for another user on this Mac,[^STARTUP_VOLUME] the following permissions are already set.
+  - ❑ Click the “Skip This Step…” button.
+
+[^STARTUP_VOLUME]: Actually, more specifically for another user on this startup volume.
 
 - The window changes to “Configure macOS Permissions: Alfred needs some simple permissions to serve you efficiently.”
   - “macOS may ask to quit or restart Alfred when granting access, select ‘Later’.”
