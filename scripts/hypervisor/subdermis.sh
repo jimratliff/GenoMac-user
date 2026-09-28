@@ -26,6 +26,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_waterfox_extension_preferen
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_basic_third_party_app_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_initial_bootstrap_operations.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/perform_stow_dotfiles.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/process_user_attributes.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_apps_to_launch_at_login.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_barebones_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_finder_sidebar_favorites.sh"
@@ -38,7 +39,6 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/set_spacejump_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_wallpapers.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_waterfox_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_witch_settings.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/user_attribute_functions.sh"
 
 function subdermis() {
 
@@ -60,7 +60,7 @@ function subdermis() {
   keep_sudo_alive                                             # GenoMac-shared/scripts/helpers-mac-and-terminal-environment.sh
   interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-mac-and-terminal-environment.sh
 
-  conditionally_process_user_attribute_states                 # scripts/settings/user_attribute_functions.sh.
+  conditionally_process_user_attribute_states                 # scripts/settings/process_user_attributes.sh.
 
   ############### BEGIN BAREBONES CONFIGURATION ###############
   conditionally_perform_barebones_user_level_settings         # scripts/settings/set_barebones_settings.sh
