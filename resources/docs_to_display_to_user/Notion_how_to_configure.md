@@ -9,14 +9,14 @@
 
 ## Launch Notion
 - ❑ Make Notion the active app. (The Hypervisor should have launched Notion for you already.)
-- You’ll see a window saying “Think it. Make it. Log in to your Notion account”
-- ❑ Enter the email address for your account
-- ❑ Press the “Continue” button
-- ❑ Enter the password for your account
-- ❑ Press the “Continue with password” button
-- ❑ Click “Sign in”
-
-
+- You’ll see a window saying “Your AI workspace” (or some other marketing hype followed by “Log in to your Notion account”, with a “Continue in Browser” button.
+  - ❑ Press the “Continue in Browser” button
+- A browser window opens: “Your AI workspace. Log in to your Notion account”
+  - ❑ Enter the email address for your account
+  - ❑ Press the “Continue” button
+  - ❑ Enter the password for your account
+  - ❑ Press the “Continue with password” button
+  - ❑ Click “Sign in”
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
