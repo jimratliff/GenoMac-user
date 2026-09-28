@@ -67,7 +67,7 @@ You can activate your Downie license (which requires an email address and a lice
   - This will choose the menu item: “Downie 4” » “Enter License Code…”, and then populate the
     email-address and license-code fields with the credentials under which Downie is registered.
     - Note that these credentials do *not* exist in this repo, but rather are stored in my securely privately synced macro set.
-- ❑ Click on the “Activate License Code” button to confirm the assignments and complete the registration process.
+- ❑ Click on the “Activate License” button to confirm the assignments and complete the registration process.
   - Note that this Keyboard Maestro macro will be visible under the Keyboard Maestro menubar status icon *only* when either (a) Downie, (b) Keyboard Maestro, or (c) Alfred Preferences is the active app.
 
 ## Return to the terminal
