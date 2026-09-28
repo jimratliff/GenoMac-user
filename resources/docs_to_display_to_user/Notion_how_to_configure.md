@@ -1,8 +1,5 @@
 # How to configure the Notion desktop app
 
-> [!WARNING]
-> Revisit the following to conform to actual operation of Notion.
-
 > [!NOTE]
 > Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
 > This task will be re-presented to you next time you run the Hypervisor.
