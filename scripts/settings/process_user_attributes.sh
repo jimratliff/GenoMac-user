@@ -82,8 +82,8 @@ function set_user_preferences_for_attribute() {
       #       not currently used. Configuring Chessvision currently is so lightweight that it’s
       #       not worth carving it out in order to conditionally skip it.
       set_genomac_user_state "$SESH_CHESSVISION_AI_USER_WANTS_IT"
-      
       ;;
+      
     "${USER_ATTRIBUTE_DEVELOPER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_DEVELOPER}"
       set_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"
@@ -126,6 +126,10 @@ function set_user_preferences_for_attribute() {
     "${USER_ATTRIBUTE_OBSIDIAN_USER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_OBSIDIAN_USER}"
       set_genomac_user_state "$SESH_OBSIDIAN_USER_WANTS_IT"
+      ;;
+    "${USER_ATTRIBUTE_OFFICETIME}")
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_OFFICETIME}"
+      set_genomac_user_state "$SESH_OFFICETIME_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_PROTON_DRIVE_USER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_PROTON_DRIVE_USER}"
