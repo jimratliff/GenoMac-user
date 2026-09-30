@@ -29,12 +29,14 @@ Select:
 - ❑ From the application menubar, choose Helium » Settings… (⌘,)
 
 ### Search engine
-- ❑ Click on the ☰ icon in the upper left to display a left sidebar
+- ❑ If necessary to see the left sidebar,[^SIDEBAR_CONDITIONAL] click on the ☰ icon in the upper left to display a left sidebar
 - ❑ Click “Search engine” in the left sidebar of Settings, or go to [helium://settings/search]
   - A new page will be displayed titled “Search engine”, showing the default engine of DuckDuckGo
 - ❑ Click the “Change” button
   - A dialog box will open listing Microsoft Bing, Ecosia, …, Google, DuckDuckGo, etc.
 - ❑ Select “Google” and click “Set as Default”
+
+[^SIDEBAR_CONDITIONAL]: Whether the sidebar is initially displayed depends on the width of the browser window.
 
 ### On startup
 - ❑ Click on the ☰ icon in the upper left to display a left sidebar
