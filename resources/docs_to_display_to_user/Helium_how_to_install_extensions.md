@@ -4,8 +4,10 @@
 > Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
 > This task will be re-presented to you next time you run the Hypervisor.
 
-> [!NOTE]
-> For mysterious reasons, when this page is presented by `qlmanage`, after the first copy-link, you can’t copy the subsequent links. So those links are now also available as text for copy and paste.
+> [!WARNING]
+> For mysterious reasons, when this page is presented by `qlmanage`, after the first copy-link, you can’t copy the subsequent links. So those links are now also available as text for copy and paste. (But you can’t even copy them!)
+>
+> The alternative is to navigate to `~/.genomac-user/resources/docs_to_display_to_user/Helium_how_to_install_extensions.md`, and double-click it to open it in FluxMarkdown, which doesn’t suffer the same problems.
 
 ## Make Helium active
 - ❑ Make Helium active
