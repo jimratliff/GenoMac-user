@@ -30,7 +30,7 @@ Select:
 
 ### Search engine
 - ❑ If necessary to see the left sidebar,[^SIDEBAR_CONDITIONAL] click on the ☰ icon in the upper left to display a left sidebar
-- ❑ Click “Search engine” in the left sidebar of Settings, or go to [helium://settings/search]
+- ❑ Again, if necessary to see the left sidebar, click “Search engine” in the left sidebar of Settings, or go to [helium://settings/search]
   - A new page will be displayed titled “Search engine”, showing the default engine of DuckDuckGo
 - ❑ Click the “Change” button
   - A dialog box will open listing Microsoft Bing, Ecosia, …, Google, DuckDuckGo, etc.
