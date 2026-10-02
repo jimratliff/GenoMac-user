@@ -29,7 +29,7 @@ function set_GraphicConverter_settings() {
   defaults write ${domain} GCSlideShowShowsExtension -bool true ; success_or_not
 
   report_adjust_setting "Set: Slide show: Show text in normal mode (not color diff) against its background"
-  defaults write ${domain} GCSlideshowTextDisplayMode -bool integer ; success_or_not
+  defaults write ${domain} GCSlideshowTextDisplayMode -integer 0 ; success_or_not
 
   report_adjust_setting "Set: Slide show: Transitions: Use fade"
   defaults write ${domain} GCSlideshowAnimation0 -bool true ; success_or_not
