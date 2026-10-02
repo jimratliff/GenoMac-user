@@ -59,6 +59,9 @@ function set_GraphicConverter_settings() {
   report_adjust_setting "Set: Slide show: Show video controls"
   defaults write ${domain} GCSlideshowShowMovieControlsV2 -bool true ; success_or_not
 
+  report_adjust_setting "Set: Slide show: Default to random order"
+  defaults write ${domain} GCSlideshowRandom -bool true ; success_or_not
+
   invalidate_preferences_cache
   
   report_end_phase_standard
