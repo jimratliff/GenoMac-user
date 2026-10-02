@@ -13,34 +13,39 @@ The below tree diagram indicates only those elements that are recognized by Geno
 [^OMNIOUTLINER_IN_DROPBOX_NOT_USED]: Note that the actual `Dropbox/Preferences_common` directory contains (though it isn’t shown below) the immediate subdirectory `OmniOutliner_Jim's_default_document`, which contains a copy of `_JDR_OmniOutliner_Template`. This is *not* the copy that is installed by the function `set_omnioutliner_settings`. That function installs the copy at `GenoMac-user/resources/omnioutliner/_JDR_OmniOutliner_Template.oo3template`, i.e., that is found in the GenoMac-user repo itself, not in the user’s Dropbox. This OmniOutliner template isn’t deemed sensitive enough to require installing from Dropbox.
 
 - Dropbox
-  - ScanSnap_inbox[^SCANSNAP]
-  - Preferences_common
-    - Alfred_preferences
-      - Alfred_5_preferences[^ALFRED_PREFS]
+  - ScanSnap_inbox/[^SCANSNAP]
+  - Preferences_common/
+    - Alfred_preferences/
+      - Alfred_5_preferences/[^ALFRED_PREFS]
         - Alfred.alfredpreferences
-    - BetterTouchTool
-      - LICENSE
+    - BetterTouchTool/
+      - LICENSE/
         - bettertouchtool.bttlicense[^BTT_LICENSE_COPIED_AUTOMAGICALLY]
-    - Keyboard_Maestro
+    - Keyboard_Maestro/
       - Keyboard Maestro Macros.kmsync[^KM_PREF_SYNCING_ENABLED_AUTOMATICALLY]
-    - Sidebar_dividers[^SIDEBAR_DIVIDERS_NOT_USED_BY_GENOMAC_USER]
+    - Sidebar_dividers/[^SIDEBAR_DIVIDERS_NOT_USED_BY_GENOMAC_USER]
       - ----------1
       - ----------2
       - ----------3
       - …
-    - SpaceJump
-      - License_key
+    - SpaceJump/
+      - License_key/
         - SpaceJump_license_key.txt[^SPACEJUMP_LICENSE_ACTIVATION]
-    - Witch
-      - LICENSE
-        - Files_to_transfer
+    - Witch/
+      - LICENSE/
+        - Files_to_transfer/
           - *This directory must contain the one or more Many Tricks license files*[^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]
           - Jim Ratliff 1.witchlicense
           - Jim Ratliff.witchlicense
           - Jim Ratliff.witchupgradelicense
-  - Users
-    - my_user_short_name
-      - Prefs
+  - Users/
+    - $USER/
+      - Prefs/
+        - Bookmarks/
+          - Bookmarks_to_import/
+            - Helium_bookmarks_to_import.html[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]
+            - Waterfox_bookmarks_to_import.html[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]
+          - Bookmarks.md[^BOOKMARKS_MD_NOT_USED_BY_GENOMAC]
         - Meta
           - finder_sidebar_favorites_name_path_pairs.jsonl[^FINDER_SIDEBAR_FAVORITES]
           - Internet_Accounts_how_to_configure_accounts.md[^INTERNET_ACCOUNTS_FILE_IS_OPTIONAL]
@@ -69,6 +74,10 @@ The below tree diagram indicates only those elements that are recognized by Geno
 [^SPACEJUMP_LICENSE_ACTIVATION]: During the activation of the license for SpaceJump, the function `get_license_key_for_spacejump` reads `SpaceJump_license_key.txt` to find the license key on the first line that is neither (a) a comment (begins with '#') nor (b) blank. The function `activate_spacejump_license` then writes the license key to SpaceJump’s .plist.
 
 [^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]: You can find your Many Tricks license files at: «~/Library/Application Support/Many Tricks/Licenses». See also “[FAQ: How do I copy my licenses to another computer?](https://manytricks.com/osticket/kb/faq.php?id=2)”
+
+[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]: Currently (10/2/2026), there is no restriction/requirement on the filenames of these `.html` files because the user will manually import them into their respective browser.
+
+[^BOOKMARKS_MD_NOT_USED_BY_GENOMAC]: The `Bookmarks.md` file is not explicitly referenced by GenoMac-user, but this method of syncing a user’s bookmarks across machines is the solution anticipated by GenoMac-user.
 
 [^FINDER_SIDEBAR_FAVORITES]: This JSON lines file is optional. When it exists, it contains (name, path) pairs of items to install in the user’s Finder’s sidebar Favorites. When at least one pair exists, all existing Favorites are removed and replaced with the items specified in this file. NOTE: macOS appears to ignore the `name` component and instead conditionally uses the item’s actual filename from its path.
 
