@@ -42,6 +42,8 @@ function set_GraphicConverter_settings() {
   defaults write ${domain} GCSlideshowAnimation1 -bool false ; success_or_not
   defaults write ${domain} GCSlideshowAnimation2 -bool false ; success_or_not
   defaults write ${domain} GCSlideshowAnimation3 -bool false ; success_or_not
+
+  invalidate_preferences_cache
   
   report_end_phase_standard
 
