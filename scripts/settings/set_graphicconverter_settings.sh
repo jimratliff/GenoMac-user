@@ -34,6 +34,14 @@ function set_GraphicConverter_settings() {
   report_adjust_setting "Set: Slide show: Show text in normal mode (not color diff) against its background"
   defaults write ${domain} GCSlideshowTextDisplayMode -integer 0 ; success_or_not
 
+  # Set color of background of filename, etc. string
+  # This is lavender, to contrast against a variety of backgrounds in the image
+  defaults write "$domain" GCSlideShowFileNameColorRGBArr -array \
+  '<real>0.8446564</real>' \
+  '<real>0.5145705</real>' \
+  '<real>1</real>'
+  success_or_not
+
   # Set transitions
   # Note: I was concerned this might not work, because I’m not also creating GCSlideShowSelectedTransitions.
   #       But empirically setting these flags is enough.
