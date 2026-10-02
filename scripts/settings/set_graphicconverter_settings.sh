@@ -34,10 +34,12 @@ function set_GraphicConverter_settings() {
   report_adjust_setting "Set: Slide show: Show text in normal mode (not color diff) against its background"
   defaults write ${domain} GCSlideshowTextDisplayMode -integer 0 ; success_or_not
 
+  # Set transitions
+  # Note: I was concerned this might not work, because I’m not also creating GCSlideShowSelectedTransitions.
+  #       But empirically setting these flags is enough.
   report_adjust_setting "Set: Slide show: Transitions: Use fade"
   defaults write ${domain} GCSlideshowAnimation0 -bool true ; success_or_not
 
-  # Warning: This might not work, because I’m not also creating GCSlideShowSelectedTransitions
   report_adjust_setting "Set: Slide show: Transitions: Turn off all other transitions"
   defaults write ${domain} GCSlideshowAnimation1 -bool false ; success_or_not
   defaults write ${domain} GCSlideshowAnimation2 -bool false ; success_or_not
