@@ -77,7 +77,7 @@ The below tree diagram indicates only those elements that are recognized by Geno
 
 [^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]: Currently (10/2/2026), there is no restriction/requirement on the filenames of these `.html` files because the user will manually import them into their respective browser.
 
-[^BOOKMARKS_MD_NOT_USED_BY_GENOMAC]: The `Bookmarks.md` file is not explicitly referenced by GenoMac-user, but this method of syncing a user’s bookmarks across machines is the solution anticipated by GenoMac-user.
+[^BOOKMARKS_MD_NOT_USED_BY_GENOMAC]: The `Bookmarks.md` file is not explicitly referenced by GenoMac-user, but this method of syncing a user’s bookmarks across machines is the solution anticipated by GenoMac-user. However, a pair of Keyboard Maestro macros, viz., `Open Bookmarks.md in FluxMarkdown` and `Edit Bookmarks.md in BBEdit` *do* rely on this explicit filename.
 
 [^FINDER_SIDEBAR_FAVORITES]: This JSON lines file is optional. When it exists, it contains (name, path) pairs of items to install in the user’s Finder’s sidebar Favorites. When at least one pair exists, all existing Favorites are removed and replaced with the items specified in this file. NOTE: macOS appears to ignore the `name` component and instead conditionally uses the item’s actual filename from its path.
 
