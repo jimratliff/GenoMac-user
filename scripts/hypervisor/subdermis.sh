@@ -145,9 +145,9 @@ function subdermis() {
     conditionally_install_Witch_license_files                 # scripts/settings/set_witch_settings.sh
     conditionally_interactive_enable_Witch                    # scripts/settings/set_witch_settings.sh
 
-    # Configuration of Mail.app relies on Dropbox only because there *may* be user-specific instructions stored in the
-    # user’s Dropbox
-    conditionally_configure_mail_app                          # scripts/settings/set_mail_app_settings.sh
+    # Configuration of Internet Accounts and Mail.app relies on Dropbox only because there *may* be user-specific
+    # instructions stored in the user’s Dropbox
+    conditionally_configure_internet_accounts_and_mail_app    # scripts/settings/set_mail_app_settings.sh
 
     # HIARCS Chess Explorer Pro must be configured *after* Keyboard Maestro, because activating HIARCS’s license uses a
     # custom Keyboard Maestro macro
