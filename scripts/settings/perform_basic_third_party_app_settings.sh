@@ -3,6 +3,7 @@
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_bbedit_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_chatgpt_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_claude_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_graphicconverter_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_iterm_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_omnioutliner_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_plain_text_editor_settings.sh"
@@ -36,6 +37,9 @@ function perform_basic_third_party_app_settings() {
   
   # Claude
   set_claude_settings
+  
+  # GraphicConverter
+  set_GraphicConverter_settings
   
   # iTerm2
   set_iterm_settings
