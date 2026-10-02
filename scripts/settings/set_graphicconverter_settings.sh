@@ -7,6 +7,9 @@ function set_GraphicConverter_settings() {
   
   local domain="DEFAULTS_DOMAINS_GRAPHIC_CONVERTER_12"
 
+  # Ensure preference domain exists
+  launch_and_quit_app "$BUNDLE_ID_GRAPHIC_CONVERTER_12"
+
   report_adjust_setting "Set: Don’t show splash dialog at app launch"
   defaults write ${domain} GCShowFirstStepsDialogNextGen -bool false ; success_or_not
 
