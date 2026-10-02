@@ -98,12 +98,17 @@ function set_user_preferences_for_attribute() {
       ;;
     "${USER_ATTRIBUTE_EMAILER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_EMAILER}"
+      set_genomac_user_state "$SESH_INTERNET_ACCOUNTS_USER_WANTS_IT"
       set_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_GENOMAC_DEVELOPER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_GENOMAC_DEVELOPER}"
       set_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"
       set_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"
+      ;;
+    "${USER_ATTRIBUTE_INTERNET_ACCOUNTS}")
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_INTERNET_ACCOUNTS}"
+      set_genomac_user_state "$SESH_INTERNET_ACCOUNTS_USER_WANTS_IT"
       ;;
     "${USER_ATTRIBUTE_MAC_ADMIN}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_MAC_ADMIN}"
