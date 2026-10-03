@@ -27,10 +27,7 @@ function perform_basic_third_party_app_settings() {
   report_action_taken "Begin settings for certain third-party applications"
   
   # BBEdit
-  set_bbedit_settings
-  
-  # BetterTouchTool
-  set_btt_settings
+  set_bbedit_settings                  # scripts/settings/set_bbedit_settings.sh
   
   # ChatGPT
   set_chatgpt_settings
