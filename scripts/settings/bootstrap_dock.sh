@@ -109,6 +109,7 @@ function define_apps_for_dock() {
   # Define actual paths to apps: Apple
   local actual_path_to_app_Activity_Monitor="/System/Applications/Utilities/Activity Monitor.app"
   local actual_path_to_app_Disk_Utility="/System/Applications/Utilities/Disk Utility.app"
+  local actual_path_to_app_GraphicConverter="/Applications/GraphicConverter 12.app"
   local actual_path_to_app_Mail_app="/System/Applications/Mail.app"
   local actual_path_to_app_Safari="/System/Cryptexes/App/System/Applications/Safari.app"
   local actual_path_to_app_System_Settings="/System/Applications/System Settings.app"
@@ -170,6 +171,11 @@ function define_apps_for_dock() {
   # Microsoft Word
   if test_genomac_user_state "$SESH_MICROSOFT_WORD_USER_WANTS_IT"; then
     apps_for_dock+=( "$actual_path_to_app_Microsoft_Word" )
+  fi
+
+  # GraphicConverter
+  if test_genomac_user_state "$SESH_GraphicConverter_USER_WANTS_IT_IN_DOCK"; then
+    apps_for_dock+=( "$actual_path_to_app_GraphicConverter" )
   fi
 
   # HIARCS Chess Explorer Pro
