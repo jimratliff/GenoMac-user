@@ -15,6 +15,9 @@ function set_plain_text_editor_settings() {
 
   report_adjust_setting "Editor » Stats » Line count: Turn ON"
   defaults write ${domain} enabledStats -array lineCount characterCount wordCount ; success_or_not
+
+  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
+  invalidate_preferences_cache
   
   report_end_phase_standard
 }
