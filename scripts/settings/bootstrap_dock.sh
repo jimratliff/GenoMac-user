@@ -158,6 +158,12 @@ function define_apps_for_dock() {
     )
   fi
 
+  # Safari is added for USER_CONFIGURER because Safari is where that user 
+  # establishes the text-exchange link to other users/machines.
+  if test_genomac_user_state "$SESH_USER_IS_USER_CONFIGURER"; then
+    apps_for_dock+=( "$actual_path_to_app_Safari" )
+  fi
+
   # Raindrop.io
   if test_genomac_user_state "$SESH_RAINDROP_IO_USER_WANTS_IT"; then
     apps_for_dock+=( "$actual_path_to_app_Raindrop_io" )
