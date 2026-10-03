@@ -116,10 +116,12 @@ function define_apps_for_dock() {
   
   # Define actual paths to apps: non-Apple
   local actual_path_to_app_1Password="/Applications/1Password.app"
+  local actual_path_to_app_Downie="/Applications/Downie 4.app"
   local actual_path_to_app_Helium="/Applications/Helium.app"
   local actual_path_to_app_HIARCS_Chess_Explorer_Pro="/Applications/HIARCS Chess Explorer Pro.app"
   local actual_path_to_app_iTerm="/Applications/iTerm.app"
   local actual_path_to_app_Microsoft_Word="/Applications/Microsoft Word.app"
+  local actual_path_to_app_Name_Mangler="/Applications/Name Mangler 3.app"
   local actual_path_to_app_Obsidian="/Applications/Obsidian.app"
   local actual_path_to_app_OfficeTime="/Applications/OfficeTime.app"
   local actual_path_to_app_Raindrop_io="/Applications/Raindrop.io.app"
@@ -173,6 +175,16 @@ function define_apps_for_dock() {
   # HIARCS Chess Explorer Pro
   if test_genomac_user_state "$SESH_HIARCS_CHESS_EXPLORER_PRO_USER_WANTS_IT"; then
     apps_for_dock+=( "$actual_path_to_app_HIARCS_Chess_Explorer_Pro" )
+  fi
+
+  # Downie
+  if test_genomac_user_state "$SESH_DOWNIE_USER_WANTS_IT_IN_DOCK"; then
+    apps_for_dock+=( "$actual_path_to_app_Downie" )
+  fi
+
+  # Name Mangler
+  if test_genomac_user_state "$SESH_NAME_MANGLER_USER_WANTS_IT_IN_DOCK"; then
+    apps_for_dock+=( "$actual_path_to_app_Name_Mangler" )
   fi
 
   # iTerm is unconditional:
