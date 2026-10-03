@@ -73,5 +73,8 @@ function perform_barebones_user_level_settings() {
   # Alan.app
   set_alan_app_settings
 
+  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
+  invalidate_preferences_cache
+
   report_end_phase_standard                      # scripts/settings/set_alan_app_settings.sh
 }
