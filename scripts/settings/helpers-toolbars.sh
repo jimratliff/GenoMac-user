@@ -52,6 +52,8 @@ function set_toolbar_to_show_both_icons_and_text() {
 }
 
 function set_toolbar_items() {
+  report_start_phase_standard
+  
   local plist_path="$1"
   local toolbar_name="$2"
   shift 2
@@ -79,4 +81,9 @@ function set_toolbar_items() {
 
     (( ++index ))
   done
+
+  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
+  invalidate_preferences_cache
+
+  report_end_phase_standard
 }
