@@ -20,11 +20,12 @@ function set_iterm_settings() {
   
   report_adjust_setting "Change default font to Fira Code Nerd Font"
   
-  # It is insufficient to test for the existence of the plist file. The plist file can exist but yet
-  # not contain the entry needed to set the default font.
+  # It is insufficient to test for the existence of the plist file.
+  # The plist file can exist but yet not contain the entry needed to set the default font.
   
-  # iTerm’s plist is not sufficiently populated to support setting the default font unless iTerm has been launched once.
-  # We check whether there is a sufficiently populated plist. If not, launch iTerm to create that plist.
+  # iTerm’s plist is not sufficiently populated to support setting the default font unless
+  # iTerm has been launched once. We check whether there is a sufficiently populated plist.
+  # If not, launch iTerm to create that plist.
   if ! "${PLISTBUDDY_PATH}" -c 'Print :"New Bookmarks":0:"Normal Font"' "${plist_path}" >/dev/null 2>&1; then
       report_warning $'iTerm2 preferences not properly initialized, launching iTerm2 to properly populate plist file.'
       launch_and_quit_app "${BUNDLE_ID_ITERM2}"
@@ -36,6 +37,9 @@ function set_iterm_settings() {
   # Set number of scrollback lines to unlimited
   report_adjust_setting "Set number of scrollback lines to unlimited"
   "${PLISTBUDDY_PATH}" -c 'Set :"New Bookmarks":0:"Unlimited Scrollback" 1' "${plist_path}" ; success_or_not
+
+  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
+  invalidate_preferences_cache
   
   report_end_phase_standard
 
