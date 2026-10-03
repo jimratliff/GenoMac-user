@@ -62,6 +62,7 @@ function set_GraphicConverter_settings() {
   report_adjust_setting "Set: Slide show: Default to random order"
   defaults write ${domain} GCSlideshowRandom -bool true ; success_or_not
 
+  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
   invalidate_preferences_cache
   
   report_end_phase_standard
