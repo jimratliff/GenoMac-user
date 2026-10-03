@@ -2,8 +2,13 @@
 
 function bootstrap_finder_open_new_windows_to_home(){
   report_start_phase_standard
+  
   report_adjust_setting "By default, new Finder window should open to user’s home directory"
   defaults write $DEFAULTS_DOMAINS_FINDER NewWindowTarget -string "PfHm" ; success_or_not
+
+  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
+  invalidate_preferences_cache
+
   report_end_phase_standard
 }
 
