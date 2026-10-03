@@ -42,7 +42,7 @@ The below tree diagram indicates only those elements that are recognized by Geno
     - $USER/
       - Prefs/
         - Bookmarks/
-          - Bookmarks_to_import/
+          - Bookmarks_to_import/[^BOOKMARKS_TO_IMPORT_OPTIONAL]
             - Helium_bookmarks_to_import.html[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]
             - Waterfox_bookmarks_to_import.html[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]
           - Bookmarks.md[^BOOKMARKS_MD_NOT_USED_BY_GENOMAC]
@@ -74,6 +74,8 @@ The below tree diagram indicates only those elements that are recognized by Geno
 [^SPACEJUMP_LICENSE_ACTIVATION]: During the activation of the license for SpaceJump, the function `get_license_key_for_spacejump` reads `SpaceJump_license_key.txt` to find the license key on the first line that is neither (a) a comment (begins with '#') nor (b) blank. The function `activate_spacejump_license` then writes the license key to SpaceJump’s .plist.
 
 [^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]: You can find your Many Tricks license files at: «~/Library/Application Support/Many Tricks/Licenses». See also “[FAQ: How do I copy my licenses to another computer?](https://manytricks.com/osticket/kb/faq.php?id=2)”
+
+[^BOOKMARKS_TO_IMPORT_OPTIONAL]: This directory is optional. Only if it is nonempty will Hypervisor ask the user to manually import its contents into browsers.
 
 [^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]: Currently (10/2/2026), there is no restriction/requirement on the filenames of these `.html` files because the user will manually import them into their respective browser.
 
