@@ -13,6 +13,10 @@ function implement_mission_control_assign_to_options_for_selected_apps(){
   set_bundle_id_to_AllSpaces "${BUNDLE_ID_SYSTEM_SETTINGS}"
   # set_bundle_id_to_AllSpaces "${BUNDLE_ID_TEXTEXPANDER}"
 
+  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
+  invalidate_preferences_cache
+
+  # Belt-and-suspenders approach to cementing our changes
   killall Dock
   
   report_end_phase_standard
