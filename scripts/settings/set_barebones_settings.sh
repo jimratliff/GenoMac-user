@@ -23,7 +23,6 @@ function conditionally_perform_barebones_user_level_settings() {
   report_start_phase_standard
 
   run_if_user_has_not_done \
-    --force-logout \
     "$SESH_BAREBONES_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
     perform_barebones_user_level_settings \
     "Skipping barebones user-level settings, because they’ve already been set this session"
