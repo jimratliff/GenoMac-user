@@ -21,6 +21,8 @@
   - ❑ Pin 📌 ? OPTIONAL, whatever choice this user would prefer
 - ❑ Downie
   - ❑ Pin 📌 ? OPTIONAL, whatever choice this user would prefer
+- ❑ To Google Translate
+  - ❑ Pin 📌 ? (Pinning doesn’t even seem available!)
 - ❑ Tree Style Tab
   - ❑ Pin 📌 ? ✅
 
