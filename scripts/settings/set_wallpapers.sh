@@ -290,12 +290,15 @@ APPLESCRIPT
 function extension_is_valid_wallpaper_image_type() {
   # Returns 0 if the supplied path has a filename extension valid for use as
   # a wallpaper image. Returns 1 otherwise.
+  #
+  # I added avif as legit wallpaper image type (a) even though it wasn’t on the list of legit types I had
+  # found because (b) I’ve used such image files reliably for wallpapers.
   report_start_phase_standard
   local path="${1:?MISSING path}"
   local extension="${${path:e}:l}"
 
   case "$extension" in
-    jpeg|jpg|heic|png|tiff|webp)
+    jpeg|jpg|heic|png|tiff|webp|avif)
       report_to_log "Extension $extension is a valid wallpaper image type."
       report_end_phase_standard
       return 0
