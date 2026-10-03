@@ -23,7 +23,7 @@
 - “Execute Action”
   - NO CHANGE, because no shortcut is assigned
 ### Downie (remove shortcut)
-- “ Open current site with Downie
+- “Open current site with Downie”
   - ❑ REMOVE the ⇧⌃D shortcut
 ### Enhancer for YouTube™ (no changes
 Although there are 38 entries, they all default to ❌. No change necessary.
@@ -45,6 +45,13 @@ Although there are 38 entries, they all default to ❌. No change necessary.
   - ❑ Replace ⌥1 → F2
 - “Activate toolbar button”
   - NO CHANGE: Remains at ⌥2
+### To Google Translate (remove all shortcuts)
+- “Translate selected text”
+  - ❑ REMOVE the ⇧⌘1 shortcut
+- “TTS selected text”
+  - ❑ REMOVE the ⇧⌘2 shortcut
+- “Translate page”
+  - ❑ REMOVE the ⇧⌘3 shortcut
 ### Tree Style Tab (keep 5, remove 7, and leave untouched 42 more that default to ❌)
 - DO NOT CHANGE the following 5 entries
   - “Toggle ‘Tree Style Tab’ Sidebar”
