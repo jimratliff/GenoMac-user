@@ -30,6 +30,9 @@ function set_omnioutliner_settings() {
   report_adjust_setting "Set: Keyboard: New rows are created: Always at the same level"
   defaults write ${domain} OOReturnShouldPossiblyIndent -bool false ; success_or_not
 
+  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
+  invalidate_preferences_cache
+
   report_end_phase_standard
 
 }
