@@ -180,7 +180,7 @@ function define_apps_for_dock() {
   fi
 
   # GraphicConverter
-  if test_genomac_user_state "$SESH_GraphicConverter_USER_WANTS_IT_IN_DOCK"; then
+  if test_genomac_user_state "$SESH_GRAPHICCONVERTER_USER_WANTS_IT_IN_DOCK"; then
     apps_for_dock+=( "$actual_path_to_app_GraphicConverter" )
   fi
 
