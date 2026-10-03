@@ -14,7 +14,6 @@ function conditionally_perform_basic_third_party_app_settings() {
   report_start_phase_standard
 
   run_if_user_has_not_done \
-    --force-logout \
     "$SESH_BASIC_THIRD_PARTY_APP_SETTINGS_HAVE_BEEN_IMPLEMENTED" \
     perform_basic_third_party_app_settings \
     "Skipping basic third-party app user-level settings, because they’ve already been set this session"
