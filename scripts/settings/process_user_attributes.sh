@@ -112,7 +112,7 @@ function set_user_preferences_for_attribute() {
       ;;
     "${USER_ATTRIBUTE_GRAPHICCONVERTER_IN_DOCK}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_GRAPHICCONVERTER_IN_DOCK}"
-      set_genomac_user_state "$SESH_GraphicConverter_USER_WANTS_IT_IN_DOCK"
+      set_genomac_user_state "$SESH_GRAPHICCONVERTER_USER_WANTS_IT_IN_DOCK"
       ;;
     "${USER_ATTRIBUTE_INTERNET_ACCOUNTS}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_INTERNET_ACCOUNTS}"
