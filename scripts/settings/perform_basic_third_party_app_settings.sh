@@ -30,25 +30,25 @@ function perform_basic_third_party_app_settings() {
   set_bbedit_settings                  # scripts/settings/set_bbedit_settings.sh
   
   # ChatGPT
-  set_chatgpt_settings
+  set_chatgpt_settings                 # scripts/settings/set_chatgpt_settings.sh
   
   # Claude
-  set_claude_settings
+  set_claude_settings                  # scripts/settings/set_claude_settings.sh
   
   # GraphicConverter
-  set_GraphicConverter_settings
+  set_GraphicConverter_settings        # scripts/settings/set_graphicconverter_settings.sh
   
   # iTerm2
-  set_iterm_settings
+  set_iterm_settings                   # scripts/settings/set_iterm_settings.sh
   
   # OmniOutliner
-  set_omnioutliner_settings
+  set_omnioutliner_settings            # scripts/settings/set_omnioutliner_settings.sh
 
   # Plain Text Editor
-  set_plain_text_editor_settings
+  set_plain_text_editor_settings       # scripts/settings/set_plain_text_editor_settings.sh
 
   # Witch
-  set_witch_settings
+  set_witch_settings                   # scripts/settings/set_witch_settings.sh
   
   report_end_phase_standard
 }
