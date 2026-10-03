@@ -11,6 +11,9 @@ conditionally_install_Witch_license_files() {
 }
 
 conditionally_interactive_enable_Witch() {
+  # NOTE: In my experience this is unnecessary most of the time. Perhaps it’s necessary for the
+  #       first-configured Mac on a system.
+  #       This phenomenon should be watched to see whether to remove this function.
   report_start_phase_standard
 
   run_if_user_has_not_done "$PERM_WITCH_HAS_BEEN_ENABLED" \
@@ -125,6 +128,9 @@ function set_witch_settings() {
       
   set_or_add_plist_value 'Show Search Field' bool false "$witch_plist_path"
   set_or_add_plist_value 'Spring-Load'       bool true  "$witch_plist_path"
+
+  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
+  invalidate_preferences_cache
 
   success_or_not
   
