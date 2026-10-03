@@ -19,10 +19,10 @@ function interactive_import_bookmarks_into_browsers() {
 
   # Check for nonempty directory of user-specific bookmark files to import into browsers
   local -a entries
-  entries=( "$USER_SPECIFIC_BOOKMARKS_DIRECTORY"/*(ND) )
+  entries=( "$USER_SPECIFIC_BOOKMARKS_TO_IMPORT_DIRECTORY"/*(ND) )
   
-  if [[ ! -d "$USER_SPECIFIC_BOOKMARKS_DIRECTORY" ]] || (( ${#entries} == 0 )); then
-      report_to_log "Directory of user-specific bookmarks either doesn’t exist or is empty: $USER_SPECIFIC_BOOKMARKS_DIRECTORY"
+  if [[ ! -d "$USER_SPECIFIC_BOOKMARKS_TO_IMPORT_DIRECTORY" ]] || (( ${#entries} == 0 )); then
+      report_to_log "Directory of user-specific bookmarks either doesn’t exist or is empty: $USER_SPECIFIC_BOOKMARKS_TO_IMPORT_DIRECTORY"
       report_end_phase_standard
       return 0
   fi
@@ -30,7 +30,7 @@ function interactive_import_bookmarks_into_browsers() {
   launch_app_and_prompt_user_to_act \
     --no-app \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Bookmarks_how_to_import_into_browsers.md" \
-    --open "$USER_SPECIFIC_BOOKMARKS_DIRECTORY" \
+    --open "$USER_SPECIFIC_BOOKMARKS_TO_IMPORT_DIRECTORY" \
     "Follow the instructions in the Quick Look window to import your bookmarks into browsers."
 
   report_end_phase_standard
