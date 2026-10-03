@@ -24,6 +24,9 @@ function set_bbedit_settings() {
   
   report_adjust_setting "Set: When BBEdit becomes active, do nothing (don’t open a new doc)"
   defaults write ${domain} StartupAndResumeAction -int 1 ; success_or_not
+
+  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
+  invalidate_preferences_cache
   
   report_end_phase_standard
 
