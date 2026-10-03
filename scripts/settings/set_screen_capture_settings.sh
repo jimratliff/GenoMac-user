@@ -76,6 +76,9 @@ function set_screen_capture_destination() {
   report_to_log "Write path to location-last."
   defaults write com.apple.screencapture location-last -string "$screen_capture_destination_path"
 
+  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
+  invalidate_preferences_cache
+
   success_or_not
   report_end_phase_standard
 }
