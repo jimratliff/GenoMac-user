@@ -1,23 +1,23 @@
 #!/usr/bin/env zsh
 
-function conditionally_interactive_import_bookmarks_into_browsers() {
-  # Conditionally interactively import user-specific bookmarks into browsers.
+function conditionally_interactive_restore_bookmarks_into_browsers() {
+  # Conditionally interactively restore user-specific bookmarks into browsers.
 
   report_start_phase_standard
 
   run_if_user_has_not_done "$PERM_BOOKMARKS_HAVE_BEEN_IMPORTED_BY_USER_INTO_BROWSERS" \
-    interactive_import_bookmarks_into_browsers \
-    "Skipping interactively importing bookmarks, because this has been done in the past"
+    interactive_restore_bookmarks_into_browsers \
+    "Skipping interactively restoring bookmarks, because this has been done in the past"
   
   report_end_phase_standard
   
 }
 
-function interactive_import_bookmarks_into_browsers() {
-  # Interactively walks user through importing user-specific bookmarks, if those bookmarks exist.
+function interactive_restore_bookmarks_into_browsers() {
+  # Interactively walks user through restoring user-specific bookmarks, if those bookmarks exist.
   report_start_phase_standard
 
-  # Check for nonempty directory of user-specific bookmark files to import into browsers
+  # Check for nonempty directory of user-specific bookmark files to restore into browsers
   local -a entries
   entries=( "$USER_SPECIFIC_BOOKMARKS_TO_RESTORE_DIRECTORY"/*(ND) )
   
@@ -31,7 +31,7 @@ function interactive_import_bookmarks_into_browsers() {
     --no-app \
     --show-doc "${GMU_DOCS_TO_DISPLAY}/Bookmarks_how_to_restore_into_browsers.md" \
     --open "$USER_SPECIFIC_BOOKMARKS_TO_RESTORE_DIRECTORY" \
-    "Follow the instructions in the Quick Look window to import your bookmarks into browsers."
+    "Follow the instructions in the Quick Look window to restore your bookmarks into browsers."
 
   report_end_phase_standard
 }
