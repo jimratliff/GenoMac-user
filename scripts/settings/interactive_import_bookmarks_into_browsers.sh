@@ -29,7 +29,7 @@ function interactive_import_bookmarks_into_browsers() {
 
   launch_app_and_prompt_user_to_act \
     --no-app \
-    --show-doc "${GMU_DOCS_TO_DISPLAY}/Bookmarks_how_to_import_into_browsers.md" \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/Bookmarks_how_to_restore_into_browsers.md" \
     --open "$USER_SPECIFIC_BOOKMARKS_TO_RESTORE_DIRECTORY" \
     "Follow the instructions in the Quick Look window to import your bookmarks into browsers."
 
