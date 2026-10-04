@@ -42,9 +42,9 @@ The below tree diagram indicates only those elements that are recognized by Geno
     - $USER/
       - Prefs/
         - Bookmarks/
-          - Bookmarks_to_import/[^BOOKMARKS_TO_IMPORT_OPTIONAL]
-            - Helium_bookmarks_to_import.html[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]
-            - Waterfox_bookmarks_to_import.html[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]
+          - Bookmarks_to_restore/[^BOOKMARKS_TO_RESTORE_OPTIONAL]
+            - Helium_bookmarks_to_restore.json[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]
+            - Waterfox_bookmarks_to_restore.json[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]
           - Bookmarks.md[^BOOKMARKS_MD_NOT_USED_BY_GENOMAC]
         - Meta
           - finder_sidebar_favorites_name_path_pairs.jsonl[^FINDER_SIDEBAR_FAVORITES]
@@ -75,9 +75,9 @@ The below tree diagram indicates only those elements that are recognized by Geno
 
 [^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]: You can find your Many Tricks license files at: «~/Library/Application Support/Many Tricks/Licenses». See also “[FAQ: How do I copy my licenses to another computer?](https://manytricks.com/osticket/kb/faq.php?id=2)”
 
-[^BOOKMARKS_TO_IMPORT_OPTIONAL]: This directory is optional. Only if it is nonempty will Hypervisor ask the user to manually import its contents into browsers.
+[^BOOKMARKS_TO_RESTORE_OPTIONAL]: This directory is optional. Only if it is nonempty will Hypervisor ask the user to manually import its contents into browsers.
 
-[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]: Currently (10/2/2026), there is no restriction/requirement on the filenames of these `.html` files because the user will manually import them into their respective browser.
+[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]: Currently (10/2/2026), there is no restriction/requirement on the filenames of these `.json` files because the user will manually restore them into their respective browser. See “Restore bookmarks from backup or move them to another computer,” Mozilla Support, for the process by which to backup and restore bookmarks. (This is superior to exporting/importing, because backup/restore ensures the restored version has the same folder structure as the original.)
 
 [^BOOKMARKS_MD_NOT_USED_BY_GENOMAC]: The `Bookmarks.md` file is not explicitly referenced by GenoMac-user, but this method of syncing a user’s bookmarks across machines is the solution anticipated by GenoMac-user. However, a pair of Keyboard Maestro macros, viz., `Open Bookmarks.md in FluxMarkdown` and `Edit Bookmarks.md in BBEdit` *do* rely on this explicit filename.
 
