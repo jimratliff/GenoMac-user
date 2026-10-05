@@ -6,6 +6,8 @@ function install_waterfox_extensions() {
   # Install each browser extension named in environment variable STANDARD_WEB_BROWSER_EXTENSIONS_GECKO
   # into Waterfox, in disabled state.
   #
+  # See scripts/settings/web_extension_data_gecko.sh for the definition of STANDARD_WEB_BROWSER_EXTENSIONS_GECKO.
+  #
   # If Waterfox has never run (and therefore never created its directory structure), it will be
   # launched and quit. If already running, it will be quit.
   #
