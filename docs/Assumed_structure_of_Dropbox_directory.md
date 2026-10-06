@@ -43,8 +43,10 @@ The below tree diagram indicates only those elements that are recognized by Geno
       - Prefs/
         - Bookmarks/
           - Bookmarks_to_restore/[^BOOKMARKS_TO_RESTORE_OPTIONAL]
-            - Helium_bookmarks_to_restore.json[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]
-            - Waterfox_bookmarks_to_restore.json[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]
+            - Helium
+              - Backup[^HELIUM_BOOKMARKS]
+            - Waterfox
+              - Waterfox_bookmarks_to_restore.json[^WATERFOX_BOOKMARKS]
           - Bookmarks.md[^BOOKMARKS_MD_NOT_USED_BY_GENOMAC]
         - Meta
           - finder_sidebar_favorites_name_path_pairs.jsonl[^FINDER_SIDEBAR_FAVORITES]
@@ -77,7 +79,9 @@ The below tree diagram indicates only those elements that are recognized by Geno
 
 [^BOOKMARKS_TO_RESTORE_OPTIONAL]: This directory is optional. Only if it is nonempty will Hypervisor ask the user to manually import its contents into browsers.
 
-[^BOOKMARKS_FILENAME_ONLY_SUGGESTIVE]: Currently (10/2/2026), there is no restriction/requirement on the filenames of these `.json` files because the user will manually restore them into their respective browser. See “Restore bookmarks from backup or move them to another computer,” Mozilla Support, for the process by which to backup and restore bookmarks. (This is superior to exporting/importing, because backup/restore ensures the restored version has the same folder structure as the original.)
+[^HELIUM_BOOKMARKS]: Helium bookmarks are supplied as a file that will copied verbatim to be an extensionless `Backup` file in Helium’s default-profile directory. If multiple files exist in this `…/Bookmarks/Bookmarks_to_restore/Helium` directory, the alphabetically last file is chosen to install.
+
+[^WATERFOX_BOOKMARKS]: Waterfox bookmarks are supplied by a `.json` file that results from (a) choosing the menu item **Bookmarks** » **Manage Bookmarks** (⇧⌘O), (b) clicking on the export/import icon (↓↑), and then (c) choosing **Backup…** from the popup menu. The configuring user manually chooses which of possibly multiple `.json` files to pick. See “Restore bookmarks from backup or move them to another computer,” Mozilla Support, for the process by which to backup and restore bookmarks. (This is superior to exporting/importing, because backup/restore ensures the restored version has the same folder structure as the original.)
 
 [^BOOKMARKS_MD_NOT_USED_BY_GENOMAC]: The `Bookmarks.md` file is not explicitly referenced by GenoMac-user, but this method of syncing a user’s bookmarks across machines is the solution anticipated by GenoMac-user. However, a pair of Keyboard Maestro macros, viz., `Open Bookmarks.md in FluxMarkdown` and `Edit Bookmarks.md in BBEdit` *do* rely on this explicit filename.
 
