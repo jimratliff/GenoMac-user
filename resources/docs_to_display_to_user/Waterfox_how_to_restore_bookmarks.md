@@ -17,9 +17,8 @@
 
 - ❑ If there are more than one such `.json` files, identify the one you want to use as the source of the Waterfox bookmarks for this user. (For example, this may be the one with the latest timestamp in its filename.)
 
-
 ## Make Waterfox the active app
-- Make Waterfox the active app. (The Hypervisor should have launched Waterfox for you already.)
+- ❑ Make Waterfox the active app. (The Hypervisor should have launched Waterfox for you already.)
 
 ## Open Waterfox’s Bookmarks Manager and restore the chosen `.json` file
 - ❑ Open Waterfox’s Bookmarks Manager by either (a) **Bookmarks** » **Manage Bookmarks** or (b) **⇧⌘O**.
