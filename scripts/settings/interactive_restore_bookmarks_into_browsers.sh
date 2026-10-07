@@ -142,17 +142,26 @@ function install_bookmarks_into_Chromium_browser() {
   # likely extensions, and chooses the alphabetically last of those. Then copies this file
   # as `Bookmarks` (no extension) into the browser’s default-profile directory.
   #
-  # Files with certain extensions (.md, .txt, .html, .json) are ignored to allow
-  # the Bookmarks_to_restore directory to contain annotation files (e.g., README.md)
+  # Files with certain extensions (.md, .txt, .html, .json, .zip), hidden files, and directories are
+  # ignored to allow the Bookmarks_to_restore directory to contain annotation files (e.g., README.md)
   # or accessory bookmark files that would conveniently be stored nearby.
   #
   # $1 Common name of browser (e.g., "Helium" or "Chrome")
   # $2 Path of browser-specific Bookmarks_to_restore directory (e.g., "$HELIUM_USER_SPECIFIC_BOOKMARKS_TO_RESTORE_DIRECTORY")
   # $3 Path of this browser’s default-profile directory (e.g., "$HELIUM_DEFAULT_PROFILE_DIRECTORY")
+  # $4 Bundle ID of browser (e.g., "$BUNDLE_ID_HELIUM")
+  #
+  # Usage:
+  #   install_bookmarks_into_Chromium_browser \
+  #   "Helium" \
+  #   "$HELIUM_USER_SPECIFIC_BOOKMARKS_TO_RESTORE_DIRECTORY" \
+  #   "$HELIUM_DEFAULT_PROFILE_DIRECTORY" \
+  #   "$BUNDLE_ID_HELIUM"
   
   report_start_phase_standard
 
   local backup_copy_path
+  local bundle_id
   local browser_name
   local destination_directory
   local destination_path
@@ -162,12 +171,13 @@ function install_bookmarks_into_Chromium_browser() {
   browser_name="${1:?MISSING browser name}"
   directory_of_bookmark_files="${2:?MISSING path to Bookmarks_to_restore directory}"
   destination_directory="${3:?MISSING path to default-profile directory}"
+  bundle_id="${3:?MISSING bundle ID}"
 
   # Path of bookmarks file that will be written. Note that 'Bookmarks' is an extensionless file, not a directory.
   destination_path="${destination_directory}/Bookmarks"
 
   if [[ ! -d "$directory_of_bookmark_files" ]]; then
-    report_to_log "Skipping installing bookmarks into Helium because no directory of user-specific Helium bookmarks exists at${NEWLINE}${directory_of_bookmark_files}"
+    report_to_log "Skipping installing bookmarks into Helium because no directory of user-specific $browser_name bookmarks exists at${NEWLINE}${directory_of_bookmark_files}"
     report_end_phase_standard
     return 0
   fi
@@ -182,14 +192,14 @@ function install_bookmarks_into_Chromium_browser() {
   bookmark_files=("${reply[@]}")
 
   if (( ${#bookmark_files} == 0 )); then
-    report_to_log "Skipping installing bookmarks into Helium because no appropriate files found at:${NEWLINE}${directory_of_bookmark_files}"
+    report_to_log "Skipping installing bookmarks into $browser_name because no appropriate files found at:${NEWLINE}${directory_of_bookmark_files}"
     report_end_phase_standard
     return 0
   fi
 
   source_path="$(alphabetically_last_string "${bookmark_files[@]}")"
 
-  # Test for existence of destination_directory; launch Helium if necessary to create
+  # Test for existence of destination_directory; launch $browser_name if necessary to create
   if [[ ! -d "$destination_directory" ]]; then
     report_to_log "Helium default-profile doesn’t exist at ${destination_directory}."
     launch_and_quit_app "$BUNDLE_ID_HELIUM"
