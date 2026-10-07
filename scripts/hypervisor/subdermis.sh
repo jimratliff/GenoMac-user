@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 # Source required files
+safe_source "${GMU_INSTALLATION_SCRIPTS}/install_bookmarks_into_browsers.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/install_witch_prefpane.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_development_clones.sh"
 safe_source "${GMU_INSTALLATION_SCRIPTS}/make_directory_for_Dock_aliases.sh"
@@ -20,7 +21,6 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_proton_drive.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_screensaver.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_touch_id.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_create_mission_control_spaces.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_restore_bookmarks_into_browsers.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_git_config_user.sh"
 # safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_permissions.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_set_waterfox_extension_preferences.sh"
