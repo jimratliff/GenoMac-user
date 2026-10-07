@@ -80,7 +80,7 @@ function install_bookmarks_into_Helium() {
     return 0
   fi
 
-  # Check for at least one candidate file by excluding files with certain extensions
+  # Check for at least one candidate file by ignoring files with certain extensions
   local -a bookmark_files
   local -a extensions_to_ignore
   local -a reply
@@ -113,10 +113,14 @@ function install_bookmarks_into_Helium() {
 
   # Backup any existing Bookmarks file as Bookmarks.bak
   if [[ -e "$destination_path" ]]; then
+    report_to_log "Backing up existing bookmarks to ${backup_copy_path}"
     cp -p -- "$destination_path" "$backup_copy_path"
+  else
+    report_to_log "No existing bookmarks to backup"
   fi
 
   # Copy chosen bookmarks file as Bookmarks
+  report_to_log "Copying chosen bookmarks file.${NEWLINE}From:${source_path}${NEWLINE}To:${destination_path}"
   cp -p -- "$source_path" "$destination_path"
   
   report_end_phase_standard
