@@ -117,6 +117,7 @@ function define_apps_for_dock() {
   
   # Define actual paths to apps: non-Apple
   local actual_path_to_app_1Password="/Applications/1Password.app"
+  local actual_path_to_app_DaisyDisk="/Applications/DaisyDisk.app"
   local actual_path_to_app_Downie="/Applications/Downie 4.app"
   local actual_path_to_app_Helium="/Applications/Helium.app"
   local actual_path_to_app_HIARCS_Chess_Explorer_Pro="/Applications/HIARCS Chess Explorer Pro.app"
@@ -226,6 +227,11 @@ function define_apps_for_dock() {
      test_genomac_user_state "$SESH_USER_IS_AN_ACCOUNT_SWITCHER"
   then
     apps_for_dock+=( "$actual_path_to_app_Disk_Utility" )
+  fi
+
+  # DaisyDisk
+  if test_genomac_user_state "$SESH_DAISYDISK_USER_WANTS_IT_IN_DOCK"; then
+    apps_for_dock+=( "$actual_path_to_app_DaisyDisk" )
   fi
 
   # Return array by printing one array element per line.
