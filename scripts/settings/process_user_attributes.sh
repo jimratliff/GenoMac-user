@@ -83,7 +83,6 @@ function set_user_preferences_for_attribute() {
       #       not worth carving it out in order to conditionally skip it.
       set_genomac_user_state "$SESH_CHESSVISION_AI_USER_WANTS_IT"
       ;;
-      
     "${USER_ATTRIBUTE_DEVELOPER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_DEVELOPER}"
       set_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"
@@ -109,6 +108,7 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_GENOMAC_DEVELOPER}"
       set_genomac_user_state "$SESH_USER_IS_A_GENOMAC_DEVELOPER"
       set_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"
+      set_genomac_user_state "$SESH_DAISYDISK_USER_WANTS_IT_IN_DOCK"
       ;;
     "${USER_ATTRIBUTE_GRAPHICCONVERTER_IN_DOCK}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_GRAPHICCONVERTER_IN_DOCK}"
@@ -122,6 +122,7 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_MAC_ADMIN}"
       set_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN"
       set_genomac_user_state "$SESH_FINDER_SHOW_DRIVES_ON_DESKTOP"
+      set_genomac_user_state "$SESH_DAISYDISK_USER_WANTS_IT_IN_DOCK"
       ;;
     "${USER_ATTRIBUTE_MICROSOFT_WORD}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_MICROSOFT_WORD}"
@@ -179,6 +180,7 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_IS_USER_CONFIGURER}"
       set_genomac_user_state "$SESH_USER_IS_USER_CONFIGURER"
       set_genomac_user_state "$SESH_WALLPAPER_CONFIGURER_USER_WANTS_IT"
+      set_genomac_user_state "$SESH_DAISYDISK_USER_WANTS_IT_IN_DOCK"
       ;;
     *)
       report_warning "No user-preference behavior is defined for attribute: $attribute_name"
