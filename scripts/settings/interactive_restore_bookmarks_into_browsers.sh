@@ -85,7 +85,7 @@ function install_bookmarks_into_Helium() {
   local -a extensions_to_ignore
   local -a reply
 
-  extensions_to_ignore=(md txt html json)
+  extensions_to_ignore=(html json md txt zip)
   files_without_given_extensions "$directory_of_bookmark_files" "${extensions_to_ignore[@]}"
   bookmark_files=("${reply[@]}")
 
