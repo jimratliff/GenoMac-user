@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function conditionally_interactive_restore_bookmarks_into_browsers() {
+function conditionally_install_bookmarks_into_browsers() {
   # Conditionally interactively restore user-specific bookmarks into browsers.
 
   report_start_phase_standard
