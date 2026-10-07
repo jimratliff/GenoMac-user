@@ -111,6 +111,11 @@ function install_bookmarks_into_Helium() {
 
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_HELIUM"
 
+  if [[ -d "$destination_path" || -d "$backup_copy_path" ]]; then
+    report_fail "Expected file paths, but Bookmarks or Bookmarks.bak is a directory:${NEWLINE}${destination_path}${NEWLINE}${backup_copy_path}"
+    return 1
+  fi
+
   # Backup any existing Bookmarks file as Bookmarks.bak
   if [[ -e "$destination_path" ]]; then
     report_to_log "Backing up existing bookmarks to ${backup_copy_path}"
