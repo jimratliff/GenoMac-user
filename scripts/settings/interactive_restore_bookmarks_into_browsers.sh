@@ -62,7 +62,7 @@ function install_bookmarks_into_Helium() {
   # likely extensions, and chooses the alphabetically last of those. Then copies this file
   # as `Bookmarks` (no extension) into HELIUM_DEFAULT_PROFILE_DIRECTORY.
   #
-  # Files with certain extensions (.md, .txt, .html, .json) are ignored to allow
+  # Files with certain extensions (.md, .txt, .html, .json, .zip) are ignored to allow
   # HELIUM_USER_SPECIFIC_BOOKMARKS_TO_RESTORE_DIRECTORY to contain annotation files (e.g., README.md)
   # or accessory bookmark files that would conveniently be stored nearby.
   
@@ -73,6 +73,8 @@ function install_bookmarks_into_Helium() {
     "$HELIUM_USER_SPECIFIC_BOOKMARKS_TO_RESTORE_DIRECTORY" \
     "$HELIUM_DEFAULT_PROFILE_DIRECTORY" \
     "$BUNDLE_ID_HELIUM"
+
+  report_end_phase_standard
 }
 
 function install_bookmarks_into_Chrome() {
@@ -84,7 +86,7 @@ function install_bookmarks_into_Chrome() {
   #
   # Files with certain extensions (.md, .txt, .html, .json, .zip), hidden files, and directories are
   # ignored to allow CHROME_USER_SPECIFIC_BOOKMARKS_TO_RESTORE_DIRECTORY to contain annotation files
-  # (e.g., README.md)vor accessory bookmark files that would conveniently be stored nearby.
+  # (e.g., README.md) or accessory bookmark files that would conveniently be stored nearby.
   
   report_start_phase_standard
 
@@ -93,6 +95,8 @@ function install_bookmarks_into_Chrome() {
     "$CHROME_USER_SPECIFIC_BOOKMARKS_TO_RESTORE_DIRECTORY" \
     "$CHROME_DEFAULT_PROFILE_DIRECTORY" \
     "$BUNDLE_ID_GOOGLE_CHROME"
+
+  report_end_phase_standard
 }
 
 function install_bookmarks_into_Chromium_browser() {
@@ -131,13 +135,13 @@ function install_bookmarks_into_Chromium_browser() {
   browser_name="${1:?MISSING browser name}"
   directory_of_bookmark_files="${2:?MISSING path to Bookmarks_to_restore directory}"
   destination_directory="${3:?MISSING path to default-profile directory}"
-  bundle_id="${3:?MISSING bundle ID}"
+  bundle_id="${4:?MISSING bundle ID}"
 
   # Path of bookmarks file that will be written. Note that 'Bookmarks' is an extensionless file, not a directory.
   destination_path="${destination_directory}/Bookmarks"
 
   if [[ ! -d "$directory_of_bookmark_files" ]]; then
-    report_to_log "Skipping installing bookmarks into Helium because no directory of user-specific $browser_name bookmarks exists at${NEWLINE}${directory_of_bookmark_files}"
+    report_to_log "Skipping installing bookmarks into $browser_name because no directory of user-specific $browser_name bookmarks exists at${NEWLINE}${directory_of_bookmark_files}"
     report_end_phase_standard
     return 0
   fi
@@ -183,7 +187,7 @@ function install_bookmarks_into_Chromium_browser() {
     report_to_log "Backing up existing bookmarks to ${backup_copy_path}"
     cp -p -- "$destination_path" "$backup_copy_path"
   else
-    report_to_log "No existing bookmarks to backup"
+    report_to_log "No existing bookmarks to back up"
   fi
 
   # Copy chosen bookmarks file as Bookmarks
