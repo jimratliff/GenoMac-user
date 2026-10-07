@@ -168,7 +168,7 @@ function subdermis() {
     conditionally_configure_Proton_Drive                       # scripts/settings/interactive_configure_proton_drive.sh
 
     # Importing bookmarks into browsers relies on bookmark files in Dropbox
-    conditionally_interactive_restore_bookmarks_into_browsers   # scripts/settings/interactive_restore_bookmarks_into_browsers.sh
+    conditionally_install_bookmarks_into_browsers              # scripts/installations/install_bookmarks_into_browsers.sh
 
     # Implement user’s chosen Finder sidebar Favorites entries
     conditionally_set_user_finder_sidebar_favorites            # scripts/settings/set_finder_sidebar_favorites.sh
