@@ -127,6 +127,7 @@ USER_PREFPANE_DIRECTORY="$HOME/Library/PreferencePanes"
 WITCH_PREFPANE_NAME="Witch.prefPane"
 WITCH_PATH_TO_USER_PREFPANE="${USER_PREFPANE_DIRECTORY}/${WITCH_PREFPANE_NAME}"
 
+CHROME_DEFAULT_PROFILE_DIRECTORY="$HOME/Library/Application Support/Google/Chrome/Default"
 HELIUM_DEFAULT_PROFILE_DIRECTORY="$HOME/Library/Application Support/net.imput.helium/Default"
 
 ### Locations within $HOME/Documents
