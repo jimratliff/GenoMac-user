@@ -43,9 +43,9 @@ The below tree diagram indicates only those elements that are recognized by Geno
       - Prefs/
         - Bookmarks/
           - Bookmarks_to_restore/[^BOOKMARKS_TO_RESTORE_OPTIONAL]
-            - Helium
+            - Helium/
               - Backup[^HELIUM_BOOKMARKS]
-            - Waterfox
+            - Waterfox/
               - Waterfox_bookmarks_to_restore.json[^WATERFOX_BOOKMARKS]
           - Bookmarks.md[^BOOKMARKS_MD_NOT_USED_BY_GENOMAC]
         - Meta
@@ -77,7 +77,7 @@ The below tree diagram indicates only those elements that are recognized by Geno
 
 [^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]: You can find your Many Tricks license files at: «~/Library/Application Support/Many Tricks/Licenses». See also “[FAQ: How do I copy my licenses to another computer?](https://manytricks.com/osticket/kb/faq.php?id=2)”
 
-[^BOOKMARKS_TO_RESTORE_OPTIONAL]: This directory is optional. Only if it is nonempty will Hypervisor ask the user to manually import its contents into browsers.
+[^BOOKMARKS_TO_RESTORE_OPTIONAL]: This directory is optional. It is required by Project GenoMac only if there is at least one browser for which it is desired to install bookmarks, in which case at least one browser-specific subfolder, e.g. `Bookmarks_to_restore/Waterfox` must be supplied.
 
 [^HELIUM_BOOKMARKS]: Helium bookmarks are supplied as a file that will copied verbatim to be an extensionless `Backup` file in Helium’s default-profile directory. If multiple files exist in this `…/Bookmarks/Bookmarks_to_restore/Helium` directory, the alphabetically last file is chosen to install.
 
