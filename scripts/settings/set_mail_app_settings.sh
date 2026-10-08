@@ -178,6 +178,7 @@ function bomb_if_mail_app_plist_does_not_exist() {
 
   if [[ ! -f "${plist_path}" ]]; then
     report_fail "Mail.app’s preferences plist does not exist.${NEWLINE}Open Mail.app so that it can initialize its preferences, then run GenoMac again.${NEWLINE}Expected plist: ${plist_path}"
+    return 1
   fi
 }
 
