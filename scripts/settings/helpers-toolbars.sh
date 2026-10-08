@@ -11,8 +11,8 @@ function bomb_if_toolbar_configuration_does_not_exist() {
   if ! "${PLISTBUDDY_PATH}" \
     -c "Print '${toolbar_path}'" \
     "${plist_path}" >/dev/null 2>&1; then
-    report_fail \
-      "Required toolbar configuration does not exist: ${toolbar_name}${NEWLINE}Preferences plist: ${plist_path}"
+    report_fail "Required toolbar configuration does not exist: ${toolbar_name}${NEWLINE}Preferences plist: ${plist_path}"
+    return 1
   fi
 }
 
