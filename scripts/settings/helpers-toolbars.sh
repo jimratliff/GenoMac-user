@@ -3,6 +3,7 @@
 ############### Helpers for configuring toolbars
 
 function bomb_if_toolbar_configuration_does_not_exist() {
+  report_start_phase_standard
   local plist_path="$1"
   local toolbar_name="$2"
 
@@ -14,9 +15,11 @@ function bomb_if_toolbar_configuration_does_not_exist() {
     report_fail "Required toolbar configuration does not exist: ${toolbar_name}${NEWLINE}Preferences plist: ${plist_path}"
     return 1
   fi
+  report_end_phase_standard
 }
 
 function set_toolbar_property() {
+  report_start_phase_standard
   local plist_path="$1"
   local toolbar_name="$2"
   local property_name="$3"
@@ -37,9 +40,11 @@ function set_toolbar_property() {
       -c "Add '${property_path}' ${property_type} '${property_value}'" \
       "${plist_path}"
   fi
+  report_end_phase_standard
 }
 
 function set_toolbar_to_show_both_icons_and_text() {
+  report_start_phase_standard
   local plist_path="$1"
   local toolbar_name="$2"
 
@@ -49,6 +54,8 @@ function set_toolbar_to_show_both_icons_and_text() {
     "TB Display Mode" \
     integer \
     1
+
+    report_end_phase_standard
 }
 
 function set_toolbar_items() {
