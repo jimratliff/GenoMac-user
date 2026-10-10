@@ -60,7 +60,7 @@ GenoMac-user assumes that the Mac has already been configured using GenoMac-syst
 - [Determining the `defaults write` commands that correspond to desired changes in settings](https://github.com/jimratliff/GenoMac-user/blob/main/docs/defaults_detective.md)
 - [What to do when you change the BetterTouchTool preset](https://github.com/jimratliff/GenoMac-user/blob/main/docs/btt_change.md)
 - At GenoMac-shared:
-  - [The two types of operations in Project GenoMac and their corresponding families of states](https://github.com/jimratliff/GenoMac-shared/blob/main/docs/States_migration_operations.md) 
+  - [Bootstrap and maintenance operations in Project GenoMac and their corresponding families of states](https://github.com/jimratliff/GenoMac-shared/blob/main/docs/States_migration_operations.md) 
   - [Dev issues common to both GenoMac-system and GenoMac-user](https://github.com/jimratliff/GenoMac-shared/blob/main/docs/shared_dev_issues.md)
   - [The scope of declarativeness in Project GenoMac](https://github.com/jimratliff/GenoMac-shared/blob/main/docs/declarativeness.md)
 
