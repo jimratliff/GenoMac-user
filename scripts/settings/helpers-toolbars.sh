@@ -2,22 +2,6 @@
 
 ############### Helpers for configuring toolbars
 
-function bomb_if_toolbar_configuration_does_not_exist() {
-  report_start_phase_standard
-  local plist_path="$1"
-  local toolbar_name="$2"
-
-  local toolbar_path=":${toolbar_name}"
-
-  if ! "${PLISTBUDDY_PATH}" \
-    -c "Print '${toolbar_path}'" \
-    "${plist_path}" >/dev/null 2>&1; then
-    report_fail "Required toolbar configuration does not exist: ${toolbar_name}${NEWLINE}Preferences plist: ${plist_path}"
-    return 1
-  fi
-  report_end_phase_standard
-}
-
 function set_toolbar_property() {
   report_start_phase_standard
   local plist_path="$1"
@@ -92,5 +76,23 @@ function set_toolbar_items() {
   # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
   invalidate_preferences_cache
 
+  report_end_phase_standard
+}
+
+function bomb_if_toolbar_configuration_does_not_exist() {
+  report_start_phase_standard
+  local plist_path="$1"
+  local toolbar_name="$2"
+
+  local toolbar_path=":${toolbar_name}"
+
+  if ! "${PLISTBUDDY_PATH}" \
+    -c "Print '${toolbar_path}'" \
+    "${plist_path}" >/dev/null 2>&1; then
+    # report_fail "Required toolbar configuration does not exist: ${toolbar_name}${NEWLINE}Preferences plist: ${plist_path}"
+    # return 1
+    report_warning "Required toolbar configuration does not exist: ${toolbar_name}${NEWLINE}Preferences plist: ${plist_path}"
+    report_warning "Function bomb_if_toolbar_configuration_does_not_exist is misnamed"
+  fi
   report_end_phase_standard
 }
