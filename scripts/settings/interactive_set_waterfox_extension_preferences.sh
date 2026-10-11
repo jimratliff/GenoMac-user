@@ -1,12 +1,24 @@
 #!/usr/bin/env zsh
 
 # Relies on the following Markdown files residing in resources/docs_to_display_to_user:
+# - Waterfox_how_to_configure_manual_settings.md
 # - Waterfox_how_to_configure_basic_extensions.md
 # - Waterfox_how_to_configure_youtube_extension.md
+# - Waterfox_how_to_configure_extension_keyboard_shortcuts
+# - Waterfox_how_to_configure_tabs2list_extension
+# - Waterfox_how_to_configure_theme_extension
+# - Waterfox_how_to_configure_raindropio_extension
+# - Waterfox_how_to_configure_managemytabs_extension
+# - Waterfox_how_to_configure_consentomatic_extension
 
 function interactive_set_preferences_for_waterfox_extensions() {
 
   report_start_phase_standard
+
+  run_if_user_has_not_done \
+    "$PERM_WATERFOX_MANUAL_SETTINGS_HAVE_BEEN_CONFIGURED" \
+    interactive_configure_waterfox_manual_settings \
+    "Skipping configuring manual settings for Waterfox, because they’ve already been configured in the past"
 
   run_if_user_has_not_done \
     "$PERM_WATERFOX_EXTENSIONS_BASIC_HAVE_BEEN_CONFIGURED" \
@@ -62,6 +74,19 @@ function interactive_set_preferences_for_waterfox_extensions() {
     interactive_configure_waterfox_extension_shortcuts \
     "Skipping configuring keyboard shortcuts for the extensions for Waterfox,${NEWLINE}because they’ve already been configured in the past"
 	
+  report_end_phase_standard
+}
+
+function interactive_configure_waterfox_manual_settings() {
+  report_start_phase_standard
+  
+  report "Time to configure a few manual settings for Waterfox!${NEWLINE}I’ll launch Waterfox, and open a window with instructions"
+	
+  launch_app_and_prompt_user_to_act \
+    --show-doc "${GMU_DOCS_TO_DISPLAY}/Waterfox_how_to_configure_manual_settings.md" \
+    "$BUNDLE_ID_WATERFOX" \
+    "Follow the instructions in the Quick Look window to configure a few manual settings for Waterfox"
+
   report_end_phase_standard
 }
 
