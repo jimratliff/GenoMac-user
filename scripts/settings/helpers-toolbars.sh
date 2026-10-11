@@ -2,46 +2,6 @@
 
 ############### Helpers for configuring toolbars
 
-function set_toolbar_property() {
-  report_start_phase_standard
-  local plist_path="$1"
-  local toolbar_name="$2"
-  local property_name="$3"
-  local property_type="$4"
-  local property_value="$5"
-
-  local property_path=":${toolbar_name}:${property_name}"
-
-  bomb_if_toolbar_configuration_does_not_exist \
-    "${plist_path}" \
-    "${toolbar_name}"
-
-  # Update the property if it exists, otherwise create it.
-  if ! "${PLISTBUDDY_PATH}" \
-    -c "Set '${property_path}' '${property_value}'" \
-    "${plist_path}" 2>/dev/null; then
-    "${PLISTBUDDY_PATH}" \
-      -c "Add '${property_path}' ${property_type} '${property_value}'" \
-      "${plist_path}"
-  fi
-  report_end_phase_standard
-}
-
-function set_toolbar_to_show_both_icons_and_text() {
-  report_start_phase_standard
-  local plist_path="$1"
-  local toolbar_name="$2"
-
-  set_toolbar_property \
-    "${plist_path}" \
-    "${toolbar_name}" \
-    "TB Display Mode" \
-    integer \
-    1
-
-    report_end_phase_standard
-}
-
 function set_toolbar_items() {
   report_start_phase_standard
   
@@ -75,6 +35,64 @@ function set_toolbar_items() {
 
   # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
   invalidate_preferences_cache
+
+  report_end_phase_standard
+}
+
+function set_toolbar_to_show_both_icons_and_text() {
+  report_start_phase_standard
+  local plist_path="$1"
+  local toolbar_name="$2"
+
+  set_toolbar_property \
+    "${plist_path}" \
+    "${toolbar_name}" \
+    "TB Display Mode" \
+    integer \
+    1
+
+    report_end_phase_standard
+}
+
+function set_toolbar_property() {
+  report_start_phase_standard
+  local plist_path="$1"
+  local toolbar_name="$2"
+  local property_name="$3"
+  local property_type="$4"
+  local property_value="$5"
+
+  local property_path=":${toolbar_name}:${property_name}"
+
+  bomb_if_toolbar_configuration_does_not_exist \
+    "${plist_path}" \
+    "${toolbar_name}"
+
+  # Update the property if it exists, otherwise create it.
+  if ! "${PLISTBUDDY_PATH}" \
+    -c "Set '${property_path}' '${property_value}'" \
+    "${plist_path}" 2>/dev/null; then
+    "${PLISTBUDDY_PATH}" \
+      -c "Add '${property_path}' ${property_type} '${property_value}'" \
+      "${plist_path}"
+  fi
+  report_end_phase_standard
+}
+
+function ensure_toolbar_configuration_exists() {
+  report_start_phase_standard
+
+  local plist_path="$1"
+  local toolbar_name="$2"
+  local toolbar_path=":${toolbar_name}"
+
+  if ! "${PLISTBUDDY_PATH}" \
+    -c "Print '${toolbar_path}'" \
+    "${plist_path}" >/dev/null 2>&1; then
+    "${PLISTBUDDY_PATH}" \
+      -c "Add '${toolbar_path}' dict" \
+      "${plist_path}" || return 1
+  fi
 
   report_end_phase_standard
 }
