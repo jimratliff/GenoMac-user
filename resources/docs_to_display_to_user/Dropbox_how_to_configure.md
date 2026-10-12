@@ -90,7 +90,7 @@
 - At least the following directories should be available-offline
   - ❑ Right-click on each of the following and choose “Make available offline”
     - ❑ the Preferences_common directory 
-    - ❑ the Users/*your-user-name*” directory
+    - ❑ the Users/*your-user-name*/Prefs directory
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
