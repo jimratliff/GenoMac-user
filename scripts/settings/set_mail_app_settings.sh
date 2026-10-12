@@ -126,15 +126,21 @@ function bootstrap_toolbars_for_mail_app() {
   quit_app_by_bundle_id_if_running \
     "${BUNDLE_ID_MAIL_APP}"
 
+  
+
   ############### Main window
 
+  local main_window_toolbar_name="NSToolbar Configuration MainWindow"
+  
+  ensure_toolbar_configuration_exists "$mail_preferences_plist" "$main_window_toolbar_name"
+
   set_toolbar_to_show_both_icons_and_text \
-    "${mail_preferences_plist}" \
-    "NSToolbar Configuration MainWindow"
+    "$mail_preferences_plist" \
+    "$main_window_toolbar_name"
 
   set_toolbar_items \
-    "${mail_preferences_plist}" \
-    "NSToolbar Configuration MainWindow" \
+    "$mail_preferences_plist" \
+    "$main_window_toolbar_name" \
     "NSToolbarFlexibleSpaceItem" \
     "NSToolbarToggleSidebarItem" \
     "NSToolbarSidebarTrackingSeparatorItemIdentifier" \
@@ -152,9 +158,13 @@ function bootstrap_toolbars_for_mail_app() {
 
   ############### Single-message viewer
 
+  local single_message_viewer_toolbar_name="NSToolbar Configuration SingleMessageViewer"
+
+  ensure_toolbar_configuration_exists "$mail_preferences_plist" "$single_message_viewer_toolbar_name"
+  
   set_toolbar_to_show_both_icons_and_text \
-    "${mail_preferences_plist}" \
-    "NSToolbar Configuration SingleMessageViewer"
+    "$mail_preferences_plist" \
+    "$single_message_viewer_toolbar_name"
 
   set_toolbar_items \
     "${mail_preferences_plist}" \
@@ -174,7 +184,7 @@ function mail_app_plist_path() {
 function bomb_if_mail_app_plist_does_not_exist() {
   local plist_path
 
-  plist_path="$(sandboxed_plist_path_from_domain "${DEFAULTS_DOMAINS_MAIL_APP}")"
+  plist_path="$(mail_app_plist_path)"
 
   if [[ ! -f "${plist_path}" ]]; then
     report_fail "Mail.app’s preferences plist does not exist.${NEWLINE}Open Mail.app so that it can initialize its preferences, then run GenoMac again.${NEWLINE}Expected plist: ${plist_path}"
