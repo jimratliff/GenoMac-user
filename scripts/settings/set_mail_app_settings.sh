@@ -126,8 +126,6 @@ function bootstrap_toolbars_for_mail_app() {
   quit_app_by_bundle_id_if_running \
     "${BUNDLE_ID_MAIL_APP}"
 
-  
-
   ############### Main window
 
   local main_window_toolbar_name="NSToolbar Configuration MainWindow"
