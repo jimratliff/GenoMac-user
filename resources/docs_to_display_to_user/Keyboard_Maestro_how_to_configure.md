@@ -16,6 +16,12 @@
 - A dialog box pops up: “‘Keyboard Maestro.app’ wants to access files managed by ‘Dropbox’.”
 Click “Allow”
 ## Other dialog boxes you may see
+- A **Device Control and Data Access** dialog box may pop up: “**Keyboard Maestro Engine.app** would like to control this Mac and access your data.” Grant access to this applications in Privacy & Security settings located in System Settings.”
+  - ❑ Click “Open System Settings”
+  - The System Settings » Privacy and Security » Device Control and Data Access pane will open.
+    - Toggle from ❌ → ✅ for each of:
+      - ❑ Keyboard Maestro Engine.app
+      - ❑ Keyboard Maestro.app
 - A dialog may popup: “Allow ‘Keyboard Maestro Engine’ to find devices on local networks?”
   - “This will allow the app to discover, connect to, and collect data from devices on your networks.”
   - ❑ Click “Allow”
