@@ -17,6 +17,9 @@ Log into your 1Password account. The best way to do this is:
   - ❑ Launch **the 1Password app** on iPhone (don’t open the Camera)
   - ❑ From the 1Password logo in the upper-left corner of the 1Password app on iPhone, select “Scan QR Code…”
   - ❑ Follow the instructions
+- You’ll see a new dialog box: “Unlock more easily: Easily unlock 1Password with your device instead of entering a password. Choose how you’d like to unlock:
+  - ✅ Unlock using Touch ID
+  - ❑ Press “Continue” to accept the default to unlock 1Password using Touch ID.
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed signing into 1Password.
