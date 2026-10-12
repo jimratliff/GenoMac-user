@@ -33,9 +33,6 @@ function set_toolbar_items() {
     (( ++index ))
   done
 
-  # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
-  invalidate_preferences_cache
-
   report_end_phase_standard
 }
 
