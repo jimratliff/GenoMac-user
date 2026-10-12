@@ -15,11 +15,15 @@ There are two settings in Waterfox that don’t seem to be reflected in a user.j
   - The script will already have opened the Waterfox application for you.
  
 ## From the menubar, Choose View » Bookmarks Toolbar » Show Always (check wording)
-- ❑ Select View » Bookmarks Toolbar » Show Always
+- ❑ Select View » Toolbars » Bookmarks Toolbar » Always Show
 
 ## Open Waterfox’s Settings and make Google the default search engine (check details)
 - ❑ From the Waterfox menu, choose Settings (⌘,)
-- ❑ Select “Search engine” and choose “Google”
+- ❑ In the left sidebar, select “Search”
+  - **Note**: You may need to widen the window in order to see text labels, rather than just icons, for the sections of the settings.
+- ❑ Under Search » Default search engine, in the pulldown menu, choose Google
+- In the option “Disable AI features in search results (Opts out of AI features in engines that allow disabling them)
+  - ❑ Change from ✅ → ❌
 
 ## Return to the terminal
 Now return to the terminal and acknowledge you have completed these extension configurations for Waterfox.
