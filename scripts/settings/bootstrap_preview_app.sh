@@ -16,6 +16,8 @@ function bootstrap_preview_app() {
   report_action_taken "Launching and quitting Preview to prepare its preferences"
   launch_and_quit_app "${BUNDLE_ID_PREVIEW}"
 
+  ensure_toolbar_configuration_exists "$plist_path" "$toolbar_name"
+
   report_adjust_setting "Show both icons and text in Preview’s toolbar"
   set_toolbar_to_show_both_icons_and_text "${plist_path}" "${toolbar_name}"
 
@@ -27,6 +29,8 @@ function bootstrap_preview_app() {
     "form_filling" \
     "scale" \
     "search"
+
+  invalidate_preferences_cache
 
   report_end_phase_standard
 }
