@@ -27,6 +27,8 @@ function bootstrap_finder_toolbar() {
 
   report_action_taken "Reconfigure Finder’s toolbar"
 
+  ensure_toolbar_configuration_exists "$plist_path" "$toolbar_name"
+
   report_adjust_setting "Show both icons and text in Finder’s toolbar"
   set_toolbar_to_show_both_icons_and_text "${plist_path}" "${toolbar_name}"
 
