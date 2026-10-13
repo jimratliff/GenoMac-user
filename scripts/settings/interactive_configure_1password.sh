@@ -13,15 +13,12 @@
 # - 1Password_how_to_configure_for_ssh.md
 # - 1Password_how_to_log_in.md
 
-function conditionally_configure_1Password() {
-  # At this point, (a) GenoMac-system has installed both 1Password.app and the 1Password-CLI app and 
-  # (b) GenoMac-user has deployed dotfiles necessary for the integration of 1Password with GitHub
-  # authentication
-  #
+function conditionally_basically_configure_1Password() {
   # It is assumed that all users want to use 1Password to authenticate at least on websites. Thus, all
   # users want to sign into their 1Password account and basically configure the 1Password app.
   #
-  # However, each user can choose whether to go to the extra effort to configure 1Password’s SSH agent.
+  # However, each user can choose whether to go to the extra effort to configure 1Password’s SSH agent
+  # and configure for nonstandard browsers, which is performed by conditionally_further_configure_1Password.
   
   report_start_phase_standard
 
@@ -36,6 +33,16 @@ function conditionally_configure_1Password() {
     "$PERM_1PASSWORD_HAS_BEEN_BASICALLY_CONFIGURED" \
     interactive_basic_configure_1password \
     "Skipping basic configuration of 1Password, because you've done that in the past."
+  
+  report_end_phase_standard
+}
+
+function conditionally_further_configure_1Password() {
+  # At this point, (a) GenoMac-system has installed both 1Password.app and the 1Password-CLI app and 
+  # (b) GenoMac-user has deployed dotfiles necessary for the integration of 1Password with GitHub
+  # authentication
+  
+  report_start_phase_standard
 
   # Conditionally prompt user to add nonstandard browsers for 1Password
   run_if_user_has_not_done \
