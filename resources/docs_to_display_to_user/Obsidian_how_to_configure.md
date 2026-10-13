@@ -121,6 +121,10 @@ By default, no community plugins are installed. Now that you’ve switched on �
 - This will cause the desired community plugins (according to the synced active community plugin list) to be enabled.
 - However, as of 9/23/2026, three of the community plugins (Footnote Shortcut v0.1.3, Home tab v1.2.2, and Recent Files v.1.7.4) were still toggled off.
 
+> ![IMPORTANT]
+> As of 10/12/2026, under macOS 27 Golden Gate, and Obsidian 1.14.4, quitting/relaunching Obsidian did *not* cause the community plugins to be reloaded.
+> So I manually enabled all of then (except “Home tab” failed to load)
+
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
 
