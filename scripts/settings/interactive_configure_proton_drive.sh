@@ -19,10 +19,14 @@ function conditionally_configure_Proton_Drive() {
 
 function interactive_configure_Proton_Drive() {
   # Interactively configure Proton Drive.
+  # - Looks for an optional user-specific Markdown file in $USER_SPECIFIC_META_DIRECTORY
+  #   to be displayed via QuickLook to guide the user through interactively configuring
+  #   internet accounts.
+  # - If this file is not present, an alternative, default document is displayed instead.
   #
   # IMPORTANT
-  # For mysterious and frustrating reasons, installation of Proton Drive often fails when
-  # it’s done late in a user’s configuration, but then I have luck when doing it early in
+  # For mysterious and frustrating reasons, installation of Proton Drive 3.0.3 often fails when
+  # it’s done late in a user’s configuration, but then I have often have luck when doing it early in
   # a user’s configuration.
   #
   # Earlier generations of this allowed for a user to put user-specific instructions (mainly
@@ -31,38 +35,33 @@ function interactive_configure_Proton_Drive() {
   # out to be too late for reliable installation of Proton Drive. So that feature has been
   # canned for the time being.
   #
-  # The following comments are DEPRECATED
-  # - Looks for an optional user-specific Markdown file in $USER_SPECIFIC_META_DIRECTORY
-  #   to be displayed via QuickLook to guide the user through interactively configuring
-  #   internet accounts.
-  # - If this file is not present, an alternative, default document is displayed instead.
+  # Update 10/13/2026
+  #   Even immediate installation wasn’t always working.
+  #   But I was able to grab v.3.1.0 as an update on another machine (even though not yet available
+  #   via Homebrew or even Proton’s own site). My one experiment showed that this version worked
+  #   when installed manually and configured manually.
+  #   Trying again to restore installation of Proton Drive to its later position (so it can take
+  #   advantage of user-specific specification in Dropbox.
   
   report_start_phase_standard
 
   local default_markdown_page_file
   local markdown_file_to_display
-  # local user_specific_markdown_page_file
+  local user_specific_markdown_page_file
 
   default_markdown_page_file="${GMU_DOCS_TO_DISPLAY}/${PROTON_DRIVE_SPECIFICATION_MARKDOWN_PAGE_FILENAME}"
   
-  # user_specific_markdown_page_file="${USER_SPECIFIC_PROTON_DRIVE_SPECIFICATIONS_FILE}"
+  user_specific_markdown_page_file="${USER_SPECIFIC_PROTON_DRIVE_SPECIFICATIONS_FILE}"
 
   markdown_file_to_display="$default_markdown_page_file"
 
-  #   local REPLY
-  #   check_file_exists_and_is_readable "$user_specific_markdown_page_file"
-  #   if (( REPLY )); then
-  #     markdown_file_to_display="$user_specific_markdown_page_file"
-  #   else
-  #     markdown_file_to_display="$default_markdown_page_file"
-  #   fi
-
-  ############### DEPRECATED
-  #   if file_exists_and_if_so_is_readable "$user_specific_markdown_page_file"; then
-  #     markdown_file_to_display="$user_specific_markdown_page_file"
-  #   else
-  #     markdown_file_to_display="$default_markdown_page_file"
-  #   fi
+  local REPLY
+  check_file_exists_and_is_readable "$user_specific_markdown_page_file"
+  if (( REPLY )); then
+    markdown_file_to_display="$user_specific_markdown_page_file"
+  else
+    markdown_file_to_display="$default_markdown_page_file"
+  fi
 
   report "Time to configure Proton Drive! I’ll launch it, and open a window with instructions for next steps"
 	
