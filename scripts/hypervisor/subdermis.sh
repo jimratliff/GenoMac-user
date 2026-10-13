@@ -103,6 +103,10 @@ function subdermis() {
   # stored in the user’s Dropbox
   conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
 
+  # Configuration of Internet Accounts and Mail.app relies on Dropbox only because there *may* be user-specific
+  # instructions stored in the user’s Dropbox
+  conditionally_configure_internet_accounts_and_mail_app    # scripts/settings/set_mail_app_settings.sh
+
   conditionally_set_git_config_user                           # scripts/settings/interactive_set_git_config_user.sh
   conditionally_stow_dotfiles                                 # scripts/settings/perform_stow_dotfiles.sh
   
@@ -134,10 +138,9 @@ function subdermis() {
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
 
     # Set screenshot destination folder to location within user’s subdirectory in Dropbox
-    set_screen_capture_destination_for_Dropbox_user
-
     # TODO: This and other directory-creation functions should run only once per session, not every time the
     #       Hypervisor is restarted!
+    set_screen_capture_destination_for_Dropbox_user           # scripts/settings/set_screen_capture_settings.sh
   
     # BetterTouchTool relies on Dropbox because that’s where its license file is stored
     conditionally_configure_bettertouchtool                   # scripts/settings/set_bettertouchtool_settings.sh
@@ -159,10 +162,6 @@ function subdermis() {
     # Installation of Witch license files relies on Dropbox because that’s where its license files are stored
     conditionally_install_Witch_license_files                 # scripts/settings/set_witch_settings.sh
     conditionally_interactive_enable_Witch                    # scripts/settings/set_witch_settings.sh
-
-    # Configuration of Internet Accounts and Mail.app relies on Dropbox only because there *may* be user-specific
-    # instructions stored in the user’s Dropbox
-    conditionally_configure_internet_accounts_and_mail_app    # scripts/settings/set_mail_app_settings.sh
 
     # HIARCS Chess Explorer Pro must be configured *after* Keyboard Maestro, because activating HIARCS’s license uses a
     # custom Keyboard Maestro macro
