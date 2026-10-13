@@ -68,12 +68,14 @@ function subdermis() {
   conditionally_interactive_configure_touch_ID                # scripts/settings/interactive_configure_touch_id.sh
 
   conditionally_basically_configure_1Password                 # scripts/settings/interactive_configure_1password.sh
+  
+  ############### BELOW THIS POINT: 1Password credentials are available ###############
 
   # Configuration of Proton Drive is so early because, mysteriously and disappointingly, installation of Proton Drive
   # often fails unless it’s performed very early in the a user’s configuration
   #
-  # 2026_10_13_0910 Experimenting with moving Proton Drive installation back to its later position now that
-  # I have Proton Drive 3.1.0
+  # 2026_10_13_0910 Now I have Proton Drive 3.1.0, which has shown promise, but still installing Proton Drive ASAP
+  # after configuring Dropbox
   # conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
   
   conditionally_set_single_space_wallpaper                    # scripts/settings/set_wallpapers.sh
@@ -94,6 +96,12 @@ function subdermis() {
   fi
 
   ############### END BAREBONES CONFIGURATION ###############
+  
+  conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
+
+  # Configuration of Proton Drive comes after configuring Dropbox because there *may* be user-specific instructions
+  # stored in the user’s Dropbox
+  conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
 
   conditionally_set_git_config_user                           # scripts/settings/interactive_set_git_config_user.sh
   conditionally_stow_dotfiles                                 # scripts/settings/perform_stow_dotfiles.sh
@@ -106,15 +114,8 @@ function subdermis() {
 
   # Bootstrap: If user has 'developer' attribute, create ~/Repositories directory to hold clones
   conditionally_create_repositories_directory_for_developers  # scripts/installations/make_repositories_directory_for_developers.sh
-
-  # Bootstrap: Configure 1Password here to make credentials available for later steps
-  conditionally_configure_1Password                           # scripts/settings/interactive_configure_1password.sh
-
-  ############### BELOW THIS POINT: 1Password credentials are available ###############
   
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
-  
-  conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
 
   conditionally_further_configure_1Password                   # scripts/settings/interactive_configure_1password.sh
   
@@ -131,10 +132,6 @@ function subdermis() {
   ############### (Further) configure apps that rely upon Dropbox having synced ###############
   
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
-
-    # 2026_10_13_0912 Experimenting restoring installation of Proton Drive to its post-Dropbox position
-    # now that I have Proton Drive 3.1.0
-    conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
 
     # Set screenshot destination folder to location within user’s subdirectory in Dropbox
     set_screen_capture_destination_for_Dropbox_user
