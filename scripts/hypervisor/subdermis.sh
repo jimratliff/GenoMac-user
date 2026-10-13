@@ -96,6 +96,13 @@ function subdermis() {
   fi
 
   ############### END BAREBONES CONFIGURATION ###############
+
+  conditionally_set_git_config_user                           # scripts/settings/interactive_set_git_config_user.sh
+  conditionally_stow_dotfiles                                 # scripts/settings/perform_stow_dotfiles.sh
+
+  # Configuring Waterfox (the default browser) and its extensions (e.g., 1Password) now to make Dropbox easier to sign into via passkey
+  conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
+  interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
   
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
 
@@ -105,12 +112,7 @@ function subdermis() {
 
   # Configuration of Internet Accounts and Mail.app relies on Dropbox only because there *may* be user-specific
   # instructions stored in the user’s Dropbox
-  conditionally_configure_internet_accounts_and_mail_app    # scripts/settings/set_mail_app_settings.sh
-
-  conditionally_set_git_config_user                           # scripts/settings/interactive_set_git_config_user.sh
-  conditionally_stow_dotfiles                                 # scripts/settings/perform_stow_dotfiles.sh
-  
-  conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
+  conditionally_configure_internet_accounts_and_mail_app      # scripts/settings/set_mail_app_settings.sh
   conditionally_interactive_configure_helium_and_extensions   # scripts/settings/interactive_configure_helium.sh
   
   # Bootstrap: Create additional Mission Control Spaces
@@ -118,8 +120,6 @@ function subdermis() {
 
   # Bootstrap: If user has 'developer' attribute, create ~/Repositories directory to hold clones
   conditionally_create_repositories_directory_for_developers  # scripts/installations/make_repositories_directory_for_developers.sh
-  
-  interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
 
   conditionally_further_configure_1Password                   # scripts/settings/interactive_configure_1password.sh
   
