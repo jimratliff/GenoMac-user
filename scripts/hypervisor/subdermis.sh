@@ -66,6 +66,13 @@ function subdermis() {
   ############### BEGIN BAREBONES CONFIGURATION ###############
   conditionally_perform_barebones_user_level_settings         # scripts/settings/set_barebones_settings.sh
   conditionally_interactive_configure_touch_ID                # scripts/settings/interactive_configure_touch_id.sh
+
+  conditionally_basically_configure_1Password                 # scripts/settings/interactive_configure_1password.sh
+
+  # Configuration of Proton Drive is so early because, mysteriously and disappointingly, installation of Proton Drive
+  # often fails unless it’s performed very early in the a user’s configuration
+  conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
+  
   conditionally_set_single_space_wallpaper                    # scripts/settings/set_wallpapers.sh
   
   # Execute barebones bootstrap steps
@@ -103,7 +110,10 @@ function subdermis() {
   ############### BELOW THIS POINT: 1Password credentials are available ###############
   
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
+  
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
+
+  conditionally_further_configure_1Password                   # scripts/settings/interactive_configure_1password.sh
   
   # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user,
   # GenoMac-shared, and GenoMac-private at ~/Repositories/Project_GenoMac
@@ -161,11 +171,6 @@ function subdermis() {
     # Configure SpaceJump to show name of each Mission Control Space
     # Located here because wallpaper collection stored in Dropbox is the source of Space names.
     conditionally_configure_spacejump                         # scripts/settings/set_spacejump_settings.sh
-
-    # Configuration of Proton Drive relies on Dropbox only because there *may* be user-specific instructions stored in the
-    # user’s Dropbox
-    # TODOs: conditionally_configure_Proton_Drive
-    conditionally_configure_Proton_Drive                       # scripts/settings/interactive_configure_proton_drive.sh
 
     # Importing bookmarks into browsers relies on bookmark files in Dropbox
     conditionally_install_bookmarks_into_browsers              # scripts/installations/install_bookmarks_into_browsers.sh
