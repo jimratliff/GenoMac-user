@@ -71,7 +71,10 @@ function subdermis() {
 
   # Configuration of Proton Drive is so early because, mysteriously and disappointingly, installation of Proton Drive
   # often fails unless it’s performed very early in the a user’s configuration
-  conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
+  #
+  # 2026_10_13_0910 Experimenting with moving Proton Drive installation back to its later position now that
+  # I have Proton Drive 3.1.0
+  # conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
   
   conditionally_set_single_space_wallpaper                    # scripts/settings/set_wallpapers.sh
   
@@ -128,6 +131,10 @@ function subdermis() {
   ############### (Further) configure apps that rely upon Dropbox having synced ###############
   
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
+
+    # 2026_10_13_0912 Experimenting restoring installation of Proton Drive to its post-Dropbox position
+    # now that I have Proton Drive 3.1.0
+    conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
 
     # Set screenshot destination folder to location within user’s subdirectory in Dropbox
     set_screen_capture_destination_for_Dropbox_user
