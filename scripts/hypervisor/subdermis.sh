@@ -178,11 +178,8 @@ function subdermis() {
 
     # Importing bookmarks into browsers relies on bookmark files in Dropbox
     conditionally_install_bookmarks_into_browsers              # scripts/installations/install_bookmarks_into_browsers.sh
-
-    # Implement user’s chosen Finder sidebar Favorites entries
-    conditionally_set_user_finder_sidebar_favorites            # scripts/settings/set_finder_sidebar_favorites.sh
     
-    # Create aliases to the user’s chosen directories/files stored in designated directory in the Dock
+    # Create aliases in the Dock to the user’s chosen directories/files stored in designated directory
     conditionally_create_user_specified_Finder_alias_files_in_Dock_folder       # scripts/settings/alias_objects_to_Dock.sh
     
   else
@@ -192,6 +189,8 @@ function subdermis() {
     set_screen_capture_destination_for_barebones_user
     
   fi
+
+  conditionally_set_user_finder_sidebar_favorites              # scripts/settings/set_finder_sidebar_favorites.sh
 
   conditionally_set_apps_to_launch_at_login                     # scripts/settings/set_apps_to_launch_at_login.sh
 
