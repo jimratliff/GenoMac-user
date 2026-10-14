@@ -49,14 +49,11 @@ function conditionally_further_configure_1Password() {
     "$PERM_1PASSWORD_NONSTANDARD_BROWSERS_HAVE_BEEN_CONFIGURED" \
     interactive_permit_1password_use_nonstandard_browsers \
     "Skipping adding nonstandard browsers for 1Password, because you've done that in the past."
-
-  # Conditionally prompt user to configure SSH settings for use with GitHub
-  conditionally_prompt_user_to_configure_SSH_settings_for_GitHub
   
   report_end_phase_standard
 }
 
-function conditionally_prompt_user_to_configure_SSH_settings_for_GitHub() {
+function conditionally_prompt_user_to_configure_1Password_SSH_settings_for_GitHub() {
   report_start_phase_standard
 
   if ! test_genomac_user_state "$SESH_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"; then
