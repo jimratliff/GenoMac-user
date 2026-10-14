@@ -9,7 +9,7 @@
   - The script will already have opened the Waterfox application for you.
 - ❑ From the application menu, choose Tools » Extensions and Themes (⇧⌘A)
 
-> [!NOTE]
+> [!TIP]
 > You will see other extensions besides the ones below. Be patient! We’ll configure those in a later step.
 
 ## Enable, and optionally pin, each of the following extensions
