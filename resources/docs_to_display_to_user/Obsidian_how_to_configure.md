@@ -75,7 +75,7 @@
 ## Adjust Obsidian settings
 ### Enable community plugins
 - Obsidian » Settings » Options » Community plugins
-  - ❑ Click the “Turn on community plugins” button (or, now, “Exit Restricted Mode”)
+  - ❑ Click the “Exit Restricted Mode” button (formerly “Turn on community plugins” button)
   - You’ll see, under “Current plugins,” that Obsidian thinks that “No plugins installed.” Don’t worry, we’ll fix that soon.
 ### Adjust Obsidian Sync settings
 - Obsidian » Settings » Core plugins » Sync
