@@ -97,6 +97,8 @@ function subdermis() {
 
   ############### END BAREBONES CONFIGURATION ###############
 
+  conditionally_further_configure_1Password                   # scripts/settings/interactive_configure_1password.sh
+  
   conditionally_set_git_config_user                           # scripts/settings/interactive_set_git_config_user.sh
   conditionally_stow_dotfiles                                 # scripts/settings/perform_stow_dotfiles.sh
 
@@ -121,7 +123,7 @@ function subdermis() {
   # Bootstrap: If user has 'developer' attribute, create ~/Repositories directory to hold clones
   conditionally_create_repositories_directory_for_developers  # scripts/installations/make_repositories_directory_for_developers.sh
 
-  conditionally_further_configure_1Password                   # scripts/settings/interactive_configure_1password.sh
+  conditionally_prompt_user_to_configure_1Password_SSH_settings_for_GitHub # scripts/settings/interactive_configure_1password.sh
   
   # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user,
   # GenoMac-shared, and GenoMac-private at ~/Repositories/Project_GenoMac
