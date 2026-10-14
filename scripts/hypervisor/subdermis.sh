@@ -18,6 +18,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_keyboard_maestro.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_notion.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_obsidian.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_proton_drive.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_proton_mail_bridge.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_screensaver.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_configure_touch_id.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/interactive_create_mission_control_spaces.sh"
@@ -190,6 +191,8 @@ function subdermis() {
     set_screen_capture_destination_for_barebones_user
     
   fi
+
+  interactive_configure_proton_mail_bridge                     # scripts/settings/interactive_configure_proton_mail_bridge.sh
 
   conditionally_set_user_finder_sidebar_favorites              # scripts/settings/set_finder_sidebar_favorites.sh
 
