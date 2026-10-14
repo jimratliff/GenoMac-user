@@ -11,7 +11,7 @@ There are two settings in Waterfox that don’t seem to be reflected in a user.j
 - ❑ Make Waterfox active
   - The script will already have opened the Waterfox application for you.
  
-## From the menubar, Choose View » Bookmarks Toolbar » Always Show
+## From the menubar, Choose View » Toolbars » Bookmarks Toolbar » Always Show
 - ❑ Select View » Toolbars » Bookmarks Toolbar » Always Show
 
 ## Open Waterfox’s Settings and make Google the default search engine (check details)
