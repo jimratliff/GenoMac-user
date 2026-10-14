@@ -192,11 +192,11 @@ function subdermis() {
     
   fi
 
-  interactive_configure_proton_mail_bridge                     # scripts/settings/interactive_configure_proton_mail_bridge.sh
+  conditionally_interactive_configure_Proton_Mail_Bridge       # scripts/settings/interactive_configure_proton_mail_bridge.sh
 
   conditionally_set_user_finder_sidebar_favorites              # scripts/settings/set_finder_sidebar_favorites.sh
 
-  conditionally_set_apps_to_launch_at_login                     # scripts/settings/set_apps_to_launch_at_login.sh
+  conditionally_set_apps_to_launch_at_login                    # scripts/settings/set_apps_to_launch_at_login.sh
 
   end_of_subdermis_cleanup
   
