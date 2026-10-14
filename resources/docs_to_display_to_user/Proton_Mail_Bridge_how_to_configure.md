@@ -4,10 +4,6 @@
 > Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
 > This task will be re-presented to you next time you run the Hypervisor.
 
-> [!WARNING]
-> The following is a **WORK IN PROGRESS**
-> It must be conformed to empirical reality.
-
 > [!TIP]
 > - [Proton Mail Bridge Apple Mail setup guide](https://proton.me/support/protonmail-bridge-clients-apple-mail), Proton Support.
 
@@ -53,6 +49,9 @@ Hypervisor will have launched Proton Mail Bridge.
   - Click the “Install…” button
 - Yet another confirmatory dialog box pops up: “Are you sure you want to install the profile ‘email address’?”
   - Click the “Install” button
+- ❑ Return to the Proton Mail Bridge dialog box and click on the button that now says “I have installed the profile” (**check wording**)
+  - You’ll now see “Congratulations! You’re all setup: Your client has been configured. While complete synchronization might take some time, you can already send encrypted emails.”
+  - Click the “Done” button.
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed signing into 1Password.
