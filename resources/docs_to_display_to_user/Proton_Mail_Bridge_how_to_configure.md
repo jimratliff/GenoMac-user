@@ -52,6 +52,13 @@ Hypervisor will have launched Proton Mail Bridge.
 - ❑ Return to the Proton Mail Bridge dialog box and click on the button that now says “I have installed the profile” (**check wording**)
   - You’ll now see “Congratulations! You’re all setup: Your client has been configured. While complete synchronization might take some time, you can already send encrypted emails.”
   - Click the “Done” button.
+ 
+## Extra information about using Proton Mail Bridge. No action necessary at this time
+
+### Dealing with spam
+Using Mail’s built-in spam filters in addition to using Proton Mail’s spam filters provides additional spam filtering that uses the body of your messages to help detect spam. Any spam senders detected in this way will be added to your Proton Mail blacklist.
+
+Mail’s built-in spam filters are disabled by default. You can Enable junk mail filtering by going to Mail (in the menu bar) → Preferences… → Junk Mail tab.
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed signing into 1Password.
