@@ -11,9 +11,6 @@
 Hypervisor will have launched Proton Mail Bridge.
 
 # Configure Proton Mail Bridge with your Proton Mail account
-> [!WARNING]
-> The above-cited document merely says “Open the *configured* Proton Bridge app…” (emphasis added), and (a) there’s no later mention of signing into the Proton Mail account but (b) also no mention of how to do so or otherwise *configure* Proton Mail Bridge.
-
 - You’ll see a large dialog box: “Welcome to Proton Mail Bridge: Bridge is the gateway between your Proton account and your email client. It runs in the background and encrypts and decrypts your message seamlessly.”
   - Step 1: Connect Bridge to your Proton Account
   - Step 2: Connect your email client to Bridge
@@ -54,7 +51,6 @@ Hypervisor will have launched Proton Mail Bridge.
   - Click the “Done” button.
  
 ## Extra information about using Proton Mail Bridge. No action necessary at this time
-
 ### Dealing with spam
 Using Mail’s built-in spam filters in addition to using Proton Mail’s spam filters provides additional spam filtering that uses the body of your messages to help detect spam. Any spam senders detected in this way will be added to your Proton Mail blacklist.
 
