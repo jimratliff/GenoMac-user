@@ -4,9 +4,6 @@
 > Don’t want to deal with this right this sec? Return to the terminal and enter 'punt'.
 > This task will be re-presented to you next time you run the Hypervisor.
 
-> [!WARNING]
-> This must be reviewed to conform the details to reality.
-
 ## Why do I have to do this myself?
 There are two settings in Waterfox that don’t seem to be reflected in a user.js file within `~/Library/Application Support/Waterfox`. That leaves no choice other than dragging you through this interactive process.
 
@@ -14,7 +11,7 @@ There are two settings in Waterfox that don’t seem to be reflected in a user.j
 - ❑ Make Waterfox active
   - The script will already have opened the Waterfox application for you.
  
-## From the menubar, Choose View » Bookmarks Toolbar » Show Always (check wording)
+## From the menubar, Choose View » Bookmarks Toolbar » Always Show
 - ❑ Select View » Toolbars » Bookmarks Toolbar » Always Show
 
 ## Open Waterfox’s Settings and make Google the default search engine (check details)
