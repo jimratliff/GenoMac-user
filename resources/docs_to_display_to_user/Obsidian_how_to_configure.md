@@ -124,6 +124,8 @@ By default, no community plugins are installed. Now that you’ve switched on �
 > ![IMPORTANT]
 > As of 10/12/2026, under macOS 27 Golden Gate, and Obsidian 1.14.4, quitting/relaunching Obsidian did *not* cause the community plugins to be reloaded.
 > So I manually enabled all of then (except “Home tab” failed to load)
+>
+> **BUT…** the next day, quitting and relaunched Obsidian *did* (as expected and as it had done before) cause the community plugins to be reloaded.
 
 ## Return to terminal and acknowledge
 - ❑ Type `done` to acknowledge that you’ve completed these manual steps.
