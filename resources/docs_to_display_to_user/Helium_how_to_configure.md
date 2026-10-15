@@ -18,7 +18,7 @@ I’ll use when I need to use a Chromium browser.)
 ## Initial splash screen
 - If this is literally the first time this user has launched Helium, you’ll see a splash screen that
   asks you whether you (a) want to accept the defaults or (b) configure.
-  - ❑ Choose “Defaults”
+  - ❑ Choose “Use defaults”
 
 ## Make selections from the View menu of the menubar
 Select:
