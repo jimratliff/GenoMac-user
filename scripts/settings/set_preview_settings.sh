@@ -10,7 +10,7 @@ function set_preview_settings() {
   local domain="com.apple.Preview"
   local plist_path=$(sandboxed_plist_path_from_domain "$domain")
   
-  ensure_plist_path_exists "${plist_path}"
+  create_empty_plist_if_missing "${plist_path}"
   
   # Remove user’s name from annotations
   report_adjust_setting "Remove user’s name from annotations"
