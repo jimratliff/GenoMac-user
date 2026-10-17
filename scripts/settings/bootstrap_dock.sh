@@ -40,7 +40,7 @@ function bootstrap_dock_given_apps_for_dock() {
   plist_path="$(legacy_plist_path_from_domain "$domain")"
   
   report_action_taken_to_log "Ensure plist for Dock exists at $plist_path"
-  ensure_plist_path_exists "${plist_path}" ; success_or_not
+  create_empty_plist_if_missing "${plist_path}" ; success_or_not
   
   local dock_persistent_apps_key="persistent-apps"
   
