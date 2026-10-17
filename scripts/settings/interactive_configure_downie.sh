@@ -60,7 +60,7 @@ function set_scriptable_settings_for_Downie() {
   domain="$DEFAULTS_DOMAINS_DOWNIE_4"
   plist_path="$(sandboxed_plist_path_from_domain "$domain")"
   
-  ensure_plist_path_exists "$plist_path"
+  create_empty_plist_if_missing "$plist_path"
 
   # Sort downloads into subfolders by host
   defaults write "$domain" XUSortFilesByHost -boolean true
