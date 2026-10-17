@@ -10,7 +10,7 @@ function set_notifications_settings() {
   local plist_path=$(legacy_plist_path_from_domain "$domain")
   local notification_key="lastActiveNotificationStyle"
   
-  ensure_plist_path_exists "${plist_path}"
+  create_empty_plist_if_missing "${plist_path}"
 
   "$PLISTBUDDY_PATH" -c "Add '$notification_key' dict" "$plist_path" 2>/dev/null || true
   "$PLISTBUDDY_PATH" -c "Set '$notification_key:com.apple.tips' 2" "$plist_path" 2>/dev/null || \
