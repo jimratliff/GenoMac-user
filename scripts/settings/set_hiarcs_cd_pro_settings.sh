@@ -41,7 +41,7 @@ function bootstrap_engines_hiarcs_ce_pro() {
   local plist_path
 
   plist_path="$(legacy_plist_path_from_domain $domain)"
-  ensure_plist_path_exists "${plist_path}"
+  create_empty_plist_if_missing "${plist_path}"
 
   report_adjust_setting "Add Stockfish"
   defaults write $domain "Engines.$CHESS_ENGINE_NUMBER_STOCKFISH.Command" -string "$CHESS_ENGINE_STOCKFISH_BINARY_PATH" ; success_or_not
@@ -86,7 +86,7 @@ function configure_hiarcs_ce_pro_idempotent_settings() {
   local plist_path
 
   plist_path="$(legacy_plist_path_from_domain $domain)"
-  ensure_plist_path_exists "${plist_path}"
+  create_empty_plist_if_missing "${plist_path}"
 
   report_adjust_setting "Hide toolbar"
   defaults write "$domain" "Geometry.toolbarEnabled" -bool false ; success_or_not
