@@ -95,7 +95,7 @@ function configure_mail_app_idempotent_settings() {
   # Configure Mail.app idempotent settings.
   report_start_phase_standard
 
-  bomb_if_mail_app_plist_does_not_exist
+  initialize_mail_app_plist_if_necessary
 
   report_action_taken "Configure Mail.app"
 
@@ -121,7 +121,7 @@ function bootstrap_toolbars_for_mail_app() {
   local mail_preferences_plist
   mail_preferences_plist="$(mail_app_plist_path)"
 
-  bomb_if_mail_app_plist_does_not_exist
+  initialize_mail_app_plist_if_necessary
 
   quit_app_by_bundle_id_if_running \
     "${BUNDLE_ID_MAIL_APP}"
@@ -179,15 +179,15 @@ function mail_app_plist_path() {
   sandboxed_plist_path_from_domain "${DEFAULTS_DOMAINS_MAIL_APP}"
 }
 
-function bomb_if_mail_app_plist_does_not_exist() {
+function initialize_mail_app_plist_if_necessary() {
+  report_start_phase_standard
   local plist_path
 
   plist_path="$(mail_app_plist_path)"
 
-  if [[ ! -f "${plist_path}" ]]; then
-    report_fail "Mail.app’s preferences plist does not exist.${NEWLINE}Open Mail.app so that it can initialize its preferences, then run GenoMac again.${NEWLINE}Expected plist: ${plist_path}"
-    return 1
-  fi
+  initialize_plist_if_missing_by_launching_app "$plist_path" "$BUNDLE_ID_MAIL_APP"
+  
+  report_end_phase_standard
 }
 
 
