@@ -8,7 +8,7 @@ function set_diskutility_settings() {
   local domain="com.apple.DiskUtility"
   local plist_path=$(legacy_plist_path_from_domain "$domain")
   
-  ensure_plist_path_exists "${plist_path}"
+  create_empty_plist_if_missing "${plist_path}"
   
   # Show all devices in sidebar
   report_adjust_setting "DiskUtility: Show all devices in sidebar"
