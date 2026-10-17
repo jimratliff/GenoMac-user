@@ -117,6 +117,8 @@ function define_apps_for_dock() {
   
   # Define actual paths to apps: non-Apple
   local actual_path_to_app_1Password="/Applications/1Password.app"
+  local actual_path_to_app_ChatGPT="/Applications/ChatGPT.app"
+  local actual_path_to_app_Claude="/Applications/Claude.app"
   local actual_path_to_app_DaisyDisk="/Applications/DaisyDisk.app"
   local actual_path_to_app_Downie="/Applications/Downie 4.app"
   local actual_path_to_app_Helium="/Applications/Helium.app"
@@ -204,9 +206,11 @@ function define_apps_for_dock() {
   # Needed by every GenoMac-configured user, even non-developers in order to run GenoMac-user
   apps_for_dock+=( "$actual_path_to_app_iTerm" )
 
-  # Zed and Tower
+  # Developer apps: ChatGPT, Claude, Zed, and Tower
   if test_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"; then
     apps_for_dock+=( 
+      "$actual_path_to_app_ChatGPT"
+      "$actual_path_to_app_Claude"
       "$actual_path_to_app_Zed"
       "$actual_path_to_app_Tower"
     )
