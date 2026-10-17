@@ -34,7 +34,7 @@ function set_spacejump_basic_settings() {
   local plist_path
 
   plist_path="$(legacy_plist_path_from_domain $domain)"
-  ensure_plist_path_exists "${plist_path}"
+  create_empty_plist_if_missing "${plist_path}"
 
   report_action_taken "Implement basic settings for SpaceJump."
 
@@ -70,7 +70,7 @@ function activate_spacejump_license() {
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
 
   plist_path="$(legacy_plist_path_from_domain $domain)"
-  ensure_plist_path_exists "${plist_path}"
+  create_empty_plist_if_missing "${plist_path}"
 
   local now_utc_as_type_date
   now_utc_as_type_date="$(date -u '+%Y-%m-%d %H:%M:%S +0000')"
@@ -106,7 +106,7 @@ function specify_Space_names_in_SpaceJump() {
 
   local plist_path
   plist_path="$(legacy_plist_path_from_domain $domain)"
-  ensure_plist_path_exists "${plist_path}"
+  create_empty_plist_if_missing "${plist_path}"
 
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
 
