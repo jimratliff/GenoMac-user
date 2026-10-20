@@ -10,15 +10,27 @@ function bootstrap_dock() {
   # leaves existing persistent-others (the document side of the Dock) items alone.
   
   report_start_phase_standard
+
+  bootstrap_dock_persistent_apps
+
+  # Add designated directory of Finder alias files to Dock
+  create_directory_for_aliases_for_Dock                    # scripts/installations/make_directory_for_Dock_aliases.sh
+  add_designated_directory_of_Finder_alias_files_to_Dock
+  
+  report_end_phase_standard
+}
+
+function bootstrap_dock_persistent_apps() {
+  # To be run only once per user to initially populate the persistent apps of the Dock.
+  # Removes all persistent apps prior to repopulating the persistent apps but
+  # leaves existing persistent-others (the document side of the Dock) items alone.
+  
+  report_start_phase_standard
   local -a apps_for_dock
 
   # Add desired apps to Dock
   apps_for_dock=( "${(@f)$(define_apps_for_dock)}" )
   bootstrap_dock_given_apps_for_dock "${apps_for_dock[@]}"
-
-  # Add designated directory of Finder alias files to Dock
-  create_directory_for_aliases_for_Dock                    # scripts/installations/make_directory_for_Dock_aliases.sh
-  add_designated_directory_of_Finder_alias_files_to_Dock
   
   report_end_phase_standard
 }
