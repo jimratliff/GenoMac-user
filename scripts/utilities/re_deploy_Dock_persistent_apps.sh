@@ -8,6 +8,7 @@ source "${HOME}/.genomac-user/scripts/0_initialize_me_first.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/bootstrap_dock.sh"
 
 function main() {
+  report_action_taken "Refreshing Dock’s persistent apps"
   bootstrap_dock_persistent_apps
 }
 
