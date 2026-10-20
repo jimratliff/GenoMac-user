@@ -211,3 +211,12 @@ function install_bookmarks_into_Chromium_browser() {
   report_end_phase_standard
 }
 
+function install_bookmarks_into_browsers() {
+  # Unconditionally installs bookmarks into multiple browsers.
+  # This function is designed for use as a 'just' utility function.
+  report_start_phase_standard
+  interactive_restore_bookmarks_into_Waterfox
+  install_bookmarks_into_Helium
+  install_bookmarks_into_Chrome
+  report_end_phase_standard
+}
