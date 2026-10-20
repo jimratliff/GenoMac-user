@@ -76,6 +76,13 @@ function set_user_finder_sidebar_favorites() {
 
   local file_to_read="$USER_SPECIFIC_FINDER_SIDEBAR_FAVORITES_FILE"
 
+  check_file_exists_and_is_readable "$file_to_read"
+  if (( REPLY == 0 )); then
+    report_action_taken "Quitting because no user-specific specification file was found at “${file_to_read}”."
+    report_end_phase_standard
+    return 0
+  fi
+
   local -a tuples
 
   get_array_from_json_lines_file "$file_to_read" 								# GenoMac-shared/scripts/helpers-json.sh
