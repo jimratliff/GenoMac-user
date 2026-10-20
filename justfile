@@ -71,6 +71,9 @@ a-VVVVVVVVVV-KEY-RECIPES-VVVVVVVVVV-z:
 above-LESS-FREQUENTLY-USED-RECIPES-----:
 
 [group('Refresh stuff')]
+refresh-dock:
+	zsh scripts/utilities/re_deploy_Dock_persistent_apps.sh
+
 refresh-finder-sidebar:
 	zsh scripts/utilities/re_deploy_Finder_sidebar_favorites.sh
 
