@@ -71,6 +71,9 @@ a-VVVVVVVVVV-KEY-RECIPES-VVVVVVVVVV-z:
 above-LESS-FREQUENTLY-USED-RECIPES-----:
 
 [group('Refresh stuff')]
+refresh-finder-sidebar:
+	zsh scripts/utilities/re_deploy_Finder_sidebar_favorites.sh
+
 refresh-wallpapers:
 	zsh scripts/utilities/re_deploy_wallpapers_setup.sh
 
