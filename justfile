@@ -70,8 +70,8 @@ a-VVVVVVVVVV-KEY-RECIPES-VVVVVVVVVV-z:
 
 above-LESS-FREQUENTLY-USED-RECIPES-----:
 
-[group('Occasional maintenance utilities')]
-wallpapers-re-deploy:
+[group('Refresh stuff')]
+refresh-wallpapers:
 	zsh scripts/utilities/re_deploy_wallpapers_setup.sh
 
 ############### Logging utilities
@@ -82,12 +82,12 @@ logging command:
 
 # Show latest GenoMac-user log file
 [group('Log file utilities')]
-logging-show-latest:
+show-log-latest:
     just logging show-latest
 
 # Show directory holding GenoMac-user log files
 [group('Log file utilities')]
-logging-show-directory:
+show-logs:
     just logging show-directory
 
 ############### Remaining repository-management utility
@@ -109,12 +109,12 @@ user-states command:
 
 # Show directory containing state files
 [group('State utilities')]
-user-states-show:
+show-states:
     just user-states show
 
 # Clear SESH state files
 [group('State utilities')]
-user-states-clear-session-states:
+clear-session-states:
     just user-states clear-session
 
 # DEPRECATED BELOW COMMAND because too easy/dangerous to trigger accidentally
