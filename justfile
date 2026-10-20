@@ -71,14 +71,17 @@ a-VVVVVVVVVV-KEY-RECIPES-VVVVVVVVVV-z:
 above-LESS-FREQUENTLY-USED-RECIPES-----:
 
 [group('Refresh stuff')]
-refresh-dock:
-	zsh scripts/utilities/re_deploy_Dock_persistent_apps.sh
+refresh-wallpapers:
+	zsh scripts/utilities/re_deploy_wallpapers_setup.sh
 
 refresh-finder-sidebar:
 	zsh scripts/utilities/re_deploy_Finder_sidebar_favorites.sh
 
-refresh-wallpapers:
-	zsh scripts/utilities/re_deploy_wallpapers_setup.sh
+refresh-dock:
+	zsh scripts/utilities/re_deploy_Dock_persistent_apps.sh
+
+refresh-bookmarks:
+	zsh scripts/utilities/re_deploy_bookmarks_into_multiple_browsers.sh
 
 ############### Logging utilities
 
