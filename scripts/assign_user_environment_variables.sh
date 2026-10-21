@@ -57,11 +57,17 @@ GMU_SCRIPTS="${GENOMAC_USER_LOCAL_DIRECTORY}/scripts"
 
 # ~/.genomac-user/scripts/hypervisor
 # - Local subdirectory of GMU_SCRIPTS that holds scripts specific to Hypervisor
-GMU_HYPERVISOR_SCRIPTS="${GMU_SCRIPTS}/hypervisor" 
+GMU_HYPERVISOR_SCRIPTS="${GMU_SCRIPTS}/hypervisor"
 
 # ~/.genomac-user/scripts/installations
 # - Local subdirectory of GMU_SCRIPTS that holds scripts specific to installations
-GMU_INSTALLATION_SCRIPTS="${GMU_SCRIPTS}/installations" 
+GMU_INSTALLATION_SCRIPTS="${GMU_SCRIPTS}/installations"
+
+# ~/.genomac-user/scripts/migrations
+# - Local subdirectory of GMU_SCRIPTS that holds scripts specific to migrations
+GMU_MIGRATION_SCRIPTS="${GMU_SCRIPTS}/migrations"
+
+# scripts/migration_scripts/2026_10_19_2152_delete_GraphicConverter_preference_domain.sh
 
 # ~/.genomac-user/scripts/settings
 GMU_SETTINGS_SCRIPTS="${GMU_SCRIPTS}/settings"
@@ -89,7 +95,7 @@ GENOMAC_USER_CONFIG="${XDG_CONFIG_HOME}/genomac-user"
 # stow_directory/git/.config/git/config
 GENOMAC_USER_GITCONFIG_OVERRIDE="${GENOMAC_USER_CONFIG}/git/gitconfig-personal"
 
-# TODO: GENOMAC_USER_AUXILIARY_DIRECTORY appears never to be used 
+# TODO: GENOMAC_USER_AUXILIARY_DIRECTORY appears never to be used
 # ~/.genomac-user-auxiliary
 # The GenoMac-user auxiliary directory lives outside the cloned repo to provide a home
 # for files that should not show up as uncommitted changes to GenoMac-user itself
@@ -200,7 +206,7 @@ GMU_ARRAY_OF_PACKAGES_TO_STOW_DOTFILES=("1password" "BetterTouchTool" "git" "ssh
 
 # Establish symbolic names for modifier keys
 SHIFT_CHAR=$'\u21e7'     # ⇧
-CONTROL_CHAR=$'\u2303'   # ⌃  
+CONTROL_CHAR=$'\u2303'   # ⌃
 OPTION_CHAR=$'\u2325'    # ⌥
 COMMAND_CHAR=$'\u2318'   # ⌘
 META_MODIFIER_CHARS="${CONTROL_CHAR}${OPTION_CHAR}${COMMAND_CHAR}"

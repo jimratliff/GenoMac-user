@@ -5,8 +5,8 @@ set -euo pipefail
 safe_source "${GMU_HYPERVISOR_SCRIPTS}/subdermis.sh"
 
 function hypervisor() {
-  # The outermost “dermal” layer of hypervisory supervison (the dermis). Ensures the 
-  # GenoMac-user repository is updated before running the subdermal layer (subdermis). 
+  # The outermost “dermal” layer of hypervisory supervison (the dermis). Ensures the
+  # GenoMac-user repository is updated before running the subdermal layer (subdermis).
   #
   # Compares the local clone against the remote repo to determine whether there are unpulled
   # changes. If so, updates the local clone and restarts this script. Otherwise, hand
@@ -21,7 +21,7 @@ function hypervisor() {
   # - scripts/0_initialize_me_first.sh has been sourced
   #   - This sources (a) helpers and cross-repo environment variables from GenoMac-shared and
   #     (b) repo-specific environment variables.
-  
+
   report_start_phase_standard
 
   # See GenoMac-shared/scripts/helpers-git.sh
@@ -37,7 +37,7 @@ function hypervisor() {
     "$GENOMAC_USER_REPO_NAME" \
     "$GENOMAC_USER_LOCAL_DIRECTORY"
 
-  # Locally configures clone of public GitHub repo to (a) fetch without authentication 
+  # Locally configures clone of public GitHub repo to (a) fetch without authentication
   # using HTTPS but (b) push using SSH. (Although the following needs to be performed only once,
   # it’s simpler to always do it than to test whether it’s been done before.)
   configure_split_remote_URLs_for_GenoMac_user
@@ -47,6 +47,8 @@ function hypervisor() {
   # Example:
   #   migrate_user_states "MIGRATION_ID_2026_03_11" --delete "$PERM_PREVIEW_BASE_TOOLBAR_HAS_BEEN_SPECIFIED"
 
+  migrate_user_states "MIGRATION_ID_2026_10_20_2158" --run "2026_10_19_2152_delete_GraphicConverter_preference_domain"
+
   ############### END MIGRATIONS
 
   # Run the subdermal layer of the hypervisor, which supervises the remainder of the process.
@@ -54,9 +56,9 @@ function hypervisor() {
 
   # Reset SESH states for next session
   delete_all_user_SESH_states
-  
+
   output_hypervisor_departure_banner "$GENOMAC_SCOPE_USER"
-  
+
   hypervisor_force_logout --final
 
   report_end_phase_standard
