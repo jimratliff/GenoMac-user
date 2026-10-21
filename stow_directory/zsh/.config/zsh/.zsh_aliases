@@ -77,8 +77,13 @@ function mkcd() {
 ############### Git shortcuts
 alias gitpull="git pull origin main"
 
+############### Destinations
+alias my-repos='cd ~/Repositories'
+
 ############### Project GenoMac
 alias genomac-system='cd ~/.genomac-system'
 alias genomac-user='cd ~/.genomac-user'
 
-
+alias dev-genomac-system='cd ~/Repositories/Project_GenoMac/genomac-system'
+alias dev-genomac-user='cd ~/Repositories/Project_GenoMac/genomac-user'
+alias dev-genomac-shared='cd ~/Repositories/Project_GenoMac/genomac-shared'
