@@ -37,6 +37,14 @@ sock="$HOME/.1password/agent.sock"
 export SUDO_PROMPT=$'\aPassword: '
 
 # ======================================================================
+# Functions
+# ======================================================================
+genomac-repo-refresh() {
+  git pull --ff-only &&
+    git submodule update --init --recursive
+}
+
+# ======================================================================
 # Aliases (located adjacent to this .zshrc file)
 # ======================================================================
 [[ -r "$ZDOTDIR/.zsh_aliases" ]] && source "$ZDOTDIR/.zsh_aliases"
@@ -60,10 +68,10 @@ fi
 #     if [[ $# -eq 0 ]]; then
 #       zi; return
 #     fi
-# 
+#
 #     local -a matches
 #     matches=("${(@f)$(zoxide query -l -- "$@")}")
-# 
+#
 #     if (( ${#matches} == 0 )); then
 #       print -u2 "z: no match for: $*"
 #       return 1
