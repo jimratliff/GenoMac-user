@@ -3,7 +3,7 @@
 set -euo pipefail
 
 safe_source "${GMU_HYPERVISOR_SCRIPTS}/subdermis.sh"
-safe_source "${GMU_MIGRATION_SCRIPTS}/migrations_functions.sh"
+safe_source "${GMU_MIGRATION_SCRIPTS}/migration_functions.sh"
 
 function hypervisor() {
   # The outermost “dermal” layer of hypervisory supervison (the dermis). Ensures the
