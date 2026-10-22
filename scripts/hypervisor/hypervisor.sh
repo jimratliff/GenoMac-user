@@ -48,7 +48,7 @@ function hypervisor() {
   # Example:
   #   migrate_user_states "MIGRATION_ID_2026_03_11" --delete "$PERM_PREVIEW_BASE_TOOLBAR_HAS_BEEN_SPECIFIED"
 
-  migrate_user_states "MIGRATION_ID_2026_10_20_2158" --run "2026_10_19_2152_delete_GraphicConverter_preference_domain"
+  migrate_user_states "MIGRATION_ID_2026_10_21_1859" --run "delete_GraphicConverter_preference_domain"
 
   ############### END MIGRATIONS
 
