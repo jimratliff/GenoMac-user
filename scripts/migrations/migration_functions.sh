@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function 2026_10_19_2152_delete_GraphicConverter_preference_domain() {
+function delete_GraphicConverter_preference_domain() {
   # Template for a Zsh function in Project GenoMac
   report_start_phase_standard
 
