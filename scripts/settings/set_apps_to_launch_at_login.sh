@@ -25,7 +25,7 @@ set -euo pipefail
 ###############################################################################
 # CONFIGURE THE LIST OF APPS TO LAUNCH AT LOGIN HERE!
 #
-# Notes: 
+# Notes:
 # - Sync.com is appropriate for only some users and is not present here.
 #   Use of the Sync app requires some manual intervention by the user in any case, during
 #   which it’s likely that this app will be manually specified to launch at login.
@@ -33,7 +33,6 @@ set -euo pipefail
 # - The following apps *do* launch at user login, but aren’t handled here because they
 # 	have their own login helper:
 # 	- Dropbox:      "bundle:com.getdropbox.dropbox"
-# 	- TextExpander	"bundle:com.smileonmymac.textexpander"
 #   - SpaceJump     "bundle:com.ideabridge.spacejump"
 #
 ###############################################################################
@@ -73,7 +72,7 @@ function conditionally_set_apps_to_launch_at_login() {
     "$SESH_APPS_TO_LAUNCH_AT_LOGIN_HAVE_BEEN_SPECIFIED" \
     set_apps_to_launch_at_login \
     "Skipping specifications of apps to launch at login, because they’ve already been specified this session"
-	
+
   report_end_phase_standard
 }
 
@@ -88,7 +87,7 @@ function set_apps_to_launch_at_login() {
 
   report_start_phase_standard
   report_action_taken "Set apps that should launch at login."
-  
+
   : "${GENOMAC_LOGIN_APPS:?GENOMAC_LOGIN_APPS must be set (assoc array)}"
 
   local name spec kind value label tmp_plist plist_path
@@ -120,11 +119,11 @@ function set_apps_to_launch_at_login() {
       rm -f "$tmp_plist" 2>/dev/null || true
     fi
   done
-  
+
   prune_login_agents
 
   report_end_phase_standard
-  
+
 }
 
 function print_loginagents_dir() {
