@@ -11,6 +11,9 @@ Instead, an established preset file is deployed by GenoMac-user to a location wh
 
 This deployment is accomplished by GenoMac-user’s dotfile-stowing process. Hence, no separate operation need be performed here to implement this (given that the dotfile-stowing process is already part of the standard GenoMac-user workflow).
 
+> [!NOTE]
+> You may wind up with multiple “default” presets. You can merge them (at the bottom of the export dialog box).
+
 It is expected that BTT’s standard preset will be very stable in the sense of rarely changing.
 
 If the BTT preset *does* change, here are the steps to deploy the updated preset:
