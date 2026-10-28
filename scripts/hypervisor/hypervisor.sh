@@ -49,6 +49,9 @@ function hypervisor() {
   #   migrate_user_states "MIGRATION_ID_2026_03_11" --delete "$PERM_PREVIEW_BASE_TOOLBAR_HAS_BEEN_SPECIFIED"
 
   migrate_user_states "MIGRATION_ID_2026_10_21_1859" --run "delete_GraphicConverter_preference_domain"
+  migrate_user_states "MIGRATION_2026_10_27_1052" --delete "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED_FOR_NONBAREBONES_USER"
+  migrate_user_states "MIGRATION_2026_10_27_1053" --delete "$PERM_WALLPAPERS_HAVE_BEEN_SET"
+  migrate_user_states "MIGRATION_2026_10_27_1054" --delete "$PERM_SPACE_NAMES_HAVE_BEEN_RECORDED_BY_SPACEJUMP"
 
   ############### END MIGRATIONS
 
