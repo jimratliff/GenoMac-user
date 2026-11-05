@@ -8,19 +8,19 @@ function conditionally_configure_spacejump() {
     report_end_phase_standard
     return 0
   fi
-  
+
   run_if_user_has_not_done "$SESH_SPACEJUMP_BASIC_SETTINGS_HAVE_BEEN_SET" \
     set_spacejump_basic_settings \
     "Skipping basic settings for SpaceJump, because it’s already been configured this session"
-  
+
   run_if_user_has_not_done "$PERM_SPACEJUMP_LICENSE_HAS_BEEN_ACTIVATED" \
     activate_spacejump_license \
     "Skipping activating SpaceJump license, because this has already been done in the past"
-  
+
   run_if_user_has_not_done "$PERM_SPACE_NAMES_HAVE_BEEN_RECORDED_BY_SPACEJUMP" \
     specify_Space_names_in_SpaceJump \
     "Skipping specifying Space names in SpaceJump because this has been done before."
-  
+
   report_end_phase_standard
 }
 
@@ -29,7 +29,7 @@ function set_spacejump_basic_settings() {
   # These “basic settings” do not include (a) license key or (b) names
   # for each Space
   report_start_phase_standard
-  
+
   local domain="$DEFAULTS_DOMAINS_SPACEJUMP"
   local plist_path
 
@@ -60,7 +60,7 @@ function set_spacejump_basic_settings() {
 function activate_spacejump_license() {
   # Activate license for SpaceJump
   report_start_phase_standard
-  
+
   local domain="$DEFAULTS_DOMAINS_SPACEJUMP"
   local plist_path
   local license_key
@@ -74,7 +74,7 @@ function activate_spacejump_license() {
 
   local now_utc_as_type_date
   now_utc_as_type_date="$(date -u '+%Y-%m-%d %H:%M:%S +0000')"
-  
+
   license_key="$(get_license_key_for_spacejump)"
   report_to_log "License key for SpaceJump: $license_key"
 
@@ -88,7 +88,7 @@ function activate_spacejump_license() {
   defaults write $domain "license_last_validation" -date "$now_utc_as_type_date" ; success_or_not
 
   invalidate_preferences_cache
-  
+
   report_end_phase_standard
 }
 
@@ -96,9 +96,9 @@ function specify_Space_names_in_SpaceJump() {
   # Gather list of Space names and write them to SpaceJump preferences
   # Quits SpaceJump if running. Launches/relaunches SpaceJump at end.
   report_start_phase_standard
-  
+
   local domain="$DEFAULTS_DOMAINS_SPACEJUMP"
-  
+
   report_action_taken "Specify Space names in SpaceJump."
 
   local spaceid_name_mapping_data
@@ -121,20 +121,20 @@ function specify_Space_names_in_SpaceJump() {
 function get_spaceid_name_mapping() {
   # Creates the type -data mapping between (a) SpaceJump Space identifiers and
   # (b) Space names to be passed to defaults write
-  
+
   report_start_phase_standard
 
   local spaceid_name_mapping_data
   local spaceid_name_mapping_json='{}'
   local spacejump_spaceid
   local space_name
-  
+
   local -i space_number
 
   for (( space_number=1; space_number <= MAXIMUM_NUMBER_OF_MISSION_CONTROL_SPACES; ++space_number )); do
-  
+
     spacejump_spaceid="$(get_spacejump_spaceid_for_space_number "$space_number")"
-    
+
     space_name="$(get_space_name_for_space_number "$space_number")"
 
     # Add (spacejump_spaceid, space_name) pair to mapping
@@ -146,7 +146,7 @@ function get_spaceid_name_mapping() {
         '.[$identity] = $name' \
         <<< "$spaceid_name_mapping_json"
     )"
-    
+
   done
 
   # Encode JSON as hexadecimal
@@ -157,7 +157,7 @@ function get_spaceid_name_mapping() {
 
   report_to_log "Mapping data:${spaceid_name_mapping_data}"
   print -r -- "$spaceid_name_mapping_data"
-  
+
   report_end_phase_standard
 }
 
@@ -166,7 +166,7 @@ function get_space_name_for_space_number() {
   # - If user has USER_ATTRIBUTE_WALLPAPERS, we get the Space name from the wallpaper container for
   #   given Space number.
   # - Otherwise, give Space a generic name based on the given Space number
-  
+
   report_start_phase_standard
   local space_number="${1:?MISSING space_number}"
 
@@ -181,7 +181,7 @@ function get_space_name_for_space_number() {
   fi
 
   print -r -- "$space_name"
-    
+
   report_end_phase_standard
 }
 
@@ -201,7 +201,7 @@ function get_spacejump_spaceid_for_space_number() {
 
   local space_uuid
   local spaceid
-  
+
   local -i spaces_array_index
   spaces_array_index=$(( space_number - 1 ))
 
@@ -227,7 +227,7 @@ function get_spacejump_spaceid_for_space_number() {
 
     spaceid="uuid:${space_uuid}"
   fi
-  
+
   print -r -- "$spaceid"
 
   report_end_phase_standard
@@ -238,9 +238,9 @@ function get_space_name_from_wallpaper_container_path() {
   # The name of the file or subdirectory is assumed to be in the form:
   #   '12_Project_X', where the prefix is `1_`, …, `16_`.
   #   Each underscore in the name is replaced with a space.
-  
+
   report_start_phase_standard
-  
+
   local path_of_file_or_subdirectory
   path_of_file_or_subdirectory="${1:?MISSING path_of_file_or_subdirectory}"
 
@@ -269,7 +269,7 @@ function get_space_name_from_wallpaper_container_path() {
   name_of_space="${name_of_space//_/ }"
 
   print -r -- "$name_of_space"
-  
+
   report_end_phase_standard
 }
 
