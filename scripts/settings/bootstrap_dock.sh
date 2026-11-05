@@ -230,13 +230,15 @@ function define_apps_for_dock() {
   # System Settings is unconditional
   apps_for_dock+=( "$actual_path_to_app_System_Settings" )
 
-  # Activity Monitor
-  if test_genomac_user_state "$SESH_USER_IS_A_DEVELOPER" || 
-     test_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN"
-  then
-    apps_for_dock+=( "$actual_path_to_app_Activity_Monitor" )
-  fi
-  
+#   # Activity Monitor
+#   if test_genomac_user_state "$SESH_USER_IS_A_DEVELOPER" ||
+#      test_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN"
+#   then
+#     apps_for_dock+=( "$actual_path_to_app_Activity_Monitor" )
+#   fi
+
+  # Activity Monitor is unconditional
+  apps_for_dock+=( "$actual_path_to_app_Activity_Monitor" )
   # Disk Utility
   if test_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN" || 
      test_genomac_user_state "$SESH_USER_IS_AN_ACCOUNT_SWITCHER"
