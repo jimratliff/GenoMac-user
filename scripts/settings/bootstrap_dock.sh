@@ -140,6 +140,7 @@ function define_apps_for_dock() {
   local actual_path_to_app_Name_Mangler="/Applications/Name Mangler 3.app"
   local actual_path_to_app_Obsidian="/Applications/Obsidian.app"
   local actual_path_to_app_OfficeTime="/Applications/OfficeTime.app"
+  local actual_path_to_app_Proton_Mail_Bridge="/Applications/Proton Mail Bridge.app"
   local actual_path_to_app_Raindrop_io="/Applications/Raindrop.io.app"
   local actual_path_to_app_Tower="/Applications/Tower.app"
   local actual_path_to_app_Waterfox="/Applications/Waterfox.app"
@@ -162,6 +163,12 @@ function define_apps_for_dock() {
     apps_for_dock+=( "$actual_path_to_app_Mail_app" )
   fi
   
+
+  # Proton Mail Bridge.app
+  if test_genomac_user_state "$SESH_PROTON_MAIL_BRIDGE_USER_WANTS_IT"; then
+    apps_for_dock+=( "$actual_path_to_app_Proton_Mail_Bridge" )
+  fi
+
   # Safari is only browser in Dock for barebones; otherwise Waterfox and Helium
   # (which empirically rise and fall together, adjacent in the Dock)
   if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
