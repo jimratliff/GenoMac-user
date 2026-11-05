@@ -8,7 +8,7 @@ function bootstrap_dock() {
   # and add a directory of Finder alias files to, the Dock.
   # Removes all persistent apps prior to repopulating the persistent apps but
   # leaves existing persistent-others (the document side of the Dock) items alone.
-  
+
   report_start_phase_standard
 
   bootstrap_dock_persistent_apps
@@ -16,7 +16,7 @@ function bootstrap_dock() {
   # Add designated directory of Finder alias files to Dock
   create_directory_for_aliases_for_Dock                    # scripts/installations/make_directory_for_Dock_aliases.sh
   add_designated_directory_of_Finder_alias_files_to_Dock
-  
+
   report_end_phase_standard
 }
 
@@ -24,60 +24,60 @@ function bootstrap_dock_persistent_apps() {
   # To be run only once per user to initially populate the persistent apps of the Dock.
   # Removes all persistent apps prior to repopulating the persistent apps but
   # leaves existing persistent-others (the document side of the Dock) items alone.
-  
+
   report_start_phase_standard
   local -a apps_for_dock
 
   # Add desired apps to Dock
   apps_for_dock=( "${(@f)$(define_apps_for_dock)}" )
   bootstrap_dock_given_apps_for_dock "${apps_for_dock[@]}"
-  
+
   report_end_phase_standard
 }
 
 function bootstrap_dock_given_apps_for_dock() {
   # Constructs Dock arrangement from supplied array apps_for_dock.
   # Empties app side of Dock. Leaves document side (persistent-others) of Dock alone.
-  
+
   report_start_phase_standard
 
   local -a apps_for_dock=("$@")
-  
+
   report_action_taken "Bootstrap-only initial population of the Dock."
 
   local dock_item
   local domain="com.apple.dock"
-  
+
   local plist_path
   plist_path="$(legacy_plist_path_from_domain "$domain")"
-  
+
   report_action_taken_to_log "Ensure plist for Dock exists at $plist_path"
   create_empty_plist_if_missing "${plist_path}" ; success_or_not
-  
+
   local dock_persistent_apps_key="persistent-apps"
-  
-  report_action_taken_to_log "Remove all persistent apps from Dock in preparation for repopulation" 
+
+  report_action_taken_to_log "Remove all persistent apps from Dock in preparation for repopulation"
   defaults delete "$domain" "$dock_persistent_apps_key" ; success_or_not
   kill_the_dock_metaphorically
-  
+
   # Initialize the array
-  report_action_taken_to_log "Initialize persistent-apps array" 
+  report_action_taken_to_log "Initialize persistent-apps array"
   defaults write "$domain" "$dock_persistent_apps_key" -array ; success_or_not
-  
+
   for app in "${apps_for_dock[@]}"; do
     report_adjust_setting "App $app added to Dock"
     dock_item="$(dock_app_entry $app)"
     defaults write "$domain" "$dock_persistent_apps_key" -array-add "$dock_item" ; success_or_not
   done
-  
+
   kill_the_dock_metaphorically
-  
+
   report_end_phase_standard
 }
 
 function add_designated_directory_of_Finder_alias_files_to_Dock() {
   # Adds the designated directory ($DIRECTORY_OF_ALIASES_FOR_DOCK) of Finder alias files to Dock.
-  
+
   report_start_phase_standard
   local already_present dock_item
   local domain="com.apple.dock"
@@ -99,7 +99,7 @@ function add_designated_directory_of_Finder_alias_files_to_Dock() {
 
   report_action_taken "Add aliases-for-Dock directory to the Dock"
   defaults write $domain persistent-others -array-add "$dock_item" ; success_or_not
-  
+
   report_end_phase_standard
 }
 
@@ -115,7 +115,7 @@ function define_apps_for_dock() {
   #   - /Applications/Safari.app is symlinked to /System/Cryptexes/App/System/Applications/Safari.app
   #   - Presumably that is the path that must be specified to add Safari to the Dock, though I haven’t tested it (but
   #     have seen evidence to support this).
-  
+
   report_start_phase_standard
 
   # Define actual paths to apps: Apple
@@ -125,7 +125,7 @@ function define_apps_for_dock() {
   local actual_path_to_app_Safari="/System/Cryptexes/App/System/Applications/Safari.app"
   local actual_path_to_app_System_Settings="/System/Applications/System Settings.app"
   local actual_path_to_app_Terminal="/System/Applications/Utilities/Terminal.app"
-  
+
   # Define actual paths to apps: non-Apple
   local actual_path_to_app_1Password="/Applications/1Password.app"
   local actual_path_to_app_ChatGPT="/Applications/ChatGPT.app"
@@ -147,7 +147,7 @@ function define_apps_for_dock() {
   local actual_path_to_app_Zed="/Applications/Zed.app"
 
   ############### Construct apps_for_dock
-  
+
   # 1Password is unconditional
   local -a apps_for_dock=(
     "$actual_path_to_app_1Password"
@@ -162,7 +162,6 @@ function define_apps_for_dock() {
   if test_genomac_user_state "$SESH_APPLE_MAIL_APP_USER_WANTS_IT"; then
     apps_for_dock+=( "$actual_path_to_app_Mail_app" )
   fi
-  
 
   # Proton Mail Bridge.app
   if test_genomac_user_state "$SESH_PROTON_MAIL_BRIDGE_USER_WANTS_IT"; then
@@ -174,8 +173,8 @@ function define_apps_for_dock() {
   if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
     apps_for_dock+=( "$actual_path_to_app_Safari" )
   else
-    apps_for_dock+=( 
-      "$actual_path_to_app_Waterfox" 
+    apps_for_dock+=(
+      "$actual_path_to_app_Waterfox"
       "$actual_path_to_app_Helium"
     )
   fi
@@ -226,7 +225,7 @@ function define_apps_for_dock() {
 
   # Developer apps: ChatGPT, Claude, Zed, and Tower
   if test_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"; then
-    apps_for_dock+=( 
+    apps_for_dock+=(
       "$actual_path_to_app_ChatGPT"
       "$actual_path_to_app_Claude"
       "$actual_path_to_app_Zed"
@@ -246,8 +245,9 @@ function define_apps_for_dock() {
 
   # Activity Monitor is unconditional
   apps_for_dock+=( "$actual_path_to_app_Activity_Monitor" )
+
   # Disk Utility
-  if test_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN" || 
+  if test_genomac_user_state "$SESH_USER_IS_A_MAC_ADMIN" ||
      test_genomac_user_state "$SESH_USER_IS_AN_ACCOUNT_SWITCHER"
   then
     apps_for_dock+=( "$actual_path_to_app_Disk_Utility" )
@@ -272,10 +272,10 @@ function dock_app_entry() {
 
 function kill_the_dock_metaphorically() {
   report_start_phase_standard
-  
+
   report_action_taken_to_log "Killing Dock (metaphorically)."
   killall Dock 2>/dev/null || true ; success_or_not
-  
+
   report_end_phase_standard
 }
 
@@ -314,7 +314,7 @@ print("true" if found else "false")
 #    # Outputs 'true' or 'false' if supplied file URL already exists in the Dock.
 #    report_start_phase_standard
 #    local file_url="$1"
-#  
+#
 #    defaults export com.apple.dock - |
 #      plutil -convert json -o - - |
 #      jq -r --arg url "$file_url" '
@@ -329,13 +329,13 @@ print("true" if found else "false")
 function dock_directory_entry() {
   # Takes an encoded file URL for the directory to add to the Dock.
   # Outputs the XML dictionary for the directory’s tile.
-  
+
   report_start_phase_standard
 
   local file_url="${1:?Expected an encoded directory file URL}"
-  
+
   local escaped_url
-  
+
   escaped_url="$(jq -nr --arg url "$file_url" '$url | @html')"
 
   printf '<dict>
@@ -347,7 +347,6 @@ function dock_directory_entry() {
     </dict>
     <key>tile-type</key><string>directory-tile</string>
   </dict>\n' "$escaped_url"
-  
+
   report_end_phase_standard
 }
-

@@ -4,21 +4,21 @@
 function conditionally_process_user_attribute_states() {
   # Process user-attribute states, if not already done this session.
   report_start_phase_standard
-  
+
   run_if_user_has_not_done "$SESH_USER_ATTRIBUTE_STATES_HAVE_BEEN_PROCESSED" \
     process_user_attribute_states \
     "Skipping processing user-attribute states, because it’s already been done this session."
-    
+
   report_end_phase_standard
 }
 
 function process_user_attribute_states() {
   # Process user-attribute states
   report_start_phase_standard
-  
+
   transfer_system_scoped_user_attribute_states_to_user_scoped
   set_user_preferences_from_attributes
-  
+
   report_end_phase_standard
 }
 
@@ -35,7 +35,7 @@ function set_user_preferences_from_attributes() {
   # Collect user-scoped user-attribute state strings for current user
   short_name="$(short_name_of_user_from_HOME)"
   state_prefix="$(construct_state_string_for_user_and_attribute --user-only "$short_name")"
-  
+
   _state_strings_with_prefix \
     "${state_prefix}" \
     "user"
@@ -221,7 +221,7 @@ function transfer_system_scoped_user_attribute_states_to_user_scoped() {
   #       mind so that user attributes can be updated by GenoMac-system over time)?
   #       It seems like I could just as easily read the system-scoped state filese
   #       directly when harvesting a user’s user attributes.
-  
+
   report_start_phase_standard
   local short_name
   local state_prefix
@@ -231,7 +231,7 @@ function transfer_system_scoped_user_attribute_states_to_user_scoped() {
   # Collect system-scoped user-attribute state strings for current user
   short_name="$(short_name_of_user_from_HOME)"
   state_prefix="$(construct_state_string_for_user_and_attribute --user-only "$short_name")"
-  
+
   _state_strings_with_prefix \
     "${state_prefix}" \
     "system"
