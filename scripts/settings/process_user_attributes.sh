@@ -161,6 +161,10 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_RAINDROP_IO}"
       set_genomac_user_state "$SESH_RAINDROP_IO_USER_WANTS_IT"
       ;;
+    "${USER_ATTRIBUTE_SAFARI_IN_DOCK}")
+	  report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_SAFARI_IN_DOCK}"
+	  set_genomac_user_state "$SESH_SAFARI_USER_WANTS_IT_IN_DOCK"
+	  ;;
     "${USER_ATTRIBUTE_SWITCHER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_SWITCHER}"
       set_genomac_user_state "$SESH_USER_IS_AN_ACCOUNT_SWITCHER"
@@ -185,20 +189,21 @@ function set_user_preferences_for_attribute() {
       set_genomac_user_state "$SESH_USER_IS_USER_CONFIGURER"
       set_genomac_user_state "$SESH_WALLPAPER_CONFIGURER_USER_WANTS_IT"
       set_genomac_user_state "$SESH_DAISYDISK_USER_WANTS_IT_IN_DOCK"
+      set_genomac_user_state "$SESH_SAFARI_USER_WANTS_IT_IN_DOCK"
       ;;
     *)
       report_warning "No user-preference behavior is defined for attribute: $attribute_name"
       ;;
   esac
 
-  
+
   if test_genomac_user_state "$SESH_USER_IS_A_DEVELOPER"; then
     report_action_taken_to_log "Turn on flags for Git and GitHub configuration."
     set_genomac_user_state "$SESH_USER_WANTS_TO_COMMIT_ON_GITHUB"
     set_genomac_user_state "$SESH_1PASSWORD_USER_WANTS_TO_CONFIGURE_SSH_AGENT"
     set_genomac_user_state "$SESH_REPOSITORIES_DIRECTORY_USER_WANTS_IT"
   fi
-    
+
   report_end_phase_standard
 }
 

@@ -173,9 +173,8 @@ function define_apps_for_dock() {
     )
   fi
 
-  # Safari is added for USER_CONFIGURER because Safari is where that user 
-  # establishes the text-exchange link to other users/machines.
-  if test_genomac_user_state "$SESH_USER_IS_USER_CONFIGURER"; then
+  # Safari
+  if test_genomac_user_state "$SESH_SAFARI_USER_WANTS_IT_IN_DOCK"; then
     apps_for_dock+=( "$actual_path_to_app_Safari" )
   fi
 

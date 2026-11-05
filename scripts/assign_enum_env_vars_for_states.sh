@@ -157,6 +157,7 @@ SESH_Q_ASKED_VERBOSITY="SESH_q_asked_verbosity"
 SESH_RAINDROP_IO_USER_WANTS_IT="SESH_raindrop_io_user_wants_it"
 SESH_REPO_HAS_BEEN_TESTED_FOR_CHANGES="SESH_repo_has_been_tested_for_changes"
 SESH_REPOSITORIES_DIRECTORY_USER_WANTS_IT="SESH_repositories_directory_user_wants_it"
+SESH_SAFARI_USER_WANTS_IT_IN_DOCK="SESH_safari_user_wants_it_in_dock"
 SESH_SPACEJUMP_BASIC_SETTINGS_HAVE_BEEN_SET="SESH_spacejump_basic_settings_have_been_set"
 SESH_SPACEJUMP_USER_WANTS_IT="SESH_spacejump_user_wants_it"
 SESH_SYNC_COM_USER_WANTS_IT="SESH_sync_com_user_wants_it"
@@ -182,4 +183,3 @@ SESH_WATERFOX_SETTINGS_HAVE_BEEN_IMPLEMENTED="SESH_waterfox_settings_have_been_i
 # Each of these PERM states is extraordinary in that its file’s *content* is significant.
 PERM_DEFAULT_GIT_USER_NAME="PERM_default_git_user_name"
 PERM_DEFAULT_GIT_USER_EMAIL="PERM_default_git_user_email"
-
