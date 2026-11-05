@@ -121,7 +121,6 @@ function define_apps_for_dock() {
   # Define actual paths to apps: Apple
   local actual_path_to_app_Activity_Monitor="/System/Applications/Utilities/Activity Monitor.app"
   local actual_path_to_app_Disk_Utility="/System/Applications/Utilities/Disk Utility.app"
-  local actual_path_to_app_GraphicConverter="/Applications/GraphicConverter 12.app"
   local actual_path_to_app_Mail_app="/System/Applications/Mail.app"
   local actual_path_to_app_Safari="/System/Cryptexes/App/System/Applications/Safari.app"
   local actual_path_to_app_System_Settings="/System/Applications/System Settings.app"
@@ -133,6 +132,7 @@ function define_apps_for_dock() {
   local actual_path_to_app_Claude="/Applications/Claude.app"
   local actual_path_to_app_DaisyDisk="/Applications/DaisyDisk.app"
   local actual_path_to_app_Downie="/Applications/Downie 4.app"
+  local actual_path_to_app_GraphicConverter="/Applications/GraphicConverter 12.app"
   local actual_path_to_app_Helium="/Applications/Helium.app"
   local actual_path_to_app_HIARCS_Chess_Explorer_Pro="/Applications/HIARCS Chess Explorer Pro.app"
   local actual_path_to_app_iTerm="/Applications/iTerm.app"
