@@ -28,9 +28,11 @@
     - “Choose which folders you see on this device”
       - “Only selected folders will take up hard drive space on this device. You can still access unselected folders anytime at dropbox.com”
       - ❑ First, deselect all
-      - ❑ Now select **four** folders
+      - ❑ Now select **four** (or **five**) folders
         - ❑ Preferences_common
         - ❑ ScanSnap_inbox
+        - *If* you are USER_CONFIGURER (aka “configger”), also select:
+        	- ❑ Systemwide
         - Users/
           - ❑ Users/*your-user-name*
           - ❑ Users/z_inter-user_transfer
@@ -97,4 +99,3 @@
 
 ## Be tidy: Close this document
 - ❑ Close this document
-
