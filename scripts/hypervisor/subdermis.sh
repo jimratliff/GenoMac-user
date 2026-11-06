@@ -57,7 +57,7 @@ function subdermis() {
 
   output_hypervisor_welcome_banner "$GENOMAC_SCOPE_USER"      # GenoMac-shared/scripts/helpers-hypervisor.sh
   set_genomac_user_state "$SESH_SESSION_HAS_STARTED"
-  
+
   conditionally_ask_and_set_verbosity_preference              # scripts/settings/interactive_ask_initial_questions.sh
   keep_sudo_alive                                             # GenoMac-shared/scripts/helpers-mac-and-terminal-environment.sh
   interactive_ensure_terminal_has_fda                         # GenoMac-shared/scripts/helpers-mac-and-terminal-environment.sh
@@ -69,7 +69,7 @@ function subdermis() {
   conditionally_interactive_configure_touch_ID                # scripts/settings/interactive_configure_touch_id.sh
 
   conditionally_basically_configure_1Password                 # scripts/settings/interactive_configure_1password.sh
-  
+
   ############### BELOW THIS POINT: 1Password credentials are available ###############
 
   # Configuration of Proton Drive is so early because, mysteriously and disappointingly, installation of Proton Drive
@@ -78,9 +78,9 @@ function subdermis() {
   # 2026_10_13_0910 Now I have Proton Drive 3.1.0, which has shown promise, but still installing Proton Drive ASAP
   # after configuring Dropbox
   # conditionally_configure_Proton_Drive                        # scripts/settings/interactive_configure_proton_drive.sh
-  
+
   conditionally_set_single_space_wallpaper                    # scripts/settings/set_wallpapers.sh
-  
+
   # Execute barebones bootstrap steps
   conditionally_perform_initial_bootstrap_operations          # scripts/settings/perform_initial_bootstrap_operations.sh
   conditionally_perform_basic_third_party_app_settings        # scripts/settings/perform_basic_third_party_app_settings.sh
@@ -89,7 +89,7 @@ function subdermis() {
   if test_genomac_user_state "$SESH_USER_WANTS_ONLY_BAREBONES_CONFIG"; then
     set_screen_capture_destination_for_barebones_user         # scripts/settings/set_screen_capture_settings.sh
     conditionally_bootstrap_finder_sidebar_favorites_for_barebones_user # scripts/settings/set_finder_sidebar_favorites.sh
-    
+
     report "User wants only barebones configuration, so I’m ending here."
     end_of_subdermis_cleanup
     report_end_phase_standard
@@ -99,14 +99,14 @@ function subdermis() {
   ############### END BAREBONES CONFIGURATION ###############
 
   conditionally_further_configure_1Password                   # scripts/settings/interactive_configure_1password.sh
-  
+
   conditionally_set_git_config_user                           # scripts/settings/interactive_set_git_config_user.sh
   conditionally_stow_dotfiles                                 # scripts/settings/perform_stow_dotfiles.sh
 
   # Configuring Waterfox (the default browser) and its extensions (e.g., 1Password) now to make Dropbox easier to sign into via passkey
   conditionally_implement_waterfox_settings_and_install_extensions # scripts/settings/set_waterfox_settings.sh
   interactive_set_preferences_for_waterfox_extensions         # scripts/settings/interactive_set_waterfox_extension_preferences.sh
-  
+
   conditionally_configure_Dropbox                             # scripts/settings/interactive_configure_dropbox.sh
 
   # Configuration of Proton Drive comes after configuring Dropbox because there *may* be user-specific instructions
@@ -117,7 +117,7 @@ function subdermis() {
   # instructions stored in the user’s Dropbox
   conditionally_configure_internet_accounts_and_mail_app      # scripts/settings/set_mail_app_settings.sh
   conditionally_interactive_configure_helium_and_extensions   # scripts/settings/interactive_configure_helium.sh
-  
+
   # Bootstrap: Create additional Mission Control Spaces
   conditionally_create_additional_mission_control_spaces      # scripts/settings/interactive_create_mission_control_spaces.sh
 
@@ -125,7 +125,7 @@ function subdermis() {
   conditionally_create_repositories_directory_for_developers  # scripts/installations/make_repositories_directory_for_developers.sh
 
   conditionally_prompt_user_to_configure_1Password_SSH_settings_for_GitHub # scripts/settings/interactive_configure_1password.sh
-  
+
   # If user has 'genomac-developer' attribute, create additional local clones of GenoMac-system, GenoMac-user,
   # GenoMac-shared, and GenoMac-private at ~/Repositories/Project_GenoMac
   conditionally_clone_GenoMac_repos_for_development           # scripts/installations/make_development_clones.sh
@@ -133,18 +133,18 @@ function subdermis() {
   conditionally_interactive_configure_Notion                  # scripts/settings/interactive_configure_notion.sh
 
   conditionally_interactive_configure_Obsidian                # scripts/settings/interactive_configure_obsidian.sh
-  
+
   conditionally_configure_microsoft_word                      # scripts/settings/set_microsoft_word_settings.sh
-  
+
   ############### (Further) configure apps that rely upon Dropbox having synced ###############
-  
+
   if test_genomac_user_state "$PERM_DROPBOX_HAS_BEEN_CONFIGURED"; then
 
     # Set screenshot destination folder to location within user’s subdirectory in Dropbox
     # TODO: This and other directory-creation functions should run only once per session, not every time the
     #       Hypervisor is restarted!
     set_screen_capture_destination_for_Dropbox_user           # scripts/settings/set_screen_capture_settings.sh
-  
+
     # BetterTouchTool relies on Dropbox because that’s where its license file is stored
     conditionally_configure_bettertouchtool                   # scripts/settings/set_bettertouchtool_settings.sh
 
@@ -180,16 +180,16 @@ function subdermis() {
 
     # Importing bookmarks into browsers relies on bookmark files in Dropbox
     conditionally_install_bookmarks_into_browsers              # scripts/installations/install_bookmarks_into_browsers.sh
-    
+
     # Create aliases in the Dock to the user’s chosen directories/files stored in designated directory
     conditionally_create_user_specified_Finder_alias_files_in_Dock_folder       # scripts/settings/alias_objects_to_Dock.sh
-    
+
   else
-  
+
     # If here, then both (a) user is not barebones but (b) user doesn’t use Dropbox. Therefore, make same
     # assignment of screen-capture destination as for a barebones user.
     set_screen_capture_destination_for_barebones_user
-    
+
   fi
 
   conditionally_interactive_configure_Proton_Mail_Bridge       # scripts/settings/interactive_configure_proton_mail_bridge.sh
@@ -199,7 +199,7 @@ function subdermis() {
   conditionally_set_apps_to_launch_at_login                    # scripts/settings/set_apps_to_launch_at_login.sh
 
   end_of_subdermis_cleanup
-  
+
   report_end_phase_standard
 }
 
@@ -212,11 +212,8 @@ function end_of_subdermis_cleanup() {
   else
     report_warning "User “${USER}” has NOT been marked as configured because at least one task has been deferred."
   fi
-  
+
   display_users_to_be_initially_configured                      # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
-  
+
   report_end_phase_standard
 }
-
-
-
