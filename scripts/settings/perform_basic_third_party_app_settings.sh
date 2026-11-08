@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_bbedit_settings.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/set_bookmarkbar_settings.sh"
+# safe_source "${GMU_SETTINGS_SCRIPTS}/set_bookmarkbar_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_chatgpt_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_claude_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_graphicconverter_settings.sh"
