@@ -31,7 +31,7 @@ function perform_basic_third_party_app_settings() {
 
 
   # Bookmark Bar
-  set_bookmarkbar_settings             # scripts/settings/set_bookmarkbar_settings.sh
+  # set_bookmarkbar_settings             # scripts/settings/set_bookmarkbar_settings.sh
 
   # ChatGPT
   set_chatgpt_settings                 # scripts/settings/set_chatgpt_settings.sh
