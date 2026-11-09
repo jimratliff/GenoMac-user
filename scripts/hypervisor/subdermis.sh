@@ -178,7 +178,9 @@ function subdermis() {
     conditionally_configure_spacejump                         # scripts/settings/set_spacejump_settings.sh
 
     # Importing bookmarks into browsers relies on bookmark files in Dropbox
-    conditionally_install_bookmarks_into_browsers              # scripts/installations/install_bookmarks_into_browsers.sh
+    # conditionally_install_bookmarks_into_browsers              # scripts/installations/install_bookmarks_into_browsers.sh
+
+    conditionally_install_reference_copy_bookmarkbar_bookmarks # scripts/settings/set_bookmarkbar_settings.sh
 
     # Create aliases in the Dock to the user’s chosen directories/files stored in designated directory
     conditionally_create_user_specified_Finder_alias_files_in_Dock_folder       # scripts/settings/alias_objects_to_Dock.sh
