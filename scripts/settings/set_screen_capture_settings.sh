@@ -6,19 +6,22 @@ function set_screen_capture_settings() {
   # This function does NOT set the screen-capture destination directory. That is handled separately
   # elsewhere depending on whether the user is (a) barebones only or (b) a Dropbox user.
   report_start_phase_standard
-  
+
   report_action_taken "Implement settings related to screen capture"
-  
+
   report_adjust_setting "Screenshot: Specify that target is a file"
   # Needed only when overriding an assignment to clipboard or an app (e.g., Mail, Preview)
   defaults write com.apple.screencapture target -string "file" ; success_or_not
-  
+
   report_adjust_setting "Screenshot: Show floating thumbnail (reinforces default)"
   defaults write com.apple.screencapture show-thumbnail -bool true ; success_or_not
-  
+
   report_adjust_setting "Screenshot: Disable the drop shadow on screenshots"
   defaults write com.apple.screencapture disable-shadow -bool "true" ; success_or_not
-  
+
+  report_adjust_setting "Screenshot: Capture system audio"
+  defaults write com.apple.screencapture captureSystemAudio -bool true ; success_or_not
+
   report_end_phase_standard
 
 }
@@ -30,9 +33,9 @@ function set_screen_capture_destination_for_barebones_user() {
 
   local path_for_screen_capture_result="$USER_SCREENSHOT_DESTINATION_DIRECTORY_BAREBONES"
   local permissions_for_screenshot_directory="700"
-  
+
   set_screen_capture_destination "$path_for_screen_capture_result" "$permissions_for_screenshot_directory"
-  
+
   report_end_phase_standard
 }
 
@@ -43,9 +46,9 @@ function set_screen_capture_destination_for_Dropbox_user() {
 
   local path_for_screen_capture_result="$USER_SCREENSHOT_DESTINATION_DIRECTORY_DROPBOX_USER"
   local permissions_for_screenshot_directory="755"
-  
+
   set_screen_capture_destination "$path_for_screen_capture_result" "$permissions_for_screenshot_directory"
-  
+
   report_end_phase_standard
 }
 
@@ -55,7 +58,7 @@ function set_screen_capture_destination() {
   # Conventional permissions:
   # - When at root of home directory: 700
   # - When in Dropbox: 755
-  
+
   report_start_phase_standard
   local screen_capture_destination_path="${1:?MISSING screen-capture destination path}"
   local permissions="${2:?MISSING numeric permissions}"
