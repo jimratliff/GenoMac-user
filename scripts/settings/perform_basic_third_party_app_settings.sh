@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_bbedit_settings.sh"
-safe_source "${GMU_SETTINGS_SCRIPTS}/set_bookmarkbar_settings.sh"
+# safe_source "${GMU_SETTINGS_SCRIPTS}/set_bookmarkbar_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_chatgpt_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_claude_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_graphicconverter_settings.sh"
@@ -31,7 +31,7 @@ function perform_basic_third_party_app_settings() {
 
 
   # Bookmark Bar
-  set_bookmarkbar_settings             # scripts/settings/set_bookmarkbar_settings.sh
+  # set_bookmarkbar_settings             # scripts/settings/set_bookmarkbar_settings.sh
 
   # ChatGPT
   set_chatgpt_settings                 # scripts/settings/set_chatgpt_settings.sh
