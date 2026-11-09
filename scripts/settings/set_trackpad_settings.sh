@@ -137,6 +137,13 @@ function set_trackpad_settings() {
   report_adjust_setting "#7: -cH -g: c.a.trackpad.threeFingerVertSwipeGesture"
   defaults -currentHost write  NSGlobalDomain com.apple.trackpad.threeFingerVertSwipeGesture -int 0 ; success_or_not
 
+  ############### 11/9/2026 BEGIN PROVISIONAL MODIFICATIONS
+  # The following was an attempt to correct for undesired Space transitions associated with horizontal dragging
+  # movements. I still haven’t diagnosed exactly what’s causing the problem.
+  # In any case, I discovered that I had System Settings » Trackpad » More Gestures » Swipe between spaces =
+  # “Swipe left or right with three fingers.”
+  # If anything, this should have been FOUR fingers, because I use three-finger drag. But I decided to turn
+  # OFF entirely swiping as a method for changing Spaces, because that sequential metaphor isn’t useful to me.
   report_action_taken "More Gestures: Don’t three-finger swipe between Spaces"
   report_adjust_setting "#1: c.a.AppleMultitouchTrackpad: TrackpadThreeFingerHorizSwipeGesture"
   defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 0 ; success_or_not
@@ -144,6 +151,8 @@ function set_trackpad_settings() {
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 0 ; success_or_not
   report_adjust_setting "#3: -cH -g: c.trackpad.threeFingerHorizSwipeGesture"
   defaults -currentHost write  NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 0 ; success_or_not
+  ############### 11/9/2026 END PROVISIONAL MODIFICATIONS
+
 
   report_adjust_setting "More Gestures: App Exposé"
   defaults write com.apple.dock showAppExposeGestureEnabled -bool false ; success_or_not
