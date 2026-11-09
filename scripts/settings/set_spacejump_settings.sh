@@ -40,8 +40,26 @@ function set_spacejump_basic_settings() {
 
   quit_app_by_bundle_id_if_running "$BUNDLE_ID_SPACEJUMP"
 
-  report_adjust_setting "Time tracking per Space: Turn OFF"
-  defaults write $domain "usage_timeTrackingEnabled" -bool false ; success_or_not
+  report_adjust_setting "Avoid onboarding"
+  defaults write $domain "hasCompletedOnboarding" -bool true ; success_or_not
+
+  report_adjust_setting "Notch hover: Turn OFF"
+  defaults write $domain "notchSpacesEnabled" -bool false ; success_or_not
+
+  report_adjust_setting "Clear shortcut for Toggle last two Spaces"
+  defaults write $domain "toggleShortcut" -string 'cleared' ; success_or_not
+
+  report_adjust_setting "Window tiling: Turn OFF"
+  defaults write $domain "tiling.enabled" -bool false ; success_or_not
+
+  report_adjust_setting "Drag to tile: Turn OFF"
+  defaults write $domain "tiling.dragEnabled" -bool false ; success_or_not
+
+  report_adjust_setting "Pick windows in the grid: Turn OFF"
+  defaults write $domain "tiling.quickPickEnabled" -bool false ; success_or_not
+
+  report_adjust_setting "Windows-tiling shortcuts: Turn OFF"
+  defaults write $domain "tiling.shortcutsEnabled" -bool false ; success_or_not
 
   report_adjust_setting "Move window to Space via dragging: Turn OFF"
   defaults write $domain "dragToSwitchEnabled" -bool false ; success_or_not
@@ -51,6 +69,9 @@ function set_spacejump_basic_settings() {
   #  top of the screen showing all your spaces as miniature rectangles. Navigate
   #  with arrow keys or click directly)
   defaults write $domain "showSpaceBar" -bool true ; success_or_not
+
+  report_adjust_setting "Time tracking per Space: Turn OFF"
+  defaults write $domain "usage_timeTrackingEnabled" -bool false ; success_or_not
 
   invalidate_preferences_cache
 
