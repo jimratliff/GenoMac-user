@@ -199,6 +199,8 @@ function subdermis() {
 
   conditionally_set_apps_to_launch_at_login                    # scripts/settings/set_apps_to_launch_at_login.sh
 
+  record_that_user_has_run_this_version_of_genomac_user        # genomac-shared/scripts/helpers-compliance.sh
+
   end_of_subdermis_cleanup
 
   report_end_phase_standard
