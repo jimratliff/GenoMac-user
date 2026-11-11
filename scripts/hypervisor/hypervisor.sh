@@ -58,6 +58,7 @@ function hypervisor() {
   migrate_user_states "MIGRATION_ID_2026_10_27_1053" --delete "$PERM_WALLPAPERS_HAVE_BEEN_SET"
   migrate_user_states "MIGRATION_ID_2026_10_27_1054" --delete "$PERM_SPACE_NAMES_HAVE_BEEN_RECORDED_BY_SPACEJUMP"
   migrate_user_states "MIGRATION_ID_2026_10_27_1055" --delete "$PERM_DOCK_BASE_PERSISTENT_APPS_HAVE_BEEN_SPECIFIED"
+  migrate_user_states "MIGRATION_ID_2026_11_10_2121" --run "fetch_repo_tags"
 
   # Following migration is in response to SpaceJump appearing to be unlicensed after update from macOS 27.0.1 to 27.2
   migrate_user_states "MIGRATION_ID_2026_11_04_1648" --delete "$PERM_SPACEJUMP_LICENSE_HAS_BEEN_ACTIVATED"

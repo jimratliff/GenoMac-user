@@ -13,3 +13,13 @@ function delete_GraphicConverter_preference_domain() {
 
   report_end_phase_standard
 }
+
+function fetch_repo_tags() {
+  # Fetches the repo’s tags so that the compliance state can reference a base versioni
+  # and measure the current commit numerically with reference to that base version.
+  report_start_phase_standard
+
+  git fetch --tags origin
+
+  report_end_phase_standard
+}
