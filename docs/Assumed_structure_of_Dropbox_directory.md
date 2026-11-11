@@ -2,7 +2,7 @@
 
 Some components of GenoMac-user assume that user has a Dropbox directory that satisfies certain requirements.
 
-In at least many cases, Dropbox is used to store items that (a) are not secret in the sense of a password but (b) are too sensitive to be stored in a public repository.
+In at least many cases, Dropbox is used to store items that (a) are not secret in the sense of a password but (b) are (1) too sensitive or (2) too large (e.g., a binary) to be stored in a public repository
 
 At a high level, note that, for any particular user, there are two key directories:
 - `Dropbox/Preferences_common`, containing files and information not specific to any user
@@ -42,6 +42,8 @@ The below tree diagram indicates only those elements that are recognized by Geno
     - $USER/
       - Prefs/
         - Bookmarks/
+          - BookmarkBar_bookmarks/[^BOOKMARK_BAR_OPTIONAL]
+            - BookmarkBar Backup.json
           - Bookmarks_to_restore/[^BOOKMARKS_TO_RESTORE_OPTIONAL]
             - Helium/
               - Backup[^HELIUM_BOOKMARKS]
@@ -76,6 +78,8 @@ The below tree diagram indicates only those elements that are recognized by Geno
 [^SPACEJUMP_LICENSE_ACTIVATION]: During the activation of the license for SpaceJump, the function `get_license_key_for_spacejump` reads `SpaceJump_license_key.txt` to find the license key on the first line that is neither (a) a comment (begins with '#') nor (b) blank. The function `activate_spacejump_license` then writes the license key to SpaceJump’s .plist.
 
 [^WHERE_WITCH_LICENSE_FILES_ARE_FOUND]: You can find your Many Tricks license files at: «~/Library/Application Support/Many Tricks/Licenses». See also “[FAQ: How do I copy my licenses to another computer?](https://manytricks.com/osticket/kb/faq.php?id=2)”
+
+[^BOOKMARK_BAR_OPTIONAL]: This directory is optional. If this directory exists, and if it contains a file named `BookmarkBar Backup.json`, the bookmarks in that file will supply the bookmarks to be displayed by the app Bookmark Bar. (`BookmarkBar Backup.json` is the file produced by Bookmark Bar when its full set of bookmarks are exported via Preferences » Bookmarks, then “Export”.)
 
 [^BOOKMARKS_TO_RESTORE_OPTIONAL]: This directory is optional. It is required by Project GenoMac only if there is at least one browser for which it is desired to install bookmarks, in which case at least one browser-specific subfolder, e.g. `Bookmarks_to_restore/Waterfox` must be supplied.
 
