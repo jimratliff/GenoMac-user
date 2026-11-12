@@ -218,5 +218,7 @@ function end_of_subdermis_cleanup() {
 
   display_users_to_be_initially_configured                      # GenoMac-shared/scripts/helpers-state-xfer-btw-system-user.sh
 
-  report_end_phase_standard
+
+  # Report users that are behind the frontier of genomac-user
+  output_compliance_status																			# GenoMac-shared/scripts/helpers-compliance.sh
 }
