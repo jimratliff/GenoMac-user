@@ -1,0 +1,44 @@
+[desktop]
+# General
+#   General
+# 	  Prevent Sleep While Running (Keep your computer awak while ChatGPT is running a task)
+preventSleepWhileRunning = true
+#   Composer
+# 	  Send shortcut (Choose when Enter sends a prompt or inserts a new line)
+composerEnterBehavior = "cmdAlways"
+#   Popout Window
+#     Default to standalone chat (Start new chats outside of any project)
+hotkey-window-projectless-default-enabled = true
+
+# Appearance
+#   Advanced
+#     UI font style
+#       Translucent sidebar: Turn OFF
+[desktop.appearanceLightChromeTheme]
+accent = "#3a83f7"
+accentSource = "chatgpt"
+contrast = 45
+ink = "#1a1c1f"
+opaqueWindows = true
+surface = "#ffffff"
+
+[desktop.appearanceLightChromeTheme.fonts]
+
+[desktop.appearanceLightChromeTheme.semanticColors]
+diffAdded = "#00a240"
+diffRemoved = "#ba2623"
+skill = "#924ff7"
+
+# Personalization
+#   Codex memoy
+#     Enable Codex memories (Create memories from chats on Local and use them to personalize future chats on Local)
+[features]
+memories = true
+
+[memories]
+generate_memories = true
+use_memories = true
+
+# Mini & Pets
+#   Shortcut (Show and focus your pet by pressing …): REMOVE SHORTCUT
+# No change in config.toml

@@ -51,6 +51,9 @@ GMU_WALLPAPERS="${GMU_IMAGES}/wallpapers"
 GMU_WALLPAPER_CONFIGURER="${GMU_WALLPAPERS}/user_configurer_wallpaper.jpg"
 GMU_WALLPAPER_SWITCHER="${GMU_WALLPAPERS}/switcher_wallpaper.jpg"
 
+# Specify the local .toml file that holds the declarative specification for ChatGPT preferences
+GMU_CHATGPT_TOML="${GMU_RESOURCES}/chatgpt_toml/chatgpt-desired.toml"
+
 ############### ~/.genomac-user/scripts
 # - Local directory that holds scripts: ~/.genomac-user/scripts
 GMU_SCRIPTS="${GENOMAC_USER_LOCAL_DIRECTORY}/scripts"
@@ -83,9 +86,15 @@ GMU_UTILITY_SCRIPTS="${GMU_SCRIPTS}/utilities"
 # $HOME directory.
 GMU_STOW_DIR="${GENOMAC_USER_LOCAL_DIRECTORY}/stow_directory"
 
+############### ~/.genomac-user/python
+# - Local directory that holds Python scripts: ~/.genomac-user/python
+GMU_PYTHON="${GENOMAC_USER_LOCAL_DIRECTORY}/python"
+
 #############################################
 #                  Aliases to directories OUTSIDE of the local repo clone
-#
+
+# ~/.codex  ChatGPT/Codex configuration directory
+CODEX_CONFIG_DIRECTORY="$HOME/.codex"
 
 # ~/.config/genomac-user
 GENOMAC_USER_CONFIG="${XDG_CONFIG_HOME}/genomac-user"
