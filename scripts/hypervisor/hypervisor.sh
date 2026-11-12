@@ -45,7 +45,7 @@ function hypervisor() {
 
   ############### BEGIN MIGRATIONS
   # Provide any migrations here
-  # Example:
+  # Examples:
   #   migrate_user_states "MIGRATION_ID_2026_03_11" --delete "$PERM_PREVIEW_BASE_TOOLBAR_HAS_BEEN_SPECIFIED"
   #   migrate_user_states "MIGRATION_ID_2026_10_21_1859" --run "delete_GraphicConverter_preference_domain"
   #   migrate_user_states "MIGRATION_ID_2026_10_27_1052" --delete "$PERM_FINDER_SIDEBAR_HAS_BEEN_ARRANGED_FOR_NONBAREBONES_USER"
