@@ -7,8 +7,12 @@ function set_plain_text_editor_settings() {
 
   local domain="com.sindresorhus.Plain-Text-Editor"
 
-  report_adjust_setting "Editor » Text » Optimal line length: Turn OFF"
-  defaults write "${domain}" optimalLineLength -bool false ; success_or_not
+  # DEPRECATED: Appears to have been superseded by lineLengthLimit
+  # report_adjust_setting "Editor » Text » Optimal line length: Turn OFF"
+  # defaults write "${domain}" optimalLineLength -bool false ; success_or_not
+
+  report_adjust_setting "Editor » Text » Line length limit: Turn OFF"
+  defaults write "${domain}" lineLengthLimit -string off ; success_or_not
 
   report_adjust_setting "Editor » Interface » Content padding: Turn OFF"
   defaults write "${domain}" useContentPadding -bool false ; success_or_not
@@ -18,6 +22,6 @@ function set_plain_text_editor_settings() {
 
   # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
   invalidate_preferences_cache
-  
+
   report_end_phase_standard
 }
