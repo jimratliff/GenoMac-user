@@ -9,6 +9,8 @@ function set_chatgpt_settings() {
   # HINT:
   # - GMU_CHATGPT_TOML="${GMU_RESOURCES}/chatgpt_toml/chatgpt-desired.toml"
   # - GMU_PYTHON="${GENOMAC_USER_LOCAL_DIRECTORY}/python"
+  #
+  # The Python script requires tomlkit, i.e., python3 -m pip install tomlkit
 
   report_start_phase_standard
 
@@ -16,7 +18,7 @@ function set_chatgpt_settings() {
   local path_to_toml_declaration="${GMU_CHATGPT_TOML}"
   local path_to_ChatGPT_config_toml="$CODEX_CONFIG_DIRECTORY/config.toml"
 
-	python3 "${path_to_python_script}" \
+	"${GLOBAL_PYTHON_VENV_CHATGPT}/bin/python" "${path_to_python_script}" \
 	  "$path_to_toml_declaration" \
 	  "$path_to_ChatGPT_config_toml"
 
