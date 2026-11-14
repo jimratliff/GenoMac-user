@@ -18,7 +18,7 @@ function set_chatgpt_settings() {
   local path_to_toml_declaration="${GMU_CHATGPT_TOML}"
   local path_to_ChatGPT_config_toml="$CODEX_CONFIG_DIRECTORY/config.toml"
 
-	"${GLOBAL_PYTHON_VENV_CHATGPT}/bin/python" "${path_to_python_script}" \
+	"${PYTHON_IN_CHATGPT_VENV}" "${path_to_python_script}" \
 	  "$path_to_toml_declaration" \
 	  "$path_to_ChatGPT_config_toml"
 
