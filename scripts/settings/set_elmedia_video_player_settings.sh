@@ -42,6 +42,8 @@ function set_elmedia_video_player_hotkeys() {
   local domain="$DEFAULTS_DOMAINS_ELMEDIA_PLAYER_MAS"
   # HINT: DEFAULTS_DOMAINS_ELMEDIA_PLAYER_MAS="com.Eltima.ElmediaPlayer.MAS"
 
+  report_action_taken "Assign full set of hotkeys for Elmedia Video Player."
+
   bindings=$(<"$bindings_file")
   defaults write "$domain" keyBindings "$bindings"
 
