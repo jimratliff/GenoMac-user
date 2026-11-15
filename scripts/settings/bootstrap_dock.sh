@@ -132,6 +132,7 @@ function define_apps_for_dock() {
   local actual_path_to_app_Claude="/Applications/Claude.app"
   local actual_path_to_app_DaisyDisk="/Applications/DaisyDisk.app"
   local actual_path_to_app_Downie="/Applications/Downie 4.app"
+  local actual_path_to_app_Elmedia_Video_Player="/Applications/Elmedia Player.app"
   local actual_path_to_app_GraphicConverter="/Applications/GraphicConverter 12.app"
   local actual_path_to_app_Helium="/Applications/Helium.app"
   local actual_path_to_app_HIARCS_Chess_Explorer_Pro="/Applications/HIARCS Chess Explorer Pro.app"
@@ -202,6 +203,11 @@ function define_apps_for_dock() {
   # GraphicConverter
   if test_genomac_user_state "$SESH_GRAPHICCONVERTER_USER_WANTS_IT_IN_DOCK"; then
     apps_for_dock+=( "$actual_path_to_app_GraphicConverter" )
+  fi
+
+  # Elmedia Video Player
+  if test_genomac_user_state "$SESH_ELMEDIA_USER_WANTS_IT_IN_DOCK"; then
+    apps_for_dock+=( "$actual_path_to_app_Elmedia_Video_Player" )
   fi
 
   # HIARCS Chess Explorer Pro

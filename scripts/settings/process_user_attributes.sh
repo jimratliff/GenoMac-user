@@ -99,6 +99,10 @@ function set_user_preferences_for_attribute() {
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_DROPBOX}"
       set_genomac_user_state "$SESH_DROPBOX_USER_WANTS_IT"
       ;;
+    "${USER_ATTRIBUTE_ELMEDIA_PLAYER_IN_DOCK}")
+      report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_ELMEDIA_PLAYER_IN_DOCK}"
+      set_genomac_user_state "$SESH_ELMEDIA_USER_WANTS_IT_IN_DOCK"
+      ;;
     "${USER_ATTRIBUTE_EMAILER}")
       report_action_taken_to_log "Setting preferences for attribute: ${USER_ATTRIBUTE_EMAILER}"
       set_genomac_user_state "$SESH_INTERNET_ACCOUNTS_USER_WANTS_IT"
