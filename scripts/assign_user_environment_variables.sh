@@ -33,6 +33,12 @@ GMU_RESOURCES="${GENOMAC_USER_LOCAL_DIRECTORY}/resources"
 # ~/.genomac-user/resources/docs_to_display_to_user
 GMU_DOCS_TO_DISPLAY="${GMU_RESOURCES}/docs_to_display_to_user"
 
+# Specify the local directory that holds keybindings for Elmedia Video Player
+ELMEDIA_CONFIG_FILES="${GMU_RESOURCES}/elmedia_video_player"
+
+# Specify the local directory that holds keybindings for Elmedia Video Player
+ELMEDIA_KEYBINDINGS="${ELMEDIA_CONFIG_FILES}/keyBindings.plist"
+
 # Specify the local directory that holds files intended to be copied elsewhere
 # ~/.genomac-user/resources/files_to_be_copied_elsewhere
 GMU_FILES_TO_COPY_ELSEWHERE="${GMU_RESOURCES}/files_to_be_copied_elsewhere"

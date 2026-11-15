@@ -4,6 +4,7 @@ safe_source "${GMU_SETTINGS_SCRIPTS}/set_bbedit_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_bookmarkbar_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_chatgpt_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_claude_settings.sh"
+safe_source "${GMU_SETTINGS_SCRIPTS}/set_elmedia_video_player_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_graphicconverter_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_iterm_settings.sh"
 safe_source "${GMU_SETTINGS_SCRIPTS}/set_omnioutliner_settings.sh"
@@ -38,6 +39,9 @@ function perform_basic_third_party_app_settings() {
 
   # Claude
   set_claude_settings                  # scripts/settings/set_claude_settings.sh
+
+  # Elmedia Video Player
+  set_elmedia_video_player_settings    # scripts/settings/set_elmedia_video_player_settings.sh
 
   # GraphicConverter
   set_GraphicConverter_settings        # scripts/settings/set_graphicconverter_settings.sh
