@@ -99,9 +99,21 @@ show-log-latest:
 show-logs:
     just logging show-directory
 
+############### Compliance utilities
+
+# Show current commit id
+[group('Compliance utilities')]
+show-commit-id:
+    zsh scripts/utilities/show_commit_id.sh
+
+# Show complliance status
+[group('Compliance utilities')]
+show-compliance-status:
+    zsh scripts/utilities/show_compliance_status.sh
+
 ############### Remaining repository-management utility
 
-# Configure remote for HTTPS fetch and SSH push 
+# Configure remote for HTTPS fetch and SSH push
 [group('Repo management WITH GitHub authentication')]
 dev-configure-remote-for-https-fetch-and-ssh-push:
     # Sets the fetch URL to HTTPS
