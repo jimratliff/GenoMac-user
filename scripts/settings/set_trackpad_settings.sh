@@ -184,6 +184,15 @@ function set_trackpad_settings() {
   report_adjust_setting "3 of 3: -cH -g » com.apple.trackpad.threeFingerDragGesture"
   defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerDragGesture -bool true ; success_or_not
 
+  ############### 11/14/2026 Add "Use inertia for scrolling"
+  report_action_taken "Accessibility » Pointer Control » Trackpad Options: Use interia for scrolling"
+  report_adjust_setting "1 of 3: com.apple.AppleMultitouchTrackpad » TrackpadMomentumScroll"
+  defaults write com.apple.AppleMultitouchTrackpad TrackpadMomentumScroll -bool true ; success_or_not
+  report_adjust_setting "2 of 3: com.apple.driver.AppleBluetoothMultitouch.trackpad » TrackpadMomentumScroll"
+  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadMomentumScroll -bool true ; success_or_not
+  report_adjust_setting "3 of 3: -cH -g » com.apple.trackpad.momentumScroll"
+  defaults -currentHost write NSGlobalDomain com.apple.trackpad.momentumScroll -bool true ; success_or_not
+
   report_end_phase_standard
 
 }
