@@ -67,7 +67,11 @@ GENOMAC_LOGIN_APPS[bookmarkbar]="bundle:${BUNDLE_ID_BOOKMARKBAR}"
 GENOMAC_LOGIN_APPS[keyboard-maestro-engine]="path:/Applications/Keyboard Maestro.app/Contents/MacOS/Keyboard Maestro Engine.app"
 
 if test_genomac_user_state "$SESH_SPACEJUMP_USER_WANTS_IT"; then
-  GENOMAC_LOGIN_APPS[spacejump]="bundle:${BUNDLE_ID_SPACEJUMP}"
+  # SpaceJump is removed here because, when launched by a launch agent, it opens a dialog box, when then needs
+  # to be manually closed.
+  # However, now a one-time interactive step is required to turn on “Launch at login,” because that can’t be
+  # set with defaults write.
+  # GENOMAC_LOGIN_APPS[spacejump]="bundle:${BUNDLE_ID_SPACEJUMP}"
 fi
 
 
