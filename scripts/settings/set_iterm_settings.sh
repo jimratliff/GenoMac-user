@@ -4,25 +4,28 @@ function set_iterm_settings() {
 
   report_start_phase_standard
   report_action_taken "Implement iTerm2 settings"
-  
+
   local domain="$DEFAULTS_DOMAINS_ITERM2"
-  
+
   local plist_path=$(legacy_plist_path_from_domain "$domain")
-  
+
   report_adjust_setting "Set: Open windows in same Spaces"
   defaults write ${domain} RestoreWindowsToSameSpaces -bool true ; success_or_not
-  
+
   report_adjust_setting "Set Theme to Dark"
   # The default value, Regular, corresponds to 1
   defaults write ${domain} TabStyleWithAutomaticOption -int 1 ; success_or_not
-  
+
+  report_adjust_setting "TUrn OFF confirm ⌘Q Quit"
+  defaults write ${domain} PromptOnQuit -bool false ; success_or_not
+
   # The following settings apply to the Default profile
-  
+
   report_adjust_setting "Change default font to Fira Code Nerd Font"
-  
+
   # It is insufficient to test for the existence of the plist file.
   # The plist file can exist but yet not contain the entry needed to set the default font.
-  
+
   # iTerm’s plist is not sufficiently populated to support setting the default font unless
   # iTerm has been launched once. We check whether there is a sufficiently populated plist.
   # If not, launch iTerm to create that plist.
@@ -31,16 +34,16 @@ function set_iterm_settings() {
       launch_and_quit_app "${BUNDLE_ID_ITERM2}"
       sleep 5
   fi
-  
+
   "${PLISTBUDDY_PATH}" -c 'Set :"New Bookmarks":0:"Normal Font" "FiraCodeNFM-Reg 12"' "${plist_path}" ; success_or_not
-  
+
   # Set number of scrollback lines to unlimited
   report_adjust_setting "Set number of scrollback lines to unlimited"
   "${PLISTBUDDY_PATH}" -c 'Set :"New Bookmarks":0:"Unlimited Scrollback" 1' "${plist_path}" ; success_or_not
 
   # Invalidate preferences cache to ensure our changes won’t be overwritten by cached values
   invalidate_preferences_cache
-  
+
   report_end_phase_standard
 
 }
